@@ -1,6 +1,6 @@
 package businesslogic.bl.hotelstrategybl;
 
-import dataservice.hotelstrategydataservice.HotelStrategyDataService;
+import dao.hotelstrategydao.HotelStrategyDao;
 import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
 /**
@@ -11,7 +11,7 @@ import vo.hotelstrategyvo.HotelStrVO;
 public class HotelBirthStrategy implements HotelStrategyInterface {
 	//酒店生日策略折扣值
 	private double discount;
-	private HotelStrategyDataService hotelStrategyDataService;
+	private HotelStrategyDao hotelStrategyDao;
     //构造方法
 	public HotelBirthStrategy() {
 		

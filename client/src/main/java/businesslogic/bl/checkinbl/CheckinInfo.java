@@ -2,7 +2,7 @@ package businesslogic.bl.checkinbl;
 
 import java.util.Date;
 
-import dataservice.availableroomdataservice.AvailableRoomDataService;
+import dao.availableroomdao.AvailableRoomDao;
 import util.BedType;
 import util.ResultMessage;
 import vo.checkinvo.CheckinInfoVO;
@@ -24,7 +24,7 @@ public class CheckinInfo {
 	private String hotelNumber;//酒店编号
 	private String orderNumber;//订单号
 	//数据层的引用
-	private AvailableRoomDataService availableRoomDataService;
+	private AvailableRoomDao availableRoomDao;
 	
 	public CheckinInfo(){
 		

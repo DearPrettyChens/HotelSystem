@@ -1,6 +1,6 @@
 package businesslogic.bl.hotelstrategybl;
 
-import dataservice.hotelstrategydataservice.HotelStrategyDataService;
+import dao.hotelstrategydao.HotelStrategyDao;
 import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
 /**
@@ -13,7 +13,7 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 	private int amount;
 	//酒店预订数量策略折扣
 	private double discount;
-	private HotelStrategyDataService hotelStrategyDataService;
+	private HotelStrategyDao hotelStrategyDao;
     //构造方法
 	public HotelAmountStrategy(){
 		

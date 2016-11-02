@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.availableroombl.HotelInfoAvailService;
 import businesslogic.bl.orderbl.HotelInfoOrderService;
-import dataservice.hoteldataservice.HotelDataService;
+import dao.hoteldao.HotelDao;
 import util.City;
 import util.ResultMessage;
 import util.TradingArea;
@@ -23,7 +23,7 @@ import vo.hotelvo.HotelOrderVO;
  * @version 1.0
  */
 public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
-	private HotelDataService hotelDataService;//数据层的应用
+	private HotelDao hotelDao;//数据层的应用
 	private String hotelName;// 酒店名称
 	private String hotelID;//酒店编号
 	private String address;// 酒店地址

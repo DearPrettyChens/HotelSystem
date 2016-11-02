@@ -31,7 +31,7 @@ public class Order {
 	/**
 	 * 检查输入的入住日期的格式
 	 * @param time Date型，传递入住日期
-	 * @return ResultMessage，格式正确返回SUCCESS,格式错误返回DATAFORMATERROR,
+	 * @return ResultMessage，格式正确返回SUCCESS,格式错误返回daoFORMATERROR,
 	 * @throws 未定
 	 *
 	 */

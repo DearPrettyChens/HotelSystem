@@ -19,9 +19,9 @@ public interface Person {
          * @param PersonDetailVO personDetailVO
          * @return ResultMessage
          * @throws 未定
-         * 需接口：PersonnelDataService.addCustomer
-         * PersonnelDataService.addHotelWorker
-         * PersonnelDataService.addWebMarketMan
+         * 需接口：PersonnelDao.addCustomer
+         * PersonnelDao.addHotelWorker
+         * PersonnelDao.addWebMarketMan
          */
         public ResultMessage addPerson(PersonDetailVO personDetailVO);
         /**
@@ -29,9 +29,9 @@ public interface Person {
          * @param null
          * @return PersonDetailVO
          * @throws 未定
-         * 需接口：PersonnelDataService.getHotelworkerDetail
-         * PersonnelDataService.getWebMarketManDetail
-         * PersonnelDataService.getCustomerDetail
+         * 需接口：PersonnelDao.getHotelworkerDetail
+         * PersonnelDao.getWebMarketManDetail
+         * PersonnelDao.getCustomerDetail
          */
         public PersonDetailVO getDetail ();
         /**
@@ -39,9 +39,9 @@ public interface Person {
          * @param PersonDetailVO personDetailVO
          * @return ResultMessage
          * @throws 未定
-         * 需接口：PersonnelDataService. setHotelWorker
-         * PersonnelDataService. setWebMarketMan
-         * PersonnelDataService. setCustomer
+         * 需接口：PersonnelDao. setHotelWorker
+         * PersonnelDao. setWebMarketMan
+         * PersonnelDao. setCustomer
          */
         public ResultMessage setPerson (PersonDetailVO personDetailVO);
         

@@ -2,7 +2,7 @@ package businesslogic.bl.availableroombl;
 
 import java.util.ArrayList;
 
-import dataservice.availableroomdataservice.AvailableRoomDataService;
+import dao.availableroomdao.AvailableRoomDao;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -16,7 +16,7 @@ public class AvailableRoom {
 	//可用住房信息列表
 	private ArrayList<SingleAvailableRoomInfo> singleAvailableRoomInfoList;
 	//数据层的引用
-	private AvailableRoomDataService availableRoomDataService;
+	private AvailableRoomDao availableRoomDao;
 	public AvailableRoom(){
 		
 	}

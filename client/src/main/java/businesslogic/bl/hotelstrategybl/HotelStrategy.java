@@ -14,7 +14,7 @@ public class HotelStrategy {
      * 获得酒店最佳策略
      * @param orderProvidedVO OrderProvidedVO型
      * @return HotelBestStrVO
-     * 需接口：SearchHotelDataService.getHotelList
+     * 需接口：SearchHotelDao.getHotelList
      */
 	public HotelBestStrVO getBestHotelStrategy(OrderProvidedVO orderProvidedVO) {
 		return null;
@@ -24,7 +24,7 @@ public class HotelStrategy {
      * @param hotelID String型
      * @param hotelStrategyInterface HotelStrategyInterface型
      * @return HotelStrVO
-     * 需接口：SearchHotelDataService. getSortedHotelList
+     * 需接口：SearchHotelDao. getSortedHotelList
      */
 	public HotelStrVO getHotelStrategy(String hotelID, HotelStrategyInterface hotelStrategyInterface) {
 		return hotelStrategyInterface.getHotelStrategy(hotelID);
@@ -34,7 +34,7 @@ public class HotelStrategy {
      * @param hotelStrategyInterface
      * @param hotelStrategyInterface HotelStrategyInterface型，hotelStrVO HotelStrVO型
      * @return ResultMessage
-     * 需接口：SearchHotelDataService. getBookedHotelList
+     * 需接口：SearchHotelDao. getBookedHotelList
      * Order.getOrderList
      */
 	public ResultMessage confirmHotelStrategy(HotelStrategyInterface hotelStrategyInterface, HotelStrVO hotelStrVO) {

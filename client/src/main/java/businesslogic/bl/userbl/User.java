@@ -1,6 +1,6 @@
 package businesslogic.bl.userbl;
 
-import dataservice.userdataservice.UserDataService;
+import dao.userdao.UserDao;
 import util.Password;
 import util.ResultMessage;
 import vo.uservo.BasicInfoVO;
@@ -15,7 +15,7 @@ public class User {
 	private String userID;
 	//密码
 	private String password;
-	private UserDataService userDataService;
+	private UserDao userDao;
 	public User(){
 		
 	}

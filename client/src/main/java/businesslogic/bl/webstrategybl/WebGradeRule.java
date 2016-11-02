@@ -1,6 +1,6 @@
 package businesslogic.bl.webstrategybl;
 
-import dataservice.webstrategydataservice.WebStrategyDataService;
+import dao.webstrategydao.WebStrategyDao;
 import util.ResultMessage;
 import vo.webstrategyvo.GradeRuleVO;
 /**
@@ -11,7 +11,7 @@ import vo.webstrategyvo.GradeRuleVO;
 public class WebGradeRule {
 	//每升一级的信用值
 	private int credit;
-	private WebStrategyDataService webStrategyDataService;
+	private WebStrategyDao webStrategyDao;
 	public WebGradeRule(){
 		
 	}

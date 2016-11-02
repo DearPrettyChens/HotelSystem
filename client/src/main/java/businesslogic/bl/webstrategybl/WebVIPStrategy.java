@@ -2,7 +2,7 @@ package businesslogic.bl.webstrategybl;
 
 import java.util.Map;
 
-import dataservice.webstrategydataservice.WebStrategyDataService;
+import dao.webstrategydao.WebStrategyDao;
 import util.ResultMessage;
 import vo.webstrategyvo.WebStrVO;
 /**
@@ -13,7 +13,7 @@ import vo.webstrategyvo.WebStrVO;
 public class WebVIPStrategy implements WebStrategyInterface{
 	//网站vip折扣策略映射
 	private Map<Integer,Double> strategy;
-	private WebStrategyDataService webStrategyDataService;
+	private WebStrategyDao webStrategyDao;
 	public WebVIPStrategy(){
 		
 	}

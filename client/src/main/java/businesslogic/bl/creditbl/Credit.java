@@ -2,7 +2,7 @@ package businesslogic.bl.creditbl;
 
 import java.util.ArrayList;
 
-import dataservice.availableroomdataservice.AvailableRoomDataService;
+import dao.availableroomdao.AvailableRoomDao;
 import util.ResultMessage;
 import vo.creditvo.CreditInfoVO;
 import vo.creditvo.CreditVO;
@@ -13,7 +13,7 @@ import vo.creditvo.CreditVO;
  */
 public class Credit {
 	//数据层的引用
-	private AvailableRoomDataService availableRoomDataService;
+	private AvailableRoomDao availableRoomDao;
 	//单条信用记录
 	private String creditInfo;
 	//信用值

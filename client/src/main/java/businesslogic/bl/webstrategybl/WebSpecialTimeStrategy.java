@@ -2,7 +2,7 @@ package businesslogic.bl.webstrategybl;
 
 import java.util.Date;
 
-import dataservice.webstrategydataservice.WebStrategyDataService;
+import dao.webstrategydao.WebStrategyDao;
 import util.ResultMessage;
 import vo.webstrategyvo.WebStrVO;
 /**
@@ -15,7 +15,7 @@ public class WebSpecialTimeStrategy implements WebStrategyInterface{
     private Date[] date;
     //折扣值
     private double discount;
-    private WebStrategyDataService webStrategyDataService;
+    private WebStrategyDao webStrategyDao;
 	public WebSpecialTimeStrategy(){
 	
 	}

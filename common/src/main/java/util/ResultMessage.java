@@ -19,7 +19,7 @@ public enum ResultMessage {
 	
 	LACKOFCREDIT,//信用值小于0，不能生成订单
 	
-	DATAFORMATERROR,//日期格式错误
+	daoFORMATERROR,//日期格式错误
 	
 	SUCCESS,
 	FAIL,

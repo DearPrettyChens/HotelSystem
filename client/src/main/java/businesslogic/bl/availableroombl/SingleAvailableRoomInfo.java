@@ -1,6 +1,6 @@
 package businesslogic.bl.availableroombl;
 
-import dataservice.availableroomdataservice.AvailableRoomDataService;
+import dao.availableroomdao.AvailableRoomDao;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -17,7 +17,7 @@ public class SingleAvailableRoomInfo {
 	private double originalPrice;//原始价格
 	private double lowestPrice;//最低价格
 	private int roomNum;//房间数量
-	private AvailableRoomDataService availableRoomDataService;//数据层的引用
+	private AvailableRoomDao availableRoomDao;//数据层的引用
 	
 	public SingleAvailableRoomInfo(){
 		

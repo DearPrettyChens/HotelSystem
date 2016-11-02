@@ -2,7 +2,7 @@ package businesslogic.bl.webstrategybl;
 
 import java.util.Map;
 
-import dataservice.webstrategydataservice.WebStrategyDataService;
+import dao.webstrategydao.WebStrategyDao;
 import util.ResultMessage;
 import util.TradingArea;
 import vo.webstrategyvo.WebStrVO;
@@ -14,7 +14,7 @@ import vo.webstrategyvo.WebStrVO;
 public class WebSpecialAreaStrategy implements WebStrategyInterface {
     //酒店特定商圈策略映射
 	private Map<TradingArea,Double> strategy; 
-	private WebStrategyDataService webStrategyDataService;
+	private WebStrategyDao webStrategyDao;
     public WebSpecialAreaStrategy(){
     
     }

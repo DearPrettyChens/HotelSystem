@@ -2,7 +2,7 @@ package businesslogic.bl.orderbl;
 
 import java.util.ArrayList;
 
-import dataservice.orderdataservice.OrderDataService;
+import dao.orderdao.OrderDao;
 import vo.ordervo.OrderVO;
 import vo.ordervo.TypeInfoVO;
 /**
@@ -12,7 +12,7 @@ import vo.ordervo.TypeInfoVO;
  */
 public class OrderList {
 	private ArrayList<SingleOrder> singleOrders;
-	private OrderDataService orderDataService;
+	private OrderDao orderDao;
 	public OrderList() {
 		
 	}

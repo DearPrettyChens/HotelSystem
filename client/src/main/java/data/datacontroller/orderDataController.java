@@ -1,5 +1,5 @@
 package data.datacontroller;
 
-public class orderDataController {
+public class OrderDataController {
 
 }

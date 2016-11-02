@@ -2,7 +2,7 @@ package businesslogic.bl.orderbl;
 
 import java.util.Date;
 
-import dataservice.orderdataservice.OrderDataService;
+import dao.orderdao.OrderDao;
 import util.OrderState;
 import util.ResultMessage;
 import vo.ordervo.OrderInfoVO;
@@ -14,7 +14,7 @@ import vo.ordervo.RemarkVO;
  */
 public class SingleOrder {
 	
-	OrderDataService orderDataService;
+	OrderDao orderDao;
 	
 	public SingleOrder() {
 		

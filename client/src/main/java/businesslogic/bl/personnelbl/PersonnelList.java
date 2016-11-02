@@ -25,9 +25,9 @@ public class PersonnelList {
      * @param keyWord
      * @return  ArrayList<PersonListVO>
      * @throws 未定
-     * 需接口：PersonnelDataService.getHotelWorkerList
-     * PersonnelDataService.getWebMarketManList
-     * PersonnelDataService.getCustomerList
+     * 需接口：PersonnelDao.getHotelWorkerList
+     * PersonnelDao.getWebMarketManList
+     * PersonnelDao.getCustomerList
      */
     public ArrayList<PersonListVO> init(String keyWord){
     	return null;

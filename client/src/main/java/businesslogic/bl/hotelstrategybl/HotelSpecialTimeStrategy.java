@@ -2,7 +2,7 @@ package businesslogic.bl.hotelstrategybl;
 
 import java.util.Date;
 
-import dataservice.hotelstrategydataservice.HotelStrategyDataService;
+import dao.hotelstrategydao.HotelStrategyDao;
 import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
 /**
@@ -15,7 +15,7 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface{
     private Date[] date;
     //折扣值
     private double discount;
-    private HotelStrategyDataService hotelStrategyDataService;
+    private HotelStrategyDao hotelStrategyDao;
     //构造方法
     public HotelSpecialTimeStrategy(){
     
