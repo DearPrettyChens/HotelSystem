@@ -1,13 +1,17 @@
-package mock;
+package businesslogic.bl.hotelstrategybl.mock;
 
 import java.util.ArrayList;
+
+import businesslogic.bl.availableroombl.SingleAvailableRoomInfo;
+import dao.availableroomdao.AvailableRoomDao;
+import util.ResultMessage;
 
 public class MockAvailableRoom {
 	//可用住房信息列表
 	private ArrayList<SingleAvailableRoomInfo> singleAvailableRoomInfoList;
 	//数据层的引用
-	private AvailableRoomDataService availableRoomDataService;
-	public AvailableRoom(){
+	private AvailableRoomDao availableRoomDao;
+	public MockAvailableRoom(){
 		
 	}
 	

@@ -1,6 +1,7 @@
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\blservice\searchhotelblservice\SearchHotelBLService.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\blservice\checkinblservice\CheckinBLService.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\checkinbl\CheckinInfo.java
+E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\hotelstrategybl\mock\MockUser.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\hotelstrategybl\HotelStrategyController.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\personnelvo\CustomerDetailVO.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\ordervo\StrategyVO.java
@@ -19,7 +20,6 @@ E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\personnelvo\Pe
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\searchhotelbl\SearchHotelController.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\blservice\creditblservice\CreditBLService.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\orderbl\HotelInfoOrderService.java
-E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\data\datacontroller\OrderDataController.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\userbl\Customer.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\creditvo\CreditVO.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\webstrategyvo\GradeRuleVO.java
@@ -88,12 +88,14 @@ E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\uservo\BasicIn
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\orderbl\GenerateOrderController.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\orderbl\SingleOrder.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\hotelstrategybl\HotelEnterpriseStrategy.java
+E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\data\daocontroller\DaoController.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\blservice\orderblservice\LookOrderService.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\vo\webstrategyvo\WebBestStrVO.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\blservice\hotelstrategyblservice\HotelStrategyBLService.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\personnelbl\PersonnelList.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\availableroombl\AvailableRoom.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\hotelbl\HotelOrderController.java
+E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\hotelstrategybl\mock\MockAvailableRoom.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\blservice\hotelblservice\HotelBLService.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\orderbl\Order.java
 E:\大二上\软工二\软工二大作业\HotelSystem\client\src\main\java\businesslogic\bl\webstrategybl\WebGradeRule.java

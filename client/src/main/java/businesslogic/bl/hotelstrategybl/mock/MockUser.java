@@ -1,4 +1,4 @@
-package mock;
+package businesslogic.bl.hotelstrategybl.mock;
 /**
  * user的mock类
  * @author CLL
@@ -8,7 +8,7 @@ public class MockUser {
 	//不变的属性 ID
 	private String userID;
 
-	public User(){
+	public MockUser(){
 		
 	}
 
