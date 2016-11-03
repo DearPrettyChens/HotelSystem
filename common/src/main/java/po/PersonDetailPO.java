@@ -1,16 +1,14 @@
-package vo.personnelvo;
+package po;
 
 import java.util.Date;
 
 import javax.swing.ImageIcon;
 
-import po.PersonDetailPO;
 import util.UserType;
 
-public class PersonDetailVO {
-
+public class PersonDetailPO {
 	/**
-	 * 用户详细信息的vo类，职责为实现逻辑层和界面层之间详细信息的交互
+	 * 用户详细信息的po类，职责为实现逻辑层和数据层之间详细信息的交互
 	 * 
 	 * @author Cy
 	 * @version 1.0
@@ -39,31 +37,14 @@ public class PersonDetailVO {
 	// 所在酒店名称
 	private String hotelName;
 
-	public PersonDetailVO() {
+	public PersonDetailPO() {
 
 	}
-	/**
-	 * vo的构造函数
-	 * 
-	 * @param PersonDetailPO
-	 */
-	public PersonDetailVO(PersonDetailPO po) {
-		this.setId(po.getId());
-		this.setName(po.getName());
-		this.setImage(po.getImage());
-		this.setTelephone(po.getTelephone());
-		this.setCredit(po.getCredit());
-		this.setBirthday(po.getBirthday());
-		this.setEnterpriseName(po.getEnterpriseName());
-		this.setVIPgrade(po.getVIPgrade());
-		this.setVIPType(po.getVIPType());
-		this.setPassword(po.getPassword());
-		this.setHotelName(po.getHotelName());
-
-	}
-
-	/**
-	 * vo的构造函数
+  //  public PersonDetailPO(PersonDetailVO vo){
+    	
+ //   }
+    /**
+	 * po的构造函数
 	 * 
 	 * @param customerId
 	 * @param customername
@@ -74,7 +55,7 @@ public class PersonDetailVO {
 	 * @param VIPgrade
 	 * @param password
 	 */
-	public PersonDetailVO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
+	public PersonDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
 			Date birthday, int VIPgrade, String password, String hotelName) {
 		this.Name = customername;
 		this.Image = customerimage;
@@ -86,7 +67,6 @@ public class PersonDetailVO {
 		this.password = password;
 		this.hotelName = hotelName;
 	}
-
 	public String getId() {
 		return Id;
 	}
@@ -174,5 +154,4 @@ public class PersonDetailVO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-
 }

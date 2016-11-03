@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
+import po.CustomerDetailPO;
 import util.UserType;
 /**
  * 顾客详细信息的vo类，职责为实现逻辑层和界面层之间顾客详细信息的交互
@@ -33,6 +34,14 @@ public class CustomerDetailVO extends PersonDetailVO{
 	//密码
 	private String password;
 	public CustomerDetailVO(){
+		
+	}
+	/**
+	 * 普通会员vo的构造函数
+	 * @param CustomerDetailPO
+	 * 
+	 */
+	public CustomerDetailVO(CustomerDetailPO po){
 		
 	}
 	/**

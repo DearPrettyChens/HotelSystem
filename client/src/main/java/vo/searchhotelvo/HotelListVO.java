@@ -2,6 +2,10 @@ package vo.searchhotelvo;
 
 import java.awt.Image;
 
+import javax.swing.ImageIcon;
+
+import po.HotelListPO;
+
 /**
  * 酒店列表信息vo
  * 
@@ -10,7 +14,7 @@ import java.awt.Image;
  */
 public class HotelListVO {
 	// 酒店图片
-    private Image hotelImage;
+    private ImageIcon hotelImage;
 	// 酒店id
 	private String hotelID;
 	// 酒店名字
@@ -26,7 +30,15 @@ public class HotelListVO {
 
 	public HotelListVO(){
 	}
-	
+	public HotelListVO(HotelListPO po){
+		this.setHotelAddress(po.getLocation());
+		this.setHotelID(po.getId());
+		this.setHotelName(po.getName());
+		this.setHotelImage(po.getImage());
+		this.setStar(po.getStar());
+		this.setRemark(po.getRemark());
+		this.setLowestPrice(po.getLowestprice());
+	}
 	public HotelListVO(String hotelID, String hotelName, String hotelAddress, int star, double remark,
 			double lowestPrice) {
 		this.setHotelID(hotelID);
@@ -65,8 +77,8 @@ public class HotelListVO {
 		return star;
 	}
 
-	public void setStar(int star) {
-		this.star = star;
+	public void setStar(int d) {
+		this.star = d;
 	}
 
 	public double getLowestPrice() {
@@ -83,6 +95,12 @@ public class HotelListVO {
 
 	public void setRemark(double remark) {
 		this.remark = remark;
+	}
+	public ImageIcon getHotelImage() {
+		return hotelImage;
+	}
+	public void setHotelImage(ImageIcon imageIcon) {
+		this.hotelImage = imageIcon;
 	}
 
 }

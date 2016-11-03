@@ -1,13 +1,10 @@
-package vo.personnelvo;
+package po;
 
 import javax.swing.ImageIcon;
 
-import po.PersonListPO;
-
-public class PersonListVO {
-
+public class PersonListPO {
 	/**
-	 * 用户列表信息的vo类，职责为实现逻辑层和界面层之间顾客详细信息的交互
+	 * 用户列表信息的po类，职责为实现逻辑层和数据层之间顾客详细信息的交互
 	 * 
 	 * @author Cy
 	 * @version 1.0
@@ -25,24 +22,18 @@ public class PersonListVO {
 	// 所在酒店名称
 	private String hotelName;
 
-	public PersonListVO() {
+	public PersonListPO(){
+			
+		}
 
-	}
-	public PersonListVO(PersonListPO po) {
-		this.setId(po.getId());
-		this.setName(po.getName());
-		this.setImage(po.getImage());
-		this.setTelephone(po.getTelephone());
-		this.setHotelName(po.getHotelName());
-	}
-	public PersonListVO(String Id, String Name, ImageIcon Image, String telephone, String hotelName) {
-		this.Id = Id;
-		this.Name = Name;
-		this.Image = Image;
-		this.telephone = telephone;
-		this.hotelName = hotelName;
-
-	}
+	public PersonListPO(String Id,String Name,ImageIcon Image,String telephone,String hotelName){
+			this.Id=Id;
+			this.Name=Name;
+			this.Image=Image;
+			this.telephone=telephone;
+			this.hotelName=hotelName;
+			
+		}
 
 	public String getId() {
 		return Id;
