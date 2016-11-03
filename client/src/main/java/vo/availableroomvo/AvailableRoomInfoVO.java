@@ -3,6 +3,7 @@ package vo.availableroomvo;
 import java.io.Serializable;
 import java.util.Map;
 
+import po.AvailableRoomInfoPO;
 import util.BedType;
  
 
@@ -40,7 +41,19 @@ public class AvailableRoomInfoVO implements Serializable {
 		this.originalNumbers=originalNumbers;
 		
 	}
-	
+    /**
+     * po to vo
+     * @param availableRoomInfoPO
+     */
+	public AvailableRoomInfoVO(AvailableRoomInfoPO availableRoomInfoPO){
+		this.hotelName=availableRoomInfoPO.getHotelName();
+		this.hotelNumber=availableRoomInfoPO.getHotelNumber();
+		this.roomType=availableRoomInfoPO.getRoomType();
+		this.bedType=availableRoomInfoPO.getBedType();
+		this.originalPrice=availableRoomInfoPO.getOriginalPrice();
+		this.lowestPrice=availableRoomInfoPO.getLowestPrice();
+		this.originalNumbers=availableRoomInfoPO.getOriginalNumbers();
+	}
 	public String getHotelNumber() {
 		return hotelNumber;
 	}

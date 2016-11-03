@@ -2,7 +2,6 @@ package po;
 
 import java.io.Serializable;
 import java.util.Map;
-
 import util.BedType;
 
 
@@ -41,7 +40,7 @@ public class AvailableRoomInfoPO implements Serializable {
 		this.originalNumbers=originalNumbers;
 		
 	}
-	
+ 
 	public String getHotelNumber() {
 		return hotelNumber;
 	}

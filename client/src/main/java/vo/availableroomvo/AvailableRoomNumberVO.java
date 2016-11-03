@@ -3,6 +3,7 @@ package vo.availableroomvo;
 import java.io.Serializable;
 import java.util.Date;
 
+import po.AvailableRoomNumberPO;
 import util.BedType;
 
 public class AvailableRoomNumberVO  implements Serializable{
@@ -33,6 +34,17 @@ public class AvailableRoomNumberVO  implements Serializable{
 		this.hotelNumber=hotelNumber;
 		this.hotelName=hotelName;
 	}
+    /**
+     * po to vo
+     * @param availableRoomNumberPO
+     */
+    public AvailableRoomNumberVO(AvailableRoomNumberPO availableRoomNumberPO){
+    	this.number=availableRoomNumberPO.getNumber();
+    	this.bedType=availableRoomNumberPO.getBedType();
+    	this.date=availableRoomNumberPO.getDate();
+    	this.hotelNumber=availableRoomNumberPO.getHotelNumber();
+    	this.hotelName=availableRoomNumberPO.getHotelName();
+    }
 	public int getNumber() {
 		return number;
 	}

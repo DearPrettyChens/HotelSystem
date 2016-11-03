@@ -1,5 +1,6 @@
 package businesslogic.bl.checkinbl;
 
+import businesslogic.bl.availableroombl.AvailableRoom;
 import dao.availableroomdao.AvailableRoomDao;
 import util.BedType;
 import util.ResultMessage;
@@ -15,6 +16,7 @@ import vo.checkinvo.OrderInfoVO;
 public class Checkin{
 	//数据层的引用
 	private AvailableRoomDao availableRoomDao;
+	private AvailableRoom availableroom;
 	public Checkin(){
 		
 	}

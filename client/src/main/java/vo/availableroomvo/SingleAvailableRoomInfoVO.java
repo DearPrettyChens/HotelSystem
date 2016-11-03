@@ -1,5 +1,6 @@
 package vo.availableroomvo;
 
+import po.SingleAvailableRoomInfoPO;
 import util.BedType;
 
 public class SingleAvailableRoomInfoVO {
@@ -21,7 +22,17 @@ public class SingleAvailableRoomInfoVO {
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
 	}
-	
+	/**
+	 * po to vo
+	 * @param singleAvailableRoomInfoPO
+	 */
+	public SingleAvailableRoomInfoVO(SingleAvailableRoomInfoPO singleAvailableRoomInfoPO){
+		this.hotelNumber=singleAvailableRoomInfoPO.getHotelNumber();
+		this.roomType=singleAvailableRoomInfoPO.getRoomType();
+		this.bedType=singleAvailableRoomInfoPO.getBedType();
+		this.originalPrice=singleAvailableRoomInfoPO.getOriginalPrice();
+		this.lowestPrice=singleAvailableRoomInfoPO.getLowestPrice();
+	}
 	public String getHotelNumber() {
 		return hotelNumber;
 	}
