@@ -14,7 +14,7 @@ public class CreditInfoController implements CreditInfoService{
 		credit=new Credit();
 	}
 	@Override
-	public CreditInfoVO getCreditInfo(String customerID) {
+	public CreditInfoVO getCreditInfo() {
 		// TODO Auto-generated method stub
 		return null;
 	}

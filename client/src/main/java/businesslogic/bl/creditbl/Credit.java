@@ -2,6 +2,7 @@ package businesslogic.bl.creditbl;
 
 import java.util.ArrayList;
 
+import businesslogic.bl.userbl.User;
 import dao.availableroomdao.AvailableRoomDao;
 import util.ResultMessage;
 import vo.creditvo.CreditInfoVO;
@@ -22,6 +23,8 @@ public class Credit {
 	private ArrayList<String> creditInfoList;
 	//顾客编号
 	private String customerID;
+	//单例模式 持有user对象引用
+	private User user;
 	public Credit(){
 		
 	}
@@ -33,7 +36,7 @@ public class Credit {
 	 * @param customerID
 	 * @return CreditInfoVO
 	 */
-	public CreditInfoVO getCreditInfo(String customerID) {
+	public CreditInfoVO getUserCreditInfoList() {
 		// TODO 
 		return null;
 	}

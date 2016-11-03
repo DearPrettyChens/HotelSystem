@@ -21,7 +21,6 @@ public class PersonListVO {
 	private ImageIcon Image;
 	// 联系方式11位
 	private String telephone;
-
 	// 所在酒店名称
 	private String hotelName;
 
@@ -35,6 +34,7 @@ public class PersonListVO {
 		this.setTelephone(po.getTelephone());
 		this.setHotelName(po.getHotelName());
 	}
+
 	public PersonListVO(String Id, String Name, ImageIcon Image, String telephone, String hotelName) {
 		this.Id = Id;
 		this.Name = Name;
@@ -44,6 +44,9 @@ public class PersonListVO {
 
 	}
 
+	public PersonListPO toPO(){
+		return new PersonListPO(Id,Name,Image,telephone,hotelName);
+	}
 	public String getId() {
 		return Id;
 	}

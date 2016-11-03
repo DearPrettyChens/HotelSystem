@@ -86,7 +86,10 @@ public class PersonDetailVO {
 		this.password = password;
 		this.hotelName = hotelName;
 	}
-
+ 
+	public PersonDetailPO toPO(){
+		return new PersonDetailPO(Id,Name,Image,telephone,credit,birthday,VIPgrade,password,hotelName,enterpriseName);
+	}
 	public String getId() {
 		return Id;
 	}

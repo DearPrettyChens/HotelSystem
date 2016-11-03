@@ -56,7 +56,7 @@ public class PersonDetailPO {
 	 * @param password
 	 */
 	public PersonDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
-			Date birthday, int VIPgrade, String password, String hotelName) {
+			Date birthday, int VIPgrade, String password, String hotelName,String enterprise) {
 		this.Name = customername;
 		this.Image = customerimage;
 		this.telephone = telephone;
@@ -66,6 +66,7 @@ public class PersonDetailPO {
 		this.Id = customerId;
 		this.password = password;
 		this.hotelName = hotelName;
+		this.enterpriseName = enterprise;
 	}
 	public String getId() {
 		return Id;

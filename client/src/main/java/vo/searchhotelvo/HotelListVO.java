@@ -49,6 +49,9 @@ public class HotelListVO {
 		this.setLowestPrice(lowestPrice);
 	}
 
+	public HotelListPO toPO(){
+		return new HotelListPO(hotelName,hotelAddress,hotelImage,lowestPrice,star,hotelID,remark);
+	}
 	public String getHotelID() {
 		return hotelID;
 	}
