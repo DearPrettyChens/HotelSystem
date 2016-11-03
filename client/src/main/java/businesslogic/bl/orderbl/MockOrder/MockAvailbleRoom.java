@@ -1,6 +1,6 @@
 package businesslogic.bl.orderbl.MockOrder;
 
-import businesslogic.bl.availableroombl.*;
+import businesslogic.bl.availableroombl.AvailableRoomInfoController;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomNumberVO;
 

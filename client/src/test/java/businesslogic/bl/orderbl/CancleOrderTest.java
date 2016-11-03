@@ -8,8 +8,8 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import vo.ordervo.RemarkVO;
-import businesslogic.blservice.orderblservice.CancleOrderService;;
+import businesslogic.blservice.orderblservice.CancleOrderService;
+import vo.ordervo.RemarkVO;;
 
 /**
  * 撤销订单的测试类
@@ -18,7 +18,7 @@ import businesslogic.blservice.orderblservice.CancleOrderService;;
  * 
  */
 public class CancleOrderTest {
-	CancleOrderService CancleOrderService;
+	CancleOrderService cancleOrderService;
 	 
 	
 	 RemarkVO remarkVO;
@@ -27,10 +27,7 @@ public class CancleOrderTest {
 	 @Before 
 	 public void setUp(){
 		 
-		 CancleOrderService=new CancleOrderController();
-		 
-		 
-		 
+		 cancleOrderService=new CancleOrderController();
 		 
 	 }
 	 
@@ -38,8 +35,8 @@ public class CancleOrderTest {
 	 public void test(){
 	 
 	 
-	   assertEquals(CancleOrderService.cancelOrderConfirm("123"),null);
-	   assertEquals(CancleOrderService.setReturnCredit(0),null);
+	   assertEquals(cancleOrderService.cancelOrderConfirm(123),null);
+	   assertEquals(cancleOrderService.setReturnCredit("0"),null);
 	   
 	   
 	
