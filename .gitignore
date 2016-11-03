@@ -47,3 +47,6 @@ Temporary Items
 .apdisk
 *.class
 *.class
+client/target/classes/META-INF/maven/ninthday/client/pom.properties
+*.properties
+client/target/classes/META-INF/maven/ninthday/client/pom.properties
