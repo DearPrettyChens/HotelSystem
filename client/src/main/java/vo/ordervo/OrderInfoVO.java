@@ -5,6 +5,7 @@ import java.util.Date;
 import util.BedType;
 import util.Children;
 import util.OrderState;
+import util.Remark;
 
 /**
  * 订单详细信息的vo类
@@ -38,7 +39,19 @@ public class OrderInfoVO {
 	// 有无儿童
 	private Children hasChild;
 	// 是否评价
-	private boolean hasRemarked;
+	private Remark hasRemarked;
+	public Remark getHasRemarked() {
+		return hasRemarked;
+	}
+
+	public void setHasRemarked(Remark hasRemarked) {
+		this.hasRemarked = hasRemarked;
+	}
+
+	public Children getHasChild() {
+		return hasChild;
+	}
+
 	// 预计入住时间
 	private Date expectedCheckInTime;
 	// 预计退房时间
@@ -64,7 +77,7 @@ public class OrderInfoVO {
 	// 查看所有订单信息
 	public OrderInfoVO(String orderID, String customerName, String liveinPersonName,String liveinPersonTelephone,
 			String hotelName, String hotelID, String hotelTelephone, String roomType, BedType bedType, int amount,
-			Date orderTime, int numberOfPeople, Children hasChild, boolean hasRemarked, Date expectedCheckInTime,
+			Date orderTime, int numberOfPeople, Children hasChild, Remark hasRemarked, Date expectedCheckInTime,
 			Date expectedCheckOutTime, Date lateCheckInTime, Date actualCheckInTime, Date actualCheckOutTime,
 			double price, OrderState state,Date cancleTime) {
 		
@@ -80,7 +93,7 @@ public class OrderInfoVO {
 		this.setOrderTime(orderTime);
 		this.setNumberOfPeople(numberOfPeople);
 		this.setHasChild(hasChild);
-		this.setHasRemarked(hasRemarked);
+		
 		this.setExpectedCheckInTime(expectedCheckInTime);
 		this.setExpectedCheckOutTime(expectedCheckOutTime);
 		this.setLateCheckInTime(lateCheckInTime);
@@ -238,13 +251,6 @@ public class OrderInfoVO {
 		this.hasChild = hasChild;
 	}
 
-	public boolean isHasRemarked() {
-		return hasRemarked;
-	}
-
-	public void setHasRemarked(boolean hasRemarked) {
-		this.hasRemarked = hasRemarked;
-	}
 
 	public Date getExpectedCheckInTime() {
 		return expectedCheckInTime;

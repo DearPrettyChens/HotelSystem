@@ -50,6 +50,6 @@ public class Customer {
 	 * @return ResultMessage
 	 */
 	public ResultMessage modifyDetailInfo(DetailInfoVO detailInfoVO){
-		return null;
+		return ResultMessage.SUCCESS;
 	}
 }

@@ -30,7 +30,7 @@ public class User {
 	}
    
 	public ResultMessage checkOldPassword(String name, String password) {
-		return null;
+		return ResultMessage.SUCCESS;
 	}
     /**
      * 检查新密码格式 委托给password
@@ -46,7 +46,7 @@ public class User {
      * @return ResultMessage
      */
 	public ResultMessage confirmPassword(PasswordVO passwordVO) {
-		return null;
+		return ResultMessage.SUCCESS;
 	}
     /**
      * 获得基本信息

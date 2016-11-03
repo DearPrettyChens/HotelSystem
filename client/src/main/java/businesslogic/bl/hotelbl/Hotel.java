@@ -81,7 +81,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public ResultMessage confirmModifyInfo(HotelBasicInfoVO hotelInfovo){
-		return null;
+		return ResultMessage.SUCCESS;
 		
 	}
 	
