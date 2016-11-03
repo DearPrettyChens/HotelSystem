@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import businesslogic.bl.availableroombl.SingleAvailableRoomInfo;
 import dao.availableroomdao.AvailableRoomDao;
 import util.ResultMessage;
-
+/**
+ * availableroom的mock类
+ * @author CLL
+ * @version 1.0
+ */
 public class MockAvailableRoom {
 	//可用住房信息列表
 	private ArrayList<SingleAvailableRoomInfo> singleAvailableRoomInfoList;

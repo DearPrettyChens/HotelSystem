@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
  * @author CLL
  * @version 1.0
  */
-public class WebMarketManDetailVO {
+public class WebMarketManDetailVO extends PersonDetailVO{
 	//头像
 	private ImageIcon userImage;
 	//用户名（真实姓名）
