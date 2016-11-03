@@ -33,7 +33,7 @@ public class UserSafetyController implements UserSafetyService{
 
 	@Override
 	public String getUserID(String name) {
-		return user.getUserID(name);
+		return user.getUserID();
 	}
 
 	@Override

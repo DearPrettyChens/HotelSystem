@@ -5,7 +5,7 @@ import util.OrderState;
 import util.ResultMessage;
 
 /**
- * Order模块的ExecuteOrderController控制类
+ * Order模块的CancleOrderController控制类
  * @author csy
  * @version 1.0
  */
@@ -18,13 +18,13 @@ public class CancleOrderController implements CancleOrderService{
 	}
 	
 	@Override
-	public ResultMessage cancelOrderConfirm(String orderID) {
+	public ResultMessage setReturnCredit(String orderID) {
 		// TODO Auto-generated method stub
 		return singleOrder.addOrderState(OrderState.HASCANCELED, orderID);
 	}
 
 	@Override
-	public ResultMessage setReturnCredit(int creditNum) {
+	public ResultMessage cancelOrderConfirm(int creditNum) {
 		// TODO Auto-generated method stub
 		return singleOrder.setReturnCredit(creditNum);
 	}

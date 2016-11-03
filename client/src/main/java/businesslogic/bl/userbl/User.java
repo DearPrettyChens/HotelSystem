@@ -5,6 +5,7 @@ import util.Password;
 import util.ResultMessage;
 import vo.uservo.BasicInfoVO;
 import vo.uservo.PasswordVO;
+
 /**
  * User类
  * @author CYF
@@ -62,7 +63,7 @@ public class User {
      * @param name
      * @return String
      */
-	public String getUserID(String name) {
+	public String getUserID() {
 		return null;
 	}
 
