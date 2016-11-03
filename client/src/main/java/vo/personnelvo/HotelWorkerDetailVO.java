@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
  * @author CLL
  * @version 1.0
  */
-public class HotelWorkerDetailVO{
+public class HotelWorkerDetailVO extends PersonDetailVO{
 	//头像
 	private ImageIcon hotelWorkerImage;
 	//用户名（真实姓名）

@@ -11,7 +11,7 @@ import util.UserType;
  * @author CLL
  * @version 1.0
  */ 
-public class CustomerDetailVO {
+public class CustomerDetailVO extends PersonDetailVO{
 	//顾客id
 	private String customerId;
 	//用户名名称，暂定为真实姓名
