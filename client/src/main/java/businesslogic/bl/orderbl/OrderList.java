@@ -3,7 +3,7 @@ package businesslogic.bl.orderbl;
 import java.util.ArrayList;
 
 import dao.orderdao.OrderDao;
-import vo.ordervo.OrderVO;
+import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 /**
  * Order模块的领域类
@@ -24,7 +24,7 @@ public class OrderList {
 	 * @throws 未定
 	 *
 	 */
-	public ArrayList<OrderVO> getOrderList(TypeInfoVO vo){
+	public ArrayList<OrderListVO> getOrderList(TypeInfoVO vo){
 		return null;
 		
 	}

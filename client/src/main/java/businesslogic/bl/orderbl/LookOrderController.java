@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import businesslogic.blservice.orderblservice.LookOrderService;
 import vo.ordervo.OrderInfoVO;
-import vo.ordervo.OrderVO;
+import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 
 /**
@@ -27,7 +27,7 @@ public class LookOrderController implements LookOrderService{
 	}
 
 	@Override
-	public ArrayList<OrderVO> getOrderList(TypeInfoVO typeInfoVO) {
+	public ArrayList<OrderListVO> getOrderList(TypeInfoVO typeInfoVO) {
 		// TODO Auto-generated method stub
 		return orderList.getOrderList(typeInfoVO);
 	}

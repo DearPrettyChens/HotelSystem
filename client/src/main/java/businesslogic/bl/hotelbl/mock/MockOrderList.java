@@ -3,7 +3,7 @@ package businesslogic.bl.hotelbl.mock;
 import java.util.ArrayList;
 
 import businesslogic.bl.orderbl.OrderList;
-import vo.ordervo.OrderVO;
+import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 
 /**
@@ -20,8 +20,8 @@ public class MockOrderList extends OrderList{
 	 * @throws 未定
 	 *
 	 */
-	public ArrayList<OrderVO> getOrderList(TypeInfoVO vo){
-		return new ArrayList<OrderVO>();
+	public ArrayList<OrderListVO> getOrderList(TypeInfoVO vo){
+		return new ArrayList<OrderListVO>();
 		
 	}
 }

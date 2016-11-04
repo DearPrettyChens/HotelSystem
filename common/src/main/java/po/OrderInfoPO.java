@@ -53,7 +53,7 @@ public class OrderInfoPO implements Serializable {
 	//实际入住时间
 	private Date actualCheckInTime;
 	//实际退房时间
-	private Date actuarCheckOutTime;
+	private Date actualCheckOutTime;
 	//订单价格
 	private double price;
 	//订单状态
@@ -248,7 +248,7 @@ public class OrderInfoPO implements Serializable {
 		NumberOfPeople = numberOfPeople;
 	}
 
-	public Children isHasChild() {
+	public Children getHasChild() {
 		return hasChild;
 	}
 
@@ -296,12 +296,12 @@ public class OrderInfoPO implements Serializable {
 		this.actualCheckInTime = actualCheckInTime;
 	}
 
-	public Date getActuarCheckOutTime() {
-		return actuarCheckOutTime;
+	public Date getActualCheckOutTime() {
+		return actualCheckOutTime;
 	}
 
 	public void setActuarCheckOutTime(Date actualCheckOutTime) {
-		this.actuarCheckOutTime = actuarCheckOutTime;
+		this.actualCheckOutTime = actualCheckOutTime;
 	}
 
 	public double getPrice() {

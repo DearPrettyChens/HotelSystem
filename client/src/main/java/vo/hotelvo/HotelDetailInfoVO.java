@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.hotelstrategyvo.HotelStrVO;
-import vo.ordervo.OrderVO;
+import vo.ordervo.OrderListVO;
 /**
  * 酒店详细信息vo 给顾客看的
  * @author CYF
@@ -46,7 +46,7 @@ public class HotelDetailInfoVO {
 	//评论
 	private ArrayList<String> remarkDetailInfo;
 	// 订单记录
-	private OrderVO[] orderRecordVO;
+	private OrderListVO[] orderRecordVO;
 
 	//空方法
 	public HotelDetailInfoVO(){
@@ -55,7 +55,7 @@ public class HotelDetailInfoVO {
 	//酒店细节信息 都可以看到
 	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,String telephone, int star, String introduce,
 			String commonFacility, String activityFacility, String service, String roomFacility, String enterprises,
-			HotelStrVO hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
+			HotelStrVO hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderListVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
 		this.setHotelName(hotelName);
 		this.setAddress(address);
 		this.setHotelImage(hotelImage);
@@ -170,11 +170,11 @@ public class HotelDetailInfoVO {
 		this.availableRoomInfoVO = availableRoomInfoVO;
 	}
 
-	public OrderVO[] getOrderRecordVO() {
+	public OrderListVO[] getOrderRecordVO() {
 		return orderRecordVO;
 	}
 
-	public void setOrderRecordVO(OrderVO[] orderRecordVO) {
+	public void setOrderRecordVO(OrderListVO[] orderRecordVO) {
 		this.orderRecordVO = orderRecordVO;
 	}
 

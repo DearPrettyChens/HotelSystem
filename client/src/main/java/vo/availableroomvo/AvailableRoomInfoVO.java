@@ -54,6 +54,14 @@ public class AvailableRoomInfoVO implements Serializable {
 		this.lowestPrice=availableRoomInfoPO.getLowestPrice();
 		this.originalNumbers=availableRoomInfoPO.getOriginalNumbers();
 	}
+	/**
+	 * vo to po
+	 * @return AvailableRoomInfoPO
+	 */
+	public AvailableRoomInfoPO toPO(){
+		return new AvailableRoomInfoPO(this.hotelNumber,this.hotelName,this.roomType,
+				this.bedType,this.originalPrice,this.lowestPrice,this.originalNumbers);
+	}
 	public String getHotelNumber() {
 		return hotelNumber;
 	}

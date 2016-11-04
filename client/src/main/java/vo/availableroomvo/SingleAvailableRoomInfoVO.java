@@ -33,6 +33,14 @@ public class SingleAvailableRoomInfoVO {
 		this.originalPrice=singleAvailableRoomInfoPO.getOriginalPrice();
 		this.lowestPrice=singleAvailableRoomInfoPO.getLowestPrice();
 	}
+	/**
+	 * vo to po
+	 * @return SingleAvailableRoomInfoPO
+	 */
+	public SingleAvailableRoomInfoPO toPO(){
+		return new SingleAvailableRoomInfoPO(this.hotelNumber,this.roomType,this.bedType,
+				this.originalPrice,this.lowestPrice);
+	}
 	public String getHotelNumber() {
 		return hotelNumber;
 	}

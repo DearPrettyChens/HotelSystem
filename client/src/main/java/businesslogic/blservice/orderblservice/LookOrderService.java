@@ -3,7 +3,7 @@ package businesslogic.blservice.orderblservice;
 import java.util.ArrayList;
 
 import vo.ordervo.OrderInfoVO;
-import vo.ordervo.OrderVO;
+import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 
 /**
@@ -29,6 +29,6 @@ public interface LookOrderService {
 	 * @throws 未定
 	 *
 	 */
-	public ArrayList<OrderVO> getOrderList(TypeInfoVO typeInfoVO);
+	public ArrayList<OrderListVO> getOrderList(TypeInfoVO typeInfoVO);
 	
 }

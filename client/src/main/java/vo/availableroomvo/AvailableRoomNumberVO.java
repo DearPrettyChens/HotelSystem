@@ -45,6 +45,14 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.hotelNumber=availableRoomNumberPO.getHotelNumber();
     	this.hotelName=availableRoomNumberPO.getHotelName();
     }
+    /**
+     * vo to po
+     * @return AvailableRoomNumberPO
+     */
+    public AvailableRoomNumberPO toPO(){
+    	return new AvailableRoomNumberPO(this.number,this.bedType,this.date,
+    			this.hotelNumber,this.hotelName);
+    }
 	public int getNumber() {
 		return number;
 	}
