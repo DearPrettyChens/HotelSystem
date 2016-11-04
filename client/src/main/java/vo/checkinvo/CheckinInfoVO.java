@@ -2,6 +2,7 @@ package vo.checkinvo;
 
 import java.util.Date;
 
+import po.CheckinInfoPO;
 import util.BedType;
  
 public class CheckinInfoVO {
@@ -30,6 +31,19 @@ public class CheckinInfoVO {
 	private String orderNumber;//订单号
 	
 	public CheckinInfoVO(){
+		
+	}
+    public CheckinInfoVO(CheckinInfoPO po){
+    	this.bedType=po.getRoomtype();
+    	this.roomNumber=po.getRoomnumber();
+    	this.checkinTime=po.getCheckintime();
+    	this.checkoutTime=po.getCheckouttime();
+    	this.hotelNumber=po.getHotelnumber();
+    	this.orderNumber=po.getOrdernumber();
+    	this.costumerName=po.getName();
+    	this.ID=po.getID();
+    	this.tel=po.getTel();
+    	
 		
 	}
 	public CheckinInfoVO( String costumername,String ID, String tel,String roomnumber, BedType bedtype,
@@ -105,7 +119,11 @@ public class CheckinInfoVO {
 		this.orderNumber = ordernumber;
 	}
 	
-	
+	public CheckinInfoPO votopo(){
+		return new CheckinInfoPO(this.costumerName,this.ID,this.tel,null,this.bedType,this.roomNumber
+				,this.checkinTime,this.checkoutTime,this.hotelNumber,this.orderNumber);
+		
+	}
  
 	
 }

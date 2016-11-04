@@ -25,9 +25,9 @@ public class CheckinInfoPO implements Serializable{
 
 
  */
-	private String[] name;//用户真实姓名
-	private String[] ID;//身份证号（数字
-	private String[] tel;//联系方式（11位手机号）
+	private String name;//用户真实姓名
+	private String ID;//身份证号（数字
+	private String tel;//联系方式（11位手机号）
 	private BedType bedtype;//床类型
 	private String roomnumber;//房间号（数字
 	private Date checkintime;//实际入住时间（-年-月-日-时-分）
@@ -38,7 +38,7 @@ public class CheckinInfoPO implements Serializable{
 		
 	}
 	
-	public CheckinInfoPO(String[] name,String[] ID,String []tel,String roomtype,BedType bedtype,String roomnumber
+	public CheckinInfoPO(String name,String ID,String tel,String roomtype,BedType bedtype,String roomnumber
 			,Date checkintime,Date checkouttime,String hotelnumber,String ordernumber){
 		this.name=name;
 		this.ID=ID;
@@ -54,22 +54,22 @@ public class CheckinInfoPO implements Serializable{
 	
 	
 	
-	public String[] getName() {
+	public String getName() {
 		return name;
 	}
-	public void setName(String[] name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-	public String[] getID() {
+	public String getID() {
 		return ID;
 	}
-	public void setID(String[] iD) {
+	public void setID(String iD) {
 		ID = iD;
 	}
-	public String[] getTel() {
+	public String getTel() {
 		return tel;
 	}
-	public void setTel(String[] tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	public BedType getRoomtype() {

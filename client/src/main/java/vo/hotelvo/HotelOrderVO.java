@@ -21,6 +21,7 @@ public class HotelOrderVO {
 	//空方法
 	public HotelOrderVO(){
 	}
+	
 	//酒店订单列表里的订单
 	public HotelOrderVO(String orderID, String customerName, Date reserveTime, OrderState state) {
 		this.setOrderID(orderID);

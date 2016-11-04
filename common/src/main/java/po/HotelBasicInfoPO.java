@@ -56,7 +56,16 @@ public class HotelBasicInfoPO implements Serializable {
 	private int remarkOrderNumber;
 	//评分
 	private int remarkNumber;
+	//合作企业
+	private String enterprises;
+    //空方法
 	
+	
+
+	public void setEnterprises(String enterprises) {
+		this.enterprises = enterprises;
+	}
+
 	public HotelBasicInfoPO() {
 
 	}
@@ -225,6 +234,11 @@ public class HotelBasicInfoPO implements Serializable {
 
 	public void setRemarkNumber(int remarkNumber) {
 		this.remarkNumber = remarkNumber;
+	}
+
+	public String getEnterprises() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

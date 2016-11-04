@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
+
+import po.AvailableRoomNumberPO;
 import po.CreditPO;
 import util.BedType;
 public class AvailableRoomNumberVO  implements Serializable{
@@ -25,6 +27,16 @@ public class AvailableRoomNumberVO  implements Serializable{
 	
 	
 	public AvailableRoomNumberVO(){
+		
+	}
+    public AvailableRoomNumberVO(AvailableRoomNumberPO po){
+    	this.number=po.getNumber();
+    	this.bedType=po.getBedType();
+    	this.date=po.getDate();
+    	this.hotelName=po.getHotelName();
+    	this.hotelNumber=po.getHotelNumber();
+    	
+    	
 		
 	}
     public AvailableRoomNumberVO(int number,BedType bedType,Date date,String hotelNumber,String hotelName){
@@ -66,6 +78,9 @@ public class AvailableRoomNumberVO  implements Serializable{
 		this.hotelName = hotelName;
 	}
 	
-	 
+	 public AvailableRoomNumberPO votopo(){
+		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,this.hotelNumber,this.hotelName);
+		 
+	 }
 	
 }

@@ -1,6 +1,10 @@
 package vo.creditvo;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import po.CreditInfoPO;
+import po.CreditPO;
 
 public class CreditInfoVO {
 	/**信用记录信息
@@ -15,6 +19,22 @@ public class CreditInfoVO {
 	private String customerNumber;//用户编号
 	private int credit;//当前信用值
 	private ArrayList<CreditVO> credits;//信用记录
+	public CreditInfoVO(CreditInfoPO po){
+		CreditVO  tempCreditVO;
+		ArrayList<CreditVO> tempcreditsvo = new ArrayList<CreditVO>();
+		ArrayList<CreditPO> tempcredits=(ArrayList<CreditPO>) po.getCreditRecords();
+		for(int i=0;i<tempcredits.size();i++){
+			tempCreditVO=new CreditVO(tempcredits.get(i));
+			tempcreditsvo.add(tempCreditVO);
+			
+			
+			
+			
+		}
+		this.credits=tempcreditsvo;
+		
+		
+	}
 	public CreditInfoVO(){
 	}
 	public CreditInfoVO(String name,String customerNumber,int credit,ArrayList<CreditVO> credits){
@@ -54,7 +74,22 @@ public class CreditInfoVO {
 		this.credits = creditinfo;
 	}
 
-	
+	public CreditInfoPO votopo(){
+		List<CreditPO> creditRecords=new ArrayList <CreditPO> ();
+		CreditPO tempPO=new CreditPO();
+		
+		for(int i=0;i<credits.size();i++){
+			tempPO=credits.get(i).votopo();
+			creditRecords.add(tempPO);
+			
+		}
+		
+		CreditInfoPO CreditInfoPO=new CreditInfoPO();
+		
+		CreditInfoPO.setCreditRecords(creditRecords);
+		return CreditInfoPO;
+		
+	}
 
 }
 

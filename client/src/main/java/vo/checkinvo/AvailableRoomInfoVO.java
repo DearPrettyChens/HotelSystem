@@ -3,6 +3,7 @@ package vo.checkinvo;
 import java.io.Serializable;
 import java.util.Map;
 
+import po.AvailableRoomInfoPO;
 import util.BedType;
 
 public class AvailableRoomInfoVO implements Serializable {
@@ -25,9 +26,21 @@ public class AvailableRoomInfoVO implements Serializable {
 	private int[] originalNumbers;//各房型总数量
 	
 	private Map<BedType,int []> availableRoom;//30天可用客房数
-	public AvailableRoomInfoVO(){
+	public AvailableRoomInfoVO(AvailableRoomInfoPO po){
+		this.hotelName=po.getHotelName();
+		this.hotelNumber=po.getHotelNumber();
+		this.roomType=po.getRoomType();
+		this.bedType=po.getBedType();
+		this.originalPrice=po.getOriginalPrice();
+		this.lowestPrice=po.getLowestPrice();
+		this.originalNumbers=po.getOriginalNumbers();
+		
 		
 	}
+	 public AvailableRoomInfoVO(){
+		 
+		 
+	 }
     public AvailableRoomInfoVO(String  hotelNumber,String hotelName,String[] roomType
     		,BedType[] bedType,double[] originalPrice,double[] lowestPrice,int[] originalNumbers){
 		this.hotelName=hotelName;
@@ -104,7 +117,14 @@ public class AvailableRoomInfoVO implements Serializable {
 		this.availableRoom = availableRoom;
 	}
 
-	
+	public AvailableRoomInfoPO votopo(){
+		
+		
+		
+		return new AvailableRoomInfoPO(this.hotelNumber,this.hotelName,this.roomType
+	    		,this.bedType,this.originalPrice,this.lowestPrice,this.originalNumbers);
+		
+	}
 
 }
 

@@ -1,7 +1,10 @@
 package vo.hotelvo;
 
+import java.util.List;
+
 import javax.swing.ImageIcon;
 
+import po.HotelBasicInfoPO;
 import util.City;
 import util.TradingArea;
 /**
@@ -11,7 +14,8 @@ import util.TradingArea;
  */ 
 
 public class HotelBasicInfoVO {
-	
+	// 酒店id
+			private String hotelID;
 	// 酒店名
 	private String hotelName;
 	//酒店照片
@@ -40,6 +44,36 @@ public class HotelBasicInfoVO {
 	private String enterprises;
     //空方法
 	public HotelBasicInfoVO(){
+		
+	}
+     public HotelBasicInfoVO(HotelBasicInfoPO po){
+    	// 酒店名
+    	this.hotelName=po.getName();
+    		//酒店照片
+    	this.hotelImage=po.getHotelImage();
+    		// 地址
+    	this.address=po.getAddress();
+    		//城市
+    	this.city=po.getCity();
+    		// 商圈
+    	this.tradingArea=po.getTradingArea();
+    		// 联系方式
+    	this.telephone=po.getTelephone();
+    		// 星级
+    	this.star=po.getStar();
+    		// 酒店简介
+    	this.introduce=po.getIntroduce();
+    		// 通用设施
+    	this.commonFacility=po.getCommonFacility();
+    		// 活动设施
+    	this.activityFacility=po.getActivityFacility();
+    		// 服务项目
+    	this.service=po.getService();
+    		// 客房设施
+    	this.roomFacility=po.getRoomFacility();
+    		// 合作企业
+    	this.enterprises=po.getEnterprises();
+    	 
 		
 	}
 	//酒店基本信息
@@ -163,6 +197,20 @@ public class HotelBasicInfoVO {
 	}
 	public void setCity(City city) {
 		this.city = city;
+	}
+	public String getHotelID() {
+		return hotelID;
+	}
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
+	}
+	public HotelBasicInfoPO votopo(){
+		return new HotelBasicInfoPO(this.hotelID, this.hotelName, this.hotelImage, this.address, this.telephone,
+				this.star,0, 0, this.introduce, this.commonFacility,
+				this.activityFacility, this.service, this.roomFacility,null,0,0);
+		
+		
+		
 	}
 
 }

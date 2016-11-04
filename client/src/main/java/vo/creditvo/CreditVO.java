@@ -3,6 +3,8 @@ package vo.creditvo;
 import java.io.Serializable;
 import java.util.Date;
 
+import po.CreditPO;
+
 public class CreditVO  implements Serializable{
 	
 	
@@ -20,6 +22,16 @@ public class CreditVO  implements Serializable{
 	private Date time;//时间
 	
 	public CreditVO(){
+		
+	}
+    public CreditVO(CreditPO po){
+    	this.name=po.getName();
+    	this.ID=po.getID();
+    	this.credit=po.getCredit();
+    	this.CreditChange=po.getCreditChange();
+    	this.reason=po.getReason();
+    	this.time=po.getTime();
+    	
 		
 	}
     public CreditVO(String name,String ID,double credit,double CreditChange,String reason,Date time){
@@ -72,7 +84,11 @@ public class CreditVO  implements Serializable{
 	
 	
 	}
-
+ public CreditPO votopo(){
+	 return new CreditPO(this.name,this.ID,this.credit,this.CreditChange,this.reason,this.time);
+	 
+	 
+ }
 	
 
 }

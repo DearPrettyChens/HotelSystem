@@ -14,6 +14,8 @@ import vo.ordervo.OrderListVO;
  * @version 1.0
  */
 public class HotelDetailInfoVO {
+	// 酒店id
+		private String hotelID;
 	
 	// 酒店名称
 	private String hotelName;
@@ -73,7 +75,12 @@ public class HotelDetailInfoVO {
 	    this.setRemarkDetailInfo(remarkDetailInfo);
 	    this.setRemarkNumber(remarkNumber);
 	}
-
+	public String getHotelID() {
+		return hotelID;
+	}
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
+	}
 	public String getHotelName() {
 		return hotelName;
 	}
