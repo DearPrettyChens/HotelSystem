@@ -11,7 +11,7 @@ public class MockUserTest {
 	@Test
 	public void testGetCreditInfo() {
         Credit ct = new Credit();
-        MockUser mu = new MockUser();
-        assertEquals(ct.getCreditInfo(mu.getUserID(null)),null);
+       // MockUser mu = new MockUser();
+        assertEquals(ct.getUserCreditInfoList(),null);
 	}
 }
