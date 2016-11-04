@@ -1,4 +1,7 @@
 package vo.ordervo;
+
+import po.RemarkPO;
+
 /**
  * 订单评价信息的vo类
  * @author CLL
@@ -9,6 +12,8 @@ public class RemarkVO {
 	private String orderId;
 	//酒店编号
 	private String hotelId;
+	//用户id
+	private String customerID;
 	//评分
 	private double remarkGrade;
 	//评价
@@ -24,7 +29,23 @@ public class RemarkVO {
 		this.setRemarkGrade(remarkGrade);
 		this.setRemarkInfo(remarkInfo);
 	}
-
+	/**
+	 * po to vo
+	 * @param po
+	 */
+	public RemarkVO(RemarkPO po){
+		this.orderId=po.getOrderID();
+		this.hotelId=po.getHotelID();
+		this.remarkGrade=po.getScore();
+		this.remarkInfo=po.getRemark();
+	}
+	/**
+	 * vo to po
+	 * @return RemarkPO
+	 */
+	public RemarkPO toPO(){
+		return new RemarkPO(this.hotelId,this.orderId,this.customerID,this.remarkGrade,this.remarkInfo);
+	}
 	public String getOrderId() {
 		return orderId;
 	}
@@ -55,5 +76,12 @@ public class RemarkVO {
 
 	public void setRemarkInfo(String remarkInfo) {
 		this.remarkInfo = remarkInfo;
+	}
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 }

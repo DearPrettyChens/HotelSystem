@@ -22,11 +22,12 @@ public class RemarkPO implements Serializable{
 		
 	}
 	// 酒店评价
-	public RemarkPO(String hotelID,String customerID,double score,String remark){
+	public RemarkPO(String hotelID,String orderId,String customerID,double score,String remark){
 		this.setHotelID(hotelID);
 		this.setCustomerID(customerID);
 		this.setScore(score);
 		this.setRemark(remark);	
+		this.orderID=orderId;
 	}
 
 	public String getHotelID() {
@@ -59,6 +60,12 @@ public class RemarkPO implements Serializable{
 
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
+	}
+	public String getOrderID() {
+		return orderID;
+	}
+	public void setOrderID(String orderID) {
+		this.orderID = orderID;
 	}
 
 }
