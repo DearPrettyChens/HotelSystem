@@ -31,7 +31,7 @@ public class HotelWorker implements  Person  {
 		    public HotelWorker(){
 		    	
 		    } 
-		    public HotelWorker(ImageIcon userImage,String name,Telephone telephone,Password password,String id,String hotelName){
+/*		    public HotelWorker(ImageIcon userImage,String name,Telephone telephone,Password password,String id,String hotelName){
 		    	this.userImage=userImage;
 				this.name=name;
 				this.telephone=telephone;
@@ -40,7 +40,7 @@ public class HotelWorker implements  Person  {
 				this.hotelName=hotelName;
 				
 				
-		    }
+		    }*/
 			@Override
 			public ResultMessage addPerson(PersonDetailVO personDetailVO) {
 				// TODO Auto-generated method stub

@@ -42,7 +42,7 @@ public class Customer implements Person {
 		 public Customer(){
 		    	
 		    } 
-		    public Customer(ImageIcon userImage,String name,Telephone telephone,Password password,String id,int credit,Date birthday,String enterpriseName,int VIPgrade,UserType VIPType){
+/*		    public Customer(ImageIcon userImage,String name,Telephone telephone,Password password,String id,int credit,Date birthday,String enterpriseName,int VIPgrade,UserType VIPType){
 		    	this.userImage=userImage;
 				this.name=name;
 				this.telephone=telephone;
@@ -55,7 +55,7 @@ public class Customer implements Person {
 				this.VIPType=VIPType;
 				
 				
-		    }
+		    }*/
 			@Override
 			public ResultMessage addPerson(PersonDetailVO personDetailVO) {
 				// TODO Auto-generated method stub
