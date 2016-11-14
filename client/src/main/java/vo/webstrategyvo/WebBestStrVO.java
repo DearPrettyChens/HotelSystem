@@ -3,7 +3,7 @@ package vo.webstrategyvo;
 import util.WebStrategyType;
 
 /** 
- * 网站最优策略
+ * 网站最优策略,（不涉及和PO的直接交互）
  * @author CYF
  * @version 1.0
  */

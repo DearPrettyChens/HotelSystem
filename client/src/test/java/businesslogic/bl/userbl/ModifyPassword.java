@@ -17,7 +17,7 @@ public class ModifyPassword {
     PasswordVO passwordVO;
 	@Before
 	public void setUp() throws Exception {
-	      passwordVO=new PasswordVO("000001", "123456");
+	      passwordVO=new PasswordVO("000001", "123456","小豆");
 	}
 
 	@Test

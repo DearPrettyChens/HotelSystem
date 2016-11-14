@@ -7,13 +7,15 @@ import java.io.Serializable;
  * @author CLL
  * @version 1.0
  */
-public class CilentPO implements Serializable{
+public class ClientPO implements Serializable{
 	private String userName;
 	private String password;
+	private String userID;
 	
-	public CilentPO(String userName,String password){
+	public ClientPO(String userName,String password,String userID){
 		this.userName=userName;
 		this.password=password;
+		this.userID=userID;
 	}
 	
 	public String getUserName() {
@@ -30,5 +32,13 @@ public class CilentPO implements Serializable{
 	
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUserID() {
+		return userID;
+	}
+
+	public void setUserID(String userID) {
+		this.userID = userID;
 	}
 }

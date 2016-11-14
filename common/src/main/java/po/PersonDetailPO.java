@@ -28,8 +28,7 @@ public class PersonDetailPO {
 	private Date birthday;
 	// 企业名称
 	private String enterpriseName;
-	// 会员等级
-	private int VIPgrade;
+
 	// 会员类型（企业会员和普通会员两种）
 	private UserType VIPType;
 	// 密码
@@ -52,17 +51,15 @@ public class PersonDetailPO {
 	 * @param telephone
 	 * @param credit
 	 * @param birthday
-	 * @param VIPgrade
 	 * @param password
 	 */
 	public PersonDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
-			Date birthday, int VIPgrade, String password, String hotelName,String enterprise) {
+			Date birthday, String password, String hotelName,String enterprise) {
 		this.Name = customername;
 		this.Image = customerimage;
 		this.telephone = telephone;
 		this.credit = credit;
 		this.birthday = birthday;
-		this.VIPgrade = VIPgrade;
 		this.Id = customerId;
 		this.password = password;
 		this.hotelName = hotelName;
@@ -124,13 +121,6 @@ public class PersonDetailPO {
 		this.enterpriseName = enterpriseName;
 	}
 
-	public int getVIPgrade() {
-		return VIPgrade;
-	}
-
-	public void setVIPgrade(int vIPgrade) {
-		VIPgrade = vIPgrade;
-	}
 
 	public UserType getVIPType() {
 		return VIPType;

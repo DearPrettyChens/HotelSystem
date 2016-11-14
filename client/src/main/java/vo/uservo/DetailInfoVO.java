@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
+import po.PersonDetailPO;
 import util.UserType;
 
 /**
@@ -31,6 +32,29 @@ public class DetailInfoVO {
 	public DetailInfoVO() {
 	}
 
+	/**
+	 * po to vo
+	 * @param PersonDetailPO po
+	 */
+	public DetailInfoVO(PersonDetailPO po){
+		this.setBirth(po.getBirthday());
+		this.setEnterprise(po.getEnterpriseName());
+		this.setTelephone(po.getTelephone());
+		this.setUserID(po.getId());
+		this.setUserImage(po.getImage());
+		this.setUserName(po.getName());
+		this.setUserType(po.getVIPType());
+		
+	}
+	
+	/**
+	 * vo to po
+	 * @return PersonDetailPO
+	 */
+	public PersonDetailPO toPO() {
+		return new PersonDetailPO(userID, userName, userImage, telephone, 0, birth, null, null, enterprise);
+	}
+	
 	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);

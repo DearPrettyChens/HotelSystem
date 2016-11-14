@@ -5,7 +5,7 @@ import util.HotelStrategyType;
 public class HotelBestStrVO {
 
 	/** 
-	 * 酒店最低折扣
+	 * 酒店最低折扣（不涉及和PO的交互）
 	 * 
 	 * @author Cy
 	 * @virsion 1.0

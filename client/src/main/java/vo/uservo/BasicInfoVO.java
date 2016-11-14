@@ -1,8 +1,8 @@
 package vo.uservo;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
+
+import po.PersonDetailPO;
 /**
  * 用户基本信息
  * @author CYF
@@ -24,6 +24,17 @@ public class BasicInfoVO {
 		this.setUserName(userName);
 		this.setUserID(userID);
 	}
+
+	/**
+	 * po to vo //?这里是从PersonDetailVO那里来还是从PO那里拿过来信息？
+	 * @param personDetailPO
+	 */
+	public BasicInfoVO (PersonDetailPO personDetailPO) {
+		this.setUserName(personDetailPO.getName());
+		this.setUserImage(personDetailPO.getImage());
+		this.setUserID(personDetailPO.getId());
+	}
+	
 	public String getUserName() {
 		return userName;
 	}

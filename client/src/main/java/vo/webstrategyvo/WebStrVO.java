@@ -3,6 +3,7 @@ package vo.webstrategyvo;
 import java.util.Date;
 import java.util.Map;
 
+import po.WebStrPO;
 import util.WebStrategyType;
 
 /**
@@ -13,7 +14,7 @@ import util.WebStrategyType;
  */
 public class WebStrVO {
 
-	//商圈折扣映射
+	//商圈折扣映射????????
 	//private Map<TradingArea, Double> tradingAreaStrategy;
 	//vip折扣映射
 	private Map<Integer,Double> specialTimeOrTradingAreaStrategy;
@@ -26,6 +27,25 @@ public class WebStrVO {
 	public WebStrVO() {
 	}
 
+	 /**
+     * po to vo
+     * @param webStrPO
+     */
+	public WebStrVO(WebStrPO webStrPO) {
+		this.setDate(webStrPO.getDate());
+		this.setDiscount(webStrPO.getDiscount());
+		this.setSpecialTimeOrTradingAreaStrategy(webStrPO.getSpecialTimeOrTradingAreaStrategy());
+		this.setType(webStrPO.getType());
+		
+	}
+	
+	/**
+	 * vo to po
+	 * @return WebStrPO
+	 */
+	public WebStrPO toPO() {
+		return new WebStrPO( specialTimeOrTradingAreaStrategy, date, discount, type);
+	}
 	public WebStrVO(Map<Integer,Double> specialTimeOrTradingAreaStrategy,double discount,WebStrategyType type) {
 		this.setSpecialTimeOrTradingAreaStrategy(specialTimeOrTradingAreaStrategy);
 		this.setDiscount(discount);

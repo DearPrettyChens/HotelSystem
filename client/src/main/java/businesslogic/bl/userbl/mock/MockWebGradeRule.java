@@ -20,6 +20,6 @@ public class MockWebGradeRule extends WebGradeRule{
      * @return GradeRuleVO
      */
 	public GradeRuleVO getCredit() {
-		return new GradeRuleVO(20, 100);
+		return new GradeRuleVO( 100);
 	}
 }

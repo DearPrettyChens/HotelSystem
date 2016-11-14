@@ -1,7 +1,6 @@
 package po;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ import util.WebStrategyType;
  */
 public class WebStrPO implements Serializable {
 	// 商圈折扣映射
-	// private Map<TradingArea, Double> tradingAreaStrategy;
+//	 private Map<TradingArea, Double> tradingAreaStrategy;
 	// vip折扣映射
 	private Map<Integer, Double> specialTimeOrTradingAreaStrategy;
 	// 日期
@@ -26,6 +25,16 @@ public class WebStrPO implements Serializable {
 	private WebStrategyType type;
 
 	public WebStrPO() {
+	}
+
+	public WebStrPO( Map<Integer, Double> specialTimeOrTradingAreaStrategy,
+			Date[] date, double discount, WebStrategyType type) {
+		super();
+
+		this.specialTimeOrTradingAreaStrategy = specialTimeOrTradingAreaStrategy;
+		this.date = date;
+		this.discount = discount;
+		this.type = type;
 	}
 
 	public WebStrPO(Map<Integer, Double> specialTimeOrTradingAreaStrategy, double discount, WebStrategyType type) {

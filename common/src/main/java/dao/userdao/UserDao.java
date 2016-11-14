@@ -1,7 +1,7 @@
 package dao.userdao;
 
 
-import po.CilentPO;
+import po.ClientPO;
 import util.ResultMessage;
 /**
  * UserDao提供用户数据层接口，用来得到用户密码与设置用户密码
@@ -19,12 +19,12 @@ public interface UserDao {
 	 * @return ClientPO ，将用户密码传递给逻辑层
 	 * @throws 未定
 	 */
-	public CilentPO getUserPassword(String name);
+	public ClientPO getUserPassword(String name);
 	/**
 	 * 设置用户密码
 	 * @param po ClientPO型，传递账户与密码信息
 	 * @return ResultMessage，设置成功则返回SUCCESS，设置失败显示FAIL
 	 * @throws 未定
 	 */
-	public ResultMessage setPassword(CilentPO po);
+	public ResultMessage setPassword(ClientPO po);
 }

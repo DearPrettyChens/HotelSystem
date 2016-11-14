@@ -20,6 +20,6 @@ public class MockPersonnel extends Personnel{
 	 * 需接口：PersonList.getPerson
 	 */
 	public PersonDetailVO getPersonDetail(String personID){
-		return new PersonDetailVO("000001", "小豆", new ImageIcon(), "12345678901", 100, new Date(), 23, "123456", "汉庭");
+		return new PersonDetailVO("000001", "小豆", new ImageIcon(), "12345678901", 100,new Date(), "123456", "汉庭");
 	}
 }

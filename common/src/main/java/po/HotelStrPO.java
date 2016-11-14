@@ -26,6 +26,16 @@ public class HotelStrPO implements Serializable{
 	public HotelStrPO(){
 	}
 
+	public HotelStrPO(String hotelID, int amount, HotelStrategyType type, double discount, ArrayList<String> enterprise,
+			Date[] date) {
+		this.hotelID = hotelID;
+		this.amount = amount;
+		this.type = type;
+		this.discount = discount;
+		this.enterprise = enterprise;
+		this.date = date;
+	}
+
 	public HotelStrPO(String hotelID, int amount, double discount) {
 		this.setHotelID(hotelID);
 		this.setAmount(amount);

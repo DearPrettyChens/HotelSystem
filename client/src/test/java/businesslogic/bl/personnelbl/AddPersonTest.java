@@ -1,6 +1,6 @@
 package businesslogic.bl.personnelbl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -13,9 +13,9 @@ public class AddPersonTest {
 	PersonDetailVO personDetailVO3;
 	@Before
 	public void setUp() throws Exception {
-		personDetailVO1=new PersonDetailVO(null,"chen",null,null,0, null, 0, "000001", null);
-		personDetailVO2=new PersonDetailVO(null,"wang",null,null,0, null, 0, "000002", null);
-		personDetailVO3=new PersonDetailVO(null,"chen",null,null,0, null, 0, "000003", null);
+		personDetailVO1=new PersonDetailVO(null,"chen",null,null,0, null, "000001", null);
+		personDetailVO2=new PersonDetailVO(null,"wang",null,null,0, null, "000002", null);
+		personDetailVO3=new PersonDetailVO(null,"chen",null,null,0, null, "000003", null);
 	}
 
 	@Test

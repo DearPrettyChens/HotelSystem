@@ -3,11 +3,12 @@ package vo.hotelstrategyvo;
 import java.util.ArrayList;
 import java.util.Date;
 
+import po.HotelStrPO;
 import util.HotelStrategyType;
 
 public class HotelStrVO {
 	/**
-	 * hotelStr： 包含四中折扣信息
+	 * hotelStr： 包含四种折扣信息
 	 * 
 	 * @author Cy
 	 * @virsion 1.0
@@ -31,6 +32,34 @@ public class HotelStrVO {
 
 	}
 
+	/**
+	 * po to vo
+	 * @param hotelStrPO
+	 */
+	public HotelStrVO(HotelStrPO hotelStrPO){
+		this.setAmount(hotelStrPO.getAmount());
+		this.setDate(hotelStrPO.getDate());
+		this.setDiscount(hotelStrPO.getDiscount());
+		this.setEnterprise(hotelStrPO.getEnterprise());
+		this.setHotelID(hotelStrPO.getHotelID());
+		this.setType(hotelStrPO.getType());
+	}
+	
+	/**
+	 * vo to po
+	 * @return HotelStrPO
+	 */
+	public HotelStrPO toPO() {
+		return new HotelStrPO(hotelID, amount, type, discount, enterprise, date);
+	}
+	
+	
+	public HotelStrVO(String hotelID, double discount) {
+		this.setHotelID(hotelID);
+		this.setDiscount(discount);
+		this.setType(HotelStrategyType.BIRTH);
+	}
+	
 	public HotelStrVO(String hotelID, int amount, double discount) {
 		this.setHotelID(hotelID);
 		this.setAmount(amount);
@@ -49,7 +78,7 @@ public class HotelStrVO {
 		this.setHotelID(hotelID);
 		this.setDiscount(discount);
         this.setDate(date);
-		this.setType(HotelStrategyType.ENTERPRISE);
+		this.setType(HotelStrategyType.SPECIALTIME);
 	}
 
 	public HotelStrategyType getType() {
