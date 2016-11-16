@@ -22,7 +22,15 @@ public class SingleAvailableRoomInfo {
 	public SingleAvailableRoomInfo(){
 		
 	}
-	
+	public SingleAvailableRoomInfo(String hotelNumber,String roomType,BedType bedType,
+			double originalPrice,double lowestPrice,int roomNum){
+		this.hotelNumber=hotelNumber;
+		this.roomNum=roomNum;
+		this.roomType=roomType;
+		this.bedType=bedType;
+		this.originalPrice=originalPrice;
+		this.lowestPrice=lowestPrice;
+	}
 	public SingleAvailableRoomInfo(SingleAvailableRoomInfoVO vo){
 		this.hotelNumber=vo.getHotelNumber();
 		this.roomType=vo.getRoomType();
@@ -36,19 +44,30 @@ public class SingleAvailableRoomInfo {
 	 * @param hotelID
 	 * @return AvailableRoomInfoVO
 	 */
-	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID){
+/*	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID){
 		return null;
-	}
+	}*/
 	/**
 	 * 修改数据库中的可用房间信息
 	 * @param vo
 	 * @return ResultMessage
 	 */
-	public ResultMessage confirmAvailableRoomInfo (AvailableRoomInfoVO vo){
+/*	public ResultMessage confirmAvailableRoomInfo (AvailableRoomInfoVO vo){
 		return null;
+	}*/
+	/**
+	 * 修改房间最低价格
+	 * @param lowestPrice
+	 * @return null
+	 */
+	public void setDiscount(double discount) {
+		this.lowestPrice = discount*this.lowestPrice;
+	}
+	public double getLowestPrice() {
+		return 0;
 	}
 	//以下get,set都是和数据层的交互
-	private String getHotelNumber() {
+/*	private String getHotelNumber() {
 		return null;
 	}
 
@@ -79,9 +98,7 @@ public class SingleAvailableRoomInfo {
 		return null;
 	}
 
-	private double getLowestPrice() {
-		return 0;
-	}
+
 
 	private ResultMessage setLowestPrice(double lowestPrice) {
 		this.lowestPrice = lowestPrice;
@@ -96,4 +113,5 @@ public class SingleAvailableRoomInfo {
 		this.roomNum = roomNum;
 		return null;
 	}
+	*/
 }

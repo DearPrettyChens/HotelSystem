@@ -22,7 +22,7 @@ public class Checkin{
 	private User user;
 	private String hotelID;
 	public Checkin(String hotelID){
-		this.hotelID=hotelID;
+		this.setHotelID(hotelID);
 	}
 	/**
 	 * 根据订单号获取顾客订单信息
@@ -72,7 +72,7 @@ public class Checkin{
 		return new CheckinInfo().confirmCheckoutInfo(vo);
 	}
 	/**
-	 * 判断输入可用客房数量是否超过该类型客房总数
+	 * 判断输入客房数量是否超过该类型客房总数
 	 * @param bedType
 	 * @param number
 	 * @return ResultMessage
@@ -100,6 +100,12 @@ public class Checkin{
 		//调用availableroomgetAvailableRoomInfo方法
 		availableRoom=new AvailableRoom();
 		return availableRoom.getAvailableRoomInfo(hotelID);
+	}
+	public String getHotelID() {
+		return hotelID;
+	}
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
 	}
 
 }
