@@ -36,7 +36,6 @@ public class WebStrVO {
 		this.setDiscount(webStrPO.getDiscount());
 		this.setSpecialTimeOrTradingAreaStrategy(webStrPO.getSpecialTimeOrTradingAreaStrategy());
 		this.setType(webStrPO.getType());
-		
 	}
 	
 	/**

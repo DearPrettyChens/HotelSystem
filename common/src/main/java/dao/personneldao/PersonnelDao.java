@@ -1,6 +1,9 @@
 package dao.personneldao;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import po.CustomerDetailPO;
 import po.CustomerListPO;
 import po.HotelWorkerDetailPO;
@@ -17,11 +20,8 @@ import util.ResultMessage;
  */
 
 
-public interface PersonnelDao {
-	/**
-	 * 
-	 */
-	public void initial();
+public interface PersonnelDao extends Remote {
+
 	/**
 	 * 注册顾客信息
 	 * @param customerDetailPO CustomerDetailPO型，用来传递顾客注册时的详细信息
@@ -29,7 +29,7 @@ public interface PersonnelDao {
 	 * @throws 未定
 	 * 
 	 */
-	public ResultMessage addCustomer(CustomerDetailPO customerDetailPO);
+	public ResultMessage addCustomer(CustomerDetailPO customerDetailPO)throws RemoteException;
 	/**
 	 * 添加酒店工作人员信息
 	 * @param hotelWorkerDetailPO HotelWorkerDetailPO型，用来传递添加酒店工作人员时的详细信息
@@ -37,7 +37,7 @@ public interface PersonnelDao {
 	 * @throws 未定
 	 * 
 	 */
-	public ResultMessage addHotelworker(HotelWorkerDetailPO hotelWorkerDetailPO);
+	public ResultMessage addHotelworker(HotelWorkerDetailPO hotelWorkerDetailPO)throws RemoteException;
 	/**
 	 * 添加网站营销人员信息
 	 * @param webMarketManDetailPO WebMarketManDetailPO型，用来传递添加网站营销人员详细信息
@@ -45,68 +45,68 @@ public interface PersonnelDao {
 	 * @throws 未定
 	 * 
 	 */
-	public ResultMessage addWebMarketMan(WebMarketManDetailPO webMarketManDetailPO);
+	public ResultMessage addWebMarketMan(WebMarketManDetailPO webMarketManDetailPO)throws RemoteException;
 	/**
 	 * 获得酒店酒店工作人员列表信息
 	 * @param 无
 	 * @return ArrayList<HotelWorkerListPO> 用来获取酒店工作人员列表信息
 	 * @throws 未定
 	 */
-	public ArrayList<HotelWorkerListPO>  getHotelWorkerList();
+	public ArrayList<HotelWorkerListPO>  getHotelWorkerList()throws RemoteException;
 	/**
 	 * 获得网站营销人员列表信息
 	 * @param 无
 	 * @return ArrayList<WebMarketManListPO> 用来获取网站营销人员列表信息
 	 * @throws 未定
 	 */
-	public ArrayList<WebMarketManListPO>  getWebMarketManList();
+	public ArrayList<WebMarketManListPO>  getWebMarketManList()throws RemoteException;
 	/**
 	 * 获得顾客列表信息
 	 * @param 无
 	 * @return ArrayList<CustomerListPO> 用来获取顾客列表信息
 	 * @throws 未定
 	 */
-	public ArrayList<CustomerListPO>  getCustomerList();
+	public ArrayList<CustomerListPO>  getCustomerList()throws RemoteException;
 	/**
 	 * 获得酒店工作人员详细信息
 	 * @param hotelID String型，用来传递酒店ID
 	 * @return HotelWorkerDetailPO 用来获取酒店工作人员详细信息
 	 * @throws 未定
 	 */
-	public HotelWorkerDetailPO  getHotelWorkerDetail(String hotelID);
+	public HotelWorkerDetailPO  getHotelWorkerDetail(String hotelID)throws RemoteException;
 	/**
 	 * 获得网站营销人员详细信息
 	 * @param webWorkerManID String型 用来传递网站人员ID
 	 * @return WebMarketManDetailPO 用来获取网站营销人员详细信息
 	 * @throws 未定
 	 */
-	public WebMarketManDetailPO  getWebMarketManDetail(String webMarketManID);
+	public WebMarketManDetailPO  getWebMarketManDetail(String webMarketManID)throws RemoteException;
 	/**
 	 * 获得顾客详细信息
 	 * @param customerID String型 用来传递顾客ID
 	 * @return CustomerDetailPO 用来获取顾客详细信息
 	 * @throws 未定
 	 */
-	public CustomerDetailPO  getCustomerDetail(String customerID);
+	public CustomerDetailPO  getCustomerDetail(String customerID)throws RemoteException;
 	/**
 	 * 设置酒店工作人员信息
 	 * @param hotelWorkerDetailPO HotelWorkerDetailPO型 用来传递酒店工作人员信息
 	 * @return ResultMessage，如果修改成功则返回SUCCESS，如果失败则返回FAIL
 	 * @throws 未定
 	 */
-	public ResultMessage setHotelWorker (HotelWorkerDetailPO hotelWorkerDetailPO);
+	public ResultMessage setHotelWorker (HotelWorkerDetailPO hotelWorkerDetailPO)throws RemoteException;
 	/**
 	 * 设置网站营销人员信息
 	 * @param webMarketManDetailPO WebMarketManDetailPO型 用来传递网站营销人员信息
 	 * @return ResultMessage，如果修改成功则返回SUCCESS，如果失败则返回FAIL
 	 * @throws 未定
 	 */
-	public ResultMessage setWebMarketMan (WebMarketManDetailPO webMarketManDetailPO);
+	public ResultMessage setWebMarketMan (WebMarketManDetailPO webMarketManDetailPO)throws RemoteException;
 	/**
 	 * 未定设置顾客信息
 	 * @param customerDetailPO CustomerDetailPO型 用来传递顾客信息
 	 * @return ResultMessage，如果修改成功则返回SUCCESS，如果失败则返回FAIL
 	 * @throws 未定
 	 */
-	public ResultMessage setCustomer (CustomerDetailPO customerDetailPO);
+	public ResultMessage setCustomer (CustomerDetailPO customerDetailPO)throws RemoteException;
 }

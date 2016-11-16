@@ -1,6 +1,9 @@
 package dao.availableroomdao;
 
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
@@ -14,8 +17,8 @@ import util.ResultMessage;
  * 
  */
 
-public interface AvailableRoomDao {
-	public void initial();
+public interface AvailableRoomDao extends Remote{
+	
 	
 	/**
 	 * 获取可用客房信息
@@ -24,7 +27,7 @@ public interface AvailableRoomDao {
 	 * @throws 无
 	 *
 	 */
-	public AvailableRoomInfoPO getAvailableRoomInfo (String hotelID);
+	public AvailableRoomInfoPO getAvailableRoomInfo (String hotelID) throws RemoteException;
 	
 	/**
 	 * 新增可用客房信息
@@ -33,7 +36,7 @@ public interface AvailableRoomDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage addAvailableRoomInfo (AvailableRoomInfoPO po);
+	public ResultMessage addAvailableRoomInfo (AvailableRoomInfoPO po) throws RemoteException;
 	
 	/**
 	 * 修改可用客房信息
@@ -42,7 +45,7 @@ public interface AvailableRoomDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage modifyAvailableRoomInfo (AvailableRoomInfoPO po);
+	public ResultMessage modifyAvailableRoomInfo (AvailableRoomInfoPO po)throws RemoteException;
 	
 	/**
 	 * 设置可用客房数量信息
@@ -51,7 +54,7 @@ public interface AvailableRoomDao {
 	 * @throws
 	 *
 	 */
-	public ResultMessage setAvailableRoomNumber (AvailableRoomNumberPO po);
+	public ResultMessage setAvailableRoomNumber (AvailableRoomNumberPO po)throws RemoteException;
 	
 	/**
 	 * 获取房间价格
@@ -60,7 +63,7 @@ public interface AvailableRoomDao {
 	 * @throws 无
 	 *
 	 */
-	public double getRoomPrice(String hotelID,BedType bedType);
+	public double getRoomPrice(String hotelID,BedType bedType)throws RemoteException;
 	
 	/**
 	 * 设置房间最低价格信息
@@ -69,5 +72,5 @@ public interface AvailableRoomDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage setBestPrice(AvailableRoomInfoPO po);
+	public ResultMessage setBestPrice(AvailableRoomInfoPO po)throws RemoteException;
 }

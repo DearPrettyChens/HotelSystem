@@ -1,5 +1,8 @@
 package dao.searchhoteldao;
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+
 import po.HotelListPO;
 import util.HotelSortType;
 
@@ -11,11 +14,8 @@ import util.HotelSortType;
  */
 
 
-public interface SearchHotelDao {
-	/**
-	 * 
-	 */
-	public void initial();
+public interface SearchHotelDao extends Remote{
+
 	/**
 	 * 获得酒店列表信息数据
 	 * @param 无
@@ -23,12 +23,12 @@ public interface SearchHotelDao {
 	 * @throws 未定
 	 * 
 	 */
-	public ArrayList<HotelListPO> getHotelList();
+	public ArrayList<HotelListPO> getHotelList()throws RemoteException;
 	/**
 	 * 获得排序后的酒店列表信息数据
 	 * @param 无
 	 * @return ArrayList<HotelListPO>，将排序后的酒店列表信息返回给逻辑层
 	 * @throws 未定
 	 */
-	public ArrayList<HotelListPO> getSortedHotelList(HotelSortType type);
+	public ArrayList<HotelListPO> getSortedHotelList(HotelSortType type)throws RemoteException;
 }

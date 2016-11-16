@@ -1,5 +1,8 @@
 package dao.creditdao;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.CreditInfoPO;
 import po.CreditPO;
 import util.ResultMessage;
@@ -12,8 +15,8 @@ import util.ResultMessage;
  * 
  */
 
-public interface CreditDao {
-	public void initial();
+public interface CreditDao extends Remote{
+	
 	
 
 	/**
@@ -23,7 +26,7 @@ public interface CreditDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage setCredit (CreditPO po);
+	public ResultMessage setCredit (CreditPO po)throws RemoteException;
 	
 	
 	/**
@@ -33,5 +36,5 @@ public interface CreditDao {
 	 * @throws 无
 	 *
 	 */
-	public CreditInfoPO getCreditInfo(String customerID);
+	public CreditInfoPO getCreditInfo(String customerID)throws RemoteException;
 }

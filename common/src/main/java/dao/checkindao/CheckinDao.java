@@ -1,5 +1,8 @@
 package dao.checkindao;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.CheckinInfoPO;
 import util.ResultMessage;
 
@@ -11,8 +14,8 @@ import util.ResultMessage;
  * 
  */
 
-public interface CheckinDao {
-	public void initial();
+public interface CheckinDao extends Remote{
+	
 	
 	/**
 	 * 新增顾客住房信息
@@ -21,7 +24,7 @@ public interface CheckinDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage addCheckinInfo (CheckinInfoPO po);
+	public ResultMessage addCheckinInfo (CheckinInfoPO po)throws RemoteException;
 	
 	/**
 	 * 获取顾客住房信息
@@ -30,7 +33,7 @@ public interface CheckinDao {
 	 * @throws 无
 	 *
 	 */
-	public CheckinInfoPO getCheckinInfo (String orderID);
+	public CheckinInfoPO getCheckinInfo (String orderID)throws RemoteException;
 	
 	/**
 	 * 修改顾客住房信息
@@ -39,5 +42,5 @@ public interface CheckinDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage modifyCheckinInfo (CheckinInfoPO po);
+	public ResultMessage modifyCheckinInfo (CheckinInfoPO po)throws RemoteException;
 }

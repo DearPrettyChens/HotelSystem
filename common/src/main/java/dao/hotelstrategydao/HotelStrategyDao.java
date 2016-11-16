@@ -1,5 +1,8 @@
 package dao.hotelstrategydao;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 import po.HotelStrPO;
 import util.HotelStrategyType;
 import util.ResultMessage;
@@ -12,8 +15,8 @@ import util.ResultMessage;
  * 
  */
 
-public interface HotelStrategyDao {
-	public void initial();
+public interface HotelStrategyDao extends Remote{
+	
 	
 	/**
 	 * 获取特定策略类型的酒店策略信息
@@ -22,7 +25,7 @@ public interface HotelStrategyDao {
 	 * @throws 无
 	 *
 	 */
-	public HotelStrPO getHotelStrategy(String hotelID,HotelStrategyType type);
+	public HotelStrPO getHotelStrategy(String hotelID,HotelStrategyType type)throws RemoteException;
 	
 	/**
 	 * 设置酒店策略信息
@@ -31,5 +34,5 @@ public interface HotelStrategyDao {
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage setHotelStrategy(HotelStrPO po);
+	public ResultMessage setHotelStrategy(HotelStrPO po)throws RemoteException;
 }
