@@ -37,6 +37,11 @@ public class PersonDetailVO {
 	private String password;
 	// 所在酒店名称
 	private String hotelName;
+	//tab
+	private String tab;
+	
+	
+	
 
 	public PersonDetailVO() {
 
@@ -58,7 +63,7 @@ public class PersonDetailVO {
 		this.setVIPType(po.getVIPType());
 		this.setPassword(po.getPassword());
 		this.setHotelName(po.getHotelName());
-
+        this.setTab(po.getTab());
 	}
 
 	/**
@@ -87,7 +92,7 @@ public class PersonDetailVO {
 	}
  
 	public PersonDetailPO toPO(){
-		return new PersonDetailPO(Id,Name,Image,telephone,credit,birthday,password,hotelName,enterpriseName);
+		return new PersonDetailPO(Id,Name,Image,telephone,credit,birthday,password,hotelName,enterpriseName,tab);
 	}
 	public String getId() {
 		return Id;
@@ -168,5 +173,11 @@ public class PersonDetailVO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
+	public String getTab() {
+		return tab;
+	}
 
+	public void setTab(String tab) {
+		this.tab = tab;
+	}
 }

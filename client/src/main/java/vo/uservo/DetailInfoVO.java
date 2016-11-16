@@ -52,7 +52,7 @@ public class DetailInfoVO {
 	 * @return PersonDetailPO
 	 */
 	public PersonDetailPO toPO() {
-		return new PersonDetailPO(userID, userName, userImage, telephone, 0, birth, null, null, enterprise);
+		return new PersonDetailPO(userID, userName, userImage, telephone, 0, birth, null, null, enterprise,null);
 	}
 	
 	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id) {
