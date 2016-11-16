@@ -21,7 +21,7 @@ public class AvailableRoomNumberVO  implements Serializable{
 	private BedType bedType;//床型
 	private Date date;//日期
 	private String hotelNumber;//酒店编号
-	private String hotelName;//酒店名字
+	//private String hotelName;//酒店名字
 	
 	
 	
@@ -33,18 +33,18 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.number=po.getNumber();
     	this.bedType=po.getBedType();
     	this.date=po.getDate();
-    	this.hotelName=po.getHotelName();
+    	//this.hotelName=po.getHotelName();
     	this.hotelNumber=po.getHotelNumber();
     	
     	
 		
 	}
-    public AvailableRoomNumberVO(int number,BedType bedType,Date date,String hotelNumber,String hotelName){
+    public AvailableRoomNumberVO(int number,BedType bedType,Date date,String hotelNumber){
 		this.number=number;
 		this.bedType=bedType;
 		this.date=date;
 		this.hotelNumber=hotelNumber;
-		this.hotelName=hotelName;
+		//this.hotelName=hotelName;
 	}
 	public int getNumber() {
 		return number;
@@ -71,15 +71,15 @@ public class AvailableRoomNumberVO  implements Serializable{
 		this.hotelNumber = hotelNumber;
 	}
 	
-	public String getHotelName() {
+	/*public String getHotelName() {
 		return hotelName;
 	}
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
-	}
+	}*/
 	
 	 public AvailableRoomNumberPO votopo(){
-		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,this.hotelNumber,this.hotelName);
+		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,this.hotelNumber);
 		 
 	 }
 	

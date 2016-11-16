@@ -44,7 +44,7 @@ public class AvailableRoom {
 	 * @param availableRoomNumberVO
 	 * @return ResultMessage
 	 */
-	public ResultMessage setAvailableRoomNumber(String hotelID,AvailableRoomNumberVO availableRoomNumberVO) {
+	public ResultMessage setAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) {
 		// TODO
 		return null;
 	}
@@ -72,7 +72,7 @@ public class AvailableRoom {
 	 * @param availableRoomNumberVO
 	 * @return ResultMessage
 	 */
-	public ResultMessage checkAvailableRoomNumber(String hotelID,AvailableRoomNumberVO availableRoomNumberVO) {
+	public ResultMessage checkAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) {
 		// TODO 
 		return null;
 	}

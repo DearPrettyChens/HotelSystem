@@ -2,10 +2,11 @@ package businesslogic.blservice.checkinblservice;
 
 import util.BedType;
 import util.ResultMessage;
+import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.checkinvo.AvailableRoomInfoVO;
-import vo.checkinvo.AvailableRoomNumberVO;
+
 import vo.checkinvo.CheckinInfoVO;
-import vo.checkinvo.OrderInfoVO;
+import vo.ordervo.OrderInfoVO;
 /**
 	 * CheckinBLService提供接口，用来对酒店入住退房信息的更新
 	 * @author csy
@@ -67,7 +68,7 @@ public interface CheckinBLService {
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage checkAvailableRoomNumber(String hotelID,BedType bedType,String number);
+	public ResultMessage checkAvailableRoomNumber(String hotelID,BedType bedType,int number);
 
 	
 	/**
@@ -77,7 +78,7 @@ public interface CheckinBLService {
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage confirmAvailableRoomNumber(String hotelID,AvailableRoomNumberVO availableRoomNumberVO);
+	public ResultMessage confirmAvailableRoomNumber(vo.availableroomvo.AvailableRoomNumberVO availableRoomNumberVO);
 	
 	/**
 	 * 获取该酒店的可用房间信息
@@ -86,6 +87,6 @@ public interface CheckinBLService {
 	 * @throws 未定
 	 *
 	 */
-	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID);
+	public vo.availableroomvo.AvailableRoomInfoVO getAvailableRoomInfo(String hotelID);
 	
 }

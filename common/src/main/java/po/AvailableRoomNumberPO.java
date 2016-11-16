@@ -20,7 +20,7 @@ public class AvailableRoomNumberPO  implements Serializable{
 	private BedType bedType;//床型
 	private Date date;//日期
 	private String hotelNumber;//酒店编号
-	private String hotelName;//酒店名字
+//	private String hotelName;//酒店名字
 	
 	
 	
@@ -28,12 +28,12 @@ public class AvailableRoomNumberPO  implements Serializable{
 	public AvailableRoomNumberPO(){
 		
 	}
-    public AvailableRoomNumberPO(int number,BedType bedType,Date date,String hotelNumber,String hotelName){
+    public AvailableRoomNumberPO(int number,BedType bedType,Date date,String hotelNumber){
 		this.number=number;
 		this.bedType=bedType;
 		this.date=date;
 		this.hotelNumber=hotelNumber;
-		this.hotelName=hotelName;
+//		this.hotelName=hotelName;
 	}
 	public int getNumber() {
 		return number;
@@ -60,12 +60,12 @@ public class AvailableRoomNumberPO  implements Serializable{
 		this.hotelNumber = hotelNumber;
 	}
 	
-	public String getHotelName() {
+/*	public String getHotelName() {
 		return hotelName;
 	}
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
-	}
+	}*/
 	
 	 
 	

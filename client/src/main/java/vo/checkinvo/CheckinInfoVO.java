@@ -25,6 +25,7 @@ public class CheckinInfoVO {
 	private String tel;//联系方式（11位手机号）
 	private String roomNumber;//房间号（数字
 	private BedType bedType;//房间类型
+	private String roomType;
 	private Date checkinTime;//实际入住时间（-年-月-日-时-分）
 	private Date checkoutTime;//实际退房时间（-年-月-日-时-分）
 	private String hotelNumber;//酒店编号
@@ -34,19 +35,21 @@ public class CheckinInfoVO {
 		
 	}
     public CheckinInfoVO(CheckinInfoPO po){
-    	this.bedType=po.getRoomtype();
+    	this.bedType=po.getBedtype();
+    	this.setRoomType(po.getRoomtype());
     	this.roomNumber=po.getRoomnumber();
     	this.checkinTime=po.getCheckintime();
     	this.checkoutTime=po.getCheckouttime();
     	this.hotelNumber=po.getHotelnumber();
     	this.orderNumber=po.getOrdernumber();
     	this.costumerName=po.getName();
+    	this.roomType=po.getRoomtype();
     	this.ID=po.getID();
     	this.tel=po.getTel();
     	
 		
 	}
-	public CheckinInfoVO( String costumername,String ID, String tel,String roomnumber, BedType bedtype,
+	public CheckinInfoVO( String costumername,String ID, String tel,String roomnumber, String roomType,BedType bedtype,
 			Date checkintime, Date checkouttime,String hotelnumber, String ordernumber){
 		
 		this.costumerName=costumername;
@@ -54,11 +57,11 @@ public class CheckinInfoVO {
 		this.tel=tel;
 		this.roomNumber=roomnumber;
 		this.bedType=bedtype;
+		this.setRoomType(roomType);
 		this.checkinTime=checkintime;
 		this.checkoutTime=checkouttime;
 		this.hotelNumber=hotelnumber;
 		this.orderNumber=ordernumber;
-		
 		
 		
 		
@@ -123,6 +126,12 @@ public class CheckinInfoVO {
 		return new CheckinInfoPO(this.costumerName,this.ID,this.tel,null,this.bedType,this.roomNumber
 				,this.checkinTime,this.checkoutTime,this.hotelNumber,this.orderNumber);
 		
+	}
+	public String getRoomType() {
+		return roomType;
+	}
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
 	}
  
 	

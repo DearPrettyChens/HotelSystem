@@ -1,10 +1,21 @@
 package businesslogic.bl.checkinbl;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
+import businesslogic.bl.availableroombl.AvailableRoom;
+import businesslogic.bl.orderbl.Order;
+import businesslogic.bl.orderbl.SingleOrder;
 import dao.availableroomdao.AvailableRoomDao;
+import dao.checkindao.CheckinDao;
+import init.RMIHelper;
+import po.AvailableRoomInfoPO;
+import po.AvailableRoomNumberPO;
+import po.CheckinInfoPO;
 import util.BedType;
 import util.ResultMessage;
+import vo.availableroomvo.AvailableRoomInfoVO;
+import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.checkinvo.CheckinInfoVO;
 
 /**
@@ -18,42 +29,73 @@ public class CheckinInfo {
 	private String ID;//身份证号（数字
 	private String tel;//联系方式（11位手机号）
 	private BedType bedType;//床类型
+	private String roomType;
 	private String roomNumber;//房间号（数字
 	private Date checkinTime;//实际入住时间（-年-月-日-时-分）
 	private Date checkoutTime;//实际退房时间（-年-月-日-时-分
 	private String hotelNumber;//酒店编号
 	private String orderNumber;//订单号
 	//数据层的引用
-	private AvailableRoomDao availableRoomDao;
+	private AvailableRoom availableRoom;
+	private CheckinDao checkinDao;
+	private SingleOrder singleOrder;
 	
 	public CheckinInfo(){
 		
 	}
 	
 	/**
-	 * 新增住房信息的构造函数
+	 * 构造函数
 	 * @param vo
 	 */
 	public CheckinInfo(CheckinInfoVO vo){
-		this.hotelID=vo.getHotelnumber();
+		this.setHotelID(vo.getHotelnumber());
 		this.name=vo.getCostumername();
 		this.ID=vo.getID();
 		this.tel=vo.getTel();
+		this.roomType=vo.getRoomType();
 		this.bedType=vo.getBedtype();
 		this.roomNumber=vo.getRoomnumber();
 		this.checkinTime=vo.getCheckintime();
 		this.checkoutTime=vo.getCheckouttime();
 		this.hotelNumber=vo.getHotelnumber();
 		this.orderNumber=vo.getOrdernumber();
+		
 	}
-	
-	
+	/**
+	 * 新增入住信息
+	 * @return ResultMessage
+	 * @throws RemoteException 
+	 */
+	public ResultMessage confirmCheckinInfo(){
+		//更新订单中的实际入房时间
+		singleOrder=new SingleOrder();
+		ResultMessage result=singleOrder.setCheckinTime(checkinTime, orderNumber);
+		if(result==ResultMessage.FAIL){
+			return ResultMessage.FAIL;
+		}
+		//写入数据库住房信息
+		checkinDao=RMIHelper.getCheckinDao();
+		try {
+			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
+					roomNumber,checkinTime,checkoutTime,hotelNumber,orderNumber));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+	}
 	/**
 	 * 获取查找到的顾客住房信息
 	 * @param orderID
 	 * @return CheckinInfo
 	 */
-	public CheckinInfoVO getCheckinInfo(){
+	public CheckinInfoVO getCheckinInfo(String orderID){
+		checkinDao=RMIHelper.getCheckinDao();
+		try {
+			return new CheckinInfoVO(checkinDao.getCheckinInfo(orderID));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	
@@ -63,10 +105,43 @@ public class CheckinInfo {
 	 * @return ResultMessage
 	 */
 	public ResultMessage confirmCheckoutInfo(CheckinInfoVO vo){
-		return null;
+		//修改数据库中的住房信息
+		checkinDao=RMIHelper.getCheckinDao();
+		try {
+			ResultMessage result=checkinDao.modifyCheckinInfo(new CheckinInfoPO(
+					vo.getCostumername(),vo.getID(),vo.getTel(),vo.getRoomType(),
+					vo.getBedtype(),vo.getRoomnumber(),vo.getCheckintime(),
+					vo.getCheckouttime(),vo.getHotelnumber(),vo.getOrdernumber()));
+			if(result==ResultMessage.FAIL){
+				return ResultMessage.FAIL;
+			}
+		} catch (RemoteException e1) {
+			e1.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		
+		//更新房间数量信息
+		availableRoom=new AvailableRoom();
+		AvailableRoomInfoVO preRoomInfo=availableRoom.getAvailableRoomInfo(hotelID);
+		//修改的是当天对应床型客房的数量，所以应是存放数组的开头位置
+		int preRoomNumber=preRoomInfo.getAvailableRoom().get(vo.getBedtype())[0];
+		//该房间数自动加1
+		ResultMessage message=availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(preRoomNumber+1,bedType,new Date(),hotelID));
+		if(message==ResultMessage.FAIL){
+			return ResultMessage.FAIL;
+		}
+		
+		//更新订单中的实际退房时间
+		singleOrder=new SingleOrder();
+		ResultMessage result=singleOrder.setCheckoutTime(vo.getCheckouttime(), vo.getOrdernumber());
+		if(result==ResultMessage.FAIL){
+			return ResultMessage.FAIL;
+		}
+		
+		return ResultMessage.SUCCESS;
 	}
 	//以下get,set都是和数据层的交互
-	private String getName() {
+/*	private String getName() {
 		return null;
 	}
 	private void setName(String name) {
@@ -134,6 +209,14 @@ public class CheckinInfo {
 	}
 
 	private void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
+	}*/
+
+	public String getHotelID() {
+		return hotelID;
+	}
+
+	public void setHotelID(String hotelID) {
 		this.hotelID = hotelID;
 	}
 }

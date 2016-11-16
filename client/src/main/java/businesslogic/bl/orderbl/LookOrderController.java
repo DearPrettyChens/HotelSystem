@@ -23,7 +23,7 @@ public class LookOrderController implements LookOrderService{
 	@Override
 	public OrderInfoVO getOrderInfo(String orderID) {
 		// TODO Auto-generated method stub
-		return singleOrder.getOrderInfo();
+		return singleOrder.getOrderInfo(orderID);
 	}
 
 	@Override

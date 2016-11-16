@@ -10,7 +10,7 @@ public class MockAvailableRoomTest {
 
 	@Test
 	public void testConfirmCheckoutInfo() {
-		Checkin ci = new Checkin();
+		Checkin ci = new Checkin("0001");
 		assertEquals(ci.confirmCheckoutInfo(new CheckinInfoVO()),null);
 	}
 

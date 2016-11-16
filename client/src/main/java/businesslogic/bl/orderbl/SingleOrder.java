@@ -27,8 +27,8 @@ public class SingleOrder {
 	 * @throws 未定
 	 *
 	 */
-	public OrderInfoVO getOrderInfo(){
-		return null;
+	public OrderInfoVO getOrderInfo(String orderID){
+		return new OrderInfoVO();
 		
 	}
 	
