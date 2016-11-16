@@ -1,5 +1,6 @@
 package init;
 
+
 import java.net.MalformedURLException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
@@ -28,7 +29,11 @@ import dao.userdaoimpl.UserDaoImpl;
 import dao.webstrategydao.WebStrategyDao;
 import dao.webstrategydaoimpl.WebStrategyDaoImpl;
 import rmi.RMIconfig;
-
+/**
+ * RMI配置
+ * @author csy
+ *
+ */
 public class RMIHelper {
 
 	private static AvailableRoomDao availableRoomDao;
@@ -82,7 +87,7 @@ public class RMIHelper {
 		}
 	}
 
-	public static void bind() {
+	public static void connect() {
 		try {
 			createDAO();
 			LocateRegistry.createRegistry(port);
