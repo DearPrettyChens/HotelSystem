@@ -27,7 +27,7 @@ public class CreditVO  implements Serializable{
     public CreditVO(CreditPO po){
     	this.name=po.getName();
     	this.ID=po.getID();
-    	this.credit=po.getCredit();
+    	//this.credit=po.getCredit();
     	this.CreditChange=po.getCreditChange();
     	this.reason=po.getReason();
     	this.time=po.getTime();
@@ -86,7 +86,6 @@ public class CreditVO  implements Serializable{
 	}
  public CreditPO votopo(){
 	 return new CreditPO(this.name,this.ID,this.credit,this.CreditChange,this.reason,this.time);
-	 
 	 
  }
 	

@@ -21,17 +21,31 @@ public class PersonListPO {
 
 	// 所在酒店名称
 	private String hotelName;
+	
+	/**
+	 * 
+	 */
+	private String tab;
+	
+
+	
 
 	public PersonListPO(){
 			
 		}
 
+<<<<<<< HEAD
 	public PersonListPO(int Id,String Name,ImageIcon Image,String telephone,String hotelName){
+=======
+	public PersonListPO(String Id,String Name,ImageIcon Image,String telephone,String hotelName,String tab){
+>>>>>>> origin/master
 			this.Id=Id;
 			this.Name=Name;
 			this.Image=Image;
 			this.telephone=telephone;
 			this.hotelName=hotelName;
+			this.tab=tab;
+			
 			
 		}
 
@@ -73,5 +87,12 @@ public class PersonListPO {
 
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
+	}
+	public String getTab() {
+		return tab;
+	}
+
+	public void setTab(String tab) {
+		this.tab = tab;
 	}
 }

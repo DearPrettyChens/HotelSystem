@@ -35,6 +35,11 @@ public class PersonDetailPO {
 	private String password;
 	// 所在酒店名称
 	private String hotelName;
+	//标签
+	private String tab;
+	
+
+	
 
 	public PersonDetailPO() {
 
@@ -53,8 +58,13 @@ public class PersonDetailPO {
 	 * @param birthday
 	 * @param password
 	 */
+<<<<<<< HEAD
 	public PersonDetailPO(int customerId, String customername, ImageIcon customerimage, String telephone, int credit,
 			Date birthday, String password, String hotelName,String enterprise) {
+=======
+	public PersonDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
+			Date birthday, String password, String hotelName,String enterprise,String tab) {
+>>>>>>> origin/master
 		this.Name = customername;
 		this.Image = customerimage;
 		this.telephone = telephone;
@@ -64,6 +74,8 @@ public class PersonDetailPO {
 		this.password = password;
 		this.hotelName = hotelName;
 		this.enterpriseName = enterprise;
+		this.tab=tab;
+		
 	}
 	public int getId() {
 		return Id;
@@ -145,4 +157,13 @@ public class PersonDetailPO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
+	public String getTab() {
+		return tab;
+	}
+
+	public void setTab(String tab) {
+		this.tab = tab;
+	}
+
+	
 }

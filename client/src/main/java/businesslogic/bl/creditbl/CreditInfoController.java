@@ -10,13 +10,20 @@ import vo.creditvo.CreditInfoVO;
 public class CreditInfoController implements CreditInfoService{
 	//持有credit的引用
 	private Credit credit;
-	public CreditInfoController(){
-		credit=new Credit();
+	private static CreditInfoController controller=null;
+	public CreditInfoController(String customerID){
+		credit=new Credit(customerID);
+	}
+	//实现单例模式
+	public static CreditInfoController getInstance(String customerID){
+		if(controller==null){
+			controller=new CreditInfoController(customerID);
+		}
+		return controller;
 	}
 	@Override
 	public CreditInfoVO getCreditInfo() {
-		// TODO Auto-generated method stub
-		return null;
+		return credit.getUserCreditInfoList();
 	}
 
 }

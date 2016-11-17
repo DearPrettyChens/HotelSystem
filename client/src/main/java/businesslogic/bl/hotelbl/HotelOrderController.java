@@ -13,6 +13,7 @@ import vo.hotelvo.HotelOrderVO;
 public class HotelOrderController implements HotelOrderService {
 	// 持有hotel的引用
 	private Hotel hotel;
+	private static HotelOrderController controller=null;
 
 	public HotelOrderController() {
 			hotel=new Hotel();

@@ -24,7 +24,7 @@ public class CheckinController implements CheckinBLService{
 	
 	//实现单例模式
 	public CheckinController getInstance(String hotelID){
-		if(checkinController==null){
+		if(checkinController==null||checkinController.checkin.getHotelID()!=hotelID){
 			checkinController=new CheckinController(hotelID);
 		}
 		return checkinController;
