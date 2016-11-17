@@ -1,8 +1,13 @@
 package businesslogic.bl.orderbl;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
+import businesslogic.bl.creditbl.Credit;
+import businesslogic.bl.hotelbl.Hotel;
 import dao.orderdao.OrderDao;
+import init.RMIHelper;
+import po.OrderStatePO;
 import util.OrderState;
 import util.ResultMessage;
 import vo.ordervo.OrderInfoVO;
@@ -15,9 +20,14 @@ import vo.ordervo.RemarkVO;
 public class SingleOrder {
 	
 	OrderDao orderDao;
-	
+	private HotelInfoOrderService hotelInfoOrderService;//解决循环依赖
+	private Credit credit;
 	public SingleOrder() {
-		
+		orderDao=RMIHelper.getOrderDao();
+	}
+	public SingleOrder(Hotel hotel){
+		orderDao=RMIHelper.getOrderDao();
+		this.hotelInfoOrderService=hotel;
 	}
 	
 	/**
@@ -28,7 +38,12 @@ public class SingleOrder {
 	 *
 	 */
 	public OrderInfoVO getOrderInfo(String orderID){
-		return new OrderInfoVO();
+		try {
+			return new OrderInfoVO(orderDao.getOrderInfo(orderID));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
 		
 	}
 	
@@ -39,6 +54,7 @@ public class SingleOrder {
 	 * @throws 未定
 	 */
 	public ResultMessage addOrder(OrderInfoVO orderInfoVO){
+		//TODO
 		return null;
 		//调用Availableroom.setAvailableRoomNumber更新可用房间数
 	    //调用SingleOrder.addOrderState	更新订单状态
@@ -51,23 +67,42 @@ public class SingleOrder {
 	 * @throws 未定
 	 */
 	public ResultMessage addOrderState(OrderState orderState,String orderID){
-		return null;
+		try {
+			orderDao.addOrderState(new OrderStatePO(orderID,orderState));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
 		
 	}
 	
 	/**
-	 * 增加顾客订单总价全部或二分之一的信用值
-	 * @param creditNum int 型，界面传递过来的信用值
-	 * @return ResultMessage，保存成功返回SUCCESS,失败返回FAIL，格式错误返回具体什么格式错误
+	 * 异常订单撤销，返还相应的信用值
+	 * @param orderID String型，界面传递过来的订单号 CreditNum String型
+	 * @return ResultMessage，撤销成功返回SUCCESS,撤销失败返回FAIL，格式错误返回具体什么格式错误
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage setReturnCredit(int creditNum){
+	public ResultMessage setReturnCredit(String orderID,int CreditNum){
+		//TODO
+		credit=new Credit();
 		return null;
-		//调用Credit.cutCredit扣除顾客信用值
+		
 		//调用Credit.addCredit异常订单撤销时，恢复顾客的信用值
 	}
-	
+	/**
+	 * 未执行订单撤销，扣除相应的信用值(与最晚执行时间距离6小时之内扣除一半）
+	 * @param orderID String型，界面传递过来的订单号 CreditNum String型
+	 * @return ResultMessage，撤销成功返回SUCCESS,撤销失败返回FAIL，格式错误返回具体什么格式错误
+	 * @throws 未定
+	 *
+	 */
+	public ResultMessage cancelOrderConfirm(String orderID){
+		//TODO
+		//调用Credit.cutCredit扣除顾客信用值
+		return null;
+	}
 	/**
 	 * 保存订单实际入住时间
 	 * @param time Date型，orderID string型，界面传递过来的实际入住时间和订单编号
@@ -77,6 +112,7 @@ public class SingleOrder {
 	 */
 
 	public ResultMessage setCheckinTime(Date time,String orderID){
+		//TODO
 		return null;
 		//调用Credit.addCredit为顾客增加信用值
 	}
@@ -89,6 +125,7 @@ public class SingleOrder {
 	 *
 	 */
 	public ResultMessage setCheckoutTime(Date time,String orderID){
+		//TODO
 		return null;
 		//调用Availableroom.setAvailableRoomNumber更新可用房间数
 	}
@@ -101,6 +138,7 @@ public class SingleOrder {
 	 *
 	 */
 	public ResultMessage remarkOrder(RemarkVO vo){
+		//TODO
 		return null;
 		//调用HotelInfoOrderService里面的addRemarkInfo方法
 	}

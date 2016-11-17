@@ -19,7 +19,7 @@ public class HotelOrderController implements HotelOrderService {
 			hotel=new Hotel();
 	}
 
-	public HotelOrderController getInstance(){
+	public static HotelOrderController getInstance(){
 		if(controller==null){
 			controller=new HotelOrderController();
 		}

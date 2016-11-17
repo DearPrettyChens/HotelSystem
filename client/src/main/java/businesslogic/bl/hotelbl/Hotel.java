@@ -1,13 +1,21 @@
 package businesslogic.bl.hotelbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.availableroombl.HotelInfoAvailService;
+import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.orderbl.HotelInfoOrderService;
+import businesslogic.bl.orderbl.Order;
+import businesslogic.bl.orderbl.SingleOrder;
 import dao.hoteldao.HotelDao;
+import init.RMIHelper;
+import po.HotelBasicInfoPO;
+import po.HotelBestPricePO;
+import po.RemarkPO;
 import util.City;
 import util.ResultMessage;
 import util.TradingArea;
@@ -16,6 +24,7 @@ import vo.hotelvo.HotelBasicInfoVO;
 import vo.hotelvo.HotelDetailInfoVO;
 import vo.hotelvo.HotelOrderInfoVO;
 import vo.hotelvo.HotelOrderVO;
+import vo.ordervo.OrderInfoVO;
 
 /**
  * Hotel模块的领域类
@@ -43,11 +52,13 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	private double remarkNumber;//评分
 	private ArrayList<String> remarkDetailInfo;//评论
 	private AvailableRoom availableRoom;//酒店可用客房信息
+	private HotelStrategy hotelStrategy;//酒店策略信息
+	private SingleOrder singleOrder;
 	
 	//构造方法
 	public Hotel() {
-		
-	} 
+		hotelDao=RMIHelper.getHotelDao();
+	}
 	
 	/**
 	 * 获取酒店基本信息
@@ -56,8 +67,12 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public HotelBasicInfoVO getHotelBasicInfo(String hotelID){
+		try {
+			return new HotelBasicInfoVO(hotelDao.getHotelBasicInfo(hotelID));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
-		
 	}
 	
 	/**
@@ -67,9 +82,15 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID){
-		return null;
+		//TODO
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
-	    //调用HotelStrategy.getHotelStrategy获得酒店优惠策略
+		availableRoom=new AvailableRoom();
+		AvailableRoomInfoVO roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
+		//调用HotelStrategy.getHotelStrategy获得酒店优惠策略
+		//hotelStrategy.getHotelStrategy(hotelID, hotelStrategyInterface);
+		return null;
+
+	    
 	    //调用User.getUserID获得当前用户信息来调用订单？有疑惑？
 	}
 	
@@ -81,6 +102,12 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public ResultMessage confirmModifyInfo(HotelBasicInfoVO hotelInfovo){
+		try {
+			hotelDao.setHotelBasicInfo(hotelInfovo.votopo());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
 		return ResultMessage.SUCCESS;
 		
 	}
@@ -92,8 +119,9 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public ArrayList<HotelOrderVO> getHotelOrderList(String hotelID){
-		return null;	
+		//TODO
 		//调用Order.getOrderList获得该酒店的订单列表信息
+		return null;
 	}
 	
 	/**
@@ -103,27 +131,69 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public HotelOrderInfoVO getHotelOrderInfo(String orderID){
-		return null;
 		//调用Order.getOrderInfo获得该酒店某一订单的详细信息
+		//解决循环依赖
+		singleOrder=new SingleOrder(this);
+		OrderInfoVO vo=singleOrder.getOrderInfo(orderID);
+		return new HotelOrderInfoVO(vo.getOrderID(),vo.getCustomerName(),vo.getPrice(),
+				vo.getLiveinPersonName(),vo.getLiveinPersonTelephone(),vo.getExpectedCheckInTime()
+				,vo.getExpectedCheckOutTime(),vo.getRoomType(),vo.getAmount(),vo.getNumberOfPeople()
+				,vo.getHasChild(),vo.getActualCheckInTime(),vo.getActualCheckOutTime(),
+				vo.getOrderTime(),vo.getState(),vo.getHotelName(),vo.getHotelTelephone(),
+				vo.getLateCheckInTime());
 	}
 
 	@Override
 	public ResultMessage addRemarkInfo(String hotelID, int remarkNumber, String remarkInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			//TODO
+			//少orderid,customerid参数
+			hotelDao.addRemarkInfo(new RemarkPO(idToInt(hotelID),null,0,(double)remarkNumber,remarkInfo));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
-		return null;
+		availableRoom=new AvailableRoom();
+		return availableRoom.getAvailableRoomInfo(hotelID);
 	}
 
 	@Override
 	public ResultMessage setBestPrice(int price, String hotelID) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			hotelDao.setBestPrice(new HotelBestPricePO(idToInt(hotelID),price));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
 	}
-	
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
+	}
 
 }

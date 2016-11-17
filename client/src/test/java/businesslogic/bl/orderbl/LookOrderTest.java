@@ -19,7 +19,7 @@ public class LookOrderTest {
 	 @Before 
 	 public void setUp(){
 		 
-		 LookOrderService=new LookOrderController();
+		 LookOrderService=LookOrderController.getInstance();
 		 
 		 
 		 

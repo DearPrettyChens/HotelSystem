@@ -13,22 +13,26 @@ import vo.ordervo.TypeInfoVO;
  * @version 1.0
  */
 public class LookOrderController implements LookOrderService{
-
+	private static LookOrderController controller=null;
 	private OrderList orderList;
 	private SingleOrder singleOrder;
-	public LookOrderController() {
+	private LookOrderController() {
 		orderList=new OrderList();
 		singleOrder=new SingleOrder();
 	}
+	public static LookOrderController getInstance(){
+		if(controller==null){
+			controller=new LookOrderController();
+		}
+		return controller;
+	}
 	@Override
 	public OrderInfoVO getOrderInfo(String orderID) {
-		// TODO Auto-generated method stub
 		return singleOrder.getOrderInfo(orderID);
 	}
 
 	@Override
 	public ArrayList<OrderListVO> getOrderList(TypeInfoVO typeInfoVO) {
-		// TODO Auto-generated method stub
 		return orderList.getOrderList(typeInfoVO);
 	}
 

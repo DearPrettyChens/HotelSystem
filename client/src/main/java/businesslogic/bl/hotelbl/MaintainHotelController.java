@@ -18,7 +18,7 @@ public class MaintainHotelController implements MaintainHotelService{
 		hotel=new Hotel();
 	}
 	
-	public MaintainHotelController getInstance(){
+	public static MaintainHotelController getInstance(){
 		if(controller==null){
 			controller=new MaintainHotelController();
 		}

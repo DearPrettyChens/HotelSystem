@@ -14,7 +14,7 @@ public class LookHotelController implements LookHotelService {
 			hotel=new Hotel();
 	}
 
-	public LookHotelController getInstance(){
+	public static LookHotelController getInstance(){
 		if(controller==null){
 			controller=new LookHotelController();
 		}

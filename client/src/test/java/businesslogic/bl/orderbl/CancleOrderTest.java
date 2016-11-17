@@ -27,7 +27,7 @@ public class CancleOrderTest {
 	@Before
 	public void setUp() {
 
-		cancleOrderService = new CancleOrderController();
+		cancleOrderService = CancleOrderController.getInstance();
 	}
 
 	@Test

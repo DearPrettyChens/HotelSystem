@@ -10,23 +10,30 @@ import util.ResultMessage;
  * @version 1.0
  */
 public class CancleOrderController implements CancleOrderService{
-
+	private static CancleOrderController controller=null;
 	private SingleOrder singleOrder;
     //调用singleOrder里面的方法
-	public CancleOrderController() {
+	private CancleOrderController() {
 		singleOrder=new SingleOrder();
 	}
-	
+	public static CancleOrderController getInstance(){
+		if(controller==null){
+			controller=new CancleOrderController();
+		}
+		return controller;
+	}
 	@Override
-	public ResultMessage setReturnCredit(String orderID) {
-		// TODO Auto-generated method stub
-		return singleOrder.addOrderState(OrderState.HASCANCELED, orderID);
+	public ResultMessage setReturnCredit(String orderId,int creditNum) {
+		//异常订单撤销
+		singleOrder.setReturnCredit(orderId,creditNum);
+		return singleOrder.addOrderState(OrderState.HASREMARKED, orderId);
 	}
 
 	@Override
-	public ResultMessage cancelOrderConfirm(int creditNum) {
-		// TODO Auto-generated method stub
-		return singleOrder.setReturnCredit(creditNum);
+	public ResultMessage cancelOrderConfirm(String orderID){
+		//订单未执行撤销
+		singleOrder.cancelOrderConfirm(orderID);
+		return singleOrder.addOrderState(OrderState.HASCANCELED,orderID);
 	}
 
 }

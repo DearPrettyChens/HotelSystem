@@ -28,7 +28,7 @@ public class ExcuteOrderTest {
 	 @Before 
 	 public void setUp(){
 		 
-		 ExcuteOrderService=new ExecuteOrderController();
+		 ExcuteOrderService=ExecuteOrderController.getInstance();
 		 
 		 
 		 
