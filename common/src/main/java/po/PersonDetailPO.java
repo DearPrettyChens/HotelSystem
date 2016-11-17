@@ -58,13 +58,10 @@ public class PersonDetailPO {
 	 * @param birthday
 	 * @param password
 	 */
-<<<<<<< HEAD
+
 	public PersonDetailPO(int customerId, String customername, ImageIcon customerimage, String telephone, int credit,
-			Date birthday, String password, String hotelName,String enterprise) {
-=======
-	public PersonDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
 			Date birthday, String password, String hotelName,String enterprise,String tab) {
->>>>>>> origin/master
+
 		this.Name = customername;
 		this.Image = customerimage;
 		this.telephone = telephone;

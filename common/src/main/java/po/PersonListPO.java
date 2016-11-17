@@ -34,11 +34,9 @@ public class PersonListPO {
 			
 		}
 
-<<<<<<< HEAD
-	public PersonListPO(int Id,String Name,ImageIcon Image,String telephone,String hotelName){
-=======
-	public PersonListPO(String Id,String Name,ImageIcon Image,String telephone,String hotelName,String tab){
->>>>>>> origin/master
+
+	public PersonListPO(int Id,String Name,ImageIcon Image,String telephone,String hotelName,String tab){
+
 			this.Id=Id;
 			this.Name=Name;
 			this.Image=Image;
