@@ -14,7 +14,7 @@ public class RoomPriceController implements RoomPriceService{
 	//实现单件模式
 	public static RoomPriceController getInstance(){
 		if(controller==null){
-			return new RoomPriceController();
+			return controller=new RoomPriceController();
 		}
 		else{
 			return controller;

@@ -1,9 +1,15 @@
 package businesslogic.bl.creditbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import businesslogic.bl.userbl.User;
-import dao.availableroomdao.AvailableRoomDao;
+import dao.creditdao.CreditDao;
+import init.RMIHelper;
+import po.CreditInfoPO;
+import po.CreditPO;
 import util.ResultMessage;
 import vo.creditvo.CreditInfoVO;
 import vo.creditvo.CreditVO;
@@ -14,7 +20,7 @@ import vo.creditvo.CreditVO;
  */
 public class Credit {
 	//数据层的引用
-	private AvailableRoomDao availableRoomDao;
+	private CreditDao creditDao;
 	//单条信用记录
 	private String creditInfo;
 	//信用值
@@ -26,10 +32,11 @@ public class Credit {
 	//单例模式 持有user对象引用
 	private User user;
 	public Credit(){
-		
+		creditDao=RMIHelper.getCreditDao();
 	}
 	public Credit(String customerID){
 		this.customerID=customerID;
+		creditDao=RMIHelper.getCreditDao();
 	}
 	/**
 	 * 获得该顾客的信用记录
@@ -37,7 +44,12 @@ public class Credit {
 	 * @return CreditInfoVO
 	 */
 	public CreditInfoVO getUserCreditInfoList() {
-		// TODO 
+		try {
+			CreditInfoPO po=creditDao.getCreditInfo(this.customerID);
+			return new CreditInfoVO(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 	/**
@@ -46,8 +58,19 @@ public class Credit {
 	 * @return ResultMessage
 	 */
 	public ResultMessage addCredit(CreditVO creditVO) {
-		// TODO 
-		return null;
+		//changecredit统一为正的，增为加，扣为减
+		double changeCredit=creditVO.getCreditChange();
+		double nowCredit=changeCredit+creditVO.getCredit();
+		//传给数据层的是变化后的credit值
+		CreditPO po=new CreditPO(creditVO.getName(),creditVO.getID(),nowCredit,changeCredit,
+				creditVO.getReason(),creditVO.getTime());
+		try {
+			creditDao.setCredit(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
 	}
 	/**
 	 * 新增一条顾客的信用记录并扣除顾客的信用值
@@ -55,8 +78,18 @@ public class Credit {
 	 * @return ResultMessage
 	 */
 	public ResultMessage cutCredit(CreditVO creditVO) {
-		// TODO 
-		return null;
+		double changeCredit=creditVO.getCreditChange();
+		double nowCredit=changeCredit-creditVO.getCredit();
+		//传给数据层的是变化后的credit值
+		CreditPO po=new CreditPO(creditVO.getName(),creditVO.getID(),nowCredit,-changeCredit,
+				creditVO.getReason(),creditVO.getTime());
+		try {
+			creditDao.setCredit(po);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
 	}
 	/**
 	 * 新增一条顾客的信用记录并充值顾客的信用值
@@ -65,11 +98,32 @@ public class Credit {
 	 * @return ResultMessage
 	 */
 	public ResultMessage confirmCreditDeposit(double money, String customerName) {
-		// TODO 
-		return null;
+		try {
+			CreditInfoPO po=creditDao.getCreditInfoByName(customerName);
+			List<CreditPO> creditInfoList=po.getCreditRecords();
+			//充值之前的信用值
+			double preCredit=creditInfoList.get(creditInfoList.size()-1).getCredit();
+			//充值之后的信用值
+			double nowCredit=preCredit+money*100;
+			CreditPO newPO=new CreditPO(customerName,creditInfoList.get(creditInfoList.size()-1)
+					.getID(),nowCredit,money*100,"线下充值",new Date());
+			//CreditPO newPO=new CreditPO(customerName,null,money*100,"线下充值",new Date());
+			creditDao.setCredit(newPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+			return ResultMessage.FAIL;
+		}
+		return ResultMessage.SUCCESS;
+	}
+	/**
+	 * 获得当前credit的顾客id
+	 * @return String
+	 */
+	public String getCustomerID() {
+		return customerID;
 	}
 	//以下get,set都是和数据层的交互
-	private String getCustomerID() {
+/*	private String getCustomerID() {
 		return null;
 	}
 
@@ -98,5 +152,5 @@ public class Credit {
 	private ResultMessage setCreditInfo(String creditInfo) {
 		return null;
 		
-	}
+	}*/
 }

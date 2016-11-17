@@ -12,25 +12,32 @@ import vo.creditvo.CreditVO;
 public class CreditChangeController implements CreditChangeService{
 	//持有credit的引用
 	private Credit credit;
-	public CreditChangeController(){
-		credit=new Credit();
+	private static CreditChangeController controller=null;
+	public CreditChangeController(String customerID){
+		credit=new Credit(customerID);
+	}
+	//实现单例模式
+	public static CreditChangeController getInstance(String customerID){
+		if(controller==null||controller.credit.getCustomerID()!=customerID){
+			return controller=new CreditChangeController(customerID);
+		}
+		else{
+			return controller;
+		}
 	}
 	@Override
 	public ResultMessage addCredit(CreditVO creditVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return credit.addCredit(creditVO);
 	}
 
 	@Override
 	public ResultMessage cutCredit(CreditVO creditVO) {
-		// TODO Auto-generated method stub
-		return null;
+		return credit.cutCredit(creditVO);
 	}
 
 	@Override
 	public ResultMessage confirmCreditDeposit(double money, String customerName) {
-		// TODO Auto-generated method stub
-		return null;
+		return credit.confirmCreditDeposit(money, customerName);
 	}
 
 }

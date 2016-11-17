@@ -15,7 +15,7 @@ public class AvailableRoomInfoController implements AvailableRoomInfoService{
 	//实现单件模式
 	public static AvailableRoomInfoController getInstance(){
 		if(controller==null){
-			return new AvailableRoomInfoController();
+			return controller=new AvailableRoomInfoController();
 		}
 		else{
 			return controller;
