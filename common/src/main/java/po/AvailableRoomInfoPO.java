@@ -18,27 +18,26 @@ public class AvailableRoomInfoPO implements Serializable {
 	 * @virsion 1.0
 	 * */
 	private int  hotelNumber;//酒店编号
-	private String hotelName;//酒店名字
-	private String[] roomType;//房型
-	private BedType[] bedType;//床型
-	private double[] originalPrice;//原始价格
-	private double[] lowestPrice;//最低价格
-	private int[] originalNumbers;//各房型总数量
+	private String roomType;//房型
+	private BedType bedType;//床型
+	private double originalPrice;//原始价格
+	private double lowestPrice;//最低价格
+	private int originalNumber;//各房型总数量
+	private int currentNumber;//当前数量
 	
 	private Map<BedType,int []> availableRoom;//30天可用客房数
 	public AvailableRoomInfoPO(){
 		
 	}
-    public AvailableRoomInfoPO(int  hotelNumber,String hotelName,String[] roomType
-    		,BedType[] bedType,double[] originalPrice,double[] lowestPrice,int[] originalNumbers){
-		this.hotelName=hotelName;
+    public AvailableRoomInfoPO(int  hotelNumber,String hotelName,String roomType
+    		,BedType bedType,double originalPrice,double lowestPrice,int originalNumber,int currentNumber){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
-		this.originalNumbers=originalNumbers;
-		
+		this.originalNumber=originalNumber;
+		this.currentNumber=currentNumber;
 	}
  
 	public int getHotelNumber() {
@@ -49,52 +48,45 @@ public class AvailableRoomInfoPO implements Serializable {
 		this.hotelNumber = hotelNumber;
 	}
 
-	public String getHotelName() {
-		return hotelName;
-	}
 
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
-
-	public String[] getRoomType() {
+	public String getRoomType() {
 		return roomType;
 	}
 
-	public void setRoomType(String[] roomType) {
+	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
 
-	public BedType[] getBedType() {
+	public BedType getBedType() {
 		return bedType;
 	}
 
-	public void setBedType(BedType[] bedType) {
+	public void setBedType(BedType bedType) {
 		this.bedType = bedType;
 	}
 
-	public double[] getOriginalPrice() {
+	public double getOriginalPrice() {
 		return originalPrice;
 	}
 
-	public void setOriginalPrice(double[] originalPrice) {
+	public void setOriginalPrice(double originalPrice) {
 		this.originalPrice = originalPrice;
 	}
 
-	public double[] getLowestPrice() {
+	public double getLowestPrice() {
 		return lowestPrice;
 	}
 
-	public void setLowestPrice(double[] lowestPrice) {
+	public void setLowestPrice(double lowestPrice) {
 		this.lowestPrice = lowestPrice;
 	}
 
-	public int[] getOriginalNumbers() {
-		return originalNumbers;
+	public int getOriginalNumbers() {
+		return originalNumber;
 	}
 
-	public void setOriginalNumbers(int[] originalNumbers) {
-		this.originalNumbers = originalNumbers;
+	public void setOriginalNumbers(int originalNumber) {
+		this.originalNumber = originalNumber;
 	}
 
 	public Map<BedType, int[]> getAvailableRoom() {
@@ -103,6 +95,12 @@ public class AvailableRoomInfoPO implements Serializable {
 
 	public void setAvailableRoom(Map<BedType, int[]> availableRoom) {
 		this.availableRoom = availableRoom;
+	}
+	public int getCurrentNumber() {
+		return currentNumber;
+	}
+	public void setCurrentNumber(int currentNumber) {
+		this.currentNumber = currentNumber;
 	}
 
 	

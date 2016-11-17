@@ -2,6 +2,14 @@ package po;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import util.UserType;
 
 /**
@@ -10,12 +18,23 @@ import util.UserType;
  * @author CLL
  * @version 1.0
  */
+@Entity
+@Table(name = "t_user")
 public class ClientPO implements Serializable {
-	private String userName;
-	private String password;
+	@Id
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
+	@Column(name = "user_id", unique = true)
 	private int userID;
+	@Column(name = "user_name")
+	private String userName;
+	@Column(name = "user_password")
+	private String password;
+	@Column(name = "user_type")
 	private UserType type;
 
+	public ClientPO(){
+	}
 	public ClientPO(String userName, String password, int userID) {
 		this.userName = userName;
 		this.password = password;
@@ -59,5 +78,10 @@ public class ClientPO implements Serializable {
 
 	public void setType(UserType type) {
 		this.type = type;
+	}
+	
+	public ClientPO copy(){
+		ClientPO po = new ClientPO(this.userName,this.password,this.userID,this.type);
+		return po;
 	}
 }

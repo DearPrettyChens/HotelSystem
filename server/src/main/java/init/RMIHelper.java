@@ -9,25 +9,25 @@ import java.rmi.registry.LocateRegistry;
 
 import dao.DaoName;
 import dao.availableroomdao.AvailableRoomDao;
-import dao.availableroomdaoimpl.AvailableRoomDaoImpl;
 import dao.checkindao.CheckinDao;
-import dao.checkindaoimpl.CheckinDaoImpl;
 import dao.creditdao.CreditDao;
-import dao.creditdaoimpl.CreditDaoImpl;
 import dao.hoteldao.HotelDao;
-import dao.hoteldaoimpl.HotelDaoImpl;
 import dao.hotelstrategydao.HotelStrategyDao;
-import dao.hotelstrategydaoimpl.HotelStrategyDaoImpl;
+import dao.impl.AvailableRoomDaoImpl;
+import dao.impl.CheckinDaoImpl;
+import dao.impl.CreditDaoImpl;
+import dao.impl.HotelDaoImpl;
+import dao.impl.HotelStrategyDaoImpl;
+import dao.impl.OrderDaoImpl;
+import dao.impl.PersonnelDaoImpl;
+import dao.impl.SearchHotelDaoImpl;
+import dao.impl.UserDaoImpl;
+import dao.impl.WebStrategyDaoImpl;
 import dao.orderdao.OrderDao;
-import dao.orderdaoimpl.OrderDaoImpl;
 import dao.personneldao.PersonnelDao;
-import dao.personneldaoimpl.PersonnelDaoImpl;
 import dao.searchhoteldao.SearchHotelDao;
-import dao.searchhoteldaoimpl.SearchHotelDaoImpl;
 import dao.userdao.UserDao;
-import dao.userdaoimpl.UserDaoImpl;
 import dao.webstrategydao.WebStrategyDao;
-import dao.webstrategydaoimpl.WebStrategyDaoImpl;
 import rmi.RMIconfig;
 /**
  * RMI配置
