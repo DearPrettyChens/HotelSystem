@@ -8,7 +8,7 @@ public class RoomPriceController implements RoomPriceService{
 	//持有AvailableRoom引用
 	private AvailableRoom availableRoom;
 	private static RoomPriceController controller=null;
-	public RoomPriceController(){
+	private RoomPriceController(){
 		availableRoom=new AvailableRoom();
 	}
 	//实现单件模式

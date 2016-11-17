@@ -12,8 +12,17 @@ import vo.hotelvo.HotelBasicInfoVO;
  */
 public class MaintainHotelController implements MaintainHotelService{
 	private Hotel hotel;
-	public MaintainHotelController() {
+	private static MaintainHotelController controller=null;
+	
+	private MaintainHotelController() {
 		hotel=new Hotel();
+	}
+	
+	public MaintainHotelController getInstance(){
+		if(controller==null){
+			controller=new MaintainHotelController();
+		}
+		return controller;
 	}
 	/**
 	 * 获取酒店基本信息

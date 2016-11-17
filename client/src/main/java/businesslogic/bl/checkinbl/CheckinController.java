@@ -18,7 +18,7 @@ public class CheckinController implements CheckinBLService{
 	private Checkin checkin;
 	private static CheckinController checkinController=null;
 	
-	public CheckinController(String hotelID){
+	private CheckinController(String hotelID){
 		checkin=new Checkin(hotelID);
 	}
 	

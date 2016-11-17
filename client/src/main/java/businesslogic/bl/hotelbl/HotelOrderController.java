@@ -15,20 +15,25 @@ public class HotelOrderController implements HotelOrderService {
 	private Hotel hotel;
 	private static HotelOrderController controller=null;
 
-	public HotelOrderController() {
+	private HotelOrderController() {
 			hotel=new Hotel();
 	}
 
+	public HotelOrderController getInstance(){
+		if(controller==null){
+			controller=new HotelOrderController();
+		}
+		return controller;
+	}
+	
 	@Override
 	public ArrayList<HotelOrderVO> getHotelOrderList(String hotelID) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.getHotelOrderList(hotelID);
 	}
 
 	@Override
 	public HotelOrderInfoVO getHotelOrderInfo(String orderID) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.getHotelOrderInfo(orderID);
 	}
 
 	

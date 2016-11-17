@@ -42,4 +42,10 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public CreditInfoPO getCreditInfoByName(String customerName) throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
