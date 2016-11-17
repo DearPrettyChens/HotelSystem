@@ -70,7 +70,7 @@ public class CheckinInfo {
 	public ResultMessage confirmCheckinInfo(){
 		//更新订单中的实际入房时间
 		singleOrder=new SingleOrder();
-		ResultMessage result=singleOrder.setCheckinTime(checkinTime, orderNumber);
+		ResultMessage result=singleOrder.setCheckinTime(new Date(), orderNumber);
 		if(result==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}
@@ -111,7 +111,7 @@ public class CheckinInfo {
 			ResultMessage result=checkinDao.modifyCheckinInfo(new CheckinInfoPO(
 					vo.getCostumername(),vo.getID(),vo.getTel(),vo.getRoomType(),
 					vo.getBedtype(),vo.getRoomnumber(),vo.getCheckintime(),
-					vo.getCheckouttime(),idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
+					new Date(),idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
 			if(result==ResultMessage.FAIL){
 				return ResultMessage.FAIL;
 			}
@@ -133,7 +133,7 @@ public class CheckinInfo {
 		
 		//更新订单中的实际退房时间
 		singleOrder=new SingleOrder();
-		ResultMessage result=singleOrder.setCheckoutTime(vo.getCheckouttime(), vo.getOrdernumber());
+		ResultMessage result=singleOrder.setCheckoutTime(new Date(), vo.getOrdernumber());
 		if(result==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}

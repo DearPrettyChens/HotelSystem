@@ -97,15 +97,15 @@ public class Credit {
 	 * @param customerName
 	 * @return ResultMessage
 	 */
-	public ResultMessage confirmCreditDeposit(double money, String customerName) {
+	public ResultMessage confirmCreditDeposit(double money, String customerId) {
 		try {
-			CreditInfoPO po=creditDao.getCreditInfoByName(customerName);
+			CreditInfoPO po=creditDao.getCreditInfo(customerId);
 			List<CreditPO> creditInfoList=po.getCreditRecords();
 			//充值之前的信用值
 			double preCredit=creditInfoList.get(creditInfoList.size()-1).getCredit();
 			//充值之后的信用值
 			double nowCredit=preCredit+money*100;
-			CreditPO newPO=new CreditPO(customerName,creditInfoList.get(creditInfoList.size()-1)
+			CreditPO newPO=new CreditPO(customerId,creditInfoList.get(creditInfoList.size()-1)
 					.getID(),nowCredit,money*100,"线下充值",new Date());
 			//CreditPO newPO=new CreditPO(customerName,null,money*100,"线下充值",new Date());
 			creditDao.setCredit(newPO);

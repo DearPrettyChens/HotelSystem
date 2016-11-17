@@ -42,7 +42,7 @@ public class HotelDetailInfoVO {
 	// 合作企业
 	private String enterprises;
 	// 酒店策略
-	private HotelStrVO hotelStrVO;
+	private ArrayList<HotelStrVO> hotelStrVO;
 	// 可用房间信息
 	private AvailableRoomInfoVO availableRoomInfoVO;
 	//评分
@@ -59,7 +59,7 @@ public class HotelDetailInfoVO {
 	//酒店细节信息 都可以看到
 	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,TradingArea area,String telephone, int star, String introduce,
 			String commonFacility, String activityFacility, String service, String roomFacility, String enterprises,
-			HotelStrVO hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderListVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
+			ArrayList<HotelStrVO> hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderListVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
 		this.setHotelName(hotelName);
 		this.setAddress(address);
 		this.setHotelImage(hotelImage);
@@ -164,11 +164,11 @@ public class HotelDetailInfoVO {
 		this.enterprises = enterprises;
 	}
 
-	public HotelStrVO getHotelStrVO() {
+	public ArrayList<HotelStrVO> getHotelStrVO() {
 		return hotelStrVO;
 	}
 
-	public void setHotelStrVO(HotelStrVO hotelStrVO) {
+	public void setHotelStrVO(ArrayList<HotelStrVO> hotelStrVO) {
 		this.hotelStrVO = hotelStrVO;
 	}
 

@@ -36,8 +36,8 @@ public class CreditChangeController implements CreditChangeService{
 	}
 
 	@Override
-	public ResultMessage confirmCreditDeposit(double money, String customerName) {
-		return credit.confirmCreditDeposit(money, customerName);
+	public ResultMessage confirmCreditDeposit(double money, String customerId) {
+		return credit.confirmCreditDeposit(money, customerId);
 	}
 
 }
