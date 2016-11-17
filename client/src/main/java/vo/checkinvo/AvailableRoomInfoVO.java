@@ -28,7 +28,7 @@ public class AvailableRoomInfoVO implements Serializable {
 	private Map<BedType,int []> availableRoom;//30天可用客房数
 	public AvailableRoomInfoVO(AvailableRoomInfoPO po){
 		this.hotelName=po.getHotelName();
-		this.hotelNumber=po.getHotelNumber();
+		this.hotelNumber=idToString(po.getHotelNumber());
 		this.roomType=po.getRoomType();
 		this.bedType=po.getBedType();
 		this.originalPrice=po.getOriginalPrice();
@@ -121,9 +121,31 @@ public class AvailableRoomInfoVO implements Serializable {
 		
 		
 		
-		return new AvailableRoomInfoPO(this.hotelNumber,this.hotelName,this.roomType
+		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.hotelName,this.roomType
 	    		,this.bedType,this.originalPrice,this.lowestPrice,this.originalNumbers);
 		
+	}
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
 	}
 
 }

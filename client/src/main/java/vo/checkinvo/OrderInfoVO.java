@@ -87,7 +87,7 @@ public class OrderInfoVO {
     	//有无儿童
     	this.children=po.getHasChild();
     	//生成订单时间（年月日时分）
-    	this.orderTime=po.getOrderTime();
+    	this.orderTime=po.getReserveTime();
     	//最晚入住时间（年月日时分）
     	this.latestCheckInTime=po.getLateCheckInTime();
     	

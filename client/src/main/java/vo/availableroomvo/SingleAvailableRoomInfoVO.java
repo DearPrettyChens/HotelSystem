@@ -4,7 +4,7 @@ import po.SingleAvailableRoomInfoPO;
 import util.BedType;
 
 public class SingleAvailableRoomInfoVO {
-	private int  hotelNumber;//酒店编号
+	private String  hotelNumber;//酒店编号
 	private String roomType;//房型
 	private BedType bedType;//床型
 	private double originalPrice;//原始价格
@@ -15,7 +15,7 @@ public class SingleAvailableRoomInfoVO {
 		
 	}
 	
-	public SingleAvailableRoomInfoVO(int hotelNumber,String roomType,BedType bedType,double originalPrice,double lowestPrice){
+	public SingleAvailableRoomInfoVO(String hotelNumber,String roomType,BedType bedType,double originalPrice,double lowestPrice){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
@@ -27,7 +27,7 @@ public class SingleAvailableRoomInfoVO {
 	 * @param singleAvailableRoomInfoPO
 	 */
 	public SingleAvailableRoomInfoVO(SingleAvailableRoomInfoPO singleAvailableRoomInfoPO){
-		this.hotelNumber=singleAvailableRoomInfoPO.getHotelNumber();
+		this.hotelNumber=idToString(singleAvailableRoomInfoPO.getHotelNumber());
 		this.roomType=singleAvailableRoomInfoPO.getRoomType();
 		this.bedType=singleAvailableRoomInfoPO.getBedType();
 		this.originalPrice=singleAvailableRoomInfoPO.getOriginalPrice();
@@ -38,13 +38,13 @@ public class SingleAvailableRoomInfoVO {
 	 * @return SingleAvailableRoomInfoPO
 	 */
 	public SingleAvailableRoomInfoPO toPO(){
-		return new SingleAvailableRoomInfoPO(this.hotelNumber,this.roomType,this.bedType,
+		return new SingleAvailableRoomInfoPO(idToInt(this.hotelNumber),this.roomType,this.bedType,
 				this.originalPrice,this.lowestPrice);
 	}
-	public int getHotelNumber() {
+	public String getHotelNumber() {
 		return hotelNumber;
 	}
-	public void setHotelNumber(int hotelNumber) {
+	public void setHotelNumber(String hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
 	
@@ -79,5 +79,27 @@ public class SingleAvailableRoomInfoVO {
 
 	public void setRoomNum(int roomNum) {
 		this.roomNum = roomNum;
+	}
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
 	}
 }

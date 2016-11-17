@@ -18,5 +18,6 @@ public class MockAvailableRoom extends AvailableRoom{
 	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
 		// TODO
 		return new AvailableRoomInfoVO("0001", "汉庭", new String[]{"豪华"},new BedType[] {BedType.BIGBED}, new double[]{33},new double[]{22}, new int[]{5});
+		
 	}
 }

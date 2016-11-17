@@ -18,7 +18,7 @@ public class AvailableRoomInfoVO implements Serializable {
 	 * @author Cy
 	 * @virsion 1.0
 	 * */
-	private int  hotelNumber;//酒店编号
+	private String  hotelNumber;//酒店编号
 	private String hotelName;//酒店名字
 	private String[] roomType;//房型
 	private BedType[] bedType;//床型
@@ -30,7 +30,7 @@ public class AvailableRoomInfoVO implements Serializable {
 	public AvailableRoomInfoVO(){
 		
 	}
-    public AvailableRoomInfoVO(int  hotelNumber,String hotelName,String[] roomType
+    public AvailableRoomInfoVO(String hotelNumber,String hotelName,String[] roomType
     		,BedType[] bedType,double[] originalPrice,double[] lowestPrice,int[] originalNumbers){
 		this.hotelName=hotelName;
 		this.hotelNumber=hotelNumber;
@@ -47,7 +47,7 @@ public class AvailableRoomInfoVO implements Serializable {
      */
 	public AvailableRoomInfoVO(AvailableRoomInfoPO availableRoomInfoPO){
 		this.hotelName=availableRoomInfoPO.getHotelName();
-		this.hotelNumber=availableRoomInfoPO.getHotelNumber();
+		this.hotelNumber=idToString(availableRoomInfoPO.getHotelNumber());
 		this.roomType=availableRoomInfoPO.getRoomType();
 		this.bedType=availableRoomInfoPO.getBedType();
 		this.originalPrice=availableRoomInfoPO.getOriginalPrice();
@@ -59,14 +59,14 @@ public class AvailableRoomInfoVO implements Serializable {
 	 * @return AvailableRoomInfoPO
 	 */
 	public AvailableRoomInfoPO toPO(){
-		return new AvailableRoomInfoPO(this.hotelNumber,this.hotelName,this.roomType,
+		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.hotelName,this.roomType,
 				this.bedType,this.originalPrice,this.lowestPrice,this.originalNumbers);
 	}
-	public int getHotelNumber() {
+	public String getHotelNumber() {
 		return hotelNumber;
 	}
 
-	public void setHotelNumber(int hotelNumber) {
+	public void setHotelNumber(String hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
 
@@ -125,7 +125,28 @@ public class AvailableRoomInfoVO implements Serializable {
 	public void setAvailableRoom(Map<BedType, int[]> availableRoom) {
 		this.availableRoom = availableRoom;
 	}
-
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
+	}
 	
 
 }

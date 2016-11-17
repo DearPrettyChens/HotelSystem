@@ -55,7 +55,7 @@ public class OrderListVO {
 		this.customerID=po.getCustomerID();
 		this.reserveTime=po.getReserveTime();
 		this.state=po.getState();
-		this.hotelIcon=po.getHotelIcon();
+		//this.hotelIcon=po.getHotelIcon();
 	}
 	//显示给酒店看的订单列表信息，需求规格上没有写
 	public OrderListVO(String orderNumber,String customerID,String customerName, Date reserveTime,OrderState state){
@@ -135,5 +135,27 @@ public class OrderListVO {
 	}
 	public void setHotelIcon(ImageIcon hotelIcon) {
 		this.hotelIcon = hotelIcon;
+	}
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
 	}
 }

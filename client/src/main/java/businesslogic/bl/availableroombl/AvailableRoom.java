@@ -167,7 +167,7 @@ public class AvailableRoom {
 	 */
 	private static String idToString(int id){
 		String result=String.valueOf(id);
-		while(result.length()<4){
+		while(result.length()<6){
 			result="0"+result;
 		}
 		return result;

@@ -40,7 +40,7 @@ public class DetailInfoVO {
 		this.setBirth(po.getBirthday());
 		this.setEnterprise(po.getEnterpriseName());
 		this.setTelephone(po.getTelephone());
-		this.setUserID(po.getId());
+		this.setUserID(idToString(po.getId()));
 		this.setUserImage(po.getImage());
 		this.setUserName(po.getName());
 		this.setUserType(po.getVIPType());
@@ -52,7 +52,7 @@ public class DetailInfoVO {
 	 * @return PersonDetailPO
 	 */
 	public PersonDetailPO toPO() {
-		return new PersonDetailPO(userID, userName, userImage, telephone, 0, birth, null, null, enterprise,null);
+		return new PersonDetailPO(idToInt(userID), userName, userImage, telephone, 0, birth, null, null, enterprise,null);
 	}
 	
 	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id) {
@@ -143,5 +143,26 @@ public class DetailInfoVO {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
+	}
 }

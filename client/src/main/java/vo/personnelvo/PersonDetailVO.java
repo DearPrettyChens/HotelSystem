@@ -52,7 +52,7 @@ public class PersonDetailVO {
 	 * @param PersonDetailPO
 	 */
 	public PersonDetailVO(PersonDetailPO po) {
-		this.setId(po.getId());
+		this.setId(idToString(po.getId()));
 		this.setName(po.getName());
 		this.setImage(po.getImage());
 		this.setTelephone(po.getTelephone());
@@ -92,7 +92,7 @@ public class PersonDetailVO {
 	}
  
 	public PersonDetailPO toPO(){
-		return new PersonDetailPO(Id,Name,Image,telephone,credit,birthday,password,hotelName,enterpriseName,tab);
+		return new PersonDetailPO(idToInt(Id),Name,Image,telephone,credit,birthday,password,hotelName,enterpriseName,tab);
 	}
 	public String getId() {
 		return Id;
@@ -179,5 +179,27 @@ public class PersonDetailVO {
 
 	public void setTab(String tab) {
 		this.tab = tab;
+	}
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
 	}
 }
