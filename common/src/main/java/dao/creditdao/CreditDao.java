@@ -37,13 +37,4 @@ public interface CreditDao extends Remote{
 	 *
 	 */
 	public CreditInfoPO getCreditInfo(String customerID)throws RemoteException;
-	
-	/**
-	 * 根据顾客姓名获得信用记录
-	 * @param customerName
-	 * @return CreditInfoPO
-	 * @throws RemoteException
-	 */
-	
-	public CreditInfoPO getCreditInfoByName(String customerName) throws RemoteException;
 }

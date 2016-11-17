@@ -10,10 +10,12 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  * @version 1.0
  * 
  */
-public class MockAvailbleRoom  extends AvailableRoomInfoController {
+/*public class MockAvailbleRoom  extends AvailableRoomInfoController {
     public int roomnumber=0;
 	
-	
+	public MockAvailbleRoom(){
+		
+	}
 	
 	public ResultMessage setAvailableRoomNumber(String hotelID, AvailableRoomNumberVO availableRoomNumberVO) {
 		
@@ -34,4 +36,4 @@ public class MockAvailbleRoom  extends AvailableRoomInfoController {
 	}
 
 	
-}
+}*/

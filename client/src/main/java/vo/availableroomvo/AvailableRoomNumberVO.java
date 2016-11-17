@@ -18,7 +18,7 @@ public class AvailableRoomNumberVO  implements Serializable{
 	private int number;//房间数量
 	private BedType bedType;//床型
 	private Date date;//日期
-	private int hotelNumber;//酒店编号
+	private String hotelNumber;//酒店编号
 	//private String hotelName;//酒店名字
 	
 	
@@ -27,7 +27,7 @@ public class AvailableRoomNumberVO  implements Serializable{
 	public AvailableRoomNumberVO(){
 		
 	}
-    public AvailableRoomNumberVO(int number,BedType bedType,Date date,int hotelNumber){
+    public AvailableRoomNumberVO(int number,BedType bedType,Date date,String hotelNumber){
 		this.number=number;
 		this.bedType=bedType;
 		this.date=date;
@@ -42,7 +42,7 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.number=availableRoomNumberPO.getNumber();
     	this.bedType=availableRoomNumberPO.getBedType();
     	this.date=availableRoomNumberPO.getDate();
-    	this.hotelNumber=availableRoomNumberPO.getHotelNumber();
+    	this.hotelNumber=idToString(availableRoomNumberPO.getHotelNumber());
     	//this.hotelName=availableRoomNumberPO.getHotelName();
     }
     /**
@@ -51,7 +51,7 @@ public class AvailableRoomNumberVO  implements Serializable{
      */
     public AvailableRoomNumberPO toPO(){
     	return new AvailableRoomNumberPO(this.number,this.bedType,this.date,
-    			this.hotelNumber);
+    			idToInt(this.hotelNumber));
     }
 	public int getNumber() {
 		return number;
@@ -71,13 +71,34 @@ public class AvailableRoomNumberVO  implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getHotelNumber() {
+	public String getHotelNumber() {
 		return hotelNumber;
 	}
-	public void setHotelNumber(int hotelNumber) {
+	public void setHotelNumber(String hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
-	
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
+	}
 	/*public String getHotelName() {
 		return hotelName;
 	}

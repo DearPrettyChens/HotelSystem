@@ -26,7 +26,7 @@ public class CreditVO  implements Serializable{
 	}
     public CreditVO(CreditPO po){
     	this.name=po.getName();
-    	this.ID=po.getID();
+    	this.ID=idToString(po.getID());
     	//this.credit=po.getCredit();
     	this.CreditChange=po.getCreditChange();
     	this.reason=po.getReason();
@@ -85,9 +85,30 @@ public class CreditVO  implements Serializable{
 	
 	}
  public CreditPO votopo(){
-	 return new CreditPO(this.name,this.ID,this.credit,this.CreditChange,this.reason,this.time);
+	 return new CreditPO(this.name,idToInt(this.ID),this.credit,this.CreditChange,this.reason,this.time);
 	 
  }
-	
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
+	}
 
 }

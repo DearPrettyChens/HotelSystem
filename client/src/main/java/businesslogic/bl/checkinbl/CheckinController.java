@@ -18,12 +18,12 @@ public class CheckinController implements CheckinBLService{
 	private Checkin checkin;
 	private static CheckinController checkinController=null;
 	
-	public CheckinController(String hotelID){
+	private CheckinController(String hotelID){
 		checkin=new Checkin(hotelID);
 	}
 	
 	//实现单例模式
-	public CheckinController getInstance(String hotelID){
+	public static CheckinController getInstance(String hotelID){
 		if(checkinController==null||checkinController.checkin.getHotelID()!=hotelID){
 			checkinController=new CheckinController(hotelID);
 		}

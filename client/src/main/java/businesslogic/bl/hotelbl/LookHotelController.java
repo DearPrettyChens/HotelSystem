@@ -8,15 +8,21 @@ public class LookHotelController implements LookHotelService {
 
 	// 持有hotel的引用
 	private Hotel hotel;
+	private static LookHotelController controller=null;
 
-	public LookHotelController() {
+	private LookHotelController() {
 			hotel=new Hotel();
 	}
 
+	public static LookHotelController getInstance(){
+		if(controller==null){
+			controller=new LookHotelController();
+		}
+		return controller;
+	}
 	@Override
 	public HotelDetailInfoVO getHotelDetailInfo(String hotelID, String customerID) {
-		// TODO Auto-generated method stub
-		return null;
+		return hotel.getHotelDetailInfo(hotelID, customerID);
 	}
 
 

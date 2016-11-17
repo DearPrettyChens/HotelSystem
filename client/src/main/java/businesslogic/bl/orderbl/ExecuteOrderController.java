@@ -13,25 +13,29 @@ import vo.ordervo.RemarkVO;
  */
 public class ExecuteOrderController implements ExecuteOrderService {
     private SingleOrder singleOrder;
+    private static ExecuteOrderController controller=null;
     //调用singleOrder里面的方法
-	public ExecuteOrderController() {
+	private ExecuteOrderController() {
 		singleOrder=new SingleOrder();
+	}
+	public static ExecuteOrderController getInstance(){
+		if(controller==null){
+			controller=new ExecuteOrderController();
+		}
+		return controller;
 	}
 	@Override
 	public ResultMessage remarkOrder(RemarkVO remarkVO) {
-		// TODO Auto-generated method stub
 		return singleOrder.remarkOrder(remarkVO);
 	}
 
 	@Override
 	public ResultMessage setCheckinTime(Date time, String orderID) {
-		// TODO Auto-generated method stub
 		return singleOrder.setCheckinTime(time, orderID);
 	}
 
 	@Override
 	public ResultMessage setCheckoutTime(Date time, String orderID) {
-		// TODO Auto-generated method stub
 		return singleOrder.setCheckoutTime(time, orderID);
 	}
 

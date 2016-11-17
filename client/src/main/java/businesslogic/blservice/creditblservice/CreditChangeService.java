@@ -37,6 +37,6 @@ public interface CreditChangeService {
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage confirmCreditDeposit (double money,String customerName);
+	public ResultMessage confirmCreditDeposit (double money,String customerId);
 
 }

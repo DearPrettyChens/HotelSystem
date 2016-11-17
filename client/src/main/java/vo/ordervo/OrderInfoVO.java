@@ -111,7 +111,7 @@ public class OrderInfoVO {
 		this.roomType=po.getRoomType();
 		this.bedType=po.getBedType();
 		this.amount=po.getAmount();
-		this.orderTime=po.getOrderTime();
+		this.orderTime=po.getReserveTime();
 		this.NumberOfPeople=po.getNumberOfPeople();
 		this.hasChild=po.getHasChild();
 		this.expectedCheckInTime=po.getExpectedCheckInTime();
@@ -203,7 +203,7 @@ public class OrderInfoVO {
 	 * @return OrderInfoPO
 	 */
 	public OrderInfoPO toMakeOrderPO(){
-		return new OrderInfoPO(this.orderID,this.hotelID, this.customerID, this.customerName, this.liveinPersonName,this.liveinPersonTelephone,
+		return new OrderInfoPO(this.orderID,this.hotelID, this.hotelName,this.customerID, this.customerName, this.liveinPersonName,this.liveinPersonTelephone,
 				this.expectedCheckInTime, this.expectedCheckOutTime,this.roomType,this.bedType, this.amount,
 				this.NumberOfPeople,this. hasChild,this.price,this.state);
 	}

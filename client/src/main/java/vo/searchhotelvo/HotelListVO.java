@@ -32,7 +32,7 @@ public class HotelListVO {
 	}
 	public HotelListVO(HotelListPO po){
 		this.setHotelAddress(po.getLocation());
-		this.setHotelID(po.getId());
+		this.setHotelID(idToString(po.getId()));
 		this.setHotelName(po.getName());
 		this.setHotelImage(po.getImage());
 		this.setStar(po.getStar());
@@ -50,7 +50,7 @@ public class HotelListVO {
 	}
 
 	public HotelListPO toPO(){
-		return new HotelListPO(hotelName,hotelAddress,hotelImage,lowestPrice,star,hotelID,remark);
+		return new HotelListPO(hotelName,hotelAddress,hotelImage,lowestPrice,star,idToInt(hotelID),remark);
 	}
 	public String getHotelID() {
 		return hotelID;
@@ -105,5 +105,26 @@ public class HotelListVO {
 	public void setHotelImage(ImageIcon imageIcon) {
 		this.hotelImage = imageIcon;
 	}
-
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	/**
+	 * id to string
+	 */
+	private static String idToString(int id){
+		String result=String.valueOf(id);
+		while(result.length()<6){
+			result="0"+result;
+		}
+		return result;
+	}
 }

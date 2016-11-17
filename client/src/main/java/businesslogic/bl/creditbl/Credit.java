@@ -62,7 +62,7 @@ public class Credit {
 		double changeCredit=creditVO.getCreditChange();
 		double nowCredit=changeCredit+creditVO.getCredit();
 		//传给数据层的是变化后的credit值
-		CreditPO po=new CreditPO(creditVO.getName(),creditVO.getID(),nowCredit,changeCredit,
+		CreditPO po=new CreditPO(creditVO.getName(),idToInt(creditVO.getID()),nowCredit,changeCredit,
 				creditVO.getReason(),creditVO.getTime());
 		try {
 			creditDao.setCredit(po);
@@ -81,7 +81,7 @@ public class Credit {
 		double changeCredit=creditVO.getCreditChange();
 		double nowCredit=changeCredit-creditVO.getCredit();
 		//传给数据层的是变化后的credit值
-		CreditPO po=new CreditPO(creditVO.getName(),creditVO.getID(),nowCredit,-changeCredit,
+		CreditPO po=new CreditPO(creditVO.getName(),idToInt(creditVO.getID()),nowCredit,-changeCredit,
 				creditVO.getReason(),creditVO.getTime());
 		try {
 			creditDao.setCredit(po);
@@ -97,15 +97,15 @@ public class Credit {
 	 * @param customerName
 	 * @return ResultMessage
 	 */
-	public ResultMessage confirmCreditDeposit(double money, String customerName) {
+	public ResultMessage confirmCreditDeposit(double money, String customerId) {
 		try {
-			CreditInfoPO po=creditDao.getCreditInfoByName(customerName);
+			CreditInfoPO po=creditDao.getCreditInfo(customerId);
 			List<CreditPO> creditInfoList=po.getCreditRecords();
 			//充值之前的信用值
 			double preCredit=creditInfoList.get(creditInfoList.size()-1).getCredit();
 			//充值之后的信用值
 			double nowCredit=preCredit+money*100;
-			CreditPO newPO=new CreditPO(customerName,creditInfoList.get(creditInfoList.size()-1)
+			CreditPO newPO=new CreditPO(customerId,creditInfoList.get(creditInfoList.size()-1)
 					.getID(),nowCredit,money*100,"线下充值",new Date());
 			//CreditPO newPO=new CreditPO(customerName,null,money*100,"线下充值",new Date());
 			creditDao.setCredit(newPO);
@@ -121,6 +121,18 @@ public class Credit {
 	 */
 	public String getCustomerID() {
 		return customerID;
+	}
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
 	}
 	//以下get,set都是和数据层的交互
 /*	private String getCustomerID() {

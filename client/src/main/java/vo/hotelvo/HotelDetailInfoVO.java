@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import util.TradingArea;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.hotelstrategyvo.HotelStrVO;
 import vo.ordervo.OrderListVO;
@@ -16,13 +17,14 @@ import vo.ordervo.OrderListVO;
 public class HotelDetailInfoVO {
 	// 酒店id
 		private String hotelID;
-	
 	// 酒店名称
 	private String hotelName;
 	// 酒店地址
 	private String address;
 	//酒店图片
 	private ImageIcon hotelImage;
+	//商圈
+	private TradingArea area;
 	// 联系方式
 	private String telephone;
 	// 星级
@@ -40,7 +42,7 @@ public class HotelDetailInfoVO {
 	// 合作企业
 	private String enterprises;
 	// 酒店策略
-	private HotelStrVO hotelStrVO;
+	private ArrayList<HotelStrVO> hotelStrVO;
 	// 可用房间信息
 	private AvailableRoomInfoVO availableRoomInfoVO;
 	//评分
@@ -55,9 +57,9 @@ public class HotelDetailInfoVO {
 		
 	}
 	//酒店细节信息 都可以看到
-	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,String telephone, int star, String introduce,
+	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,TradingArea area,String telephone, int star, String introduce,
 			String commonFacility, String activityFacility, String service, String roomFacility, String enterprises,
-			HotelStrVO hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderListVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
+			ArrayList<HotelStrVO> hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderListVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
 		this.setHotelName(hotelName);
 		this.setAddress(address);
 		this.setHotelImage(hotelImage);
@@ -74,6 +76,7 @@ public class HotelDetailInfoVO {
 		this.setOrderRecordVO(orderRecordVO);
 	    this.setRemarkDetailInfo(remarkDetailInfo);
 	    this.setRemarkNumber(remarkNumber);
+	    this.area=area;
 	}
 	public String getHotelID() {
 		return hotelID;
@@ -161,11 +164,11 @@ public class HotelDetailInfoVO {
 		this.enterprises = enterprises;
 	}
 
-	public HotelStrVO getHotelStrVO() {
+	public ArrayList<HotelStrVO> getHotelStrVO() {
 		return hotelStrVO;
 	}
 
-	public void setHotelStrVO(HotelStrVO hotelStrVO) {
+	public void setHotelStrVO(ArrayList<HotelStrVO> hotelStrVO) {
 		this.hotelStrVO = hotelStrVO;
 	}
 
@@ -203,6 +206,12 @@ public class HotelDetailInfoVO {
 	}
 	public void setRemarkDetailInfo(ArrayList<String> remarkDetailInfo) {
 		this.remarkDetailInfo = remarkDetailInfo;
+	}
+	public TradingArea getArea() {
+		return area;
+	}
+	public void setArea(TradingArea area) {
+		this.area = area;
 	}
 
 }

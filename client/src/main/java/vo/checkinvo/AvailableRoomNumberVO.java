@@ -34,7 +34,7 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.bedType=po.getBedType();
     	this.date=po.getDate();
     	//this.hotelName=po.getHotelName();
-    	this.hotelNumber=po.getHotelNumber();
+    	this.hotelNumber=idToString(po.getHotelNumber());
     	
     	
 		
@@ -79,8 +79,30 @@ public class AvailableRoomNumberVO  implements Serializable{
 	}*/
 	
 	 public AvailableRoomNumberPO votopo(){
-		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,this.hotelNumber);
+		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,idToInt(this.hotelNumber));
 		 
 	 }
+		/**
+		 * 编号string转化成int
+		 */
+		private static int idToInt(String id){
+			String temp="";
+			for(int i=0;i<id.length();i++){
+				if(id.charAt(i)!='0'){
+					temp=temp+id.charAt(i);
+				}
+			}
+			return Integer.parseInt(temp);
+		}
+		/**
+		 * id to string
+		 */
+		private static String idToString(int id){
+			String result=String.valueOf(id);
+			while(result.length()<6){
+				result="0"+result;
+			}
+			return result;
+		}
 	
 }

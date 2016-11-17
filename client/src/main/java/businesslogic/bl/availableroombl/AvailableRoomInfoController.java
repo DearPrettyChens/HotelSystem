@@ -9,7 +9,7 @@ public class AvailableRoomInfoController implements AvailableRoomInfoService{
 	//持有AvailableRoom引用
 	private AvailableRoom availableRoom;
 	private static AvailableRoomInfoController controller=null;
-	public AvailableRoomInfoController(){
+	private AvailableRoomInfoController(){
 		availableRoom=new AvailableRoom();
 	}
 	//实现单件模式

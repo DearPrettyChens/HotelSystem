@@ -70,7 +70,7 @@ public class CheckinInfo {
 	public ResultMessage confirmCheckinInfo(){
 		//更新订单中的实际入房时间
 		singleOrder=new SingleOrder();
-		ResultMessage result=singleOrder.setCheckinTime(checkinTime, orderNumber);
+		ResultMessage result=singleOrder.setCheckinTime(new Date(), orderNumber);
 		if(result==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}
@@ -78,7 +78,7 @@ public class CheckinInfo {
 		checkinDao=RMIHelper.getCheckinDao();
 		try {
 			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
-					roomNumber,checkinTime,checkoutTime,hotelNumber,orderNumber));
+					roomNumber,checkinTime,checkoutTime,idToInt(hotelNumber),orderNumber));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
@@ -111,7 +111,7 @@ public class CheckinInfo {
 			ResultMessage result=checkinDao.modifyCheckinInfo(new CheckinInfoPO(
 					vo.getCostumername(),vo.getID(),vo.getTel(),vo.getRoomType(),
 					vo.getBedtype(),vo.getRoomnumber(),vo.getCheckintime(),
-					vo.getCheckouttime(),vo.getHotelnumber(),vo.getOrdernumber()));
+					new Date(),idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
 			if(result==ResultMessage.FAIL){
 				return ResultMessage.FAIL;
 			}
@@ -133,13 +133,27 @@ public class CheckinInfo {
 		
 		//更新订单中的实际退房时间
 		singleOrder=new SingleOrder();
-		ResultMessage result=singleOrder.setCheckoutTime(vo.getCheckouttime(), vo.getOrdernumber());
+		ResultMessage result=singleOrder.setCheckoutTime(new Date(), vo.getOrdernumber());
 		if(result==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}
 		
 		return ResultMessage.SUCCESS;
 	}
+	
+	/**
+	 * 编号string转化成int
+	 */
+	private static int idToInt(String id){
+		String temp="";
+		for(int i=0;i<id.length();i++){
+			if(id.charAt(i)!='0'){
+				temp=temp+id.charAt(i);
+			}
+		}
+		return Integer.parseInt(temp);
+	}
+	
 	//以下get,set都是和数据层的交互
 /*	private String getName() {
 		return null;

@@ -2,12 +2,25 @@ package businesslogic.bl.orderbl;
 
 import java.util.Date;
 
+import businesslogic.bl.availableroombl.AvailableRoom;
+import businesslogic.bl.hotelbl.Hotel;
+import businesslogic.bl.hotelstrategybl.HotelStrategy;
+import businesslogic.bl.personnelbl.Customer;
+import businesslogic.bl.personnelbl.Person;
+import businesslogic.bl.userbl.User;
+import businesslogic.bl.webstrategybl.WebStrategy;
+import po.PersonDetailPO;
 import util.ResultMessage;
 import util.Telephone;
+import util.TradingArea;
 import vo.availableroomvo.AvailableRoomNumberVO;
+import vo.hotelstrategyvo.HotelBestStrVO;
 import vo.hotelvo.HotelDetailInfoVO;
 import vo.ordervo.OrderInfoVO;
+import vo.ordervo.OrderProvidedVO;
 import vo.ordervo.StrategyVO;
+import vo.personnelvo.PersonDetailVO;
+import vo.webstrategyvo.WebBestStrVO;
 /**
  * Order模块的领域类
  * @author csy
@@ -16,7 +29,19 @@ import vo.ordervo.StrategyVO;
 public class Order {
 	private OrderList orderList;
 	private SingleOrder singleOrder;
+	private Person person;
+	private AvailableRoom availableRoom;
+	private WebStrategy webStrategy;
+	private HotelStrategy hotelStrategy;
+	private HotelInfoOrderService hotelInfoOrderService;//解决循环依赖
 	
+	public Order(){
+		
+	}
+	public Order(Hotel hotel){
+		this.hotelInfoOrderService=hotel;
+	}
+
 	/**
 	 * 检测是否有大于0的信用值可生成订单
 	 * @param CustomerID String型，传递顾客编号
@@ -24,8 +49,17 @@ public class Order {
 	 *
 	 */
 	public ResultMessage checkUserCredit(String CustomerID){
-		return null;
-		//调User.getDetailInfo获得顾客信息
+		//TODO
+		//调person.getDetail获得顾客信用信息
+		//构造函数缺少参数
+		person=new Customer();
+		PersonDetailVO detail=person.getDetail();
+		int credit=detail.getCredit();
+		if(credit>=0){
+			return ResultMessage.SUCCESS;
+		}
+		return ResultMessage.LACKOFCREDIT;
+		
 	}
 	
 	/**
@@ -36,7 +70,11 @@ public class Order {
 	 *
 	 */
 	public ResultMessage checkTime(Date time){
-		return null;
+		//日期在今天或今天之后
+		if(time.after(new Date())||time.equals(new Date())){
+			return ResultMessage.SUCCESS;
+		}
+		return ResultMessage.daoFORMATERROR;
 		
 	}
 	
@@ -57,11 +95,29 @@ public class Order {
 	 * @throws 未定
 	 *
 	 */
-	public StrategyVO next(OrderInfoVO orderinfovo){
-		//调用WebStrategy.getWebBestStrategy获得最大折扣的网站优惠策略和HotelStrategy.getBestHotelStrategy获得最大折扣的酒店优惠策略
-		//调用Availableroom.getRoomPrice	获得酒店房间价格
-		return null;
+	public StrategyVO next(OrderInfoVO orderInfoVO){
+//调用WebStrategy.getWebBestStrategy获得最大折扣的网站优惠策略和HotelStrategy.getBestHotelStrategy获得最大折扣的酒店优惠策略
+		String customerID=orderInfoVO.getCustomerID();
+		//TODO
+		//调person.getDetail获得顾客信用信息
+		//构造函数缺少参数
+		person=new Customer();
+		PersonDetailVO detail=person.getDetail();
+		int credit=detail.getCredit();
+		String hotelID=orderInfoVO.getHotelID();
+		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
+		TradingArea area=hotelDetail.getArea();
+		webStrategy=new WebStrategy();
+		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(String.valueOf(credit), area, new Date());
+		hotelStrategy=new HotelStrategy();
+		OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName());
+		HotelBestStrVO hotelStrVO=hotelStrategy.getBestHotelStrategy(orderProvidedVO);
 		
+//调用Availableroom.getRoomPrice	获得酒店房间价格
+		availableRoom=new AvailableRoom();
+		double price=availableRoom.getRoomPrice(hotelID, orderInfoVO.getBedType());
+		
+		return new StrategyVO(webStrVO,hotelStrVO,price);
 	}
 	
 	/**
@@ -73,7 +129,7 @@ public class Order {
 	 */
 	public ResultMessage confirmAddOrder(OrderInfoVO orderInfoVO){
 		//调用SingleOrder.addOrder向数据库中新增订单
-		return null;
+		return new SingleOrder().addOrder(orderInfoVO);
 		
 	}
 	
@@ -85,8 +141,9 @@ public class Order {
 	 *
 	 */
 	public HotelDetailInfoVO getHotelDetailInfo(String hotelID){
-		return null;
 		//调用HotelInfoOrderService里面的方法getHotelDetailInfo
+		return hotelInfoOrderService.getHotelDetailInfo(hotelID, null);
+		
 	}
 	
 	/**
@@ -97,8 +154,9 @@ public class Order {
 	 *
 	 */
 	public ResultMessage checkAvailableRoomNumber (AvailableRoomNumberVO vo){
-		return null;
 		//调用Availableroom.checkAvailableRoomNumber检查可用房间数
+		availableRoom=new AvailableRoom();
+		return availableRoom.checkAvailableRoomNumber(vo);
 	}
 	
 	

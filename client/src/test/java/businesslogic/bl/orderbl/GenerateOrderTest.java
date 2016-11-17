@@ -30,7 +30,7 @@ public class GenerateOrderTest {
 	 @Before 
 	 public void setUp(){
 		 
-		 genereteOrderService=new GenerateOrderController();
+		 genereteOrderService=GenerateOrderController.getInstance();
 		 
 		 
 		 
