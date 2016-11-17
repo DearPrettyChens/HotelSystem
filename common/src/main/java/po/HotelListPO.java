@@ -13,9 +13,9 @@ public class HotelListPO  implements Serializable{
 	 * @author Cy
 	 * @version 1.0
 	 */
-	private String id;
+	private int id;
 	private String name;
-	private String location;
+	private String address;
 	private ImageIcon image;
 	private double lowestPrice;
 	private int star;
@@ -26,9 +26,9 @@ public class HotelListPO  implements Serializable{
 	}
 	
     public HotelListPO(String name,String location,ImageIcon image,double lowestPrice
-    		,int star,String id,double remark){
+    		,int star,int id,double remark){
     	this.name=name;
-    	this.location=location;
+    	this.address=location;
     	this.image=image;
     	this.lowestPrice=lowestPrice;
     	this.star=star;
@@ -51,10 +51,10 @@ public class HotelListPO  implements Serializable{
 		this.name = name;
 	}
 	public String getLocation() {
-		return location;
+		return address;
 	}
 	public void setLocation(String location) {
-		this.location = location;
+		this.address = location;
 	}
 	public ImageIcon getImage() {
 		return image;
@@ -69,11 +69,11 @@ public class HotelListPO  implements Serializable{
 		this.lowestPrice = lowestPrice;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

@@ -15,7 +15,7 @@ public class CreditPO  implements Serializable{
 	 * @virsion 1.0
      */
 	private String name;//用户名
-	private String ID;//编号
+	private int ID;//编号
 	private double credit;//信用值
 	private double CreditChange;//信用值变化
 	private String reason;//原因
@@ -24,7 +24,7 @@ public class CreditPO  implements Serializable{
 	public CreditPO(){
 		
 	}
-    public CreditPO(String name,String ID,double credit,double CreditChange,String reason,Date time){
+    public CreditPO(String name,int ID,double credit,double CreditChange,String reason,Date time){
 		this.credit=credit;
 		this.CreditChange=CreditChange;
 		this.reason=reason;
@@ -40,10 +40,10 @@ public class CreditPO  implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getID() {
+	public int getID() {
 		return ID;
 	}
-	public void setID(String iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 	public double getCredit() {

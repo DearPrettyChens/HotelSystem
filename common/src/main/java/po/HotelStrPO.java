@@ -11,7 +11,7 @@ import util.HotelStrategyType;
  * @version1.0
  */
 public class HotelStrPO implements Serializable{
-	private String hotelID;
+	private int hotelID;
 	//数量策略的数量
 	private int amount;
 	//策略类型
@@ -26,7 +26,7 @@ public class HotelStrPO implements Serializable{
 	public HotelStrPO(){
 	}
 
-	public HotelStrPO(String hotelID, int amount, HotelStrategyType type, double discount, ArrayList<String> enterprise,
+	public HotelStrPO(int hotelID, int amount, HotelStrategyType type, double discount, ArrayList<String> enterprise,
 			Date[] date) {
 		this.hotelID = hotelID;
 		this.amount = amount;
@@ -36,31 +36,31 @@ public class HotelStrPO implements Serializable{
 		this.date = date;
 	}
 
-	public HotelStrPO(String hotelID, int amount, double discount) {
+	public HotelStrPO(int hotelID, int amount, double discount) {
 		this.setHotelID(hotelID);
 		this.setAmount(amount);
 		this.setDiscount(discount);
 		this.setType(HotelStrategyType.AMOUNT);
 	}
 
-	public HotelStrPO(String hotelID, double discount, ArrayList<String> enterprise) {
+	public HotelStrPO(int hotelID, double discount, ArrayList<String> enterprise) {
 		this.setHotelID(hotelID);
 		this.setDiscount(discount);
 		this.setEnterprise(enterprise);
 		this.setType(HotelStrategyType.ENTERPRISE);
 	}
 
-	public HotelStrPO(String hotelID, double discount, Date[] date) {
+	public HotelStrPO(int hotelID, double discount, Date[] date) {
 		this.setHotelID(hotelID);
 		this.setDiscount(discount);
         this.setDate(date);
 		this.setType(HotelStrategyType.ENTERPRISE);
 	}
-	public String getHotelID() {
+	public int getHotelID() {
 		return hotelID;
 	}
 
-	public void setHotelID(String hotelID) {
+	public void setHotelID(int hotelID) {
 		this.hotelID = hotelID;
 	}
 

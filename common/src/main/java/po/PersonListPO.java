@@ -11,7 +11,7 @@ public class PersonListPO {
 	 */
 
 	// id
-	private String Id;
+	private int Id;
 	// 用户名名称
 	private String Name;
 	// 头像
@@ -26,7 +26,7 @@ public class PersonListPO {
 			
 		}
 
-	public PersonListPO(String Id,String Name,ImageIcon Image,String telephone,String hotelName){
+	public PersonListPO(int Id,String Name,ImageIcon Image,String telephone,String hotelName){
 			this.Id=Id;
 			this.Name=Name;
 			this.Image=Image;
@@ -35,11 +35,11 @@ public class PersonListPO {
 			
 		}
 
-	public String getId() {
+	public int getId() {
 		return Id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		Id = id;
 	}
 

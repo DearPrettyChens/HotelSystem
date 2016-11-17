@@ -36,7 +36,7 @@ public class OrderInfoPO implements Serializable {
 	//预定房间数量
 	private int amount;
 	//预定时间
-	private Date orderTime;
+	private Date reserveTime;
 	//入住人数
 	private int NumberOfPeople;
 	//有无儿童
@@ -68,7 +68,7 @@ public class OrderInfoPO implements Serializable {
 	//查看所有订单信息
 	public OrderInfoPO(String customerID, String orderID, String customerName, String liveinPersonName,String liveinPersonTelephone,
 			String hotelName, String hotelID, String hotelTelephone, String roomType, BedType bedType, int amount,
-			Date orderTime, int numberOfPeople, Children hasChild, boolean hasRemarked, Date expectedCheckInTime,
+			Date reserveTime, int numberOfPeople, Children hasChild, boolean hasRemarked, Date expectedCheckInTime,
 			Date expectedCheckOutTime, Date lateCheckInTime, Date actualCheckInTime, Date actualCheckOutTime,
 			double price, OrderState state,Date cancleTime) {
 		this.setCustomerID(customerID);
@@ -82,7 +82,7 @@ public class OrderInfoPO implements Serializable {
 		this.setRoomType(roomType);
 		this.setBedType(bedType);
 		this.setAmount(amount);
-		this.setOrderTime(orderTime);
+		this.setReserveTime(reserveTime);
 		this.setNumberOfPeople(numberOfPeople);
 		this.setHasChild(hasChild);
 		this.setHasRemarked(hasRemarked);
@@ -97,12 +97,13 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	//顾客下订单时的订单信息
-	public OrderInfoPO(String orderID,String hotelID, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
+	public OrderInfoPO(String orderID,String hotelID,String hotelname, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
 			Date expectedCheckInTime, Date expectedCheckOutTime,String roomType, BedType bedType, int amount,
 			int numberOfPeople, Children hasChild,double price,OrderState state) {
 		this.setOrderID(orderID);
 		this.setCustomerID(customerID);
 		this.setHotelID(hotelID);
+		this.setHotelName(hotelname);
 		this.setCustomerName(customerName);
 		this.setLiveinPersonName(liveinPersonName);
 		this.setLiveinPersonTelephone(liveinPersonTelephone);
@@ -232,14 +233,6 @@ public class OrderInfoPO implements Serializable {
 		this.amount = amount;
 	}
 
-	public Date getOrderTime() {
-		return orderTime;
-	}
-
-	public void setOrderTime(Date orderTime) {
-		this.orderTime = orderTime;
-	}
-
 	public int getNumberOfPeople() {
 		return NumberOfPeople;
 	}
@@ -336,6 +329,12 @@ public class OrderInfoPO implements Serializable {
 	}
 	public void setCancleTime(Date cancleTime) {
 		this.cancleTime = cancleTime;
+	}
+	public Date getReserveTime() {
+		return reserveTime;
+	}
+	public void setReserveTime(Date reserveTime) {
+		this.reserveTime = reserveTime;
 	}
 
 }

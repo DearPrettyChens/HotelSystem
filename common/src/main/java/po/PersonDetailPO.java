@@ -15,7 +15,7 @@ public class PersonDetailPO {
 	 */
 
 	// id
-	private String Id;
+	private int Id;
 	// 用户名名称
 	private String Name;
 	// 头像
@@ -53,7 +53,7 @@ public class PersonDetailPO {
 	 * @param birthday
 	 * @param password
 	 */
-	public PersonDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
+	public PersonDetailPO(int customerId, String customername, ImageIcon customerimage, String telephone, int credit,
 			Date birthday, String password, String hotelName,String enterprise) {
 		this.Name = customername;
 		this.Image = customerimage;
@@ -65,11 +65,11 @@ public class PersonDetailPO {
 		this.hotelName = hotelName;
 		this.enterpriseName = enterprise;
 	}
-	public String getId() {
+	public int getId() {
 		return Id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		Id = id;
 	}
 

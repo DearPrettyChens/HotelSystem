@@ -19,7 +19,7 @@ import util.TradingArea;
  */
 public class HotelBasicInfoPO implements Serializable {
 	// 酒店id
-	private String hotelID;
+	private int hotelID;
 	// 酒店名
 	private String name;
 	// 酒店图片
@@ -54,8 +54,6 @@ public class HotelBasicInfoPO implements Serializable {
 	private List<RemarkPO> remarks;
 	//评价过的订单总数
 	private int remarkOrderNumber;
-	//评分
-	private int remarkNumber;
 	//合作企业
 	private String enterprises;
     //空方法
@@ -70,10 +68,13 @@ public class HotelBasicInfoPO implements Serializable {
 
 	}
 
+	public HotelBasicInfoPO(String hotelName){
+		this.setName(hotelName);
+	}
 	// 酒店基本信息，所有人的
-	public HotelBasicInfoPO(String hotelID, String name, ImageIcon hotelImage, String address, String telephone,
+	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone,
 			int star, double score, double lowestPrice, String introduce, String commonFacility,
-			String activityFacility, String service, String roomFacility, List remarks,int remarkOrderNumber,int remarkNumber) {
+			String activityFacility, String service, String roomFacility, List remarks,int remarkOrderNumber) {
 		this.setHotelID(hotelID);
 		this.setName(name);
 		this.setAddress(address);
@@ -87,16 +88,15 @@ public class HotelBasicInfoPO implements Serializable {
 		this.setService(service);
 		this.setRoomFacility(roomFacility);
 		this.setRemarks(remarks);
-		this.setRemarkNumber(remarkNumber);
         this.setRemarkOrderNumber(remarkOrderNumber);
 		
 	}
 
-	public String getHotelID() {
+	public int getHotelID() {
 		return hotelID;
 	}
 
-	public void setHotelID(String hotelID) {
+	public void setHotelID(int hotelID) {
 		this.hotelID = hotelID;
 	}
 
@@ -226,14 +226,6 @@ public class HotelBasicInfoPO implements Serializable {
 
 	public void setRemarkOrderNumber(int remarkOrderNumber) {
 		this.remarkOrderNumber = remarkOrderNumber;
-	}
-
-	public int getRemarkNumber() {
-		return remarkNumber;
-	}
-
-	public void setRemarkNumber(int remarkNumber) {
-		this.remarkNumber = remarkNumber;
 	}
 
 	public String getEnterprises() {

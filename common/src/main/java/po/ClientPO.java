@@ -10,9 +10,9 @@ import java.io.Serializable;
 public class ClientPO implements Serializable{
 	private String userName;
 	private String password;
-	private String userID;
+	private int userID;
 	
-	public ClientPO(String userName,String password,String userID){
+	public ClientPO(String userName,String password,int userID){
 		this.userName=userName;
 		this.password=password;
 		this.userID=userID;
@@ -34,11 +34,11 @@ public class ClientPO implements Serializable{
 		this.password = password;
 	}
 
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
 
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 }

@@ -8,9 +8,9 @@ import java.io.Serializable;
  */
 public class RemarkPO implements Serializable{
 	//酒店id
-	private String hotelID;
+	private int hotelID;
 	//用户id
-	private String customerID;
+	private int customerID;
 	//订单号
 	private String orderID;
 	//给酒店的打分
@@ -22,7 +22,7 @@ public class RemarkPO implements Serializable{
 		
 	}
 	// 酒店评价
-	public RemarkPO(String hotelID,String orderId,String customerID,double score,String remark){
+	public RemarkPO(int hotelID,String orderId,int customerID,double score,String remark){
 		this.setHotelID(hotelID);
 		this.setCustomerID(customerID);
 		this.setScore(score);
@@ -30,11 +30,11 @@ public class RemarkPO implements Serializable{
 		this.orderID=orderId;
 	}
 
-	public String getHotelID() {
+	public int getHotelID() {
 		return hotelID;
 	}
 
-	public void setHotelID(String hotelID) {
+	public void setHotelID(int hotelID) {
 		this.hotelID = hotelID;
 	}
 
@@ -54,11 +54,11 @@ public class RemarkPO implements Serializable{
 		this.remark = remark;
 	}
 
-	public String getCustomerID() {
+	public int getCustomerID() {
 		return customerID;
 	}
 
-	public void setCustomerID(String customerID) {
+	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
 	public String getOrderID() {

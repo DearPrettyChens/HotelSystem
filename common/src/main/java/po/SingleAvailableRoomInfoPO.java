@@ -11,7 +11,7 @@ import util.BedType;
  *
  */
 public class SingleAvailableRoomInfoPO implements Serializable{
-	private String  hotelNumber;//酒店编号
+	private int  hotelNumber;//酒店编号
 	private String roomType;//房型
 	private BedType bedType;//床型
 	private double originalPrice;//原始价格
@@ -21,7 +21,7 @@ public class SingleAvailableRoomInfoPO implements Serializable{
 		
 	}
 	
-	public SingleAvailableRoomInfoPO(String hotelNumber,String roomType,BedType bedType,double originalPrice,double lowestPrice){
+	public SingleAvailableRoomInfoPO(int hotelNumber,String roomType,BedType bedType,double originalPrice,double lowestPrice){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
@@ -29,10 +29,10 @@ public class SingleAvailableRoomInfoPO implements Serializable{
 		this.lowestPrice=lowestPrice;
 	}
 	
-	public String getHotelNumber() {
+	public int getHotelNumber() {
 		return hotelNumber;
 	}
-	public void setHotelNumber(String hotelNumber) {
+	public void setHotelNumber(int hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
 	

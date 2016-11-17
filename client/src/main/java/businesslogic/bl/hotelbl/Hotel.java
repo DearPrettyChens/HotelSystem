@@ -29,7 +29,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	private String address;// 酒店地址
 	private City city;//城市
 	private TradingArea tradingArea;//商圈
-	private ImageIcon hotelImage;// 酒店图片
+	private ImageIcon hotelImage;//酒店图片
 	private String telephone;// 联系方式
 	private int star;// 星级
 	private String introduce;// 酒店简介
