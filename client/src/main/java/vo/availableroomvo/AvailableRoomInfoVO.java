@@ -18,7 +18,7 @@ public class AvailableRoomInfoVO implements Serializable {
 	 * @author Cy
 	 * @virsion 1.0
 	 * */
-	private String  hotelNumber;//酒店编号
+	private int  hotelNumber;//酒店编号
 	private String hotelName;//酒店名字
 	private String[] roomType;//房型
 	private BedType[] bedType;//床型
@@ -30,7 +30,7 @@ public class AvailableRoomInfoVO implements Serializable {
 	public AvailableRoomInfoVO(){
 		
 	}
-    public AvailableRoomInfoVO(String  hotelNumber,String hotelName,String[] roomType
+    public AvailableRoomInfoVO(int  hotelNumber,String hotelName,String[] roomType
     		,BedType[] bedType,double[] originalPrice,double[] lowestPrice,int[] originalNumbers){
 		this.hotelName=hotelName;
 		this.hotelNumber=hotelNumber;
@@ -62,11 +62,11 @@ public class AvailableRoomInfoVO implements Serializable {
 		return new AvailableRoomInfoPO(this.hotelNumber,this.hotelName,this.roomType,
 				this.bedType,this.originalPrice,this.lowestPrice,this.originalNumbers);
 	}
-	public String getHotelNumber() {
+	public int getHotelNumber() {
 		return hotelNumber;
 	}
 
-	public void setHotelNumber(String hotelNumber) {
+	public void setHotelNumber(int hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
 

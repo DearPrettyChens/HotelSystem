@@ -4,7 +4,7 @@ import po.SingleAvailableRoomInfoPO;
 import util.BedType;
 
 public class SingleAvailableRoomInfoVO {
-	private String  hotelNumber;//酒店编号
+	private int  hotelNumber;//酒店编号
 	private String roomType;//房型
 	private BedType bedType;//床型
 	private double originalPrice;//原始价格
@@ -15,7 +15,7 @@ public class SingleAvailableRoomInfoVO {
 		
 	}
 	
-	public SingleAvailableRoomInfoVO(String hotelNumber,String roomType,BedType bedType,double originalPrice,double lowestPrice){
+	public SingleAvailableRoomInfoVO(int hotelNumber,String roomType,BedType bedType,double originalPrice,double lowestPrice){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
@@ -41,10 +41,10 @@ public class SingleAvailableRoomInfoVO {
 		return new SingleAvailableRoomInfoPO(this.hotelNumber,this.roomType,this.bedType,
 				this.originalPrice,this.lowestPrice);
 	}
-	public String getHotelNumber() {
+	public int getHotelNumber() {
 		return hotelNumber;
 	}
-	public void setHotelNumber(String hotelNumber) {
+	public void setHotelNumber(int hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
 	
