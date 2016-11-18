@@ -12,7 +12,7 @@ public class CheckTimePO implements Serializable{
 	private String orderNumber;
 	//入住或退房时间，因为调用方法不同，可以只用一个time表示
 	private Date checkTime;
-	//表示是checkin还是out
+	//表示是checkin还是out("checkin" or "checkout")
 	private String type;
 	//空方法
 	public CheckTimePO(){

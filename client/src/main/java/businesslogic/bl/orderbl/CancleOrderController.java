@@ -25,15 +25,13 @@ public class CancleOrderController implements CancleOrderService{
 	@Override
 	public ResultMessage setReturnCredit(String orderId,int creditNum) {
 		//异常订单撤销
-		singleOrder.setReturnCredit(orderId,creditNum);
-		return singleOrder.addOrderState(OrderState.HASREMARKED, orderId);
+		return singleOrder.setReturnCredit(orderId,creditNum);
 	}
 
 	@Override
 	public ResultMessage cancelOrderConfirm(String orderID){
 		//订单未执行撤销
-		singleOrder.cancelOrderConfirm(orderID);
-		return singleOrder.addOrderState(OrderState.HASCANCELED,orderID);
+		return singleOrder.cancelOrderConfirm(orderID);
 	}
 
 }

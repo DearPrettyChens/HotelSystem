@@ -3,13 +3,13 @@ package businesslogic.bl.orderbl;
 import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
+import businesslogic.bl.creditbl.Credit;
 import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.personnelbl.Customer;
 import businesslogic.bl.personnelbl.Person;
 import businesslogic.bl.userbl.User;
 import businesslogic.bl.webstrategybl.WebStrategy;
-import po.PersonDetailPO;
 import util.ResultMessage;
 import util.Telephone;
 import util.TradingArea;
@@ -29,6 +29,7 @@ import vo.webstrategyvo.WebBestStrVO;
 public class Order {
 	private OrderList orderList;
 	private SingleOrder singleOrder;
+	private Credit credit;
 	private Person person;
 	private AvailableRoom availableRoom;
 	private WebStrategy webStrategy;
@@ -49,11 +50,12 @@ public class Order {
 	 *
 	 */
 	public ResultMessage checkUserCredit(String customerID){
-		//调person.getDetail获得顾客信用信息
-		person=new Customer();
-		PersonDetailVO detail=person.getDetail(customerID);
-		int credit=detail.getCredit();
-		if(credit>=0){
+		//调credit.getCreditInfoList获得顾客信用信息
+		//person=new Customer();
+		//PersonDetailVO detail=person.getDetail(orderInfo.getCustomerID());
+		credit=new Credit(customerID);
+		int creditNum=credit.getUserCreditInfoList().getCredit();
+		if(creditNum>=0){
 			return ResultMessage.SUCCESS;
 		}
 		return ResultMessage.LACKOFCREDIT;
@@ -96,7 +98,7 @@ public class Order {
 	public StrategyVO next(OrderInfoVO orderInfoVO){
 //调用WebStrategy.getWebBestStrategy获得最大折扣的网站优惠策略和HotelStrategy.getBestHotelStrategy获得最大折扣的酒店优惠策略
 		String customerID=orderInfoVO.getCustomerID();
-		//调person.getDetail获得顾客信用信息
+		//调person.getDetail获得顾客信息
 		person=new Customer();
 		PersonDetailVO detail=person.getDetail(customerID);
 		int credit=detail.getCredit();

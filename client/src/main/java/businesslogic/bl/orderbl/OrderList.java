@@ -20,7 +20,7 @@ public class OrderList {
 	/**
 	 * 获取特定类型的订单列表
 	 * @param typeInfoVO TypeInfoVO型,传递订单类型信息
-	 * @return  ArrayList<OrderVO> ，将特定订单列表返回给界面
+	 * @return  ArrayList<OrderListVO> ，将特定订单列表返回给界面
 	 * @throws 未定
 	 *
 	 */

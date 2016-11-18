@@ -21,12 +21,6 @@ import vo.creditvo.CreditVO;
 public class Credit {
 	//数据层的引用
 	private CreditDao creditDao;
-	//单条信用记录
-	private String creditInfo;
-	//信用值
-	private int credit;
-	//信用记录列表
-	private ArrayList<String> creditInfoList;
 	//顾客编号
 	private String customerID;
 	//单例模式 持有user对象引用

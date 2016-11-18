@@ -1,15 +1,22 @@
 package businesslogic.bl.orderbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
-
+import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.creditbl.Credit;
 import businesslogic.bl.hotelbl.Hotel;
 import dao.orderdao.OrderDao;
 import init.RMIHelper;
+import po.CheckTimePO;
+import po.OrderInfoPO;
 import po.OrderStatePO;
 import util.OrderState;
 import util.ResultMessage;
+import vo.availableroomvo.AvailableRoomInfoVO;
+import vo.availableroomvo.AvailableRoomNumberVO;
+import vo.creditvo.CreditInfoVO;
+import vo.creditvo.CreditVO;
 import vo.ordervo.OrderInfoVO;
 import vo.ordervo.RemarkVO;
 /**
@@ -22,6 +29,7 @@ public class SingleOrder {
 	OrderDao orderDao;
 	private HotelInfoOrderService hotelInfoOrderService;//解决循环依赖
 	private Credit credit;
+	private AvailableRoom availableRoom;
 	public SingleOrder() {
 		orderDao=RMIHelper.getOrderDao();
 	}
@@ -54,10 +62,29 @@ public class SingleOrder {
 	 * @throws 未定
 	 */
 	public ResultMessage addOrder(OrderInfoVO orderInfoVO){
-		//TODO
-		return null;
-		//调用Availableroom.setAvailableRoomNumber更新可用房间数
-	    //调用SingleOrder.addOrderState	更新订单状态
+		try {
+			//顾客下订单时订单信息的po(orderID,orderTime是在界面层设好的吗？不确定）
+			orderDao.addOrder(orderInfoVO.toMakeOrderPO());
+			//获得当前可用房间数
+			int preRoomNum=0;
+			ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.
+					getAvailableRoomInfo(orderInfoVO.getHotelID());
+			for(int i=0;i<roomInfo.size();i++){
+				if(orderInfoVO.getBedType()==roomInfo.get(i).getBedType()){
+					preRoomNum=roomInfo.get(i).getCurrentNumber();
+				}
+			}
+			int nowNumber=preRoomNum-orderInfoVO.getAmount();
+			//调用Availableroom.setAvailableRoomNumber更新可用房间数
+			availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(nowNumber,
+					orderInfoVO.getBedType(),orderInfoVO.getExpectedCheckInTime(),
+					orderInfoVO.getHotelID()));
+			//调用SingleOrder.addOrderState	更新订单状态
+			return this.addOrderState(OrderState.NOTEXECUTED,orderInfoVO.getOrderID());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 	
 	/**
@@ -84,12 +111,23 @@ public class SingleOrder {
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage setReturnCredit(String orderID,int CreditNum){
-		//TODO
-		credit=new Credit();
-		return null;
+	public ResultMessage setReturnCredit(String orderID,int creditNum){
 		
-		//调用Credit.addCredit异常订单撤销时，恢复顾客的信用值
+		try {
+			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
+			String customerID=orderInfo.getCustomerID();
+			credit=new Credit(customerID);
+			CreditInfoVO creditInfo=credit.getUserCreditInfoList();
+			int preCredit=creditInfo.getCredit();
+			//增加订单状态
+			this.addOrderState(OrderState.HASCANCELED, orderID);
+			//调用Credit.addCredit异常订单撤销时，恢复顾客的信用值
+			return credit.addCredit(new CreditVO(orderInfo.getCustomerName(),customerID,
+					(double)preCredit,(double)creditNum,"异常订单撤销",new Date()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 	/**
 	 * 未执行订单撤销，扣除相应的信用值(与最晚执行时间距离6小时之内扣除一半）
@@ -99,9 +137,22 @@ public class SingleOrder {
 	 *
 	 */
 	public ResultMessage cancelOrderConfirm(String orderID){
-		//TODO
-		//调用Credit.cutCredit扣除顾客信用值
-		return null;
+		OrderInfoPO orderInfo;
+		try {
+			orderInfo = orderDao.getOrderInfo(orderID);
+			String customerID=orderInfo.getCustomerID();
+			credit=new Credit(customerID);
+			CreditInfoVO creditInfo=credit.getUserCreditInfoList();
+			int preCredit=creditInfo.getCredit();
+			//增加订单状态
+			this.addOrderState(OrderState.HASCANCELED, orderID);
+			//调用Credit.cutCredit扣除顾客信用值
+			return credit.cutCredit(new CreditVO(orderInfo.getCustomerName(),customerID,(double)preCredit,
+					orderInfo.getPrice()/2,"撤销时间与最晚执行时间距离不足6小时",new Date()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 	/**
 	 * 保存订单实际入住时间
@@ -112,9 +163,28 @@ public class SingleOrder {
 	 */
 
 	public ResultMessage setCheckinTime(Date time,String orderID){
-		//TODO
-		return null;
-		//调用Credit.addCredit为顾客增加信用值
+
+		try {
+			//orderDao更新订单的checkin时间
+			CheckTimePO checkTime=new CheckTimePO(orderID,time,"checkin");
+			orderDao.setCheckintime(checkTime);
+			//获取相关订单信息
+			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
+			//调credit.getCreditInfoList获得顾客信用信息
+			//person=new Customer();
+			//PersonDetailVO detail=person.getDetail(orderInfo.getCustomerID());
+			credit=new Credit(orderInfo.getCustomerID());
+			int creditNum=credit.getUserCreditInfoList().getCredit();
+			//增加订单状态
+			this.addOrderState(OrderState.NOTREMARKED, orderID);
+			//调用Credit.addCredit为顾客增加信用值
+			return credit.addCredit(new CreditVO(orderInfo.getCustomerName(),orderInfo.getCustomerID()
+					,creditNum,orderInfo.getPrice(),"订单正常执行",new Date()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
+		
 	}
 	
 	/**
@@ -125,9 +195,32 @@ public class SingleOrder {
 	 *
 	 */
 	public ResultMessage setCheckoutTime(Date time,String orderID){
-		//TODO
-		return null;
-		//调用Availableroom.setAvailableRoomNumber更新可用房间数
+		
+		try {
+			CheckTimePO checkTime=new CheckTimePO(orderID,time,"checkout");
+			orderDao.setCheckouttime(checkTime);
+			availableRoom=new AvailableRoom();
+			//获取相关订单信息
+			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
+			//获得当前可用房间数
+			int preRoomNum=0;
+			ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.
+					getAvailableRoomInfo(orderInfo.getHotelID());
+			for(int i=0;i<roomInfo.size();i++){
+				if(orderInfo.getBedType()==roomInfo.get(i).getBedType()){
+					preRoomNum=roomInfo.get(i).getCurrentNumber();
+				}
+			}
+			int nowNumber=preRoomNum+orderInfo.getAmount();
+			//调用Availableroom.setAvailableRoomNumber更新可用房间数
+			return availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(nowNumber,
+					orderInfo.getBedType(),new Date(),orderInfo.getHotelID()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+
+		return ResultMessage.FAIL;
+		
 	}
 	
 	/**
@@ -138,8 +231,10 @@ public class SingleOrder {
 	 *
 	 */
 	public ResultMessage remarkOrder(RemarkVO vo){
-		//TODO
-		return null;
+		//增加订单状态
+		this.addOrderState(OrderState.HASREMARKED, vo.getOrderId());
 		//调用HotelInfoOrderService里面的addRemarkInfo方法
+		return hotelInfoOrderService.addRemarkInfo(vo);
+		
 	}
 }

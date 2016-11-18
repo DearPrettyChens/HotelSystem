@@ -125,7 +125,7 @@ public class OrderInfoVO {
 	}
 	//顾客下订单时的订单信息
 	public OrderInfoVO(String orderID,String hotelID, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
-			Date expectedCheckInTime, Date expectedCheckOutTime,String roomType, BedType bedType, int amount,
+			Date orderTime,Date expectedCheckInTime, Date expectedCheckOutTime,String roomType, BedType bedType, int amount,
 			int numberOfPeople, Children hasChild,double price,OrderState state) {
 		this.setOrderID(orderID);
 		this.setCustomerID(customerID);
@@ -142,6 +142,7 @@ public class OrderInfoVO {
 		this.setHasChild(hasChild);
 		this.setPrice(price);
 		this.setState(state);
+		this.orderTime=orderTime;
 	}
 	// 顾客在撤销订单前及入住之前查看订单时显示的订单信息
 	// 酒店管理人员checkin时获取的订单信息
@@ -204,7 +205,7 @@ public class OrderInfoVO {
 	 */
 	public OrderInfoPO toMakeOrderPO(){
 		return new OrderInfoPO(this.orderID,this.hotelID, this.hotelName,this.customerID, this.customerName, this.liveinPersonName,this.liveinPersonTelephone,
-				this.expectedCheckInTime, this.expectedCheckOutTime,this.roomType,this.bedType, this.amount,
+				this.orderTime,this.expectedCheckInTime, this.expectedCheckOutTime,this.roomType,this.bedType, this.amount,
 				this.NumberOfPeople,this. hasChild,this.price,this.state);
 	}
 	/**
