@@ -35,18 +35,16 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from ClientPO where user_id = " + po.getUserID());
 		List<ClientPO> result = query.list();
-		if(result==null){
+		try {
+			result.get(0).setPassword(po.getPassword());
+			session.update(result.get(0));
+		} catch (NullPointerException e) {
 			return ResultMessage.FAIL;
+		} finally {
+			session.getTransaction().commit();
+			session.close();
+			sf.close();
 		}
-		try{
-		result.get(0).setPassword(po.getPassword());
-		session.update(result.get(0));
-		}catch(NullPointerException e){
-			
-		}
-		session.getTransaction().commit();
-		session.close();
-		sf.close();
 		return ResultMessage.SUCCESS;
 	}
 
