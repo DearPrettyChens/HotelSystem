@@ -1,5 +1,6 @@
 package businesslogic.bl.checkinbl;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
@@ -96,7 +97,7 @@ public class Checkin{
 	 * 系统返回该酒店的可用房间信息
 	 * @return ResultMessage
 	 */
-	public vo.availableroomvo.AvailableRoomInfoVO getAvailableRoomInfo(String hotelID){
+	public ArrayList<vo.availableroomvo.AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID){
 		//调用availableroomgetAvailableRoomInfo方法
 		availableRoom=new AvailableRoom();
 		return availableRoom.getAvailableRoomInfo(hotelID);

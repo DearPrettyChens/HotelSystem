@@ -1,5 +1,7 @@
 package businesslogic.bl.checkinbl;
 
+import java.util.ArrayList;
+
 import businesslogic.blservice.checkinblservice.CheckinBLService;
 import util.BedType;
 import util.ResultMessage;
@@ -81,7 +83,7 @@ public class CheckinController implements CheckinBLService{
 
 
 	@Override
-	public vo.availableroomvo.AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
+	public ArrayList<vo.availableroomvo.AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
 		return checkin.getAvailableRoomInfo(hotelID);
 	}
 

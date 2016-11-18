@@ -1,6 +1,7 @@
 package businesslogic.bl.checkinbl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
@@ -122,9 +123,14 @@ public class CheckinInfo {
 		
 		//更新房间数量信息
 		availableRoom=new AvailableRoom();
-		AvailableRoomInfoVO preRoomInfo=availableRoom.getAvailableRoomInfo(hotelID);
-		//修改的是当天对应床型客房的数量，所以应是存放数组的开头位置
-		int preRoomNumber=preRoomInfo.getAvailableRoom().get(vo.getBedtype())[0];
+		ArrayList<AvailableRoomInfoVO> preRoomInfo=availableRoom.getAvailableRoomInfo(hotelID);
+		//修改的是当天对应床型客房的数量
+		int preRoomNumber=0;
+		for(int i=0;i<preRoomInfo.size();i++){
+			if(preRoomInfo.get(i).getBedType()==vo.getBedtype()){
+				preRoomNumber=preRoomInfo.get(i).getCurrentNumber();
+			}
+		}
 		//该房间数自动加1
 		ResultMessage message=availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(preRoomNumber+1,bedType,new Date(),hotelID));
 		if(message==ResultMessage.FAIL){

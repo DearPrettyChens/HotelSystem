@@ -1,10 +1,10 @@
 package businesslogic.bl.availableroombl;
 
 import dao.availableroomdao.AvailableRoomDao;
+import po.AvailableRoomInfoPO;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
-import vo.availableroomvo.SingleAvailableRoomInfoVO;
 /**
  * 某一种客房的类
  * @author CLL
@@ -17,36 +17,40 @@ public class SingleAvailableRoomInfo {
 	private double originalPrice;//原始价格
 	private double lowestPrice;//最低价格
 	private int roomNum;//房间数量
+	private int originalNum;//房间原始数量
 	private AvailableRoomDao availableRoomDao;//数据层的引用
 	
 	public SingleAvailableRoomInfo(){
 		
 	}
 	public SingleAvailableRoomInfo(String hotelNumber,String roomType,BedType bedType,
-			double originalPrice,double lowestPrice,int roomNum){
+			double originalPrice,double lowestPrice,int roomNum,int originalNum){
 		this.hotelNumber=hotelNumber;
 		this.roomNum=roomNum;
 		this.roomType=roomType;
 		this.bedType=bedType;
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
+		this.originalNum=originalNum;
 	}
-	public SingleAvailableRoomInfo(SingleAvailableRoomInfoVO vo){
+	public SingleAvailableRoomInfo(AvailableRoomInfoVO vo){
 		this.hotelNumber=vo.getHotelNumber();
 		this.roomType=vo.getRoomType();
 		this.bedType=vo.getBedType();
 		this.originalPrice=vo.getOriginalPrice();
 		this.lowestPrice=vo.getLowestPrice();
-		this.roomNum=vo.getRoomNum();
+		this.roomNum=vo.getCurrentNumber();
+		this.originalNum=vo.getOriginalNumbers();
 	}
 	/**
-	 * 获得某种类型房间的可用信息
-	 * @param hotelID
+	 * 获得房间的可用信息
+	 * @param 
 	 * @return AvailableRoomInfoVO
 	 */
-/*	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID){
-		return null;
-	}*/
+	public AvailableRoomInfoPO getAvailableRoomInfo(){
+		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.roomType,this.bedType
+				,this.originalPrice,this.lowestPrice,this.originalNum,this.roomNum);
+	}
 	/**
 	 * 修改数据库中的可用房间信息
 	 * @param vo

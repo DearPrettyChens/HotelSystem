@@ -1,5 +1,7 @@
 package businesslogic.blservice.checkinblservice;
 
+import java.util.ArrayList;
+
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomNumberVO;
@@ -87,6 +89,6 @@ public interface CheckinBLService {
 	 * @throws 未定
 	 *
 	 */
-	public vo.availableroomvo.AvailableRoomInfoVO getAvailableRoomInfo(String hotelID);
+	public ArrayList<vo.availableroomvo.AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID);
 	
 }

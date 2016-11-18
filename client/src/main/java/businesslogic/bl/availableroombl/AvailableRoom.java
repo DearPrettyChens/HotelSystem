@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import dao.availableroomdao.AvailableRoomDao;
 import init.RMIHelper;
 import po.AvailableRoomInfoPO;
+import po.AvailableRoomNumberPO;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -25,7 +26,7 @@ public class AvailableRoom {
 	}
 	
 	/**
-	 * 获取酒店的可用房间信息
+	 * 获取酒店的当日可用房间信息
 	 * @param hotelID
 	 * @return AvailableRoomInfoVO
 	 */
@@ -84,22 +85,19 @@ public class AvailableRoom {
 				singleAvailableRoomInfoList.add(new SingleAvailableRoomInfo(idToString(roomInfo.get(i).
 						getHotelNumber()),roomInfo.get(i).getRoomType(),roomInfo.get(i).getBedType(),
 						roomInfo.get(i).getOriginalPrice(),roomInfo.get(i).getLowestPrice(),
-						roomInfo.get(i).getOriginalNumbers()));
+						roomInfo.get(i).getOriginalNumbers(),roomInfo.get(i).getCurrentNumber()));
 			}
 			//遍历list，更新其中的房型价格
 			for(int i=0;i<singleAvailableRoomInfoList.size();i++){
 				singleAvailableRoomInfoList.get(i).setDiscount(discount);
 			}
 			//创建更新后的po
-			double[] lowestPrice=new double[singleAvailableRoomInfoList.size()];
-			for(int i=0;i<singleAvailableRoomInfoList.size();i++){
-				lowestPrice[i]=singleAvailableRoomInfoList.get(i).getLowestPrice();
+			ArrayList<AvailableRoomInfoPO> newPOs=new ArrayList<AvailableRoomInfoPO>();
+			for(int i=0;i<roomInfo.size();i++){
+				newPOs.add(singleAvailableRoomInfoList.get(i).getAvailableRoomInfo());
 			}
-			roomInfo=new AvailableRoomInfoPO(roomInfo.getHotelNumber(),
-					roomInfo.getRoomType(),roomInfo.getBedType(),roomInfo.getOriginalPrice(),
-					lowestPrice,roomInfo.getOriginalNumbers());
 			//交给数据层更新价格
-			availableRoomDao.setBestPrice(roomInfo);
+			availableRoomDao.setBestPrice(newPOs);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
@@ -132,7 +130,17 @@ public class AvailableRoom {
 	 */
 	public ResultMessage checkAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) {
 		try {
-			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(availableRoomNumberVO.getHotelNumber());
+			//调用数据层返回相应日期的可用客房信息
+			AvailableRoomNumberPO roomInfo=availableRoomDao.getAvailableRoomNumber(availableRoomNumberVO.getHotelNumber(),
+					availableRoomNumberVO.getDate(),availableRoomNumberVO.getBedType());
+			//availableRoomNumberVO中传的是需要的房间数量，与数据层返回的可用房间数量进行比较
+			if(roomInfo.getNumber()>=availableRoomNumberVO.getNumber()){
+				return ResultMessage.SUCCESS;
+			}
+			else{
+				return ResultMessage.NOTENOUGHAVAILABLEROOM;
+			}
+			/*ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(availableRoomNumberVO.getHotelNumber());
 			//当前可用房间数的列表
 			int roomNumber=0;
 			for(int i=0;i<roomInfo.size();i++){
@@ -140,12 +148,12 @@ public class AvailableRoom {
 					roomNumber=roomInfo.get(i).getCurrentNumber();
 				}
 			}
-			if(roomNumber>availableRoomNumberVO.getNumber()){
+			if(roomNumber>=availableRoomNumberVO.getNumber()){
 				return ResultMessage.SUCCESS;
 			}
 			else{
 				return ResultMessage.NOTENOUGHAVAILABLEROOM;
-			}
+			}*/
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

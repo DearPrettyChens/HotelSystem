@@ -85,7 +85,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		//TODO
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
 		availableRoom=new AvailableRoom();
-		AvailableRoomInfoVO roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
 		//调用HotelStrategy.getHotelStrategy获得酒店优惠策略
 		//hotelStrategy.getHotelStrategy(hotelID, hotelStrategyInterface);
 		return null;
@@ -157,7 +157,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	}
 
 	@Override
-	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
 		availableRoom=new AvailableRoom();
 		return availableRoom.getAvailableRoomInfo(hotelID);

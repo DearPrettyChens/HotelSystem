@@ -1,5 +1,7 @@
 package businesslogic.bl.orderbl;
 
+import java.util.ArrayList;
+
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.hotelvo.HotelDetailInfoVO;
@@ -25,7 +27,7 @@ public interface HotelInfoOrderService {
 	 * @return AvailableRoomInfoVO，返回可用客房信息
 	 *
 	 */
-    public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID);
+    public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID);
 
     /**
 	 * 订单模块获取酒店详细信息
