@@ -3,6 +3,7 @@ package dao.impl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Date;
 
 import dao.availableroomdao.AvailableRoomDao;
 import po.AvailableRoomInfoPO;
@@ -63,8 +64,16 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 		return 0;
 	}
 
+
 	@Override
-	public ResultMessage setBestPrice(AvailableRoomInfoPO po) throws RemoteException {
+	public AvailableRoomNumberPO getAvailableRoomNumber(String hotelID, Date date, BedType type)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}

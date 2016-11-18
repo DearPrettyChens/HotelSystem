@@ -4,6 +4,7 @@ package dao.availableroomdao;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
@@ -29,6 +30,15 @@ public interface AvailableRoomDao extends Remote{
 	 *
 	 */
 	public ArrayList<AvailableRoomInfoPO> getAvailableRoomInfo (String hotelID) throws RemoteException;
+	
+	/**
+	 * 获取可用客房数量信息
+	 * @param  hotelID String ，传递酒店编号;date Date,传递日期；type BedType ,传递床型
+	 * @return AvailableRoomNumberPO 返回可用客房数量信息
+	 * @throws 无
+	 *
+	 */
+	public AvailableRoomNumberPO getAvailableRoomNumber (String hotelID,Date date,BedType type) throws RemoteException;
 	
 	/**
 	 * 新增可用客房信息

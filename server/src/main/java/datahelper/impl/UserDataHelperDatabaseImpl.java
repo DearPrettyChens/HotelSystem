@@ -38,8 +38,12 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 		if(result==null){
 			return ResultMessage.FAIL;
 		}
+		try{
 		result.get(0).setPassword(po.getPassword());
 		session.update(result.get(0));
+		}catch(NullPointerException e){
+			
+		}
 		session.getTransaction().commit();
 		session.close();
 		sf.close();
