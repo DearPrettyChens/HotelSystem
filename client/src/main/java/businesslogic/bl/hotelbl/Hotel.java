@@ -7,6 +7,10 @@ import javax.swing.ImageIcon;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.availableroombl.HotelInfoAvailService;
+import businesslogic.bl.hotelstrategybl.HotelAmountStrategy;
+import businesslogic.bl.hotelstrategybl.HotelBirthStrategy;
+import businesslogic.bl.hotelstrategybl.HotelEnterpriseStrategy;
+import businesslogic.bl.hotelstrategybl.HotelSpecialTimeStrategy;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.orderbl.HotelInfoOrderService;
 import businesslogic.bl.orderbl.Order;
@@ -20,11 +24,13 @@ import util.City;
 import util.ResultMessage;
 import util.TradingArea;
 import vo.availableroomvo.AvailableRoomInfoVO;
+import vo.hotelstrategyvo.HotelStrVO;
 import vo.hotelvo.HotelBasicInfoVO;
 import vo.hotelvo.HotelDetailInfoVO;
 import vo.hotelvo.HotelOrderInfoVO;
 import vo.hotelvo.HotelOrderVO;
 import vo.ordervo.OrderInfoVO;
+import vo.ordervo.RemarkVO;
 
 /**
  * Hotel模块的领域类
@@ -32,8 +38,7 @@ import vo.ordervo.OrderInfoVO;
  * @version 1.0
  */
 public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
-	private HotelDao hotelDao;//数据层的应用
-	private String hotelName;// 酒店名称
+/*	private String hotelName;// 酒店名称
 	private String hotelID;//酒店编号
 	private String address;// 酒店地址
 	private City city;//城市
@@ -50,7 +55,8 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	private double bestPrice;//最低价格
 	private int remarkOrderNumber;//评价过的订单总数
 	private double remarkNumber;//评分
-	private ArrayList<String> remarkDetailInfo;//评论
+	private ArrayList<String> remarkDetailInfo;//评论*/
+	private HotelDao hotelDao;//数据层的应用
 	private AvailableRoom availableRoom;//酒店可用客房信息
 	private HotelStrategy hotelStrategy;//酒店策略信息
 	private SingleOrder singleOrder;
@@ -82,12 +88,38 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID){
-		//TODO
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
 		availableRoom=new AvailableRoom();
 		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
 		//调用HotelStrategy.getHotelStrategy获得酒店优惠策略
-		//hotelStrategy.getHotelStrategy(hotelID, hotelStrategyInterface);
+		ArrayList<HotelStrVO> hotelStrs=new ArrayList<HotelStrVO>();
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelAmountStrategy()));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelBirthStrategy()));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelEnterpriseStrategy()));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelSpecialTimeStrategy()));
+		//调用hotel.getHotelOrderList获得酒店订单列表
+		ArrayList<HotelOrderVO> orders=this.getHotelOrderList(hotelID);
+		//调用数据层获得酒店基本信息
+		HotelBasicInfoPO basic;
+		try {
+			basic = hotelDao.getHotelBasicInfo(hotelID);
+			//获得酒店评价信息
+			ArrayList<RemarkPO> remarks=basic.getRemarks();
+			ArrayList<String> remarkDetails=new ArrayList<String>();
+			for(int i=0;i<remarks.size();i++){
+				remarkDetails.add(remarks.get(i).getRemark());
+			}
+			//综合酒店细节信息
+			HotelDetailInfoVO detail=new HotelDetailInfoVO(idToString(basic.getHotelID()),
+					basic.getAddress(),basic.getHotelImage(),basic.getTradingArea(),
+					basic.getTelephone(),basic.getStar(),basic.getIntroduce(),basic.getCommonFacility()
+					,basic.getActivityFacility(),basic.getService(),basic.getRoomFacility(),basic.getEnterprises(),
+					hotelStrs,roomInfo,orders,basic.getScore(),remarkDetails);
+			return detail;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 
 	    
@@ -144,11 +176,12 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	}
 
 	@Override
-	public ResultMessage addRemarkInfo(String hotelID, int remarkNumber, String remarkInfo) {
+	public ResultMessage addRemarkInfo(RemarkVO vo) {
 		try {
-			//TODO
-			//少orderid,customerid参数
-			hotelDao.addRemarkInfo(new RemarkPO(idToInt(hotelID),null,0,(double)remarkNumber,remarkInfo));
+			//增加一条评价信息
+			hotelDao.addRemarkInfo(new RemarkPO(idToInt(vo.getHotelId()),vo.getOrderId(),
+					idToInt(vo.getCustomerID()),vo.getRemarkGrade(),vo.getRemarkInfo()));
+			//增加酒店的评价过的订单总数是在数据层进行处理吗？
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;

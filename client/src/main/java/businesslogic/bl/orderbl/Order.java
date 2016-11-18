@@ -48,12 +48,12 @@ public class Order {
 	 * @return ResultMessage，如果信用值大于0返回SUCCESS,否则返回LACKOFCREDIT
 	 *
 	 */
-	public ResultMessage checkUserCredit(String CustomerID){
+	public ResultMessage checkUserCredit(String customerID){
 		//TODO
 		//调person.getDetail获得顾客信用信息
 		//构造函数缺少参数
 		person=new Customer();
-		PersonDetailVO detail=person.getDetail();
+		PersonDetailVO detail=person.getDetail(customerID);
 		int credit=detail.getCredit();
 		if(credit>=0){
 			return ResultMessage.SUCCESS;
@@ -102,7 +102,7 @@ public class Order {
 		//调person.getDetail获得顾客信用信息
 		//构造函数缺少参数
 		person=new Customer();
-		PersonDetailVO detail=person.getDetail();
+		PersonDetailVO detail=person.getDetail(customerID);
 		int credit=detail.getCredit();
 		String hotelID=orderInfoVO.getHotelID();
 		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);

@@ -18,7 +18,7 @@ public class SingleAvailableRoomInfo {
 	private double lowestPrice;//最低价格
 	private int roomNum;//房间数量
 	private int originalNum;//房间原始数量
-	private AvailableRoomDao availableRoomDao;//数据层的引用
+//	private AvailableRoomDao availableRoomDao;//数据层的引用
 	
 	public SingleAvailableRoomInfo(){
 		

@@ -44,13 +44,13 @@ public class HotelDetailInfoVO {
 	// 酒店策略
 	private ArrayList<HotelStrVO> hotelStrVO;
 	// 可用房间信息
-	private AvailableRoomInfoVO availableRoomInfoVO;
+	private ArrayList<AvailableRoomInfoVO> availableRoomInfoVO;
 	//评分
 	private double remarkNumber;
 	//评论
 	private ArrayList<String> remarkDetailInfo;
 	// 订单记录
-	private OrderListVO[] orderRecordVO;
+	private ArrayList<HotelOrderVO> orderRecordVO;
 
 	//空方法
 	public HotelDetailInfoVO(){
@@ -59,7 +59,7 @@ public class HotelDetailInfoVO {
 	//酒店细节信息 都可以看到
 	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,TradingArea area,String telephone, int star, String introduce,
 			String commonFacility, String activityFacility, String service, String roomFacility, String enterprises,
-			ArrayList<HotelStrVO> hotelStrVO, AvailableRoomInfoVO availableRoomInfoVO, OrderListVO[] orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
+			ArrayList<HotelStrVO> hotelStrVO, ArrayList<AvailableRoomInfoVO> availableRoomInfoVO, ArrayList<HotelOrderVO> orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
 		this.setHotelName(hotelName);
 		this.setAddress(address);
 		this.setHotelImage(hotelImage);
@@ -172,19 +172,19 @@ public class HotelDetailInfoVO {
 		this.hotelStrVO = hotelStrVO;
 	}
 
-	public AvailableRoomInfoVO getAvailableRoomInfoVO() {
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfoVO() {
 		return availableRoomInfoVO;
 	}
 
-	public void setAvailableRoomInfoVo(AvailableRoomInfoVO availableRoomInfoVO) {
+	public void setAvailableRoomInfoVo(ArrayList<AvailableRoomInfoVO> availableRoomInfoVO) {
 		this.availableRoomInfoVO = availableRoomInfoVO;
 	}
 
-	public OrderListVO[] getOrderRecordVO() {
+	public ArrayList<HotelOrderVO> getOrderRecordVO() {
 		return orderRecordVO;
 	}
 
-	public void setOrderRecordVO(OrderListVO[] orderRecordVO) {
+	public void setOrderRecordVO(ArrayList<HotelOrderVO> orderRecordVO) {
 		this.orderRecordVO = orderRecordVO;
 	}
 

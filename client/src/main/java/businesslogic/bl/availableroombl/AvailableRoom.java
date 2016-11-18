@@ -31,9 +31,9 @@ public class AvailableRoom {
 	 * @return AvailableRoomInfoVO
 	 */
 	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
-		//调用数据层
 		ArrayList<AvailableRoomInfoVO> infos=new ArrayList<AvailableRoomInfoVO>();
 		try {
+			//调用数据层
 			ArrayList<AvailableRoomInfoPO> pos=availableRoomDao.getAvailableRoomInfo(hotelID);
 			for(int i=0;i<pos.size();i++){
 				infos.add(new AvailableRoomInfoVO(pos.get(i)));
@@ -121,6 +121,7 @@ public class AvailableRoom {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		System.out.println("不存在该房间类型");
 		return 0;
 	}
 	/**

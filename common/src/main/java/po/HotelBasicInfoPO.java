@@ -2,6 +2,7 @@ package po;
 
 import java.awt.Image;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -51,7 +52,7 @@ public class HotelBasicInfoPO implements Serializable {
 	// 客房设施
 	private String roomFacility;
 	// 住户点评
-	private List<RemarkPO> remarks;
+	private ArrayList<RemarkPO> remarks;
 	//评价过的订单总数
 	private int remarkOrderNumber;
 	//合作企业
@@ -74,7 +75,7 @@ public class HotelBasicInfoPO implements Serializable {
 	// 酒店基本信息，所有人的
 	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone,
 			int star, double score, double lowestPrice, String introduce, String commonFacility,
-			String activityFacility, String service, String roomFacility, List remarks,int remarkOrderNumber) {
+			String activityFacility, String service, String roomFacility, ArrayList remarks,int remarkOrderNumber) {
 		this.setHotelID(hotelID);
 		this.setName(name);
 		this.setAddress(address);
@@ -148,11 +149,11 @@ public class HotelBasicInfoPO implements Serializable {
 		this.lowestPrice = lowestPrice;
 	}
 
-	public List<RemarkPO> getRemarks() {
+	public ArrayList<RemarkPO> getRemarks() {
 		return remarks;
 	}
 
-	public void setRemarks(List<RemarkPO> remarks) {
+	public void setRemarks(ArrayList<RemarkPO> remarks) {
 		this.remarks = remarks;
 	}
 

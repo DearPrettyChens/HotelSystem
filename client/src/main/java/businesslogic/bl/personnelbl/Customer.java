@@ -62,7 +62,7 @@ public class Customer implements Person {
 				return null;
 			}
 			@Override
-			public PersonDetailVO getDetail() {
+			public PersonDetailVO getDetail(String customerID) {
 				// TODO Auto-generated method stub
 				return null;
 			}

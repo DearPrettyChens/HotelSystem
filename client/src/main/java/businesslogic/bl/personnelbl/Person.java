@@ -33,7 +33,7 @@ public interface Person {
          * PersonnelDao.getWebMarketManDetail
          * PersonnelDao.getCustomerDetail
          */
-        public PersonDetailVO getDetail ();
+        public PersonDetailVO getDetail (String personID);
         /**
          * 修改用户详细信息
          * @param PersonDetailVO personDetailVO
