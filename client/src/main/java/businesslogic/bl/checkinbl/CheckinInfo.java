@@ -79,7 +79,7 @@ public class CheckinInfo {
 		checkinDao=RMIHelper.getCheckinDao();
 		try {
 			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
-					roomNumber,checkinTime,checkoutTime,idToInt(hotelNumber),orderNumber));
+					roomNumber,new Date(),checkoutTime,idToInt(hotelNumber),orderNumber));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;

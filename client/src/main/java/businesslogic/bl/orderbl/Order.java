@@ -49,9 +49,7 @@ public class Order {
 	 *
 	 */
 	public ResultMessage checkUserCredit(String customerID){
-		//TODO
 		//调person.getDetail获得顾客信用信息
-		//构造函数缺少参数
 		person=new Customer();
 		PersonDetailVO detail=person.getDetail(customerID);
 		int credit=detail.getCredit();
@@ -98,9 +96,7 @@ public class Order {
 	public StrategyVO next(OrderInfoVO orderInfoVO){
 //调用WebStrategy.getWebBestStrategy获得最大折扣的网站优惠策略和HotelStrategy.getBestHotelStrategy获得最大折扣的酒店优惠策略
 		String customerID=orderInfoVO.getCustomerID();
-		//TODO
 		//调person.getDetail获得顾客信用信息
-		//构造函数缺少参数
 		person=new Customer();
 		PersonDetailVO detail=person.getDetail(customerID);
 		int credit=detail.getCredit();
