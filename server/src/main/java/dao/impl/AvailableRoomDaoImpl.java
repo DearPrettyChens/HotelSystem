@@ -2,37 +2,39 @@ package dao.impl;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 import dao.availableroomdao.AvailableRoomDao;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
 import util.ResultMessage;
+
 /**
  * AvailableRoomDao的实现
+ * 
  * @author csy
  *
  */
 public class AvailableRoomDaoImpl extends UnicastRemoteObject implements AvailableRoomDao {
-  
+
 	private static final long serialVersionUID = -572024053152986904L;
 	private static AvailableRoomDao availableRoomDao;
-	
-    public static AvailableRoomDao getInstance() throws RemoteException {
-		if(availableRoomDao==null){
-			availableRoomDao= new AvailableRoomDaoImpl();
+
+	public static AvailableRoomDao getInstance() throws RemoteException {
+		if (availableRoomDao == null) {
+			availableRoomDao = new AvailableRoomDaoImpl();
 		}
 		return availableRoomDao;
 	}
-    
-    private AvailableRoomDaoImpl() throws RemoteException {
+
+	private AvailableRoomDaoImpl() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	@Override
-	public AvailableRoomInfoPO getAvailableRoomInfo(String hotelID) throws RemoteException {
+	public ArrayList<AvailableRoomInfoPO> getAvailableRoomInfo(String hotelID) throws RemoteException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -67,6 +69,4 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 		return null;
 	}
 
-
-	
 }
