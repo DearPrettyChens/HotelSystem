@@ -73,5 +73,5 @@ public interface AvailableRoomDao extends Remote{
 	 * @throws 无
 	 *
 	 */
-	public ResultMessage setBestPrice(AvailableRoomInfoPO po)throws RemoteException;
+	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po)throws RemoteException;
 }

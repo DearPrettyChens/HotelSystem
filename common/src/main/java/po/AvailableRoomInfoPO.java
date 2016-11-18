@@ -1,6 +1,7 @@
 package po;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 import util.BedType;
 
@@ -23,21 +24,21 @@ public class AvailableRoomInfoPO implements Serializable {
 	private double originalPrice;//原始价格
 	private double lowestPrice;//最低价格
 	private int originalNumber;//各房型总数量
-	private int currentNumber;//当前数量
+//	private int currentNumber;//当前数量
 	
-	private Map<BedType,int []> availableRoom;//30天可用客房数
+	private Map<Date,Integer> availableRoom;//30天可用客房数
 	public AvailableRoomInfoPO(){
 		
 	}
     public AvailableRoomInfoPO(int  hotelNumber,String hotelName,String roomType
-    		,BedType bedType,double originalPrice,double lowestPrice,int originalNumber,int currentNumber){
+    		,BedType bedType,double originalPrice,double lowestPrice,int originalNumber,Map<Date,Integer> availableRoom){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
 		this.originalNumber=originalNumber;
-		this.currentNumber=currentNumber;
+		this.setAvailableRoom(availableRoom);
 	}
  
 	public int getHotelNumber() {
@@ -88,20 +89,14 @@ public class AvailableRoomInfoPO implements Serializable {
 	public void setOriginalNumbers(int originalNumber) {
 		this.originalNumber = originalNumber;
 	}
-
-	public Map<BedType, int[]> getAvailableRoom() {
+	public Map<Date,Integer> getAvailableRoom() {
 		return availableRoom;
 	}
-
-	public void setAvailableRoom(Map<BedType, int[]> availableRoom) {
+	public void setAvailableRoom(Map<Date,Integer> availableRoom) {
 		this.availableRoom = availableRoom;
 	}
-	public int getCurrentNumber() {
-		return currentNumber;
-	}
-	public void setCurrentNumber(int currentNumber) {
-		this.currentNumber = currentNumber;
-	}
+
+
 
 	
 

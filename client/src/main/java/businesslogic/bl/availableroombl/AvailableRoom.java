@@ -29,10 +29,15 @@ public class AvailableRoom {
 	 * @param hotelID
 	 * @return AvailableRoomInfoVO
 	 */
-	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
 		//调用数据层
+		ArrayList<AvailableRoomInfoVO> infos=new ArrayList<AvailableRoomInfoVO>();
 		try {
-			return new AvailableRoomInfoVO(availableRoomDao.getAvailableRoomInfo(hotelID));
+			ArrayList<AvailableRoomInfoPO> pos=availableRoomDao.getAvailableRoomInfo(hotelID);
+			for(int i=0;i<pos.size();i++){
+				infos.add(new AvailableInfoVO(pos.get(i)));
+			}
+			return infos;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -73,13 +78,13 @@ public class AvailableRoom {
 	 */
 	public ResultMessage setBestPrice(String hotelID,double discount) { 
 		try {
-			AvailableRoomInfoPO roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
+			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
 			//new出该酒店的所有singleavailableroom对象
-			for(int i=0;i<roomInfo.getRoomType().length;i++){
-				singleAvailableRoomInfoList.add(new SingleAvailableRoomInfo(idToString(roomInfo.
-						getHotelNumber()),roomInfo.getRoomType()[i],roomInfo.getBedType()[i],
-						roomInfo.getOriginalPrice()[i],roomInfo.getLowestPrice()[i],
-						roomInfo.getOriginalNumbers()[i]));
+			for(int i=0;i<roomInfo.size();i++){
+				singleAvailableRoomInfoList.add(new SingleAvailableRoomInfo(idToString(roomInfo.get(i).
+						getHotelNumber()),roomInfo.get(i).getRoomType(),roomInfo.get(i).getBedType(),
+						roomInfo.get(i).getOriginalPrice(),roomInfo.get(i).getLowestPrice(),
+						roomInfo.get(i).getOriginalNumbers()));
 			}
 			//遍历list，更新其中的房型价格
 			for(int i=0;i<singleAvailableRoomInfoList.size();i++){
@@ -109,11 +114,10 @@ public class AvailableRoom {
 	 */
 	public double getRoomPrice(String hotelID, BedType bedType) {
 		try {
-			AvailableRoomInfoPO roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
-			BedType[] bedList=roomInfo.getBedType();
-			for(int i=0;i<bedList.length;i++){
-				if(bedType==bedList[i]){
-					return roomInfo.getLowestPrice()[i];
+			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
+			for(int i=0;i<roomInfo.size();i++){
+				if(bedType==roomInfo.get(i).getBedType()){
+					return roomInfo.get(i).getLowestPrice();
 				}
 			}
 		} catch (RemoteException e) {
@@ -128,14 +132,12 @@ public class AvailableRoom {
 	 */
 	public ResultMessage checkAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) {
 		try {
-			AvailableRoomInfoPO roomInfo=availableRoomDao.getAvailableRoomInfo(availableRoomNumberVO.getHotelNumber());
+			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(availableRoomNumberVO.getHotelNumber());
 			//当前可用房间数的列表
-			int[] roomNumberList=roomInfo.getOriginalNumbers();
-			BedType[] bedList=roomInfo.getBedType();
 			int roomNumber=0;
-			for(int i=0;i<roomNumberList.length;i++){
-				if(bedList[i]==availableRoomNumberVO.getBedType()){
-					roomNumber=roomNumberList[i];
+			for(int i=0;i<roomInfo.size();i++){
+				if(roomInfo.get(i).getBedType()==availableRoomNumberVO.getBedType()){
+					roomNumber=roomInfo.get(i).getCurrentNumber();
 				}
 			}
 			if(roomNumber>availableRoomNumberVO.getNumber()){
