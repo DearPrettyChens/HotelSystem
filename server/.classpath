@@ -22,19 +22,19 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/commons-logging-1.0.4.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/ejb3-persistence.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/mysql-connector-java-5.1.7-bin.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/asm-3.3.1.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/cglib-2.2.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/commons-collections-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/hibernate-annotations-3.2.1.ga.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/hibernate3.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/javassist-3.9.0.GA.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/jta.jar"/>
-	<classpathentry kind="lib" path="/hibernatetest/hibernate4/hibernate3.2_core/slf4j-api-1.6.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/common"/>
+	<classpathentry kind="lib" path="hibernate3/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="hibernate3/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="hibernate3/mysql-connector-java-5.1.7-bin.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/asm-3.3.1.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/cglib-2.2.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/hibernate-annotations-3.2.1.ga.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/hibernate3.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/jta.jar"/>
+	<classpathentry kind="lib" path="hibernate3/hibernate3.2_core/slf4j-api-1.6.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

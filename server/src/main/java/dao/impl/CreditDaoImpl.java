@@ -43,12 +43,4 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 		return null;
 	}
 
-<<<<<<< HEAD:server/src/main/java/dao/impl/CreditDaoImpl.java
-	@Override
-	public CreditInfoPO getCreditInfoByName(String customerName) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-=======
->>>>>>> origin/master:server/src/main/java/dao/creditdaoimpl/CreditDaoImpl.java
 }
