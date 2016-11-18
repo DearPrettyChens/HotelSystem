@@ -1,5 +1,7 @@
 package businesslogic.blservice.availableroomblservice;
 
+import java.util.ArrayList;
+
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.availableroomvo.AvailableRoomNumberVO;
@@ -10,13 +12,13 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  */
 public interface AvailableRoomInfoService {
 	/**
-	 * 获取可用客房信息
+	 * 获取当天可用客房信息
 	 * @param hotelID String型，界面传递过来的酒店编号
 	 * @return AvailableRoomInfoVO，将可用客房信息返回给界面，checkin模块，hotel模块
 	 * @throws 未定
 	 *
 	 */
-	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID);
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID);
 	
 	/**
 	 * 确认维护的可用客房信息

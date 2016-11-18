@@ -1,5 +1,7 @@
 package businesslogic.bl.availableroombl;
 
+import java.util.ArrayList;
+
 import businesslogic.blservice.availableroomblservice.AvailableRoomInfoService;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -22,7 +24,7 @@ public class AvailableRoomInfoController implements AvailableRoomInfoService{
 		}
 	}
 	@Override
-	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
 		//委托给availableRoom
 		return availableRoom.getAvailableRoomInfo(hotelID);
 	}

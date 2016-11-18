@@ -1,6 +1,7 @@
 package vo.availableroomvo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 
 import po.AvailableRoomInfoPO;
@@ -19,49 +20,27 @@ public class AvailableRoomInfoVO implements Serializable {
 	 * @virsion 1.0
 	 * */
 	private String  hotelNumber;//酒店编号
-	private String hotelName;//酒店名字
-	private String[] roomType;//房型
-	private BedType[] bedType;//床型
-	private double[] originalPrice;//原始价格
-	private double[] lowestPrice;//最低价格
-	private int[] originalNumbers;//各房型总数量
+	private String roomType;//房型
+	private BedType bedType;//床型
+	private double originalPrice;//原始价格
+	private double lowestPrice;//最低价格
+	private int originalNumber;//各房型总数量
+	private int currentNumber;//当前数量
 	
-	private Map<BedType,int []> availableRoom;//30天可用客房数
 	public AvailableRoomInfoVO(){
 		
 	}
-    public AvailableRoomInfoVO(String hotelNumber,String hotelName,String[] roomType
-    		,BedType[] bedType,double[] originalPrice,double[] lowestPrice,int[] originalNumbers){
-		this.hotelName=hotelName;
+	
+    public AvailableRoomInfoVO(String  hotelNumber,String roomType,BedType bedType,
+    		double originalPrice,double lowestPrice,int originalNumber){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
-		this.originalNumbers=originalNumbers;
-		
+		this.originalNumber=originalNumber;
 	}
-    /**
-     * po to vo
-     * @param availableRoomInfoPO
-     */
-	public AvailableRoomInfoVO(AvailableRoomInfoPO availableRoomInfoPO){
-		this.hotelName=availableRoomInfoPO.getHotelName();
-		this.hotelNumber=idToString(availableRoomInfoPO.getHotelNumber());
-		this.roomType=availableRoomInfoPO.getRoomType();
-		this.bedType=availableRoomInfoPO.getBedType();
-		this.originalPrice=availableRoomInfoPO.getOriginalPrice();
-		this.lowestPrice=availableRoomInfoPO.getLowestPrice();
-		this.originalNumbers=availableRoomInfoPO.getOriginalNumbers();
-	}
-	/**
-	 * vo to po
-	 * @return AvailableRoomInfoPO
-	 */
-	public AvailableRoomInfoPO toPO(){
-		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.hotelName,this.roomType,
-				this.bedType,this.originalPrice,this.lowestPrice,this.originalNumbers);
-	}
+ 
 	public String getHotelNumber() {
 		return hotelNumber;
 	}
@@ -70,61 +49,76 @@ public class AvailableRoomInfoVO implements Serializable {
 		this.hotelNumber = hotelNumber;
 	}
 
-	public String getHotelName() {
-		return hotelName;
-	}
 
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
-
-	public String[] getRoomType() {
+	public String getRoomType() {
 		return roomType;
 	}
 
-	public void setRoomType(String[] roomType) {
+	public void setRoomType(String roomType) {
 		this.roomType = roomType;
 	}
 
-	public BedType[] getBedType() {
+	public BedType getBedType() {
 		return bedType;
 	}
 
-	public void setBedType(BedType[] bedType) {
+	public void setBedType(BedType bedType) {
 		this.bedType = bedType;
 	}
 
-	public double[] getOriginalPrice() {
+	public double getOriginalPrice() {
 		return originalPrice;
 	}
 
-	public void setOriginalPrice(double[] originalPrice) {
+	public void setOriginalPrice(double originalPrice) {
 		this.originalPrice = originalPrice;
 	}
 
-	public double[] getLowestPrice() {
+	public double getLowestPrice() {
 		return lowestPrice;
 	}
 
-	public void setLowestPrice(double[] lowestPrice) {
+	public void setLowestPrice(double lowestPrice) {
 		this.lowestPrice = lowestPrice;
 	}
 
-	public int[] getOriginalNumbers() {
-		return originalNumbers;
+	public int getOriginalNumbers() {
+		return originalNumber;
 	}
 
-	public void setOriginalNumbers(int[] originalNumbers) {
-		this.originalNumbers = originalNumbers;
+	public void setOriginalNumbers(int originalNumber) {
+		this.originalNumber = originalNumber;
 	}
 
-	public Map<BedType, int[]> getAvailableRoom() {
-		return availableRoom;
+	public int getCurrentNumber() {
+		return currentNumber;
 	}
 
-	public void setAvailableRoom(Map<BedType, int[]> availableRoom) {
-		this.availableRoom = availableRoom;
+	public void setCurrentNumber(int currentNumber) {
+		this.currentNumber = currentNumber;
 	}
+    /**
+     * po to vo
+     * @param availableRoomInfoPO
+     */
+	public AvailableRoomInfoVO(AvailableRoomInfoPO availableRoomInfoPO){
+		this.hotelNumber=idToString(availableRoomInfoPO.getHotelNumber());
+		this.roomType=availableRoomInfoPO.getRoomType();
+		this.bedType=availableRoomInfoPO.getBedType();
+		this.originalPrice=availableRoomInfoPO.getOriginalPrice();
+		this.lowestPrice=availableRoomInfoPO.getLowestPrice();
+		this.originalNumber=availableRoomInfoPO.getOriginalNumbers();
+		this.currentNumber=availableRoomInfoPO.getCurrentNumber();
+	}
+	/**
+	 * vo to po
+	 * @return AvailableRoomInfoPO
+	 */
+	public AvailableRoomInfoPO toPO(){
+		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.roomType,
+				this.bedType,this.originalPrice,this.lowestPrice,this.originalNumber,this.currentNumber);
+	}
+
 	/**
 	 * 编号string转化成int
 	 */

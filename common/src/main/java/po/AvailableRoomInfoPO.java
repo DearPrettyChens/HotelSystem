@@ -28,14 +28,15 @@ public class AvailableRoomInfoPO implements Serializable {
 		
 	}
 	
-    public AvailableRoomInfoPO(int  hotelNumber,String hotelName,String roomType
-    		,BedType bedType,double originalPrice,double lowestPrice,int originalNumber,Map<Date,Integer> availableRoom){
+    public AvailableRoomInfoPO(int  hotelNumber,String roomType
+    		,BedType bedType,double originalPrice,double lowestPrice,int originalNumber,int currentNumber){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
 		this.originalNumber=originalNumber;
+		this.currentNumber=currentNumber;
 	}
  
 	public int getHotelNumber() {
@@ -85,6 +86,14 @@ public class AvailableRoomInfoPO implements Serializable {
 
 	public void setOriginalNumbers(int originalNumber) {
 		this.originalNumber = originalNumber;
+	}
+
+	public int getCurrentNumber() {
+		return currentNumber;
+	}
+
+	public void setCurrentNumber(int currentNumber) {
+		this.currentNumber = currentNumber;
 	}
 
 

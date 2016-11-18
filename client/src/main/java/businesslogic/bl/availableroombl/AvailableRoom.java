@@ -35,7 +35,7 @@ public class AvailableRoom {
 		try {
 			ArrayList<AvailableRoomInfoPO> pos=availableRoomDao.getAvailableRoomInfo(hotelID);
 			for(int i=0;i<pos.size();i++){
-				infos.add(new AvailableInfoVO(pos.get(i)));
+				infos.add(new AvailableRoomInfoVO(pos.get(i)));
 			}
 			return infos;
 		} catch (RemoteException e) {
@@ -95,7 +95,7 @@ public class AvailableRoom {
 			for(int i=0;i<singleAvailableRoomInfoList.size();i++){
 				lowestPrice[i]=singleAvailableRoomInfoList.get(i).getLowestPrice();
 			}
-			roomInfo=new AvailableRoomInfoPO(roomInfo.getHotelNumber(),roomInfo.getHotelName(),
+			roomInfo=new AvailableRoomInfoPO(roomInfo.getHotelNumber(),
 					roomInfo.getRoomType(),roomInfo.getBedType(),roomInfo.getOriginalPrice(),
 					lowestPrice,roomInfo.getOriginalNumbers());
 			//交给数据层更新价格
