@@ -165,13 +165,13 @@ public class AvailableRoom {
 	 * 编号string转化成int
 	 */
 	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
+		int i=0;
+		for(i=0;i<id.length();i++){
 			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
+				break;
 			}
 		}
-		return Integer.parseInt(temp);
+		return Integer.parseInt(id.substring(i));
 	}
 	/**
 	 * id to string
