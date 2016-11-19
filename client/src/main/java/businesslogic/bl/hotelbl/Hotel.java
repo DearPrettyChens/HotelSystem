@@ -14,6 +14,7 @@ import businesslogic.bl.hotelstrategybl.HotelSpecialTimeStrategy;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.orderbl.HotelInfoOrderService;
 import businesslogic.bl.orderbl.Order;
+import businesslogic.bl.orderbl.OrderList;
 import businesslogic.bl.orderbl.SingleOrder;
 import dao.hoteldao.HotelDao;
 import init.RMIHelper;
@@ -60,6 +61,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	private AvailableRoom availableRoom;//酒店可用客房信息
 	private HotelStrategy hotelStrategy;//酒店策略信息
 	private SingleOrder singleOrder;
+	private OrderList orderList;
 	
 	//构造方法
 	public Hotel() {
@@ -153,6 +155,8 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	public ArrayList<HotelOrderVO> getHotelOrderList(String hotelID){
 		//TODO
 		//调用Order.getOrderList获得该酒店的订单列表信息
+		orderList=new OrderList();
+		
 		return null;
 	}
 	

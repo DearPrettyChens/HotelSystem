@@ -10,6 +10,7 @@ import po.OrderInfoPO;
 import po.OrderListPO;
 import po.OrderStatePO;
 import po.RemarkPO;
+import po.TypeInfoPO;
 import util.ResultMessage;
 
 /**
@@ -37,11 +38,7 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 			// TODO Auto-generated method stub
 			return null;
 		}
-		@Override
-		public ArrayList<OrderListPO> getOrderList(String keyword) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
+
 		@Override
 		public ResultMessage addOrderState(OrderStatePO po) throws RemoteException {
 			// TODO Auto-generated method stub
@@ -64,6 +61,16 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 		}
 		@Override
 		public ResultMessage addOrder(OrderInfoPO po) throws RemoteException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public ArrayList<OrderListPO> getOrderList(TypeInfoPO po) throws RemoteException {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		@Override
+		public ArrayList<OrderListPO> getOrderList(String hotelID) throws RemoteException {
 			// TODO Auto-generated method stub
 			return null;
 		}

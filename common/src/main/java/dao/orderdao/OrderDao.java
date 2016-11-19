@@ -9,6 +9,7 @@ import po.OrderInfoPO;
 import po.OrderListPO;
 import po.OrderStatePO;
 import po.RemarkPO;
+import po.TypeInfoPO;
 import util.ResultMessage;
 
 /**
@@ -29,12 +30,19 @@ public interface OrderDao extends Remote{
 	 */
 	public OrderInfoPO getOrderInfo(String orderID)throws RemoteException;
 	/**
-	 * 获得订单列表
-	 * @param keyword String型，用来传递关键字
-	 * @return ArrayList<OrderListPO> 用来获取订单列表信息
+	 * 获得特定类型订单列表
+	 * @param po TypeInfoPO型，用来传递订单类型信息
+	 * @return ArrayList<OrderListPO> 用来获取该类型订单列表信息
 	 * @throws 未定
 	 */
-	public ArrayList<OrderListPO> getOrderList(String keyword)throws RemoteException;
+	public ArrayList<OrderListPO> getOrderList(TypeInfoPO po)throws RemoteException;
+	/**
+	 * 获得酒店订单列表
+	 * @param hotelID
+	 * @return ArrayList<OrderListPO> 用来获取该酒店订单列表信息
+	 * @throws RemoteException
+	 */
+	public ArrayList<OrderListPO> getOrderList(String hotelID)throws RemoteException;
 	/**
 	 * 添加订单状态
 	 * @param po OrderStatePO型，用来传递订单状态

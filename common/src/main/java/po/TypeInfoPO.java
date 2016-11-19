@@ -14,16 +14,16 @@ import util.UserType;
 		//浏览订单的状态
 		private OrderState orderState;
 		//酒店编号
-		private String hotelID;
+		//private String hotelID;
 		
 		public TypeInfoPO(){
 			
 		}
 		
-		public TypeInfoPO(UserType userType,OrderState orderState,String hotelID){
+		public TypeInfoPO(UserType userType,OrderState orderState){
 			this.setUserType(userType);
 			this.setOrderState(orderState);
-			this.setHotelID(hotelID);
+			//this.setHotelID(hotelID);
 		}
 
 		public UserType getUserType() {
@@ -42,11 +42,5 @@ import util.UserType;
 			this.orderState = orderState;
 		}
 
-		public String getHotelID() {
-			return hotelID;
-		}
-
-		public void setHotelID(String hotelID) {
-			this.hotelID = hotelID;
-		}
+		
 }

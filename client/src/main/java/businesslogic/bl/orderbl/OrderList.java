@@ -26,7 +26,14 @@ public class OrderList {
 	 */
 	public ArrayList<OrderListVO> getOrderList(TypeInfoVO vo){
 		return null;
-		
+	}	
+	/**
+	 * 获取该酒店的订单列表
+	 * @param hotelID
+	 * @return ArrayList<OrderListVO> ，将特定订单列表返回给hotel
+	 */
+	public ArrayList<OrderListVO> getOrderList(String hotelID){
+		return null;
 	}
-	
+
 }
