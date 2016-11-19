@@ -1,8 +1,13 @@
 package businesslogic.bl.userbl;
 
+import java.rmi.RemoteException;
+
 import dao.userdao.UserDao;
+import init.RMIHelper;
+import po.ClientPO;
 import util.Password;
 import util.ResultMessage;
+import util.TransHelper;
 import vo.uservo.BasicInfoVO;
 import vo.uservo.PasswordVO;
 
@@ -17,8 +22,9 @@ public class User {
 	//密码
 	private String password;
 	private UserDao userDao;
+	private ClientPO clientPO;
 	public User(){
-		
+		userDao=RMIHelper.getUserDao();
 	}
 	/**
 	 * 登录方法
@@ -27,9 +33,35 @@ public class User {
 	 * @return ResultMessage
 	 */
 	public ResultMessage login(String name, String password) {
+		try {
+			clientPO=userDao.getUserPassword(name);
+	       
+			//用户不存在
+			if(clientPO==null){
+				return ResultMessage.USERNOTEXIST;
+		    }
+			
+			//密码错误
+			if(password!=clientPO.getPassword()){
+				return ResultMessage.PASSWORDERROR;
+			}
+			
+			//登录成功
+			userID=TransHelper.idToString(clientPO.getUserID(), 6);		
+			password=this.password;
+			
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
    
+	private ResultMessage checkUser(ClientPO clientPO){
+		
+		return ResultMessage.SUCCESS;
+	}
+	
 	public ResultMessage checkOldPassword(String name, String password) {
 		return ResultMessage.SUCCESS;
 	}

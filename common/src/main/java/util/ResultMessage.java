@@ -1,6 +1,13 @@
 package util;
 
 public enum ResultMessage {
+	//登录的时候返回的是resultMessage,需要知道是哪种人方便跳到哪个界面
+	HotelWorker,
+	Customer,
+	WebMarketMan,
+	Manager,
+	
+	
 	USEREXISTED,//用户名已存在
 	USERNOTEXIST,//用户名不存在
 	USERFORMATERROR,//用户名格式错误
