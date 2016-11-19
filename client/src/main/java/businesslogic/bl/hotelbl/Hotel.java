@@ -20,6 +20,7 @@ import dao.hoteldao.HotelDao;
 import init.RMIHelper;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
+import po.OrderListPO;
 import po.RemarkPO;
 import util.City;
 import util.ResultMessage;
@@ -31,6 +32,7 @@ import vo.hotelvo.HotelDetailInfoVO;
 import vo.hotelvo.HotelOrderInfoVO;
 import vo.hotelvo.HotelOrderVO;
 import vo.ordervo.OrderInfoVO;
+import vo.ordervo.OrderListVO;
 import vo.ordervo.RemarkVO;
 
 /**
@@ -153,11 +155,16 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 *
 	 */
 	public ArrayList<HotelOrderVO> getHotelOrderList(String hotelID){
-		//TODO
 		//调用Order.getOrderList获得该酒店的订单列表信息
 		orderList=new OrderList();
-		
-		return null;
+		ArrayList<OrderListVO> orders=orderList.getOrderList(hotelID);
+		ArrayList<HotelOrderVO> hotelOrders=new ArrayList<HotelOrderVO>();
+		for(int i=0;i<orders.size();i++){
+			OrderListVO hotelOrder=orders.get(i);
+			hotelOrders.add(new HotelOrderVO(hotelOrder.getOrderNumber(),hotelOrder.getCustomerName(),
+					hotelOrder.getReserveTime(),hotelOrder.getState()));
+		}
+		return hotelOrders;
 	}
 	
 	/**

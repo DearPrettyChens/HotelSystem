@@ -1,8 +1,10 @@
 package businesslogic.bl.orderbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dao.orderdao.OrderDao;
+import po.OrderListPO;
 import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 /**
@@ -11,7 +13,7 @@ import vo.ordervo.TypeInfoVO;
  * @version 1.0
  */
 public class OrderList {
-	private ArrayList<SingleOrder> singleOrders;
+	//private ArrayList<SingleOrder> singleOrders;
 	private OrderDao orderDao;
 	public OrderList() {
 		
@@ -25,6 +27,16 @@ public class OrderList {
 	 *
 	 */
 	public ArrayList<OrderListVO> getOrderList(TypeInfoVO vo){
+		try {
+			ArrayList<OrderListPO> orders=orderDao.getOrderList(vo.toPO());
+			ArrayList<OrderListVO> ordersVO=new ArrayList<OrderListVO>();
+			for(int i=0;i<orders.size();i++){
+				ordersVO.add(new OrderListVO(orders.get(i)));
+			}
+			return ordersVO;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}	
 	/**
@@ -33,6 +45,16 @@ public class OrderList {
 	 * @return ArrayList<OrderListVO> ，将特定订单列表返回给hotel
 	 */
 	public ArrayList<OrderListVO> getOrderList(String hotelID){
+		try {
+			ArrayList<OrderListPO> orders=orderDao.getOrderList(hotelID);
+			ArrayList<OrderListVO> ordersVO=new ArrayList<OrderListVO>();
+			for(int i=0;i<orders.size();i++){
+				ordersVO.add(new OrderListVO(orders.get(i)));
+			}
+			return ordersVO;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
