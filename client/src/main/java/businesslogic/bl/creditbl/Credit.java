@@ -24,10 +24,10 @@ public class Credit {
 	//顾客编号
 	private String customerID;
 	//单例模式 持有user对象引用
-	private User user;
-	public Credit(){
+//	private User user;
+/*	public Credit(){
 		creditDao=RMIHelper.getCreditDao();
-	}
+	}*/
 	public Credit(String customerID){
 		this.customerID=customerID;
 		creditDao=RMIHelper.getCreditDao();

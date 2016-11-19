@@ -20,7 +20,7 @@ import vo.ordervo.OrderInfoVO;
  */
 public class Checkin{
 	private AvailableRoom availableRoom;
-	private User user;
+//	private User user;
 	private String hotelID;
 	public Checkin(String hotelID){
 		this.setHotelID(hotelID);

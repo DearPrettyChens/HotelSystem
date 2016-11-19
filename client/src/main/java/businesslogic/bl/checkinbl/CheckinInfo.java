@@ -5,13 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
-import businesslogic.bl.orderbl.Order;
 import businesslogic.bl.orderbl.SingleOrder;
-import dao.availableroomdao.AvailableRoomDao;
 import dao.checkindao.CheckinDao;
 import init.RMIHelper;
-import po.AvailableRoomInfoPO;
-import po.AvailableRoomNumberPO;
 import po.CheckinInfoPO;
 import util.BedType;
 import util.ResultMessage;
@@ -71,7 +67,8 @@ public class CheckinInfo {
 	public ResultMessage confirmCheckinInfo(){
 		//更新订单中的实际入房时间
 		singleOrder=new SingleOrder();
-		ResultMessage result=singleOrder.setCheckinTime(new Date(), orderNumber);
+		checkinTime=new Date();
+		ResultMessage result=singleOrder.setCheckinTime(checkinTime, orderNumber);
 		if(result==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}

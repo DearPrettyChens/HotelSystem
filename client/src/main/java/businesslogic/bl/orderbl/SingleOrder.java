@@ -144,11 +144,17 @@ public class SingleOrder {
 			credit=new Credit(customerID);
 			CreditInfoVO creditInfo=credit.getUserCreditInfoList();
 			int preCredit=creditInfo.getCredit();
-			//增加订单状态
-			this.addOrderState(OrderState.HASCANCELED, orderID);
 			//调用Credit.cutCredit扣除顾客信用值
-			return credit.cutCredit(new CreditVO(orderInfo.getCustomerName(),customerID,(double)preCredit,
-					orderInfo.getPrice()/2,"撤销时间与最晚执行时间距离不足6小时",new Date()));
+			double hourGap=0.0;
+			Date latestCheckTime=orderInfo.getLateCheckInTime();
+			Date cancelTime=new Date();
+			hourGap= latestCheckTime.getTime()/(60*60*1000)-cancelTime.getTime()/(60*60*1000);
+			if(hourGap<6){
+				credit.cutCredit(new CreditVO(orderInfo.getCustomerName(),customerID,(double)preCredit,
+					orderInfo.getPrice()/2,"撤销时间与最晚执行时间距离不足6小时",cancelTime));
+			}
+			//增加订单状态
+			return this.addOrderState(OrderState.HASCANCELED, orderID);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -198,8 +204,9 @@ public class SingleOrder {
 		
 		try {
 			CheckTimePO checkTime=new CheckTimePO(orderID,time,"checkout");
-			orderDao.setCheckouttime(checkTime);
-			availableRoom=new AvailableRoom();
+			return orderDao.setCheckouttime(checkTime);
+			//在checkout模块已经进行处理
+			/*availableRoom=new AvailableRoom();
 			//获取相关订单信息
 			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
 			//获得当前可用房间数
@@ -214,7 +221,7 @@ public class SingleOrder {
 			int nowNumber=preRoomNum+orderInfo.getAmount();
 			//调用Availableroom.setAvailableRoomNumber更新可用房间数
 			return availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(nowNumber,
-					orderInfo.getBedType(),new Date(),orderInfo.getHotelID()));
+					orderInfo.getBedType(),new Date(),orderInfo.getHotelID()));*/
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
