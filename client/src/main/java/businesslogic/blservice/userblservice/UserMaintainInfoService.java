@@ -2,8 +2,12 @@ package businesslogic.blservice.userblservice;
 
 import util.ResultMessage;
 import vo.uservo.DetailInfoVO;
-
-public interface UserMaintainPersonalInformationService {
+/**
+ * UserMaintainPersonalInformationService负责维护个人信息部分
+ * @author CYF
+ *
+ */
+public interface UserMaintainInfoService {
 
 	/**
 	 * 获取用户详细信息
@@ -45,5 +49,6 @@ public interface UserMaintainPersonalInformationService {
 	 *
 	 */
 	public int getGrade(String name);
+	
 
 }

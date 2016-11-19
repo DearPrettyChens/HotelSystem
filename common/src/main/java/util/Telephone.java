@@ -18,11 +18,12 @@ public class Telephone {
 
 	/**
 	 * 检查是否有效
-	 * 
+	 * 用正则表达式进行判断
 	 * @return ResultMessage
 	 */
 	public ResultMessage checkValid() {
-		if (telephone.length() == 11) {
+		String regex = "[0-9]{11}";
+		if (telephone.matches(regex)) {
 			return ResultMessage.SUCCESS;
 		}
 		return ResultMessage.FAIL;
@@ -36,4 +37,10 @@ public class Telephone {
 		this.telephone = telephone;
 	}
 
+//	public static void main(String[] args) {
+//		System.out.println(new Telephone("123").checkValid());
+//		System.out.println(new Telephone("12310200022").checkValid());
+//		System.out.println(new Telephone("zzzzzzzzzzz").checkValid());
+//		System.out.println(new Telephone("111111111111").checkValid());
+//	}
 }

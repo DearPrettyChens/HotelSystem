@@ -1,18 +1,33 @@
 package businesslogic.bl.userbl;
 
-import businesslogic.blservice.userblservice.UserMaintainPersonalInformationService;
+import businesslogic.blservice.userblservice.UserMaintainInfoService;
 import util.ResultMessage;
 import util.Telephone;
 import vo.uservo.DetailInfoVO;
 
-public class UserMaintainPersonnalInformationController implements UserMaintainPersonalInformationService {
+/**
+ * 
+ * 负责维护个人信息的控制部分
+ * @author csy
+ *
+ */
+public class UserMaintainInfoController implements UserMaintainInfoService {
 	// user对象
 	private Customer customer;
+	private static UserMaintainInfoService userMaintainInfoController;
 
 	// 构造方法
-	public UserMaintainPersonnalInformationController() {
+	private UserMaintainInfoController() {
 		customer = new Customer();
 	}
+	
+	public static UserMaintainInfoService getInstance() {
+		if (userMaintainInfoController==null){
+			userMaintainInfoController=new UserMaintainInfoController();
+		}
+		return userMaintainInfoController;
+	}
+	
 	@Override
 	public ResultMessage checkTel(String tel) {
 		return customer.checkTel(new Telephone(tel));
@@ -29,7 +44,8 @@ public class UserMaintainPersonnalInformationController implements UserMaintainP
 
 	@Override
 	public int getGrade(String name) {
-		return 0;
+		return customer.getGrade(name);
 	}
+	
 
 }

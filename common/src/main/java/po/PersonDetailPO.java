@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
+import util.CustomerType;
 import util.UserType;
 
 public class PersonDetailPO {
@@ -30,50 +31,49 @@ public class PersonDetailPO {
 	private String enterpriseName;
 
 	// 会员类型（企业会员和普通会员两种）
-	private UserType VIPType;
+	private CustomerType VIPType;
 	// 密码
 	private String password;
 	// 所在酒店名称
 	private String hotelName;
-	//标签
-	private String tab;
-	
-
-	
+	// 用户种类
+	private UserType userType;
 
 	public PersonDetailPO() {
 
 	}
-  //  public PersonDetailPO(PersonDetailVO vo){
-    	
- //   }
-    /**
-	 * po的构造函数
-	 * 
-	 * @param customerId
-	 * @param customername
-	 * @param customerimage
+
+  
+	/**
+	 * @param id
+	 * @param name
+	 * @param image
 	 * @param telephone
 	 * @param credit
 	 * @param birthday
+	 * @param enterpriseName
+	 * @param vIPType
 	 * @param password
+	 * @param hotelName
+	 * @param userType
 	 */
-
-	public PersonDetailPO(int customerId, String customername, ImageIcon customerimage, String telephone, int credit,
-			Date birthday, String password, String hotelName,String enterprise,String tab) {
-
-		this.Name = customername;
-		this.Image = customerimage;
+	public PersonDetailPO(int id, String name, ImageIcon image, String telephone, int credit, Date birthday,
+			String enterpriseName, CustomerType vIPType, String password, String hotelName, UserType userType) {
+		super();
+		Id = id;
+		Name = name;
+		Image = image;
 		this.telephone = telephone;
 		this.credit = credit;
 		this.birthday = birthday;
-		this.Id = customerId;
+		this.enterpriseName = enterpriseName;
+		VIPType = vIPType;
 		this.password = password;
 		this.hotelName = hotelName;
-		this.enterpriseName = enterprise;
-		this.tab=tab;
-		
+		this.userType = userType;
 	}
+
+
 	public int getId() {
 		return Id;
 	}
@@ -131,12 +131,12 @@ public class PersonDetailPO {
 	}
 
 
-	public UserType getVIPType() {
+	public CustomerType getVIPType() {
 		return VIPType;
 	}
 
-	public void setVIPType(UserType vIPType) {
-		VIPType = vIPType;
+	public void setVIPType(CustomerType type) {
+		VIPType = type;
 	}
 
 	public String getPassword() {
@@ -154,12 +154,13 @@ public class PersonDetailPO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-	public String getTab() {
-		return tab;
+
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setTab(String tab) {
-		this.tab = tab;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 	

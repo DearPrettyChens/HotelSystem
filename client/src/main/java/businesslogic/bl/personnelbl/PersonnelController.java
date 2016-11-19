@@ -17,8 +17,17 @@ import vo.personnelvo.PersonListVO;
  */
 public class PersonnelController implements PersonnelBLService {
 	private Personnel personnel;
-	public PersonnelController(){
+	private static PersonnelBLService personnelController;
+	
+	private PersonnelController(){
 	    this.personnel=new Personnel();
+	}
+	
+	public static PersonnelBLService getInstance(){
+		if(personnelController==null){
+			personnelController=new PersonnelController();
+		}
+		return personnelController;
 	}
     
 	@Override

@@ -4,6 +4,11 @@ import util.ResultMessage;
 import vo.uservo.BasicInfoVO;
 import vo.uservo.PasswordVO;
 
+/**
+ * UserSafetyService负责登录部分
+ * @author CYF
+ *
+ */
 public interface UserSafetyService {
 	/**
 	 * 验证账号密码是否正确
@@ -18,24 +23,23 @@ public interface UserSafetyService {
 	/**
 	 * 检查密码是否正确
 	 * 
-	 * @param name
-	 *            String型,password String型，传递用户名和密码
+	 * @param password String型，传递用户名和密码
 	 * @return ResultMessage，账号密码正确返回SUCCESS,密码错误返回PASSWORDERROR
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage checkOldPassword(String name, String password);
+	public ResultMessage checkOldPassword( String password);
 
 	/**
 	 * 检查新密码格式
 	 * 
-	 * @param password
-	 *            String型，传递新密码
+	 * @param password String型，传递新密码
 	 * @return ResultMessage，格式正确返回SUCCESS,格式错误返回PASSWORDFORMATERROR
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage checkNewPassword(String password);
+	public ResultMessage checkNewPassword(String Password);
+	
 	/**
 	 * 保存用户修改后的密码
 	 * 
@@ -66,5 +70,11 @@ public interface UserSafetyService {
 	 * @throws 未定
 	 *
 	 */
-	public BasicInfoVO getBasicInfo(String name);
+	public BasicInfoVO getBasicInfo();
+	
+	/**
+	 * 登出操作，将用户一切进行原始化
+	 * @return resultMessage
+	 */
+	public ResultMessage logout();
 }

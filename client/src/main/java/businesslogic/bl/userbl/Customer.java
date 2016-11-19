@@ -2,6 +2,7 @@ package businesslogic.bl.userbl;
 
 import util.ResultMessage;
 import util.Telephone;
+import vo.uservo.BasicInfoVO;
 import vo.uservo.DetailInfoVO;
 /**
  * Customer类
@@ -9,6 +10,7 @@ import vo.uservo.DetailInfoVO;
  * @version 1.0
  */
 public class Customer {
+	
 	//等级
 	private int grade;
 	//构造方法
@@ -38,12 +40,7 @@ public class Customer {
   	public ResultMessage checkTel(Telephone tel) {
 		return tel.checkValid();
 	}
-    /**
-     * 检查旧密码是否输入正确
-     * @param name
-     * @param password
-     * @return ResultMessage
-     */
+ 
 	/**
 	 * 修改用户详细信息
 	 * @param detailInfoVO
@@ -51,5 +48,15 @@ public class Customer {
 	 */
 	public ResultMessage modifyDetailInfo(DetailInfoVO detailInfoVO){
 		return ResultMessage.SUCCESS;
+	}
+	
+	/**
+     * 获得顾客基本信息
+     * @param name
+     * @return BasicInfoVO
+     */
+	public BasicInfoVO getBasicInfo(String name) {
+		return null;
+	
 	}
 }

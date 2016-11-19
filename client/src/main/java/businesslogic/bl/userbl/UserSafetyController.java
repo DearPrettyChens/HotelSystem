@@ -6,19 +6,35 @@ import util.ResultMessage;
 import vo.uservo.BasicInfoVO;
 import vo.uservo.PasswordVO;
 
+/**
+ * 
+ * 负责登录的控制部分
+ * @author csy
+ *
+ */
 public class UserSafetyController implements UserSafetyService{  
 	private User user;
-	public UserSafetyController(){
-		user = new User();
+	private static UserSafetyService userSafetyController;
+	
+	private UserSafetyController(){
+		user = User.getInstance();
 	}
+	
+	public static UserSafetyService getInstance() {
+		if(userSafetyController==null){
+			userSafetyController= new UserSafetyController();
+		}
+		return userSafetyController;
+	}
+	
 	@Override
 	public ResultMessage login(String name, String password) {
 		return user.login(name, password);
 	}
 
 	@Override
-	public ResultMessage checkOldPassword(String name, String password) {
-		return user.checkOldPassword(name, password);
+	public ResultMessage checkOldPassword(String password) {
+		return user.checkOldPassword(password);
 	}
 
 	@Override
@@ -35,11 +51,16 @@ public class UserSafetyController implements UserSafetyService{
 	public String getUserID(String name) {
 		return user.getUserID();
 	}
+	@Override
+	public BasicInfoVO getBasicInfo() {
+		return user.getBasicInfo();
+	}
 
 	@Override
-	public BasicInfoVO getBasicInfo(String name) {
-		// TODO Auto-generated method stub
-		return user.getBasicInfo(name);
+	public ResultMessage logout() {
+		userSafetyController=null;
+		return user.logout();
 	}
+
 
 }

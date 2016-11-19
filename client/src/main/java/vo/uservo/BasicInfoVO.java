@@ -3,6 +3,8 @@ package vo.uservo;
 import javax.swing.ImageIcon;
 
 import po.PersonDetailPO;
+import util.TransHelper;
+import util.UserType;
 /**
  * 用户基本信息
  * @author CYF
@@ -16,13 +18,15 @@ public class BasicInfoVO {
 	//用户ID
 	private String userID;
 	
+	private UserType userType;
+	
 	public BasicInfoVO(){
 	}
 	
-	public BasicInfoVO(String userName,ImageIcon userImage,String userID){
-		this.setUserImage(userImage);
+	public BasicInfoVO(String userName,String userID,UserType userType){
 		this.setUserName(userName);
 		this.setUserID(userID);
+		this.setUserType(userType);
 	}
 
 	/**
@@ -32,7 +36,8 @@ public class BasicInfoVO {
 	public BasicInfoVO (PersonDetailPO personDetailPO) {
 		this.setUserName(personDetailPO.getName());
 		this.setUserImage(personDetailPO.getImage());
-		this.setUserID(idToString(personDetailPO.getId()));
+		this.setUserID(TransHelper.idToString(personDetailPO.getId(),6));
+	    this.setUserType(personDetailPO.getUserType());
 	}
 	
 	public String getUserName() {
@@ -55,26 +60,12 @@ public class BasicInfoVO {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
+
+	public UserType getUserType() {
+		return userType;
 	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 }

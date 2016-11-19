@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 
 import po.PersonDetailPO;
+import util.CustomerType;
+import util.TransHelper;
 import util.UserType;
 
 public class PersonDetailVO {
@@ -17,11 +19,12 @@ public class PersonDetailVO {
 	 */
 
 	// id
-	private String Id;
+	private String id;
 	// 用户名名称
-	private String Name;
+	private String name;
+
 	// 头像
-	private ImageIcon Image;
+	private ImageIcon image;
 	// 联系方式11位
 	private String telephone;
 	// 信用值
@@ -32,13 +35,13 @@ public class PersonDetailVO {
 	private String enterpriseName;
 
 	// 会员类型（企业会员和普通会员两种）
-	private UserType VIPType;
+	private CustomerType VIPType;
 	// 密码
 	private String password;
 	// 所在酒店名称
 	private String hotelName;
-	//tab
-	private String tab;
+	// 用户种类
+	private UserType userType;
 	
 	
 	
@@ -63,7 +66,7 @@ public class PersonDetailVO {
 		this.setVIPType(po.getVIPType());
 		this.setPassword(po.getPassword());
 		this.setHotelName(po.getHotelName());
-        this.setTab(po.getTab());
+        this.setUserType(po.getUserType());;
 	}
 
 	/**
@@ -80,44 +83,41 @@ public class PersonDetailVO {
 	 */
 	public PersonDetailVO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
 			Date birthday, String password, String hotelName) {
-		this.Name = customername;
-		this.Image = customerimage;
+		this.name = customername;
+		this.image = customerimage;
 		this.telephone = telephone;
 		this.credit = credit;
 		this.birthday = birthday;
 
-		this.Id = customerId;
+		this.id = customerId;
 		this.password = password;
 		this.hotelName = hotelName;
 	}
  
 	public PersonDetailPO toPO(){
-		return new PersonDetailPO(idToInt(Id),Name,Image,telephone,credit,birthday,password,hotelName,enterpriseName,tab);
+		return new PersonDetailPO(TransHelper.idToInt(id), name, image, telephone,credit, birthday,
+				enterpriseName, VIPType,password, hotelName, userType);
 	}
+
 	public String getId() {
-		return Id;
+		return id;
 	}
-
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
-
 	public String getName() {
-		return Name;
+		return name;
 	}
-
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
-
 	public ImageIcon getImage() {
-		return Image;
+		return image;
 	}
-
 	public void setImage(ImageIcon image) {
-		Image = image;
+		this.image = image;
 	}
-
+	
 	public String getTelephone() {
 		return telephone;
 	}
@@ -150,13 +150,7 @@ public class PersonDetailVO {
 		this.enterpriseName = enterpriseName;
 	}
 
-	public UserType getVIPType() {
-		return VIPType;
-	}
 
-	public void setVIPType(UserType vIPType) {
-		VIPType = vIPType;
-	}
 
 	public String getPassword() {
 		return password;
@@ -173,13 +167,7 @@ public class PersonDetailVO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-	public String getTab() {
-		return tab;
-	}
 
-	public void setTab(String tab) {
-		this.tab = tab;
-	}
 	/**
 	 * 编号string转化成int
 	 */
@@ -201,5 +189,17 @@ public class PersonDetailVO {
 			result="0"+result;
 		}
 		return result;
+	}
+	public CustomerType getVIPType() {
+		return VIPType;
+	}
+	public void setVIPType(CustomerType vIPType) {
+		VIPType = vIPType;
+	}
+	public UserType getUserType() {
+		return userType;
+	}
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 }

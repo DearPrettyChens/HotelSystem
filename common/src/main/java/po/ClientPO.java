@@ -33,8 +33,7 @@ public class ClientPO implements Serializable {
 	@Column(name = "user_type")
 	private UserType type;
 
-	public ClientPO(){
-	}
+
 	public ClientPO(String userName, String password, int userID) {
 		this.userName = userName;
 		this.password = password;

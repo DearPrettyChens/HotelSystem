@@ -8,6 +8,7 @@ import po.ClientPO;
 import util.Password;
 import util.ResultMessage;
 import util.TransHelper;
+import util.UserType;
 import vo.uservo.BasicInfoVO;
 import vo.uservo.PasswordVO;
 
@@ -17,15 +18,32 @@ import vo.uservo.PasswordVO;
  * @version 1.0
  */
 public class User {
-	//不变的属性 ID
+	private static User user;
+	private String userName;
 	private String userID;
-	//密码
 	private String password;
+	private String firstPassword;
+	private UserType userType;
+	private PersonMap personMap;//对应的人种类表
 	private UserDao userDao;
 	private ClientPO clientPO;
-	public User(){
+	
+	private User(){
 		userDao=RMIHelper.getUserDao();
+		personMap=PersonMap.getInstance();
 	}
+	
+	/**
+	 * 单例模式，整个软件只有一个用户进行操作
+	 */
+	public static User getInstance() {
+		if(user==null){
+			user=new User();
+		}
+		return user;
+	}
+	
+	
 	/**
 	 * 登录方法
 	 * @param name
@@ -47,48 +65,79 @@ public class User {
 			}
 			
 			//登录成功
+			userName=name;
 			userID=TransHelper.idToString(clientPO.getUserID(), 6);		
 			password=this.password;
-			
+			userType=clientPO.getType();
+			return personMap.get(userType);//返回是哪种人登录成功了。
 			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return ResultMessage.FAIL;
+		
 	}
    
-	private ResultMessage checkUser(ClientPO clientPO){
-		
-		return ResultMessage.SUCCESS;
-	}
+	/**
+     * 检查旧密码是否输入正确
+     * @param name
+     * @param password
+     * @return ResultMessage
+     */
+	public ResultMessage checkOldPassword( String password) {
 	
-	public ResultMessage checkOldPassword(String name, String password) {
-		return ResultMessage.SUCCESS;
+		if(password.equals(this.password)){
+			return ResultMessage.SUCCESS;
+		}
+		
+		return ResultMessage.PASSWORDERROR;
 	}
-    /**
+    
+	/**
      * 检查新密码格式 委托给password
      * @param password
      * @return ResultMessage
      */
 	public ResultMessage checkNewPassword(Password password) {
+		this.firstPassword=password.getPassword();
 		return password.checkValid();
 	}
+	
     /**
      * 确认修改密码
      * @param passwordVO
      * @return ResultMessage
      */
 	public ResultMessage confirmPassword(PasswordVO passwordVO) {
-		return ResultMessage.SUCCESS;
+		
+		//判断两次输入的密码一致
+		if((firstPassword!=null)&&(passwordVO.getPassword().equals(firstPassword))){
+			password=firstPassword;
+			try {
+				userDao.setPassword(new ClientPO(userName, password, TransHelper.idToInt(userID)));
+			    firstPassword=null;
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+			return ResultMessage.SUCCESS;
+		}
+		
+		return ResultMessage.PASSWORDNOTSAME;
+		
 	}
-    /**
+   
+	/**
      * 获得基本信息
      * @param name
      * @return BasicInfoVO
      */
-	public BasicInfoVO getBasicInfo(String name) {
-		return null;
+	public BasicInfoVO getBasicInfo() {
+		if(userType==UserType.Customer){
+			return new Customer().getBasicInfo(userName);
+		}
+		return new BasicInfoVO(userName,userID,userType);
 	}
+	
     /**
      * 获得用户ID 
      * 实现的时候先判断ID是否为空
@@ -96,7 +145,15 @@ public class User {
      * @return String
      */
 	public String getUserID() {
-		return null;
+		return userID;
 	}
 
+	/**
+	 * 登出操作
+	 * @return
+	 */
+	public ResultMessage logout() {
+		user=null;
+		return ResultMessage.SUCCESS;
+	}
 }

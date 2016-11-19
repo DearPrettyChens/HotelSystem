@@ -5,7 +5,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 
 import po.PersonDetailPO;
-import util.UserType;
+import util.CustomerType;
 
 /**
  * 个人详细信息
@@ -21,7 +21,7 @@ public class DetailInfoVO {
 	// 用户头像
 	private ImageIcon userImage;
 	// 用户种类
-	private UserType userType;
+	private CustomerType userType;
 	// 所属企业
 	private String enterprise;
 	// 生日
@@ -52,10 +52,11 @@ public class DetailInfoVO {
 	 * @return PersonDetailPO
 	 */
 	public PersonDetailPO toPO() {
-		return new PersonDetailPO(idToInt(userID), userName, userImage, telephone, 0, birth, null, null, enterprise,null);
+		return null;
+//		return new PersonDetailPO(idToInt(userID), userName, userImage, telephone, 0, birth, null, null, enterprise,null);
 	}
 	
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id) {
+	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, CustomerType userType, String enterprise,String id) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);
 		this.setUserImage(userImage);
@@ -63,7 +64,7 @@ public class DetailInfoVO {
 		this.setEnterprise(enterprise);
 		this.setUserID(id);
 	}
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise) {
+	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, CustomerType userType, String enterprise) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);
 		this.setUserImage(userImage);
@@ -72,7 +73,7 @@ public class DetailInfoVO {
 	}
 
 	// 普通会员的构造vo
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, Date birth,String id) {
+	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, CustomerType userType, Date birth,String id) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);
 		this.setUserImage(userImage);
@@ -80,7 +81,7 @@ public class DetailInfoVO {
 		this.setBirth(birth);
 		this.setUserID(id);
 	}
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, Date birth) {
+	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, CustomerType userType, Date birth) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);
 		this.setUserImage(userImage);
@@ -112,13 +113,7 @@ public class DetailInfoVO {
 		this.userImage = userImage;
 	}
 
-	public UserType getUserType() {
-		return userType;
-	}
 
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}
 
 	public String getEnterprise() {
 		return enterprise;
@@ -164,5 +159,13 @@ public class DetailInfoVO {
 			result="0"+result;
 		}
 		return result;
+	}
+
+	public CustomerType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(CustomerType userType) {
+		this.userType = userType;
 	}
 }

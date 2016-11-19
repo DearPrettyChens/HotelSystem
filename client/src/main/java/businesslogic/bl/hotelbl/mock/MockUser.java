@@ -1,13 +1,11 @@
 package businesslogic.bl.hotelbl.mock;
 
-import businesslogic.bl.userbl.User;
-
 /**
  * user的mock类
  * @author Csy
  * @version 1.0
  */
-public class MockUser extends User {
+public class MockUser {
 	private String userID;
 	    /**
 	     * 获得用户ID 

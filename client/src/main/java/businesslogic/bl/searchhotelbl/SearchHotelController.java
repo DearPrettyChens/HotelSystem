@@ -15,11 +15,19 @@ import vo.searchhotelvo.HotelListVO;
  */
 public class SearchHotelController implements SearchHotelBLService{
      private SearchHotel searchHotel;//持有的credit的引用
+     private static SearchHotelBLService searchHotelController;
      
      public SearchHotelController(){
     	 searchHotel=new SearchHotel();
     	 
      }
+     
+     public static SearchHotelBLService getInstance() {
+		if(searchHotelController==null){
+			searchHotelController=new SearchHotelController();
+		}
+		return searchHotelController;
+	}
     
 	@Override
 	public ArrayList<HotelListVO> getHotelList() {

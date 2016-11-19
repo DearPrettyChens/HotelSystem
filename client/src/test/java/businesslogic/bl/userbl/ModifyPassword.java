@@ -22,8 +22,8 @@ public class ModifyPassword {
 
 	@Test
 	public void test() {
-		User user =new User();
-		assertEquals(user.checkOldPassword("小豆", "123456"),ResultMessage.SUCCESS);
+		User user =User.getInstance();
+		assertEquals(user.checkOldPassword( "123456"),ResultMessage.SUCCESS);
 		assertEquals(user.checkNewPassword(new Password("123")),ResultMessage.PASSWORDFORMATERROR);
 	    assertEquals(user.confirmPassword(passwordVO), ResultMessage.SUCCESS);
 	}

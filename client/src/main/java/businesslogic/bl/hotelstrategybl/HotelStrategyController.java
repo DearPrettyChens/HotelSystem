@@ -14,11 +14,19 @@ import vo.ordervo.OrderProvidedVO;
 public class HotelStrategyController implements HotelStrategyBLService {
     //酒店策略
 	private HotelStrategy hotelStrategy;
-    //构造方法
-	public HotelStrategyController(){
+    private static HotelStrategyBLService hotelStrategyController;
+	
+	private HotelStrategyController(){
 		hotelStrategy =new HotelStrategy();
 	}
 
+	public static HotelStrategyBLService getInstance() {
+		if(hotelStrategyController==null){
+			hotelStrategyController=new HotelStrategyController();
+		}
+		return hotelStrategyController;
+	}
+	
 	@Override
 	public HotelBestStrVO getBestHotelStrategy(OrderProvidedVO orderProvidedVO) {
 		return null;

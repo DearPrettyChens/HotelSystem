@@ -1,13 +1,11 @@
 package businesslogic.bl.availableroombl.mock;
 
- 
-import businesslogic.bl.userbl.User;
 /**
  * user的mock类
  * @author CYF
  *
  */
-public class MockUser extends User {
+public class MockUser {
 	// 不变的属性 ID
 	private String userID;
 

@@ -17,9 +17,19 @@ import vo.webstrategyvo.WebStrVO;
 public class WebStrategyController implements WebStrategyBLService{
     //网站策略
 	private WebStrategy webStrategy;
+	private static WebStrategyBLService webStrategyController;
+	
 	public WebStrategyController(){
 		webStrategy = new WebStrategy();
 	}
+	
+	public static WebStrategyBLService getInstance() {
+		if(webStrategyController==null){
+			webStrategyController=new WebStrategyController();
+		}
+		return webStrategyController;
+	}
+	
 	@Override
 	public WebBestStrVO getWebBestStrategy(String credit, TradingArea area, Date time) {
 		return webStrategy.getWebBestStrategy(credit, area, time);

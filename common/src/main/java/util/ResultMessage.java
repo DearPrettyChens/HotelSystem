@@ -12,6 +12,7 @@ public enum ResultMessage {
 	USERNOTEXIST,//用户名不存在
 	USERFORMATERROR,//用户名格式错误
 	PASSWORDERROR,//密码错误
+	PASSWORDNOTNULL,//输入密码不能为空
 	USERTELFORMATERROR,//用户联系方式格式错误
 	PASSWORDFORMATERROR,//设置的密码格式错误
 	PASSWORDNOTSAME,//新密码输入两次不一致

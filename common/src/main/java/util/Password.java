@@ -18,13 +18,35 @@ public class Password {
 	 * @return ResultMessage
 	 */
 	public ResultMessage checkValid(){
-		return ResultMessage.PASSWORDFORMATERROR;
+		String regex="[0-9A-Za-z]{4,10}";//检查是否是4-10位的数字或字母
+		if(password==null){
+			return ResultMessage.PASSWORDNOTNULL;
+		}
+		if(!password.matches(regex)){
+			return ResultMessage.PASSWORDFORMATERROR;
+		}
+		return ResultMessage.SUCCESS;
 	}
+	
+	/**
+	 * 每次返回密码前都需判断密码格式是否正确
+	 * @return password
+	 */
 	public String getPassword() {
-		return password;
+		if(checkValid()==ResultMessage.SUCCESS){
+			return password;
+		}
+		return null;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+//	public static void main(String[] args) {
+//		System.out.println(new Password("123").checkValid());
+//		System.out.println(new Password("12355").checkValid());
+//		System.out.println(new Password("zz").checkValid());
+//		System.out.println(new Password("zYkljk13").checkValid());
+//	}
 }
