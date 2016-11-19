@@ -25,6 +25,7 @@ import po.RemarkPO;
 import util.City;
 import util.ResultMessage;
 import util.TradingArea;
+import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.hotelstrategyvo.HotelStrVO;
 import vo.hotelvo.HotelBasicInfoVO;
@@ -114,7 +115,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 				remarkDetails.add(remarks.get(i).getRemark());
 			}
 			//综合酒店细节信息
-			HotelDetailInfoVO detail=new HotelDetailInfoVO(idToString(basic.getHotelID()),
+			HotelDetailInfoVO detail=new HotelDetailInfoVO(TransHelper.idToString(basic.getHotelID(),6),
 					basic.getAddress(),basic.getHotelImage(),basic.getTradingArea(),
 					basic.getTelephone(),basic.getStar(),basic.getIntroduce(),basic.getCommonFacility()
 					,basic.getActivityFacility(),basic.getService(),basic.getRoomFacility(),basic.getEnterprises(),
@@ -190,8 +191,8 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	public ResultMessage addRemarkInfo(RemarkVO vo) {
 		try {
 			//增加一条评价信息
-			hotelDao.addRemarkInfo(new RemarkPO(idToInt(vo.getHotelId()),vo.getOrderId(),
-					idToInt(vo.getCustomerID()),vo.getRemarkGrade(),vo.getRemarkInfo()));
+			hotelDao.addRemarkInfo(new RemarkPO(TransHelper.idToInt(vo.getHotelId()),vo.getOrderId(),
+					TransHelper.idToInt(vo.getCustomerID()),vo.getRemarkGrade(),vo.getRemarkInfo()));
 			//增加酒店的评价过的订单总数是在数据层进行处理吗？
 		} catch (RemoteException e) {
 			e.printStackTrace();
@@ -210,34 +211,13 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	@Override
 	public ResultMessage setBestPrice(int price, String hotelID) {
 		try {
-			hotelDao.setBestPrice(new HotelBestPricePO(idToInt(hotelID),price));
+			hotelDao.setBestPrice(new HotelBestPricePO(TransHelper.idToInt(hotelID),price));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
 		}
 		return ResultMessage.SUCCESS;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		int i=0;
-		for(i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				break;
-			}
-		}
-		return Integer.parseInt(id.substring(i));
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 
 }

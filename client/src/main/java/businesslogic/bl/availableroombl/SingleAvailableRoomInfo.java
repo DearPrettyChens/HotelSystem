@@ -1,9 +1,8 @@
 package businesslogic.bl.availableroombl;
 
-import dao.availableroomdao.AvailableRoomDao;
 import po.AvailableRoomInfoPO;
 import util.BedType;
-import util.ResultMessage;
+import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
 /**
  * 某一种客房的类
@@ -48,7 +47,7 @@ public class SingleAvailableRoomInfo {
 	 * @return AvailableRoomInfoVO
 	 */
 	public AvailableRoomInfoPO getAvailableRoomInfo(){
-		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.roomType,this.bedType
+		return new AvailableRoomInfoPO(TransHelper.idToInt(this.hotelNumber),this.roomType,this.bedType
 				,this.originalPrice,this.lowestPrice,this.originalNum,this.roomNum);
 	}
 	/**
@@ -70,74 +69,5 @@ public class SingleAvailableRoomInfo {
 	public double getLowestPrice() {
 		return 0;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		int i=0;
-		for(i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				break;
-			}
-		}
-		return Integer.parseInt(id.substring(i));
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
-	//以下get,set都是和数据层的交互
-/*	private String getHotelNumber() {
-		return null;
-	}
 
-	private String getRoomType() {
-		return null;
-	}
-
-	private ResultMessage setRoomType(String roomType) {
-		this.roomType = roomType;
-		return null;
-	}
-
-	private BedType getBedType() {
-		return null;
-	}
-
-	private ResultMessage setBedType(BedType bedType) {
-		this.bedType = bedType;
-		return null;
-	}
-
-	private double getOriginalPrice() {
-		return 0;
-	}
-
-	private ResultMessage setOriginalPrice(double originalPrice) {
-		this.originalPrice = originalPrice;
-		return null;
-	}
-
-
-
-	private ResultMessage setLowestPrice(double lowestPrice) {
-		this.lowestPrice = lowestPrice;
-		return null;
-	}
-
-	private int getRoomNum() {
-		return 0;
-	}
-
-	private ResultMessage setRoomNum(int roomNum) {
-		this.roomNum = roomNum;
-		return null;
-	}
-	*/
 }

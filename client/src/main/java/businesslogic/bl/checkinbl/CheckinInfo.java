@@ -11,6 +11,7 @@ import init.RMIHelper;
 import po.CheckinInfoPO;
 import util.BedType;
 import util.ResultMessage;
+import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.checkinvo.CheckinInfoVO;
@@ -76,7 +77,7 @@ public class CheckinInfo {
 		checkinDao=RMIHelper.getCheckinDao();
 		try {
 			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
-					roomNumber,new Date(),checkoutTime,idToInt(hotelNumber),orderNumber));
+					roomNumber,new Date(),checkoutTime,TransHelper.idToInt(hotelNumber),orderNumber));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
@@ -109,7 +110,7 @@ public class CheckinInfo {
 			ResultMessage result=checkinDao.modifyCheckinInfo(new CheckinInfoPO(
 					vo.getCostumername(),vo.getID(),vo.getTel(),vo.getRoomType(),
 					vo.getBedtype(),vo.getRoomnumber(),vo.getCheckintime(),
-					new Date(),idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
+					new Date(),TransHelper.idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
 			if(result==ResultMessage.FAIL){
 				return ResultMessage.FAIL;
 			}
@@ -144,18 +145,6 @@ public class CheckinInfo {
 		return ResultMessage.SUCCESS;
 	}
 	
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		int i=0;
-		for(i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				break;
-			}
-		}
-		return Integer.parseInt(id.substring(i));
-	}
 	
 	//以下get,set都是和数据层的交互
 /*	private String getName() {

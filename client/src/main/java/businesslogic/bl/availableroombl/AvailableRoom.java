@@ -9,6 +9,7 @@ import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
 import util.ResultMessage;
+import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.availableroomvo.AvailableRoomNumberVO;
 /**
@@ -82,8 +83,8 @@ public class AvailableRoom {
 			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
 			//new出该酒店的所有singleavailableroom对象
 			for(int i=0;i<roomInfo.size();i++){
-				singleAvailableRoomInfoList.add(new SingleAvailableRoomInfo(idToString(roomInfo.get(i).
-						getHotelNumber()),roomInfo.get(i).getRoomType(),roomInfo.get(i).getBedType(),
+				singleAvailableRoomInfoList.add(new SingleAvailableRoomInfo(TransHelper.idToString(roomInfo.get(i).
+						getHotelNumber(),6),roomInfo.get(i).getRoomType(),roomInfo.get(i).getBedType(),
 						roomInfo.get(i).getOriginalPrice(),roomInfo.get(i).getLowestPrice(),
 						roomInfo.get(i).getOriginalNumbers(),roomInfo.get(i).getCurrentNumber()));
 			}
@@ -161,26 +162,5 @@ public class AvailableRoom {
 		
 		return ResultMessage.FAIL;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		int i=0;
-		for(i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				break;
-			}
-		}
-		return Integer.parseInt(id.substring(i));
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 }

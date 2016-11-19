@@ -11,6 +11,7 @@ import init.RMIHelper;
 import po.CreditInfoPO;
 import po.CreditPO;
 import util.ResultMessage;
+import util.TransHelper;
 import vo.creditvo.CreditInfoVO;
 import vo.creditvo.CreditVO;
 /**
@@ -56,7 +57,7 @@ public class Credit {
 		double changeCredit=creditVO.getCreditChange();
 		double nowCredit=changeCredit+creditVO.getCredit();
 		//传给数据层的是变化后的credit值
-		CreditPO po=new CreditPO(creditVO.getName(),idToInt(creditVO.getID()),nowCredit,changeCredit,
+		CreditPO po=new CreditPO(creditVO.getName(),TransHelper.idToInt(creditVO.getID()),nowCredit,changeCredit,
 				creditVO.getReason(),creditVO.getTime());
 		try {
 			creditDao.setCredit(po);
@@ -75,7 +76,7 @@ public class Credit {
 		double changeCredit=creditVO.getCreditChange();
 		double nowCredit=changeCredit-creditVO.getCredit();
 		//传给数据层的是变化后的credit值
-		CreditPO po=new CreditPO(creditVO.getName(),idToInt(creditVO.getID()),nowCredit,-changeCredit,
+		CreditPO po=new CreditPO(creditVO.getName(),TransHelper.idToInt(creditVO.getID()),nowCredit,-changeCredit,
 				creditVO.getReason(),creditVO.getTime());
 		try {
 			creditDao.setCredit(po);
@@ -116,18 +117,7 @@ public class Credit {
 	public String getCustomerID() {
 		return customerID;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		int i=0;
-		for(i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				break;
-			}
-		}
-		return Integer.parseInt(id.substring(i));
-	}
+
 	//以下get,set都是和数据层的交互
 /*	private String getCustomerID() {
 		return null;
