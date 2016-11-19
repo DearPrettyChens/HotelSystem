@@ -1,5 +1,6 @@
 package vo.ordervo;
 
+import po.TypeInfoPO;
 import util.OrderState;
 import util.UserType;
 
@@ -13,16 +14,29 @@ public class TypeInfoVO {
 	private UserType userType;
 	//浏览订单的状态
 	private OrderState orderState;
+	//酒店编号
+	private String hotelID;
 	
 	public TypeInfoVO(){
 		
 	}
 	
-	public TypeInfoVO(UserType userType,OrderState orderState){
+	public TypeInfoVO(UserType userType,OrderState orderState,String hotelID){
 		this.setUserType(userType);
 		this.setOrderState(orderState);
+		this.setHotelID(hotelID);
 	}
 
+	public TypeInfoVO(TypeInfoPO po){
+		this.setUserType(po.getUserType());
+		this.setOrderState(po.getOrderState());
+		this.setHotelID(po.getHotelID());
+	}
+	
+	public TypeInfoPO toPO(){
+		return new TypeInfoPO(this.userType,this.orderState,this.hotelID);
+	}
+	
 	public UserType getUserType() {
 		return userType;
 	}
@@ -37,5 +51,13 @@ public class TypeInfoVO {
 
 	public void setOrderState(OrderState orderState) {
 		this.orderState = orderState;
+	}
+
+	public String getHotelID() {
+		return hotelID;
+	}
+
+	public void setHotelID(String hotelID) {
+		this.hotelID = hotelID;
 	}
 }
