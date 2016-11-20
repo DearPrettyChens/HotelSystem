@@ -6,8 +6,6 @@ import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.creditbl.Credit;
 import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
-import businesslogic.bl.personnelbl.Customer;
-import businesslogic.bl.personnelbl.Person;
 import businesslogic.bl.personnelbl.Personnel;
 import businesslogic.bl.userbl.User;
 import businesslogic.bl.webstrategybl.WebStrategy;
@@ -100,7 +98,7 @@ public class Order {
 		String customerID=orderInfoVO.getCustomerID();
 		//调person.getDetail获得顾客信息
 		person=Personnel.getInstance();
-		PersonDetailVO detail=person.getPersonDetail(UserType.Customer,customerID);
+		PersonDetailVO detail=person.getPersonDetail(customerID);
 		int credit=detail.getCredit();
 		String hotelID=orderInfoVO.getHotelID();
 		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
