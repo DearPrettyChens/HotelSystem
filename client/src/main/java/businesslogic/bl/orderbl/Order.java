@@ -8,11 +8,13 @@ import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.personnelbl.Customer;
 import businesslogic.bl.personnelbl.Person;
+import businesslogic.bl.personnelbl.Personnel;
 import businesslogic.bl.userbl.User;
 import businesslogic.bl.webstrategybl.WebStrategy;
 import util.ResultMessage;
 import util.Telephone;
 import util.TradingArea;
+import util.UserType;
 import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.hotelstrategyvo.HotelBestStrVO;
 import vo.hotelvo.HotelDetailInfoVO;
@@ -27,10 +29,8 @@ import vo.webstrategyvo.WebBestStrVO;
  * @version 1.0
  */
 public class Order {
-	private OrderList orderList;
-	private SingleOrder singleOrder;
 	private Credit credit;
-	private Person person;
+	private Personnel person;
 	private AvailableRoom availableRoom;
 	private WebStrategy webStrategy;
 	private HotelStrategy hotelStrategy;
@@ -99,8 +99,8 @@ public class Order {
 //调用WebStrategy.getWebBestStrategy获得最大折扣的网站优惠策略和HotelStrategy.getBestHotelStrategy获得最大折扣的酒店优惠策略
 		String customerID=orderInfoVO.getCustomerID();
 		//调person.getDetail获得顾客信息
-		person=new Customer();
-		PersonDetailVO detail=person.getDetail(customerID);
+		person=Personnel.getInstance();
+		PersonDetailVO detail=person.getPersonDetail(UserType.Customer,customerID);
 		int credit=detail.getCredit();
 		String hotelID=orderInfoVO.getHotelID();
 		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);

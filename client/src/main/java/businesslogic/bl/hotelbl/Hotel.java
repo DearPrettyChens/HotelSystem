@@ -88,7 +88,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	
 	/**
 	 * 获取酒店详细信息
-	 * @param hotelID String型， customerID String型，传递酒店编号和顾客编号
+	 * @param hotelID String型， customerID String型，传递酒店编号和顾客编号？
 	 * @return HotelDetailInfoVO ，将酒店详细信息返回给顾客看
 	 *
 	 */
