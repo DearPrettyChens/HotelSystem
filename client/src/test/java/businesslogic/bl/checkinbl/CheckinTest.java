@@ -12,7 +12,7 @@ import util.BedType;
 import util.OrderState;
 import vo.checkinvo.CheckinInfoVO;
 
-public class CheckinTest {
+/*public class CheckinTest {
 	Checkin checkin;
 	SingleOrder order;
 	@Before
@@ -29,4 +29,4 @@ public class CheckinTest {
 				getState());
 	}
 
-}
+}*/

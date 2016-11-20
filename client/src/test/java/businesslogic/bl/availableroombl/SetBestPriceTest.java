@@ -14,7 +14,7 @@ import vo.availableroomvo.AvailableRoomInfoVO;
  * @author CLL
  * @version
  */
-public class SetBestPriceTest {
+/*public class SetBestPriceTest {
 	AvailableRoom availableRoom;
 	@Before
 	public void setUp() throws Exception {
@@ -31,4 +31,4 @@ public class SetBestPriceTest {
 	}
 
 
-}
+}*/

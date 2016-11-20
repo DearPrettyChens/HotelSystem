@@ -7,7 +7,7 @@ import org.junit.Test;
 import util.ResultMessage;
 import vo.checkinvo.CheckinInfoVO;
 
-public class MockAvailableRoomTest {
+/*public class MockAvailableRoomTest {
 
 	@Test
 	public void testConfirmCheckoutInfo() {
@@ -15,4 +15,4 @@ public class MockAvailableRoomTest {
 		assertEquals(ci.confirmCheckoutInfo(new CheckinInfoVO()),ResultMessage.SUCCESS);
 	}
 
-}
+}*/

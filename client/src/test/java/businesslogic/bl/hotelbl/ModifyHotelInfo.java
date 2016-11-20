@@ -12,7 +12,7 @@ import vo.hotelvo.HotelBasicInfoVO;
  * @author csy
  * @version 1.0
  */
-public class ModifyHotelInfo {
+/*public class ModifyHotelInfo {
     HotelBasicInfoVO hotelBasicInfoVO;
 	
 	@Before
@@ -27,4 +27,4 @@ public class ModifyHotelInfo {
 		assertEquals(hotel.confirmModifyInfo(hotelBasicInfoVO),ResultMessage.SUCCESS);
 	}
 
-}
+}*/

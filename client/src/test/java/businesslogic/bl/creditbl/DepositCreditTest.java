@@ -11,7 +11,7 @@ import util.ResultMessage;
  * @author CLL
  * @version 1.0
  */
-public class DepositCreditTest {
+/*public class DepositCreditTest {
 	Credit credit;
 	@Before
 	public void setUp() throws Exception {
@@ -26,4 +26,4 @@ public class DepositCreditTest {
 		assertEquals(preCredit+10*100,nowCredit);
 	}
 
-}
+}*/

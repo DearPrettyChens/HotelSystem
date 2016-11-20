@@ -17,7 +17,7 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  * @author CLL
  * @version
  */
-public class SetAvailableRoomNumberTest {
+/*public class SetAvailableRoomNumberTest {
 	AvailableRoom availableRoom;
 	@Before
 	public void setUp() throws Exception {
@@ -36,4 +36,4 @@ public class SetAvailableRoomNumberTest {
 		}
 	}
 
-}
+}*/

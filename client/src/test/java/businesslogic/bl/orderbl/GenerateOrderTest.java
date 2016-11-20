@@ -19,7 +19,7 @@ import businesslogic.blservice.orderblservice.GenerateOrderService;
  * @version 1.0
  * 
  */
-public class GenerateOrderTest {
+/*public class GenerateOrderTest {
 	GenerateOrderService genereteOrderService;
 	Date time;
 	OrderInfoVO orderInfoVO;
@@ -54,4 +54,4 @@ public class GenerateOrderTest {
 	  
 
 	 }
-}
+}*/
