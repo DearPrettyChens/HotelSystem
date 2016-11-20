@@ -1,6 +1,7 @@
 package vo.ordervo;
 
 import po.RemarkPO;
+import util.TransHelper;
 
 /**
  * 订单评价信息的vo类
@@ -35,7 +36,7 @@ public class RemarkVO {
 	 */
 	public RemarkVO(RemarkPO po){
 		this.orderId=po.getOrderID();
-		this.hotelId=idToString(po.getHotelID());
+		this.hotelId=TransHelper.idToString(po.getHotelID(),6);
 		this.remarkGrade=po.getScore();
 		this.remarkInfo=po.getRemark();
 	}
@@ -44,7 +45,7 @@ public class RemarkVO {
 	 * @return RemarkPO
 	 */
 	public RemarkPO toPO(){
-		return new RemarkPO(idToInt(this.hotelId),this.orderId,idToInt(this.customerID),this.remarkGrade,this.remarkInfo);
+		return new RemarkPO(TransHelper.idToInt(this.hotelId),this.orderId,TransHelper.idToInt(this.customerID),this.remarkGrade,this.remarkInfo);
 	}
 	public String getOrderId() {
 		return orderId;
@@ -84,26 +85,5 @@ public class RemarkVO {
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 }

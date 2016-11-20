@@ -1,10 +1,9 @@
 package vo.searchhotelvo;
 
-import java.awt.Image;
-
 import javax.swing.ImageIcon;
 
 import po.HotelListPO;
+import util.TransHelper;
 
 /**
  * 酒店列表信息vo
@@ -32,7 +31,7 @@ public class HotelListVO {
 	}
 	public HotelListVO(HotelListPO po){
 		this.setHotelAddress(po.getLocation());
-		this.setHotelID(idToString(po.getId()));
+		this.setHotelID(TransHelper.idToString(po.getId(),6));
 		this.setHotelName(po.getName());
 		this.setHotelImage(po.getImage());
 		this.setStar(po.getStar());
@@ -50,7 +49,7 @@ public class HotelListVO {
 	}
 
 	public HotelListPO toPO(){
-		return new HotelListPO(hotelName,hotelAddress,hotelImage,lowestPrice,star,idToInt(hotelID),remark);
+		return new HotelListPO(hotelName,hotelAddress,hotelImage,lowestPrice,star,TransHelper.idToInt(hotelID),remark);
 	}
 	public String getHotelID() {
 		return hotelID;
@@ -105,26 +104,5 @@ public class HotelListVO {
 	public void setHotelImage(ImageIcon imageIcon) {
 		this.hotelImage = imageIcon;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 }
