@@ -16,11 +16,11 @@ public class PersonDetailPO {
 	 */
 
 	// id
-	private int Id;
+	private int userId;
 	// 用户名名称
-	private String Name;
+	private String userName;
 	// 头像
-	private ImageIcon Image;
+	private ImageIcon userImage;
 	// 联系方式11位
 	private String telephone;
 	// 信用值
@@ -29,7 +29,6 @@ public class PersonDetailPO {
 	private Date birthday;
 	// 企业名称
 	private String enterpriseName;
-
 	// 会员类型（企业会员和普通会员两种）
 	private CustomerType VIPType;
 	// 密码
@@ -60,9 +59,9 @@ public class PersonDetailPO {
 	public PersonDetailPO(int id, String name, ImageIcon image, String telephone, int credit, Date birthday,
 			String enterpriseName, CustomerType vIPType, String password, String hotelName, UserType userType) {
 		super();
-		Id = id;
-		Name = name;
-		Image = image;
+		userId = id;
+		userName = name;
+		userImage = image;
 		this.telephone = telephone;
 		this.credit = credit;
 		this.birthday = birthday;
@@ -75,27 +74,27 @@ public class PersonDetailPO {
 
 
 	public int getId() {
-		return Id;
+		return userId;
 	}
 
 	public void setId(int id) {
-		Id = id;
+		userId = id;
 	}
 
 	public String getName() {
-		return Name;
+		return userName;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		userName = name;
 	}
 
 	public ImageIcon getImage() {
-		return Image;
+		return userImage;
 	}
 
 	public void setImage(ImageIcon image) {
-		Image = image;
+		userImage = image;
 	}
 
 	public String getTelephone() {

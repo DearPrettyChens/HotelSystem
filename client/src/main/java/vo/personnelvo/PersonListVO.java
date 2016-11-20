@@ -3,6 +3,7 @@ package vo.personnelvo;
 import javax.swing.ImageIcon;
 
 import po.PersonListPO;
+import util.UserType;
 
 public class PersonListVO {
 
@@ -14,17 +15,17 @@ public class PersonListVO {
 	 */
 
 	// id
-	private String Id;
+	private String userId;
 	// 用户名名称
-	private String Name;
+	private String userName;
 	// 头像
-	private ImageIcon Image;
+	private ImageIcon userImage;
 	// 联系方式11位
 	private String telephone;
 	// 所在酒店名称
 	private String hotelName;
-	//tab
-	private String tab;
+	// 用户种类
+	private UserType userType;
 	
 
 	public PersonListVO() {
@@ -38,42 +39,41 @@ public class PersonListVO {
 		this.setHotelName(po.getHotelName());
 	}
 
-	public PersonListVO(String Id, String Name, ImageIcon Image, String telephone, String hotelName,String tab) {
-		this.Id = Id;
-		this.Name = Name;
-		this.Image = Image;
+	public PersonListVO(String Id, String Name, ImageIcon Image, String telephone, String hotelName,UserType userType) {
+		this.userId = Id;
+		this.userName = Name;
+		this.userImage = Image;
 		this.telephone = telephone;
 		this.hotelName = hotelName;
-		this.tab=tab;
-		
-
+		this.userType=userType;
 	}
 
 	public PersonListPO toPO(){
-		return new PersonListPO(idToInt(Id),Name,Image,telephone,hotelName,tab);
+		return null;
+//		return new PersonListPO(idToInt(userId),userName,userImage,telephone,hotelName,userType);
 	}
 	public String getId() {
-		return Id;
+		return userId;
 	}
 
 	public void setId(String id) {
-		Id = id;
+		userId = id;
 	}
 
 	public String getName() {
-		return Name;
+		return userName;
 	}
 
 	public void setName(String name) {
-		Name = name;
+		userName = name;
 	}
 
 	public ImageIcon getImage() {
-		return Image;
+		return userImage;
 	}
 
 	public void setImage(ImageIcon image) {
-		Image = image;
+		userImage = image;
 	}
 
 	public String getTelephone() {

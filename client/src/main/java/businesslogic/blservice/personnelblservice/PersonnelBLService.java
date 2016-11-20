@@ -2,9 +2,8 @@ package businesslogic.blservice.personnelblservice;
 
 import java.util.ArrayList;
 
-import util.Password;
 import util.ResultMessage;
-import util.Telephone;
+import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.personnelvo.PersonListVO;
 
@@ -29,7 +28,7 @@ public interface PersonnelBLService {
 	 * @return ResultMessage
 	 * @throws 未定
 	 */
-	public ResultMessage checkTel(Telephone userTel) ;
+	public ResultMessage checkTel(String userTel) ;
 
 	
 
@@ -38,7 +37,7 @@ public interface PersonnelBLService {
 	 * @return ResultMessage
 	 * @throws 未定
 	 */
-	public ResultMessage checkPassword(Password password);
+	public ResultMessage checkPassword(String password);
 
 	/**
 	 * 增加用户
@@ -50,11 +49,12 @@ public interface PersonnelBLService {
 
 	/**
 	 * 得到用户列表信息
-	 * @param keyWord
+	 * @param userType,keyWord
 	 * @return  ArrayList<PersonListVO>
 	 * @throws 未定
+	 * 检索用户名或者是ID
 	 */
-	public ArrayList<PersonListVO> getPersonList(String keyWord);
+	public ArrayList<PersonListVO> getPersonList(UserType userType,String keyWord);
 	/**
 	 * 得到用户详细信息
 	 * @param personID

@@ -6,6 +6,7 @@ import businesslogic.blservice.personnelblservice.PersonnelBLService;
 import util.Password;
 import util.ResultMessage;
 import util.Telephone;
+import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.personnelvo.PersonListVO;
 
@@ -32,50 +33,37 @@ public class PersonnelController implements PersonnelBLService {
     
 	@Override
 	public ResultMessage checkUserName(String userName) {
-		// TODO Auto-generated method stub
-		//调用Personnel.checkUserName
-		return null;
+		return personnel.checkUserName(userName);
 	}
 
 	
 	@Override
 	public ResultMessage addPerson(PersonDetailVO personDetailVO) {
-		// TODO Auto-generated method stub
-		//调用Personnel.addPerson
-		return null;
+		return personnel.addPerson(personDetailVO);
 	}
-	@Override
-	public ArrayList<PersonListVO> getPersonList(String keyWord) {
-		// TODO Auto-generated method stub
-		//调用 Personnel.getList
-		return null;
-	}
+
 	@Override
 	public PersonDetailVO getPersonDetail(String personID) {
-		// TODO Auto-generated method stub
-		//调用Personnel.getPersonDetail
-		return null;
+		return personnel.getPersonDetail(personID);
 	}
 	@Override
 	public ResultMessage setPerson(PersonDetailVO personDetailVO) {
-		// TODO Auto-generated method stub
-		//调用Personnel.setPerson
-		return null;
+		return personnel.setPerson(personDetailVO);
 	}
 
 	@Override
-	public ResultMessage checkTel(Telephone userTel) {
-		// TODO Auto-generated method stub
-		
-	//调用Personnel.checkTel
-		return null;
+	public ResultMessage checkTel(String userTel) {
+		return new Telephone(userTel).checkValid();
 	}
 
 	@Override
-	public ResultMessage checkPassword(Password password) {
-		// TODO Auto-generated method stub
-		//调用Personnel.checkPassword
-		return null;
+	public ResultMessage checkPassword(String password) {
+		return new Password(password).checkValid();
+	}
+
+	@Override
+	public ArrayList<PersonListVO> getPersonList(UserType userType, String keyWord){
+		return personnel.getPersonList(userType, keyWord);
 	}
 
 }

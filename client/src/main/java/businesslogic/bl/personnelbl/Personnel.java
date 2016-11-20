@@ -2,9 +2,8 @@ package businesslogic.bl.personnelbl;
 
 import java.util.ArrayList;
 
-import util.Password;
 import util.ResultMessage;
-import util.Telephone;
+import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.personnelvo.PersonListVO;
 
@@ -27,28 +26,6 @@ public class Personnel {
 		return null;
 	}
 
-	/**判断该电话是否符合格式正确
-	 * @param userTel
-	 * @return ResultMessage
-	 * @throws 未定
-	 */
-	public ResultMessage checkTel(Telephone userTel) {
-		
-		return null;
-	}
-
-	
-
-	/**判断密码是否符合格式
-	 * @param password
-	 * @return ResultMessage
-	 * @throws 未定
-	 */
-	public ResultMessage checkPassword(Password password) {
-		
-		return null;
-	}
-
 	/**
 	 * 增加用户
 	 * @param personDetailVO
@@ -59,18 +36,6 @@ public class Personnel {
 	public ResultMessage addPerson(PersonDetailVO personDetailVO){
 		return null;
 	}
-
-	/**
-	 * 得到用户列表信息
-	 * @param keyWord
-	 * @return  ArrayList<PersonListVO>
-	 * @throws 未定
-	 * 需接口：PersonList.init
-	 */
-	public ArrayList<PersonListVO> getPersonList(String keyWord){
-		return null;
-	}
-
 	/**
 	 * 得到用户详细信息
 	 * @param personID
@@ -93,4 +58,15 @@ public class Personnel {
 		return null;
 	}
 
+	/**
+	 * 得到用户列表信息
+	 * @param userType,keyWord
+	 * @return  ArrayList<PersonListVO>
+	 * @throws 未定
+	 * 检索用户名或者是ID
+	 */
+	public ArrayList<PersonListVO> getPersonList(UserType userType, String keyWord) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -5,13 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import dao.personneldao.PersonnelDao;
-import po.CustomerDetailPO;
-import po.CustomerListPO;
-import po.HotelWorkerDetailPO;
-import po.HotelWorkerListPO;
-import po.WebMarketManDetailPO;
-import po.WebMarketManListPO;
+import po.PersonDetailPO;
+import po.PersonListPO;
 import util.ResultMessage;
+import util.UserType;
 
 /**
  * PersonnelDao的实现
@@ -34,65 +31,32 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 			// TODO Auto-generated constructor stub
 		}
 		@Override
-		public ResultMessage addCustomer(CustomerDetailPO customerDetailPO) throws RemoteException {
+		public ResultMessage addPerson(PersonDetailPO personDetailPO) throws RemoteException {
 			// TODO Auto-generated method stub
 			return null;
 		}
 		@Override
-		public ResultMessage addHotelworker(HotelWorkerDetailPO hotelWorkerDetailPO) throws RemoteException {
+		public ArrayList<PersonListPO> getPersonList(UserType userType, String userName, int userID)
+				throws RemoteException {
 			// TODO Auto-generated method stub
 			return null;
 		}
 		@Override
-		public ResultMessage addWebMarketMan(WebMarketManDetailPO webMarketManDetailPO) throws RemoteException {
+		public PersonDetailPO getPersonDetail(int userID) throws RemoteException {
 			// TODO Auto-generated method stub
 			return null;
 		}
 		@Override
-		public ArrayList<HotelWorkerListPO> getHotelWorkerList() throws RemoteException {
+		public ResultMessage setPerson(PersonDetailPO personDetailPO) throws RemoteException {
 			// TODO Auto-generated method stub
 			return null;
 		}
 		@Override
-		public ArrayList<WebMarketManListPO> getWebMarketManList() throws RemoteException {
+		public ResultMessage checkUserName(String userName) throws RemoteException {
 			// TODO Auto-generated method stub
 			return null;
 		}
-		@Override
-		public ArrayList<CustomerListPO> getCustomerList() throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public HotelWorkerDetailPO getHotelWorkerDetail(String hotelID) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public WebMarketManDetailPO getWebMarketManDetail(String webMarketManID) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public CustomerDetailPO getCustomerDetail(String customerID) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public ResultMessage setHotelWorker(HotelWorkerDetailPO hotelWorkerDetailPO) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public ResultMessage setWebMarketMan(WebMarketManDetailPO webMarketManDetailPO) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		@Override
-		public ResultMessage setCustomer(CustomerDetailPO customerDetailPO) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
-		}
+		
 
 		
 }
