@@ -1,13 +1,11 @@
 package businesslogic.bl.personnelbl;
 
-import java.util.Date;
+import java.rmi.RemoteException;
 
-import javax.swing.ImageIcon;
-
-import util.Password;
+import dao.personneldao.PersonnelDao;
+import init.RMIHelper;
 import util.ResultMessage;
-import util.Telephone;
-import util.UserType;
+import util.TransHelper;
 import vo.personnelvo.PersonDetailVO;
 
 /**
@@ -18,59 +16,51 @@ import vo.personnelvo.PersonDetailVO;
  * 
  */
 public class Customer implements Person {
+    private static Person customer;
+	private PersonnelDao personnelDao;
 
-	// 头像
-	private ImageIcon userImage;
-	// 用户名
-	private String name;
-	// 联系方式11位
-	private Telephone telephone;
-	// 密码
-	private Password password;
-	// 用户编号
-	private String id;
-	// 信用值
-	private int credit;
-	// 生日
-	private Date birthday;
-	// 企业名称
-	private String enterpriseName;
-	// 会员等级
-	private int VIPgrade;
-	// 会员类型（企业会员和普通会员两种）
-	private UserType VIPType;
-
-	public Customer() {
-
+    private Customer() {
+        personnelDao=RMIHelper.getPersonnelDao();
+	}
+    public static Person getInstance() {
+		if(customer==null){
+			customer=new Customer();
+		}
+		return customer;
 	}
 
-	/*
-	 * public Customer(ImageIcon userImage,String name,Telephone
-	 * telephone,Password password,String id,int credit,Date birthday,String
-	 * enterpriseName,int VIPgrade,UserType VIPType){ this.userImage=userImage;
-	 * this.name=name; this.telephone=telephone; this.password=password;
-	 * this.id=id; this.credit=credit; this.birthday=birthday;
-	 * this.enterpriseName=enterpriseName; this.VIPgrade=VIPgrade;
-	 * this.VIPType=VIPType;
-	 * 
-	 * 
-	 * }
-	 */
 	@Override
 	public ResultMessage addPerson(PersonDetailVO personDetailVO) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		try {
+			return personnelDao.addPerson(personDetailVO.toPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public PersonDetailVO getDetail(String customerID) {
-		// TODO Auto-generated method stub
+		
+		try {
+			return new PersonDetailVO(personnelDao.getPersonDetail(TransHelper.idToInt(customerID)));
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public ResultMessage setPerson(PersonDetailVO personDetailVO) {
-		// TODO Auto-generated method stub
+		try {
+			return personnelDao.setPerson(personDetailVO.toPO());
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 }

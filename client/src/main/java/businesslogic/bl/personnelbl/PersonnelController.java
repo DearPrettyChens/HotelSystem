@@ -21,7 +21,7 @@ public class PersonnelController implements PersonnelBLService {
 	private static PersonnelBLService personnelController;
 	
 	private PersonnelController(){
-	    this.personnel=new Personnel();
+	    this.personnel=Personnel.getInstance();
 	}
 	
 	public static PersonnelBLService getInstance(){
@@ -43,8 +43,8 @@ public class PersonnelController implements PersonnelBLService {
 	}
 
 	@Override
-	public PersonDetailVO getPersonDetail(String personID) {
-		return personnel.getPersonDetail(personID);
+	public PersonDetailVO getPersonDetail(UserType userType,String personID) {
+		return personnel.getPersonDetail(userType,personID);
 	}
 	@Override
 	public ResultMessage setPerson(PersonDetailVO personDetailVO) {

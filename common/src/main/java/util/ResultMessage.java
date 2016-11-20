@@ -10,6 +10,7 @@ public enum ResultMessage {
 	
 	USEREXISTED,//用户名已存在
 	USERNOTEXIST,//用户名不存在
+	USERNOTNULL,//输入用户名不能为空
 	USERFORMATERROR,//用户名格式错误
 	PASSWORDERROR,//密码错误
 	PASSWORDNOTNULL,//输入密码不能为空

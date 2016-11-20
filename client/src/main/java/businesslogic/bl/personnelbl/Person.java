@@ -19,9 +19,7 @@ public interface Person {
          * @param PersonDetailVO personDetailVO
          * @return ResultMessage
          * @throws 未定
-         * 需接口：PersonnelDao.addCustomer
-         * PersonnelDao.addHotelWorker
-         * PersonnelDao.addWebMarketMan
+         * 
          */
         public ResultMessage addPerson(PersonDetailVO personDetailVO);
         /**
@@ -29,19 +27,16 @@ public interface Person {
          * @param null
          * @return PersonDetailVO
          * @throws 未定
-         * 需接口：PersonnelDao.getHotelworkerDetail
-         * PersonnelDao.getWebMarketManDetail
-         * PersonnelDao.getCustomerDetail
+         * 
          */
         public PersonDetailVO getDetail (String personID);
+       
         /**
          * 修改用户详细信息
          * @param PersonDetailVO personDetailVO
          * @return ResultMessage
          * @throws 未定
-         * 需接口：PersonnelDao. setHotelWorker
-         * PersonnelDao. setWebMarketMan
-         * PersonnelDao. setCustomer
+         * 
          */
         public ResultMessage setPerson (PersonDetailVO personDetailVO);
         

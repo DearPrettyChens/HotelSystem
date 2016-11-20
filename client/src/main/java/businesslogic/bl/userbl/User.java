@@ -130,6 +130,8 @@ public class User {
      * 获得基本信息
      * @param name
      * @return BasicInfoVO
+     * 每种人的主界面上显示用户名，编号，和头像
+     * 但是只有顾客头像是从数据库拿的，其他人头像都是界面固定的
      */
 	public BasicInfoVO getBasicInfo() {
 		if(userType==UserType.Customer){

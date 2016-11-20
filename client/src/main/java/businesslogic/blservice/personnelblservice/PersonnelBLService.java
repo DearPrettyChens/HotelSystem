@@ -61,7 +61,7 @@ public interface PersonnelBLService {
 	 * @return PersonDetailVO
 	 * @throws 未定
 	 */
-	public PersonDetailVO getPersonDetail(String personID);
+	public PersonDetailVO getPersonDetail(UserType userType,String personID);
 	/**
 	 * 修改用户信息
 	 * @param PersonDetailVO personDetailVO

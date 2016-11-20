@@ -1,8 +1,6 @@
 package businesslogic.bl.personnelbl;
 
-import util.Password;
 import util.ResultMessage;
-import util.Telephone;
 import vo.personnelvo.PersonDetailVO;
 
 /**
@@ -14,26 +12,26 @@ import vo.personnelvo.PersonDetailVO;
  */
 public class WebMarketMan implements Person {
 	
-	// 用户名
-	String name;
-	// 联系方式11位
-	Telephone telephone;
-	// 密码
-	Password password;
-	// 用户编号
-	String id;
+//	// 用户名
+//	String name;
+//	// 联系方式11位
+//	Telephone telephone;
+//	// 密码
+//	Password password;
+//	// 用户编号
+//	String id;
 
-	public WebMarketMan() {
-
-	}
-
-	public WebMarketMan(String name, Telephone telephone, Password password, String id) {
-		this.name = name;
-		this.telephone = telephone;
-		this.password = password;
-		this.id = id;
+	private static Person webMarketMan;
+	private WebMarketMan() {
 
 	}
+	public static Person getInstance() {
+		if(webMarketMan==null){
+			webMarketMan=new WebMarketMan();
+		}
+		return webMarketMan;
+	}
+	
 
 	@Override
 	public ResultMessage addPerson(PersonDetailVO personDetailVO) {

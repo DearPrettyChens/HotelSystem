@@ -4,14 +4,13 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
-import businesslogic.bl.personnelbl.Personnel;
 import vo.personnelvo.PersonDetailVO;
 /**
  * personnel的mock类
  * @author Csy
  * @version 1.0
  */
-public class MockPersonnel extends Personnel{
+public class MockPersonnel {
 	/**
 	 * 得到用户详细信息
 	 * @param personID

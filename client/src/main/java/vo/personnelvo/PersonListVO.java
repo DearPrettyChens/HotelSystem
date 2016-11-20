@@ -3,6 +3,7 @@ package vo.personnelvo;
 import javax.swing.ImageIcon;
 
 import po.PersonListPO;
+import util.TransHelper;
 import util.UserType;
 
 public class PersonListVO {
@@ -32,11 +33,12 @@ public class PersonListVO {
 
 	}
 	public PersonListVO(PersonListPO po) {
-		this.setId(idToString(po.getId()));
+		this.setId(TransHelper.idToString(po.getId(),6));
 		this.setName(po.getName());
 		this.setImage(po.getImage());
 		this.setTelephone(po.getTelephone());
 		this.setHotelName(po.getHotelName());
+		this.setUserType(po.getUserType());
 	}
 
 	public PersonListVO(String Id, String Name, ImageIcon Image, String telephone, String hotelName,UserType userType) {
@@ -45,12 +47,12 @@ public class PersonListVO {
 		this.userImage = Image;
 		this.telephone = telephone;
 		this.hotelName = hotelName;
-		this.userType=userType;
+		this.setUserType(userType);
 	}
 
 	public PersonListPO toPO(){
-		return null;
-//		return new PersonListPO(idToInt(userId),userName,userImage,telephone,hotelName,userType);
+		
+		return new PersonListPO(TransHelper.idToInt(userId),userName,userImage,telephone,hotelName,userType);
 	}
 	public String getId() {
 		return userId;
@@ -91,26 +93,11 @@ public class PersonListVO {
 	public void setHotelName(String hotelName) {
 		this.hotelName = hotelName;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
+	
+	public UserType getUserType() {
+		return userType;
 	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 }
