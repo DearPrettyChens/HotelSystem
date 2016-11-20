@@ -19,7 +19,7 @@ import util.UserType;
 
 public interface PersonnelDao extends Remote {
 
-	/**判断该用户名是否合法及是否被注册
+	/**判断该用户名是否被注册
 	 * @param userName
 	 * @return ResultMessage
 	 * @throws 未定
