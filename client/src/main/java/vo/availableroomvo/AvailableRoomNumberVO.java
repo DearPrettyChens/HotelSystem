@@ -5,6 +5,7 @@ import java.util.Date;
 
 import po.AvailableRoomNumberPO;
 import util.BedType;
+import util.TransHelper;
 
 public class AvailableRoomNumberVO  implements Serializable{
 	/**
@@ -42,7 +43,7 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.number=availableRoomNumberPO.getNumber();
     	this.bedType=availableRoomNumberPO.getBedType();
     	this.date=availableRoomNumberPO.getDate();
-    	this.hotelNumber=idToString(availableRoomNumberPO.getHotelNumber());
+    	this.hotelNumber=TransHelper.idToString(availableRoomNumberPO.getHotelNumber(),6);
     	//this.hotelName=availableRoomNumberPO.getHotelName();
     }
     /**
@@ -51,7 +52,7 @@ public class AvailableRoomNumberVO  implements Serializable{
      */
     public AvailableRoomNumberPO toPO(){
     	return new AvailableRoomNumberPO(this.number,this.bedType,this.date,
-    			idToInt(this.hotelNumber));
+    			TransHelper.idToInt(this.hotelNumber));
     }
 	public int getNumber() {
 		return number;
@@ -77,28 +78,7 @@ public class AvailableRoomNumberVO  implements Serializable{
 	public void setHotelNumber(String hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 	/*public String getHotelName() {
 		return hotelName;
 	}

@@ -43,8 +43,8 @@ public class PersonnelController implements PersonnelBLService {
 	}
 
 	@Override
-	public PersonDetailVO getPersonDetail(UserType userType,String personID) {
-		return personnel.getPersonDetail(userType,personID);
+	public PersonDetailVO getPersonDetail(String personID) {
+		return personnel.getPersonDetail(personID);
 	}
 	@Override
 	public ResultMessage setPerson(PersonDetailVO personDetailVO) {

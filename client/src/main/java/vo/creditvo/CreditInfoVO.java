@@ -26,14 +26,10 @@ public class CreditInfoVO {
 		for(int i=0;i<tempcredits.size();i++){
 			tempCreditVO=new CreditVO(tempcredits.get(i));
 			tempcreditsvo.add(tempCreditVO);
-			
-			
-			
-			
+	
 		}
 		this.credits=tempcreditsvo;
-		
-		
+	
 	}
 	public CreditInfoVO(){
 	}
@@ -42,9 +38,7 @@ public class CreditInfoVO {
 		this.customerNumber=customerNumber;
 		this.credits=credits;
 		this.credit=credit;
-		
-		
-		
+	
 	}
 	
 	

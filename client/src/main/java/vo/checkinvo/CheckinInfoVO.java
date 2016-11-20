@@ -4,6 +4,7 @@ import java.util.Date;
 
 import po.CheckinInfoPO;
 import util.BedType;
+import util.TransHelper;
  
 public class CheckinInfoVO {
 	/**
@@ -40,7 +41,7 @@ public class CheckinInfoVO {
     	this.roomNumber=po.getRoomnumber();
     	this.checkinTime=po.getCheckintime();
     	this.checkoutTime=po.getCheckouttime();
-    	this.hotelNumber=idToString(po.getHotelnumber());
+    	this.hotelNumber=TransHelper.idToString(po.getHotelnumber(),6);
     	this.orderNumber=po.getOrdernumber();
     	this.costumerName=po.getName();
     	this.roomType=po.getRoomtype();
@@ -124,7 +125,7 @@ public class CheckinInfoVO {
 	
 	public CheckinInfoPO votopo(){
 		return new CheckinInfoPO(this.costumerName,this.ID,this.tel,null,this.bedType,this.roomNumber
-				,this.checkinTime,this.checkoutTime,idToInt(this.hotelNumber),this.orderNumber);
+				,this.checkinTime,this.checkoutTime,TransHelper.idToInt(this.hotelNumber),this.orderNumber);
 		
 	}
 	public String getRoomType() {
@@ -134,26 +135,4 @@ public class CheckinInfoVO {
 		this.roomType = roomType;
 	}
  
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
 }

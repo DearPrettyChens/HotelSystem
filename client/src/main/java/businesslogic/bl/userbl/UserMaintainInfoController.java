@@ -3,7 +3,7 @@ package businesslogic.bl.userbl;
 import businesslogic.blservice.userblservice.UserMaintainInfoService;
 import util.ResultMessage;
 import util.Telephone;
-import vo.uservo.DetailInfoVO;
+import vo.personnelvo.PersonDetailVO;
 
 /**
  * 
@@ -18,7 +18,7 @@ public class UserMaintainInfoController implements UserMaintainInfoService {
 
 	// 构造方法
 	private UserMaintainInfoController() {
-		customer = new Customer();
+		customer = Customer.getInstance();
 	}
 	
 	public static UserMaintainInfoService getInstance() {
@@ -33,18 +33,18 @@ public class UserMaintainInfoController implements UserMaintainInfoService {
 		return customer.checkTel(new Telephone(tel));
 	}
 	@Override
-	public DetailInfoVO getDetailInfo(String name) {
-		return customer.getDetailInfo(name);
+	public PersonDetailVO getDetailInfo(String userID) {
+		return customer.getDetailInfo(userID);
 	}
 
 	@Override
-	public ResultMessage confirmUserInfo(DetailInfoVO detailInfoVO) {
+	public ResultMessage confirmUserInfo(PersonDetailVO detailInfoVO) {
 		return customer.modifyDetailInfo(detailInfoVO);
 	}
 
 	@Override
-	public int getGrade(String name) {
-		return customer.getGrade(name);
+	public int getGrade(String userID) {
+		return customer.getGrade(userID);
 	}
 	
 

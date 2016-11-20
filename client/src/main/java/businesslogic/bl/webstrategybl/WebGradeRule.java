@@ -12,14 +12,21 @@ public class WebGradeRule {
 	//每升一级的信用值
 	private int credit;
 	private WebStrategyDao webStrategyDao;
-	public WebGradeRule(){
+	private static WebGradeRule webGradeRule;
+	private WebGradeRule(){
 		
+	}
+	public static WebGradeRule getInstance() {
+		if(webGradeRule==null){
+			webGradeRule=new WebGradeRule();
+		}
+		return webGradeRule;
 	}
     /**
      * 获取信用值
      * @return GradeRuleVO
      */
-	public GradeRuleVO getCredit() {
+	public GradeRuleVO getGradeRule() {
 		return null;
 	}
     /**
@@ -27,7 +34,7 @@ public class WebGradeRule {
      * @param vo
      * @return ResultMessage
      */
-	public ResultMessage setCredit(GradeRuleVO vo) {
+	public ResultMessage setGradeRule(GradeRuleVO vo) {
 		return null;
 	}
 }

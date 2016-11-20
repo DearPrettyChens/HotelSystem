@@ -17,6 +17,7 @@ import vo.webstrategyvo.WebStrVO;
 public class WebStrategyController implements WebStrategyBLService{
     //网站策略
 	private WebStrategy webStrategy;
+	private WebGradeRule webGradeRule;
 	private static WebStrategyBLService webStrategyController;
 	
 	public WebStrategyController(){
@@ -37,7 +38,7 @@ public class WebStrategyController implements WebStrategyBLService{
 
 	@Override
 	public GradeRuleVO getGradeRule() {
-		return webStrategy.getGradeRule(new WebGradeRule());
+		return webGradeRule.getGradeRule();
 	}
 
 	@Override
@@ -52,7 +53,7 @@ public class WebStrategyController implements WebStrategyBLService{
 	}
 	@Override
 	public ResultMessage confirmGradeRule(GradeRuleVO gradeRuleVO) {
-		return webStrategy.confirmGradeRule(new WebGradeRule(),gradeRuleVO);
+		return webGradeRule.setGradeRule(gradeRuleVO);
 	}
 	@Override
 	public ResultMessage confirmWebStrategy(WebStrVO webStrVO) {

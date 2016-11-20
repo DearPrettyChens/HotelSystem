@@ -69,31 +69,24 @@ public class PersonDetailVO {
         this.setUserType(po.getUserType());;
 	}
 
-	/**
-	 * vo的构造函数
-	 * 
-	 * @param customerId
-	 * @param customername
-	 * @param customerimage
-	 * @param telephone
-	 * @param credit
-	 * @param birthday
-	 * @param VIPgrade
-	 * @param password
-	 */
-	public PersonDetailVO(String customerId, String customername, ImageIcon customerimage, String telephone, int credit,
-			Date birthday, String password, String hotelName) {
-		this.userName = customername;
-		this.userImage = customerimage;
+
+ 
+	public PersonDetailVO(String userId, String userName, String password, ImageIcon userImage, String telephone,
+			int credit, Date birthday, String enterpriseName, CustomerType vIPType, String hotelName,
+			UserType userType) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.password = password;
+		this.userImage = userImage;
 		this.telephone = telephone;
 		this.credit = credit;
 		this.birthday = birthday;
-
-		this.userId = customerId;
-		this.password = password;
+		this.enterpriseName = enterpriseName;
+		this.VIPType = vIPType;
 		this.hotelName = hotelName;
+		this.userType = userType;
 	}
- 
 	public PersonDetailPO toPO(){
 		return new PersonDetailPO(TransHelper.idToInt(userId), userName, userImage, telephone,credit, birthday,
 				enterpriseName, VIPType,password, hotelName, userType);

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import dao.personneldao.PersonnelDao;
 import init.RMIHelper;
+import po.PersonDetailPO;
 import util.ResultMessage;
+import util.TransHelper;
 import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.personnelvo.PersonListVO;
@@ -17,15 +19,14 @@ import vo.personnelvo.PersonListVO;
  * 
  */
 public class Personnel {
-	private Person person;
 	private PersonList personList;
-	private PersonMap personMap;
+    private PersonDetailPO personDetailPO;
 	private PersonnelDao personnelDao;
 	private static Personnel personnel;
 	
 	private Personnel() {
 		personnelDao=RMIHelper.getPersonnelDao();
-		personMap=PersonMap.getInstance();
+	
 	}
 	
 	public static Personnel getInstance() {
@@ -82,8 +83,13 @@ public class Personnel {
 	 * 需接口：Person.addPerson
 	 */
 	public ResultMessage addPerson(PersonDetailVO personDetailVO){
-		person=personMap.get(personDetailVO.getUserType());
-		return person.addPerson(personDetailVO);
+		personDetailPO=personDetailVO.toPO();
+		try {
+			return personnelDao.addPerson(personDetailPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 	
 	/**
@@ -93,9 +99,13 @@ public class Personnel {
 	 * @throws 未定
 	 * 需接口：PersonList.getPerson
 	 */
-	public PersonDetailVO getPersonDetail(UserType userType,String personID){
-		person=personMap.get(userType);
-		return person.getDetail(personID);
+	public PersonDetailVO getPersonDetail(String personID){
+		try {
+			personDetailPO=personnelDao.getPersonDetail(TransHelper.idToInt(personID));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return new PersonDetailVO(personDetailPO);
 	}
 	
 	/**
@@ -106,8 +116,13 @@ public class Personnel {
 	 * 需接口：Person.setPerson
 	 */
 	public ResultMessage setPerson (PersonDetailVO personDetailVO){
-		person=personMap.get(personDetailVO.getUserType());
-		return person.setPerson(personDetailVO);
+		personDetailPO=personDetailVO.toPO();
+		try {
+			return personnelDao.setPerson(personDetailPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 
 	/**

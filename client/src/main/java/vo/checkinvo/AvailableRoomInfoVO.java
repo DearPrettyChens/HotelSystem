@@ -1,10 +1,10 @@
 package vo.checkinvo;
 
 import java.io.Serializable;
-import java.util.Map;
 
 import po.AvailableRoomInfoPO;
 import util.BedType;
+import util.TransHelper;
 
 public class AvailableRoomInfoVO implements Serializable {
 	
@@ -38,7 +38,7 @@ public class AvailableRoomInfoVO implements Serializable {
 	}
     
 	public AvailableRoomInfoVO(AvailableRoomInfoPO po){
-		this.hotelNumber=idToString(po.getHotelNumber());
+		this.hotelNumber=TransHelper.idToString(po.getHotelNumber(),6);
 		this.roomType=po.getRoomType();
 		this.bedType=po.getBedType();
 		this.originalPrice=po.getOriginalPrice();
@@ -106,33 +106,12 @@ public class AvailableRoomInfoVO implements Serializable {
 
 	public AvailableRoomInfoPO votopo(){
 		
-		return new AvailableRoomInfoPO(idToInt(this.hotelNumber),this.roomType
+		return new AvailableRoomInfoPO(TransHelper.idToInt(this.hotelNumber),this.roomType
 	    		,this.bedType,this.originalPrice,this.lowestPrice,this.originalNumber,
 	    		this.currentNumber);
 		
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 
 }
 

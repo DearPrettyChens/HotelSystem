@@ -1,7 +1,7 @@
 package businesslogic.blservice.userblservice;
 
 import util.ResultMessage;
-import vo.uservo.DetailInfoVO;
+import vo.personnelvo.PersonDetailVO;
 /**
  * UserMaintainPersonalInformationService负责维护个人信息部分
  * @author CYF
@@ -12,13 +12,12 @@ public interface UserMaintainInfoService {
 	/**
 	 * 获取用户详细信息
 	 * 
-	 * @param name
-	 *            String型，传递用户名
+	 * @param name String型，传递用户名
 	 * @return DetailInfoVO ，将用户详细信息返回给界面
 	 * @throws 未定
 	 *
 	 */
-	public DetailInfoVO getDetailInfo(String name);
+	public PersonDetailVO getDetailInfo(String userID);
 
 	/**
 	 * 保存用户详细信息
@@ -29,7 +28,7 @@ public interface UserMaintainInfoService {
 	 * @throws 未定
 	 *
 	 */
-	public ResultMessage confirmUserInfo(DetailInfoVO detailInfoVO);
+	public ResultMessage confirmUserInfo(PersonDetailVO detailInfoVO);
 
 	/**
 	 * 检查电话格式
@@ -48,7 +47,7 @@ public interface UserMaintainInfoService {
 	 * @throws 未定
 	 *
 	 */
-	public int getGrade(String name);
+	public int getGrade(String userID);
 	
 
 }

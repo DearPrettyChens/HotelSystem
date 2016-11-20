@@ -5,6 +5,7 @@ import java.util.Date;
 
 import po.HotelStrPO;
 import util.HotelStrategyType;
+import util.TransHelper;
 
 public class HotelStrVO {
 	/**
@@ -41,7 +42,7 @@ public class HotelStrVO {
 		this.setDate(hotelStrPO.getDate());
 		this.setDiscount(hotelStrPO.getDiscount());
 		this.setEnterprise(hotelStrPO.getEnterprise());
-		this.setHotelID(idToString(hotelStrPO.getHotelID()));
+		this.setHotelID(TransHelper.idToString(hotelStrPO.getHotelID(),6));
 		this.setType(hotelStrPO.getType());
 	}
 	
@@ -50,7 +51,7 @@ public class HotelStrVO {
 	 * @return HotelStrPO
 	 */
 	public HotelStrPO toPO() {
-		return new HotelStrPO(idToInt(hotelID), amount, type, discount, enterprise, date);
+		return new HotelStrPO(TransHelper.idToInt(hotelID), amount, type, discount, enterprise, date);
 	}
 	
 	
@@ -128,26 +129,5 @@ public class HotelStrVO {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 }

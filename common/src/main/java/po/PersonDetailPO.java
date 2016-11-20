@@ -29,6 +29,7 @@ public class PersonDetailPO {
 	private Date birthday;
 	// 企业名称
 	private String enterpriseName;
+	
 	// 会员类型（企业会员和普通会员两种）
 	private CustomerType VIPType;
 	// 密码
@@ -66,7 +67,7 @@ public class PersonDetailPO {
 		this.credit = credit;
 		this.birthday = birthday;
 		this.enterpriseName = enterpriseName;
-		VIPType = vIPType;
+		this.VIPType = vIPType;
 		this.password = password;
 		this.hotelName = hotelName;
 		this.userType = userType;

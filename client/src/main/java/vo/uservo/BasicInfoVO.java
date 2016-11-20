@@ -2,8 +2,6 @@ package vo.uservo;
 
 import javax.swing.ImageIcon;
 
-import po.PersonDetailPO;
-import util.TransHelper;
 import util.UserType;
 /**
  * 用户基本信息
@@ -17,11 +15,17 @@ public class BasicInfoVO {
 	private ImageIcon userImage;
 	//用户ID
 	private String userID;
-	
+	//用户种类
 	private UserType userType;
 	
-	public BasicInfoVO(){
+	public BasicInfoVO(String userName, ImageIcon userImage, String userID, UserType userType) {
+		super();
+		this.userName = userName;
+		this.userImage = userImage;
+		this.userID = userID;
+		this.userType = userType;
 	}
+
 	
 	public BasicInfoVO(String userName,String userID,UserType userType){
 		this.setUserName(userName);
@@ -29,16 +33,6 @@ public class BasicInfoVO {
 		this.setUserType(userType);
 	}
 
-	/**
-	 * po to vo //?这里是从PersonDetailVO那里来还是从PO那里拿过来信息？
-	 * @param personDetailPO
-	 */
-	public BasicInfoVO (PersonDetailPO personDetailPO) {
-		this.setUserName(personDetailPO.getName());
-		this.setUserImage(personDetailPO.getImage());
-		this.setUserID(TransHelper.idToString(personDetailPO.getId(),6));
-	    this.setUserType(personDetailPO.getUserType());
-	}
 	
 	public String getUserName() {
 		return userName;

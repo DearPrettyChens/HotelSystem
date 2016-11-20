@@ -135,7 +135,7 @@ public class User {
      */
 	public BasicInfoVO getBasicInfo() {
 		if(userType==UserType.Customer){
-			return new Customer().getBasicInfo(userName);
+			return Customer.getInstance().getBasicInfo(userName);
 		}
 		return new BasicInfoVO(userName,userID,userType);
 	}

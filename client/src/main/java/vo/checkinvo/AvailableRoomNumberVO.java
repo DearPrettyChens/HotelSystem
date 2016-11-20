@@ -1,13 +1,11 @@
 package vo.checkinvo;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 
 import po.AvailableRoomNumberPO;
-import po.CreditPO;
 import util.BedType;
+import util.TransHelper;
 public class AvailableRoomNumberVO  implements Serializable{
 	/**
 	 * 
@@ -34,10 +32,8 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.bedType=po.getBedType();
     	this.date=po.getDate();
     	//this.hotelName=po.getHotelName();
-    	this.hotelNumber=idToString(po.getHotelNumber());
-    	
-    	
-		
+    	this.hotelNumber=TransHelper.idToString(po.getHotelNumber(),6);
+	
 	}
     public AvailableRoomNumberVO(int number,BedType bedType,Date date,String hotelNumber){
 		this.number=number;
@@ -79,30 +75,8 @@ public class AvailableRoomNumberVO  implements Serializable{
 	}*/
 	
 	 public AvailableRoomNumberPO votopo(){
-		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,idToInt(this.hotelNumber));
+		 return new AvailableRoomNumberPO(this.number,this. bedType,this.date,TransHelper.idToInt(this.hotelNumber));
 		 
 	 }
-		/**
-		 * 编号string转化成int
-		 */
-		private static int idToInt(String id){
-			String temp="";
-			for(int i=0;i<id.length();i++){
-				if(id.charAt(i)!='0'){
-					temp=temp+id.charAt(i);
-				}
-			}
-			return Integer.parseInt(temp);
-		}
-		/**
-		 * id to string
-		 */
-		private static String idToString(int id){
-			String result=String.valueOf(id);
-			while(result.length()<6){
-				result="0"+result;
-			}
-			return result;
-		}
 	
 }

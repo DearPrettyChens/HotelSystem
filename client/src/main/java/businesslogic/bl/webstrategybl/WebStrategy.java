@@ -4,7 +4,6 @@ import java.util.Date;
 
 import util.ResultMessage;
 import util.TradingArea;
-import vo.webstrategyvo.GradeRuleVO;
 import vo.webstrategyvo.WebBestStrVO;
 import vo.webstrategyvo.WebStrVO;
 /**
@@ -23,14 +22,7 @@ public class WebStrategy {
 	public WebBestStrVO getWebBestStrategy(String credit, TradingArea area, Date time) {
 		return null;
 	}
-    /**
-     * 获取网站等级策略 委托给WebGradeRule
-     * @param webGradeRule
-     * @return GradeRuleVO
-     */
-	public GradeRuleVO getGradeRule(WebGradeRule webGradeRule) {
-		return webGradeRule.getCredit();
-	}
+
     /**
      * 获取网站策略 委托给接口
      * @param webStrategyInterface
@@ -39,15 +31,7 @@ public class WebStrategy {
 	public WebStrVO getWebStrategy(WebStrategyInterface webStrategyInterface) {
 		return webStrategyInterface.getWebStrategy();
 	}
-    /**
-     * 修改网站等级规则 委托给webGradeRule
-     * @param webGradeRule
-     * @param vo
-     * @return ResultMessage
-     */
-	public ResultMessage confirmGradeRule(WebGradeRule webGradeRule,GradeRuleVO vo) {
-		return webGradeRule.setCredit(vo);
-	}
+
     /**
      * 修改网站策略 委托给接口
      * @param webStrategyInterface

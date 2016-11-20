@@ -1,12 +1,11 @@
 package vo.hotelvo;
 
-import java.util.List;
-
 import javax.swing.ImageIcon;
 
 import po.HotelBasicInfoPO;
 import util.City;
 import util.TradingArea;
+import util.TransHelper;
 /**
  * 酒店基本信息vo 给酒店工作人员看的
  * @author CYF
@@ -205,33 +204,10 @@ public class HotelBasicInfoVO {
 		this.hotelID = hotelID;
 	}
 	public HotelBasicInfoPO votopo(){
-		return new HotelBasicInfoPO(idToInt(this.hotelID), this.hotelName, this.hotelImage, this.address, this.telephone,
+		return new HotelBasicInfoPO(TransHelper.idToInt(this.hotelID), this.hotelName, this.hotelImage, this.address, this.telephone,
 				this.star,0, 0, this.introduce, this.commonFacility,
 				this.activityFacility, this.service, this.roomFacility,null,0);
-		
-		
-		
+	
 	}
-	/**
-	 * 编号string转化成int
-	 */
-	private static int idToInt(String id){
-		String temp="";
-		for(int i=0;i<id.length();i++){
-			if(id.charAt(i)!='0'){
-				temp=temp+id.charAt(i);
-			}
-		}
-		return Integer.parseInt(temp);
-	}
-	/**
-	 * id to string
-	 */
-	private static String idToString(int id){
-		String result=String.valueOf(id);
-		while(result.length()<6){
-			result="0"+result;
-		}
-		return result;
-	}
+
 }
