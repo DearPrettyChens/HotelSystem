@@ -21,17 +21,21 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 
 	private static final long serialVersionUID = -572024053152986904L;
 	private static AvailableRoomDao availableRoomDao;
+	
+	static {
+		try {
+			availableRoomDao = new AvailableRoomDaoImpl();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static AvailableRoomDao getInstance() throws RemoteException {
-		if (availableRoomDao == null) {
-			availableRoomDao = new AvailableRoomDaoImpl();
-		}
 		return availableRoomDao;
 	}
 
 	private AvailableRoomDaoImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

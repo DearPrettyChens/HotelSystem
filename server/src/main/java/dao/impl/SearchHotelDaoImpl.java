@@ -5,6 +5,10 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import dao.searchhoteldao.SearchHotelDao;
+import data.datahelper.SearchHotelDataHelper;
+import datahelper.datafactory.DataFactory;
+import datahelper.datafactory.impl.DataFactoryImpl;
+import datahelper.impl.SearchHotelDataHelperDatabaseImpl;
 import po.HotelListPO;
 import util.HotelSortType;
 
@@ -17,6 +21,9 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 
 	private static final long serialVersionUID = 1415107901343055249L;
 	private static SearchHotelDao searchHotelDao;
+	private DataFactory dataFactory;
+	private SearchHotelDataHelper searchHotelDataHelper;
+	
 		
 	    public static SearchHotelDao getInstance() throws RemoteException {
 			if(searchHotelDao==null){
@@ -27,19 +34,20 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 
 	    private SearchHotelDaoImpl() throws RemoteException {
 			super();
-			// TODO Auto-generated constructor stub
+			if(dataFactory==null){
+				dataFactory = new DataFactoryImpl();
+				searchHotelDataHelper = new SearchHotelDataHelperDatabaseImpl();
+			}
 		}
 
 		@Override
 		public ArrayList<HotelListPO> getHotelList() throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
+			return searchHotelDataHelper.getHotelList();
 		}
 
 		@Override
 		public ArrayList<HotelListPO> getSortedHotelList(HotelSortType type) throws RemoteException {
-			// TODO Auto-generated method stub
-			return null;
+			return searchHotelDataHelper.getSortedHotelList(type);
 		}
 		
 }

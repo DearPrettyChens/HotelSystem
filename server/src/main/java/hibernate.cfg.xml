@@ -31,6 +31,9 @@
 		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
 		<mapping class="po.ClientPO"></mapping>
+		<mapping class="po.HotelListPO"></mapping>
+		<mapping class="po.HotelBasicInfoPO"></mapping>
+		<mapping class="po.HotelBestPricePO"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

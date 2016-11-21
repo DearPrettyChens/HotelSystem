@@ -1,16 +1,25 @@
 package po;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 /**
  * 酒店最优价格的po
  * @author CYF
  * @version 1.0
  */
-
+@Entity
+@Table(name="t_hotel")
 public class HotelBestPricePO implements Serializable{
 	//酒店id
+	@Id
+	@Column(name="id")
 	private int hotelID;
 	//最优价格
+	@Column(name="lowest_price")
 	private double bestPrice;
 	//空方法
 	public HotelBestPricePO(){

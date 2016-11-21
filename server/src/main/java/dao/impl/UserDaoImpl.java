@@ -28,7 +28,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	private static final long serialVersionUID = 2151592669947030124L;
 	private static UserDaoImpl userDao;
-	private DataFactory df;
+	private DataFactory dataFactory;
 	private UserDataHelper userDataHelper;
 
 	public static UserDao getInstance() throws RemoteException {
@@ -40,9 +40,9 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	private UserDaoImpl() throws RemoteException {
 		super();
-		if(df==null){
-			df = new DataFactoryImpl();
-			userDataHelper = df.getUserDataHelper();
+		if(dataFactory==null){
+			dataFactory = new DataFactoryImpl();
+			userDataHelper = dataFactory.getUserDataHelper();
 		}
 	}
 

@@ -5,7 +5,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
+
+import com.sun.javafx.beans.IDProperty;
 
 import util.City;
 import util.TradingArea;
@@ -18,44 +24,63 @@ import util.TradingArea;
  * @author CYF
  * @version 1.0
  */
+@Entity
+@Table(name="t_hotel")
 public class HotelBasicInfoPO implements Serializable {
 	// 酒店id
+	@Id
+	@Column(name="id")
 	private int hotelID;
 	// 酒店名
+	@Column(name="name")
 	private String name;
 	// 酒店图片
 	private ImageIcon hotelImage;
 	// 城市
+	@Column(name="city")
 	private City city;
 	// 商圈
+	@Column(name="trading_area")
 	private TradingArea tradingArea;
 	// 地址
+	@Column(name="address")
 	private String address;
 	// 联系方式
+	@Column(name="telephone")
 	private String telephone;
 	// 星级
+	@Column(name="star")
 	private int star;
 	// 评分
+	@Column(name="score")
 	private double score;
 	// 最低价格
+	@Column(name="lowest_price")
 	private double lowestPrice;
 	// 预定记录？
 	// private String reserveRecords;
 	// 酒店简介
+	@Column(name="introduce")
 	private String introduce;
 	// 通用设施
+	@Column(name="common_facility")
 	private String commonFacility;
 	// 活动设施
+	@Column(name="activity_facility")
 	private String activityFacility;
 	// 服务项目
+	@Column(name="service")
 	private String service;
 	// 客房设施
+	@Column(name="room_facility")
 	private String roomFacility;
 	// 住户点评
 	private ArrayList<RemarkPO> remarks;
 	//评价过的订单总数
+	@Column(name="remark_number")
 	private int remarkOrderNumber;
 	//合作企业
+	@Column(name="enterprises")
 	private String enterprises;
     //空方法
 	

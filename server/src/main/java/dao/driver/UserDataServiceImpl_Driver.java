@@ -14,15 +14,14 @@ import util.UserType;
 import po.ClientPO;
 
 public class UserDataServiceImpl_Driver {
-	public void drive(UserDao udi) throws RemoteException {
-		System.out.println(udi.getUserPassword("Manager").getPassword());
+	public void drive(UserDao userDao) throws RemoteException {
+		System.out.println(userDao.getUserPassword("Manager").getPassword());
 		ClientPO po = new ClientPO("Manager", "123456", 1);
-		System.out.println(udi.setPassword(po));
+		System.out.println(userDao.setPassword(po));
 
 	}
 
 	public static void main(String[] args) throws RemoteException {
-		// TODO Auto-generated method stub
 		new UserDataServiceImpl_Driver().drive(UserDaoImpl.getInstance());
 	}
 }

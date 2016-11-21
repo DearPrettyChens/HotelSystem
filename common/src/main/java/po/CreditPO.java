@@ -19,16 +19,16 @@ public class CreditPO  implements Serializable{
 	private double credit;//信用值
 	private double CreditChange;//信用值变化
 	private String reason;//原因
-	private Date time;//时间
+	private long timestamp;//时间
 	
 	public CreditPO(){
-		
 	}
+	
     public CreditPO(String name,int ID,double credit,double CreditChange,String reason,Date time){
 		this.credit=credit;
 		this.CreditChange=CreditChange;
 		this.reason=reason;
-		this.time=time;
+		this.timestamp=time.getTime();
 		this.reason=reason;
 		this.ID=ID;
 		
@@ -64,10 +64,10 @@ public class CreditPO  implements Serializable{
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public Date getTime() {
-		return time;
+	public long getTime() {
+		return timestamp;
 	}
 	public void setTime(Date time) {
-		this.time = time;
+		this.timestamp = time.getTime();
 	}
 }
