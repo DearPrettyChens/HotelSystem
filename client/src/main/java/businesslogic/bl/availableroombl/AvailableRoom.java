@@ -19,11 +19,12 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  */
 public class AvailableRoom {
 	//可用住房信息列表
-	private ArrayList<SingleAvailableRoomInfo> singleAvailableRoomInfoList;
+	private ArrayList<SingleAvailableRoomInfo> singleAvailableRoomInfoList=new ArrayList<SingleAvailableRoomInfo>();
 	//数据层的引用
 	private AvailableRoomDao availableRoomDao;
 	public AvailableRoom(){
-		availableRoomDao=RMIHelper.getAvailableRoomDao();
+		//availableRoomDao=RMIHelper.getAvailableRoomDao();
+		availableRoomDao=new AvailableRoomDao_Stub();
 	}
 	
 	/**
@@ -98,12 +99,11 @@ public class AvailableRoom {
 				newPOs.add(singleAvailableRoomInfoList.get(i).getAvailableRoomInfo());
 			}
 			//交给数据层更新价格
-			availableRoomDao.setBestPrice(newPOs);
+			return availableRoomDao.setBestPrice(newPOs);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
 		}
-		return ResultMessage.SUCCESS;
 	}
 	/**
 	 * 系统返回该房型价格

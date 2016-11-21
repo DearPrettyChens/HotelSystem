@@ -5,6 +5,7 @@ import java.util.List;
 
 import po.CreditInfoPO;
 import po.CreditPO;
+import util.TransHelper;
 
 public class CreditInfoVO {
 	/**信用记录信息
@@ -29,6 +30,9 @@ public class CreditInfoVO {
 	
 		}
 		this.credits=tempcreditsvo;
+		this.name=tempcredits.get(0).getName();
+		this.customerNumber=TransHelper.idToString(tempcredits.get(0).getID(), 6);
+		this.credit=(int) tempcredits.get(tempcredits.size()-1).getCredit();
 	
 	}
 	public CreditInfoVO(){

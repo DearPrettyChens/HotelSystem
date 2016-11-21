@@ -23,7 +23,7 @@ import vo.personnelvo.PersonDetailVO;
 import vo.webstrategyvo.WebBestStrVO;
 /**
  * Order模块的领域类
- * @author csy
+ * @author CLL
  * @version 1.0
  */
 public class Order {

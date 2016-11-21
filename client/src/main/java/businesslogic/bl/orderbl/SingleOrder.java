@@ -21,7 +21,7 @@ import vo.ordervo.OrderInfoVO;
 import vo.ordervo.RemarkVO;
 /**
  * Order模块的领域类
- * @author csy
+ * @author CLL
  * @version 1.0
  */
 public class SingleOrder {
@@ -31,10 +31,12 @@ public class SingleOrder {
 	private Credit credit;
 	private AvailableRoom availableRoom;
 	public SingleOrder() {
-		orderDao=RMIHelper.getOrderDao();
+		//orderDao=RMIHelper.getOrderDao();
+		orderDao=new OrderDao_Stub();
 	}
 	public SingleOrder(Hotel hotel){
-		orderDao=RMIHelper.getOrderDao();
+		//orderDao=RMIHelper.getOrderDao();
+		orderDao=new OrderDao_Stub();
 		this.hotelInfoOrderService=hotel;
 	}
 	

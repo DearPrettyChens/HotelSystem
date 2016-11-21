@@ -19,10 +19,9 @@ import vo.checkinvo.CheckinInfoVO;
 /**
  * 单条住房记录的类
  * @author CLL
- * @version1.0
+ * @version 1.0
  */
 public class CheckinInfo {
-	private String hotelID;//酒店编号
 	private String name;//用户真实姓名
 	private String ID;//身份证号（数字
 	private String tel;//联系方式（11位手机号）
@@ -39,7 +38,8 @@ public class CheckinInfo {
 	private SingleOrder singleOrder;
 	
 	public CheckinInfo(){
-		
+		//checkinDao=RMIHelper.getCheckinDao();
+		checkinDao=new CheckinDao_Stub();
 	}
 	
 	/**
@@ -47,7 +47,7 @@ public class CheckinInfo {
 	 * @param vo
 	 */
 	public CheckinInfo(CheckinInfoVO vo){
-		this.setHotelID(vo.getHotelnumber());
+		this.hotelNumber=vo.getHotelnumber();
 		this.name=vo.getCostumername();
 		this.ID=vo.getID();
 		this.tel=vo.getTel();
@@ -56,8 +56,10 @@ public class CheckinInfo {
 		this.roomNumber=vo.getRoomnumber();
 		this.checkinTime=vo.getCheckintime();
 		this.checkoutTime=vo.getCheckouttime();
-		this.hotelNumber=vo.getHotelnumber();
 		this.orderNumber=vo.getOrdernumber();
+		
+		//checkinDao=RMIHelper.getCheckinDao();
+		checkinDao=new CheckinDao_Stub();
 		
 	}
 	/**
@@ -74,7 +76,6 @@ public class CheckinInfo {
 			return ResultMessage.FAIL;
 		}
 		//写入数据库住房信息
-		checkinDao=RMIHelper.getCheckinDao();
 		try {
 			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
 					roomNumber,new Date(),checkoutTime,TransHelper.idToInt(hotelNumber),orderNumber));
@@ -89,7 +90,6 @@ public class CheckinInfo {
 	 * @return CheckinInfo
 	 */
 	public CheckinInfoVO getCheckinInfo(String orderID){
-		checkinDao=RMIHelper.getCheckinDao();
 		try {
 			return new CheckinInfoVO(checkinDao.getCheckinInfo(orderID));
 		} catch (RemoteException e) {
@@ -105,7 +105,6 @@ public class CheckinInfo {
 	 */
 	public ResultMessage confirmCheckoutInfo(CheckinInfoVO vo){
 		//修改数据库中的住房信息
-		checkinDao=RMIHelper.getCheckinDao();
 		try {
 			ResultMessage result=checkinDao.modifyCheckinInfo(new CheckinInfoPO(
 					vo.getCostumername(),vo.getID(),vo.getTel(),vo.getRoomType(),
@@ -121,7 +120,7 @@ public class CheckinInfo {
 		
 		//更新房间数量信息
 		availableRoom=new AvailableRoom();
-		ArrayList<AvailableRoomInfoVO> preRoomInfo=availableRoom.getAvailableRoomInfo(hotelID);
+		ArrayList<AvailableRoomInfoVO> preRoomInfo=availableRoom.getAvailableRoomInfo(hotelNumber);
 		//修改的是当天对应床型客房的数量
 		int preRoomNumber=0;
 		for(int i=0;i<preRoomInfo.size();i++){
@@ -130,7 +129,7 @@ public class CheckinInfo {
 			}
 		}
 		//该房间数自动加1
-		ResultMessage message=availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(preRoomNumber+1,bedType,new Date(),hotelID));
+		ResultMessage message=availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(preRoomNumber+1,bedType,new Date(),hotelNumber));
 		if(message==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}
@@ -218,11 +217,11 @@ public class CheckinInfo {
 		this.hotelID = hotelID;
 	}*/
 
-	public String getHotelID() {
-		return hotelID;
+	public String getHotelNumber() {
+		return hotelNumber;
 	}
 
-	public void setHotelID(String hotelID) {
-		this.hotelID = hotelID;
+	public void setHotelNumber(String hotelID) {
+		this.hotelNumber = hotelID;
 	}
 }

@@ -14,7 +14,7 @@ import util.ResultMessage;
  */
 import vo.uservo.PasswordVO;
 public class ModifyPassword {
-    PasswordVO passwordVO;
+   /* PasswordVO passwordVO;
 	@Before
 	public void setUp() throws Exception {
 	      passwordVO=new PasswordVO("000001", "123456","小豆");
@@ -26,6 +26,6 @@ public class ModifyPassword {
 		assertEquals(user.checkOldPassword( "123456"),ResultMessage.SUCCESS);
 		assertEquals(user.checkNewPassword(new Password("123")),ResultMessage.PASSWORDFORMATERROR);
 	    assertEquals(user.confirmPassword(passwordVO), ResultMessage.SUCCESS);
-	}
+	}*/
 
 }

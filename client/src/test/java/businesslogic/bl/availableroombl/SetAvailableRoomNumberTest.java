@@ -17,7 +17,7 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  * @author CLL
  * @version
  */
-/*public class SetAvailableRoomNumberTest {
+public class SetAvailableRoomNumberTest {
 	AvailableRoom availableRoom;
 	@Before
 	public void setUp() throws Exception {
@@ -26,14 +26,14 @@ import vo.availableroomvo.AvailableRoomNumberVO;
 
 	@Test
 	public void test() {
-		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(3,BedType.BIGBED,
-				new Date(),"000001")),ResultMessage.SUCCESS);
-		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000001");
+		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(8,BedType.BIGBED,
+				new Date(),"000002")),ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000002");
 		for(int i=0;i<roomInfo.size();i++){
 			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
-				assertEquals(roomInfo.get(i).getCurrentNumber(),3);
+				assertEquals(roomInfo.get(i).getCurrentNumber(),8);
 			}
 		}
 	}
 
-}*/
+}

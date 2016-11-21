@@ -4,19 +4,21 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dao.orderdao.OrderDao;
+import init.RMIHelper;
 import po.OrderListPO;
 import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 /**
  * Order模块的领域类
- * @author csy
+ * @author CLL
  * @version 1.0
  */
 public class OrderList {
 	//private ArrayList<SingleOrder> singleOrders;
 	private OrderDao orderDao;
 	public OrderList() {
-		
+		//orderDao=RMIHelper.getOrderDao();
+		orderDao=new OrderDao_Stub();
 	}
 	
 	/**

@@ -11,7 +11,11 @@ import businesslogic.bl.orderbl.SingleOrder;
 import util.BedType;
 import util.OrderState;
 import vo.checkinvo.CheckinInfoVO;
-
+/**
+ * 
+ * @author CLL
+ *
+ */
 /*public class CheckinTest {
 	Checkin checkin;
 	SingleOrder order;
@@ -22,7 +26,7 @@ import vo.checkinvo.CheckinInfoVO;
 
 	@Test
 	public void test() {
-		CheckinInfoVO info=new CheckinInfoVO("chen","000001","12345678999","201","商务房",
+		CheckinInfoVO info=new CheckinInfoVO("chen","123456789123456789","12345678999","201","商务房",
 				BedType.BIGBED,new Date(),null,"000002","20161119000002000001");
 		checkin.confirmCheckinInfo(info);
 		assertEquals(OrderState.NOTREMARKED,order.getOrderInfo("20161119000002000001").

@@ -31,7 +31,8 @@ public class Credit {
 	}*/
 	public Credit(String customerID){
 		this.customerID=customerID;
-		creditDao=RMIHelper.getCreditDao();
+		//creditDao=RMIHelper.getCreditDao();
+		creditDao=new CreditDao_Stub();
 	}
 	/**
 	 * 获得该顾客的信用记录

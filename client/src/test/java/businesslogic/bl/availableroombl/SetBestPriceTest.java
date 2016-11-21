@@ -14,7 +14,7 @@ import vo.availableroomvo.AvailableRoomInfoVO;
  * @author CLL
  * @version
  */
-/*public class SetBestPriceTest {
+public class SetBestPriceTest {
 	AvailableRoom availableRoom;
 	@Before
 	public void setUp() throws Exception {
@@ -23,12 +23,12 @@ import vo.availableroomvo.AvailableRoomInfoVO;
 
 	@Test
 	public void test() {
-		ArrayList<AvailableRoomInfoVO> preRoomInfo=availableRoom.getAvailableRoomInfo("000001");
-		assertEquals(availableRoom.setBestPrice("000001", 0.8),ResultMessage.SUCCESS);
-		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000001");
+		ArrayList<AvailableRoomInfoVO> preRoomInfo=availableRoom.getAvailableRoomInfo("000002");
+		assertEquals(availableRoom.setBestPrice("000002", 0.8),ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000002");
 		//第三个参数为允许误差
 		assertEquals(0.8*preRoomInfo.get(0).getLowestPrice(),roomInfo.get(0).getLowestPrice(),0.01);
 	}
 
 
-}*/
+}
