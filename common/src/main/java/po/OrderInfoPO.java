@@ -36,7 +36,7 @@ public class OrderInfoPO implements Serializable {
 	//预定房间数量
 	private int amount;
 	//预定时间
-	private Date reserveTime;
+	private long reserveTimeStamp;
 	//入住人数
 	private int NumberOfPeople;
 	//有无儿童
@@ -44,22 +44,22 @@ public class OrderInfoPO implements Serializable {
 	//是否评价
 	private boolean hasRemarked;
 	//预计入住时间
-	private Date expectedCheckInTime;
+	private long expectedCheckInTimeStamp;
 	//预计退房时间
-	private Date expectedCheckOutTime;
+	private long expectedCheckOutTimeStamp;
 	
 	//最晚入住时间,下订单时计算产生
-	private Date lateCheckInTime;
+	private long lateCheckInTimeStamp;
 	//实际入住时间
-	private Date actualCheckInTime;
+	private long actualCheckInTimeStamp;
 	//实际退房时间
-	private Date actualCheckOutTime;
+	private long actualCheckOutTimeStamp;
 	//订单价格
 	private double price;
 	//订单状态
 	private OrderState state;
 	//撤销时间
-	private Date cancleTime;
+	private long cancleTimeStamp;
 	
 	//空方法
 	public OrderInfoPO(){
@@ -116,7 +116,7 @@ public class OrderInfoPO implements Serializable {
 		this.setHasChild(hasChild);
 		this.setPrice(price);
 		this.setState(state);
-		this.reserveTime=orderTime;
+		this.setReserveTime(orderTime);;
 	}
 	//顾客在撤销订单前及入住之前查看订单时显示的订单信息
 	//酒店管理人员checkin时获取的订单信息
@@ -259,43 +259,43 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public Date getExpectedCheckInTime() {
-		return expectedCheckInTime;
+		return new Date(expectedCheckInTimeStamp);
 	}
 
 	public void setExpectedCheckInTime(Date expectedCheckInTime) {
-		this.expectedCheckInTime = expectedCheckInTime;
+		this.expectedCheckInTimeStamp = expectedCheckInTime.getTime();
 	}
 
 	public Date getExpectedCheckOutTime() {
-		return expectedCheckOutTime;
+		return new Date(expectedCheckInTimeStamp);
 	}
 
 	public void setExpectedCheckOutTime(Date expectedCheckOutTime) {
-		this.expectedCheckOutTime = expectedCheckOutTime;
+		this.expectedCheckOutTimeStamp = expectedCheckOutTime.getTime();
 	}
 
 	public Date getLateCheckInTime() {
-		return lateCheckInTime;
+		return new Date(lateCheckInTimeStamp);
 	}
 
 	public void setLateCheckInTime(Date lateCheckInTime) {
-		this.lateCheckInTime = lateCheckInTime;
+		this.lateCheckInTimeStamp = lateCheckInTime.getTime();
 	}
 
 	public Date getActualCheckInTime() {
-		return actualCheckInTime;
+		return new Date(actualCheckInTimeStamp);
 	}
 
 	public void setActualCheckInTime(Date actualCheckInTime) {
-		this.actualCheckInTime = actualCheckInTime;
+		this.actualCheckInTimeStamp = actualCheckInTime.getTime();
 	}
 
 	public Date getActualCheckOutTime() {
-		return actualCheckOutTime;
+		return new Date(actualCheckInTimeStamp);
 	}
 
 	public void setActuarCheckOutTime(Date actualCheckOutTime) {
-		this.actualCheckOutTime = actualCheckOutTime;
+		this.actualCheckOutTimeStamp = actualCheckOutTime.getTime();
 	}
 
 	public double getPrice() {
@@ -326,16 +326,16 @@ public class OrderInfoPO implements Serializable {
 		this.liveinPersonTelephone = liveinPersonTelephone;
 	}
 	public Date getCancleTime() {
-		return cancleTime;
+		return new Date(cancleTimeStamp);
 	}
 	public void setCancleTime(Date cancleTime) {
-		this.cancleTime = cancleTime;
+		this.cancleTimeStamp = cancleTime.getTime();
 	}
 	public Date getReserveTime() {
-		return reserveTime;
+		return new Date(reserveTimeStamp);
 	}
 	public void setReserveTime(Date reserveTime) {
-		this.reserveTime = reserveTime;
+		this.reserveTimeStamp = reserveTime.getTime();
 	}
 
 }

@@ -21,7 +21,7 @@ public class HotelStrPO implements Serializable{
     //合作企业
     private ArrayList <String> enterprise;
     //优惠日期
-    private Date[] date;
+    private long[] dateStamps;
 	
 	public HotelStrPO(){
 	}
@@ -33,7 +33,7 @@ public class HotelStrPO implements Serializable{
 		this.type = type;
 		this.discount = discount;
 		this.enterprise = enterprise;
-		this.date = date;
+		this.setDate(date);;
 	}
 
 	public HotelStrPO(int hotelID, int amount, double discount) {
@@ -97,11 +97,18 @@ public class HotelStrPO implements Serializable{
 	}
 
 	public Date[] getDate() {
-		return date;
+		Date[] dates = new Date[dateStamps.length];
+		for(int i=0;i<dates.length;i++){
+			dates[i]=new Date(dateStamps[i]);
+		}
+		return dates;
 	}
 
 	public void setDate(Date[] date) {
-		this.date = date;
+		dateStamps=new long[date.length];
+		for(int i=0;i<dateStamps.length;i++){
+			dateStamps[i]=date[i].getTime();
+		}
 	}
 
 }

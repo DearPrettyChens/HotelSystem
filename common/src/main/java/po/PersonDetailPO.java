@@ -26,7 +26,7 @@ public class PersonDetailPO {
 	// 信用值
 	private int credit;
 	// 生日
-	private Date birthday;
+	private long birthdayStamp;
 	// 企业名称
 	private String enterpriseName;
 	
@@ -65,7 +65,7 @@ public class PersonDetailPO {
 		userImage = image;
 		this.telephone = telephone;
 		this.credit = credit;
-		this.birthday = birthday;
+		this.birthdayStamp = birthday.getTime();
 		this.enterpriseName = enterpriseName;
 		this.VIPType = vIPType;
 		this.password = password;
@@ -115,11 +115,11 @@ public class PersonDetailPO {
 	}
 
 	public Date getBirthday() {
-		return birthday;
+		return new Date(birthdayStamp);
 	}
 
 	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+		this.birthdayStamp = birthday.getTime();
 	}
 
 	public String getEnterpriseName() {

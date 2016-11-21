@@ -64,8 +64,8 @@ public class CreditPO  implements Serializable{
 	public void setReason(String reason) {
 		this.reason = reason;
 	}
-	public long getTime() {
-		return timestamp;
+	public Date getTime() {
+		return new Date(timestamp);
 	}
 	public void setTime(Date time) {
 		this.timestamp = time.getTime();

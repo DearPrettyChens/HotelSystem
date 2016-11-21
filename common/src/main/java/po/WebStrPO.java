@@ -19,7 +19,7 @@ public class WebStrPO implements Serializable {
 	// vip折扣映射
 	private Map<Integer, Double> specialTimeOrTradingAreaStrategy;
 	// 日期
-	private Date[] date;
+	private long[] dateStamps;
 	// 时期折扣值
 	private double discount;
 	private WebStrategyType type;
@@ -31,10 +31,10 @@ public class WebStrPO implements Serializable {
 			Date[] date, double discount, WebStrategyType type) {
 		super();
 
-		this.specialTimeOrTradingAreaStrategy = specialTimeOrTradingAreaStrategy;
-		this.date = date;
-		this.discount = discount;
-		this.type = type;
+		this.setSpecialTimeOrTradingAreaStrategy(specialTimeOrTradingAreaStrategy);
+		this.setDate(date);;
+		this.setDiscount(discount);
+		this.setType(type);
 	}
 
 	public WebStrPO(Map<Integer, Double> specialTimeOrTradingAreaStrategy, double discount, WebStrategyType type) {
@@ -50,11 +50,18 @@ public class WebStrPO implements Serializable {
 	}
 
 	public Date[] getDate() {
-		return date;
+		Date[] dates = new Date[dateStamps.length];
+		for(int i=0;i<dates.length;i++){
+			dates[i]=new Date(dateStamps[i]);
+		}
+		return dates;
 	}
 
 	public void setDate(Date[] date) {
-		this.date = date;
+		dateStamps=new long[date.length];
+		for(int i=0;i<dateStamps.length;i++){
+			dateStamps[i]=date[i].getTime();
+		}
 	}
 
 	public double getDiscount() {

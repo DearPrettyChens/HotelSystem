@@ -24,7 +24,7 @@ public class OrderListPO implements Serializable{
 	//顾客用户名
 	private String customerName;
 	//顾客预定时间
-	private Date reserveTime;
+	private long reserveTimeStamp;
 	//订单状态
 	private OrderState state;
 
@@ -72,10 +72,10 @@ public class OrderListPO implements Serializable{
 		this.hotelName = hotelName;
 	}
 	public Date getReserveTime() {
-		return reserveTime;
+		return new Date(reserveTimeStamp);
 	}
 	public void setReserveTime(Date reserveTime) {
-		this.reserveTime = reserveTime;
+		this.reserveTimeStamp = reserveTime.getTime();
 	}
 	public OrderState getState() {
 		return state;

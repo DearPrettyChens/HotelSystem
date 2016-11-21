@@ -28,7 +28,7 @@ public class CustomerDetailPO implements Serializable{
 	//信用值
 	private int credit;
 	//生日
-	private Date birthday;
+	private long birthdayStamp;
 	//企业名称
 	private String enterpriseName;
 	//会员等级
@@ -56,7 +56,7 @@ public class CustomerDetailPO implements Serializable{
 		this.customerImage=customerimage;
 		this.telephone=telephone;
 		this.credit=credit;
-		this.birthday=birthday;
+		this.birthdayStamp=birthday.getTime();
 		this.VIPgrade=VIPgrade;
 		this.customerId=customerId;
 		this.password=password;
@@ -116,11 +116,11 @@ public class CustomerDetailPO implements Serializable{
 	}
 
 	public Date getBirthday() {
-		return birthday;
+		return new Date(birthdayStamp);
 	}
 
 	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
+		this.birthdayStamp = birthday.getTime();
 	}
 
 	public String getEnterpriseName() {

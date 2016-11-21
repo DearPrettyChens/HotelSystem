@@ -11,7 +11,7 @@ public class CheckTimePO implements Serializable{
 	//订单编号
 	private String orderNumber;
 	//入住或退房时间，因为调用方法不同，可以只用一个time表示
-	private Date checkTime;
+	private long checkTimeStamp;
 	//表示是checkin还是out("checkin" or "checkout")
 	private String type;
 	//空方法
@@ -31,10 +31,10 @@ public class CheckTimePO implements Serializable{
 		this.orderNumber = orderNumber;
 	}
 	public Date getCheckTime() {
-		return checkTime;
+		return new Date(checkTimeStamp);
 	}
 	public void setCheckTime(Date checkTime) {
-		this.checkTime = checkTime;
+		this.checkTimeStamp = checkTime.getTime();
 	}
 	public String getType() {
 		return type;

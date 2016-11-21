@@ -31,8 +31,8 @@ public class CheckinInfoPO implements Serializable{
 	private BedType bedtype;//床类型
 	private String roomtype;
 	private String roomnumber;//房间号（数字
-	private Date checkintime;//实际入住时间（-年-月-日-时-分）
-	private Date checkouttime;//实际退房时间（-年-月-日-时-分
+	private long checkintimeStamp;//实际入住时间（-年-月-日-时-分）
+	private long checkouttimeStamp;//实际退房时间（-年-月-日-时-分
 	private int hotelnumber;//酒店编号
 	private String ordernumber;//订单号
 	public CheckinInfoPO(){
@@ -46,8 +46,8 @@ public class CheckinInfoPO implements Serializable{
 		this.tel=tel;
 		this.bedtype=bedtype;
 		this.roomnumber=roomnumber;
-		this.checkintime=checkintime;
-		this.checkouttime=checkouttime;
+		this.checkintimeStamp=checkintime.getTime();
+		this.checkouttimeStamp=checkouttime.getTime();
 		this.hotelnumber=hotelnumber;
 		this.ordernumber=ordernumber;
 		this.roomtype=roomtype;
@@ -87,16 +87,16 @@ public class CheckinInfoPO implements Serializable{
 		this.roomnumber = roomnumber;
 	}
 	public Date getCheckintime() {
-		return checkintime;
+		return new Date(checkintimeStamp);
 	}
 	public void setCheckintime(Date checkintime) {
-		this.checkintime = checkintime;
+		this.checkintimeStamp = checkintime.getTime();
 	}
 	public Date getCheckouttime() {
-		return checkouttime;
+		return new Date(checkouttimeStamp);
 	}
 	public void setCheckouttime(Date checkouttime) {
-		this.checkouttime = checkouttime;
+		this.checkouttimeStamp = checkouttime.getTime();
 	}
 	public int getHotelnumber() {
 		return hotelnumber;
