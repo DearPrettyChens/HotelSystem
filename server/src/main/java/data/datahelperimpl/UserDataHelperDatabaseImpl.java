@@ -1,4 +1,4 @@
-package datahelper.impl;
+package data.datahelperimpl;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 		try {
 			result.get(0).setPassword(po.getPassword());
 			session.update(result.get(0));
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return ResultMessage.FAIL;
 		} finally {
 			session.getTransaction().commit();

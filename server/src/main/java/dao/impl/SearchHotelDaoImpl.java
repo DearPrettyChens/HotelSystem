@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 import dao.searchhoteldao.SearchHotelDao;
 import data.datahelper.SearchHotelDataHelper;
+import data.datahelperimpl.SearchHotelDataHelperDatabaseImpl;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryImpl;
-import datahelper.impl.SearchHotelDataHelperDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
 import po.HotelListPO;
 import util.HotelSortType;
 
@@ -39,10 +39,8 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 
 	private SearchHotelDaoImpl() throws RemoteException {
 		super();
-		if (dataFactory == null) {
-			dataFactory = new DataFactoryImpl();
-			searchHotelDataHelper = dataFactory.getSearchHotelDataHelper();
-		}
+		dataFactory = new DataFactoryDatabaseImpl();
+		searchHotelDataHelper = dataFactory.getSearchHotelDataHelper();
 	}
 
 	@Override

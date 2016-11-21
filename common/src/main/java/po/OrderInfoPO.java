@@ -9,68 +9,70 @@ import util.OrderState;
 
 /**
  * 订单信息的PO类
+ * 
  * @author CYF
  * @version 1.0
  */
 public class OrderInfoPO implements Serializable {
-	//顾客编号
+	// 顾客编号
 	private String customerID;
-	//订单编号
+	// 订单编号
 	private String orderID;
-	//顾客生成订单时填写的顾客姓名
+	// 顾客生成订单时填写的顾客姓名
 	private String customerName;
 	// 入住人姓名
 	private String liveinPersonName;
 	// 入住人联系方式
 	private String liveinPersonTelephone;
-	//酒店名称
+	// 酒店名称
 	private String hotelName;
-	//酒店ID
+	// 酒店ID
 	private String hotelID;
-	//酒店联系方式
+	// 酒店联系方式
 	private String hotelTelephone;
-	//预定房型
+	// 预定房型
 	private String roomType;
-	//预定床型
+	// 预定床型
 	private BedType bedType;
-	//预定房间数量
+	// 预定房间数量
 	private int amount;
-	//预定时间
-	private long reserveTimeStamp;
-	//入住人数
+	// 预定时间
+	private java.sql.Date reserveTimeStamp;
+	// 入住人数
 	private int NumberOfPeople;
-	//有无儿童
+	// 有无儿童
 	private Children hasChild;
-	//是否评价
+	// 是否评价
 	private boolean hasRemarked;
-	//预计入住时间
-	private long expectedCheckInTimeStamp;
-	//预计退房时间
-	private long expectedCheckOutTimeStamp;
-	
-	//最晚入住时间,下订单时计算产生
-	private long lateCheckInTimeStamp;
-	//实际入住时间
-	private long actualCheckInTimeStamp;
-	//实际退房时间
-	private long actualCheckOutTimeStamp;
-	//订单价格
+	// 预计入住时间
+	private java.sql.Date expectedCheckInTimeStamp;
+	// 预计退房时间
+	private java.sql.Date expectedCheckOutTimeStamp;
+
+	// 最晚入住时间,下订单时计算产生
+	private java.sql.Date lateCheckInTimeStamp;
+	// 实际入住时间
+	private java.sql.Date actualCheckInTimeStamp;
+	// 实际退房时间
+	private java.sql.Date actualCheckOutTimeStamp;
+	// 订单价格
 	private double price;
-	//订单状态
+	// 订单状态
 	private OrderState state;
-	//撤销时间
-	private long cancleTimeStamp;
-	
-	//空方法
-	public OrderInfoPO(){
-		
+	// 撤销时间
+	private java.sql.Date cancleTimeStamp;
+
+	// 空方法
+	public OrderInfoPO() {
+
 	}
-	//查看所有订单信息
-	public OrderInfoPO(String customerID, String orderID, String customerName, String liveinPersonName,String liveinPersonTelephone,
-			String hotelName, String hotelID, String hotelTelephone, String roomType, BedType bedType, int amount,
-			Date reserveTime, int numberOfPeople, Children hasChild, boolean hasRemarked, Date expectedCheckInTime,
-			Date expectedCheckOutTime, Date lateCheckInTime, Date actualCheckInTime, Date actualCheckOutTime,
-			double price, OrderState state,Date cancleTime) {
+
+	// 查看所有订单信息
+	public OrderInfoPO(String customerID, String orderID, String customerName, String liveinPersonName,
+			String liveinPersonTelephone, String hotelName, String hotelID, String hotelTelephone, String roomType,
+			BedType bedType, int amount, Date reserveTime, int numberOfPeople, Children hasChild, boolean hasRemarked,
+			Date expectedCheckInTime, Date expectedCheckOutTime, Date lateCheckInTime, Date actualCheckInTime,
+			Date actualCheckOutTime, double price, OrderState state, Date cancleTime) {
 		this.setCustomerID(customerID);
 		this.setOrderID(orderID);
 		this.setCustomerName(customerName);
@@ -96,10 +98,11 @@ public class OrderInfoPO implements Serializable {
 		this.setCancleTime(cancleTime);
 	}
 
-	//顾客下订单时的订单信息
-	public OrderInfoPO(String orderID,String hotelID,String hotelname, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
-			Date orderTime,Date expectedCheckInTime, Date expectedCheckOutTime,String roomType, BedType bedType, int amount,
-			int numberOfPeople, Children hasChild,double price,OrderState state) {
+	// 顾客下订单时的订单信息
+	public OrderInfoPO(String orderID, String hotelID, String hotelname, String customerID, String customerName,
+			String liveinPersonName, String liveinPersonTelephone, Date orderTime, Date expectedCheckInTime,
+			Date expectedCheckOutTime, String roomType, BedType bedType, int amount, int numberOfPeople,
+			Children hasChild, double price, OrderState state) {
 		this.setOrderID(orderID);
 		this.setCustomerID(customerID);
 		this.setHotelID(hotelID);
@@ -116,14 +119,17 @@ public class OrderInfoPO implements Serializable {
 		this.setHasChild(hasChild);
 		this.setPrice(price);
 		this.setState(state);
-		this.setReserveTime(orderTime);;
+		this.setReserveTime(orderTime);
+		;
 	}
-	//顾客在撤销订单前及入住之前查看订单时显示的订单信息
-	//酒店管理人员checkin时获取的订单信息
-	//网站营销人员撤销异常订单时获取的订单信息
-	public OrderInfoPO(String orderID,String hotelID, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
-			Date expectedCheckInTime, Date expectedCheckOutTime, Date lateCheckInTime,String roomType, BedType bedType, int amount,
-			int numberOfPeople, Children hasChild,double price,OrderState state) {
+
+	// 顾客在撤销订单前及入住之前查看订单时显示的订单信息
+	// 酒店管理人员checkin时获取的订单信息
+	// 网站营销人员撤销异常订单时获取的订单信息
+	public OrderInfoPO(String orderID, String hotelID, String customerID, String customerName, String liveinPersonName,
+			String liveinPersonTelephone, Date expectedCheckInTime, Date expectedCheckOutTime, Date lateCheckInTime,
+			String roomType, BedType bedType, int amount, int numberOfPeople, Children hasChild, double price,
+			OrderState state) {
 		this.setOrderID(orderID);
 		this.setCustomerID(customerID);
 		this.setHotelID(hotelID);
@@ -141,10 +147,12 @@ public class OrderInfoPO implements Serializable {
 		this.setPrice(price);
 		this.setState(state);
 	}
-	//酒店管理人员checkout时获取的订单信息
-	public OrderInfoPO(String orderID,String hotelID, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
-			Date expectedCheckInTime, Date expectedCheckOutTime, Date lateCheckInTime,String roomType, BedType bedType, int amount,
-			int numberOfPeople, Children hasChild,OrderState state,Date actualCheckInTime){
+
+	// 酒店管理人员checkout时获取的订单信息
+	public OrderInfoPO(String orderID, String hotelID, String customerID, String customerName, String liveinPersonName,
+			String liveinPersonTelephone, Date expectedCheckInTime, Date expectedCheckOutTime, Date lateCheckInTime,
+			String roomType, BedType bedType, int amount, int numberOfPeople, Children hasChild, OrderState state,
+			Date actualCheckInTime) {
 		this.setOrderID(orderID);
 		this.setCustomerID(customerID);
 		this.setHotelID(hotelID);
@@ -162,6 +170,7 @@ public class OrderInfoPO implements Serializable {
 		this.setState(state);
 		this.setActualCheckInTime(actualCheckInTime);
 	}
+
 	public String getCustomerID() {
 		return customerID;
 	}
@@ -259,43 +268,59 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public Date getExpectedCheckInTime() {
-		return new Date(expectedCheckInTimeStamp);
+		if (expectedCheckInTimeStamp == null) {
+			return null;
+		}
+		return new Date(expectedCheckInTimeStamp.getTime());
 	}
 
 	public void setExpectedCheckInTime(Date expectedCheckInTime) {
-		this.expectedCheckInTimeStamp = expectedCheckInTime.getTime();
+		if (expectedCheckInTime != null)
+			this.expectedCheckInTimeStamp = new java.sql.Date(expectedCheckInTime.getTime());
 	}
 
 	public Date getExpectedCheckOutTime() {
-		return new Date(expectedCheckInTimeStamp);
+		if (expectedCheckInTimeStamp == null)
+			return null;
+		return new Date(expectedCheckInTimeStamp.getTime());
 	}
 
 	public void setExpectedCheckOutTime(Date expectedCheckOutTime) {
-		this.expectedCheckOutTimeStamp = expectedCheckOutTime.getTime();
+		if (expectedCheckOutTime != null)
+			this.expectedCheckOutTimeStamp = new java.sql.Date(expectedCheckOutTime.getTime());
 	}
 
 	public Date getLateCheckInTime() {
-		return new Date(lateCheckInTimeStamp);
+		if (lateCheckInTimeStamp == null)
+			return null;
+		return new Date(lateCheckInTimeStamp.getTime());
 	}
 
 	public void setLateCheckInTime(Date lateCheckInTime) {
-		this.lateCheckInTimeStamp = lateCheckInTime.getTime();
+		if (lateCheckInTime != null)
+			this.lateCheckInTimeStamp = new java.sql.Date(lateCheckInTime.getTime());
 	}
 
 	public Date getActualCheckInTime() {
-		return new Date(actualCheckInTimeStamp);
+		if (actualCheckInTimeStamp == null)
+			return null;
+		return new Date(actualCheckInTimeStamp.getTime());
 	}
 
 	public void setActualCheckInTime(Date actualCheckInTime) {
-		this.actualCheckInTimeStamp = actualCheckInTime.getTime();
+		if (actualCheckInTime != null)
+			this.actualCheckInTimeStamp = new java.sql.Date(actualCheckInTime.getTime());
 	}
 
 	public Date getActualCheckOutTime() {
-		return new Date(actualCheckInTimeStamp);
+		if (actualCheckInTimeStamp == null)
+			return null;
+		return new Date(actualCheckInTimeStamp.getTime());
 	}
 
 	public void setActuarCheckOutTime(Date actualCheckOutTime) {
-		this.actualCheckOutTimeStamp = actualCheckOutTime.getTime();
+		if (actualCheckOutTime != null)
+			this.actualCheckOutTimeStamp = new java.sql.Date(actualCheckOutTime.getTime());
 	}
 
 	public double getPrice() {
@@ -313,29 +338,43 @@ public class OrderInfoPO implements Serializable {
 	public void setState(OrderState state) {
 		this.state = state;
 	}
+
 	public String getLiveinPersonName() {
 		return liveinPersonName;
 	}
+
 	public void setLiveinPersonName(String liveinPersonName) {
 		this.liveinPersonName = liveinPersonName;
 	}
+
 	public String getLiveinPersonTelephone() {
 		return liveinPersonTelephone;
 	}
+
 	public void setLiveinPersonTelephone(String liveinPersonTelephone) {
 		this.liveinPersonTelephone = liveinPersonTelephone;
 	}
+
 	public Date getCancleTime() {
-		return new Date(cancleTimeStamp);
+		if (cancleTimeStamp == null)
+			return null;
+		return new Date(cancleTimeStamp.getTime());
 	}
+
 	public void setCancleTime(Date cancleTime) {
-		this.cancleTimeStamp = cancleTime.getTime();
+		if (cancleTime != null)
+			this.cancleTimeStamp = new java.sql.Date(cancleTime.getTime());
 	}
+
 	public Date getReserveTime() {
-		return new Date(reserveTimeStamp);
+		if (reserveTimeStamp == null)
+			return null;
+		return new Date(reserveTimeStamp.getTime());
 	}
+
 	public void setReserveTime(Date reserveTime) {
-		this.reserveTimeStamp = reserveTime.getTime();
+		if (reserveTime != null)
+			this.reserveTimeStamp = new java.sql.Date(reserveTime.getTime());
 	}
 
 }

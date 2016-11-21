@@ -3,7 +3,12 @@ package dao.impl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+import com.mysql.fabric.xmlrpc.base.Data;
+
 import dao.checkindao.CheckinDao;
+import data.datahelper.CheckInDataHelper;
+import datahelper.datafactory.DataFactory;
+import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
 import po.CheckinInfoPO;
 import util.ResultMessage;
 
@@ -18,35 +23,41 @@ public class CheckinDaoImpl extends UnicastRemoteObject implements CheckinDao {
 	private static final long serialVersionUID = 4215636459437070989L;
 
 	private static CheckinDao checkinDao;
+	private static DataFactory dataFactory;
+	private static CheckInDataHelper checkInDataHelper;
+
+	static {
+		try {
+			checkinDao = new CheckinDaoImpl();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static CheckinDao getInstance() throws RemoteException {
-		if (checkinDao == null) {
-			checkinDao = new CheckinDaoImpl();
-		}
 		return checkinDao;
 	}
 
 	private CheckinDaoImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		dataFactory = new DataFactoryDatabaseImpl();
+		checkInDataHelper = dataFactory.getCheckInDataHelper();
 	}
 
 	@Override
 	public ResultMessage addCheckinInfo(CheckinInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return checkInDataHelper.addCheckinInfo(po);
 	}
 
 	@Override
 	public CheckinInfoPO getCheckinInfo(String orderID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return checkInDataHelper.getCheckinInfo(orderID);
 	}
 
 	@Override
 	public ResultMessage modifyCheckinInfo(CheckinInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return checkInDataHelper.modifyCheckinInfo(po);
 	}
 
 }

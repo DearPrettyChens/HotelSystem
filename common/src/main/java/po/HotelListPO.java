@@ -29,6 +29,8 @@ public class HotelListPO implements Serializable {
 	private String address;
 	@Transient
 	private ImageIcon image;
+	@Column(name = "hotel_image")
+	private String hotelImage;
 	@Column(name = "lowest_price")
 	private double lowestPrice;
 	@Column(name = "star")

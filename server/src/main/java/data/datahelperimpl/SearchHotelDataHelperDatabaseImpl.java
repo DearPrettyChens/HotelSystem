@@ -1,4 +1,4 @@
-package datahelper.impl;
+package data.datahelperimpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,9 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		Query query = session.createQuery(sql);
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
+		if (result.size() == 0) {
+			return null;
+		}
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}
@@ -80,6 +83,9 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		Query query = session.createQuery(hql);
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
+		if (result.size() == 0) {
+			return null;
+		}
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}

@@ -14,14 +14,13 @@ public final class HibernateUtil {
 
 	static {
 		cfg = new AnnotationConfiguration();
-		sessionFactory = cfg.configure().buildSessionFactory();
-		// cfg.configure();
+		cfg.configure();
 	}
 
 	public static SessionFactory getSessionFactory() {
-		// if(sessionFactory==null){
-		// sessionFactory = cfg.configure().buildSessionFactory();
-		// }
+		if (sessionFactory == null) {
+			sessionFactory = cfg.configure().buildSessionFactory();
+		}
 		return sessionFactory;
 	}
 

@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import dao.userdao.UserDao;
 import data.datahelper.UserDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryImpl;
+import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
 import po.ClientPO;
 import util.ResultMessage;
 
@@ -19,7 +19,7 @@ import util.ResultMessage;
 public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	private static final long serialVersionUID = 2151592669947030124L;
-	private static UserDaoImpl userDao;
+	private static UserDao userDao;
 	private static DataFactory dataFactory;
 	private UserDataHelper userDataHelper;
 
@@ -37,10 +37,8 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	private UserDaoImpl() throws RemoteException {
 		super();
-		if (dataFactory == null) {
-			dataFactory = new DataFactoryImpl();
-			userDataHelper = dataFactory.getUserDataHelper();
-		}
+		dataFactory = new DataFactoryDatabaseImpl();
+		userDataHelper = dataFactory.getUserDataHelper();
 	}
 
 	@Override

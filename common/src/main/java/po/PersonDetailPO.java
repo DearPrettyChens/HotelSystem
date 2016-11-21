@@ -26,10 +26,10 @@ public class PersonDetailPO {
 	// 信用值
 	private int credit;
 	// 生日
-	private long birthdayStamp;
+	private java.sql.Date birthdayStamp;
 	// 企业名称
 	private String enterpriseName;
-	
+
 	// 会员类型（企业会员和普通会员两种）
 	private CustomerType VIPType;
 	// 密码
@@ -43,7 +43,6 @@ public class PersonDetailPO {
 
 	}
 
-  
 	/**
 	 * @param id
 	 * @param name
@@ -58,21 +57,20 @@ public class PersonDetailPO {
 	 * @param userType
 	 */
 	public PersonDetailPO(int id, String name, ImageIcon image, String telephone, int credit, Date birthday,
-			String enterpriseName, CustomerType vIPType, String password, String hotelName, UserType userType) {
+			String enterpriseName, CustomerType viptype, String password, String hotelName, UserType userType) {
 		super();
-		userId = id;
-		userName = name;
-		userImage = image;
-		this.telephone = telephone;
-		this.credit = credit;
-		this.birthdayStamp = birthday.getTime();
-		this.enterpriseName = enterpriseName;
-		this.VIPType = vIPType;
-		this.password = password;
-		this.hotelName = hotelName;
-		this.userType = userType;
+		this.setId(id);
+		this.setName(name);
+		this.setImage(image);
+		this.setTelephone(telephone);
+		this.setCredit(credit);
+		this.setBirthday(birthday);
+		this.setEnterpriseName(enterpriseName);
+		this.setVIPType(viptype);
+		this.setPassword(password);
+		this.setHotelName(hotelName);
+		this.setUserType(userType);
 	}
-
 
 	public int getId() {
 		return userId;
@@ -115,11 +113,14 @@ public class PersonDetailPO {
 	}
 
 	public Date getBirthday() {
-		return new Date(birthdayStamp);
+		if (birthdayStamp == null)
+			return null;
+		return new Date(birthdayStamp.getTime());
 	}
 
 	public void setBirthday(Date birthday) {
-		this.birthdayStamp = birthday.getTime();
+		if (birthday != null)
+			this.birthdayStamp = new java.sql.Date(birthday.getTime());
 	}
 
 	public String getEnterpriseName() {
@@ -129,7 +130,6 @@ public class PersonDetailPO {
 	public void setEnterpriseName(String enterpriseName) {
 		this.enterpriseName = enterpriseName;
 	}
-
 
 	public CustomerType getVIPType() {
 		return VIPType;
@@ -163,5 +163,4 @@ public class PersonDetailPO {
 		this.userType = userType;
 	}
 
-	
 }

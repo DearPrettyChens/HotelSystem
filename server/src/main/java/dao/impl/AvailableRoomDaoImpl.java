@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import dao.availableroomdao.AvailableRoomDao;
+import data.datahelper.AvailableRoomDataHelper;
+import data.datahelper.SearchHotelDataHelper;
+import data.datahelper.UserDataHelper;
+import datahelper.datafactory.DataFactory;
+import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
@@ -21,7 +26,9 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 
 	private static final long serialVersionUID = -572024053152986904L;
 	private static AvailableRoomDao availableRoomDao;
-	
+	private static DataFactory dataFactory;
+	private AvailableRoomDataHelper availableRoomDataHelper;
+
 	static {
 		try {
 			availableRoomDao = new AvailableRoomDaoImpl();
@@ -36,50 +43,44 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 
 	private AvailableRoomDaoImpl() throws RemoteException {
 		super();
+		dataFactory = new DataFactoryDatabaseImpl();
+		availableRoomDataHelper = dataFactory.getAvailableRoomDataHelper();
 	}
 
 	@Override
 	public ArrayList<AvailableRoomInfoPO> getAvailableRoomInfo(String hotelID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return availableRoomDataHelper.getAvailableRoomInfo(hotelID);
 	}
 
 	@Override
 	public ResultMessage addAvailableRoomInfo(AvailableRoomInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return availableRoomDataHelper.addAvailableRoomInfo(po);
 	}
 
 	@Override
 	public ResultMessage modifyAvailableRoomInfo(AvailableRoomInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return availableRoomDataHelper.modifyAvailableRoomInfo(po);
 	}
 
 	@Override
 	public ResultMessage setAvailableRoomNumber(AvailableRoomNumberPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return availableRoomDataHelper.setAvailableRoomNumber(po);
 	}
 
 	@Override
 	public double getRoomPrice(String hotelID, BedType bedType) throws RemoteException {
-		// TODO Auto-generated method stub
-		return 0;
+		return availableRoomDataHelper.getRoomPrice(hotelID, bedType);
 	}
-
 
 	@Override
 	public AvailableRoomNumberPO getAvailableRoomNumber(String hotelID, Date date, BedType type)
 			throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return availableRoomDataHelper.getAvailableRoomNumber(hotelID, date, type);
 	}
 
 	@Override
 	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return availableRoomDataHelper.setBestPrice(po);
 	}
 
 }

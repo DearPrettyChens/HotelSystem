@@ -3,10 +3,15 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import util.BedType;
 
 
-
+@Entity
+@Table(name = "t_availableroominfo")
 public class AvailableRoomInfoPO implements Serializable {
 	
 	/**

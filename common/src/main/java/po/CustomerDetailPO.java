@@ -4,44 +4,44 @@ import java.io.Serializable;
 
 import java.util.Date;
 
-
 import javax.swing.ImageIcon;
 
-import util.UserType;
-
-
+import util.CustomerType;
 
 /**
  * 传递顾客信息的po类，职责是实现数据层和逻辑层顾客信息的交互
- * @author CLL
- * @version1.0
+ * 
+ * @author CLL @version1.0
  */
-public class CustomerDetailPO implements Serializable{
-	//顾客id
+public class CustomerDetailPO implements Serializable {
+	// 顾客id
 	private String customerId;
-	//用户名名称，暂定为真实姓名
+	// 用户名名称，暂定为真实姓名
 	private String customerName;
-	//头像
+	// 头像
 	private ImageIcon customerImage;
-	//联系方式11位
+	// 联系方式11位
 	private String telephone;
-	//信用值
+	// 信用值
 	private int credit;
-	//生日
-	private long birthdayStamp;
-	//企业名称
+	// 生日
+	private java.sql.Date birthdayStamp;
+	// 企业名称
 	private String enterpriseName;
-	//会员等级
+	// 会员等级
 	private int VIPgrade;
-	//会员类型（企业会员和普通会员两种）
-	private UserType VIPType;
-	//密码
+	// 会员类型（企业会员和普通会员两种）
+	private CustomerType VIPType;
+	// 密码
 	private String password;
-	public CustomerDetailPO(){
-		
+
+	public CustomerDetailPO() {
+
 	}
+
 	/**
 	 * 普通会员vo的构造函数
+	 * 
 	 * @param customerId
 	 * @param customername
 	 * @param customerimage
@@ -51,18 +51,22 @@ public class CustomerDetailPO implements Serializable{
 	 * @param VIPgrade
 	 * @param password
 	 */
-	public CustomerDetailPO(String customerId,String customername,ImageIcon customerimage,String telephone,int credit,Date birthday,int VIPgrade,String password){
-		this.customerName=customername;
-		this.customerImage=customerimage;
-		this.telephone=telephone;
-		this.credit=credit;
-		this.birthdayStamp=birthday.getTime();
-		this.VIPgrade=VIPgrade;
-		this.customerId=customerId;
-		this.password=password;
+	public CustomerDetailPO(String customerId, String customername, ImageIcon customerimage, String telephone,
+			int credit, Date birthday, int VIPgrade, String password) {
+		this.setCustomerId(customerId);
+		this.setCustomerName(customername);
+		this.setCustomerImage(customerimage);
+		this.setTelephone(telephone);
+		this.setCredit(credit);
+		this.setBirthday(birthday);
+		this.setVIPType(CustomerType.INDIVIDUAL);
+		this.setVIPgrade(VIPgrade);
+		this.setPassword(password);
 	}
+
 	/**
 	 * 企业会员vo的构造函数
+	 * 
 	 * @param customerId
 	 * @param customername
 	 * @param customerimage
@@ -72,15 +76,17 @@ public class CustomerDetailPO implements Serializable{
 	 * @param VIPgrade
 	 * @param password
 	 */
-	public CustomerDetailPO(String customerId,String customername,ImageIcon customerimage,String enterprisename,String telephone,int credit,int VIPgrade,String password){
-		this.customerName=customername;
-		this.customerImage=customerimage;
-		this.telephone=telephone;
-		this.credit=credit;
-		this.enterpriseName=enterprisename;
-		this.VIPgrade=VIPgrade;
-		this.customerId=customerId;
-		this.password=password;
+	public CustomerDetailPO(String customerId, String customername, ImageIcon customerimage, String enterprisename,
+			String telephone, int credit, int VIPgrade, String password) {
+		this.setCustomerName(customername);
+		this.setEnterpriseName(enterprisename);
+		this.setCustomerId(customerId);
+		this.setCustomerImage(customerimage);
+		this.setTelephone(telephone);
+		this.setCredit(credit);
+		this.setVIPType(CustomerType.ENTERPRISE);
+		this.setVIPgrade(VIPgrade);
+		this.setPassword(password);
 	}
 
 	public String getCustomerName() {
@@ -116,11 +122,14 @@ public class CustomerDetailPO implements Serializable{
 	}
 
 	public Date getBirthday() {
-		return new Date(birthdayStamp);
+		if (birthdayStamp == null)
+			return null;
+		return new Date(birthdayStamp.getTime());
 	}
 
 	public void setBirthday(Date birthday) {
-		this.birthdayStamp = birthday.getTime();
+		if (birthday != null)
+			this.birthdayStamp = new java.sql.Date(birthday.getTime());
 	}
 
 	public String getEnterpriseName() {
@@ -134,29 +143,33 @@ public class CustomerDetailPO implements Serializable{
 	public int getVIPgrade() {
 		return VIPgrade;
 	}
-	
-	public void setVIPType(UserType VIPType) {
-		this.VIPType = VIPType;
-	}
 
-	public UserType getVIPType() {
-		return VIPType;
-	}
-	
 	public void setCustomerId(String customerId) {
 		this.customerId = customerId;
 	}
-	
+
 	public String getCustomerId() {
 		return customerId;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public void setVIPgrade(int vIPgrade) {
+		VIPgrade = vIPgrade;
+	}
+
+	public void setVIPType(CustomerType vIPType) {
+		VIPType = vIPType;
+	}
+
+	public CustomerType getVIPType() {
+		return VIPType;
+	}
+
 }
