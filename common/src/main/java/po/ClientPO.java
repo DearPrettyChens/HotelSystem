@@ -33,6 +33,41 @@ public class ClientPO implements Serializable {
 	@Column(name = "user_type")
 	private UserType type;
 
+	class Builder {
+		ClientPO po;
+
+		public Builder() {
+			this.po = new ClientPO();
+		}
+
+		public Builder userID(int userID) {
+			this.po.userID = userID;
+			return this;
+		}
+
+		public Builder userName(String username) {
+			this.po.userName = username;
+			return this;
+		}
+
+		public Builder password(String password) {
+			this.po.password = password;
+			return this;
+		}
+
+		public Builder type(UserType type) {
+			this.po.type = type;
+			return this;
+		}
+
+		public ClientPO build() {
+			return this.po;
+		}
+	}
+
+	public ClientPO() {
+
+	}
 
 	public ClientPO(String userName, String password, int userID) {
 		this.userName = userName;
@@ -78,9 +113,9 @@ public class ClientPO implements Serializable {
 	public void setType(UserType type) {
 		this.type = type;
 	}
-	
-	public ClientPO copy(){
-		ClientPO po = new ClientPO(this.userName,this.password,this.userID,this.type);
+
+	public ClientPO copy() {
+		ClientPO po = new ClientPO(this.userName, this.password, this.userID, this.type);
 		return po;
 	}
 }

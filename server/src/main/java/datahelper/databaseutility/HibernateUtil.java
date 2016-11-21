@@ -1,4 +1,4 @@
-package init;
+package datahelper.databaseutility;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -14,13 +14,14 @@ public final class HibernateUtil {
 
 	static {
 		cfg = new AnnotationConfiguration();
-		cfg.configure();
+		sessionFactory = cfg.configure().buildSessionFactory();
+		// cfg.configure();
 	}
 
 	public static SessionFactory getSessionFactory() {
-		if(sessionFactory==null){
-			sessionFactory = cfg.configure().buildSessionFactory();
-		}
+		// if(sessionFactory==null){
+		// sessionFactory = cfg.configure().buildSessionFactory();
+		// }
 		return sessionFactory;
 	}
 
