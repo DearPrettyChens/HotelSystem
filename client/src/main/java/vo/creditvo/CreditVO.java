@@ -17,8 +17,8 @@ public class CreditVO  implements Serializable{
      */
 	private String name;//用户名
 	private String ID;//编号
-	private double credit;//信用值
-	private double CreditChange;//信用值变化
+	private int credit;//信用值
+	private int CreditChange;//信用值变化
 	private String reason;//原因
 	private Date time;//时间
 	
@@ -35,7 +35,7 @@ public class CreditVO  implements Serializable{
     	
 		
 	}
-    public CreditVO(String name,String ID,double credit,double CreditChange,String reason,Date time){
+    public CreditVO(String name,String ID,int credit,int CreditChange,String reason,Date time){
 		this.credit=credit;
 		this.CreditChange=CreditChange;
 		this.reason=reason;
@@ -57,16 +57,16 @@ public class CreditVO  implements Serializable{
 	public void setID(String iD) {
 		ID = iD;
 	}
-	public double getCredit() {
+	public int getCredit() {
 		return credit;
 	}
-	public void setCredit(double credit) {
+	public void setCredit(int credit) {
 		this.credit = credit;
 	}
-	public double getCreditChange() {
+	public int getCreditChange() {
 		return CreditChange;
 	}
-	public void setCreditChange(double creditChange) {
+	public void setCreditChange(int creditChange) {
 		CreditChange = creditChange;
 	}
 	public String getReason() {

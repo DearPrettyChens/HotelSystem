@@ -126,7 +126,7 @@ public class SingleOrder {
 			this.addOrderState(OrderState.HASCANCELED, orderID);
 			//调用Credit.addCredit异常订单撤销时，恢复顾客的信用值
 			return credit.addCredit(new CreditVO(orderInfo.getCustomerName(),customerID,
-					(double)preCredit,(double)creditNum,"异常订单撤销",new Date()));
+					preCredit,creditNum,"异常订单撤销",new Date()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -153,8 +153,8 @@ public class SingleOrder {
 			Date cancelTime=new Date();
 			hourGap= latestCheckTime.getTime()/(60*60*1000)-cancelTime.getTime()/(60*60*1000);
 			if(hourGap<6){
-				credit.cutCredit(new CreditVO(orderInfo.getCustomerName(),customerID,(double)preCredit,
-					orderInfo.getPrice()/2,"撤销时间与最晚执行时间距离不足6小时",cancelTime));
+				credit.cutCredit(new CreditVO(orderInfo.getCustomerName(),customerID,preCredit,
+					(int)orderInfo.getPrice()/2,"撤销时间与最晚执行时间距离不足6小时",cancelTime));
 			}
 			//增加订单状态
 			return this.addOrderState(OrderState.HASCANCELED, orderID);
@@ -191,7 +191,7 @@ public class SingleOrder {
 			this.addOrderState(OrderState.NOTREMARKED, orderID);
 			//调用Credit.addCredit为顾客增加信用值
 			return credit.addCredit(new CreditVO(orderInfo.getCustomerName(),orderInfo.getCustomerID()
-					,creditNum,orderInfo.getPrice(),"订单正常执行",new Date()));
+					,creditNum,(int)orderInfo.getPrice(),"订单正常执行",new Date()));
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

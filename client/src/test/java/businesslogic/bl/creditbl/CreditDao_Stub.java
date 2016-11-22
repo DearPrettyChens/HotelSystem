@@ -16,7 +16,7 @@ import java.util.List;
  *
  */
 public class CreditDao_Stub implements CreditDao{
-	double credit=100;
+	int credit=100;
 	@Override
 	public ResultMessage setCredit(CreditPO po) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -28,7 +28,7 @@ public class CreditDao_Stub implements CreditDao{
 	public CreditInfoPO getCreditInfo(String customerID) throws RemoteException {
 		// TODO Auto-generated method stub
 		List<CreditPO> pos=new ArrayList<CreditPO>();
-		pos.add(new CreditPO("chen",000001,credit,0.0,null,new Date()));
+		pos.add(new CreditPO("chen",000001,credit,0,null,new Date()));
 		CreditInfoPO po=new CreditInfoPO(pos);
 		return po;
 	}

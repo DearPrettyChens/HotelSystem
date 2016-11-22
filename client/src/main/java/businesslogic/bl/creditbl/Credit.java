@@ -55,8 +55,8 @@ public class Credit {
 	 */
 	public ResultMessage addCredit(CreditVO creditVO) {
 		//changecredit统一为正的，增为加，扣为减
-		double changeCredit=creditVO.getCreditChange();
-		double nowCredit=changeCredit+creditVO.getCredit();
+		int changeCredit=creditVO.getCreditChange();
+		int nowCredit=changeCredit+creditVO.getCredit();
 		//传给数据层的是变化后的credit值
 		CreditPO po=new CreditPO(creditVO.getName(),TransHelper.idToInt(creditVO.getID()),nowCredit,changeCredit,
 				creditVO.getReason(),creditVO.getTime());
@@ -74,8 +74,8 @@ public class Credit {
 	 * @return ResultMessage
 	 */
 	public ResultMessage cutCredit(CreditVO creditVO) {
-		double changeCredit=creditVO.getCreditChange();
-		double nowCredit=changeCredit-creditVO.getCredit();
+		int changeCredit=creditVO.getCreditChange();
+		int nowCredit=changeCredit-creditVO.getCredit();
 		//传给数据层的是变化后的credit值
 		CreditPO po=new CreditPO(creditVO.getName(),TransHelper.idToInt(creditVO.getID()),nowCredit,-changeCredit,
 				creditVO.getReason(),creditVO.getTime());
@@ -98,11 +98,11 @@ public class Credit {
 			CreditInfoPO po=creditDao.getCreditInfo(customerId);
 			List<CreditPO> creditInfoList=po.getCreditRecords();
 			//充值之前的信用值
-			double preCredit=creditInfoList.get(creditInfoList.size()-1).getCredit();
+			int preCredit=creditInfoList.get(creditInfoList.size()-1).getCredit();
 			//充值之后的信用值
-			double nowCredit=preCredit+money*100;
+			int nowCredit=preCredit+(int)money*100;
 			CreditPO newPO=new CreditPO(customerId,creditInfoList.get(creditInfoList.size()-1)
-					.getID(),nowCredit,money*100,"线下充值",new Date());
+					.getID(),nowCredit,(int)money*100,"线下充值",new Date());
 			//CreditPO newPO=new CreditPO(customerName,null,money*100,"线下充值",new Date());
 			creditDao.setCredit(newPO);
 		} catch (RemoteException e) {
