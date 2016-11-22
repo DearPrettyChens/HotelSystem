@@ -1,8 +1,11 @@
 package vo.hotelvo;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import po.HotelBasicInfoPO;
+import po.RemarkPO;
 import util.City;
 import util.TradingArea;
 import util.TransHelper;
@@ -29,6 +32,10 @@ public class HotelBasicInfoVO {
 	private String telephone;
 	// 星级
 	private int star;
+	//评分
+	private double score;
+	//最低价格
+	private double lowestPrice;
 	// 酒店简介
 	private String introduce;
 	// 通用设施
@@ -41,6 +48,8 @@ public class HotelBasicInfoVO {
 	private String roomFacility;
 	// 合作企业
 	private String enterprises;
+	// 住户点评
+	private ArrayList<RemarkPO> remarks;
     //空方法
 	public HotelBasicInfoVO(){
 		
@@ -72,6 +81,7 @@ public class HotelBasicInfoVO {
     	this.roomFacility=po.getRoomFacility();
     		// 合作企业
     	this.enterprises=po.getEnterprises();
+    	
     	 
 		
 	}
@@ -205,9 +215,21 @@ public class HotelBasicInfoVO {
 	}
 	public HotelBasicInfoPO votopo(){
 		return new HotelBasicInfoPO(TransHelper.idToInt(this.hotelID), this.hotelName, this.hotelImage, this.address, this.telephone,
-				this.star,0, 0, this.introduce, this.commonFacility,
-				this.activityFacility, this.service, this.roomFacility,null,0);
+				this.star,this.score, this.lowestPrice, this.introduce, this.commonFacility,
+				this.activityFacility, this.service, this.roomFacility,this.remarks,this.city);
 	
+	}
+	public double getLowestPrice() {
+		return lowestPrice;
+	}
+	public void setLowestPrice(double lowestPrice) {
+		this.lowestPrice = lowestPrice;
+	}
+	public ArrayList<RemarkPO> getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(ArrayList<RemarkPO> remarks) {
+		this.remarks = remarks;
 	}
 
 }
