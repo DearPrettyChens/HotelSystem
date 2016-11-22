@@ -36,6 +36,8 @@
 		<mapping class="po.HotelBestPricePO"></mapping>
 		<mapping class="po.CheckinInfoPO"></mapping>
 		<mapping class="po.CreditPO"></mapping>
+		<mapping class="po.HotelBasicInfoPO"></mapping>
+		<mapping class="po.HotelBestPricePO"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

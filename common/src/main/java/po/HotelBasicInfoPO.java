@@ -8,15 +8,15 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.swing.ImageIcon;
 
 import com.sun.javafx.beans.IDProperty;
 
 import util.City;
 import util.TradingArea;
-
-
 
 /**
  * 酒店基本信息
@@ -25,66 +25,67 @@ import util.TradingArea;
  * @version 1.0
  */
 @Entity
-@Table(name="t_hotel")
+@Table(name = "t_hotel")
 public class HotelBasicInfoPO implements Serializable {
 	// 酒店id
 	@Id
-	@Column(name="id")
+	@Column(name = "id")
 	private int hotelID;
 	// 酒店名
-	@Column(name="name")
+	@Column(name = "name")
 	private String name;
 	// 酒店图片
+	@Transient
 	private ImageIcon hotelImage;
 	// 城市
-	@Column(name="city")
-	private City city;
+	@Column(name = "city")
+	private String city;
 	// 商圈
-	@Column(name="trading_area")
-	private TradingArea tradingArea;
+	@Column(name = "trading_area")
+	private String tradingArea;
 	// 地址
-	@Column(name="address")
+	@Column(name = "address")
 	private String address;
 	// 联系方式
-	@Column(name="telephone")
+	@Column(name = "telephone")
 	private String telephone;
 	// 星级
-	@Column(name="star")
+	@Column(name = "star")
 	private int star;
 	// 评分
-	@Column(name="score")
+	@Column(name = "score")
 	private double score;
 	// 最低价格
-	@Column(name="lowest_price")
+	@Column(name = "lowest_price")
 	private double lowestPrice;
 	// 预定记录？
 	// private String reserveRecords;
 	// 酒店简介
-	@Column(name="introduce")
+	@Column(name = "introduce")
 	private String introduce;
 	// 通用设施
-	@Column(name="common_facility")
+	@Column(name = "common_facility")
 	private String commonFacility;
 	// 活动设施
-	@Column(name="activity_facility")
+	@Column(name = "activity_facility")
 	private String activityFacility;
 	// 服务项目
-	@Column(name="service")
+	@Column(name = "service")
 	private String service;
 	// 客房设施
-	@Column(name="room_facility")
+	@Column(name = "room_facility")
 	private String roomFacility;
 	// 住户点评
+	// @OneToMany(mappedBy="")
+	@Transient
 	private ArrayList<RemarkPO> remarks;
-	//评价过的订单总数
-	@Column(name="remark_number")
+	// 评价过的订单总数
+	@Column(name = "remark_number")
 	private int remarkOrderNumber;
-	//合作企业
-	@Column(name="enterprises")
+	// 合作企业
+	@Column(name = "enterprises")
 	private String enterprises;
-    //空方法
-	
-	
+	// 空方法
 
 	public void setEnterprises(String enterprises) {
 		this.enterprises = enterprises;
@@ -94,13 +95,15 @@ public class HotelBasicInfoPO implements Serializable {
 
 	}
 
-	public HotelBasicInfoPO(String hotelName){
-		this.setName(hotelName);
-	}
+	// public HotelBasicInfoPO( String hotelName) {
+	// this.setName(hotelName);
+	// }
+
 	// 酒店基本信息，所有人的
-	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone,
-			int star, double score, double lowestPrice, String introduce, String commonFacility,
-			String activityFacility, String service, String roomFacility, ArrayList remarks,int remarkOrderNumber) {
+	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone, int star,
+			double score, double lowestPrice, String introduce, String commonFacility, String activityFacility,
+			String service, String roomFacility, ArrayList remarks, int remarkOrderNumber, City city,
+			TradingArea tradingArea) {
 		this.setHotelID(hotelID);
 		this.setName(name);
 		this.setAddress(address);
@@ -114,8 +117,11 @@ public class HotelBasicInfoPO implements Serializable {
 		this.setService(service);
 		this.setRoomFacility(roomFacility);
 		this.setRemarks(remarks);
-        this.setRemarkOrderNumber(remarkOrderNumber);
-		
+		this.setRemarkOrderNumber(remarkOrderNumber);
+		this.setCity(city);
+		this.setTradingArea(tradingArea);
+		this.setEnterprises(roomFacility);
+		this.setHotelImage(hotelImage);
 	}
 
 	public int getHotelID() {
@@ -231,19 +237,39 @@ public class HotelBasicInfoPO implements Serializable {
 	}
 
 	public City getCity() {
-		return city;
+		City ret = null;
+		switch (city) {
+		case "NANJING":
+			ret = City.NANJING;
+			break;
+		default:
+			break;
+		}
+		return ret;
 	}
 
 	public void setCity(City city) {
-		this.city = city;
+		if (city != null)
+			this.city = city.getString();
 	}
 
 	public TradingArea getTradingArea() {
-		return tradingArea;
+		TradingArea ret = null;
+		switch (tradingArea) {
+		case "XINJIEKOU":
+			ret = TradingArea.XINJIEKOU;
+			break;
+		case "HUNANLU":
+			ret = TradingArea.HUNANLU;
+		default:
+			break;
+		}
+		return ret;
 	}
 
 	public void setTradingArea(TradingArea tradingArea) {
-		this.tradingArea = tradingArea;
+		if (tradingArea != null)
+			this.tradingArea = tradingArea.getString();
 	}
 
 	public int getRemarkOrderNumber() {
@@ -255,8 +281,13 @@ public class HotelBasicInfoPO implements Serializable {
 	}
 
 	public String getEnterprises() {
-		// TODO Auto-generated method stub
-		return null;
+		return enterprises;
+	}
+
+	public HotelBasicInfoPO copy() {
+		return new HotelBasicInfoPO(getHotelID(), getName(), getHotelImage(), getAddress(), getTelephone(), getStar(),
+				getScore(), getLowestPrice(), getIntroduce(), getCommonFacility(), getActivityFacility(), getService(),
+				getRoomFacility(), getRemarks(), getRemarkOrderNumber(), getCity(), getTradingArea());
 	}
 
 }

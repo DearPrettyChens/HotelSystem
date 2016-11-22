@@ -1,33 +1,52 @@
 package po;
 
 import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.sun.javafx.beans.IDProperty;
+
 /**
  * 酒店评论
+ * 
  * @author CYF
  * @version 1.0
  */
-public class RemarkPO implements Serializable{
-	//酒店id
+@Entity
+@Table(name = "t_remark")
+public class RemarkPO implements Serializable {
+	// 酒店id
+	@Column(name = "hotel_id")
 	private int hotelID;
-	//用户id
+	// 用户id
+	@Column(name = "customer_id")
 	private int customerID;
-	//订单号
+	// 订单号
+	@Id
+	@Column(name = "order_id")
 	private String orderID;
-	//给酒店的打分
+	// 给酒店的打分
+	@Column(name = "score")
 	private double score;
-	//酒店的评论
+	// 酒店的评论
+	@Column(name = "remark")
 	private String remark;
-	//空方法
-	public RemarkPO(){
-		
+
+	// 空方法
+	public RemarkPO() {
+
 	}
+
 	// 酒店评价
-	public RemarkPO(int hotelID,String orderId,int customerID,double score,String remark){
+	public RemarkPO(int hotelID, String orderId, int customerID, double score, String remark) {
 		this.setHotelID(hotelID);
 		this.setCustomerID(customerID);
 		this.setScore(score);
-		this.setRemark(remark);	
-		this.orderID=orderId;
+		this.setRemark(remark);
+		this.orderID = orderId;
 	}
 
 	public int getHotelID() {
@@ -61,9 +80,11 @@ public class RemarkPO implements Serializable{
 	public void setCustomerID(int customerID) {
 		this.customerID = customerID;
 	}
+
 	public String getOrderID() {
 		return orderID;
 	}
+
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}

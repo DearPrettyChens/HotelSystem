@@ -4,6 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import util.HotelStrategyType;
 
 /**
@@ -11,7 +16,13 @@ import util.HotelStrategyType;
  * 
  * @author CLL @version1.0
  */
+@Entity
+@Table(name = "hotel_strategy")
 public class HotelStrPO implements Serializable {
+	@Id
+	@Column(name = "str_id")
+	private int strid;
+	@Column(name = "hotel_id")
 	private int hotelID;
 	// 数量策略的数量
 	private int amount;

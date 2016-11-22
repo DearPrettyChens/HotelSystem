@@ -4,6 +4,9 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 import dao.hoteldao.HotelDao;
+import data.datahelper.HotelDataHelper;
+import datahelper.datafactory.DataFactory;
+import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
 import po.RemarkPO;
@@ -19,46 +22,50 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
 
 	private static final long serialVersionUID = 2276917735276620811L;
 	private static HotelDao hotelDao;
+	private DataFactory dataFactory;
+	private HotelDataHelper hotelDataHelper;
+
+	static {
+		try {
+			hotelDao = new HotelDaoImpl();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static HotelDao getInstance() throws RemoteException {
-		if (hotelDao == null) {
-			hotelDao = new HotelDaoImpl();
-		}
 		return hotelDao;
 	}
 
 	private HotelDaoImpl() throws RemoteException {
 		super();
-		// TODO Auto-generated constructor stub
+		dataFactory = new DataFactoryDatabaseImpl();
+		hotelDataHelper = dataFactory.getHotelDataHelper();
 	}
 
 	@Override
 	public HotelBasicInfoPO getHotelBasicInfo(String hotelID) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDataHelper.getHotelBasicInfo(hotelID);
 	}
 
 	@Override
 	public ResultMessage addRemarkInfo(RemarkPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDataHelper.addRemarkInfo(po);
 	}
 
 	@Override
 	public ResultMessage addHotelBasicInfo(HotelBasicInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDataHelper.addHotelBasicInfo(po);
 	}
 
 	@Override
 	public ResultMessage setHotelBasicInfo(HotelBasicInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDataHelper.setHotelBasicInfo(po);
 	}
 
 	@Override
 	public ResultMessage setBestPrice(HotelBestPricePO po) throws RemoteException {
-		// TODO Auto-generated method stub
-		return null;
+		return hotelDataHelper.setBestPrice(po);
 	}
 }

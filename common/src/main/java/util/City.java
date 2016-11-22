@@ -1,5 +1,8 @@
 package util;
 
 public enum City {
-   NANJING;
+	NANJING;
+	public String getString() {
+		return "NANJING";
+	}
 }
