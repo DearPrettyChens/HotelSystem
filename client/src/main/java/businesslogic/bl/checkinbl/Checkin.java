@@ -21,9 +21,9 @@ import vo.ordervo.OrderInfoVO;
 public class Checkin{
 	private AvailableRoom availableRoom;
 //	private User user;
-	private String hotelID;
-	public Checkin(String hotelID){
-		this.setHotelID(hotelID);
+//	private String hotelID;
+	public Checkin(){
+		//this.setHotelID(hotelID);
 	}
 	/**
 	 * 根据订单号获取顾客订单信息
@@ -102,11 +102,11 @@ public class Checkin{
 		availableRoom=new AvailableRoom();
 		return availableRoom.getAvailableRoomInfo(hotelID);
 	}
-	public String getHotelID() {
+/*	public String getHotelID() {
 		return hotelID;
 	}
 	public void setHotelID(String hotelID) {
 		this.hotelID = hotelID;
-	}
+	}*/
 
 }

@@ -20,14 +20,14 @@ public class CheckinController implements CheckinBLService{
 	private Checkin checkin;
 	private static CheckinController checkinController=null;
 	
-	private CheckinController(String hotelID){
-		checkin=new Checkin(hotelID);
+	private CheckinController(){
+		checkin=new Checkin();
 	}
 	
 	//实现单例模式
-	public static CheckinController getInstance(String hotelID){
-		if(checkinController==null||checkinController.checkin.getHotelID()!=hotelID){
-			checkinController=new CheckinController(hotelID);
+	public static CheckinController getInstance(){
+		if(checkinController==null){
+			checkinController=new CheckinController();
 		}
 		return checkinController;
 	}

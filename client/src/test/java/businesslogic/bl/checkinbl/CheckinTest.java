@@ -21,7 +21,7 @@ public class CheckinTest {
 	SingleOrder order;
 	@Before
 	public void setUp() throws Exception {
-		checkin=new Checkin("000002");
+		checkin=new Checkin();
 	}
 
 	@Test

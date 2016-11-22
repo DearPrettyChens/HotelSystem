@@ -13,7 +13,7 @@ public class CreditChangeController implements CreditChangeService{
 	//持有credit的引用
 	private Credit credit;
 	private static CreditChangeController controller=null;
-	public CreditChangeController(String customerID){
+	private CreditChangeController(String customerID){
 		credit=new Credit(customerID);
 	}
 	//实现单例模式

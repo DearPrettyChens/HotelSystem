@@ -16,7 +16,7 @@ public class CreditInfoController implements CreditInfoService{
 	}
 	//实现单例模式
 	public static CreditInfoController getInstance(String customerID){
-		if(controller==null){
+		if(controller==null||controller.credit.getCustomerID()!=customerID){
 			controller=new CreditInfoController(customerID);
 		}
 		return controller;
