@@ -11,15 +11,15 @@ import vo.uservo.PasswordVO;
  * @author CLL
  *
  */
-public class LoginDistributeController {
-	private static LoginDistributeController controller=null;
+public class LoginDistributionController {
+	private static LoginDistributionController controller=null;
 	private UserSafetyService userSafetyService;
-	private LoginDistributeController(){
+	private LoginDistributionController(){
 		userSafetyService=UserSafetyController.getInstance();
 	}
-	public static LoginDistributeController getInstance(){
+	public static LoginDistributionController getInstance(){
 		if(controller==null){
-			controller=new LoginDistributeController();
+			controller=new LoginDistributionController();
 		}
 		return controller;
 	}

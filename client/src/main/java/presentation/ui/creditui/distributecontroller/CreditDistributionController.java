@@ -12,19 +12,19 @@ import vo.creditvo.CreditVO;
  * @author CLL
  *
  */
-public class CreditDistributeController {
-	private static CreditDistributeController controller=null;
+public class CreditDistributionController {
+	private static CreditDistributionController controller=null;
 	private CreditChangeService creditChangeService;
 	private CreditInfoService creditInfoService;
 	private static String customer;
-	private CreditDistributeController(String customerID){
+	private CreditDistributionController(String customerID){
 		creditChangeService=CreditChangeController.getInstance(customerID);
 		creditInfoService=CreditInfoController.getInstance(customerID);
 		customer=customerID;
 	}
-	public static CreditDistributeController getInstance(String customerID){
+	public static CreditDistributionController getInstance(String customerID){
 		if(controller==null||customer!=customerID){
-			controller=new CreditDistributeController(customerID);
+			controller=new CreditDistributionController(customerID);
 		}
 		return controller;
 	}

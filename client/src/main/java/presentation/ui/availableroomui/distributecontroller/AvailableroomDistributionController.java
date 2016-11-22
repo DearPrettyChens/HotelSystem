@@ -15,17 +15,17 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  * @author CLL
  *
  */
-public class AvailableroomDistributeController {
-	private static AvailableroomDistributeController controller=null;
+public class AvailableroomDistributionController {
+	private static AvailableroomDistributionController controller=null;
 	private AvailableRoomInfoService availableRoomInfoService;
 	private RoomPriceService roomPriceService;
-	private AvailableroomDistributeController(){
+	private AvailableroomDistributionController(){
 		availableRoomInfoService=AvailableRoomInfoController.getInstance();
 		roomPriceService=RoomPriceController.getInstance();
 	}
-	public static AvailableroomDistributeController getInstance(){
+	public static AvailableroomDistributionController getInstance(){
 		if(controller==null){
-			controller=new AvailableroomDistributeController();
+			controller=new AvailableroomDistributionController();
 		}
 		return controller;
 	}

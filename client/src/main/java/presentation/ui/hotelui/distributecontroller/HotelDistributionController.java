@@ -18,19 +18,19 @@ import vo.hotelvo.HotelOrderVO;
  * @author CLL
  *
  */
-public class HotelDistributeController {
-	private static HotelDistributeController controller=null;
+public class HotelDistributionController {
+	private static HotelDistributionController controller=null;
 	private HotelOrderService hotelOrderService;
 	private LookHotelService lookHotelService;
 	private MaintainHotelService maintainHotelService;
-	private HotelDistributeController(){
+	private HotelDistributionController(){
 		hotelOrderService=HotelOrderController.getInstance();
 		lookHotelService=LookHotelController.getInstance();
 		maintainHotelService=MaintainHotelController.getInstance();
 	}
-	public static HotelDistributeController getInstance(){
+	public static HotelDistributionController getInstance(){
 		if(controller==null){
-			controller=new HotelDistributeController();
+			controller=new HotelDistributionController();
 		}
 		return controller;
 	}

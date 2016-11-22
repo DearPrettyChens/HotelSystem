@@ -12,15 +12,15 @@ import vo.ordervo.OrderProvidedVO;
  * @author CLL
  *
  */
-public class HotelStrategyDistributeController {
-	private static HotelStrategyDistributeController controller=null;
+public class HotelStrategyDistributionController {
+	private static HotelStrategyDistributionController controller=null;
 	private HotelStrategyBLService hotelStrategyBLService;
-	private HotelStrategyDistributeController(){
+	private HotelStrategyDistributionController(){
 		hotelStrategyBLService=HotelStrategyController.getInstance();
 	}
-	public static HotelStrategyDistributeController getInstance(){
+	public static HotelStrategyDistributionController getInstance(){
 		if(controller==null){
-			controller=new HotelStrategyDistributeController();
+			controller=new HotelStrategyDistributionController();
 		}
 		return controller;
 	}

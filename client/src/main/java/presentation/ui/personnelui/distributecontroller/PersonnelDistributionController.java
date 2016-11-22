@@ -13,17 +13,17 @@ import vo.personnelvo.PersonListVO;
  * @author CLL
  *
  */
-public class PersonnelDistributeController {
-	private static PersonnelDistributeController controller=null;
+public class PersonnelDistributionController {
+	private static PersonnelDistributionController controller=null;
 	private PersonnelBLService personnelBLService;
 	
-	private PersonnelDistributeController(){
+	private PersonnelDistributionController(){
 		personnelBLService=PersonnelController.getInstance();
 	}
 	
-	public static PersonnelDistributeController getInstance(){
+	public static PersonnelDistributionController getInstance(){
 		if(controller==null){
-			controller=new PersonnelDistributeController();
+			controller=new PersonnelDistributionController();
 		}
 		return controller;
 	}

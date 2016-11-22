@@ -13,15 +13,15 @@ import vo.ordervo.OrderInfoVO;
  * @author CLL
  *
  */
-public class CheckinDistributeController {
-	private static CheckinDistributeController controller=null;
+public class CheckinDistributionController {
+	private static CheckinDistributionController controller=null;
 	private CheckinBLService checkinBLService;
-	private CheckinDistributeController(){
+	private CheckinDistributionController(){
 		checkinBLService=CheckinController.getInstance();
 	}
-	public static CheckinDistributeController getInstance(){
+	public static CheckinDistributionController getInstance(){
 		if(controller==null){
-			controller=new CheckinDistributeController();
+			controller=new CheckinDistributionController();
 		}
 		return controller;
 	}
@@ -117,3 +117,4 @@ public class CheckinDistributeController {
 	}
 	
 }
+
