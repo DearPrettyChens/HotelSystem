@@ -2,6 +2,7 @@ package businesslogic.bl.orderbl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import dao.orderdao.OrderDao;
 import po.CheckTimePO;
@@ -10,6 +11,8 @@ import po.OrderListPO;
 import po.OrderStatePO;
 import po.RemarkPO;
 import po.TypeInfoPO;
+import util.BedType;
+import util.Children;
 import util.OrderState;
 import util.ResultMessage;
 /**
@@ -18,11 +21,13 @@ import util.ResultMessage;
  *
  */
 public class OrderDao_Stub implements OrderDao{
-	OrderState state;
+	static OrderState state;
 	@Override
 	public OrderInfoPO getOrderInfo(String orderID) throws RemoteException {
 		// TODO Auto-generated method stub
-		OrderInfoPO po=new OrderInfoPO(null, orderID, null, null, null, null, null, null, null, null, 0, null, 0, null, false, null, null, null, null, null, 0, state, null);
+		OrderInfoPO po=new OrderInfoPO("000001", orderID, "chen", "chen", "12345678999", 
+				"南京绿地洲际酒店", "000002", "12345678999", "商务间", BedType.BIGBED, 1,
+				new Date(), 1, Children.EXIST, false, new Date(), new Date(), new Date(), new Date(), new Date(), 685, state, null);
 		return po;
 	}
 

@@ -69,6 +69,7 @@ public class SingleOrder {
 			orderDao.addOrder(orderInfoVO.toMakeOrderPO());
 			//获得当前可用房间数
 			int preRoomNum=0;
+			availableRoom=new AvailableRoom();
 			ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.
 					getAvailableRoomInfo(orderInfoVO.getHotelID());
 			for(int i=0;i<roomInfo.size();i++){
@@ -177,6 +178,9 @@ public class SingleOrder {
 			CheckTimePO checkTime=new CheckTimePO(orderID,time,"checkin");
 			orderDao.setCheckintime(checkTime);
 			//获取相关订单信息
+			if(orderDao==null){
+				System.out.println("ERROR");
+			}
 			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
 			//调credit.getCreditInfoList获得顾客信用信息
 			//person=new Customer();
