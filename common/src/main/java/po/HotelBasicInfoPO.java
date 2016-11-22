@@ -102,8 +102,7 @@ public class HotelBasicInfoPO implements Serializable {
 	// 酒店基本信息，所有人的
 	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone, int star,
 			double score, double lowestPrice, String introduce, String commonFacility, String activityFacility,
-			String service, String roomFacility, ArrayList remarks, int remarkOrderNumber, City city,
-			TradingArea tradingArea) {
+			String service, String roomFacility, ArrayList remarks, City city, TradingArea tradingArea) {
 		this.setHotelID(hotelID);
 		this.setName(name);
 		this.setAddress(address);
@@ -117,7 +116,6 @@ public class HotelBasicInfoPO implements Serializable {
 		this.setService(service);
 		this.setRoomFacility(roomFacility);
 		this.setRemarks(remarks);
-		this.setRemarkOrderNumber(remarkOrderNumber);
 		this.setCity(city);
 		this.setTradingArea(tradingArea);
 		this.setEnterprises(roomFacility);
@@ -287,7 +285,7 @@ public class HotelBasicInfoPO implements Serializable {
 	public HotelBasicInfoPO copy() {
 		return new HotelBasicInfoPO(getHotelID(), getName(), getHotelImage(), getAddress(), getTelephone(), getStar(),
 				getScore(), getLowestPrice(), getIntroduce(), getCommonFacility(), getActivityFacility(), getService(),
-				getRoomFacility(), getRemarks(), getRemarkOrderNumber(), getCity(), getTradingArea());
+				getRoomFacility(), getRemarks(), getCity(), getTradingArea());
 	}
 
 }
