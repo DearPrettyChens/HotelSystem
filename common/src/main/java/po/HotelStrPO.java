@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import util.HotelStrategyType;
 
@@ -25,28 +26,40 @@ public class HotelStrPO implements Serializable {
 	@Column(name = "hotel_id")
 	private int hotelID;
 	// 数量策略的数量
+	@Column(name = "amount")
 	private int amount;
 	// 策略类型
-	private HotelStrategyType type;
+	@Column(name = "type")
+	private String typeInSQL;
+	// @Transient
+	// private HotelStrategyType type;
 	// 折扣值
+	@Column(name = "discount")
 	private double discount;
 	// 合作企业
-	private ArrayList<String> enterprise;
+	@Column(name = "enterprise")
+	private String enterpriseInSQL;
+	// @Transient
+	// private ArrayList<String> enterprise;
 	// 优惠日期
-	private java.sql.Date[] dateStamps;
+	@Column(name = "begin_date")
+	private java.sql.Date beginDate;
+	@Column(name = "end_date")
+	private java.sql.Date endDate;
+	// @Transient
+	// private java.sql.Date[] dateStamps;
 
 	public HotelStrPO() {
 	}
 
 	public HotelStrPO(int hotelID, int amount, HotelStrategyType type, double discount, ArrayList<String> enterprise,
 			Date[] date) {
-		this.hotelID = hotelID;
-		this.amount = amount;
-		this.type = type;
-		this.discount = discount;
-		this.enterprise = enterprise;
+		this.setHotelID(hotelID);
+		this.setAmount(amount);
+		this.setType(type);
+		this.setDiscount(discount);
+		this.setEnterprise(enterprise);
 		this.setDate(date);
-		;
 	}
 
 	public HotelStrPO(int hotelID, int amount, double discount) {
@@ -87,11 +100,32 @@ public class HotelStrPO implements Serializable {
 	}
 
 	public HotelStrategyType getType() {
+		if (typeInSQL == null) {
+			return null;
+		}
+		HotelStrategyType type = null;
+		switch (typeInSQL) {
+		case "SPECIALTIME":
+			type = HotelStrategyType.SPECIALTIME;
+			break;
+		case "BIRTH":
+			type = HotelStrategyType.BIRTH;
+			break;
+		case "ENTERPRISE":
+			type = HotelStrategyType.ENTERPRISE;
+			break;
+		case "AMOUNT":
+			type = HotelStrategyType.AMOUNT;
+			break;
+		default:
+			break;
+		}
 		return type;
 	}
 
 	public void setType(HotelStrategyType type) {
-		this.type = type;
+		if (type != null)
+			this.typeInSQL = type.getString();
 	}
 
 	public double getDiscount() {
@@ -103,30 +137,48 @@ public class HotelStrPO implements Serializable {
 	}
 
 	public ArrayList<String> getEnterprise() {
-		return enterprise;
+		if (enterpriseInSQL == null)
+			return null;
+		String[] strings = enterpriseInSQL.split(" ");
+		ArrayList<String> ret = new ArrayList<String>();
+		for (String each : strings) {
+			ret.add(each);
+		}
+		return ret;
 	}
 
 	public void setEnterprise(ArrayList<String> enterprise) {
-		this.enterprise = enterprise;
-	}
-
-	public Date[] getDate() {
-		if (dateStamps == null)
-			return null;
-		Date[] dates = new Date[dateStamps.length];
-		for (int i = 0; i < dates.length; i++) {
-			dates[i] = new Date(dateStamps[i].getTime());
-		}
-		return dates;
-	}
-
-	public void setDate(Date[] date) {
-		if (date != null) {
-			dateStamps = new java.sql.Date[date.length];
-			for (int i = 0; i < dateStamps.length; i++) {
-				dateStamps[i] = new java.sql.Date(date[i].getTime());
+		this.enterpriseInSQL = "";
+		if (enterprise != null) {
+			for (String each : enterprise) {
+				enterpriseInSQL += each;
+				if (enterprise.get(enterprise.size() - 1) != each) {
+					enterpriseInSQL += " ";
+				}
 			}
 		}
 	}
 
+	public Date[] getDate() {
+		if (beginDate != null && endDate != null) {
+			Date[] dates = new Date[2];
+			dates[0] = new Date(beginDate.getTime());
+			dates[1] = new Date(endDate.getTime());
+			return dates;
+		} else {
+			return null;
+		}
+	}
+
+	public void setDate(Date[] date) {
+		if (date != null && date.length == 2) {
+			beginDate = new java.sql.Date(date[0].getTime());
+			endDate = new java.sql.Date(date[1].getTime());
+		}
+	}
+
+	public HotelStrPO copy() {
+		return new HotelStrPO(getHotelID(), getAmount(), getType(), getDiscount(), getEnterprise(), getDate());
+		
+	}
 }

@@ -13,7 +13,7 @@ import util.TradingArea;
 public class HotelDataServiceImpl_Driver {
 	public void drive(HotelDao dao) throws RemoteException {
 		HotelBasicInfoPO po = new HotelBasicInfoPO(5, "AAAAA", null, "AAAAA", "12345678910", 4, 0, 590, "SSS", "AAA",
-				"AAA", "SSS", "RM", null, 0, City.NANJING, TradingArea.HUNANLU);
+				"AAA", "SSS", "RM", null, City.NANJING, TradingArea.HUNANLU);
 		System.out.println(dao.addHotelBasicInfo(po));
 
 		po = dao.getHotelBasicInfo("5");
