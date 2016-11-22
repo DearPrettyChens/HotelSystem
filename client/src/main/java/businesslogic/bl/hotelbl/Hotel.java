@@ -140,7 +140,13 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 */
 	public ResultMessage confirmModifyInfo(HotelBasicInfoVO hotelInfovo){
 		try {
-			hotelDao.setHotelBasicInfo(hotelInfovo.votopo());
+			//界面层新建酒店信息，是将酒店工作人员id放入vo中
+			if(hotelDao.getHotelBasicInfo(hotelInfovo.getHotelID())==null){
+				hotelDao.addHotelBasicInfo(hotelInfovo.votopo());
+			}
+			else{
+				hotelDao.setHotelBasicInfo(hotelInfovo.votopo());	
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;

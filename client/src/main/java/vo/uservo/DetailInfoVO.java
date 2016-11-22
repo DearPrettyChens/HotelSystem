@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 
 import po.PersonDetailPO;
+import util.CustomerType;
+import util.TransHelper;
 import util.UserType;
 
 /**
@@ -22,6 +24,8 @@ public class DetailInfoVO {
 	private ImageIcon userImage;
 	// 用户种类
 	private UserType userType;
+	//
+	private CustomerType VIPType;
 	// 所属企业
 	private String enterprise;
 	// 生日
@@ -40,11 +44,11 @@ public class DetailInfoVO {
 		this.setBirth(po.getBirthday());
 		this.setEnterprise(po.getEnterpriseName());
 		this.setTelephone(po.getTelephone());
-		this.setUserID(po.getId());
+		this.setUserID(TransHelper.idToString(po.getId(), 6));
 		this.setUserImage(po.getImage());
 		this.setUserName(po.getName());
-		this.setUserType(po.getVIPType());
-		
+		this.setVIPType(po.getVIPType());
+		this.setUserType(po.getUserType());
 	}
 	
 	/**
@@ -52,7 +56,7 @@ public class DetailInfoVO {
 	 * @return PersonDetailPO
 	 */
 	public PersonDetailPO toPO() {
-		return new PersonDetailPO(userID, userName, userImage, telephone, 0, birth, null, null, enterprise,null );
+		return new PersonDetailPO(TransHelper.idToInt(userID), userName, userImage, telephone, 0, birth, null, null, enterprise,null, userType );
 	}
 	
 	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id) {
@@ -142,6 +146,14 @@ public class DetailInfoVO {
 
 	public void setUserID(String userID) {
 		this.userID = userID;
+	}
+
+	public CustomerType getVIPType() {
+		return VIPType;
+	}
+
+	public void setVIPType(CustomerType vIPType) {
+		VIPType = vIPType;
 	}
 
 }
