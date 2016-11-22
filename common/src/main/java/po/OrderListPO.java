@@ -25,7 +25,7 @@ public class OrderListPO implements Serializable {
 	// 顾客用户名
 	private String customerName;
 	// 顾客预定时间
-	private java.sql.Date reserveTimeStamp;
+	private java.sql.Timestamp reserveTimeStamp;
 	// 订单状态
 	private OrderState state;
 
@@ -90,7 +90,7 @@ public class OrderListPO implements Serializable {
 
 	public void setReserveTime(Date reserveTime) {
 		if (reserveTime != null)
-			this.reserveTimeStamp = new java.sql.Date(reserveTime.getTime());
+			this.reserveTimeStamp = new java.sql.Timestamp(reserveTime.getTime());
 	}
 
 	public OrderState getState() {

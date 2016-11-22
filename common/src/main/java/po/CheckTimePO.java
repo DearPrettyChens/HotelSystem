@@ -13,7 +13,7 @@ public class CheckTimePO implements Serializable {
 	// 订单编号
 	private String orderNumber;
 	// 入住或退房时间，因为调用方法不同，可以只用一个time表示
-	private java.sql.Date checkTimeStamp;
+	private java.sql.Timestamp checkTimeStamp;
 	// 表示是checkin还是out("checkin" or "checkout")
 	private String type;
 
@@ -45,7 +45,7 @@ public class CheckTimePO implements Serializable {
 
 	public void setCheckTime(Date checkTime) {
 		if (checkTime != null)
-			this.checkTimeStamp = new java.sql.Date(checkTime.getTime());
+			this.checkTimeStamp = new java.sql.Timestamp(checkTime.getTime());
 	}
 
 	public String getType() {

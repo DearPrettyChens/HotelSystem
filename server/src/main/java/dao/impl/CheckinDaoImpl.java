@@ -23,8 +23,8 @@ public class CheckinDaoImpl extends UnicastRemoteObject implements CheckinDao {
 	private static final long serialVersionUID = 4215636459437070989L;
 
 	private static CheckinDao checkinDao;
-	private static DataFactory dataFactory;
-	private static CheckInDataHelper checkInDataHelper;
+	private DataFactory dataFactory;
+	private CheckInDataHelper checkInDataHelper;
 
 	static {
 		try {

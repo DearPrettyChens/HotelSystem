@@ -3,6 +3,16 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+@Entity
+@Table(name = "t_credit3")
 public class CreditPO implements Serializable {
 
 	/**
@@ -11,17 +21,28 @@ public class CreditPO implements Serializable {
 	 * @author Cy
 	 * @virsion 1.0
 	 */
+	@Id
+	@GenericGenerator(name = "generator", strategy = "increment")
+	@GeneratedValue(generator = "generator")
+	@Column(name = "change_id")
+	private int changeID;
+	@Column(name = "user_name")
 	private String name;// 用户名
+	@Column(name = "user_id")
 	private int ID;// 编号
-	private double credit;// 信用值
-	private double CreditChange;// 信用值变化
+	@Column(name = "current_credit")
+	private int credit;// 信用值
+	@Column(name = "credit_change")
+	private int CreditChange;// 信用值变化
+	@Column(name = "change_reason")
 	private String reason;// 原因
-	private java.sql.Date timestamp;// 时间
+	@Column(name = "change_time")
+	private java.sql.Timestamp timestamp;// 时间
 
 	public CreditPO() {
 	}
 
-	public CreditPO(String name, int ID, double credit, double creditChange, String reason, Date time) {
+	public CreditPO(String name, int ID, int credit, int creditChange, String reason, Date time) {
 		this.setCredit(credit);
 		this.setCreditChange(creditChange);
 		this.setName(name);
@@ -46,19 +67,19 @@ public class CreditPO implements Serializable {
 		ID = iD;
 	}
 
-	public double getCredit() {
+	public int getCredit() {
 		return credit;
 	}
 
-	public void setCredit(double credit) {
+	public void setCredit(int credit) {
 		this.credit = credit;
 	}
 
-	public double getCreditChange() {
+	public int getCreditChange() {
 		return CreditChange;
 	}
 
-	public void setCreditChange(double creditChange) {
+	public void setCreditChange(int creditChange) {
 		CreditChange = creditChange;
 	}
 
@@ -78,6 +99,11 @@ public class CreditPO implements Serializable {
 
 	public void setTime(Date time) {
 		if (time != null)
-			this.timestamp = new java.sql.Date(time.getTime());
+			this.timestamp = new java.sql.Timestamp(time.getTime());
+	}
+
+	public CreditPO copy() {
+		return new CreditPO(this.getName(), this.getID(), this.getCredit(), this.getCreditChange(), this.getReason(),
+				this.getTime());
 	}
 }

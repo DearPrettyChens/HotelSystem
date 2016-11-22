@@ -19,7 +19,7 @@ public class AvailableRoomNumberPO implements Serializable {
 
 	private int number;// 房间数量
 	private BedType bedType;// 床型
-	private java.sql.Date dateStamp;// 日期
+	private java.sql.Timestamp dateStamp;// 日期
 	private int hotelNumber;// 酒店编号
 	// private String hotelName;//酒店名字
 
@@ -60,7 +60,7 @@ public class AvailableRoomNumberPO implements Serializable {
 
 	public void setDate(Date date) {
 		if (date != null)
-			this.dateStamp = new java.sql.Date(date.getTime());
+			this.dateStamp = new java.sql.Timestamp(date.getTime());
 	}
 
 	public int getHotelNumber() {

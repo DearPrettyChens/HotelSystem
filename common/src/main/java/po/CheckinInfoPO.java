@@ -37,9 +37,9 @@ public class CheckinInfoPO implements Serializable {
 	@Column(name = "room_number")
 	private String roomnumber;// 房间号（数字
 	@Column(name = "checkin_time")
-	private java.sql.Date checkintimeStamp;// 实际入住时间（-年-月-日-时-分）
+	private java.sql.Timestamp checkintimeStamp;// 实际入住时间（-年-月-日-时-分）
 	@Column(name = "checkout_time")
-	private java.sql.Date checkouttimeStamp;// 实际退房时间（-年-月-日-时-分)
+	private java.sql.Timestamp checkouttimeStamp;// 实际退房时间（-年-月-日-时-分)
 	@Column(name = "hotel_id")
 	private int hotelnumber;// 酒店编号
 	@Id
@@ -133,7 +133,7 @@ public class CheckinInfoPO implements Serializable {
 
 	public void setCheckintime(java.util.Date checkintime) {
 		if (checkintime != null)
-			this.checkintimeStamp = new java.sql.Date(checkintime.getTime());
+			this.checkintimeStamp = new java.sql.Timestamp(checkintime.getTime());
 	}
 
 	public java.util.Date getCheckouttime() {
@@ -145,7 +145,7 @@ public class CheckinInfoPO implements Serializable {
 
 	public void setCheckouttime(java.util.Date checkouttime) {
 		if (checkouttime != null)
-			this.checkouttimeStamp = new java.sql.Date(checkouttime.getTime());
+			this.checkouttimeStamp = new java.sql.Timestamp(checkouttime.getTime());
 	}
 
 	public int getHotelnumber() {

@@ -20,6 +20,7 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 	String highToLow = "desc";
 	String lowToHigh = "asc";
 
+	@SuppressWarnings("unused")
 	@Override
 	public ArrayList<HotelListPO> getHotelList() {
 		// Configuration cfg = new AnnotationConfiguration();
@@ -29,11 +30,11 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		session.beginTransaction();
 		String sql = "from HotelListPO";
 		Query query = session.createQuery(sql);
+		@SuppressWarnings("unchecked")
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
-		if (result.size() == 0) {
+		if (list == null)
 			return null;
-		}
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}
@@ -83,7 +84,7 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		Query query = session.createQuery(hql);
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
-		if (result.size() == 0) {
+		if (list == null) {
 			return null;
 		}
 		for (HotelListPO each : list) {
