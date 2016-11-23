@@ -9,6 +9,7 @@ import data.datahelper.OrderDataHelper;
 import data.datahelper.PersonnelDataHelper;
 import data.datahelper.SearchHotelDataHelper;
 import data.datahelper.UserDataHelper;
+import data.datahelper.WebStrategyDataHelper;
 import data.datahelperimpl.AvailableRoomDataHelperDatabaseImpl;
 import data.datahelperimpl.CheckInDataHelperDatabaseImpl;
 import data.datahelperimpl.CreditInDataHelperDatabaseImpl;
@@ -74,6 +75,12 @@ public class DataFactoryDatabaseImpl implements DataFactory {
 	public PersonnelDataHelper getPersonnelDataHelper() {
 		PersonnelDataHelper personnelDataHelper = new PersonnelDataHelperDatabaseImpl();
 		return personnelDataHelper;
+	}
+
+	@Override
+	public WebStrategyDataHelper getWebStrategyDataHelper() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
