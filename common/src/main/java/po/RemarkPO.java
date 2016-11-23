@@ -16,14 +16,14 @@ import com.sun.javafx.beans.IDProperty;
  * @version 1.0
  */
 @Entity
-@Table(name = "t_remark")
+@Table(name = "t_order")
 public class RemarkPO implements Serializable {
 	// 酒店id
 	@Column(name = "hotel_id")
-	private int hotelID;
+	private String hotelID;
 	// 用户id
 	@Column(name = "customer_id")
-	private int customerID;
+	private String customerID;
 	// 订单号
 	@Id
 	@Column(name = "order_id")
@@ -41,7 +41,7 @@ public class RemarkPO implements Serializable {
 	}
 
 	// 酒店评价
-	public RemarkPO(int hotelID, String orderId, int customerID, double score, String remark) {
+	public RemarkPO(String hotelID, String orderId, String customerID, double score, String remark) {
 		this.setHotelID(hotelID);
 		this.setCustomerID(customerID);
 		this.setScore(score);
@@ -49,11 +49,11 @@ public class RemarkPO implements Serializable {
 		this.orderID = orderId;
 	}
 
-	public int getHotelID() {
+	public String getHotelID() {
 		return hotelID;
 	}
 
-	public void setHotelID(int hotelID) {
+	public void setHotelID(String hotelID) {
 		this.hotelID = hotelID;
 	}
 
@@ -73,11 +73,11 @@ public class RemarkPO implements Serializable {
 		this.remark = remark;
 	}
 
-	public int getCustomerID() {
+	public String getCustomerID() {
 		return customerID;
 	}
 
-	public void setCustomerID(int customerID) {
+	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
 

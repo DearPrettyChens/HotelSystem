@@ -3,6 +3,10 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
 import util.OrderState;
@@ -13,21 +17,31 @@ import util.OrderState;
  * @author CYF
  * @version 1.0
  */
+@Entity
+@Table(name = "t_order")
 public class OrderListPO implements Serializable {
 	// 订单编号
+	@Id
+	@Column(name = "order_id")
 	private String orderNumber;
 	// 酒店ID
+	@Column(name = "hotel_id")
 	private String hotelID;
 	// 酒店名称
+	@Column(name = "hotel_name")
 	private String hotelName;
 	// 顾客ID
+	@Column(name = "customer_id")
 	private String customerID;
 	// 顾客用户名
+	@Column(name = "customer_name")
 	private String customerName;
 	// 顾客预定时间
+	@Column(name = "reserve_time")
 	private java.sql.Timestamp reserveTimeStamp;
 	// 订单状态
-	private OrderState state;
+	@Column(name = "state")
+	private String state;
 
 	// 空方法
 	public OrderListPO() {
@@ -94,11 +108,33 @@ public class OrderListPO implements Serializable {
 	}
 
 	public OrderState getState() {
-		return state;
+		OrderState orderState = null;
+		switch (state) {
+		case "HASCANCELED":
+			orderState = OrderState.HASCANCELED;
+
+			break;
+		case "HASREMARKED":
+			orderState = OrderState.HASREMARKED;
+			break;
+		case "NOTEXECUTED":
+			orderState = OrderState.NOTEXECUTED;
+			break;
+		case "NOTREMARKED":
+			orderState = OrderState.NOTREMARKED;
+			break;
+		case "UNUSUAL":
+			orderState = OrderState.UNUSUAL;
+			break;
+		default:
+			break;
+		}
+		return orderState;
 	}
 
 	public void setState(OrderState state) {
-		this.state = state;
+		if (state != null)
+			this.state = state.getString();
 	}
 
 	public String getHotelID() {
@@ -123,6 +159,11 @@ public class OrderListPO implements Serializable {
 
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
+	}
+
+	public OrderListPO copy() {
+		return new OrderListPO(getOrderNumber(), getHotelID(), getHotelName(), getCustomerID(), getCustomerName(),
+				getReserveTime(), getState());
 	}
 
 }

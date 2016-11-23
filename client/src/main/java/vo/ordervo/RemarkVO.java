@@ -36,7 +36,7 @@ public class RemarkVO {
 	 */
 	public RemarkVO(RemarkPO po){
 		this.orderId=po.getOrderID();
-		this.hotelId=TransHelper.idToString(po.getHotelID(),6);
+		this.hotelId=po.getHotelID();
 		this.remarkGrade=po.getScore();
 		this.remarkInfo=po.getRemark();
 	}
@@ -45,7 +45,7 @@ public class RemarkVO {
 	 * @return RemarkPO
 	 */
 	public RemarkPO toPO(){
-		return new RemarkPO(TransHelper.idToInt(this.hotelId),this.orderId,TransHelper.idToInt(this.customerID),this.remarkGrade,this.remarkInfo);
+		return new RemarkPO(this.hotelId,this.orderId,this.customerID,this.remarkGrade,this.remarkInfo);
 	}
 	public String getOrderId() {
 		return orderId;

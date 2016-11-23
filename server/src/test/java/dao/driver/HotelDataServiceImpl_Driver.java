@@ -20,7 +20,7 @@ public class HotelDataServiceImpl_Driver {
 		System.out.println("After add :" + po.getHotelID() + " " + po.getActivityFacility() + " " + po.getAddress()
 				+ " " + po.getLowestPrice() + " " + po.getRemarkOrderNumber() + " " + po.getScore());
 
-		RemarkPO remarkPO = new RemarkPO(5, "111", 2, 4.5, "ddd");
+		RemarkPO remarkPO = new RemarkPO("5", "111", "2", 4.5, "ddd");
 		System.out.println(dao.addRemarkInfo(remarkPO));
 		po = dao.getHotelBasicInfo("5");
 		System.out.println("After add remark :" + po.getHotelID() + " " + po.getActivityFacility() + " "

@@ -30,6 +30,8 @@ public enum ResultMessage {
 	
 	daoFORMATERROR,//日期格式错误
 	
+	ORDERIDHASEXISTED,//存储订单时,订单编号已存在
+	
 	SUCCESS,
 	FAIL,
 	UnkownFormat

@@ -39,6 +39,10 @@
 		<mapping class="po.HotelBasicInfoPO"></mapping>
 		<mapping class="po.HotelBestPricePO"></mapping>
 		<mapping class="po.HotelStrPO"></mapping>
+		<mapping class="po.OrderListPO"></mapping>
+		<mapping class="po.OrderInfoPO"></mapping>
+		<mapping class="po.OrderStatePO"></mapping>
+		<mapping class="po.RemarkPO"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

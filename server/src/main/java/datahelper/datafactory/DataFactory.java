@@ -9,6 +9,7 @@ import data.datahelper.OrderDataHelper;
 import data.datahelper.PersonnelDataHelper;
 import data.datahelper.SearchHotelDataHelper;
 import data.datahelper.UserDataHelper;
+import data.datahelper.WebStrategyDataHelper;
 
 public interface DataFactory {
 	public UserDataHelper getUserDataHelper();
@@ -28,5 +29,7 @@ public interface DataFactory {
 	public OrderDataHelper getOrderDataHelper();
 
 	public PersonnelDataHelper getPersonnelDataHelper();
+
+	public WebStrategyDataHelper getWebStrategyDataHelper();
 
 }

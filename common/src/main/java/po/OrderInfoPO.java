@@ -3,6 +3,11 @@ package po;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import util.BedType;
 import util.Children;
 import util.OrderState;
@@ -13,54 +18,80 @@ import util.OrderState;
  * @author CYF
  * @version 1.0
  */
+@Entity
+@Table(name = "t_order")
 public class OrderInfoPO implements Serializable {
 	// 顾客编号
+	@Column(name = "customer_id")
 	private String customerID;
 	// 订单编号
+	@Id
+	@Column(name = "order_id")
 	private String orderID;
 	// 顾客生成订单时填写的顾客姓名
+	@Column(name = "customer_name")
 	private String customerName;
 	// 入住人姓名
+	@Column(name = "live_in_person_name")
 	private String liveinPersonName;
 	// 入住人联系方式
+	@Column(name = "live_in_person_telephone")
 	private String liveinPersonTelephone;
 	// 酒店名称
+	@Column(name = "hotel_name")
 	private String hotelName;
 	// 酒店ID
+	@Column(name = "hotel_id")
 	private String hotelID;
 	// 酒店联系方式
+	@Column(name = "hotel_telephone")
 	private String hotelTelephone;
 	// 预定房型
+	@Column(name = "room_type")
 	private String roomType;
 	// 预定床型
-	private BedType bedType;
+	@Column(name = "bed_type")
+	private String bedType;
 	// 预定房间数量
+	@Column(name = "amount")
 	private int amount;
 	// 预定时间
-	private java.sql.Date reserveTimeStamp;
+	@Column(name = "reserve_time")
+	private java.sql.Timestamp reserveTimeStamp;
 	// 入住人数
+	@Column(name = "number_of_people")
 	private int NumberOfPeople;
 	// 有无儿童
-	private Children hasChild;
+	@Column(name = "has_children")
+	private String hasChild;
 	// 是否评价
+	@Column(name = "has_remarked")
 	private boolean hasRemarked;
 	// 预计入住时间
-	private java.sql.Date expectedCheckInTimeStamp;
+	@Column(name = "expected_checkin_time")
+	private java.sql.Timestamp expectedCheckInTimeStamp;
 	// 预计退房时间
-	private java.sql.Date expectedCheckOutTimeStamp;
+	@Column(name = "expected_checkout_time")
+	private java.sql.Timestamp expectedCheckOutTimeStamp;
 
 	// 最晚入住时间,下订单时计算产生
-	private java.sql.Date lateCheckInTimeStamp;
+	@Column(name = "late_checkin_time")
+	private java.sql.Timestamp lateCheckInTimeStamp;
 	// 实际入住时间
-	private java.sql.Date actualCheckInTimeStamp;
+	@Column(name = "actual_checkin_time")
+	private java.sql.Timestamp actualCheckInTimeStamp;
 	// 实际退房时间
-	private java.sql.Date actualCheckOutTimeStamp;
+	@Column(name = "actual_checkout_time")
+	private java.sql.Timestamp actualCheckOutTimeStamp;
 	// 订单价格
+	@Column(name = "price")
 	private double price;
 	// 订单状态
-	private OrderState state;
+	@Column(name = "state")
+	private String state;
 	// 撤销时间
-	private java.sql.Date cancleTimeStamp;
+	@Column(name = "cancle_time")
+	private java.sql.Timestamp cancleTimeStamp;
 
 	// 空方法
 	public OrderInfoPO() {
@@ -228,11 +259,33 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public BedType getBedType() {
-		return bedType;
+		BedType bType = null;
+		switch (bedType) {
+		case "BIGBED":
+			bType = BedType.BIGBED;
+
+			break;
+		case "FAMILYBED":
+			bType = BedType.FAMILYBED;
+			break;
+		case "FOURBEDS":
+			bType = BedType.FOURBEDS;
+			break;
+		case "THREEBEDS":
+			bType = BedType.THREEBEDS;
+			break;
+		case "TWOBEDS":
+			bType = BedType.TWOBEDS;
+			break;
+		default:
+			break;
+		}
+		return bType;
 	}
 
 	public void setBedType(BedType bedType) {
-		this.bedType = bedType;
+		if (bedType != null)
+			this.bedType = bedType.getString();
 	}
 
 	public int getAmount() {
@@ -252,11 +305,23 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public Children getHasChild() {
-		return hasChild;
+		Children children = null;
+		switch (hasChild) {
+		case "EXIST":
+			children = Children.EXIST;
+			break;
+		case "NOTEXIST":
+			children = Children.NOTEXIST;
+			break;
+		default:
+			break;
+		}
+		return children;
 	}
 
 	public void setHasChild(Children hasChild) {
-		this.hasChild = hasChild;
+		if (hasChild != null)
+			this.hasChild = hasChild.getString();
 	}
 
 	public boolean isHasRemarked() {
@@ -276,7 +341,7 @@ public class OrderInfoPO implements Serializable {
 
 	public void setExpectedCheckInTime(Date expectedCheckInTime) {
 		if (expectedCheckInTime != null)
-			this.expectedCheckInTimeStamp = new java.sql.Date(expectedCheckInTime.getTime());
+			this.expectedCheckInTimeStamp = new java.sql.Timestamp(expectedCheckInTime.getTime());
 	}
 
 	public Date getExpectedCheckOutTime() {
@@ -287,7 +352,7 @@ public class OrderInfoPO implements Serializable {
 
 	public void setExpectedCheckOutTime(Date expectedCheckOutTime) {
 		if (expectedCheckOutTime != null)
-			this.expectedCheckOutTimeStamp = new java.sql.Date(expectedCheckOutTime.getTime());
+			this.expectedCheckOutTimeStamp = new java.sql.Timestamp(expectedCheckOutTime.getTime());
 	}
 
 	public Date getLateCheckInTime() {
@@ -298,7 +363,7 @@ public class OrderInfoPO implements Serializable {
 
 	public void setLateCheckInTime(Date lateCheckInTime) {
 		if (lateCheckInTime != null)
-			this.lateCheckInTimeStamp = new java.sql.Date(lateCheckInTime.getTime());
+			this.lateCheckInTimeStamp = new java.sql.Timestamp(lateCheckInTime.getTime());
 	}
 
 	public Date getActualCheckInTime() {
@@ -309,7 +374,7 @@ public class OrderInfoPO implements Serializable {
 
 	public void setActualCheckInTime(Date actualCheckInTime) {
 		if (actualCheckInTime != null)
-			this.actualCheckInTimeStamp = new java.sql.Date(actualCheckInTime.getTime());
+			this.actualCheckInTimeStamp = new java.sql.Timestamp(actualCheckInTime.getTime());
 	}
 
 	public Date getActualCheckOutTime() {
@@ -320,7 +385,7 @@ public class OrderInfoPO implements Serializable {
 
 	public void setActuarCheckOutTime(Date actualCheckOutTime) {
 		if (actualCheckOutTime != null)
-			this.actualCheckOutTimeStamp = new java.sql.Date(actualCheckOutTime.getTime());
+			this.actualCheckOutTimeStamp = new java.sql.Timestamp(actualCheckOutTime.getTime());
 	}
 
 	public double getPrice() {
@@ -332,11 +397,33 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public OrderState getState() {
-		return state;
+		OrderState orderState = null;
+		switch (state) {
+		case "HASCANCELED":
+			orderState = OrderState.HASCANCELED;
+
+			break;
+		case "HASREMARKED":
+			orderState = OrderState.HASREMARKED;
+			break;
+		case "NOTEXECUTED":
+			orderState = OrderState.NOTEXECUTED;
+			break;
+		case "NOTREMARKED":
+			orderState = OrderState.NOTREMARKED;
+			break;
+		case "UNUSUAL":
+			orderState = OrderState.UNUSUAL;
+			break;
+		default:
+			break;
+		}
+		return orderState;
 	}
 
 	public void setState(OrderState state) {
-		this.state = state;
+		if (state != null)
+			this.state = state.getString();
 	}
 
 	public String getLiveinPersonName() {
@@ -363,7 +450,7 @@ public class OrderInfoPO implements Serializable {
 
 	public void setCancleTime(Date cancleTime) {
 		if (cancleTime != null)
-			this.cancleTimeStamp = new java.sql.Date(cancleTime.getTime());
+			this.cancleTimeStamp = new java.sql.Timestamp(cancleTime.getTime());
 	}
 
 	public Date getReserveTime() {
@@ -374,7 +461,14 @@ public class OrderInfoPO implements Serializable {
 
 	public void setReserveTime(Date reserveTime) {
 		if (reserveTime != null)
-			this.reserveTimeStamp = new java.sql.Date(reserveTime.getTime());
+			this.reserveTimeStamp = new java.sql.Timestamp(reserveTime.getTime());
+	}
+
+	public OrderInfoPO copy() {
+		return new OrderInfoPO(getOrderID(), getHotelID(), getHotelName(), getCustomerID(), getCustomerName(),
+				getLiveinPersonName(), getLiveinPersonTelephone(), getReserveTime(), getExpectedCheckInTime(),
+				getExpectedCheckOutTime(), getRoomType(), getBedType(), getAmount(), getNumberOfPeople(), getHasChild(),
+				getPrice(), getState());
 	}
 
 }
