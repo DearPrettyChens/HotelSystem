@@ -55,7 +55,7 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 		Query query = session.createQuery("from CreditPO where user_id = " + customerID);
 		List<CreditPO> list = query.list();
 		List<CreditPO> copyList = new ArrayList<CreditPO>();
-		if (list == null)
+		if (list.size() == 0)
 			return null;
 		CreditInfoPO po = null;
 		try {

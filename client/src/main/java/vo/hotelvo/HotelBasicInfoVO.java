@@ -214,9 +214,9 @@ public class HotelBasicInfoVO {
 		this.hotelID = hotelID;
 	}
 	public HotelBasicInfoPO votopo(){
-		return new HotelBasicInfoPO(TransHelper.idToInt(this.hotelID), this.hotelName, this.hotelImage, this.address, this.telephone,
-				this.star,this.score, this.lowestPrice, this.introduce, this.commonFacility,
-				this.activityFacility, this.service, this.roomFacility,this.remarks,this.city);
+		return new HotelBasicInfoPO(TransHelper.idToInt(this.hotelID), this.hotelName, this.hotelImage, 
+				this.address, this.telephone,this.star,this.score, this.lowestPrice, this.introduce, this.commonFacility,
+				this.activityFacility, this.service, this.roomFacility,this.remarks,this.city,this.tradingArea);
 	
 	}
 	public double getLowestPrice() {

@@ -42,6 +42,9 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from ClientPO where user_id = " + po.getUserID());
 		List<ClientPO> result = query.list();
+		if (result.size() == 0) {
+			return ResultMessage.FAIL;
+		}
 		try {
 			result.get(0).setPassword(po.getPassword());
 			session.update(result.get(0));

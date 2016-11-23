@@ -39,7 +39,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + orderID + "'");
 		List<CheckinInfoPO> list = query.list();
-		if (list == null) {
+		if (list.size() == 0) {
 			return null;
 		}
 		session.close();
@@ -52,7 +52,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + po.getOrdernumber() + "'");
 		List<CheckinInfoPO> list = query.list();
-		if (list == null) {
+		if (list.size() == 0) {
 			return ResultMessage.FAIL;
 		}
 		list.get(0).setCheckouttime(po.getCheckouttime());

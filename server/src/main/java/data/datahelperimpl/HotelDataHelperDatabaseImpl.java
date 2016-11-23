@@ -21,7 +21,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + hotelID);
 		List<HotelBasicInfoPO> list = query.list();
-		if (list == null) {
+		if (list.size() == 0) {
 			return null;
 		}
 		return list.get(0).copy();
@@ -33,7 +33,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
 		List<HotelBasicInfoPO> list = query.list();
-		if (list == null) {
+		if (list.size() == 0) {
 			return ResultMessage.FAIL;
 		}
 		HotelBasicInfoPO savePO = list.get(0);
@@ -60,7 +60,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		HotelBasicInfoPO savePO = new HotelBasicInfoPO(po.getHotelID(), po.getName(), po.getHotelImage(),
 				po.getAddress(), po.getTelephone(), po.getStar(), po.getScore(), po.getLowestPrice(), po.getIntroduce(),
 				po.getCommonFacility(), po.getActivityFacility(), po.getService(), po.getRoomFacility(),
-				po.getRemarks(), po.getRemarkOrderNumber(), po.getCity(), po.getTradingArea());
+				po.getRemarks(), po.getCity(), po.getTradingArea());
 		try {
 			session.save(po);
 			session.getTransaction().commit();
@@ -79,7 +79,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
 		List<HotelBasicInfoPO> list = query.list();
-		if (list == null) {
+		if (list.size() == 0) {
 			return ResultMessage.FAIL;
 		}
 		HotelBasicInfoPO savePO = list.get(0);
@@ -115,7 +115,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from HotelBestPricePO where id = " + po.getHotelID());
 		List<HotelBestPricePO> list = query.list();
-		if (list == null) {
+		if (list.size() == 0) {
 			return ResultMessage.FAIL;
 		}
 		HotelBestPricePO savePO = list.get(0);
