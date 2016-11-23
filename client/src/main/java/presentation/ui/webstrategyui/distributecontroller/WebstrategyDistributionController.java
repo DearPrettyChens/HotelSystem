@@ -10,6 +10,7 @@ import util.WebStrategyType;
 import vo.webstrategyvo.GradeRuleVO;
 import vo.webstrategyvo.WebBestStrVO;
 import vo.webstrategyvo.WebStrVO;
+import vo.webstrategyvo.WebProvidedVO;
 
 /**
  * 
@@ -37,7 +38,7 @@ public class WebstrategyDistributionController {
 	 *
 	 */
 	public WebBestStrVO getWebBestStrategy(String credit,TradingArea area,Date time){
-		return webStrategyBLService.getWebBestStrategy(credit, area, time);
+		return webStrategyBLService.getWebBestStrategy(new WebProvidedVO(credit, area, time));
 	}
 	
 	/**

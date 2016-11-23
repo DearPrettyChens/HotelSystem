@@ -12,7 +12,7 @@ import vo.webstrategyvo.WebStrVO;
  * @author CLL
  * @version 1.0
  */
-public class ModifyStrategyTest {
+/*public class ModifyStrategyTest {
 	WebStrategyInterface webStrategyInterface;
 	WebStrVO vo1;
 
@@ -28,4 +28,4 @@ public class ModifyStrategyTest {
 		assertEquals(webStrategy.confirmWebStrategy(webStrategyInterface, vo1),null);
 	}
 
-}
+}*/

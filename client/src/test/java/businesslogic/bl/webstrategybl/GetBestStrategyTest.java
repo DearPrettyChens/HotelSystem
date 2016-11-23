@@ -11,7 +11,7 @@ import vo.webstrategyvo.WebStrVO;
  * @author CLL
  * @version 1.0
  */
-public class GetBestStrategyTest {
+/*public class GetBestStrategyTest {
 	WebStrategyInterface webStrategyInterface;
 	WebStrVO vo1;
 	WebStrVO vo2;
@@ -30,4 +30,4 @@ public class GetBestStrategyTest {
 		assertEquals(webStrategy.getWebBestStrategy("0", null, null),null);
 	}
 
-}
+}*/

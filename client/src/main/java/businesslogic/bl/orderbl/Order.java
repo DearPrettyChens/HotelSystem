@@ -18,6 +18,8 @@ import vo.ordervo.OrderInfoVO;
 import vo.ordervo.OrderProvidedVO;
 import vo.ordervo.StrategyVO;
 import vo.personnelvo.PersonDetailVO;
+import vo.webstrategyvo.WebBestStrVO;
+import vo.webstrategyvo.WebProvidedVO;
 /**
  * Order模块的领域类
  * @author CLL
@@ -100,8 +102,9 @@ public class Order {
 		String hotelID=orderInfoVO.getHotelID();
 		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
 		TradingArea area=hotelDetail.getArea();
-		webStrategy=new WebStrategy();
-//		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(String.valueOf(credit), area, new Date());
+		webStrategy=WebStrategy.getInstance();
+		WebProvidedVO webProvidedVO=new WebProvidedVO(String.valueOf(credit),area,new Date());
+		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(webProvidedVO);
 		hotelStrategy=new HotelStrategy();
 		OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName());
 		HotelBestStrVO hotelStrVO=hotelStrategy.getBestHotelStrategy(orderProvidedVO);
