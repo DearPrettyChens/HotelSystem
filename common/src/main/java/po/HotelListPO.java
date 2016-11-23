@@ -37,13 +37,15 @@ public class HotelListPO implements Serializable {
 	private int star;
 	@Column(name = "score")
 	private double remark;
+	@Column(name = "telephone")
+	private String telephone;
 
 	public HotelListPO() {
 
 	}
 
 	public HotelListPO(String name, String location, ImageIcon image, double lowestPrice, int star, int id,
-			double remark) {
+			double remark, String telephone) {
 		this.name = name;
 		this.address = location;
 		this.image = image;
@@ -51,7 +53,7 @@ public class HotelListPO implements Serializable {
 		this.star = star;
 		this.id = id;
 		this.remark = remark;
-
+		this.telephone = telephone;
 	}
 
 	public double getRemark() {
@@ -111,7 +113,16 @@ public class HotelListPO implements Serializable {
 	}
 
 	public HotelListPO copy() {
-		return new HotelListPO(this.name, this.address, this.image, this.lowestPrice, this.star, this.id, this.remark);
+		return new HotelListPO(this.name, this.address, this.image, this.lowestPrice, this.star, this.id, this.remark,
+				this.telephone);
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 }

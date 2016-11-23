@@ -42,7 +42,7 @@ public class SearchHotelDataSercieImpl_Driver {
 	public void print(ArrayList<HotelListPO> list) {
 		for (HotelListPO each : list) {
 			System.out.println(each.getName() + " " + each.getId() + " " + each.getLowestprice() + " "
-					+ each.getLocation() + " " + each.getStar() + " ");
+					+ each.getLocation() + " " + each.getStar() + " " + each.getTelephone());
 		}
 	}
 
