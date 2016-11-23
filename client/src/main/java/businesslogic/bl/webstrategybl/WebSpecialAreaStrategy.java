@@ -6,7 +6,6 @@ import java.util.Map;
 import dao.webstrategydao.WebStrategyDao;
 import init.RMIHelper;
 import po.WebStrPO;
-import util.ResultMessage;
 import util.TransHelper;
 import util.WebStrategyType;
 import vo.webstrategyvo.WebStrVO;
@@ -44,21 +43,13 @@ public class WebSpecialAreaStrategy implements WebStrategyInterface {
 		return new WebStrVO(webStrPO);
 	}
 
-	@Override
-	public ResultMessage setWebStrategy(WebStrVO vo) {	
-		webStrPO=vo.toPO();
-		try {
-			return webStrategyDao.setWebStrategy(webStrPO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		strategy=vo.getVIPOrTradingAreaStrategy();
-		return ResultMessage.FAIL;
-	}
 
 	@Override
-	public double getDiscout(String info) {
+	public double getDiscount(String info) {
 		getWebStrategy();
+		if(info==null){
+			return 1;//即没有折扣
+		}
 		int tradingArea=TransHelper.stringToArea(info);//如果不是int型怎么办，此处考虑exception
 		return strategy.get(tradingArea);
 	}

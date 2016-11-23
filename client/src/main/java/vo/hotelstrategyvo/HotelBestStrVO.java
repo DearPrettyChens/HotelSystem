@@ -17,8 +17,13 @@ public class HotelBestStrVO {
 	//折扣值
 	private double discount;
 
-	public HotelBestStrVO() {
 
+
+	public HotelBestStrVO(String hotelID, HotelStrategyType type, double discount) {
+		super();
+		this.hotelID = hotelID;
+		this.type = type;
+		this.discount = discount;
 	}
 
 	public HotelBestStrVO(HotelStrategyType type) {

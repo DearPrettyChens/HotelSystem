@@ -1,6 +1,5 @@
 package businesslogic.bl.hotelstrategybl;
 
-import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
 /**
  * 酒店策略接口类
@@ -17,10 +16,9 @@ public interface HotelStrategyInterface {
 	public HotelStrVO getHotelStrategy(String hotelID);
 	
 	/**
-	 * 确认修改策略
-	 * @param hotelStrVO
-	 * @return ResultMessage
+	 * 计算最佳酒店策略时，获得折扣值
+	 * @param info
+	 * @return
 	 */
-	public ResultMessage confirmHotelStrategy(HotelStrVO hotelStrVO);
-	
+	public double getDiscount(String info,String hotelID);
 }

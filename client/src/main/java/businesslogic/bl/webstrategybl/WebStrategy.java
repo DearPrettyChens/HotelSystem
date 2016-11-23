@@ -1,5 +1,10 @@
 package businesslogic.bl.webstrategybl;
 
+import java.rmi.RemoteException;
+
+import dao.webstrategydao.WebStrategyDao;
+import init.RMIHelper;
+import po.WebStrPO;
 import util.ResultMessage;
 import util.WebStrategyType;
 import vo.webstrategyvo.WebBestStrVO;
@@ -14,8 +19,9 @@ public class WebStrategy {
 	private WebStrategyMap webStrategyMap;
 	private WebStrategyInterface webStrategyInterface;
 	private static WebStrategy webStrategy;
-	
+	private WebStrategyDao webStrategyDao;
 	private  WebStrategy() {
+		webStrategyDao=RMIHelper.getWebStrategyDao();
 		webStrategyMap=WebStrategyMap.getInstance();
 	}
 	
@@ -47,7 +53,7 @@ public class WebStrategy {
 			
 			//委托给每个策略去计算折扣值
 			webStrategyInterface=webStrategyMap.get(type);
-			double tempDiscount=webStrategyInterface.getDiscout(info);
+			double tempDiscount=webStrategyInterface.getDiscount(info);
 			
 			//选取折扣最大的，即折扣值最小的。
 			if(tempDiscount<discount){
@@ -60,7 +66,7 @@ public class WebStrategy {
 
     /**
      * 获取网站策略 委托给接口
-     * @param webStrategyInterface
+     * @param type
      * @return WebStrVO
      */
 	public WebStrVO getWebStrategy(WebStrategyType type) {
@@ -69,14 +75,18 @@ public class WebStrategy {
 	}
 
     /**
-     * 修改网站策略 委托给接口
-     * @param webStrategyInterface
-     * @param vo
+     * 修改网站策略 
+     * @param webStrVO
      * @return ResultMessage
      */
 	public ResultMessage confirmWebStrategy(WebStrVO webStrVO) {
-		webStrategyInterface=webStrategyMap.get(webStrVO.getType());
-		return webStrategyInterface.setWebStrategy(webStrVO);
+		WebStrPO webStrPO=webStrVO.toPO();
+		try {
+			return webStrategyDao.setWebStrategy(webStrPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 
 }

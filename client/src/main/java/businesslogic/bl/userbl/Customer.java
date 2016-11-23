@@ -1,9 +1,12 @@
 package businesslogic.bl.userbl;
 
+import java.util.Date;
+
 import businesslogic.bl.personnelbl.Personnel;
 import businesslogic.bl.webstrategybl.WebGradeRule;
 import util.ResultMessage;
 import util.Telephone;
+import util.TransHelper;
 import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.uservo.BasicInfoVO;
@@ -81,5 +84,12 @@ public class Customer {
 	public BasicInfoVO getBasicInfo(String personID) {
 		personDetailVO=getDetailInfo(personID);
 		return new BasicInfoVO(personDetailVO.getName(), personDetailVO.getImage(), personDetailVO.getId(), UserType.Customer);
+	}
+	
+	public String getBirthDay(String customerID) {
+		PersonDetailVO personDetailVO =getDetailInfo(customerID);
+		Date time=personDetailVO.getBirthday();
+		String birth=TransHelper.dateToString(time);
+		return birth;
 	}
 }

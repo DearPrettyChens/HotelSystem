@@ -8,9 +8,9 @@ package businesslogic.bl.hotelstrategybl;
  *
  */
 public class HotelStrategyFactory {
-
+    private HotelStrategyInterface hotelStrategyInterface;
 	private static HotelStrategyFactory hotelStrategyFactory;
-
+	
 	private HotelStrategyFactory() {
 
 	}
@@ -22,4 +22,23 @@ public class HotelStrategyFactory {
 		return hotelStrategyFactory;
 	}
 
+	public HotelStrategyInterface getHotelAmountStrategy() {
+		hotelStrategyInterface=HotelAmountStrategy.getInstance();
+		return hotelStrategyInterface;
+	}
+	
+	public HotelStrategyInterface getHotelBirthStrategy(){
+		hotelStrategyInterface=HotelBirthStrategy.getInstance();
+		return hotelStrategyInterface;
+	}
+	
+	public HotelStrategyInterface getHotelEnterpriseStrategy() {
+		hotelStrategyInterface=HotelEnterpriseStrategy.getInstance();
+		return hotelStrategyInterface;
+	}
+	
+	public HotelStrategyInterface getHotelSpecialTimeStrategy(){
+		hotelStrategyInterface=HotelSpecialTimeStrategy.getInstance();
+		return hotelStrategyInterface;
+	}
 }

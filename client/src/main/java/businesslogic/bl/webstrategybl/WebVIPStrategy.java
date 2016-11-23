@@ -8,7 +8,6 @@ import java.util.Map;
 import dao.webstrategydao.WebStrategyDao;
 import init.RMIHelper;
 import po.WebStrPO;
-import util.ResultMessage;
 import util.WebStrategyType;
 import vo.webstrategyvo.WebStrVO;
 
@@ -47,21 +46,11 @@ public class WebVIPStrategy implements WebStrategyInterface {
 		return new WebStrVO(webStrPO);
 	}
 
-	@Override
-	public ResultMessage setWebStrategy(WebStrVO vo) {
-		webStrPO=vo.toPO();
-		try {
-			return webStrategyDao.setWebStrategy(webStrPO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		strategy=vo.getVIPOrTradingAreaStrategy();
-		return ResultMessage.FAIL;
-	}
 
 	@Override
-	public double getDiscout(String info) {
-		double discount=0;
+	public double getDiscount(String info) {
+		getWebStrategy();
+		double discount=1;//即没有折扣
 		int credit=0;
 		if(info!=null){
 			credit=Integer.parseInt(info);//如果不是int型怎么办，此处考虑exception

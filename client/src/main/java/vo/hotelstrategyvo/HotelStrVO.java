@@ -18,16 +18,16 @@ public class HotelStrVO {
 	 */
 	// 酒店ID
 	private String hotelID;
-	// 数量策略的数量 
+	// 数量策略的数量
 	private int amount;
-	// 策略类型
-	private HotelStrategyType type;
-	// 折扣值
-	private double discount;
 	// 合作企业
 	private ArrayList<String> enterprise;
 	// 优惠日期
 	private Date[] date;
+	// 折扣值
+	private double discount;
+	// 策略类型
+	private HotelStrategyType type;
 
 	public HotelStrVO() {
 
@@ -35,32 +35,33 @@ public class HotelStrVO {
 
 	/**
 	 * po to vo
+	 * 
 	 * @param hotelStrPO
 	 */
-	public HotelStrVO(HotelStrPO hotelStrPO){
+	public HotelStrVO(HotelStrPO hotelStrPO) {
 		this.setAmount(hotelStrPO.getAmount());
 		this.setDate(hotelStrPO.getDate());
 		this.setDiscount(hotelStrPO.getDiscount());
 		this.setEnterprise(hotelStrPO.getEnterprise());
-		this.setHotelID(TransHelper.idToString(hotelStrPO.getHotelID(),6));
+		this.setHotelID(TransHelper.idToString(hotelStrPO.getHotelID(), 6));
 		this.setType(hotelStrPO.getType());
 	}
-	
+
 	/**
 	 * vo to po
+	 * 
 	 * @return HotelStrPO
 	 */
 	public HotelStrPO toPO() {
 		return new HotelStrPO(TransHelper.idToInt(hotelID), amount, type, discount, enterprise, date);
 	}
-	
-	
+
 	public HotelStrVO(String hotelID, double discount) {
 		this.setHotelID(hotelID);
 		this.setDiscount(discount);
 		this.setType(HotelStrategyType.BIRTH);
 	}
-	
+
 	public HotelStrVO(String hotelID, int amount, double discount) {
 		this.setHotelID(hotelID);
 		this.setAmount(amount);
@@ -78,7 +79,7 @@ public class HotelStrVO {
 	public HotelStrVO(String hotelID, double discount, Date[] date) {
 		this.setHotelID(hotelID);
 		this.setDiscount(discount);
-        this.setDate(date);
+		this.setDate(date);
 		this.setType(HotelStrategyType.SPECIALTIME);
 	}
 

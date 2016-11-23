@@ -6,7 +6,6 @@ import java.util.Date;
 import dao.webstrategydao.WebStrategyDao;
 import init.RMIHelper;
 import po.WebStrPO;
-import util.ResultMessage;
 import util.TransHelper;
 import util.WebStrategyType;
 import vo.webstrategyvo.WebStrVO;
@@ -47,20 +46,9 @@ public class WebSpecialTimeStrategy implements WebStrategyInterface{
 	}
 
 
+
 	@Override
-	public ResultMessage setWebStrategy(WebStrVO vo) {
-		webStrPO=vo.toPO();
-		try {
-			return webStrategyDao.setWebStrategy(webStrPO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		date=vo.getDate();
-		discount=vo.getDiscount();
-		return ResultMessage.FAIL;
-	}
-	@Override
-	public double getDiscout(String info) {
+	public double getDiscount(String info) {
 		getWebStrategy();
 		long dateInfo=TransHelper.stringToDate(info);		
 		long startTime=date[0].getTime();
@@ -70,7 +58,7 @@ public class WebSpecialTimeStrategy implements WebStrategyInterface{
 		if((dateInfo>=startTime)&&(dateInfo<=endTime)){
 			return discount;
 		}
-		return 0;
+		return 1;
 	}
 
 

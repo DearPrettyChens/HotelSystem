@@ -1,7 +1,11 @@
 package businesslogic.bl.hotelstrategybl;
 
+import java.rmi.RemoteException;
+
 import dao.hotelstrategydao.HotelStrategyDao;
-import util.ResultMessage;
+import init.RMIHelper;
+import po.HotelStrPO;
+import util.HotelStrategyType;
 import vo.hotelstrategyvo.HotelStrVO;
 /**
  * 酒店预订数量策略类
@@ -13,26 +17,43 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 	private int amount;
 	//酒店预订数量策略折扣
 	private double discount;
+	private HotelStrPO hotelStrPO;
 	private HotelStrategyDao hotelStrategyDao;
+	private static HotelStrategyInterface hotelAmountStrategy;
     //构造方法
-	public HotelAmountStrategy(){
-		
+	private HotelAmountStrategy(){
+		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
 	}
+	public static HotelStrategyInterface getInstance() {
+		if(hotelAmountStrategy==null){
+			hotelAmountStrategy=new HotelAmountStrategy();
+		}
+		return hotelAmountStrategy;
+	}
+	
 	@Override
 	public HotelStrVO getHotelStrategy(String hotelID) {
-		return null;
+		try {
+			hotelStrPO = hotelStrategyDao.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		discount = hotelStrPO.getDiscount();
+		amount = hotelStrPO.getAmount();
+		return new HotelStrVO(hotelStrPO);
 	}
+
 	@Override
-	public ResultMessage confirmHotelStrategy(HotelStrVO hotelStrVO) {
-		return null;
-	}
-	
-	public double getDiscount() {
-		return discount;
-	}
-	
-	public int getAmount() {
-		return amount;
+	public double getDiscount(String info, String hotelID) {
+		getHotelStrategy(hotelID);
+		if(info==null){
+			return 1;
+		}
+		int roomAmount=Integer.parseInt(info);
+		if(roomAmount>=amount){
+			return discount;
+		}
+		return 1;
 	}
 	
 }

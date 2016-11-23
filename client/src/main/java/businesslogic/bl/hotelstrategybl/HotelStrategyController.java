@@ -17,7 +17,7 @@ public class HotelStrategyController implements HotelStrategyBLService {
     private static HotelStrategyBLService hotelStrategyController;
 	
 	private HotelStrategyController(){
-		hotelStrategy =new HotelStrategy();
+		hotelStrategy =HotelStrategy.getInstance();
 	}
 
 	public static HotelStrategyBLService getInstance() {
@@ -29,19 +29,18 @@ public class HotelStrategyController implements HotelStrategyBLService {
 	
 	@Override
 	public HotelBestStrVO getBestHotelStrategy(OrderProvidedVO orderProvidedVO) {
-		return null;
+		return hotelStrategy.getBestHotelStrategy(orderProvidedVO);
 	}
 
 	@Override
-	public HotelStrVO getHotelStrategy(String hotelID, HotelStrategyType type) {
-		//利用factory创建对应的hotelstrategy作为参数传进hotelstrategy的gethotelstrategy方法。
-		return null;
+	public HotelStrVO getHotelStrategy(String hotelID, HotelStrategyType hotelStrategyType) {
+		return hotelStrategy.getHotelStrategy(hotelID, hotelStrategyType);
 	}
 
 	@Override
 	public ResultMessage confirmHotelStrategy(HotelStrVO hotelStrVO) {
-		//利用factory创建对应的hotelStrategy作为参数传入hotelstrategy的confirm方法
-		return null;
+		
+		return hotelStrategy.confirmHotelStrategy( hotelStrVO);
 	}
 
 }
