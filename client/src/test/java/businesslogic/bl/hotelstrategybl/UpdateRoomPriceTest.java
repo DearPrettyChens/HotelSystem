@@ -15,7 +15,7 @@ import vo.hotelstrategyvo.HotelStrVO;
  * @author CLL
  * @version
  */
-public class UpdateRoomPriceTest {
+/*public class UpdateRoomPriceTest {
 	HotelStrategyInterface hotelStrategyInterface;
 	HotelStrVO vo1;
 	@Before
@@ -34,4 +34,4 @@ public class UpdateRoomPriceTest {
 		assertEquals(availableRoom.setBestPrice(user.getUserID(null), 0.8),ResultMessage.SUCCESS);
 	}
 
-}
+}*/

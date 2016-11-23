@@ -23,6 +23,7 @@ import po.HotelBestPricePO;
 import po.OrderListPO;
 import po.RemarkPO;
 import util.City;
+import util.HotelStrategyType;
 import util.ResultMessage;
 import util.TradingArea;
 import util.TransHelper;
@@ -97,11 +98,12 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		availableRoom=new AvailableRoom();
 		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
 		//调用HotelStrategy.getHotelStrategy获得酒店优惠策略
+		hotelStrategy=HotelStrategy.getInstance();
 		ArrayList<HotelStrVO> hotelStrs=new ArrayList<HotelStrVO>();
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelAmountStrategy()));
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelBirthStrategy()));
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelEnterpriseStrategy()));
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, new HotelSpecialTimeStrategy()));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.BIRTH));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.ENTERPRISE ));
+		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.SPECIALTIME));
 		//调用hotel.getHotelOrderList获得酒店订单列表
 		ArrayList<HotelOrderVO> orders=this.getHotelOrderList(hotelID);
 		//调用数据层获得酒店基本信息

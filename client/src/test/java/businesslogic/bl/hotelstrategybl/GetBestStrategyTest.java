@@ -13,7 +13,7 @@ import vo.ordervo.OrderProvidedVO;
  * @author CLL
  * @version 1.0
  */
-public class GetBestStrategyTest {
+/*public class GetBestStrategyTest {
 	HotelStrategyInterface hotelStrategyInterface;
 	HotelStrVO vo1;
 	HotelStrVO vo2;
@@ -34,5 +34,5 @@ public class GetBestStrategyTest {
 		assertEquals(hotelStrategy.confirmHotelStrategy(hotelStrategyInterface, vo2),null);
 		assertEquals(hotelStrategy.getBestHotelStrategy(orderProvidedVO),null);
 	}
-
-}
+*/
+//}

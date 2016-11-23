@@ -105,8 +105,8 @@ public class Order {
 		webStrategy=WebStrategy.getInstance();
 		WebProvidedVO webProvidedVO=new WebProvidedVO(String.valueOf(credit),area,new Date());
 		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(webProvidedVO);
-		hotelStrategy=new HotelStrategy();
-		OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName());
+		hotelStrategy=HotelStrategy.getInstance();
+		OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName(),new Date(),hotelID);
 		HotelBestStrVO hotelStrVO=hotelStrategy.getBestHotelStrategy(orderProvidedVO);
 		
 //调用Availableroom.getRoomPrice	获得酒店房间价格
