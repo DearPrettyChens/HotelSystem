@@ -1,6 +1,10 @@
 package businesslogic.bl.webstrategybl;
 
+import java.rmi.RemoteException;
+
 import dao.webstrategydao.WebStrategyDao;
+import init.RMIHelper;
+import po.GradeRulePO;
 import util.ResultMessage;
 import vo.webstrategyvo.GradeRuleVO;
 /**
@@ -9,12 +13,12 @@ import vo.webstrategyvo.GradeRuleVO;
  * @version 1.0
  */
 public class WebGradeRule {
-	//每升一级的信用值
-	private int credit;
+	private GradeRulePO gradeRulePO;
 	private WebStrategyDao webStrategyDao;
+	
 	private static WebGradeRule webGradeRule;
 	private WebGradeRule(){
-		
+		webStrategyDao=RMIHelper.getWebStrategyDao();
 	}
 	public static WebGradeRule getInstance() {
 		if(webGradeRule==null){
@@ -22,19 +26,45 @@ public class WebGradeRule {
 		}
 		return webGradeRule;
 	}
+	
+	/**
+     * 获取会员等级
+     * @return GradeRuleVO
+     */
+	public int getGrade(int credit){
+		getGradeRule();
+		int gradeCredit=gradeRulePO.getCredit();
+		if(gradeCredit==0){
+			return 0;
+		}
+		int grade=credit/gradeCredit;//计算用户等级
+    	return grade;
+		
+	}
     /**
-     * 获取信用值
+     * 获取会员等级规则
      * @return GradeRuleVO
      */
 	public GradeRuleVO getGradeRule() {
-		return null;
+		try {
+			gradeRulePO=webStrategyDao.getGradeRule();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return new GradeRuleVO(gradeRulePO);
 	}
     /**
-     * 设置信用值
+     * 设置会员等级规则
      * @param vo
      * @return ResultMessage
      */
 	public ResultMessage setGradeRule(GradeRuleVO vo) {
-		return null;
+		gradeRulePO=vo.toPO();
+		try {
+			return webStrategyDao.setGradeRule(gradeRulePO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 }

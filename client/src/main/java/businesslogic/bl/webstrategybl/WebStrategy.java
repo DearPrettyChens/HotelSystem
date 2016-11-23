@@ -1,10 +1,9 @@
 package businesslogic.bl.webstrategybl;
 
-import java.util.Date;
-
 import util.ResultMessage;
-import util.TradingArea;
+import util.WebStrategyType;
 import vo.webstrategyvo.WebBestStrVO;
+import vo.webstrategyvo.WebProvidedVO;
 import vo.webstrategyvo.WebStrVO;
 /**
  * 网站策略类
@@ -12,15 +11,51 @@ import vo.webstrategyvo.WebStrVO;
  * @version 1.0
  */
 public class WebStrategy {
-    /**
+	private WebStrategyMap webStrategyMap;
+	private WebStrategyInterface webStrategyInterface;
+	private static WebStrategy webStrategy;
+	
+	private  WebStrategy() {
+		webStrategyMap=WebStrategyMap.getInstance();
+	}
+	
+	public static WebStrategy getInstance() {
+		if(webStrategy==null){
+			webStrategy=new WebStrategy();
+		}
+		return webStrategy;
+	}
+	
+	/**
      * 获取网站最佳策略
-     * @param credit
-     * @param area
-     * @param time
+     * @param webProvidedVO
      * @return WebBestStrVO
      */
-	public WebBestStrVO getWebBestStrategy(String credit, TradingArea area, Date time) {
-		return null;
+	public WebBestStrVO getWebBestStrategy(WebProvidedVO webProvidedVO) {
+		//用providedInfoMap来组织传过来用于获得最佳策略的信息
+		ProvidedInfoMap providedInfoMap=new ProvidedInfoMap(webProvidedVO);
+		double discount=1;//折扣值在0-1之间
+		WebStrategyType webStrategyType=WebStrategyType.VIP;//暂时初始化为VIP，因为这个折扣肯定是有的
+		
+		//遍历各个策略的信息
+		while (providedInfoMap.hasNext()) {
+			
+			//获得策略种类和提供的相关折扣信息
+			providedInfoMap.next();
+			WebStrategyType type=providedInfoMap.getWebStrategyType();
+			String info=providedInfoMap.getInfo();
+			
+			//委托给每个策略去计算折扣值
+			webStrategyInterface=webStrategyMap.get(type);
+			double tempDiscount=webStrategyInterface.getDiscout(info);
+			
+			//选取折扣最大的，即折扣值最小的。
+			if(tempDiscount<discount){
+				discount=tempDiscount;
+				webStrategyType=type;
+			}
+		}
+		return new WebBestStrVO(webStrategyType, discount);
 	}
 
     /**
@@ -28,7 +63,8 @@ public class WebStrategy {
      * @param webStrategyInterface
      * @return WebStrVO
      */
-	public WebStrVO getWebStrategy(WebStrategyInterface webStrategyInterface) {
+	public WebStrVO getWebStrategy(WebStrategyType type) {
+		webStrategyInterface=webStrategyMap.get(type);
 		return webStrategyInterface.getWebStrategy();
 	}
 
@@ -38,8 +74,9 @@ public class WebStrategy {
      * @param vo
      * @return ResultMessage
      */
-	public ResultMessage confirmWebStrategy(WebStrategyInterface webStrategyInterface,WebStrVO vo) {
-		return webStrategyInterface.setWebStrategy(vo);
+	public ResultMessage confirmWebStrategy(WebStrVO webStrVO) {
+		webStrategyInterface=webStrategyMap.get(webStrVO.getType());
+		return webStrategyInterface.setWebStrategy(webStrVO);
 	}
 
 }

@@ -2,13 +2,11 @@ package businesslogic.blservice.webstrategyblservice;
 
 
 
-import java.util.Date;
-
 import util.ResultMessage;
-import util.TradingArea;
 import util.WebStrategyType;
 import vo.webstrategyvo.GradeRuleVO;
 import vo.webstrategyvo.WebBestStrVO;
+import vo.webstrategyvo.WebProvidedVO;
 import vo.webstrategyvo.WebStrVO;
 /**
  * WebStrategyBLService提供接口，用来对网站营销策略以及会员等级的制定和修改
@@ -19,16 +17,12 @@ import vo.webstrategyvo.WebStrVO;
 public interface WebStrategyBLService {
 	/**
 	 * 获取最佳网站策略
-<<<<<<< HEAD
-	 * @param credit String型,area TradingArea型,time Date型，传递策略所需的信用值商圈和时间
-=======
-	 * @param credit String型,area TradingArea型,time String型，传递策略所需的信用值商圈和时间
->>>>>>> refs/remotes/origin/cyfBranch
+	 * @param WebProvidedVO，传递策略所需的信息
 	 * @return WebBestStrVO ，将最佳网站策略返回给界面或order模块
 	 * @throws 未定
 	 *
 	 */
-	public WebBestStrVO getWebBestStrategy(String credit,TradingArea area,Date time);
+	public WebBestStrVO getWebBestStrategy(WebProvidedVO webProvidedVO);
 	
 	/**
 	 * 获取会员等级规则

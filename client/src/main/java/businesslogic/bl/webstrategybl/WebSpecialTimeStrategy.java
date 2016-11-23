@@ -1,9 +1,14 @@
 package businesslogic.bl.webstrategybl;
 
+import java.rmi.RemoteException;
 import java.util.Date;
 
 import dao.webstrategydao.WebStrategyDao;
+import init.RMIHelper;
+import po.WebStrPO;
 import util.ResultMessage;
+import util.TransHelper;
+import util.WebStrategyType;
 import vo.webstrategyvo.WebStrVO;
 /**
  * 网站特定时期策略
@@ -16,30 +21,58 @@ public class WebSpecialTimeStrategy implements WebStrategyInterface{
     //折扣值
     private double discount;
     private WebStrategyDao webStrategyDao;
-	public WebSpecialTimeStrategy(){
+    private  WebStrPO webStrPO;
+    private static WebStrategyInterface webSpecialAreaStrategy;
+	private WebSpecialTimeStrategy(){
+		webStrategyDao=RMIHelper.getWebStrategyDao();
 	
 	}
-	public Date[] getDate() {
-		return date;
+	public static WebStrategyInterface getInstance() {
+		if (webSpecialAreaStrategy==null){
+			webSpecialAreaStrategy=new WebSpecialTimeStrategy();
+		}
+		return webSpecialAreaStrategy;
 	}
-
 
 	@Override
 	public WebStrVO getWebStrategy() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			webStrPO = webStrategyDao.getWebStrategy(WebStrategyType.SPECIALTIME);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		date=webStrPO.getDate();
+		discount=webStrPO.getDiscount();
+		return new WebStrVO(webStrPO);
 	}
 
 
 	@Override
 	public ResultMessage setWebStrategy(WebStrVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+		webStrPO=vo.toPO();
+		try {
+			return webStrategyDao.setWebStrategy(webStrPO);
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		date=vo.getDate();
+		discount=vo.getDiscount();
+		return ResultMessage.FAIL;
+	}
+	@Override
+	public double getDiscout(String info) {
+		getWebStrategy();
+		long dateInfo=TransHelper.stringToDate(info);		
+		long startTime=date[0].getTime();
+		long endTime=date[1].getTime();
+         
+		//如果在特惠时间内，就返回折扣值
+		if((dateInfo>=startTime)&&(dateInfo<=endTime)){
+			return discount;
+		}
+		return 0;
 	}
 
 
-	public double getDiscount() {
-		return discount;
-	}
-	
+
 }

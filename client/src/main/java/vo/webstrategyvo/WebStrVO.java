@@ -14,14 +14,16 @@ import util.WebStrategyType;
  */
 public class WebStrVO {
 
-	//商圈折扣映射????????
+	//商圈折扣映射,由于枚举类型也是int，所以冲突
 	//private Map<TradingArea, Double> tradingAreaStrategy;
-	//vip折扣映射
-	private Map<Integer,Double> specialTimeOrTradingAreaStrategy;
+	//vip折扣映射和商圈折扣映射
+	private Map<Integer,Double> VIPOrTradingAreaStrategy;
+	
 	//日期
 	private Date[] date;
 	//时期折扣值
 	private double discount;
+
 	private WebStrategyType type;
 
 	public WebStrVO() {
@@ -34,7 +36,7 @@ public class WebStrVO {
 	public WebStrVO(WebStrPO webStrPO) {
 		this.setDate(webStrPO.getDate());
 		this.setDiscount(webStrPO.getDiscount());
-		this.setSpecialTimeOrTradingAreaStrategy(webStrPO.getSpecialTimeOrTradingAreaStrategy());
+		this.setVIPOrTradingAreaStrategy(webStrPO.getVIPOrTradingAreaStrategy());
 		this.setType(webStrPO.getType());
 	}
 	
@@ -43,17 +45,17 @@ public class WebStrVO {
 	 * @return WebStrPO
 	 */
 	public WebStrPO toPO() {
-		return new WebStrPO( specialTimeOrTradingAreaStrategy, date, discount, type);
+		return new WebStrPO( VIPOrTradingAreaStrategy, date, discount, type);
 	}
-	public WebStrVO(Map<Integer,Double> specialTimeOrTradingAreaStrategy,double discount,WebStrategyType type) {
-		this.setSpecialTimeOrTradingAreaStrategy(specialTimeOrTradingAreaStrategy);
+	public WebStrVO(Map<Integer,Double> VIPOrTradingAreaStrategy,double discount,WebStrategyType type) {
+		this.setVIPOrTradingAreaStrategy(getVIPOrTradingAreaStrategy());
 		this.setDiscount(discount);
 		this.setType(type);
 	}
-	public WebStrVO(Date[] date,double discount) {
+	public WebStrVO(Date[] date,double discount,WebStrategyType webStrategyType) {
         this.setDate(date);
 		this.setDiscount(discount);
-		this.setType(WebStrategyType.SPECIALTIME);
+		this.setType(webStrategyType);
 	}
 
 	public Date[] getDate() {
@@ -78,13 +80,14 @@ public class WebStrVO {
 		this.type = type;
 	}
 
-	public Map<Integer, Double> getSpecialTimeOrTradingAreaStrategy() {
-		return specialTimeOrTradingAreaStrategy;
+	public Map<Integer, Double> getVIPOrTradingAreaStrategy() {
+		return VIPOrTradingAreaStrategy;
 	}
 
-	public void setSpecialTimeOrTradingAreaStrategy(Map<Integer, Double> specialTimeOrTradingAreaStrategy) {
-		this.specialTimeOrTradingAreaStrategy = specialTimeOrTradingAreaStrategy;
+	public void setVIPOrTradingAreaStrategy(Map<Integer, Double> VIPOrTradingAreaStrategy) {
+		this.VIPOrTradingAreaStrategy = VIPOrTradingAreaStrategy;
 	}
+
 
 	
 

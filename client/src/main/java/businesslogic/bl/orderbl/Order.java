@@ -7,12 +7,10 @@ import businesslogic.bl.creditbl.Credit;
 import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.personnelbl.Personnel;
-import businesslogic.bl.userbl.User;
 import businesslogic.bl.webstrategybl.WebStrategy;
 import util.ResultMessage;
 import util.Telephone;
 import util.TradingArea;
-import util.UserType;
 import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.hotelstrategyvo.HotelBestStrVO;
 import vo.hotelvo.HotelDetailInfoVO;
@@ -20,7 +18,6 @@ import vo.ordervo.OrderInfoVO;
 import vo.ordervo.OrderProvidedVO;
 import vo.ordervo.StrategyVO;
 import vo.personnelvo.PersonDetailVO;
-import vo.webstrategyvo.WebBestStrVO;
 /**
  * Order模块的领域类
  * @author CLL
@@ -104,7 +101,7 @@ public class Order {
 		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
 		TradingArea area=hotelDetail.getArea();
 		webStrategy=new WebStrategy();
-		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(String.valueOf(credit), area, new Date());
+//		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(String.valueOf(credit), area, new Date());
 		hotelStrategy=new HotelStrategy();
 		OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName());
 		HotelBestStrVO hotelStrVO=hotelStrategy.getBestHotelStrategy(orderProvidedVO);

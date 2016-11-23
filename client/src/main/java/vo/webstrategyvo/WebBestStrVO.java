@@ -13,8 +13,6 @@ public class WebBestStrVO {
 	//折扣值
 	private double discount;
 	
-	public WebBestStrVO(){
-	}
 	public WebBestStrVO(WebStrategyType webStrategyType,double discount){
 		this.setWebStrategyType(webStrategyType);
 		this.setDiscount(discount);

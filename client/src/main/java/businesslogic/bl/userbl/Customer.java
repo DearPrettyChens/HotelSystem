@@ -7,7 +7,6 @@ import util.Telephone;
 import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.uservo.BasicInfoVO;
-import vo.webstrategyvo.GradeRuleVO;
 /**
  * Customer类
  * @author CYF
@@ -15,15 +14,12 @@ import vo.webstrategyvo.GradeRuleVO;
  */
 public class Customer {
 
-	private int grade;//用户等级
 	private Personnel personnel;
-	private PersonDetailVO personDetailVO;
-	private WebGradeRule webGradeRule;
+	private PersonDetailVO personDetailVO;	
 	private static Customer customer;
 	
 	private Customer(){
 		personnel=Personnel.getInstance();
-		webGradeRule=WebGradeRule.getInstance();
 	}
 	
 	public static Customer getInstance() {
@@ -40,15 +36,11 @@ public class Customer {
 	 */
 	public int getGrade(String personID){
 		personDetailVO=getDetailInfo(personID);
-		int credit=personDetailVO.getCredit();//得到用户信用值
+		int credit=personDetailVO.getCredit();//得到用户信用值		
 		
-		GradeRuleVO gradeRuleVO=webGradeRule.getGradeRule();
-		int gradeCredit=gradeRuleVO.getValue();//得到计算等级的策略
-		
-		if(gradeCredit==0){
-			return 0;
-		}
-		grade=credit/gradeCredit;//计算用户等级
+		//委托给网站策略来获得等级
+		WebGradeRule webGradeRule=WebGradeRule.getInstance();
+		int grade=webGradeRule.getGrade(credit);
     	return grade;
 	}
 	

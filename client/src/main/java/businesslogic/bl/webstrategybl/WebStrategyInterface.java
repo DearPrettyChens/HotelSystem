@@ -20,4 +20,10 @@ public interface WebStrategyInterface {
 	 */
 	public ResultMessage setWebStrategy(WebStrVO vo);
 	
+	/**
+	 * 根据传过来的条件获取折扣值
+	 * @param info
+	 * @return double
+	 */
+	public double getDiscout(String info);
 }
