@@ -1,14 +1,13 @@
 package vo.hotelvo;
 
-import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import util.City;
 import util.TradingArea;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.hotelstrategyvo.HotelStrVO;
-import vo.ordervo.OrderListVO;
 /**
  * 酒店详细信息vo 给顾客看的
  * @author CYF
@@ -16,13 +15,15 @@ import vo.ordervo.OrderListVO;
  */
 public class HotelDetailInfoVO {
 	// 酒店id
-		private String hotelID;
+	private String hotelID;
 	// 酒店名称
 	private String hotelName;
 	// 酒店地址
 	private String address;
 	//酒店图片
 	private ImageIcon hotelImage;
+	//城市
+	private City city;
 	//商圈
 	private TradingArea area;
 	// 联系方式
@@ -51,15 +52,18 @@ public class HotelDetailInfoVO {
 	private ArrayList<String> remarkDetailInfo;
 	// 订单记录
 	private ArrayList<HotelOrderVO> orderRecordVO;
-
+    //最低价格
+	private double lowestPrice;
+	
+	
 	//空方法
 	public HotelDetailInfoVO(){
 		
 	}
 	//酒店细节信息 都可以看到
 	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,TradingArea area,String telephone, int star, String introduce,
-			String commonFacility, String activityFacility, String service, String roomFacility, String enterprises,
-			ArrayList<HotelStrVO> hotelStrVO, ArrayList<AvailableRoomInfoVO> availableRoomInfoVO, ArrayList<HotelOrderVO> orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo) {
+			String commonFacility,City city, String activityFacility, String service, String roomFacility, String enterprises,
+			ArrayList<HotelStrVO> hotelStrVO, ArrayList<AvailableRoomInfoVO> availableRoomInfoVO, ArrayList<HotelOrderVO> orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo,double lowestPrice) {
 		this.setHotelName(hotelName);
 		this.setAddress(address);
 		this.setHotelImage(hotelImage);
@@ -77,6 +81,8 @@ public class HotelDetailInfoVO {
 	    this.setRemarkDetailInfo(remarkDetailInfo);
 	    this.setRemarkNumber(remarkNumber);
 	    this.area=area;
+	    this.city=city;
+	    this.lowestPrice=lowestPrice;
 	}
 	public String getHotelID() {
 		return hotelID;
@@ -212,6 +218,18 @@ public class HotelDetailInfoVO {
 	}
 	public void setArea(TradingArea area) {
 		this.area = area;
+	}
+	public City getCity() {
+		return city;
+	}
+	public void setCity(City city) {
+		this.city = city;
+	}
+	public double getLowestPrice() {
+		return lowestPrice;
+	}
+	public void setLowestPrice(double lowestPrice) {
+		this.lowestPrice = lowestPrice;
 	}
 
 }
