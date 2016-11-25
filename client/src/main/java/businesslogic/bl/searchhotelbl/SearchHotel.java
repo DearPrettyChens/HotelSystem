@@ -1,59 +1,109 @@
 package businesslogic.bl.searchhotelbl;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.bl.hotelbl.Hotel;
+import businesslogic.bl.orderbl.OrderList;
+import dao.searchhoteldao.SearchHotelDao;
+import init.RMIHelper;
+import po.HotelListPO;
 import util.HotelSortType;
 import util.OrderState;
+import util.UserType;
+import vo.hotelstrategyvo.HotelStrVO;
+import vo.ordervo.OrderListVO;
+import vo.ordervo.TypeInfoVO;
 import vo.searchhotelvo.HotelListVO;
+import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
  * 搜索酒店的领域类
+ * 
  * @author cy
  * @version 1.0
  * 
  */
 public class SearchHotel {
-	
-	private ArrayList<HotelListVO> hotelList;//酒店信息列表
-	public SearchHotel(){
-		
+
+	private ArrayList<HotelListVO> hotelListVOs;//维护VO信息是为了进行筛选
+	private ArrayList<HotelListPO> hotelListPOs;
+	private HotelSearchInfoVO hotelSearchInfoVO;
+	private SearchHotelDao searchHotelDao;
+
+	/**
+	 * 
+	 * 在这个类初始化的时候就根据排序类型去数据库去酒店列表信息
+	 * @param hotelSearchInfoVO
+	 */
+	public SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
+		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
+		try {
+			searchHotelDao = RMIHelper.getSearchHotelDao();
+			if (hotelSortType == null) {
+				hotelListPOs = searchHotelDao.getHotelList();
+			} else {
+				hotelListPOs = searchHotelDao.getSortedHotelList(hotelSortType);
+			}
+			for (HotelListPO hotelListPO : hotelListPOs) {
+				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
+				hotelListVOs.add(hotelListVO);
+			}
+			addStrToVO(hotelSearchInfoVO.getCustomerID());
+			addOrderToVO(hotelSearchInfoVO.getCustomerID());
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 	}
-    public SearchHotel(ArrayList<HotelListVO> hotelList){
-		this.hotelList=hotelList;
+
+	/**
+	 * 
+	 * 在列表信息中增添酒店策略
+	 * @param customerID
+	 */
+	private void addStrToVO(String customerID) {
+		for (HotelListVO hotelListVO : hotelListVOs) {
+			String hotelID = hotelListVO.getHotelID();
+			Hotel hotel = new Hotel();
+			ArrayList<HotelStrVO> hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
+			hotelListVO.setHotelStrVO(hotelStrVOs);
+		}
+
+	}
+	
+	/**
+	 * 在列表信息中增添订单状态
+	 * @param customerID
+	 */
+	private void addOrderToVO(String customerID){
+		//遍历每一个酒店
+		for(HotelListVO hotelListVO: hotelListVOs){
+			String hotelID=hotelListVO.getHotelID();
+			ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
+			
+			//遍历顾客的订单，获得顾客在该酒店的订单状态
+			ArrayList<OrderListVO> orderListVOs=new OrderList().getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
+			for(OrderListVO orderListVO:orderListVOs){
+				String orderHotelID=orderListVO.getHotelID();
+				if(orderHotelID.equals(hotelID)){
+					orderStates.add(orderListVO.getState());
+				}
+			}
+			
+			hotelListVO.setOrderStates(orderStates);
+		}
 	}
 	
 	/**
 	 * 得到所有酒店列表信息
+	 * 
 	 * @param null
 	 * @return ArrayList<HotelListVO>
 	 * @throws 未定
 	 */
 	public ArrayList<HotelListVO> getHotelList() {
-		
-		return null;
+		CheckHotel checkHotel=new CheckHotel(hotelListVOs,hotelSearchInfoVO);
+		return checkHotel.check();
 	}
 
-	
-	/**
-	 * 得到排序后的酒店列表信息
-	 * @param HotelSortType type
-	 * @return ArrayList<HotelListVO>
-	 * @throws 未定
-	 */
-	public ArrayList<HotelListVO> getSortedHotelList(HotelSortType type) {
-	
-		return null;
-	}
-
-	
-	/**
-	 * 得到有订单的酒店列表信息
-	 * @param HotelSortType type, OrderState orderState
-	 * @return  ArrayList<HotelListVO>
-	 * @throws 未定
-	 */
-	public ArrayList<HotelListVO> getBookedHotelList(HotelSortType type, OrderState orderState) {
-		
-		return null;
-	}	
 }

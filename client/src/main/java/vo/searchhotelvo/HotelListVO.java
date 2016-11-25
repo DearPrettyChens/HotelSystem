@@ -1,9 +1,13 @@
 package vo.searchhotelvo;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import po.HotelListPO;
+import util.OrderState;
 import util.TransHelper;
+import vo.hotelstrategyvo.HotelStrVO;
 
 /**
  * 酒店列表信息vo
@@ -26,9 +30,13 @@ public class HotelListVO {
 	private double remark;
 	// 酒店最低价格
 	private double lowestPrice;
-
-	public HotelListVO(){
-	}
+	// 酒店电话
+	private String telephone;
+	// 酒店策略
+	private ArrayList<HotelStrVO> hotelStrVO;
+	// 顾客在该酒店的订单
+	private ArrayList<OrderState> orderStates;
+	
 	public HotelListVO(HotelListPO po){
 		this.setHotelAddress(po.getLocation());
 		this.setHotelID(TransHelper.idToString(po.getId(),6));
@@ -37,19 +45,24 @@ public class HotelListVO {
 		this.setStar(po.getStar());
 		this.setRemark(po.getRemark());
 		this.setLowestPrice(po.getLowestprice());
-	}
-	public HotelListVO(String hotelID, String hotelName, String hotelAddress, int star, double remark,
-			double lowestPrice) {
-		this.setHotelID(hotelID);
-		this.setHotelName(hotelName);
-		this.setHotelAddress(hotelAddress);
-		this.setStar(star);
-		this.setRemark(remark);
-		this.setLowestPrice(lowestPrice);
+		this.setTelephone(po.getTelephone());
 	}
 
-	public HotelListPO toPO(){
-		return new HotelListPO(hotelName,hotelAddress,hotelImage,lowestPrice,star,TransHelper.idToInt(hotelID),remark);
+
+	public HotelListVO(ImageIcon hotelImage, String hotelID, String hotelName, String hotelAddress, int star,
+			double remark, double lowestPrice, String telephone, ArrayList<HotelStrVO> hotelStrVO,
+			ArrayList<OrderState> orderStates) {
+		super();
+		this.hotelImage = hotelImage;
+		this.hotelID = hotelID;
+		this.hotelName = hotelName;
+		this.hotelAddress = hotelAddress;
+		this.star = star;
+		this.remark = remark;
+		this.lowestPrice = lowestPrice;
+		this.setTelephone(telephone);
+		this.setHotelStrVO(hotelStrVO);
+		this.setOrderStates(orderStates);
 	}
 	public String getHotelID() {
 		return hotelID;
@@ -103,6 +116,28 @@ public class HotelListVO {
 	}
 	public void setHotelImage(ImageIcon imageIcon) {
 		this.hotelImage = imageIcon;
+	}
+	public String getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+	public ArrayList<HotelStrVO> getHotelStrVO() {
+		return hotelStrVO;
+	}
+	public void setHotelStrVO(ArrayList<HotelStrVO> hotelStrVO) {
+		this.hotelStrVO = hotelStrVO;
+	}
+
+
+	public ArrayList<OrderState> getOrderStates() {
+		return orderStates;
+	}
+
+
+	public void setOrderStates(ArrayList<OrderState> orderStates) {
+		this.orderStates = orderStates;
 	}
 
 }

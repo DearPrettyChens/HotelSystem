@@ -3,9 +3,8 @@ package businesslogic.bl.searchhotelbl;
 import java.util.ArrayList;
 
 import businesslogic.blservice.searchhotelblservice.SearchHotelBLService;
-import util.HotelSortType;
-import util.OrderState;
 import vo.searchhotelvo.HotelListVO;
+import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
  * SearchHotel模块的控制类
@@ -14,12 +13,9 @@ import vo.searchhotelvo.HotelListVO;
  * 
  */
 public class SearchHotelController implements SearchHotelBLService{
-     private SearchHotel searchHotel;//持有的credit的引用
      private static SearchHotelBLService searchHotelController;
      
-     public SearchHotelController(){
-    	 searchHotel=new SearchHotel();
-    	 
+     private SearchHotelController(){	 
      }
      
      public static SearchHotelBLService getInstance() {
@@ -28,23 +24,11 @@ public class SearchHotelController implements SearchHotelBLService{
 		}
 		return searchHotelController;
 	}
-    
-	@Override
-	public ArrayList<HotelListVO> getHotelList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public ArrayList<HotelListVO> getSortedHotelList(HotelSortType type) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<HotelListVO> getSortedHotelList(HotelSearchInfoVO hotelSearchInfoVO) {
+		SearchHotel searchHotel=new SearchHotel(hotelSearchInfoVO);	
+		return searchHotel.getHotelList();
 	}
-
-	@Override
-	public ArrayList<HotelListVO> getBookedHotelList(HotelSortType type, OrderState orderState,String ID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+ 
 }
