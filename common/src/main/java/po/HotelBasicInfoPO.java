@@ -35,6 +35,8 @@ public class HotelBasicInfoPO implements Serializable {
 	@Column(name = "name")
 	private String name;
 	// 酒店图片
+	@Column(name = "hotel_image")
+	private String hotelImagePath;
 	@Transient
 	private ImageIcon hotelImage;
 	// 城市
@@ -286,6 +288,14 @@ public class HotelBasicInfoPO implements Serializable {
 		return new HotelBasicInfoPO(getHotelID(), getName(), getHotelImage(), getAddress(), getTelephone(), getStar(),
 				getScore(), getLowestPrice(), getIntroduce(), getCommonFacility(), getActivityFacility(), getService(),
 				getRoomFacility(), getRemarks(), getCity(), getTradingArea());
+	}
+
+	public String getHotelImagePath() {
+		return hotelImagePath;
+	}
+
+	public void setHotelImagePath(String hotelImagePath) {
+		this.hotelImagePath = hotelImagePath;
 	}
 
 }

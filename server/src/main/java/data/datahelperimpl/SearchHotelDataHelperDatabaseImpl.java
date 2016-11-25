@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 
 import data.datahelper.SearchHotelDataHelper;
 import datahelper.databaseutility.HibernateUtil;
+import datahelper.databaseutility.ImageUtil;
 import po.ClientPO;
 import po.HotelListPO;
 import util.HotelSortType;
@@ -37,6 +38,7 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}
+		result = setImage(result);
 		return result;
 	}
 
@@ -86,6 +88,16 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}
+		result = setImage(result);
 		return result;
+	}
+
+	public ArrayList<HotelListPO> setImage(ArrayList<HotelListPO> list) {
+		for (HotelListPO each : list) {
+			if (each.getHotelImagePath() != null) {
+				each.setImage(ImageUtil.getImage(each.getHotelImagePath()));
+			}
+		}
+		return list;
 	}
 }

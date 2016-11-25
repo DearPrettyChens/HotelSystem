@@ -8,9 +8,11 @@ import org.hibernate.Session;
 
 import data.datahelper.HotelDataHelper;
 import datahelper.databaseutility.HibernateUtil;
+import datahelper.databaseutility.ImageUtil;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
 import po.RemarkPO;
+import util.ImageType;
 import util.ResultMessage;
 
 public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
@@ -25,7 +27,11 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		if (list.size() == 0) {
 			return null;
 		}
-		return list.get(0).copy();
+		HotelBasicInfoPO retPO = list.get(0).copy();
+		if (retPO.getHotelImagePath() != null) {
+			retPO.setHotelImage(ImageUtil.getImage(retPO.getHotelImagePath()));
+		}
+		return retPO;
 	}
 
 	@Override
@@ -64,8 +70,11 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 				po.getAddress(), po.getTelephone(), po.getStar(), po.getScore(), po.getLowestPrice(), po.getIntroduce(),
 				po.getCommonFacility(), po.getActivityFacility(), po.getService(), po.getRoomFacility(),
 				po.getRemarks(), po.getCity(), po.getTradingArea());
+		if (po.getHotelImage() != null) {
+			savePO.setHotelImagePath(ImageUtil.SaveImage(po.getHotelImage(), ImageType.hotelImage));
+		}
 		try {
-			session.save(po);
+			session.save(savePO);
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +102,6 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		savePO.setCity(po.getCity());
 		savePO.setCommonFacility(po.getCommonFacility());
 		savePO.setEnterprises(po.getEnterprises());
-		savePO.setHotelImage(po.getHotelImage());
 		savePO.setIntroduce(po.getIntroduce());
 		savePO.setName(po.getName());
 		savePO.setRoomFacility(po.getRoomFacility());
@@ -102,6 +110,10 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		savePO.setStar(po.getStar());
 		savePO.setTelephone(po.getTelephone());
 		savePO.setTradingArea(po.getTradingArea());
+		savePO.setHotelImage(po.getHotelImage());
+		if (po.getHotelImage() != null) {
+			savePO.setHotelImagePath(ImageUtil.SaveImage(po.getHotelImage(), ImageType.hotelImage));
+		}
 		try {
 			session.update(savePO);
 		} catch (Exception e) {

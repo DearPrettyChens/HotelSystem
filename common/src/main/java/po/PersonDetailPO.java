@@ -222,4 +222,12 @@ public class PersonDetailPO {
 		return new PersonDetailPO(getId(), getName(), getImage(), getTelephone(), getCredit(), getBirthday(),
 				getEnterpriseName(), getVIPType(), getPassword(), getHotelName(), getUserType());
 	}
+
+	public String getUserImagePosition() {
+		return userImagePosition;
+	}
+
+	public void setUserImagePosition(String userImagePosition) {
+		this.userImagePosition = userImagePosition;
+	}
 }

@@ -238,9 +238,6 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 				for (AvailableRoomInfoPO eachOne : updateList) {
 					session.update(eachOne);
 					transaction = session.getTransaction();
-					// transaction.commit();
-					// session.flush();
-					// session.clear();
 				}
 			} catch (Exception e) {
 				e.printStackTrace();

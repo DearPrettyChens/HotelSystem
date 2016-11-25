@@ -1,18 +1,30 @@
 package dao.driver;
 
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.rmi.RemoteException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 import dao.hoteldao.HotelDao;
 import dao.impl.HotelDaoImpl;
+import datahelper.databaseutility.ImageUtil;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
 import po.RemarkPO;
 import util.City;
+import util.ImageType;
 import util.TradingArea;
 
 public class HotelDataServiceImpl_Driver {
-	public void drive(HotelDao dao) throws RemoteException {
-		HotelBasicInfoPO po = new HotelBasicInfoPO(5, "AAAAA", null, "AAAAA", "12345678910", 4, 0, 590, "SSS", "AAA",
+	public void drive(HotelDao dao) throws IOException {
+		Image image = ImageIO.read(new File("/Users/chengyunfei/Documents/红楼/水墨红楼(最好看的一版)/黛玉.jpg"));
+	//	String path = ImageUtil.SaveImage(new ImageIcon(image), ImageType.userImage);
+	//	ImageIcon imageIcon = ImageUtil.getImage(path);
+		
+		HotelBasicInfoPO po = new HotelBasicInfoPO(5, "AAAAA", new ImageIcon(image), "AAAAA", "12345678910", 4, 0, 590, "SSS", "AAA",
 				"AAA", "SSS", "RM", null, City.NANJING, TradingArea.HUNANLU);
 		System.out.println(dao.addHotelBasicInfo(po));
 
@@ -41,6 +53,11 @@ public class HotelDataServiceImpl_Driver {
 	}
 
 	public static void main(String[] args) throws RemoteException {
-		new HotelDataServiceImpl_Driver().drive(HotelDaoImpl.getInstance());
+		try {
+			new HotelDataServiceImpl_Driver().drive(HotelDaoImpl.getInstance());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
