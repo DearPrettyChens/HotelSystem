@@ -9,8 +9,10 @@ import org.hibernate.Session;
 
 import data.datahelper.PersonnelDataHelper;
 import datahelper.databaseutility.HibernateUtil;
+import datahelper.databaseutility.ImageUtil;
 import po.PersonDetailPO;
 import po.PersonListPO;
+import util.ImageType;
 import util.ResultMessage;
 import util.UserType;
 
@@ -24,6 +26,9 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 				personDetailPO.getImage(), personDetailPO.getTelephone(), personDetailPO.getCredit(),
 				personDetailPO.getBirthday(), personDetailPO.getEnterpriseName(), personDetailPO.getVIPType(),
 				personDetailPO.getPassword(), personDetailPO.getHotelName(), personDetailPO.getUserType());
+		if (savePO.getImage() != null) {
+			savePO.setUserImagePosition(ImageUtil.SaveImage(savePO.getImage(), ImageType.userImage));
+		}
 		try {
 			session.save(savePO);
 		} catch (Exception e) {
@@ -53,7 +58,11 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		if (list.size() == 0) {
 			return null;
 		}
-		return list.get(0).copy();
+		PersonDetailPO retPO = list.get(0).copy();
+		if (retPO.getUserImagePosition() != null) {
+			retPO.setImage(ImageUtil.getImage(retPO.getUserImagePosition()));
+		}
+		return retPO;
 	}
 
 	@Override
@@ -71,10 +80,13 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		setPO.setCredit(po.getCredit());
 		setPO.setHotelName(po.getHotelName());
 		setPO.setEnterpriseName(po.getEnterpriseName());
-		setPO.setImage(po.getImage());
 		setPO.setName(po.getName());
 		setPO.setPassword(po.getPassword());
 		setPO.setTelephone(po.getTelephone());
+		setPO.setImage(po.getImage());
+		if (setPO.getImage() != null) {
+			setPO.setUserImagePosition(ImageUtil.SaveImage(setPO.getImage(), ImageType.userImage));
+		}
 		try {
 			session.update(setPO);
 		} catch (Exception e) {

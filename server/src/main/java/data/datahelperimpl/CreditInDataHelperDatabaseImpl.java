@@ -10,7 +10,6 @@ import data.datahelper.CreditDataHelper;
 import datahelper.databaseutility.HibernateUtil;
 import po.CreditInfoPO;
 import po.CreditPO;
-import po.CustomerDetailPO;
 import util.ResultMessage;
 
 public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {

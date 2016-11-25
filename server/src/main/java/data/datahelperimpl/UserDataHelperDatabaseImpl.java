@@ -17,9 +17,6 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 
 	@Override
 	public ClientPO getUserPassword(String name) {
-		// Configuration cfg = new AnnotationConfiguration();
-		// SessionFactory sf = cfg.configure().buildSessionFactory();
-		// Session session = sf.openSession();
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		String sql = "from ClientPO where user_name=:name";
@@ -35,9 +32,6 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 
 	@Override
 	public ResultMessage setUserPassword(ClientPO po) {
-		// Configuration cfg = new AnnotationConfiguration();
-		// SessionFactory sf = cfg.configure().buildSessionFactory();
-		// Session session = sf.openSession();
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		Query query = session.createQuery("from ClientPO where user_id = " + po.getUserID());

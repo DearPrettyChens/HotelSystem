@@ -27,10 +27,10 @@ public class HotelListPO implements Serializable {
 	private String name;
 	@Column(name = "address")
 	private String address;
+	@Column(name = "hotel_image")
+	private String hotelImagePath;
 	@Transient
 	private ImageIcon image;
-	@Column(name = "hotel_image")
-	private String hotelImage;
 	@Column(name = "lowest_price")
 	private double lowestPrice;
 	@Column(name = "star")
@@ -123,6 +123,14 @@ public class HotelListPO implements Serializable {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+
+	public String getHotelImagePath() {
+		return hotelImagePath;
+	}
+
+	public void setHotelImagePath(String hotelImagePath) {
+		this.hotelImagePath = hotelImagePath;
 	}
 
 }
