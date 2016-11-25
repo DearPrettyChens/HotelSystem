@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import dao.hotelstrategydao.HotelStrategyDao;
 import data.datahelper.HotelStrategyDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.HotelStrPO;
 import util.HotelStrategyType;
 import util.ResultMessage;
@@ -40,7 +40,7 @@ public class HotelStrategyDaoImpl extends UnicastRemoteObject implements HotelSt
 
 	private HotelStrategyDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		hotelStrategyDataHelper = dataFactory.getHotelStrategyDataHelper();
 	}
 

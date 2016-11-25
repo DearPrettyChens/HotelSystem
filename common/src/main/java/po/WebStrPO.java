@@ -18,7 +18,7 @@ public class WebStrPO implements Serializable {
 	// vip折扣映射
 	private Map<Integer, Double> VIPOrTradingAreaStrategy;
 	// 日期
-	private java.sql.Date[] dateStamps;
+	private Date[] dateStamps;
 	// 时期折扣值
 	private double discount;
 	private WebStrategyType type;
@@ -26,8 +26,7 @@ public class WebStrPO implements Serializable {
 	public WebStrPO() {
 	}
 
-	public WebStrPO(Map<Integer, Double> VIPOrTradingAreaStrategy, Date[] date, double discount,
-			WebStrategyType type) {
+	public WebStrPO(Map<Integer, Double> VIPOrTradingAreaStrategy, Date[] date, double discount, WebStrategyType type) {
 		super();
 
 		this.setVIPOrTradingAreaStrategy(VIPOrTradingAreaStrategy);
@@ -52,20 +51,11 @@ public class WebStrPO implements Serializable {
 	public Date[] getDate() {
 		if (dateStamps == null)
 			return null;
-		Date[] dates = new Date[dateStamps.length];
-		for (int i = 0; i < dates.length; i++) {
-			dates[i] = new Date(dateStamps[i].getTime());
-		}
-		return dates;
+		return dateStamps;
 	}
 
 	public void setDate(Date[] date) {
-		if (date != null) {
-			dateStamps = new java.sql.Date[date.length];
-			for (int i = 0; i < dateStamps.length; i++) {
-				dateStamps[i] = new java.sql.Date(date[i].getTime());
-			}
-		}
+		dateStamps = date;
 	}
 
 	public double getDiscount() {
@@ -89,7 +79,7 @@ public class WebStrPO implements Serializable {
 	}
 
 	public void setVIPOrTradingAreaStrategy(Map<Integer, Double> VIPOrTradingAreaStrategy) {
-		this.VIPOrTradingAreaStrategy = getVIPOrTradingAreaStrategy();
+		this.VIPOrTradingAreaStrategy = VIPOrTradingAreaStrategy;
 	}
 
 }

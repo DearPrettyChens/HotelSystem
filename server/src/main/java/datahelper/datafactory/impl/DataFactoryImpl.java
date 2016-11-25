@@ -19,9 +19,10 @@ import data.datahelperimpl.OrderDataHelperDatabaseImpl;
 import data.datahelperimpl.PersonnelDataHelperDatabaseImpl;
 import data.datahelperimpl.SearchHotelDataHelperDatabaseImpl;
 import data.datahelperimpl.UserDataHelperDatabaseImpl;
+import data.datahelperimpl.WebStrategyDataHelperTXTImpl;
 import datahelper.datafactory.DataFactory;
 
-public class DataFactoryDatabaseImpl implements DataFactory {
+public class DataFactoryImpl implements DataFactory {
 
 	@Override
 	public UserDataHelper getUserDataHelper() {
@@ -79,8 +80,8 @@ public class DataFactoryDatabaseImpl implements DataFactory {
 
 	@Override
 	public WebStrategyDataHelper getWebStrategyDataHelper() {
-		// TODO Auto-generated method stub
-		return null;
+		WebStrategyDataHelper webStrategyDataHelper = new WebStrategyDataHelperTXTImpl();
+		return webStrategyDataHelper;
 	}
 
 }

@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import dao.creditdao.CreditDao;
 import data.datahelper.CreditDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.CreditInfoPO;
 import po.CreditPO;
 import util.ResultMessage;
@@ -37,7 +37,7 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 
 	private CreditDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		creditDataHelper = dataFactory.getCreditDataHelper();
 	}
 

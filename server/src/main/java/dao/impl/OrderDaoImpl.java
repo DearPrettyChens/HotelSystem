@@ -8,7 +8,7 @@ import dao.orderdao.OrderDao;
 import data.datahelper.OrderDataHelper;
 import data.datahelperimpl.OrderDataHelperDatabaseImpl;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.CheckTimePO;
 import po.OrderInfoPO;
 import po.OrderListPO;
@@ -43,7 +43,7 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 
 	private OrderDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		orderDataHelper = dataFactory.getOrderDataHelper();
 	}
 

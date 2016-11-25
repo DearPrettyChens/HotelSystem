@@ -10,7 +10,7 @@ import data.datahelper.AvailableRoomDataHelper;
 import data.datahelper.SearchHotelDataHelper;
 import data.datahelper.UserDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
@@ -43,7 +43,7 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 
 	private AvailableRoomDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		availableRoomDataHelper = dataFactory.getAvailableRoomDataHelper();
 	}
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import dao.personneldao.PersonnelDao;
 import data.datahelper.PersonnelDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.PersonDetailPO;
 import po.PersonListPO;
 import util.ResultMessage;
@@ -41,7 +41,7 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 
 	private PersonnelDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		personnelDataHelper = dataFactory.getPersonnelDataHelper();
 	}
 

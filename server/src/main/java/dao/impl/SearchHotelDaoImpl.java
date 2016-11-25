@@ -8,7 +8,7 @@ import dao.searchhoteldao.SearchHotelDao;
 import data.datahelper.SearchHotelDataHelper;
 import data.datahelperimpl.SearchHotelDataHelperDatabaseImpl;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.HotelListPO;
 import util.HotelSortType;
 
@@ -39,7 +39,7 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 
 	private SearchHotelDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		searchHotelDataHelper = dataFactory.getSearchHotelDataHelper();
 	}
 

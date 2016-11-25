@@ -43,7 +43,7 @@ public class AvailableRoomNumberPO implements Serializable {
 
 	}
 
-	public AvailableRoomNumberPO(int number, BedType bedType, Date date, int hotelNumber) throws ParseException {
+	public AvailableRoomNumberPO(int number, BedType bedType, Date date, int hotelNumber)  {
 		this.setNumber(number);
 		this.setBedType(bedType);
 		this.setDate(date);
@@ -100,14 +100,19 @@ public class AvailableRoomNumberPO implements Serializable {
 		return calendar.getTime();
 	}
 
-	public void setDate(Date date) throws ParseException {
+	public void setDate(Date date) {
 		if (date != null) {
 			Date today = new Date();
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String string1 = sdf.format(today);
 			String string2 = sdf.format(date);
-			long a = sdf.parse(string1).getTime();
-			long b = sdf.parse(string2).getTime();
+			long a=0, b=0;
+			try {
+				a = sdf.parse(string1).getTime();
+				b = sdf.parse(string2).getTime();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			this.dateFromNow = (int) ((b - a) / (60 * 60 * 12));
 		}
 	}

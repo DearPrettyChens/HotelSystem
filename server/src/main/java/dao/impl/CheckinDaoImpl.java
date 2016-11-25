@@ -8,7 +8,7 @@ import com.mysql.fabric.xmlrpc.base.Data;
 import dao.checkindao.CheckinDao;
 import data.datahelper.CheckInDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.CheckinInfoPO;
 import util.ResultMessage;
 
@@ -41,7 +41,7 @@ public class CheckinDaoImpl extends UnicastRemoteObject implements CheckinDao {
 
 	private CheckinDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		checkInDataHelper = dataFactory.getCheckInDataHelper();
 	}
 

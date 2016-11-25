@@ -6,7 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import dao.userdao.UserDao;
 import data.datahelper.UserDataHelper;
 import datahelper.datafactory.DataFactory;
-import datahelper.datafactory.impl.DataFactoryDatabaseImpl;
+import datahelper.datafactory.impl.DataFactoryImpl;
 import po.ClientPO;
 import util.ResultMessage;
 
@@ -37,7 +37,7 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	private UserDaoImpl() throws RemoteException {
 		super();
-		dataFactory = new DataFactoryDatabaseImpl();
+		dataFactory = new DataFactoryImpl();
 		userDataHelper = dataFactory.getUserDataHelper();
 	}
 
