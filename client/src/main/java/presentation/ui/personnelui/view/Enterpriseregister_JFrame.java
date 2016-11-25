@@ -212,12 +212,12 @@ public class Enterpriseregister_JFrame extends JFrame{
 	
 	
 	
-	public static void main(String[] args){
-		
-		new Enterpriseregister_JFrame();
-		
-	
-	}
+//	public static void main(String[] args){
+//		
+//		new Enterpriseregister_JFrame();
+//		
+//	
+//	}
 	
 	
 	

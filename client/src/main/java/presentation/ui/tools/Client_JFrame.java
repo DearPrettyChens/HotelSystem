@@ -24,6 +24,7 @@ import presentation.ui.userui.view.Changepassword_JPanel;
 public class Client_JFrame  extends JFrame{
 	
 	
+	private Font font=new Font("宋体",Font.BOLD, 16);
 	
 	private Color backgroundcolor =new Color(148,221,184);
 	private JPanel abovepanel=new JPanel();
@@ -56,10 +57,15 @@ public class Client_JFrame  extends JFrame{
 	
     
 	
-	private Changepassword_JPanel cp=new Changepassword_JPanel();
+	//private Changepassword_JPanel cp=new Changepassword_JPanel();
 	//private Changemessage_JPanel cp=new Changemessage_JPanel();
-	//private SingleCreditinfo_JPanel cp=new SingleCreditinfo_JPanel("4.19", "wjbce", "wobc", "owfbnc", "wjebfc");
+	//private SingleCreditinfo_JPanel cp=new SingleCreditinfo_JPanel("4.19", "wjbce", "wobc", "owfbnc", "+1000");
+	//private Clientlistinfo_JPanel cp=new Clientlistinfo_JPanel("120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
+	//Searchperson_JPanel cp=new Searchperson_JPanel();
+	//Searchoradd_JPanel cp=new Searchoradd_JPanel();
+	Webstrmakeradd_JPanel cp=new Webstrmakeradd_JPanel("sbd");
 	
+	//private Hotelworkerlistinfo_JPanel cp=new Hotelworkerlistinfo_JPanel("fw","120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
 	
 	public Client_JFrame(){
 		
@@ -189,12 +195,12 @@ public class Client_JFrame  extends JFrame{
 	
 	
 	
-//	public static void main(String[] args){
-//		
-//		new Client_JFrame();
-//		
-//	
-//	}
+	public static void main(String[] args){
+		
+		new Client_JFrame();
+		
+	
+	}
 	
 	
 

@@ -224,14 +224,14 @@ public class Individualregister_JFrame extends JFrame{
 	
 	
 	
-	public static void main(String[] args){
-		
-		new Individualregister_JFrame();
-		
-	
-	}
-	
-	
+//	public static void main(String[] args){
+//		
+//		new Individualregister_JFrame();
+//		
+//	
+//	}
+//	
+//	
 	
 	
 	
