@@ -117,11 +117,11 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 				remarkDetails.add(remarks.get(i).getRemark());
 			}
 			//综合酒店细节信息
-			HotelDetailInfoVO detail=new HotelDetailInfoVO(TransHelper.idToString(basic.getHotelID(),6),
+			HotelDetailInfoVO detail=new HotelDetailInfoVO(basic.getName(),
 					basic.getAddress(),basic.getHotelImage(),basic.getTradingArea(),
-					basic.getTelephone(),basic.getStar(),basic.getIntroduce(),basic.getCommonFacility()
+					basic.getTelephone(),basic.getStar(),basic.getIntroduce(),basic.getCommonFacility(),basic.getCity()
 					,basic.getActivityFacility(),basic.getService(),basic.getRoomFacility(),basic.getEnterprises(),
-					hotelStrs,roomInfo,orders,basic.getScore(),remarkDetails);
+					hotelStrs,roomInfo,orders,basic.getScore(),remarkDetails,basic.getLowestPrice());
 			return detail;
 		} catch (RemoteException e) {
 			e.printStackTrace();
