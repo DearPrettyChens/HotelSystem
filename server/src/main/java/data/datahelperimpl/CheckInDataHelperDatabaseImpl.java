@@ -22,12 +22,12 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 				po.getOrdernumber());
 		try {
 			session.save(savepo);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -39,10 +39,10 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + orderID + "'");
 		List<CheckinInfoPO> list = query.list();
+		session.close();
 		if (list.size() == 0) {
 			return null;
 		}
-		session.close();
 		return list.get(0).copy();
 	}
 
@@ -53,17 +53,18 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + po.getOrdernumber() + "'");
 		List<CheckinInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		list.get(0).setCheckouttime(po.getCheckouttime());
 		try {
 			session.update(list.get(0));
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

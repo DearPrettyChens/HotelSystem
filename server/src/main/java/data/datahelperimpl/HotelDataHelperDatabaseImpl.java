@@ -21,6 +21,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + hotelID);
 		List<HotelBasicInfoPO> list = query.list();
+		session.close();
 		if (list.size() == 0) {
 			return null;
 		}
@@ -34,6 +35,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
 		List<HotelBasicInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		HotelBasicInfoPO savePO = list.get(0);
@@ -43,11 +45,12 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 
 		try {
 			session.update(savePO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -66,6 +69,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
 			session.close();
@@ -80,6 +84,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
 		List<HotelBasicInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		HotelBasicInfoPO savePO = list.get(0);
@@ -99,11 +104,12 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		savePO.setTradingArea(po.getTradingArea());
 		try {
 			session.update(savePO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -116,17 +122,19 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		Query query = session.createQuery("from HotelBestPricePO where id = " + po.getHotelID());
 		List<HotelBestPricePO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		HotelBestPricePO savePO = list.get(0);
 		savePO.setBestPrice(po.getBestPrice());
 		try {
 			session.update(savePO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

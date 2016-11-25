@@ -22,6 +22,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 				"from HotelStrPO where ( hotel_id = " + hotelID + ") and ( type = '" + type.getString() + "')");
 		List<HotelStrPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return null;
 		}
 		return list.get(0).copy();
@@ -39,11 +40,12 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 					po.getEnterprise(), po.getDate());
 			try {
 				session.save(savePO);
-				session.getTransaction().commit();
 			} catch (Exception e) {
 				e.printStackTrace();
+				session.getTransaction().rollback();
 				return ResultMessage.FAIL;
 			} finally {
+				session.getTransaction().commit();
 				session.close();
 			}
 		} else {
@@ -54,11 +56,12 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 			hotelStrPO.setEnterprise(po.getEnterprise());
 			try {
 				session.update(hotelStrPO);
-				session.getTransaction().commit();
 			} catch (Exception e) {
 				e.printStackTrace();
+				session.getTransaction().rollback();
 				return ResultMessage.FAIL;
 			} finally {
+				session.getTransaction().commit();
 				session.close();
 			}
 		}

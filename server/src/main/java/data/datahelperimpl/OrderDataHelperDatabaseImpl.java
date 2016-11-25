@@ -26,10 +26,10 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + orderID + "'");
 		List<OrderInfoPO> list = query.list();
+		session.close();
 		if (list.size() == 0) {
 			return null;
 		}
-		session.close();
 		return list.get(0).copy();
 	}
 
@@ -40,17 +40,19 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderNumber() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		try {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setState(po.getState());
 			session.update(orderInfoPO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -62,25 +64,26 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderID() + "'");
 		List<OrderInfoPO> orderInfoPOlist = query.list();
-		query = session.createQuery("from RemarkPO where order_id = '" + po.getOrderID()+"'");
+		query = session.createQuery("from RemarkPO where order_id = '" + po.getOrderID() + "'");
 		List<RemarkPO> remarkPOlist = query.list();
 		if (orderInfoPOlist.size() == 0 || remarkPOlist.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		try {
 			OrderInfoPO orderInfoPO = orderInfoPOlist.get(0);
 			orderInfoPO.setHasRemarked(true);
 			session.update(orderInfoPO);
-			// session.getTransaction().commit();
 			RemarkPO remarkPO = remarkPOlist.get(0);
 			remarkPO.setRemark(po.getRemark());
 			remarkPO.setScore(po.getScore());
 			session.update(remarkPO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -93,17 +96,19 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderNumber() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		try {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setActualCheckInTime(po.getCheckTime());
 			session.update(orderInfoPO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -116,17 +121,19 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderNumber() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		try {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setActuarCheckOutTime(po.getCheckTime());
 			session.update(orderInfoPO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -139,15 +146,19 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderID() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() != 0) {
+			session.close();
 			return ResultMessage.ORDERIDHASEXISTED;
 		}
 		OrderInfoPO savePO = po.copy();
 		try {
 			session.save(savePO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
+			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
+		} finally {
+			session.getTransaction().commit();
+			session.close();
 		}
 		return ResultMessage.SUCCESS;
 	}

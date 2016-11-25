@@ -43,6 +43,9 @@
 		<mapping class="po.OrderInfoPO"></mapping>
 		<mapping class="po.OrderStatePO"></mapping>
 		<mapping class="po.RemarkPO"></mapping>
+		<mapping class="po.PersonDetailPO"></mapping>
+		<mapping class="po.AvailableRoomInfoPO"></mapping>
+		<mapping class="po.AvailableRoomNumberPO"></mapping>
 
 	</session-factory>
 </hibernate-configuration>

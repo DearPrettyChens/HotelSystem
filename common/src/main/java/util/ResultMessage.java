@@ -32,6 +32,8 @@ public enum ResultMessage {
 	
 	ORDERIDHASEXISTED,//存储订单时,订单编号已存在
 	
+	LISTSIZE0, //数据库无信息
+	
 	SUCCESS,
 	FAIL,
 	UnkownFormat

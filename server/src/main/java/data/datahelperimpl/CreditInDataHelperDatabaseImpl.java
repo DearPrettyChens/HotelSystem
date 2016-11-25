@@ -37,12 +37,12 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 				po.getTime());
 		try {
 			session.save(creditPO);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.getTransaction().rollback();
 			return ResultMessage.FAIL;
 		} finally {
+			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -55,8 +55,10 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 		Query query = session.createQuery("from CreditPO where user_id = " + customerID);
 		List<CreditPO> list = query.list();
 		List<CreditPO> copyList = new ArrayList<CreditPO>();
-		if (list.size() == 0)
+		if (list.size() == 0){
+			session.close();
 			return null;
+		}
 		CreditInfoPO po = null;
 		try {
 			for (CreditPO each : list) {

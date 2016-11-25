@@ -23,9 +23,6 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 	@SuppressWarnings("unused")
 	@Override
 	public ArrayList<HotelListPO> getHotelList() {
-		// Configuration cfg = new AnnotationConfiguration();
-		// SessionFactory sf = cfg.configure().buildSessionFactory();
-		// Session session = sf.openSession();
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		String sql = "from HotelListPO";
@@ -33,12 +30,13 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 		@SuppressWarnings("unchecked")
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
-		if (list.size() == 0)
+		session.close();
+		if (list.size() == 0) {
 			return null;
+		}
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}
-		session.close();
 		return result;
 	}
 
@@ -75,22 +73,19 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 	}
 
 	public ArrayList<HotelListPO> orderList(String s1, String order) {
-		// Configuration cfg = new AnnotationConfiguration();
-		// SessionFactory sf = cfg.configure().buildSessionFactory();
-		// Session session = sf.openSession();
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		String hql = "from HotelListPO po order by po." + s1 + " " + order;
 		Query query = session.createQuery(hql);
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
+		session.close();
 		if (list.size() == 0) {
 			return null;
 		}
 		for (HotelListPO each : list) {
 			result.add(each.copy());
 		}
-		session.close();
 		return result;
 	}
 }

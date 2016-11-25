@@ -2,11 +2,21 @@ package po;
 
 import java.util.Date;
 
+import javax.annotation.Generated;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.swing.ImageIcon;
 
 import util.CustomerType;
 import util.UserType;
 
+@Entity
+@Table(name = "new_user")
 public class PersonDetailPO {
 	/**
 	 * 用户详细信息的po类，职责为实现逻辑层和数据层之间详细信息的交互
@@ -16,28 +26,42 @@ public class PersonDetailPO {
 	 */
 
 	// id
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "user_id")
 	private int userId;
 	// 用户名名称
+	@Column(name = "user_name")
 	private String userName;
 	// 头像
+	@Column(name = "user_image")
+	private String userImagePosition;
+	@Transient
 	private ImageIcon userImage;
 	// 联系方式11位
+	@Column(name = "user_telephone")
 	private String telephone;
 	// 信用值
+	@Column(name = "customer_credit")
 	private int credit;
 	// 生日
+	@Column(name = "user_birthday")
 	private java.sql.Date birthdayStamp;
 	// 企业名称
+	@Column(name = "enterprise_name")
 	private String enterpriseName;
-
 	// 会员类型（企业会员和普通会员两种）
-	private CustomerType VIPType;
+	@Column(name = "customer_type")
+	private String vipTypeInSQL;
 	// 密码
+	@Column(name = "user_password")
 	private String password;
 	// 所在酒店名称
+	@Column(name = "hotelworker_hotelname")
 	private String hotelName;
 	// 用户种类
-	private UserType userType;
+	@Column(name = "user_type")
+	private String userTypeInSQL;
 
 	public PersonDetailPO() {
 
@@ -132,11 +156,24 @@ public class PersonDetailPO {
 	}
 
 	public CustomerType getVIPType() {
-		return VIPType;
+		CustomerType customerType = null;
+		switch (vipTypeInSQL) {
+		case "INDIVIDUAL":
+			customerType = CustomerType.INDIVIDUAL;
+
+			break;
+		case "ENTERPRISE":
+			customerType = CustomerType.ENTERPRISE;
+			break;
+		default:
+			break;
+		}
+		return customerType;
 	}
 
 	public void setVIPType(CustomerType type) {
-		VIPType = type;
+		if (type != null)
+			vipTypeInSQL = type.getString();
 	}
 
 	public String getPassword() {
@@ -156,11 +193,33 @@ public class PersonDetailPO {
 	}
 
 	public UserType getUserType() {
+		UserType userType = null;
+		switch (userTypeInSQL) {
+		case "Customer":
+			userType = UserType.Customer;
+			break;
+		case "HotelWorker":
+			userType = UserType.HotelWorker;
+			break;
+		case "Manager":
+			userType = UserType.Manager;
+			break;
+		case "WebMarketMan":
+			userType = UserType.WebMarketMan;
+			break;
+		default:
+			break;
+		}
 		return userType;
 	}
 
 	public void setUserType(UserType userType) {
-		this.userType = userType;
+		if (userType != null)
+			this.userTypeInSQL = userType.getString();
 	}
 
+	public PersonDetailPO copy() {
+		return new PersonDetailPO(getId(), getName(), getImage(), getTelephone(), getCredit(), getBirthday(),
+				getEnterpriseName(), getVIPType(), getPassword(), getHotelName(), getUserType());
+	}
 }
