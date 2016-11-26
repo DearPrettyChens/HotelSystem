@@ -42,6 +42,7 @@ public class RMIHelper {
 	 public static void init() {
 	       
 	            try {
+	            	
 					availableRoomDao = (AvailableRoomDao) Naming.lookup(url + DaoName.AvailableRoomDao.name());
 					checkinDao = (CheckinDao) Naming.lookup(url + DaoName.CheckinDao.name());
 					creditDao = (CreditDao) Naming.lookup(url + DaoName.CreditDao.name());
@@ -105,4 +106,5 @@ public class RMIHelper {
 		public static WebStrategyDao getWebStrategyDao() {
 			return webStrategyDao;
 		}
+
 }

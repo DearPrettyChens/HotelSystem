@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import businesslogic.bl.searchhotelbl.SearchHotelController;
 import businesslogic.blservice.searchhotelblservice.SearchHotelBLService;
-import util.HotelSortType;
-import util.OrderState;
 import vo.searchhotelvo.HotelListVO;
+import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
  * searchHotel界面调用逻辑层的控制类
@@ -33,29 +32,8 @@ public class SearchhotelDistributionController {
 	 * @throws 未定
 	 *
 	 */
-	public ArrayList<HotelListVO> getHotelList(){
-		return searchHotelBLService.getHotelList();
+	public ArrayList<HotelListVO> getSortedHotelList(HotelSearchInfoVO hotelSearchInfoVO){
+		return searchHotelBLService.getSortedHotelList(hotelSearchInfoVO);
 	}
 	
-	/**
-	 * 获取特定类型的酒店列表
-	 * @param type HotelSortType型，传递列表类型 
-	 * @return  ArrayList<HotelListVO> ，将特定类型的酒店列表返回给界面
-	 * @throws 未定
-	 *
-	 */
-	public ArrayList<HotelListVO> getSortedHotelList(HotelSortType type){
-		return searchHotelBLService.getSortedHotelList(type);
-	}
-	
-	/**
-	 * 获取特定类型的预定过的酒店列表
-	 * @param type HotelSortType型,orderState OrderState型，传递列表类型 
-	 * @return  ArrayList<HotelListVO> ，将特定类型的预定过的酒店列表返回给界面
-	 * @throws 未定
-	 *
-	 */
-	public ArrayList<HotelListVO> getBookedHotelList(HotelSortType type,OrderState orderState,String ID){
-		return searchHotelBLService.getBookedHotelList(type, orderState, ID);
-	}
 }
