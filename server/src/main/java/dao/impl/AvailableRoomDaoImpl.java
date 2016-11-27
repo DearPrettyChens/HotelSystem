@@ -11,6 +11,9 @@ import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.BedType;
 import util.ResultMessage;
 
@@ -22,24 +25,29 @@ import util.ResultMessage;
  */
 public class AvailableRoomDaoImpl extends UnicastRemoteObject implements AvailableRoomDao {
 
-	
-
 	private static final long serialVersionUID = -572024053152986904L;
 	private static AvailableRoomDao availableRoomDao;
 	private static DataFactory dataFactory;
 	private AvailableRoomDataHelper availableRoomDataHelper;
- 
 
-	public static AvailableRoomDao getInstance() throws RemoteException {
-		if(availableRoomDao==null){
-			availableRoomDao=new AvailableRoomDaoImpl();
+	public static AvailableRoomDao getInstance() {
+		if (availableRoomDao == null) {
+			try {
+				availableRoomDao = new AvailableRoomDaoImpl();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 		return availableRoomDao;
 	}
 
-
-	private AvailableRoomDaoImpl() throws RemoteException {
-		super();
+	private AvailableRoomDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		availableRoomDataHelper = dataFactory.getAvailableRoomDataHelper();
 	}

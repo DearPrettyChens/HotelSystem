@@ -13,20 +13,29 @@ import java.net.URL;
 public class RMIconfig {
 	private static int port;
 	private static String url; // = "rmi://127.0.0.1:" + port + "/";
-
+    private static String ip;
 	static {
 //        setUrl("rmi://127.0.0.1:8888/");
 		try {
 			//运用相对路径解决读取文件问题
-			URL address=RMIconfig.class.getResource("RMIConfig.txt");
+			URL address=RMIconfig.class.getResource("../config/rmi/RMIConfig.txt");
 			BufferedReader reader = new BufferedReader(new InputStreamReader( address.openStream()));
-			String IP = reader.readLine();
+//			BufferedReader reader=new BufferedReader(new FileReader(new File("config/RMIConfig.txt")));
+			ip = reader.readLine();
 			port = Integer.parseInt(reader.readLine());
-			setUrl("rmi://" + IP + ":" + port + "/");			
+			setUrl("rmi://" + ip + ":" + port + "/");			
 			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static String getIp() {
+		return ip;
+	}
+
+	public static void setIp(String ip) {
+		RMIconfig.ip = ip;
 	}
 
 	public static String getUrl() {
@@ -45,7 +54,7 @@ public class RMIconfig {
 		RMIconfig.port = port;
 	}
 
-//	public static void main(String[] args) {
-//		System.out.println(RMIconfig.getUrl());
-//	}
+	public static void main(String[] args) {
+		System.out.println(RMIconfig.getUrl());
+	}
 }

@@ -1,78 +1,94 @@
 package rmi;
 
-
-import java.net.MalformedURLException;
+import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
-import java.rmi.Naming;
-import java.rmi.NoSuchObjectException;
-import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
-import java.rmi.server.UnicastRemoteObject;
+import java.rmi.registry.Registry;
+
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
+
 /**
  * RMI配置
+ * 
  * @author csy
  *
  */
 public class RMIHelper {
 	private static String url = RMIconfig.getUrl();
 	private static int port = RMIconfig.getPort();
-    private static RMIMap rmiMap=RMIMap.getInstance();
-	private static Remote remote;
+	private static RMIMap rmiMap = RMIMap.getInstance();
+	private static Registry registry;
+
 	/**
 	 * 遍历每个dao，配置rmi
 	 */
-	private static void relate() {
-		try {
-			while (rmiMap.hasNext()) {
-				rmiMap.next();
-				Naming.bind(url + rmiMap.getDaoName(), rmiMap.getDao());
-			}
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (AlreadyBoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 	public static void connect() {
-		
-		//在断了连接以后的重新连接
-		if(remote!=null){
-			try {
-				UnicastRemoteObject.unexportObject(remote, false);
-			} catch (NoSuchObjectException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//第一次连接
-		try {            
-			remote=LocateRegistry.createRegistry(port);
+
+		try {
+			registry = LocateRegistry.createRegistry(RMIconfig.getPort(), new RMISSLClientSocketFactory(),
+					new RMISSLServerSocketFactory());
 			relate();
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * 断开服务器端的连接
-	 */
-	public static void release() {
-		if(remote==null){
-			return;
-		}
-		try {
-			UnicastRemoteObject.unexportObject(remote, true);
-		} catch (NoSuchObjectException e) {
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
+
+	private static void relate() {
+		// try {
+		// while (rmiMap.hasNext()) {
+		// rmiMap.next();
+		// Naming.bind(url + rmiMap.getDaoName(), rmiMap.getDao());
+		// }
+		// } catch (MalformedURLException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (RemoteException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// } catch (AlreadyBoundException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
+		while (rmiMap.hasNext()) {
+			rmiMap.next();
+			try {
+				// Remote remote=rmiMap.getDao();
+				registry.bind(rmiMap.getDaoName(), rmiMap.getDao());
+//				registry.bind(DaoName.AvailableRoomDao.name(), AvailableRoomDaoImpl.getInstance());
+			} catch (AccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (AlreadyBoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+
+	// /**
+	// * 断开服务器端的连接
+	// */
+	// public static void release() {
+	// if(remote==null){
+	// return;
+	// }
+	// try {
+	// PortableRemoteObject.unexportObject(remote);
+	// } catch (NoSuchObjectException e) {
+	// e.printStackTrace();
+	// }
+	//
+	// }
 }

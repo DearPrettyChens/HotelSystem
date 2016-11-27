@@ -14,6 +14,9 @@ import po.OrderListPO;
 import po.OrderStatePO;
 import po.RemarkPO;
 import po.TypeInfoPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.ResultMessage;
 
 /**
@@ -31,13 +34,21 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 
 	public static OrderDao getInstance() throws RemoteException {
 		if(orderDao==null){
-			orderDao = new OrderDaoImpl();
+			try {
+				orderDao = new OrderDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return orderDao;
 	}
 
-	private OrderDaoImpl() throws RemoteException {
-		super();
+	private OrderDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		orderDataHelper = dataFactory.getOrderDataHelper();
 	}

@@ -8,6 +8,9 @@ import data.datahelper.UserDataHelper;
 import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.ClientPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.ResultMessage;
 
 /**
@@ -16,7 +19,7 @@ import util.ResultMessage;
  * @author csy
  *
  */
-public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
+public class UserDaoImpl extends  UnicastRemoteObject implements UserDao {
 
 	private static final long serialVersionUID = 2151592669947030124L;
 	private static UserDao userDao;
@@ -26,13 +29,21 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	public static UserDao getInstance() throws RemoteException {
 		if(userDao==null){
-			userDao = new UserDaoImpl();
+			try {
+				userDao = new UserDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return userDao;
 	}
 
-	private UserDaoImpl() throws RemoteException {
-		super();
+	private UserDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		userDataHelper = dataFactory.getUserDataHelper();
 	}

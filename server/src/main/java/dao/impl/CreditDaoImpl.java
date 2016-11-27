@@ -9,6 +9,9 @@ import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.CreditInfoPO;
 import po.CreditPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.ResultMessage;
 
 /**
@@ -26,13 +29,21 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 
 	public static CreditDao getInstance() throws RemoteException {
 		if(creditDao==null){
-			creditDao=new CreditDaoImpl();
+			try {
+				creditDao=new CreditDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return creditDao;
 	}
 
-	private CreditDaoImpl() throws RemoteException {
-		super();
+	private CreditDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		creditDataHelper = dataFactory.getCreditDataHelper();
 	}

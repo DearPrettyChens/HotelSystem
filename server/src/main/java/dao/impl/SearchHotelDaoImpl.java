@@ -9,6 +9,9 @@ import data.datahelper.SearchHotelDataHelper;
 import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.HotelListPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.HotelSortType;
 
 /**
@@ -26,13 +29,21 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 
 	public static SearchHotelDao getInstance() throws RemoteException {
 		if(searchHotelDao==null){
-			searchHotelDao = new SearchHotelDaoImpl();
+			try {
+				searchHotelDao = new SearchHotelDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return searchHotelDao;
 	}
 
-	private SearchHotelDaoImpl() throws RemoteException {
-		super();
+	private SearchHotelDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		searchHotelDataHelper = dataFactory.getSearchHotelDataHelper();
 	}

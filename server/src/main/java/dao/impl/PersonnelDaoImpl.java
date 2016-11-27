@@ -10,6 +10,9 @@ import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.PersonDetailPO;
 import po.PersonListPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.ResultMessage;
 import util.UserType;
 
@@ -29,13 +32,21 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 
 	public static PersonnelDao getInstance() throws RemoteException {
 		if(personnelDao==null){
-			personnelDao = new PersonnelDaoImpl();
+			try {
+				personnelDao = new PersonnelDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return personnelDao;
 	}
 
-	private PersonnelDaoImpl() throws RemoteException {
-		super();
+	private PersonnelDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		personnelDataHelper = dataFactory.getPersonnelDataHelper();
 	}

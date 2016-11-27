@@ -8,6 +8,9 @@ import data.datahelper.HotelStrategyDataHelper;
 import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.HotelStrPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.HotelStrategyType;
 import util.ResultMessage;
 
@@ -17,7 +20,7 @@ import util.ResultMessage;
  * @author csy
  *
  */
-public class HotelStrategyDaoImpl extends UnicastRemoteObject implements HotelStrategyDao {
+public class HotelStrategyDaoImpl extends  UnicastRemoteObject implements HotelStrategyDao {
 
 	/**
 	 * 
@@ -30,13 +33,21 @@ public class HotelStrategyDaoImpl extends UnicastRemoteObject implements HotelSt
 
 	public static HotelStrategyDao getInstance() throws RemoteException {
 		if(hotelStrategyDao==null){
-			hotelStrategyDao = new HotelStrategyDaoImpl();
+			try {
+				hotelStrategyDao = new HotelStrategyDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return hotelStrategyDao;
 	}
 
-	private HotelStrategyDaoImpl() throws RemoteException {
-		super();
+	private HotelStrategyDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		hotelStrategyDataHelper = dataFactory.getHotelStrategyDataHelper();
 	}

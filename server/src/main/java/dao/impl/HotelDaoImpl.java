@@ -10,6 +10,9 @@ import datahelper.datafactory.impl.DataFactoryImpl;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
 import po.RemarkPO;
+import rmi.RMIconfig;
+import security.RMISSLClientSocketFactory;
+import security.RMISSLServerSocketFactory;
 import util.ResultMessage;
 
 /**
@@ -28,13 +31,21 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
 
 	public static HotelDao getInstance() throws RemoteException {
 		if(hotelDao==null){
-			hotelDao = new HotelDaoImpl();
+			try {
+				hotelDao = new HotelDaoImpl();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return hotelDao;
 	}
 
-	private HotelDaoImpl() throws RemoteException {
-		super();
+	private HotelDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		hotelDataHelper = dataFactory.getHotelDataHelper();
 	}
