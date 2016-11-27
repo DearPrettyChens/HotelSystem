@@ -37,6 +37,7 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 		return availableRoomDao;
 	}
 
+
 	private AvailableRoomDaoImpl() throws RemoteException {
 		super();
 		dataFactory = new DataFactoryImpl();

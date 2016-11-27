@@ -97,6 +97,7 @@ public class RMIMap {
 		webStrategyDao = WebStrategyDaoImpl.getInstance();
 	}
 
+
 	
 	public boolean hasNext(){
 		return entries.hasNext();

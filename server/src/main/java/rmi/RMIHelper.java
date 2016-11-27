@@ -41,7 +41,17 @@ public class RMIHelper {
 	}
 
 	public static void connect() {
-		remote=null;
+		
+		//在断了连接以后的重新连接
+		if(remote!=null){
+			try {
+				UnicastRemoteObject.unexportObject(remote, false);
+			} catch (NoSuchObjectException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//第一次连接
 		try {            
 			remote=LocateRegistry.createRegistry(port);
 			relate();
@@ -51,6 +61,9 @@ public class RMIHelper {
 		}
 	}
 	
+	/**
+	 * 断开服务器端的连接
+	 */
 	public static void release() {
 		if(remote==null){
 			return;
@@ -60,6 +73,6 @@ public class RMIHelper {
 		} catch (NoSuchObjectException e) {
 			e.printStackTrace();
 		}
-		remote=null;
+
 	}
 }
