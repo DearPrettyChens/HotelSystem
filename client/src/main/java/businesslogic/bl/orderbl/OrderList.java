@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dao.orderdao.OrderDao;
-import init.RMIHelper;
 import po.OrderListPO;
 import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
@@ -17,8 +16,8 @@ public class OrderList {
 	//private ArrayList<SingleOrder> singleOrders;
 	private OrderDao orderDao;
 	public OrderList() {
-		orderDao=RMIHelper.getOrderDao();
-//		orderDao=new OrderDao_Stub();
+//		orderDao=RMIHelper.getOrderDao();
+		orderDao=new OrderDao_Stub();
 	}
 	
 	/**

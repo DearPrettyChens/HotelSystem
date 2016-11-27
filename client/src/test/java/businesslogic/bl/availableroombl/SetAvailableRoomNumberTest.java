@@ -1,6 +1,17 @@
 package businesslogic.bl.availableroombl;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Date;
+
 import org.junit.Before;
+import org.junit.Test;
+
+import util.BedType;
+import util.ResultMessage;
+import vo.availableroomvo.AvailableRoomInfoVO;
+import vo.availableroomvo.AvailableRoomNumberVO;
 /**
  * 修改可用客房数的测试类
  * @author CLL
@@ -13,16 +24,16 @@ public class SetAvailableRoomNumberTest {
 		availableRoom=new AvailableRoom();
 	}
 
-//	@Test
-//	public void test() {
-//		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(8,BedType.BIGBED,
-//				new Date(),"000002")),ResultMessage.SUCCESS);
-//		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000002");
-//		for(int i=0;i<roomInfo.size();i++){
-//			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
-//				assertEquals(roomInfo.get(i).getCurrentNumber(),8);
-//			}
-//		}
-//	}
+	@Test
+	public void test() {
+		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(8,BedType.BIGBED,
+				new Date(),"000002")),ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000002");
+		for(int i=0;i<roomInfo.size();i++){
+			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
+				assertEquals(roomInfo.get(i).getCurrentNumber(),8);
+			}
+		}
+	}
 
 }
