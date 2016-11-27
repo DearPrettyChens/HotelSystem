@@ -1,11 +1,6 @@
 package businesslogic.bl.creditbl;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
-import org.junit.Test;
-
-import util.ResultMessage;
 /**
  * 充值信用的测试类
  * @author CLL
@@ -18,12 +13,12 @@ public class DepositCreditTest {
 		credit=new Credit("000001");
 	}
 
-	@Test
-	public void test() {
-		int preCredit=credit.getUserCreditInfoList().getCredit();
-		assertEquals(ResultMessage.SUCCESS, credit.confirmCreditDeposit(10, "000001"));
-		int nowCredit=credit.getUserCreditInfoList().getCredit();
-		assertEquals(preCredit+10*100,nowCredit);
-	}
+//	@Test
+//	public void test() {
+//		int preCredit=credit.getUserCreditInfoList().getCredit();
+//		assertEquals(ResultMessage.SUCCESS, credit.confirmCreditDeposit(10, "000001"));
+//		int nowCredit=credit.getUserCreditInfoList().getCredit();
+//		assertEquals(preCredit+10*100,nowCredit);
+//	}
 
 }
