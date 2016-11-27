@@ -2,9 +2,11 @@ package rmi;
 
 import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
+import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 
 import security.RMISSLClientSocketFactory;
 import security.RMISSLServerSocketFactory;
@@ -21,12 +23,10 @@ public class RMIHelper {
 	private static RMIMap rmiMap = RMIMap.getInstance();
 	private static Registry registry;
 
-	/**
-	 * 遍历每个dao，配置rmi
-	 */
 	public static void connect() {
 
 		try {
+			// 设置客户端和服务器端的套接字工厂，进行双向验证
 			registry = LocateRegistry.createRegistry(RMIconfig.getPort(), new RMISSLClientSocketFactory(),
 					new RMISSLServerSocketFactory());
 			relate();
@@ -40,28 +40,15 @@ public class RMIHelper {
 
 	}
 
+	/**
+	 * 遍历每个dao，配置rmi
+	 */
 	private static void relate() {
-		// try {
-		// while (rmiMap.hasNext()) {
-		// rmiMap.next();
-		// Naming.bind(url + rmiMap.getDaoName(), rmiMap.getDao());
-		// }
-		// } catch (MalformedURLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (RemoteException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (AlreadyBoundException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 		while (rmiMap.hasNext()) {
 			rmiMap.next();
 			try {
-				// Remote remote=rmiMap.getDao();
+				// 不使用Naming，直接使用registry来绑定，此处不用指定url
 				registry.bind(rmiMap.getDaoName(), rmiMap.getDao());
-//				registry.bind(DaoName.AvailableRoomDao.name(), AvailableRoomDaoImpl.getInstance());
 			} catch (AccessException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -76,19 +63,16 @@ public class RMIHelper {
 
 	}
 
+	/**
+	 * 断开服务器端的连接
+	 */
+	public static void stop() {
 
-	// /**
-	// * 断开服务器端的连接
-	// */
-	// public static void release() {
-	// if(remote==null){
-	// return;
-	// }
-	// try {
-	// PortableRemoteObject.unexportObject(remote);
-	// } catch (NoSuchObjectException e) {
-	// e.printStackTrace();
-	// }
-	//
-	// }
+		try {
+			UnicastRemoteObject.unexportObject(registry, true);
+		} catch (NoSuchObjectException e) {
+			e.printStackTrace();
+		}
+
+	}
 }

@@ -12,7 +12,7 @@ public class Client {
 	     System.out.println("客户端连接成功");
 	     AvailableRoomDao availableRoomDao=RMIHelper.getAvailableRoomDao();
 	     try {
-			System.out.println(availableRoomDao.addAvailableRoomInfo(new AvailableRoomInfoPO(11, "da", BedType.BIGBED, 123, 100, 5,3)));
+			System.out.println(availableRoomDao.addAvailableRoomInfo(new AvailableRoomInfoPO(13, "hhhh", BedType.BIGBED, 444, 333, 5,3)));
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

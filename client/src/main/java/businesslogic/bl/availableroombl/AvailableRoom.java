@@ -23,8 +23,8 @@ public class AvailableRoom {
 	//数据层的引用
 	private AvailableRoomDao availableRoomDao;
 	public AvailableRoom(){
-		//availableRoomDao=RMIHelper.getAvailableRoomDao();
-		availableRoomDao=new AvailableRoomDao_Stub();
+		availableRoomDao=RMIHelper.getAvailableRoomDao();
+//		availableRoomDao=new AvailableRoomDao_Stub();
 	}
 	
 	/**

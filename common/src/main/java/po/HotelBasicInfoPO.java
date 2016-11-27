@@ -1,19 +1,14 @@
 package po;
 
-import java.awt.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.swing.ImageIcon;
-
-import com.sun.javafx.beans.IDProperty;
 
 import util.City;
 import util.TradingArea;
@@ -104,7 +99,7 @@ public class HotelBasicInfoPO implements Serializable {
 	// 酒店基本信息，所有人的
 	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone, int star,
 			double score, double lowestPrice, String introduce, String commonFacility, String activityFacility,
-			String service, String roomFacility, ArrayList remarks, City city, TradingArea tradingArea) {
+			String service, String roomFacility, ArrayList<RemarkPO> remarks, City city, TradingArea tradingArea) {
 		this.setHotelID(hotelID);
 		this.setName(name);
 		this.setAddress(address);

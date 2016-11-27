@@ -1,6 +1,10 @@
 package dao.impl;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
+import java.rmi.server.RemoteServer;
+import java.rmi.server.ServerNotActiveException;
 import java.rmi.server.UnicastRemoteObject;
 
 import dao.userdao.UserDao;
@@ -15,7 +19,7 @@ import util.ResultMessage;
 
 /**
  * UserDao的实现
- * 
+ * 以及记录登录的一些信息，方便显示到服务器界面
  * @author csy
  *
  */
@@ -58,4 +62,21 @@ public class UserDaoImpl extends  UnicastRemoteObject implements UserDao {
 		return userDataHelper.setUserPassword(po);
 	}
 
+	/**
+	 * 记录登录的IP，方便显示到服务器界面
+	 */
+	private String getClientIP() {
+		String clientIP = null;
+		try {
+			// 获取RMI客户端主机IP
+			String clienthost = RemoteServer.getClientHost();
+			InetAddress inetAddr = InetAddress.getByName(clienthost);
+			clientIP = inetAddr.getHostAddress();
+		} catch (ServerNotActiveException e) {
+			e.printStackTrace();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return clientIP;
+	}
 }

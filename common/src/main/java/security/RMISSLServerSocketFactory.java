@@ -14,43 +14,48 @@ import javax.net.ssl.TrustManagerFactory;
 
 import rmi.RMIconfig;
 
+
+/**
+ * 实现RMIServerSocketFactory来创建自己的服务器端套接字工厂，
+ * 使用自己的证书来创建socket，实现双向验证。
+ * 
+ * @author CSY
+ *
+ */
 public class RMISSLServerSocketFactory implements RMIServerSocketFactory {
 	private SSLServerSocketFactory ssf = null;
-
+    private char[] password=SSLConfig.getPassword();
 	public RMISSLServerSocketFactory() throws Exception {
 		try {
 			RMIconfig.getPort();
 
-			SSLContext ctx = SSLContext.getInstance("SSL");
-			KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");
-			TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");
-			KeyStore ks = KeyStore.getInstance("JKS");
-			KeyStore tks = KeyStore.getInstance("JKS");
-			// ks.load(new FileInputStream(new File(server_crt)),
-			// password.toCharArray());
-			// tks.load(new FileInputStream(new File(client_crt)),
-			// password.toCharArray());
+			SSLContext ctx = SSLContext.getInstance("SSL");//获得context实例 
+			KeyManagerFactory kmf = KeyManagerFactory.getInstance("SunX509");//创建了秘钥管理工厂
+			TrustManagerFactory tmf = TrustManagerFactory.getInstance("SunX509");//建立了信任证书工厂  
+			KeyStore keyStore = KeyStore.getInstance("JKS");//使用JKS的keyStore  
+			KeyStore trustKeyStore = KeyStore.getInstance("JKS");
 
-			URL tserver = RMIconfig.class.getResource("../config/keys/tserver.keystore");
-			URL kserver = RMIconfig.class.getResource("../config/keys/kserver.keystore");
-			ks.load(kserver.openStream(), "123456".toCharArray());
-			tks.load(tserver.openStream(), "123456".toCharArray());
+			URL tserver = RMIconfig.class.getResource("../config/keys/tserver.keystore");//服务器端信任的证书 地址
+			URL kserver = RMIconfig.class.getResource("../config/keys/kserver.keystore");//服务器端的秘钥地址
+			keyStore.load(kserver.openStream(), password);//加载服务器的秘钥
+			trustKeyStore.load(tserver.openStream(), password);//加载服务器信任的证书
 
-			kmf.init(ks, "123456".toCharArray());
-			tmf.init(tks);
-			ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
-			ssf = ctx.getServerSocketFactory();
+			kmf.init(keyStore, password);//用服务器的秘钥来初始化秘钥工厂
+			tmf.init(trustKeyStore);//用服务器信任的证书来初始化  
+			ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);//初始化context  
+			ssf = ctx.getServerSocketFactory();//通过ctx获得socketFactory
 
 		} catch (Exception err) {
 			err.printStackTrace();
 		}
 	}
 
+	/* 
+	 * socketFactory来建立socket
+	 */
 	public ServerSocket createServerSocket(int port) throws IOException {
 		SSLServerSocket mysslsocket = (SSLServerSocket) ssf.createServerSocket(port);
-
 		mysslsocket.setNeedClientAuth(true);
-
 		return mysslsocket;
 	}
 
@@ -67,14 +72,4 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory {
 		return true;
 	}
 
-	// public static void main(String args[]) {
-	// try {
-	// File file=new File("1.txt");
-	// new FileInputStream(file);
-	// new FileInputStream("kclient.keystore");
-	// } catch (FileNotFoundException e) {
-	// // TODO Auto-generated catch block
-	// e.printStackTrace();
-	// }
-	// }
 }

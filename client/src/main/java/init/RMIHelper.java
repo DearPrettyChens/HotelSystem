@@ -42,6 +42,7 @@ public class RMIHelper {
 	
 	 public static void init() {
 		 try {
+			 //根据服务器端的IP，端口号和套接字工厂来进行注册
 			Registry registry = LocateRegistry.getRegistry(RMIconfig.getIp(),RMIconfig.getPort(),  
 					new RMISSLClientSocketFactory());
 		 
@@ -65,35 +66,6 @@ public class RMIHelper {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		 
-		 
-		 
-//	       
-//	            try {
-//	            	
-//					availableRoomDao = (AvailableRoomDao) Naming.lookup(url + DaoName.AvailableRoomDao.name());
-//					checkinDao = (CheckinDao) Naming.lookup(url + DaoName.CheckinDao.name());
-//					creditDao = (CreditDao) Naming.lookup(url + DaoName.CreditDao.name());
-//					hotelDao = (HotelDao) Naming.lookup(url + DaoName.HotelDao.name());
-//					hotelStrategyDao = (HotelStrategyDao) Naming.lookup(url + DaoName.HotelStrategyDao.name());
-//					orderDao = (OrderDao) Naming.lookup(url + DaoName.OrderDao.name());
-//					personnelDao = (PersonnelDao) Naming.lookup(url + DaoName.PersonnelDao.name());
-//					searchHotelDao = (SearchHotelDao) Naming.lookup(url + DaoName.SearchHotelDao.name());
-//					userDao = (UserDao) Naming.lookup(url + DaoName.UserDao.name());
-//					webStrategyDao = (WebStrategyDao) Naming.lookup(url + DaoName.WebStrategyDao.name());
-//				
-//	            } catch (MalformedURLException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (RemoteException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (NotBoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-
-	        
 	    }
 		public static AvailableRoomDao getAvailableRoomDao() {
 			return availableRoomDao;

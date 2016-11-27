@@ -3,6 +3,7 @@ package businesslogic.bl.orderbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.Date;
+
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.creditbl.Credit;
 import businesslogic.bl.hotelbl.Hotel;
@@ -31,12 +32,12 @@ public class SingleOrder {
 	private Credit credit;
 	private AvailableRoom availableRoom;
 	public SingleOrder() {
-		//orderDao=RMIHelper.getOrderDao();
-		orderDao=new OrderDao_Stub();
+		orderDao=RMIHelper.getOrderDao();
+//		orderDao=new OrderDao_Stub();
 	}
 	public SingleOrder(Hotel hotel){
-		//orderDao=RMIHelper.getOrderDao();
-		orderDao=new OrderDao_Stub();
+		orderDao=RMIHelper.getOrderDao();
+//		orderDao=new OrderDao_Stub();
 		this.hotelInfoOrderService=hotel;
 	}
 	

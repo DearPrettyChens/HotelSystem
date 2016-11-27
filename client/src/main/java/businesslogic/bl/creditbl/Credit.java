@@ -1,11 +1,9 @@
 package businesslogic.bl.creditbl;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import businesslogic.bl.userbl.User;
 import dao.creditdao.CreditDao;
 import init.RMIHelper;
 import po.CreditInfoPO;
@@ -31,8 +29,8 @@ public class Credit {
 	}*/
 	public Credit(String customerID){
 		this.customerID=customerID;
-		//creditDao=RMIHelper.getCreditDao();
-		creditDao=new CreditDao_Stub();
+		creditDao=RMIHelper.getCreditDao();
+//		creditDao=new CreditDao_Stub();
 	}
 	/**
 	 * 获得该顾客的信用记录

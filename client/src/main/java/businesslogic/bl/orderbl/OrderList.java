@@ -17,8 +17,8 @@ public class OrderList {
 	//private ArrayList<SingleOrder> singleOrders;
 	private OrderDao orderDao;
 	public OrderList() {
-		//orderDao=RMIHelper.getOrderDao();
-		orderDao=new OrderDao_Stub();
+		orderDao=RMIHelper.getOrderDao();
+//		orderDao=new OrderDao_Stub();
 	}
 	
 	/**
