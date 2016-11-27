@@ -3,8 +3,6 @@ package dao.impl;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-
 import dao.checkindao.CheckinDao;
 import data.datahelper.CheckInDataHelper;
 import datahelper.datafactory.DataFactory;
@@ -26,16 +24,11 @@ public class CheckinDaoImpl extends UnicastRemoteObject implements CheckinDao {
 	private DataFactory dataFactory;
 	private CheckInDataHelper checkInDataHelper;
 
-	static {
-		try {
-			checkinDao = new CheckinDaoImpl();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	public static CheckinDao getInstance() throws RemoteException {
+		if(checkinDao==null){
+			checkinDao=new CheckinDaoImpl();
+		}
 		return checkinDao;
 	}
 

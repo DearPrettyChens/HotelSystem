@@ -25,15 +25,11 @@ public class WebStrategyDaoImpl extends UnicastRemoteObject implements WebStrate
 	private DataFactory dataFactory;
 	private WebStrategyDataHelper webStrategyDataHelper;
 
-	static {
-		try {
-			webStrategyDao = new WebStrategyDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public static WebStrategyDao getInstance() throws RemoteException {
+		if(webStrategyDao==null){
+			webStrategyDao = new WebStrategyDaoImpl();
+		}
 		return webStrategyDao;
 	}
 

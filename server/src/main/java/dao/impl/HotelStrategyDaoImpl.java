@@ -26,15 +26,12 @@ public class HotelStrategyDaoImpl extends UnicastRemoteObject implements HotelSt
 	private static HotelStrategyDao hotelStrategyDao;
 	private DataFactory dataFactory;
 	private HotelStrategyDataHelper hotelStrategyDataHelper;
-	static {
-		try {
-			hotelStrategyDao = new HotelStrategyDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
+
 
 	public static HotelStrategyDao getInstance() throws RemoteException {
+		if(hotelStrategyDao==null){
+			hotelStrategyDao = new HotelStrategyDaoImpl();
+		}
 		return hotelStrategyDao;
 	}
 

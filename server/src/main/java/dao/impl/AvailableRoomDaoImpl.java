@@ -7,8 +7,6 @@ import java.util.Date;
 
 import dao.availableroomdao.AvailableRoomDao;
 import data.datahelper.AvailableRoomDataHelper;
-import data.datahelper.SearchHotelDataHelper;
-import data.datahelper.UserDataHelper;
 import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.AvailableRoomInfoPO;
@@ -24,20 +22,18 @@ import util.ResultMessage;
  */
 public class AvailableRoomDaoImpl extends UnicastRemoteObject implements AvailableRoomDao {
 
+	
+
 	private static final long serialVersionUID = -572024053152986904L;
 	private static AvailableRoomDao availableRoomDao;
 	private static DataFactory dataFactory;
 	private AvailableRoomDataHelper availableRoomDataHelper;
-
-	static {
-		try {
-			availableRoomDao = new AvailableRoomDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
+ 
 
 	public static AvailableRoomDao getInstance() throws RemoteException {
+		if(availableRoomDao==null){
+			availableRoomDao=new AvailableRoomDaoImpl();
+		}
 		return availableRoomDao;
 	}
 

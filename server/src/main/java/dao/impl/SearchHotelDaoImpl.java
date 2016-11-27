@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import dao.searchhoteldao.SearchHotelDao;
 import data.datahelper.SearchHotelDataHelper;
-import data.datahelperimpl.SearchHotelDataHelperDatabaseImpl;
 import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.HotelListPO;
@@ -25,15 +24,10 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 	private DataFactory dataFactory;
 	private SearchHotelDataHelper searchHotelDataHelper;
 
-	static {
-		try {
-			searchHotelDao = new SearchHotelDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public static SearchHotelDao getInstance() throws RemoteException {
+		if(searchHotelDao==null){
+			searchHotelDao = new SearchHotelDaoImpl();
+		}
 		return searchHotelDao;
 	}
 

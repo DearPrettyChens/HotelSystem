@@ -23,15 +23,11 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 	private static CreditDao creditDao;
 	private DataFactory dataFactory;
 	private CreditDataHelper creditDataHelper;
-	static {
-		try {
-			creditDao = new CreditDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public static CreditDao getInstance() throws RemoteException {
+		if(creditDao==null){
+			creditDao=new CreditDaoImpl();
+		}
 		return creditDao;
 	}
 

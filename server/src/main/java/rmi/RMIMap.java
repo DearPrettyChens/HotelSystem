@@ -13,25 +13,15 @@ import dao.creditdao.CreditDao;
 import dao.hoteldao.HotelDao;
 import dao.hotelstrategydao.HotelStrategyDao;
 import dao.impl.AvailableRoomDaoImpl;
-import dao.impl.AvailableRoomDaoImpl_Stub;
 import dao.impl.CheckinDaoImpl;
-import dao.impl.CheckinDaoImpl_Stub;
 import dao.impl.CreditDaoImpl;
-import dao.impl.CreditDaoImpl_Stub;
 import dao.impl.HotelDaoImpl;
-import dao.impl.HotelDaoImpl_Stub;
 import dao.impl.HotelStrategyDaoImpl;
-import dao.impl.HotelStrategyDaoImpl_Stub;
 import dao.impl.OrderDaoImpl;
-import dao.impl.OrderDaoImpl_Stub;
 import dao.impl.PersonnelDaoImpl;
-import dao.impl.PersonnelDaoImpl_Stub;
 import dao.impl.SearchHotelDaoImpl;
-import dao.impl.SearchHotelDaoImpl_Stub;
 import dao.impl.UserDaoImpl;
-import dao.impl.UserDaoImpl_Stub;
 import dao.impl.WebStrategyDaoImpl;
-import dao.impl.WebStrategyDaoImpl_Stub;
 import dao.orderdao.OrderDao;
 import dao.personneldao.PersonnelDao;
 import dao.searchhoteldao.SearchHotelDao;
@@ -81,8 +71,7 @@ public class RMIMap {
 	}
 
 	private void init() throws RemoteException {
-//		createDAO();
-		createDAO_Stub();
+		createDAO();
 		map.put(DaoName.AvailableRoomDao.name(), availableRoomDao);
 		map.put(DaoName.CheckinDao.name(), checkinDao);
 		map.put(DaoName.CreditDao.name(), creditDao);
@@ -96,7 +85,7 @@ public class RMIMap {
 	}
 
 	private void createDAO() throws RemoteException {
-		availableRoomDao = AvailableRoomDaoImpl.getInstance();
+		availableRoomDao =AvailableRoomDaoImpl.getInstance();
 		checkinDao = CheckinDaoImpl.getInstance();
 		creditDao = CreditDaoImpl.getInstance();
 		hotelDao = HotelDaoImpl.getInstance();
@@ -108,18 +97,6 @@ public class RMIMap {
 		webStrategyDao = WebStrategyDaoImpl.getInstance();
 	}
 
-	public void createDAO_Stub() throws RemoteException {
-		availableRoomDao = new AvailableRoomDaoImpl_Stub();
-		checkinDao = new CheckinDaoImpl_Stub();
-		creditDao = new CreditDaoImpl_Stub();
-		hotelDao = new HotelDaoImpl_Stub();
-		hotelStrategyDao =new HotelStrategyDaoImpl_Stub();
-		orderDao =new OrderDaoImpl_Stub();
-		personnelDao = new PersonnelDaoImpl_Stub();
-		searchHotelDao =new SearchHotelDaoImpl_Stub();
-		userDao =new UserDaoImpl_Stub();
-		webStrategyDao =new WebStrategyDaoImpl_Stub();
-	}
 	
 	public boolean hasNext(){
 		return entries.hasNext();

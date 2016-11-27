@@ -26,16 +26,11 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 	private DataFactory dataFactory;
 	private PersonnelDataHelper personnelDataHelper;
 
-	static {
-		try {
-			personnelDao = new PersonnelDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-
-	}
 
 	public static PersonnelDao getInstance() throws RemoteException {
+		if(personnelDao==null){
+			personnelDao = new PersonnelDaoImpl();
+		}
 		return personnelDao;
 	}
 

@@ -23,15 +23,11 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 	private static DataFactory dataFactory;
 	private UserDataHelper userDataHelper;
 
-	static {
-		try {
-			userDao = new UserDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public static UserDao getInstance() throws RemoteException {
+		if(userDao==null){
+			userDao = new UserDaoImpl();
+		}
 		return userDao;
 	}
 

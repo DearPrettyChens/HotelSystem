@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import dao.orderdao.OrderDao;
 import data.datahelper.OrderDataHelper;
-import data.datahelperimpl.OrderDataHelperDatabaseImpl;
 import datahelper.datafactory.DataFactory;
 import datahelper.datafactory.impl.DataFactoryImpl;
 import po.CheckTimePO;
@@ -29,15 +28,11 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 	private static OrderDao orderDao;
 	public DataFactory dataFactory;
 	public OrderDataHelper orderDataHelper;
-	static {
-		try {
-			orderDao = new OrderDaoImpl();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
 
 	public static OrderDao getInstance() throws RemoteException {
+		if(orderDao==null){
+			orderDao = new OrderDaoImpl();
+		}
 		return orderDao;
 	}
 
