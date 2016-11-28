@@ -4,7 +4,7 @@ package exception;
  * @author CLL
  *
  */
-public class NotFoundOrderException extends RuntimeException{
+public class NotFoundOrderException extends Exception{
 	private String msgDes;  //异常对应的描述信息
 	
 	public NotFoundOrderException(){

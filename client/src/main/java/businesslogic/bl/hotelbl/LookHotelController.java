@@ -1,6 +1,7 @@
 package businesslogic.bl.hotelbl;
 
 import businesslogic.blservice.hotelblservice.LookHotelService;
+import exception.NotFoundHotelException;
 import vo.hotelvo.HotelDetailInfoVO;
 
 
@@ -21,7 +22,7 @@ public class LookHotelController implements LookHotelService {
 		return controller;
 	}
 	@Override
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID, String customerID) {
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID, String customerID) throws NotFoundHotelException{
 		return hotel.getHotelDetailInfo(hotelID, customerID);
 	}
 

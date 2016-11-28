@@ -8,6 +8,7 @@ import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.hotelstrategybl.HotelStrategy;
 import businesslogic.bl.personnelbl.Personnel;
 import businesslogic.bl.webstrategybl.WebStrategy;
+import exception.NotFoundHotelException;
 import util.ResultMessage;
 import util.Telephone;
 import util.TradingArea;
@@ -100,20 +101,28 @@ public class Order {
 		PersonDetailVO detail=person.getPersonDetail(customerID);
 		int credit=detail.getCredit();
 		String hotelID=orderInfoVO.getHotelID();
-		HotelDetailInfoVO hotelDetail=hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
-		TradingArea area=hotelDetail.getArea();
-		webStrategy=WebStrategy.getInstance();
-		WebProvidedVO webProvidedVO=new WebProvidedVO(String.valueOf(credit),area,new Date());
-		WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(webProvidedVO);
-		hotelStrategy=HotelStrategy.getInstance();
-		OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName(),new Date(),hotelID);
-		HotelBestStrVO hotelStrVO=hotelStrategy.getBestHotelStrategy(orderProvidedVO);
+		HotelDetailInfoVO hotelDetail;
+		try {
+			hotelDetail = hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
+			TradingArea area=hotelDetail.getArea();
+			webStrategy=WebStrategy.getInstance();
+			WebProvidedVO webProvidedVO=new WebProvidedVO(String.valueOf(credit),area,new Date());
+			WebBestStrVO webStrVO=webStrategy.getWebBestStrategy(webProvidedVO);
+			hotelStrategy=HotelStrategy.getInstance();
+			OrderProvidedVO orderProvidedVO=new OrderProvidedVO(customerID,orderInfoVO.getAmount(),detail.getEnterpriseName(),new Date(),hotelID);
+			HotelBestStrVO hotelStrVO=hotelStrategy.getBestHotelStrategy(orderProvidedVO);
+			//调用Availableroom.getRoomPrice	获得酒店房间价格
+			availableRoom=new AvailableRoom();
+			double price=availableRoom.getRoomPrice(hotelID, orderInfoVO.getBedType());
+			
+			return new StrategyVO(webStrVO,hotelStrVO,price);
+		} catch (NotFoundHotelException e) {
+			System.out.println(e.getMsgDes());
+			e.printStackTrace();
+		}
+		return null;
 		
-//调用Availableroom.getRoomPrice	获得酒店房间价格
-		availableRoom=new AvailableRoom();
-		double price=availableRoom.getRoomPrice(hotelID, orderInfoVO.getBedType());
-		
-		return new StrategyVO(webStrVO,hotelStrVO,price);
+
 	}
 	
 	/**
@@ -133,10 +142,11 @@ public class Order {
 	 * 生成订单的界面上需要酒店的信息（可用客房+酒店地址电话）
 	 * @param hotelID string 型，界面传递过来的酒店编号
 	 * @return HotelDetailInfoVO，返回酒店详细信息
+	 * @throws NotFoundHotelException 
 	 * @throws 未定
 	 *
 	 */
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID){
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID) throws NotFoundHotelException{
 		//调用HotelInfoOrderService里面的方法getHotelDetailInfo
 		return hotelInfoOrderService.getHotelDetailInfo(hotelID, null);
 		

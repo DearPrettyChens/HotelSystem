@@ -10,6 +10,7 @@ import businesslogic.blservice.orderblservice.CancleOrderService;
 import businesslogic.blservice.orderblservice.ExecuteOrderService;
 import businesslogic.blservice.orderblservice.GenerateOrderService;
 import businesslogic.blservice.orderblservice.LookOrderService;
+import exception.NotFoundHotelException;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.hotelvo.HotelDetailInfoVO;
@@ -155,10 +156,10 @@ public class OrderDistributionController {
 	 * 生成订单的界面上需要酒店的信息（可用客房+酒店地址电话）
 	 * @param hotelID string 型，界面传递过来的酒店编号
 	 * @return HotelDetailInfoVO，返回酒店详细信息
-	 * @throws 未定
+	 * @throws NotFoundHotelException 
 	 *
 	 */
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID){
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID) throws NotFoundHotelException{
 		return generateOrderService.getHotelDetailInfo(hotelID);
 	}
 	

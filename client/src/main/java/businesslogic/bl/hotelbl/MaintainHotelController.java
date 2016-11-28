@@ -1,6 +1,7 @@
 package businesslogic.bl.hotelbl;
 
 import businesslogic.blservice.hotelblservice.MaintainHotelService;
+import exception.NotFoundHotelException;
 import util.ResultMessage;
 import util.Telephone;
 import vo.hotelvo.HotelBasicInfoVO;
@@ -30,7 +31,7 @@ public class MaintainHotelController implements MaintainHotelService{
 	 * @return HotelBasicInfoVO ，将酒店基本信息返回
 	 *
 	 */
-	public HotelBasicInfoVO getHotelBasicInfo(String hotelID){
+	public HotelBasicInfoVO getHotelBasicInfo(String hotelID)throws NotFoundHotelException{
 		return hotel.getHotelBasicInfo(hotelID);
 		
 	}

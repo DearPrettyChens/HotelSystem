@@ -78,9 +78,9 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * 获取酒店基本信息
 	 * @param hotelID String型，传递酒店编号
 	 * @return HotelBasicInfoVO ，将酒店基本信息返回给酒店工作人员看
-	 *
+	 * @throws NotFoundHotelException
 	 */
-	public HotelBasicInfoVO getHotelBasicInfo(String hotelID)throws NotFoundHotelException{
+	public HotelBasicInfoVO getHotelBasicInfo(String hotelID) throws NotFoundHotelException{
 		try {
 			HotelBasicInfoPO po=hotelDao.getHotelBasicInfo(hotelID);
 			//抛出异常
@@ -100,7 +100,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * @return HotelDetailInfoVO ，将酒店详细信息返回给顾客看
 	 *
 	 */
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID) {
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID) throws NotFoundHotelException{
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
 		availableRoom=new AvailableRoom();
 		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
@@ -117,6 +117,9 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		HotelBasicInfoPO basic;
 		try {
 			basic = hotelDao.getHotelBasicInfo(hotelID);
+			if(basic==null){
+				throw new NotFoundHotelException();
+			}
 			//获得酒店评价信息
 			ArrayList<RemarkPO> remarks=basic.getRemarks();
 			ArrayList<String> remarkDetails=new ArrayList<String>();

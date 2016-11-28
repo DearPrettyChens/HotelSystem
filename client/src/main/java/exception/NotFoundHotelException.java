@@ -4,7 +4,7 @@ package exception;
  * @author CLL
  *
  */
-public class NotFoundHotelException extends RuntimeException{
+public class NotFoundHotelException extends Exception{
 	private String msgDes;
 	
 	public NotFoundHotelException(){

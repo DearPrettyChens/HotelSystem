@@ -8,6 +8,7 @@ import businesslogic.bl.hotelbl.MaintainHotelController;
 import businesslogic.blservice.hotelblservice.HotelOrderService;
 import businesslogic.blservice.hotelblservice.LookHotelService;
 import businesslogic.blservice.hotelblservice.MaintainHotelService;
+import exception.NotFoundHotelException;
 import util.ResultMessage;
 import vo.hotelvo.HotelBasicInfoVO;
 import vo.hotelvo.HotelDetailInfoVO;
@@ -60,20 +61,20 @@ public class HotelDistributionController {
 	 * 获取酒店详细信息
 	 * @param hotelID String型， customerID String型，传递酒店编号和顾客编号
 	 * @return HotelDetailInfoVO ，将酒店详细信息返回给界面，给顾客看
-	 * @throws 未定
+	 * @throws NotFoundHotelException 
 	 *
 	 */
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID){
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID) throws NotFoundHotelException{
 		return lookHotelService.getHotelDetailInfo(hotelID, customerID);
 	}
 	/**
 	 * 获取酒店基本信息
 	 * @param hotelID String型，传递酒店编号
 	 * @return HotelBasicInfoVO ，将酒店基本信息返回给界面，给工作人员看
-	 * @throws 未定
+	 * @throws NotFoundHotelException 
 	 *
 	 */
-	public HotelBasicInfoVO getHotelBasicInfo(String hotelID){
+	public HotelBasicInfoVO getHotelBasicInfo(String hotelID) throws NotFoundHotelException{
 		return maintainHotelService.getHotelBasicInfo(hotelID);
 	}
 	

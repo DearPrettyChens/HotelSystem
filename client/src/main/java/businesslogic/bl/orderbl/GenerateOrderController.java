@@ -3,6 +3,7 @@ package businesslogic.bl.orderbl;
 import java.util.Date;
 
 import businesslogic.blservice.orderblservice.GenerateOrderService;
+import exception.NotFoundHotelException;
 import util.ResultMessage;
 import util.Telephone;
 import vo.availableroomvo.AvailableRoomNumberVO;
@@ -52,7 +53,7 @@ public class GenerateOrderController implements GenerateOrderService{
 	}
 
 	@Override
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID) {
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID) throws NotFoundHotelException {
 		return order.getHotelDetailInfo(hotelID);
 	}
 

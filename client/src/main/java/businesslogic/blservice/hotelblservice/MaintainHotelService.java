@@ -1,5 +1,6 @@
 package businesslogic.blservice.hotelblservice;
 
+import exception.NotFoundHotelException;
 import util.ResultMessage;
 import vo.hotelvo.HotelBasicInfoVO;
 
@@ -14,10 +15,10 @@ public interface MaintainHotelService {
 	 * 获取酒店基本信息
 	 * @param hotelID String型，传递酒店编号
 	 * @return HotelBasicInfoVO ，将酒店基本信息返回给界面，给工作人员看
-	 * @throws 未定
+	 * @throws NotFoundHotelException 
 	 *
 	 */
-	public HotelBasicInfoVO getHotelBasicInfo(String hotelID);
+	public HotelBasicInfoVO getHotelBasicInfo(String hotelID) throws NotFoundHotelException;
 	
 	/**
 	 * 检查酒店工作人员输入的酒店电话格式
