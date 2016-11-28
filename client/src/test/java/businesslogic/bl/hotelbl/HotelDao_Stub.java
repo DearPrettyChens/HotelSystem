@@ -17,7 +17,7 @@ public class HotelDao_Stub implements HotelDao{
 	@Override
 	public HotelBasicInfoPO getHotelBasicInfo(String hotelID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		return new HotelBasicInfoPO();
 	}
 
 	@Override

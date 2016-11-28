@@ -21,6 +21,8 @@ public class Credit {
 	private CreditDao creditDao;
 	//顾客编号
 	private String customerID;
+	//充值比例
+	private static final int DEPOSIT_RATIO=100;
 	//单例模式 持有user对象引用
 //	private User user;
 /*	public Credit(){
@@ -97,9 +99,9 @@ public class Credit {
 			//充值之前的信用值
 			int preCredit=creditInfoList.get(creditInfoList.size()-1).getCredit();
 			//充值之后的信用值
-			int nowCredit=preCredit+(int)money*100;
+			int nowCredit=preCredit+(int)money*DEPOSIT_RATIO;
 			CreditPO newPO=new CreditPO(customerId,creditInfoList.get(creditInfoList.size()-1)
-					.getID(),nowCredit,(int)money*100,"线下充值",new Date());
+					.getID(),nowCredit,(int)money*DEPOSIT_RATIO,"线下充值",new Date());
 			//CreditPO newPO=new CreditPO(customerName,null,money*100,"线下充值",new Date());
 			creditDao.setCredit(newPO);
 		} catch (RemoteException e) {
@@ -116,35 +118,5 @@ public class Credit {
 		return customerID;
 	}
 
-	//以下get,set都是和数据层的交互
-/*	private String getCustomerID() {
-		return null;
-	}
 
-	private ArrayList<String> getCreditInfoList() {
-		return null;
-	}
-
-	private ResultMessage setCreditInfoList(ArrayList<String> creditInfoList) {
-		return null;
-		
-	}
-
-	private int getCredit() {
-		return 0;
-	}
-
-	private ResultMessage setCredit(int credit) {
-		return null;
-		
-	}
-
-	private String getCreditInfo() {
-		return null;
-	}
-
-	private ResultMessage setCreditInfo(String creditInfo) {
-		return null;
-		
-	}*/
 }

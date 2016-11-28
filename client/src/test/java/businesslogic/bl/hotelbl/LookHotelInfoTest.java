@@ -11,17 +11,17 @@ import vo.hotelvo.HotelDetailInfoVO;
  * @author csy
  * @version 1.0
  */
+
 /*public class LookHotelInfoTest {
     HotelDetailInfoVO hotelDetailInfoVO;
 	@Before
 	public void setUp() throws Exception {
-	    hotelDetailInfoVO=null;
 	}
 
 	@Test
 	public void test() {
 		Hotel hotel=new Hotel();
-		assertEquals(hotel.getHotelDetailInfo("000002", "000001"),hotelDetailInfoVO);
+		hotel.getHotelDetailInfo("000002", "000001");
 	}
 
 }*/

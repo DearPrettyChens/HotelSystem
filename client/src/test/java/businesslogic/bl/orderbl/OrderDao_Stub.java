@@ -21,7 +21,7 @@ import util.ResultMessage;
  *
  */
 public class OrderDao_Stub implements OrderDao{
-	static OrderState state;
+	static OrderState state=OrderState.NOTEXECUTED;
 	@Override
 	public OrderInfoPO getOrderInfo(String orderID) throws RemoteException {
 		// TODO Auto-generated method stub
@@ -34,13 +34,19 @@ public class OrderDao_Stub implements OrderDao{
 	@Override
 	public ArrayList<OrderListPO> getOrderList(TypeInfoPO po) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderListPO> pos=new ArrayList<OrderListPO>();
+		OrderListPO po1=new OrderListPO("201611030001000001","000001","chen",new Date(),OrderState.NOTEXECUTED);
+		pos.add(po1);
+		return pos;
 	}
 
 	@Override
 	public ArrayList<OrderListPO> getOrderList(String hotelID) throws RemoteException {
 		// TODO Auto-generated method stub
-		return null;
+		ArrayList<OrderListPO> pos=new ArrayList<OrderListPO>();
+		OrderListPO po1=new OrderListPO("201611030001000001","000001","chen",new Date(),OrderState.NOTEXECUTED);
+		pos.add(po1);
+		return pos;
 	}
 
 	@Override

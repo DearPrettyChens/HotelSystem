@@ -58,8 +58,8 @@ public class CheckinInfo {
 		this.checkoutTime=vo.getCheckouttime();
 		this.orderNumber=vo.getOrdernumber();
 		
-		checkinDao=RMIHelper.getCheckinDao();
-//		checkinDao=new CheckinDao_Stub();
+//		checkinDao=RMIHelper.getCheckinDao();
+		checkinDao=new CheckinDao_Stub();
 		
 	}
 	/**
