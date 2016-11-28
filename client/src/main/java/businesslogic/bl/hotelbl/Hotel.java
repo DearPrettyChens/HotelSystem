@@ -17,6 +17,7 @@ import businesslogic.bl.orderbl.Order;
 import businesslogic.bl.orderbl.OrderList;
 import businesslogic.bl.orderbl.SingleOrder;
 import dao.hoteldao.HotelDao;
+import exception.NotFoundHotelException;
 import init.RMIHelper;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
@@ -79,9 +80,14 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * @return HotelBasicInfoVO ，将酒店基本信息返回给酒店工作人员看
 	 *
 	 */
-	public HotelBasicInfoVO getHotelBasicInfo(String hotelID){
+	public HotelBasicInfoVO getHotelBasicInfo(String hotelID)throws NotFoundHotelException{
 		try {
-			return new HotelBasicInfoVO(hotelDao.getHotelBasicInfo(hotelID));
+			HotelBasicInfoPO po=hotelDao.getHotelBasicInfo(hotelID);
+			//抛出异常
+			if(po==null){
+				throw new NotFoundHotelException("无该酒店信息");
+			}
+			return new HotelBasicInfoVO(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -94,7 +100,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * @return HotelDetailInfoVO ，将酒店详细信息返回给顾客看
 	 *
 	 */
-	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID){
+	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID) {
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
 		availableRoom=new AvailableRoom();
 		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo(hotelID);
@@ -129,9 +135,6 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		}
 		
 		return null;
-
-	    
-	    //调用User.getUserID获得当前用户信息来调用订单？有疑惑？
 	}
 	
 	
