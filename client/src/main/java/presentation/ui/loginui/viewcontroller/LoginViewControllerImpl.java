@@ -1,6 +1,7 @@
 package presentation.ui.loginui.viewcontroller;
 
 
+import presentation.ui.loginui.view.LoginView;
 import presentation.ui.loginui.view.login_JFrame;
 import util.UserType;
 /**
@@ -9,7 +10,7 @@ import util.UserType;
  *
  */
 public class LoginViewControllerImpl implements LoginViewControllerService{
-	login_JFrame view=new login_JFrame();
+	LoginView view;
 	@Override
 	public void jumpToUserMainFrame(UserType userType) {
 		view.jumpToUserMainFrame(userType);
@@ -28,6 +29,11 @@ public class LoginViewControllerImpl implements LoginViewControllerService{
 	@Override
 	public void passwordMistaken() {
 		view.passwordMistaken();
+	}
+
+	@Override
+	public void setView(LoginView view) {
+		this.view=view;
 	}
 
 }

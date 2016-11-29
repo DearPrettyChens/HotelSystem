@@ -118,24 +118,7 @@ public class login_JFrame extends JFrame {
 
       } 
 
-    
-	//逻辑处理
-
-	public void jumpToUserMainFrame(UserType userType) {
-		// TODO Auto-generated method stub
-	}
-
-	public void jumpToIndividualRegisterView() {
-		// TODO Auto-generated method stub
-	}
-
-	public void jumpToEnterpriseRegisterView() {
-		// TODO Auto-generated method stub
-	}
-
-	public void passwordMistaken() {
-		// TODO Auto-generated method stub
-	}
+   
       
       
       public static void main(String[] args) { 

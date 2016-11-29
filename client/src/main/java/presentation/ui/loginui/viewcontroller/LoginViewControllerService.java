@@ -1,5 +1,6 @@
 package presentation.ui.loginui.viewcontroller;
 
+import presentation.ui.loginui.view.LoginView;
 import util.UserType;
 /**
  * 控制登录界面跳转的接口
@@ -7,6 +8,11 @@ import util.UserType;
  *
  */
 public interface LoginViewControllerService {
+	/**
+	 * 设置界面
+	 * @param view
+	 */
+	public void setView(LoginView view);
 	/**
 	 * 跳转至各用户的主界面
 	 * @param userType
