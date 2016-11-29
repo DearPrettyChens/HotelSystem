@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener; 
 import presentation.ui.tools.*;
+import util.UserType;
 
 /**
  * 登录界面
@@ -118,12 +119,29 @@ public class login_JFrame extends JFrame {
       } 
 
     
+	//逻辑处理
+
+	public void jumpToUserMainFrame(UserType userType) {
+		// TODO Auto-generated method stub
+	}
+
+	public void jumpToIndividualRegisterView() {
+		// TODO Auto-generated method stub
+	}
+
+	public void jumpToEnterpriseRegisterView() {
+		// TODO Auto-generated method stub
+	}
+
+	public void passwordMistaken() {
+		// TODO Auto-generated method stub
+	}
       
       
       public static void main(String[] args) { 
     	  login_JFrame s = new login_JFrame(); 
                
 } 
-
+      
 }
 
