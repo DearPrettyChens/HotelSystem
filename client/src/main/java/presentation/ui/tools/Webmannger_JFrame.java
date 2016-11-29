@@ -102,17 +102,17 @@ public class Webmannger_JFrame extends JFrame{
 	    	
 	    	
 
-	    	close_jbutton.setBounds(970,10,20,20);
+	    	close_jbutton.setBounds(970,40,20,20);
 	    	abovepanel.add(close_jbutton);
-	      	narrow_jbutton.setBounds(930,10,20,20);
+	      	narrow_jbutton.setBounds(930,40,20,20);
 	      	abovepanel.add(narrow_jbutton);
-	      	arrow_JButton.setBounds(850,10,20,20);
+	      	arrow_JButton.setBounds(850,40,20,20);
 	      	abovepanel.add(arrow_JButton);
-	      	home_JButton.setBounds(810,10,20,20);
+	      	home_JButton.setBounds(810,40,20,20);
 	      	abovepanel.add(home_JButton);
-	      	reflesh_JButton.setBounds(770,10,20,20);
+	      	reflesh_JButton.setBounds(770,40,20,20);
 	      	abovepanel.add(reflesh_JButton);
-	      	line.setBounds(885,5,30,30);
+	      	line.setBounds(885,35,30,30);
 	      	abovepanel.add(line);
 	      	
 	      	

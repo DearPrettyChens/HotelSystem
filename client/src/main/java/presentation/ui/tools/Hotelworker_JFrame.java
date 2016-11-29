@@ -46,13 +46,13 @@ public class Hotelworker_JFrame extends JFrame{
 	private JLabel checkinimg_Jlabel=new JLabel();
 	
 	
-	private JLabel myhotel_Jlabel1=new  Hotelworker_JLabel("维护酒店信息");
-	private JLabel myhotel_Jlabel2=new  Hotelworker_JLabel("录入客房信息");
-	private JLabel myorder_Jlabel1=new  Hotelworker_JLabel("浏览订单列表");
-	private JLabel mystr_Jlabel1=new  Hotelworker_JLabel("制定酒店策略");
-	private JLabel checkin_Jlabel1=new  Hotelworker_JLabel("线上入住办理");
-	private JLabel checkin_Jlabel2=new  Hotelworker_JLabel("线上退房办理");
-	private JLabel checkin_Jlabel3=new  Hotelworker_JLabel("线下入住退房");
+	private JLabel myhotel_Jlabel1=new  Hotelworker_JLabel("● 维护酒店信息");
+	private JLabel myhotel_Jlabel2=new  Hotelworker_JLabel("● 录入客房信息");
+	private JLabel myorder_Jlabel1=new  Hotelworker_JLabel("● 浏览订单列表");
+	private JLabel mystr_Jlabel1=new  Hotelworker_JLabel("● 制定酒店策略");
+	private JLabel checkin_Jlabel1=new  Hotelworker_JLabel("● 线上入住办理");
+	private JLabel checkin_Jlabel2=new  Hotelworker_JLabel("● 线上退房办理");
+	private JLabel checkin_Jlabel3=new  Hotelworker_JLabel("● 线下入住退房");
 	
 	
 
@@ -110,17 +110,17 @@ public class Hotelworker_JFrame extends JFrame{
 	    	
 	    	
 
-	    	close_jbutton.setBounds(970,10,20,20);
+	    	close_jbutton.setBounds(970,40,20,20);
 	    	abovepanel.add(close_jbutton);
-	      	narrow_jbutton.setBounds(930,10,20,20);
+	      	narrow_jbutton.setBounds(930,40,20,20);
 	      	abovepanel.add(narrow_jbutton);
-	      	arrow_JButton.setBounds(850,10,20,20);
+	      	arrow_JButton.setBounds(850,40,20,20);
 	      	abovepanel.add(arrow_JButton);
-	      	home_JButton.setBounds(810,10,20,20);
+	      	home_JButton.setBounds(810,40,20,20);
 	      	abovepanel.add(home_JButton);
-	      	reflesh_JButton.setBounds(770,10,20,20);
+	      	reflesh_JButton.setBounds(770,40,20,20);
 	      	abovepanel.add(reflesh_JButton);
-	      	line.setBounds(885,5,30,30);
+	      	line.setBounds(885,35,30,30);
 	      	abovepanel.add(line);
 	    	
 	      	

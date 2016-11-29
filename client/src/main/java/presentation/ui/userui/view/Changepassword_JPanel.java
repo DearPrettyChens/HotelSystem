@@ -165,12 +165,6 @@ public class Changepassword_JPanel  extends JPanel{
     }
 	
     
-    /**
-     * 添加组件
-    * @param
-    * @return
-    * @throws 未定
-    */
    
     
 	

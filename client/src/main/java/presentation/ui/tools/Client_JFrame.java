@@ -63,11 +63,45 @@ public class Client_JFrame  extends JFrame{
 	//private Clientlistinfo_JPanel cp=new Clientlistinfo_JPanel("120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
 	//Searchperson_JPanel cp=new Searchperson_JPanel();
 	//Searchoradd_JPanel cp=new Searchoradd_JPanel();
-	Webstrmakeradd_JPanel cp=new Webstrmakeradd_JPanel("sbd");
-	
+	//Orderlistinfo_JPanel cp=new Orderlistinfo_JPanel("", "", "","", "", "");
+	//Orderlistinfo_JPanel cp=new Orderlistinfo_JPanel("120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374");
+	//Clientdeposite_JPanel cp=new Clientdeposite_JPanel("enwf","enwf","enwf","enwf");
 	//private Hotelworkerlistinfo_JPanel cp=new Hotelworkerlistinfo_JPanel("fw","120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
 	
+	 Singlewebclientlevelstr_Jpanel jphh=new Singlewebclientlevelstr_Jpanel(1,2);
+	 Singlewebclientlevelstr_Jpanel jphhh=new Singlewebclientlevelstr_Jpanel(3,4);
+	 
+	 Singlewebspecialtimestr_JPanel jpc=new Singlewebspecialtimestr_JPanel("bd","ougd",9);
+	 Singlewebvipstr_Jpanel jpa=new  Singlewebvipstr_Jpanel("wejfb",9);
+	 
+	 ArrayList<Singlewebclientlevelstr_Jpanel > arry;
+	 ArrayList< Singlewebspecialtimestr_JPanel > arry1;
+	 ArrayList<Singlewebvipstr_Jpanel > arry2;
+	 Webvipstr_JPanel  vipstr;Webclientlevelstr_Jpanel clientlevelstr;Webspecialtimestr_JPanel specialtimestr;
+	 
+	Makewebstr_JPanel cp;
+	 
+	 
 	public Client_JFrame(){
+		
+		arry=new ArrayList<Singlewebclientlevelstr_Jpanel >();
+		arry.add(jphh);
+		arry.add(jphhh);
+		
+		arry1=new ArrayList<Singlewebspecialtimestr_JPanel >();
+		arry1.add(jpc);
+		
+		
+		arry2=new ArrayList<Singlewebvipstr_Jpanel >();
+		arry2.add(jpa);
+		
+		
+		clientlevelstr=new Webclientlevelstr_Jpanel(arry);
+		
+		vipstr=new Webvipstr_JPanel(arry2);
+		specialtimestr=new Webspecialtimestr_JPanel(arry1);
+		cp=new Makewebstr_JPanel(vipstr,clientlevelstr,specialtimestr);
+		//Webclientlevelstr_Jpanel cp=new Webclientlevelstr_Jpanel(arry);
 		
 		
 		this.setLocation
@@ -114,17 +148,17 @@ public class Client_JFrame  extends JFrame{
     public void addComp(){
     	
     	
-    	close_jbutton.setBounds(970,10,20,20);
+    	close_jbutton.setBounds(970,40,20,20);
     	abovepanel.add(close_jbutton);
-      	narrow_jbutton.setBounds(930,10,20,20);
+      	narrow_jbutton.setBounds(930,40,20,20);
       	abovepanel.add(narrow_jbutton);
-      	arrow_JButton.setBounds(850,10,20,20);
+      	arrow_JButton.setBounds(850,40,20,20);
       	abovepanel.add(arrow_JButton);
-      	home_JButton.setBounds(810,10,20,20);
+      	home_JButton.setBounds(810,40,20,20);
       	abovepanel.add(home_JButton);
-      	reflesh_JButton.setBounds(770,10,20,20);
+      	reflesh_JButton.setBounds(770,40,20,20);
       	abovepanel.add(reflesh_JButton);
-      	line.setBounds(885,5,30,30);
+      	line.setBounds(885,35,30,30);
       	abovepanel.add(line);
       	
       	
