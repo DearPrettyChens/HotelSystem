@@ -7,6 +7,7 @@ import java.util.Date;
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.orderbl.SingleOrder;
 import dao.checkindao.CheckinDao;
+import exception.NullOrderIDException;
 import init.RMIHelper;
 import po.CheckinInfoPO;
 import util.BedType;
@@ -63,7 +64,7 @@ public class CheckinInfo {
 		
 	}
 	/**
-	 * 新增入住信息
+	 * 新增入住信息(分线下线上)线下订单号为空
 	 * @return ResultMessage
 	 * @throws RemoteException 
 	 */
@@ -71,9 +72,11 @@ public class CheckinInfo {
 		//更新订单中的实际入房时间
 		singleOrder=new SingleOrder();
 		checkinTime=new Date();
-		ResultMessage result=singleOrder.setCheckinTime(checkinTime, orderNumber);
-		if(result==ResultMessage.FAIL){
-			return ResultMessage.FAIL;
+		if(this.orderNumber!=null){
+			ResultMessage result=singleOrder.setCheckinTime(checkinTime, orderNumber);
+			if(result==ResultMessage.FAIL){
+				return ResultMessage.FAIL;
+			}
 		}
 		//写入数据库住房信息
 		try {
@@ -88,8 +91,12 @@ public class CheckinInfo {
 	 * 获取查找到的顾客住房信息
 	 * @param orderID
 	 * @return CheckinInfo
+	 * @throws NullOrderIDException
 	 */
-	public CheckinInfoVO getCheckinInfo(String orderID){
+	public CheckinInfoVO getCheckinInfo(String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		try {
 			return new CheckinInfoVO(checkinDao.getCheckinInfo(orderID));
 		} catch (RemoteException e) {
@@ -99,7 +106,7 @@ public class CheckinInfo {
 	}
 	
 	/**
-	 * 修改顾客住房信息
+	 * 修改顾客住房信息(分线下线上)线下订单号为空
 	 * @param vo
 	 * @return ResultMessage
 	 */
@@ -133,14 +140,14 @@ public class CheckinInfo {
 		if(message==ResultMessage.FAIL){
 			return ResultMessage.FAIL;
 		}
-		
-		//更新订单中的实际退房时间
-		singleOrder=new SingleOrder();
-		ResultMessage result=singleOrder.setCheckoutTime(new Date(), vo.getOrdernumber());
-		if(result==ResultMessage.FAIL){
-			return ResultMessage.FAIL;
+		if(this.orderNumber!=null){
+			//更新订单中的实际退房时间
+			singleOrder=new SingleOrder();
+			ResultMessage result=singleOrder.setCheckoutTime(new Date(), vo.getOrdernumber());
+			if(result==ResultMessage.FAIL){
+				return ResultMessage.FAIL;
+			}
 		}
-		
 		return ResultMessage.SUCCESS;
 	}
 	

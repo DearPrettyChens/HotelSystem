@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import dao.creditdao.CreditDao;
+import exception.NullCustomerIDException;
 import po.CreditInfoPO;
 import po.CreditPO;
 import util.ResultMessage;
@@ -51,8 +52,12 @@ public class Credit {
 	 * 新增一条顾客的信用记录并增加顾客的信用值
 	 * @param creditVO
 	 * @return ResultMessage
+	 * @throws NullCustomerIDException
 	 */
-	public ResultMessage addCredit(CreditVO creditVO) {
+	public ResultMessage addCredit(CreditVO creditVO) throws NullCustomerIDException{
+		if(creditVO.getID()==null){
+			throw new NullCustomerIDException();
+		}
 		//changecredit统一为正的，增为加，扣为减
 		int changeCredit=creditVO.getCreditChange();
 		int nowCredit=changeCredit+creditVO.getCredit();
@@ -71,8 +76,12 @@ public class Credit {
 	 * 新增一条顾客的信用记录并扣除顾客的信用值
 	 * @param creditVO
 	 * @return ResultMessage
+	 * @throws NullCustomerIDException
 	 */
-	public ResultMessage cutCredit(CreditVO creditVO) {
+	public ResultMessage cutCredit(CreditVO creditVO) throws NullCustomerIDException{
+		if(creditVO.getID()==null){
+			throw new NullCustomerIDException();
+		}
 		int changeCredit=creditVO.getCreditChange();
 		int nowCredit=changeCredit-creditVO.getCredit();
 		//传给数据层的是变化后的credit值
@@ -91,8 +100,12 @@ public class Credit {
 	 * @param money
 	 * @param customerName
 	 * @return ResultMessage
+	 * @throws NullCustomerIDException
 	 */
-	public ResultMessage confirmCreditDeposit(double money, String customerId) {
+	public ResultMessage confirmCreditDeposit(double money, String customerId) throws NullCustomerIDException{
+		if(customerId==null){
+			throw new NullCustomerIDException();
+		}
 		try {
 			CreditInfoPO po=creditDao.getCreditInfo(customerId);
 			List<CreditPO> creditInfoList=po.getCreditRecords();

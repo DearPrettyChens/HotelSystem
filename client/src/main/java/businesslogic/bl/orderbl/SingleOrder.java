@@ -8,6 +8,8 @@ import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.creditbl.Credit;
 import businesslogic.bl.hotelbl.Hotel;
 import dao.orderdao.OrderDao;
+import exception.NullCustomerIDException;
+import exception.NullOrderIDException;
 import po.CheckTimePO;
 import po.OrderInfoPO;
 import po.OrderStatePO;
@@ -44,10 +46,13 @@ public class SingleOrder {
 	 * 获取订单详细信息
 	 * @param orderID String型，传递订单号
 	 * @return OrderInfoVO ，将订单详细信息返回给界面或hotel模块
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 *
 	 */
-	public OrderInfoVO getOrderInfo(String orderID){
+	public OrderInfoVO getOrderInfo(String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		try {
 			return new OrderInfoVO(orderDao.getOrderInfo(orderID));
 		} catch (RemoteException e) {
@@ -61,9 +66,15 @@ public class SingleOrder {
 	 * 添加订单
 	 * @param vo OrderInfoVO型，用来传递新增订单信息
 	 * @return ResultMessage，如果设置成功返回SUCCESS,否则返回FAIL
-	 * @throws 未定
+	 * @throws NullOrderIDException,NullCustomerIDException
 	 */
-	public ResultMessage addOrder(OrderInfoVO orderInfoVO){
+	public ResultMessage addOrder(OrderInfoVO orderInfoVO)throws NullOrderIDException,NullCustomerIDException{
+		if(orderInfoVO.getOrderID()==null){
+			throw new NullOrderIDException();
+		}
+		if(orderInfoVO.getCustomerID()==null){
+			throw new NullCustomerIDException();
+		}
 		try {
 			//顾客下订单时订单信息的po(orderID,orderTime是在界面层设好的吗？不确定）
 			orderDao.addOrder(orderInfoVO.toMakeOrderPO());
@@ -94,9 +105,12 @@ public class SingleOrder {
 	 * 添加订单状态
 	 * @param orderstate OrderState型，用来传递订单状态
 	 * @return ResultMessage，如果添加成功返回SUCCESS,否则返回FAIL
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 */
-	public ResultMessage addOrderState(OrderState orderState,String orderID){
+	public ResultMessage addOrderState(OrderState orderState,String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		try {
 			orderDao.addOrderState(new OrderStatePO(orderID,orderState));
 		} catch (RemoteException e) {
@@ -111,11 +125,13 @@ public class SingleOrder {
 	 * 异常订单撤销，返还相应的信用值
 	 * @param orderID String型，界面传递过来的订单号 CreditNum String型
 	 * @return ResultMessage，撤销成功返回SUCCESS,撤销失败返回FAIL，格式错误返回具体什么格式错误
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 *
 	 */
-	public ResultMessage setReturnCredit(String orderID,int creditNum){
-		
+	public ResultMessage setReturnCredit(String orderID,int creditNum)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		try {
 			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
 			String customerID=orderInfo.getCustomerID();
@@ -136,10 +152,13 @@ public class SingleOrder {
 	 * 未执行订单撤销，扣除相应的信用值(与最晚执行时间距离6小时之内扣除一半）
 	 * @param orderID String型，界面传递过来的订单号 CreditNum String型
 	 * @return ResultMessage，撤销成功返回SUCCESS,撤销失败返回FAIL，格式错误返回具体什么格式错误
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 *
 	 */
-	public ResultMessage cancelOrderConfirm(String orderID){
+	public ResultMessage cancelOrderConfirm(String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		OrderInfoPO orderInfo;
 		try {
 			orderInfo = orderDao.getOrderInfo(orderID);
@@ -167,11 +186,14 @@ public class SingleOrder {
 	 * 保存订单实际入住时间
 	 * @param time Date型，orderID string型，界面传递过来的实际入住时间和订单编号
 	 * @return ResultMessage，保存成功返回SUCCESS,失败返回FAIL，格式错误返回具体什么格式错误
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 *
 	 */
 
-	public ResultMessage setCheckinTime(Date time,String orderID){
+	public ResultMessage setCheckinTime(Date time,String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 
 		try {
 			//orderDao更新订单的checkin时间
@@ -203,10 +225,13 @@ public class SingleOrder {
 	 * 保存订单实际退房时间
 	 * @param time Date型，orderID string型界面传递过来的实际退房时间和订单编号
 	 * @return ResultMessage，保存成功返回SUCCESS,失败返回FAIL，格式错误返回具体什么格式错误
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 *
 	 */
-	public ResultMessage setCheckoutTime(Date time,String orderID){
+	public ResultMessage setCheckoutTime(Date time,String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		
 		try {
 			CheckTimePO checkTime=new CheckTimePO(orderID,time,"checkout");
@@ -240,10 +265,13 @@ public class SingleOrder {
 	 * 评价酒店
 	 * @param remarkVO RemarkVO型，界面传递过来的评价信息
 	 * @return ResultMessage，保存成功返回SUCCESS,失败返回FAIL，格式错误返回具体什么格式错误
-	 * @throws 未定
+	 * @throws NullOrderIDException
 	 *
 	 */
-	public ResultMessage remarkOrder(RemarkVO vo){
+	public ResultMessage remarkOrder(RemarkVO vo)throws NullOrderIDException{
+		if(vo.getOrderId()==null){
+			throw new NullOrderIDException();
+		}
 		//增加订单状态
 		this.addOrderState(OrderState.HASREMARKED, vo.getOrderId());
 		//调用HotelInfoOrderService里面的addRemarkInfo方法

@@ -7,6 +7,8 @@ import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.orderbl.SingleOrder;
 import businesslogic.bl.userbl.User;
 import dao.availableroomdao.AvailableRoomDao;
+import exception.NullHotelIDException;
+import exception.NullOrderIDException;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomNumberVO;
@@ -29,8 +31,12 @@ public class Checkin{
 	 * 根据订单号获取顾客订单信息
 	 * @param orderID
 	 * @return OrderInfoVO
+	 * @throws NullOrderIDException
 	 */
-	public OrderInfoVO getOrderInfo(String orderID){
+	public OrderInfoVO getOrderInfo(String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		//从order那里获得的vo
 		//vo.ordervo.OrderInfoVO orderVO=new SingleOrder().getOrderInfo(orderID);
 		//转换成checkin的ordervo
@@ -42,7 +48,10 @@ public class Checkin{
 	 * @param orderID
 	 * @return CheckinInfo
 	 */
-	public CheckinInfoVO getCheckinInfo(String orderID){
+	public CheckinInfoVO getCheckinInfo(String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		return new CheckinInfo().getCheckinInfo(orderID);
 	}
 	/**
@@ -77,8 +86,12 @@ public class Checkin{
 	 * @param bedType
 	 * @param number
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public ResultMessage checkAvailableRoomNumber(String hotelID,BedType bedType,int number){
+	public ResultMessage checkAvailableRoomNumber(String hotelID,BedType bedType,int number)throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		//调用availableroom的checkAvailableRoomNumber方法
 		availableRoom=new AvailableRoom();
 		return availableRoom.checkAvailableRoomNumber(new AvailableRoomNumberVO(number,bedType,new Date(),hotelID));
@@ -87,8 +100,12 @@ public class Checkin{
 	 * 系统持久化修改该酒店可用客房信息
 	 * @param vo
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public ResultMessage confirmAvailableRoomNumber(vo.availableroomvo.AvailableRoomNumberVO vo){
+	public ResultMessage confirmAvailableRoomNumber(vo.availableroomvo.AvailableRoomNumberVO vo)throws NullHotelIDException{
+		if(vo.getHotelNumber()==null){
+			throw new NullHotelIDException();
+		}
 		//调用availableroom的setAvailableRoomNumber方法
 		availableRoom=new AvailableRoom();
 		return availableRoom.setAvailableRoomNumber(vo);
@@ -96,8 +113,12 @@ public class Checkin{
 	/**
 	 * 系统返回该酒店的可用房间信息
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public ArrayList<vo.availableroomvo.AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID){
+	public ArrayList<vo.availableroomvo.AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID)throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		//调用availableroomgetAvailableRoomInfo方法
 		availableRoom=new AvailableRoom();
 		return availableRoom.getAvailableRoomInfo(hotelID);

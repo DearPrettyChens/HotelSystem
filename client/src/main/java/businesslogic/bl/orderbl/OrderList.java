@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dao.orderdao.OrderDao;
+import exception.NullHotelIDException;
 import po.OrderListPO;
 import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
@@ -45,7 +46,10 @@ public class OrderList {
 	 * @param hotelID
 	 * @return ArrayList<OrderListVO> ，将特定订单列表返回给hotel
 	 */
-	public ArrayList<OrderListVO> getOrderList(String hotelID){
+	public ArrayList<OrderListVO> getOrderList(String hotelID)throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		try {
 			ArrayList<OrderListPO> orders=orderDao.getOrderList(hotelID);
 			ArrayList<OrderListVO> ordersVO=new ArrayList<OrderListVO>();

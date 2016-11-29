@@ -18,6 +18,8 @@ import businesslogic.bl.orderbl.OrderList;
 import businesslogic.bl.orderbl.SingleOrder;
 import dao.hoteldao.HotelDao;
 import exception.NotFoundHotelException;
+import exception.NullHotelIDException;
+import exception.NullOrderIDException;
 import init.RMIHelper;
 import po.HotelBasicInfoPO;
 import po.HotelBestPricePO;
@@ -147,8 +149,11 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * @return ResultMessage，保存成功返回SUCCESS,失败返回FAIL，格式错误返回具体什么格式错误
 	 *
 	 */
-	public ResultMessage confirmModifyInfo(HotelBasicInfoVO hotelInfovo){
+	public ResultMessage confirmModifyInfo(HotelBasicInfoVO hotelInfovo)throws NullHotelIDException{
 		try {
+			if(hotelInfovo.getHotelID()==null){
+				throw new NullHotelIDException();
+			}
 			//界面层新建酒店信息，是将酒店工作人员id放入vo中
 			if(hotelDao.getHotelBasicInfo(hotelInfovo.getHotelID())==null){
 				hotelDao.addHotelBasicInfo(hotelInfovo.votopo());
@@ -170,7 +175,10 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * @return ArrayList<HotelOrderVO>，返回酒店的订单列表
 	 *
 	 */
-	public ArrayList<HotelOrderVO> getHotelOrderList(String hotelID){
+	public ArrayList<HotelOrderVO> getHotelOrderList(String hotelID)throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		//调用Order.getOrderList获得该酒店的订单列表信息
 		orderList=new OrderList();
 		ArrayList<OrderListVO> orders=orderList.getOrderList(hotelID);
@@ -189,7 +197,10 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	 * @return HotelOrderInfoVO，返回酒店的订单详细信息
 	 *
 	 */
-	public HotelOrderInfoVO getHotelOrderInfo(String orderID){
+	public HotelOrderInfoVO getHotelOrderInfo(String orderID)throws NullOrderIDException{
+		if(orderID==null){
+			throw new NullOrderIDException();
+		}
 		//调用Order.getOrderInfo获得该酒店某一订单的详细信息
 		//解决循环依赖
 		singleOrder=new SingleOrder(this);
@@ -203,8 +214,14 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	}
 
 	@Override
-	public ResultMessage addRemarkInfo(RemarkVO vo) {
+	public ResultMessage addRemarkInfo(RemarkVO vo)throws NullHotelIDException,NullOrderIDException {
 		try {
+			if(vo.getHotelId()==null){
+				throw new NullHotelIDException();
+			}
+			if(vo.getOrderId()==null){
+				throw new NullOrderIDException();
+			}
 			//增加一条评价信息
 			hotelDao.addRemarkInfo(new RemarkPO(vo.getHotelId(),null,
 					"0",vo.getRemarkGrade(),null));
@@ -217,14 +234,20 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	}
 
 	@Override
-	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID)throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		//调用Availableroom.getAvailableRoomInfo获得酒店可用客房信息
 		availableRoom=new AvailableRoom();
 		return availableRoom.getAvailableRoomInfo(hotelID);
 	}
 
 	@Override
-	public ResultMessage setBestPrice(int price, String hotelID) {
+	public ResultMessage setBestPrice(int price, String hotelID) throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		try {
 			hotelDao.setBestPrice(new HotelBestPricePO(TransHelper.idToInt(hotelID),price));
 		} catch (RemoteException e) {

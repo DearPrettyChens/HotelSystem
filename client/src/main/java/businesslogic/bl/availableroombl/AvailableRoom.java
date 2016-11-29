@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dao.availableroomdao.AvailableRoomDao;
+import exception.NullHotelIDException;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
@@ -30,8 +31,12 @@ public class AvailableRoom {
 	 * 获取酒店的当日可用房间信息
 	 * @param hotelID
 	 * @return AvailableRoomInfoVO
+	 * @throws NullHotelIDException
 	 */
-	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
+	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		ArrayList<AvailableRoomInfoVO> infos=new ArrayList<AvailableRoomInfoVO>();
 		try {
 			//调用数据层
@@ -49,8 +54,12 @@ public class AvailableRoom {
 	 * 新增酒店房间信息
 	 * @param availableRoomInfoVO
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public ResultMessage confirmAvailableRoomInfo(String hotelID,AvailableRoomInfoVO availableRoomInfoVO) {
+	public ResultMessage confirmAvailableRoomInfo(String hotelID,AvailableRoomInfoVO availableRoomInfoVO) throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		//调用数据层
 		try {
 			return availableRoomDao.modifyAvailableRoomInfo(availableRoomInfoVO.toPO());
@@ -63,8 +72,12 @@ public class AvailableRoom {
 	 * 更新可用房间数量信息
 	 * @param availableRoomNumberVO
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public ResultMessage setAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) {
+	public ResultMessage setAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) throws NullHotelIDException{
+		if(availableRoomNumberVO.getHotelNumber()==null){
+			throw new NullHotelIDException();
+		}
 		//调用数据层
 		try {
 			return availableRoomDao.setAvailableRoomNumber(availableRoomNumberVO.toPO());
@@ -78,7 +91,10 @@ public class AvailableRoom {
 	 * @param discount
 	 * @return ResultMessage
 	 */
-	public ResultMessage setBestPrice(String hotelID,double discount) { 
+	public ResultMessage setBestPrice(String hotelID,double discount) throws NullHotelIDException{ 
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		try {
 			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
 			//new出该酒店的所有singleavailableroom对象
@@ -109,8 +125,12 @@ public class AvailableRoom {
 	 * @param hotelID
 	 * @param bedType
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public double getRoomPrice(String hotelID, BedType bedType) {
+	public double getRoomPrice(String hotelID, BedType bedType) throws NullHotelIDException{
+		if(hotelID==null){
+			throw new NullHotelIDException();
+		}
 		try {
 			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
 			for(int i=0;i<roomInfo.size();i++){
@@ -128,8 +148,12 @@ public class AvailableRoom {
 	 * 判断是否有足够的可用客房
 	 * @param availableRoomNumberVO
 	 * @return ResultMessage
+	 * @throws NullHotelIDException
 	 */
-	public ResultMessage checkAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) {
+	public ResultMessage checkAvailableRoomNumber(AvailableRoomNumberVO availableRoomNumberVO) throws NullHotelIDException{
+		if(availableRoomNumberVO.getHotelNumber()==null){
+			throw new NullHotelIDException();
+		}
 		try {
 			//调用数据层返回相应日期的可用客房信息
 			AvailableRoomNumberPO roomInfo=availableRoomDao.getAvailableRoomNumber(availableRoomNumberVO.getHotelNumber(),
