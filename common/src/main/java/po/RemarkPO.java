@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.sun.javafx.beans.IDProperty;
 
@@ -34,7 +35,9 @@ public class RemarkPO implements Serializable {
 	// 酒店的评论
 	@Column(name = "remark")
 	private String remark;
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	// 空方法
 	public RemarkPO() {
 

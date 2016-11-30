@@ -14,7 +14,7 @@ import util.BedType;
 public class CheckInDataServiceImpl_Driver {
 	public void drive(CheckinDao dao) throws RemoteException {
 		CheckinInfoPO po = new CheckinInfoPO("CustomerA", "2", "12345678910", "BigRoom", BedType.BIGBED, "406",
-				new Date(), new Date(), 1, "20161121000001000002");
+				new Date(), new Date(), 1, "20161121000001000007");
 		System.out.println(dao.addCheckinInfo(po));
 
 		po = dao.getCheckinInfo("20161121000001000002");
@@ -23,7 +23,7 @@ public class CheckInDataServiceImpl_Driver {
 				+ " " + po.getOrdernumber());
 
 		po = new CheckinInfoPO("CustomerA", "2", "12345678910", "BigRoom", BedType.BIGBED, "405", new Date(), null, 1,
-				"20161120000001000002");
+				"20161120000001000009");
 		System.out.println(dao.addCheckinInfo(po));
 
 		po.setCheckouttime(new Date());

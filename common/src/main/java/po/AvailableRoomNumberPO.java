@@ -12,6 +12,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import util.BedType;
 
@@ -38,7 +39,9 @@ public class AvailableRoomNumberPO implements Serializable {
 	@Column(name = "hotel_id")
 	private int hotelNumber;// 酒店编号
 	// private String hotelName;//酒店名字
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	public AvailableRoomNumberPO() {
 
 	}

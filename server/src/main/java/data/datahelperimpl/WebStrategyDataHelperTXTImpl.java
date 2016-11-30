@@ -20,7 +20,7 @@ import util.ResultMessage;
 import util.WebStrategyType;
 
 public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
-	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD");
+	private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("YYYY-MM-DD");
 
 	@Override
 	public GradeRulePO getGradeRule() throws RemoteException {
@@ -171,21 +171,36 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	@Override
-	public ResultMessage setGradeRule(GradeRulePO po) throws RemoteException {
+	public synchronized ResultMessage setGradeRule(GradeRulePO po) throws RemoteException {
 		// 写入数据
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
-		try {
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter writer = new BufferedWriter(fw);
-			String string = po.getCredit() + "";
-			writer.write(string);
-			writer.flush();
-			writer.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return ResultMessage.FAIL;
+		synchronized (WebStrategyDataHelperTXTImpl.class) {
+			File file = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
+			try {
+				FileWriter fw = new FileWriter(file.getAbsoluteFile());
+				BufferedWriter writer = new BufferedWriter(fw);
+				String string = po.getCredit() + "";
+				writer.write(string);
+				writer.flush();
+				writer.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+				return ResultMessage.FAIL;
+			}
+			return ResultMessage.SUCCESS;
 		}
-		return ResultMessage.SUCCESS;
+//		File file = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
+//		try {
+//			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+//			BufferedWriter writer = new BufferedWriter(fw);
+//			String string = po.getCredit() + "";
+//			writer.write(string);
+//			writer.flush();
+//			writer.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return ResultMessage.FAIL;
+//		}
+//		return ResultMessage.SUCCESS;
 	}
 
 	@Override
@@ -207,7 +222,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		return resultMessage;
 	}
 
-	public ResultMessage setVIP(WebStrPO po) {
+	public static synchronized ResultMessage setVIP(WebStrPO po) {
 		File file = new File("/Users/chengyunfei/Desktop/webstrategy/vip.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
@@ -231,7 +246,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		return ResultMessage.SUCCESS;
 	}
 
-	public ResultMessage setSpecialTime(WebStrPO po) {
+	public static synchronized ResultMessage setSpecialTime(WebStrPO po) {
 		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialtime.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
@@ -250,7 +265,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		return ResultMessage.SUCCESS;
 	}
 
-	public ResultMessage setSpecialArea(WebStrPO po) {
+	public static synchronized ResultMessage setSpecialArea(WebStrPO po) {
 		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialarea.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());

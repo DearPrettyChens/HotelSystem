@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 import javax.swing.ImageIcon;
 
 import util.City;
@@ -83,7 +84,10 @@ public class HotelBasicInfoPO implements Serializable {
 	@Column(name = "enterprises")
 	private String enterprises;
 	// 空方法
-
+	@Version
+	@Column(name = "version")
+	private int version;
+	
 	public void setEnterprises(String enterprises) {
 		this.enterprises = enterprises;
 	}

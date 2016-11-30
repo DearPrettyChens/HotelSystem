@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import util.BedType;
 import util.Children;
@@ -92,7 +93,9 @@ public class OrderInfoPO implements Serializable {
 	// 撤销时间
 	@Column(name = "cancle_time")
 	private java.sql.Timestamp cancleTimeStamp;
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	// 空方法
 	public OrderInfoPO() {
 

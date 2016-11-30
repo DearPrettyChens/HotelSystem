@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -32,7 +33,9 @@ public class ClientPO implements Serializable {
 	private String password;
 	@Column(name = "user_type")
 	private UserType type;
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	class Builder {
 		ClientPO po;
 

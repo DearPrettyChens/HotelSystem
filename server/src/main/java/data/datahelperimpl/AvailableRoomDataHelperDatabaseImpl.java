@@ -9,9 +9,10 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
 import org.hibernate.Transaction;
-import org.hibernate.annotations.ForceDiscriminator;
-import org.hibernate.event.SaveOrUpdateEvent;
+import org.hibernate.loader.custom.CustomLoader.ScalarResultColumnProcessor;
+import org.springframework.scheduling.SchedulingException;
 
 import data.datahelper.AvailableRoomDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -76,15 +77,17 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 
 	public ResultMessage Save(AvailableRoomInfoPO po) {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		try {
 			session.save(po);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				session.getTransaction().rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -93,12 +96,13 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 	@Override
 	public ResultMessage modifyAvailableRoomInfo(AvailableRoomInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		// 房间床型和酒店ID应当是固定的 可以修改的信息有 房型 总数量 原始价格
 		Query query = session.createQuery("from AvailableRoomInfoPO where (hotel_id = " + po.getHotelNumber()
 				+ ") and ( bed_type = '" + po.getBedType() + "')");
 		List<AvailableRoomInfoPO> list = query.list();
 		if (list.size() == 0) {
+			session.close();
 			return ResultMessage.FAIL;
 		}
 		// 记录房间数量变化对于当前房间数量的影响
@@ -120,12 +124,14 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 			for (AvailableRoomInfoPO each : list) {
 				session.update(each);
 			}
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				session.getTransaction().rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -134,7 +140,7 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 	@Override
 	public ResultMessage setAvailableRoomNumber(AvailableRoomNumberPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		// 更新可用住房的数量
 		// 第一步 先取出id和日期相同的
 		Query query = session.createQuery("from AvailableRoomNumberPO where ( hotel_id = " + po.getHotelNumber()
@@ -160,12 +166,14 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 		changePO.setNumber(po.getNumber());
 		try {
 			session.update(changePO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				session.getTransaction().rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -222,7 +230,7 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 	@Override
 	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query;
 		List<AvailableRoomInfoPO> updateList;
 		for (AvailableRoomInfoPO each : po) {
@@ -233,20 +241,19 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 			for (AvailableRoomInfoPO updateEach : updateList) {
 				updateEach.setLowestPrice(each.getLowestPrice());
 			}
-			Transaction transaction = null;
 			try {
 				for (AvailableRoomInfoPO eachOne : updateList) {
 					session.update(eachOne);
-					transaction = session.getTransaction();
 				}
-			} catch (Exception e) {
+				transaction.commit();
+			} catch (StaleObjectStateException e) {
 				e.printStackTrace();
 				if (transaction != null) {
 					transaction.rollback();
 				}
-				return ResultMessage.FAIL;
+				return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 			} finally {
-				transaction.commit();
+//				transaction.commit();
 				session.close();
 			}
 		}

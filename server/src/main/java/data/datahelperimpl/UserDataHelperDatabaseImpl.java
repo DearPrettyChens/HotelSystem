@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 
@@ -33,7 +35,7 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 	@Override
 	public ResultMessage setUserPassword(ClientPO po) {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from ClientPO where user_id = " + po.getUserID());
 		List<ClientPO> result = query.list();
 		if (result.size() == 0) {
@@ -43,12 +45,15 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 		try {
 			result.get(0).setPassword(po.getPassword());
 			session.update(result.get(0));
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+//			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

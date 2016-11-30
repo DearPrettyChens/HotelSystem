@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.swing.ImageIcon;
 
 import util.OrderState;
@@ -42,7 +43,9 @@ public class OrderListPO implements Serializable {
 	// 订单状态
 	@Column(name = "state")
 	private String state;
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	// 空方法
 	public OrderListPO() {
 

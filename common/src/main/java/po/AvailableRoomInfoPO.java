@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import util.BedType;
 
@@ -40,6 +41,9 @@ public class AvailableRoomInfoPO implements Serializable {
 	private int currentNumber;// 当前数量
 	@Column(name = "date")
 	private int dateFromNow;
+	@Version
+	@Column(name= "version")
+	private int version;
 
 	public AvailableRoomInfoPO() {
 

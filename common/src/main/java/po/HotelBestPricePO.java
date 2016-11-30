@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 /**
  * 酒店最优价格的po
  * @author CYF
@@ -22,6 +23,9 @@ public class HotelBestPricePO implements Serializable{
 	@Column(name="lowest_price")
 	private double bestPrice;
 	//空方法
+	@Version
+	@Column(name = "version")
+	private int version;
 	public HotelBestPricePO(){
 		
 	}

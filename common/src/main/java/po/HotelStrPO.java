@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 
 import util.HotelStrategyType;
 
@@ -48,7 +49,10 @@ public class HotelStrPO implements Serializable {
 	private java.sql.Date endDate;
 	// @Transient
 	// private java.sql.Date[] dateStamps;
-
+	@Version
+	@Column(name = "version")
+	private int version;
+	
 	public HotelStrPO() {
 	}
 

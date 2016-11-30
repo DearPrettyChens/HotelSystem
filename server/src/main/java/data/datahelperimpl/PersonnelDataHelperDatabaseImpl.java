@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 
 import data.datahelper.PersonnelDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -45,7 +47,54 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 	@Override
 	public ArrayList<PersonListPO> getPersonList(UserType userType, String userName, int userID)
 			throws RemoteException {
-		return null;
+		// Session session = HibernateUtil.getSession();
+		// session.beginTransaction();
+		ArrayList<PersonListPO> list = new ArrayList<PersonListPO>();
+		if (userType != null) {
+			list = getPersonListByUserType(userType.getString());
+		} else if (userName != null) {
+			list = getPersonListByUserName(userName);
+		} else {
+			list = getPersonListByUserID(userID);
+		}
+		// Query query = Session.createQuery("from PersonListPO where ")
+		return list;
+	}
+
+	private ArrayList<PersonListPO> getPersonListByUserType(String userType) {
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from PersonListPO where user_type = '" + userType + "'");
+		List<PersonListPO> list = query.list();
+		ArrayList<PersonListPO> retList = new ArrayList<PersonListPO>();
+		for (PersonListPO each : list) {
+			retList.add(each.copy());
+		}
+		return retList;
+	}
+
+	private ArrayList<PersonListPO> getPersonListByUserName(String name) {
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from PersonListPO where user_name = '" + name + "'");
+		List<PersonListPO> list = query.list();
+		ArrayList<PersonListPO> retList = new ArrayList<PersonListPO>();
+		for (PersonListPO each : list) {
+			retList.add(each.copy());
+		}
+		return retList;
+	}
+
+	private ArrayList<PersonListPO> getPersonListByUserID(int userID) {
+		Session session = HibernateUtil.getSession();
+		session.beginTransaction();
+		Query query = session.createQuery("from PersonListPO where user_id = " + userID);
+		List<PersonListPO> list = query.list();
+		ArrayList<PersonListPO> retList = new ArrayList<PersonListPO>();
+		for (PersonListPO each : list) {
+			retList.add(each.copy());
+		}
+		return retList;
 	}
 
 	@Override
@@ -68,7 +117,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 	@Override
 	public ResultMessage setPerson(PersonDetailPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from PersonDetailPO where user_id = " + po.getId());
 		List<PersonDetailPO> list = query.list();
 		if (list.size() == 0) {
@@ -89,12 +138,15 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		}
 		try {
 			session.update(setPO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

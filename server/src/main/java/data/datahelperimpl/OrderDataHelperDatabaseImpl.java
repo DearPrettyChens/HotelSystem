@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 
 import data.datahelper.OrderDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -36,7 +38,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	@Override
 	public ResultMessage addOrderState(OrderStatePO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderNumber() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() == 0) {
@@ -47,12 +49,15 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setState(po.getState());
 			session.update(orderInfoPO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -61,7 +66,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	@Override
 	public ResultMessage setOrderRemark(RemarkPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderID() + "'");
 		List<OrderInfoPO> orderInfoPOlist = query.list();
 		query = session.createQuery("from RemarkPO where order_id = '" + po.getOrderID() + "'");
@@ -78,12 +83,15 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 			remarkPO.setRemark(po.getRemark());
 			remarkPO.setScore(po.getScore());
 			session.update(remarkPO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -92,7 +100,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	@Override
 	public ResultMessage setCheckintime(CheckTimePO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderNumber() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() == 0) {
@@ -103,12 +111,15 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setActualCheckInTime(po.getCheckTime());
 			session.update(orderInfoPO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -117,7 +128,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	@Override
 	public ResultMessage setCheckouttime(CheckTimePO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderNumber() + "'");
 		List<OrderInfoPO> list = query.list();
 		if (list.size() == 0) {
@@ -128,12 +139,15 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setActuarCheckOutTime(po.getCheckTime());
 			session.update(orderInfoPO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+//			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

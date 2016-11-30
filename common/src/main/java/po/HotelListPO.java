@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 import javax.swing.ImageIcon;
 
 @Entity
@@ -39,7 +40,9 @@ public class HotelListPO implements Serializable {
 	private double remark;
 	@Column(name = "telephone")
 	private String telephone;
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	public HotelListPO() {
 
 	}

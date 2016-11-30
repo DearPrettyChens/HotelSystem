@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 
 import util.BedType;
 
@@ -45,6 +46,9 @@ public class CheckinInfoPO implements Serializable {
 	@Id
 	@Column(name = "order_id")
 	private String ordernumber;// 订单号
+	@Version
+	@Column(name = "version")
+	private int version;
 
 	public CheckinInfoPO() {
 
@@ -177,29 +181,29 @@ public class CheckinInfoPO implements Serializable {
 				hotelnumber, ordernumber);
 	}
 
-//	public String getBedtypeInSQL() {
-//		return bedtypeInSQL;
-//	}
-//
-//	public void setBedtypeInSQL(String bedtypeInSQL) {
-//		this.bedtypeInSQL = bedtypeInSQL;
-//		switch (bedtypeInSQL) {
-//		case "BIGBED":
-//			bedtype = BedType.BIGBED;
-//			break;
-//		case "TWOBEDS":
-//			bedtype = BedType.TWOBEDS;
-//			break;
-//		case "THREEBEDS":
-//			bedtype = BedType.THREEBEDS;
-//			break;
-//		case "FOURBEDS":
-//			bedtype = BedType.FOURBEDS;
-//			break;
-//		case "FAMILYBED":
-//			bedtype = BedType.FAMILYBED;
-//			break;
-//		}
-//	}
+	// public String getBedtypeInSQL() {
+	// return bedtypeInSQL;
+	// }
+	//
+	// public void setBedtypeInSQL(String bedtypeInSQL) {
+	// this.bedtypeInSQL = bedtypeInSQL;
+	// switch (bedtypeInSQL) {
+	// case "BIGBED":
+	// bedtype = BedType.BIGBED;
+	// break;
+	// case "TWOBEDS":
+	// bedtype = BedType.TWOBEDS;
+	// break;
+	// case "THREEBEDS":
+	// bedtype = BedType.THREEBEDS;
+	// break;
+	// case "FOURBEDS":
+	// bedtype = BedType.FOURBEDS;
+	// break;
+	// case "FAMILYBED":
+	// bedtype = BedType.FAMILYBED;
+	// break;
+	// }
+	// }
 
 }

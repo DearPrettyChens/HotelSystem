@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 
 import data.datahelper.HotelStrategyDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -31,7 +33,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 	@Override
 	public ResultMessage setHotelStrategy(HotelStrPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from HotelStrPO where ( hotel_id = " + po.getHotelID() + ") and ( type = '"
 				+ po.getType().getString() + "')");
 		List<HotelStrPO> list = query.list();
@@ -40,12 +42,14 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 					po.getEnterprise(), po.getDate());
 			try {
 				session.save(savePO);
-			} catch (Exception e) {
+				transaction.commit();
+			} catch (StaleObjectStateException e) {
 				e.printStackTrace();
-				session.getTransaction().rollback();
-				return ResultMessage.FAIL;
+				if(transaction!=null){
+					transaction.rollback();
+				}
+				return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 			} finally {
-				session.getTransaction().commit();
 				session.close();
 			}
 		} else {
@@ -56,12 +60,14 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 			hotelStrPO.setEnterprise(po.getEnterprise());
 			try {
 				session.update(hotelStrPO);
-			} catch (Exception e) {
+				transaction.commit();
+			} catch (StaleObjectStateException e) {
 				e.printStackTrace();
-				session.getTransaction().rollback();
-				return ResultMessage.FAIL;
+				if(transaction!=null){
+					transaction.rollback();
+				}
+				return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 			} finally {
-				session.getTransaction().commit();
 				session.close();
 			}
 		}

@@ -4,6 +4,7 @@ import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -14,6 +15,7 @@ import com.mysql.fabric.xmlrpc.base.Data;
 import dao.impl.PersonnelDaoImpl;
 import dao.personneldao.PersonnelDao;
 import po.PersonDetailPO;
+import po.PersonListPO;
 import util.CustomerType;
 import util.UserType;
 
@@ -39,6 +41,19 @@ public class PersonnelDataServiceImpl_Driver {
 
 		po = dao.getPersonDetail(1);
 		System.out.println(po.getName() + " " + po.getId() + " " + po.getCredit());
+
+		ArrayList<PersonListPO> list = dao.getPersonList(UserType.Customer, null, 0);
+		for (PersonListPO each : list) {
+			System.out.println(each.getName());
+		}
+		list = dao.getPersonList(null, "CustomerB", 0);
+		for (PersonListPO each : list) {
+			System.out.println(each.getName());
+		}
+		list = dao.getPersonList(null, null, 9);
+		for (PersonListPO each : list) {
+			System.out.println(each.getName());
+		}
 
 	}
 

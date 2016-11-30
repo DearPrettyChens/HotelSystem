@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.Version;
 import javax.swing.ImageIcon;
 
 import util.CustomerType;
@@ -62,7 +63,9 @@ public class PersonDetailPO {
 	// 用户种类
 	@Column(name = "user_type")
 	private String userTypeInSQL;
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	public PersonDetailPO() {
 
 	}

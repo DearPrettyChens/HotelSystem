@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 
 import data.datahelper.CheckInDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -16,18 +18,20 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 	@Override
 	public ResultMessage addCheckinInfo(CheckinInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		CheckinInfoPO savepo = new CheckinInfoPO(po.getName(), po.getID(), po.getTel(), po.getRoomtype(),
 				po.getBedtype(), po.getRoomnumber(), po.getCheckintime(), po.getCheckouttime(), po.getHotelnumber(),
 				po.getOrdernumber());
 		try {
 			session.save(savepo);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -49,7 +53,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 	@Override
 	public ResultMessage modifyCheckinInfo(CheckinInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + po.getOrdernumber() + "'");
 		List<CheckinInfoPO> list = query.list();
 		if (list.size() == 0) {
@@ -59,12 +63,15 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		list.get(0).setCheckouttime(po.getCheckouttime());
 		try {
 			session.update(list.get(0));
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

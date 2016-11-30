@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,7 +39,9 @@ public class CreditPO implements Serializable {
 	private String reason;// 原因
 	@Column(name = "change_time")
 	private java.sql.Timestamp timestamp;// 时间
-
+	@Version
+	@Column(name = "version")
+	private int version;
 	public CreditPO() {
 	}
 

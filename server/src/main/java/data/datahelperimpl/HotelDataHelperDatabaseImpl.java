@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 
 import data.datahelper.HotelDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -37,7 +39,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 	@Override
 	public ResultMessage addRemarkInfo(RemarkPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
 		List<HotelBasicInfoPO> list = query.list();
 		if (list.size() == 0) {
@@ -51,12 +53,15 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 
 		try {
 			session.update(savePO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -89,7 +94,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 	@Override
 	public ResultMessage setHotelBasicInfo(HotelBasicInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
 		List<HotelBasicInfoPO> list = query.list();
 		if (list.size() == 0) {
@@ -116,12 +121,15 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		}
 		try {
 			session.update(savePO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -130,7 +138,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 	@Override
 	public ResultMessage setBestPrice(HotelBestPricePO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from HotelBestPricePO where id = " + po.getHotelID());
 		List<HotelBestPricePO> list = query.list();
 		if (list.size() == 0) {
@@ -141,12 +149,15 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		savePO.setBestPrice(po.getBestPrice());
 		try {
 			session.update(savePO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

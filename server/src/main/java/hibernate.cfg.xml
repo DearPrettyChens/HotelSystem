@@ -44,6 +44,7 @@
 		<mapping class="po.OrderStatePO"></mapping>
 		<mapping class="po.RemarkPO"></mapping>
 		<mapping class="po.PersonDetailPO"></mapping>
+		<mapping class="po.PersonListPO"></mapping>
 		<mapping class="po.AvailableRoomInfoPO"></mapping>
 		<mapping class="po.AvailableRoomNumberPO"></mapping>
 

@@ -36,5 +36,7 @@ public enum ResultMessage {
 	
 	SUCCESS,
 	FAIL,
-	UnkownFormat
+	UnkownFormat,
+	
+	CONFLICTIONINSQLNEEDCOMMITAGAIN //数据库同步出错，并发问题，需要用户重新提交信息
 }

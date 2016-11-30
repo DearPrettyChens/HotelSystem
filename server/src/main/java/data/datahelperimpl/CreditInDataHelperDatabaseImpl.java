@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.StaleObjectStateException;
+import org.hibernate.Transaction;
 
 import data.datahelper.CreditDataHelper;
 import datahelper.databaseutility.HibernateUtil;
@@ -17,7 +19,7 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 	@Override
 	public ResultMessage setCredit(CreditPO po) {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		// Query query = session.createQuery("from CustomerDetailPO where
 		// user_id = " + po.getID());
 		// List<CustomerDetailPO> customerPOList = query.list();
@@ -36,12 +38,15 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 				po.getTime());
 		try {
 			session.save(creditPO);
-		} catch (Exception e) {
+			transaction.commit();
+		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
-			return ResultMessage.FAIL;
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -54,7 +59,7 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 		Query query = session.createQuery("from CreditPO where user_id = " + customerID);
 		List<CreditPO> list = query.list();
 		List<CreditPO> copyList = new ArrayList<CreditPO>();
-		if (list.size() == 0){
+		if (list.size() == 0) {
 			session.close();
 			return null;
 		}
