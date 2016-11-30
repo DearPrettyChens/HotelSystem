@@ -3,7 +3,6 @@ package businesslogic.bl.userbl;
 import java.rmi.RemoteException;
 
 import dao.userdao.UserDao;
-import init.RMIHelper;
 import po.ClientPO;
 import util.Password;
 import util.ResultMessage;
@@ -29,7 +28,8 @@ public class User {
 	private ClientPO clientPO;
 	
 	private User(){
-		userDao=RMIHelper.getUserDao();
+		userDao=new UserDao_Stub();
+//		userDao=RMIHelper.getUserDao();
 		personMap=PersonMap.getInstance();
 	}
 	
@@ -67,7 +67,7 @@ public class User {
 			//登录成功
 			userName=name;
 			userID=TransHelper.idToString(clientPO.getUserID(), 6);		
-			password=this.password;
+			this.password=password;
 			userType=clientPO.getType();
 			return personMap.get(userType);//返回是哪种人登录成功了。
 			
@@ -87,6 +87,7 @@ public class User {
 	public ResultMessage checkOldPassword( String password) {
 	
 		if(password.equals(this.password)){
+			
 			return ResultMessage.SUCCESS;
 		}
 		

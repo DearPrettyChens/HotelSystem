@@ -15,7 +15,16 @@ import util.UserType;
  * @author CYF
  * @version 1.0 
  */
+
 public class DetailInfoVO {
+	public CustomerType getCustomerType() {
+		return customerType;
+	}
+
+	public void setCustomerType(CustomerType customerType) {
+		this.customerType = customerType;
+	}
+
 	// 用户名
 	private String userName;
 	// 联系方式
@@ -24,8 +33,8 @@ public class DetailInfoVO {
 	private ImageIcon userImage;
 	// 用户种类
 	private UserType userType;
-	//
-	private CustomerType VIPType;
+	// 顾客种类
+	private CustomerType customerType;
 	// 所属企业
 	private String enterprise;
 	// 生日
@@ -47,7 +56,7 @@ public class DetailInfoVO {
 		this.setUserID(TransHelper.idToString(po.getId(), 6));
 		this.setUserImage(po.getImage());
 		this.setUserName(po.getName());
-		this.setVIPType(po.getVIPType());
+		this.setCustomerType(customerType);
 		this.setUserType(po.getUserType());
 	}
 	
@@ -59,38 +68,27 @@ public class DetailInfoVO {
 		return new PersonDetailPO(TransHelper.idToInt(userID), userName, userImage, telephone, 0, birth, null, null, enterprise,null, userType );
 	}
 	
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id) {
+	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise,String id,CustomerType customerType) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);
 		this.setUserImage(userImage);
 		this.setUserType(userType);
 		this.setEnterprise(enterprise);
 		this.setUserID(id);
-	}
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, String enterprise) {
-		this.setUserName(userName);
-		this.setTelephone(telephone);
-		this.setUserImage(userImage);
-		this.setUserType(userType);
-		this.setEnterprise(enterprise);
+		this.setCustomerType(customerType);
 	}
 
 	// 普通会员的构造vo
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, Date birth,String id) {
+	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, Date birth,String id,CustomerType customerType) {
 		this.setUserName(userName);
 		this.setTelephone(telephone);
 		this.setUserImage(userImage);
 		this.setUserType(userType);
 		this.setBirth(birth);
 		this.setUserID(id);
+		this.setCustomerType(customerType);
 	}
-	public DetailInfoVO(String userName, String telephone, ImageIcon userImage, UserType userType, Date birth) {
-		this.setUserName(userName);
-		this.setTelephone(telephone);
-		this.setUserImage(userImage);
-		this.setUserType(userType);
-		this.setBirth(birth);
-	}
+
 
 	public String getUserName() {
 		return userName;
@@ -148,12 +146,6 @@ public class DetailInfoVO {
 		this.userID = userID;
 	}
 
-	public CustomerType getVIPType() {
-		return VIPType;
-	}
 
-	public void setVIPType(CustomerType vIPType) {
-		VIPType = vIPType;
-	}
 
 }

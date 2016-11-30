@@ -4,7 +4,6 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import dao.personneldao.PersonnelDao;
-import init.RMIHelper;
 import po.PersonDetailPO;
 import util.ResultMessage;
 import util.TransHelper;
@@ -25,10 +24,10 @@ public class Personnel {
 	private static Personnel personnel;
 	
 	private Personnel() {
-		personnelDao=RMIHelper.getPersonnelDao();
+//		personnelDao=RMIHelper.getPersonnelDao();
+	personnelDao=new PersonnelDao_Stub();
 	
-	}
-	
+	}	
 	public static Personnel getInstance() {
 		if(personnel==null){
 			personnel=new Personnel();

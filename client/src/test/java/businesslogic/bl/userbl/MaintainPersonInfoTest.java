@@ -1,14 +1,23 @@
 package businesslogic.bl.userbl;
+import java.util.Date;
 
+/**
+ * 维护个人信息的测试类
+ * @author csy
+ * @version 1.0
+ */
 import org.junit.Before;
 import org.junit.Test;
 
-import vo.personnelvo.PersonDetailVO;
+import util.CustomerType;
+import util.UserType;
+import vo.uservo.DetailInfoVO;
 public class MaintainPersonInfoTest {
-    PersonDetailVO detailInfoVO;
+    DetailInfoVO detailInfoVO;
+    Customer customer=Customer.getInstance();
 	@Before
 	public void setUp() throws Exception {
-//	      detailInfoVO=new DetailInfoVO("小豆", "12121212121", new ImageIcon(), UserType.Customer, new Date());
+	      detailInfoVO=new DetailInfoVO( "小菲菲", "12345678901",null ,UserType.Customer, new Date(1997, 4, 14), "000001", CustomerType.INDIVIDUAL);
 	}
 
 	@Test
