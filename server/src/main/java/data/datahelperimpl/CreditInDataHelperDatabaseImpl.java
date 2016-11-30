@@ -34,8 +34,7 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 		// session.getTransaction().rollback();
 		// return ResultMessage.FAIL;
 		// }
-		CreditPO creditPO = new CreditPO(po.getName(), po.getID(), po.getCredit(), po.getCreditChange(), po.getReason(),
-				po.getTime());
+		CreditPO creditPO = po.copy();
 		try {
 			session.save(creditPO);
 			transaction.commit();

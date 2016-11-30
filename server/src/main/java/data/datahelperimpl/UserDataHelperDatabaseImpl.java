@@ -27,6 +27,7 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 		List<ClientPO> result = query.list();
 		session.close();
 		if (result.size() == 0) {
+			//无该用户
 			return null;
 		}
 		return result.get(0).copy();
@@ -47,6 +48,8 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 			session.update(result.get(0));
 			transaction.commit();
 		} catch (StaleObjectStateException e) {
+			//修改冲突
+			//返回结果要求重新提交一次信息
 			e.printStackTrace();
 			if (transaction != null) {
 				transaction.rollback();

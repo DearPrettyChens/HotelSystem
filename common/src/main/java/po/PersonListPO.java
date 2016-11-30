@@ -128,4 +128,12 @@ public class PersonListPO {
 		return new PersonListPO(getId(), getName(), getImage(), getTelephone(), getHotelName(), getUserType());
 	}
 
+	public String getImageInSQL() {
+		return imageInSQL;
+	}
+
+	public void setImageInSQL(String imageInSQL) {
+		this.imageInSQL = imageInSQL;
+	}
+
 }

@@ -23,14 +23,18 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 	public HotelBasicInfoPO getHotelBasicInfo(String hotelID) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
+		//按照id取出po
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + hotelID);
 		List<HotelBasicInfoPO> list = query.list();
 		session.close();
 		if (list.size() == 0) {
 			return null;
 		}
-		HotelBasicInfoPO retPO = list.get(0).copy();
+		HotelBasicInfoPO getPO = list.get(0);
+		HotelBasicInfoPO retPO = getPO.copy();
+		retPO.setHotelImagePath(retPO.getHotelImagePath());
 		if (retPO.getHotelImagePath() != null) {
+			//根据po内的图片路径设置酒店图片image
 			retPO.setHotelImage(ImageUtil.getImage(retPO.getHotelImagePath()));
 		}
 		return retPO;
@@ -46,9 +50,11 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 			session.close();
 			return ResultMessage.FAIL;
 		}
+		//修改酒店基本信息中的酒店评分
 		HotelBasicInfoPO savePO = list.get(0);
 		savePO.setScore((savePO.getScore() * savePO.getRemarkOrderNumber() + po.getScore())
 				/ (savePO.getRemarkOrderNumber() + 1));
+		//增加酒店评论数量
 		savePO.setRemarkOrderNumber(savePO.getRemarkOrderNumber() + 1);
 
 		try {
@@ -71,11 +77,13 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 	public ResultMessage addHotelBasicInfo(HotelBasicInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		HotelBasicInfoPO savePO = new HotelBasicInfoPO(po.getHotelID(), po.getName(), po.getHotelImage(),
-				po.getAddress(), po.getTelephone(), po.getStar(), po.getScore(), po.getLowestPrice(), po.getIntroduce(),
-				po.getCommonFacility(), po.getActivityFacility(), po.getService(), po.getRoomFacility(),
-				po.getRemarks(), po.getCity(), po.getTradingArea());
+		HotelBasicInfoPO savePO = po.copy();
+//				new HotelBasicInfoPO(po.getHotelID(), po.getName(), po.getHotelImage(),
+//				po.getAddress(), po.getTelephone(), po.getStar(), po.getScore(), po.getLowestPrice(), po.getIntroduce(),
+//				po.getCommonFacility(), po.getActivityFacility(), po.getService(), po.getRoomFacility(),
+//				po.getRemarks(), po.getCity(), po.getTradingArea());
 		if (po.getHotelImage() != null) {
+			//存储图片 保存路径到数据库
 			savePO.setHotelImagePath(ImageUtil.SaveImage(po.getHotelImage(), ImageType.hotelImage));
 		}
 		try {
@@ -101,6 +109,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 			session.close();
 			return ResultMessage.FAIL;
 		}
+		//修改酒店基本信息
 		HotelBasicInfoPO savePO = list.get(0);
 		savePO.setActivityFacility(po.getActivityFacility());
 		savePO.setAddress(po.getAddress());
@@ -117,6 +126,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		savePO.setTradingArea(po.getTradingArea());
 		savePO.setHotelImage(po.getHotelImage());
 		if (po.getHotelImage() != null) {
+			//修改酒店图片
 			savePO.setHotelImagePath(ImageUtil.SaveImage(po.getHotelImage(), ImageType.hotelImage));
 		}
 		try {

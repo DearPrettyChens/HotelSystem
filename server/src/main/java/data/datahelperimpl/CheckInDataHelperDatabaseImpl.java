@@ -19,9 +19,8 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 	public ResultMessage addCheckinInfo(CheckinInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
-		CheckinInfoPO savepo = new CheckinInfoPO(po.getName(), po.getID(), po.getTel(), po.getRoomtype(),
-				po.getBedtype(), po.getRoomnumber(), po.getCheckintime(), po.getCheckouttime(), po.getHotelnumber(),
-				po.getOrdernumber());
+		//新增po
+		CheckinInfoPO savepo = po.copy();
 		try {
 			session.save(savepo);
 			transaction.commit();
@@ -54,6 +53,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 	public ResultMessage modifyCheckinInfo(CheckinInfoPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
+		//从数据库取出po
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + po.getOrdernumber() + "'");
 		List<CheckinInfoPO> list = query.list();
 		if (list.size() == 0) {

@@ -38,6 +38,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 				+ po.getType().getString() + "')");
 		List<HotelStrPO> list = query.list();
 		if (list.size() == 0) {
+			//无策略则新增
 			HotelStrPO savePO = new HotelStrPO(po.getHotelID(), po.getAmount(), po.getType(), po.getAmount(),
 					po.getEnterprise(), po.getDate());
 			try {
@@ -53,6 +54,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 				session.close();
 			}
 		} else {
+			//有策略则修改
 			HotelStrPO hotelStrPO = list.get(0);
 			hotelStrPO.setAmount(po.getAmount());
 			hotelStrPO.setDate(po.getDate());

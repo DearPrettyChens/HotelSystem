@@ -36,7 +36,9 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 			return null;
 		}
 		for (HotelListPO each : list) {
-			result.add(each.copy());
+			HotelListPO po = each.copy();
+			po.setHotelImagePath(each.getHotelImagePath());
+			result.add(po);
 		}
 		result = setImage(result);
 		return result;
@@ -86,7 +88,9 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 			return null;
 		}
 		for (HotelListPO each : list) {
-			result.add(each.copy());
+			HotelListPO po = each.copy();
+			po.setHotelImagePath(each.getHotelImagePath());
+			result.add(po);
 		}
 		result = setImage(result);
 		return result;

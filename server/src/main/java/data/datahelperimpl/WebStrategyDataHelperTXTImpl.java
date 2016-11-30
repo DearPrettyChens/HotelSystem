@@ -46,6 +46,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	@Override
 	public WebStrPO getWebStrategy(WebStrategyType type) throws RemoteException {
 		WebStrPO po = null;
+		//按照类型分开
 		switch (type) {
 		case SPECIALAREA:
 			po = getSpecialAreaStrategy();
@@ -83,6 +84,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 				// break;
 				return null;
 			}
+			//存储两个时间
 			Date date1 = simpleDateFormat.parse(data[0]);
 			Date date2 = simpleDateFormat.parse(data[1]);
 			dates[0] = date1;
@@ -171,8 +173,9 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	@Override
-	public synchronized ResultMessage setGradeRule(GradeRulePO po) throws RemoteException {
+	public ResultMessage setGradeRule(GradeRulePO po) throws RemoteException {
 		// 写入数据
+		//同步锁 防止同时修改
 		synchronized (WebStrategyDataHelperTXTImpl.class) {
 			File file = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
 			try {
@@ -223,6 +226,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public static synchronized ResultMessage setVIP(WebStrPO po) {
+		//防止同时修改
 		File file = new File("/Users/chengyunfei/Desktop/webstrategy/vip.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
@@ -247,6 +251,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public static synchronized ResultMessage setSpecialTime(WebStrPO po) {
+		//防止同时修改冲突
 		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialtime.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
@@ -266,6 +271,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public static synchronized ResultMessage setSpecialArea(WebStrPO po) {
+		//防止同时修改冲突
 		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialarea.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
