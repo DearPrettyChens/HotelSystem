@@ -8,11 +8,7 @@ import util.UserType;
  *
  */
 public interface LoginViewControllerService {
-	/**
-	 * 设置界面
-	 * @param view
-	 */
-	public void setView(LoginView view);
+
 	/**
 	 * 跳转至各用户的主界面
 	 * @param userType
@@ -20,14 +16,9 @@ public interface LoginViewControllerService {
 	public void jumpToUserMainFrame(UserType userType);
 	
 	/**
-	 * 跳转至注册界面Individualregister_JFrame
+	 * 跳转至选择注册类型界面
 	 */
-	public void jumpToIndividualRegisterView();
-	
-	/**
-	 * 跳转至注册界面Enterpriseregister_JFrame
-	 */
-	public void jumpToEnterpriseRegisterView();
+	public void jumpToRegisterView();
 	
 	/**
 	 * 用户名或密码错误提示界面

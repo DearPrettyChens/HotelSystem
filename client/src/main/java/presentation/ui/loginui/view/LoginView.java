@@ -21,21 +21,5 @@ public class LoginView extends JPanel{
 		loginFrame=new login_JFrame();
 	}
 	
-	//逻辑处理
 
-	public void jumpToUserMainFrame(UserType userType) {
-		// TODO Auto-generated method stub
-	}
-
-	public void jumpToIndividualRegisterView() {
-		// TODO Auto-generated method stub
-	}
-
-	public void jumpToEnterpriseRegisterView() {
-		// TODO Auto-generated method stub
-	}
-
-	public void passwordMistaken() {
-		// TODO Auto-generated method stub
-	}
 }
