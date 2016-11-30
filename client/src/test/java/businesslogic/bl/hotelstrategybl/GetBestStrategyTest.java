@@ -2,6 +2,8 @@ package businesslogic.bl.hotelstrategybl;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,26 +15,19 @@ import vo.ordervo.OrderProvidedVO;
  * @author CLL
  * @version 1.0
  */
-/*public class GetBestStrategyTest {
-	HotelStrategyInterface hotelStrategyInterface;
-	HotelStrVO vo1;
-	HotelStrVO vo2;
+public class GetBestStrategyTest {
+	HotelStrategy hotelStrategy;
 	OrderProvidedVO orderProvidedVO;
 	
 	@Before
 	public void setUp() throws Exception {
-		hotelStrategyInterface=new HotelBirthStrategy();
-		vo1=new HotelStrVO();
-		vo2=new HotelStrVO();
-		orderProvidedVO=new OrderProvidedVO(null,0,null);
+		hotelStrategy=HotelStrategy.getInstance();
+		orderProvidedVO=new OrderProvidedVO("000002", 5, null, new Date(1997, 4, 14), "000001");
 	}
 
 	@Test
 	public void test() {
-		HotelStrategy hotelStrategy=new HotelStrategy();
-		assertEquals(hotelStrategy.confirmHotelStrategy(hotelStrategyInterface,vo1),null);
-		assertEquals(hotelStrategy.confirmHotelStrategy(hotelStrategyInterface, vo2),null);
-		assertEquals(hotelStrategy.getBestHotelStrategy(orderProvidedVO),null);
+		assertEquals(0.5,hotelStrategy.getBestHotelStrategy(orderProvidedVO).getDiscount(),0.01);
 	}
-*/
-//}
+
+}

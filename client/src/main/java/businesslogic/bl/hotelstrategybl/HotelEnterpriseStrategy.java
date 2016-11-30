@@ -24,7 +24,8 @@ public class HotelEnterpriseStrategy implements HotelStrategyInterface {
 	
     //构造方法
 	private HotelEnterpriseStrategy() {
-		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+//		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+	    hotelStrategyDao=new HotelStrategyDao_Stub();
 	}
 
 	public static HotelStrategyInterface getInstance() {

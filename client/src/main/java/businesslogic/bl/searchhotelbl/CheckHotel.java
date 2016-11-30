@@ -6,6 +6,8 @@ import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.hotelbl.Hotel;
+import exception.NotFoundHotelException;
+import exception.SizeNotEqualException;
 import util.BedType;
 import util.City;
 import util.OrderState;
@@ -44,7 +46,11 @@ public class CheckHotel {
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
 			String customerID = hotelSearchInfoVO.getCustomerID();
-			hotelDetailInfoVO = new Hotel().getHotelDetailInfo(hotelID, customerID);
+			try {
+				hotelDetailInfoVO = new Hotel().getHotelDetailInfo(hotelID, customerID);
+			} catch (NotFoundHotelException e) {
+				e.printStackTrace();
+			}
 			if (checkAll(hotelListVO) == false) {
 				hotelListVOs.remove(hotelListVO);
 			}
@@ -58,14 +64,19 @@ public class CheckHotel {
 	 */
 	private boolean checkAll(HotelListVO hotelListVO) {
 		boolean check = true;
-		check = checkHotelName(hotelListVO.getHotelName());
-		check = checkArea(hotelDetailInfoVO.getCity(), hotelDetailInfoVO.getArea());
-		check = checkTime();
-		check = checkBedType();
-		check = checkPrice(hotelListVO.getLowestPrice());
-		check = checkStars(hotelListVO.getStar());
-		check = checkRemark(hotelListVO.getRemark());
-		check = checkOrder(hotelListVO.getOrderStates());
+		try {
+			check = checkHotelName(hotelListVO.getHotelName());
+			check = checkArea(hotelDetailInfoVO.getCity(), hotelDetailInfoVO.getArea());
+			check = checkTime();
+			check = checkBedType();
+			check = checkPrice(hotelListVO.getLowestPrice());
+			check = checkStars(hotelListVO.getStar());
+			check = checkRemark(hotelListVO.getRemark());
+			check = checkOrder(hotelListVO.getOrderStates());
+		} catch (SizeNotEqualException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return check;
 	}
 
@@ -249,7 +260,7 @@ public class CheckHotel {
 	 * @param bestPrice
 	 * @return
 	 */
-	private boolean checkPrice(double bestPrice) {
+	private boolean checkPrice(double bestPrice) throws SizeNotEqualException {
 		ArrayList<Integer> lowPrices = hotelSearchInfoVO.getLowPrice();
 		ArrayList<Integer> highPrices = hotelSearchInfoVO.getHighPrice();
 		if (lowPrices == null || highPrices == null) {
@@ -258,6 +269,8 @@ public class CheckHotel {
 		if (lowPrices.size() != highPrices.size()) {
 			// 抛出异常
 			// 注：这里在界面传入的时候，如果没有上限就传入int的最大值
+			throw new SizeNotEqualException("最高价格和最低价格未能一一对应");
+
 		}
 		int size = lowPrices.size();
 		for (int i = 0; i < size; i++) {
@@ -294,7 +307,7 @@ public class CheckHotel {
 	 * @param remarkNumber
 	 * @return
 	 */
-	private boolean checkRemark(double remarkNumber) {
+	private boolean checkRemark(double remarkNumber) throws SizeNotEqualException {
 		ArrayList<Double> lowRemarkNumbers = hotelSearchInfoVO.getLowRemarkNumbers();
 		ArrayList<Double> highRemarkNumbers = hotelSearchInfoVO.getHighRemarkNumbers();
 		if (lowRemarkNumbers == null || highRemarkNumbers == null) {
@@ -302,6 +315,7 @@ public class CheckHotel {
 		}
 		if (lowRemarkNumbers.size() != highRemarkNumbers.size()) {
 			// 抛出异常
+			throw new SizeNotEqualException("最高评分和最低评分未能一一对应");
 		}
 		int size = lowRemarkNumbers.size();
 		for (int i = 0; i < size; i++) {

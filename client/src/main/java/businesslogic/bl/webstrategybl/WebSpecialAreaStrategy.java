@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.Map;
 
 import dao.webstrategydao.WebStrategyDao;
+import exception.NotIntException;
 import init.RMIHelper;
 import po.WebStrPO;
 import util.TransHelper;
@@ -22,7 +23,8 @@ public class WebSpecialAreaStrategy implements WebStrategyInterface {
 	private static WebStrategyInterface webSpecialAreaStrategy;
 	
     private  WebSpecialAreaStrategy(){
-         webStrategyDao=RMIHelper.getWebStrategyDao();
+    	webStrategyDao=new WebStrategyDao_Stub();
+//         webStrategyDao=RMIHelper.getWebStrategyDao();
     }
     
     public static WebStrategyInterface getInstance() {
@@ -45,11 +47,16 @@ public class WebSpecialAreaStrategy implements WebStrategyInterface {
 
 
 	@Override
-	public double getDiscount(String info) {
+	public double getDiscount(String info) throws NotIntException {
 		getWebStrategy();
 		if(info==null){
 			return 1;//即没有折扣
 		}
+		String regex= "[0-9]+";//正则表达式匹配1个以上的数字
+		if(!info.matches(regex)){
+			throw new NotIntException("传入的商圈信息不是数值类型");
+		}
+		
 		int tradingArea=TransHelper.stringToArea(info);//如果不是int型怎么办，此处考虑exception
 		return strategy.get(tradingArea);
 	}

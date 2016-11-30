@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.orderbl.OrderList;
 import dao.searchhoteldao.SearchHotelDao;
+import exception.NotFoundHotelException;
 import init.RMIHelper;
 import po.HotelListPO;
 import util.HotelSortType;
@@ -39,7 +40,8 @@ public class SearchHotel {
 	public SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
-			searchHotelDao = RMIHelper.getSearchHotelDao();
+//			searchHotelDao = RMIHelper.getSearchHotelDao();
+			searchHotelDao=new SearchHotelDao_Stub();
 			if (hotelSortType == null) {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
@@ -47,6 +49,7 @@ public class SearchHotel {
 			}
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
+				hotelListVOs=new ArrayList<HotelListVO>();
 				hotelListVOs.add(hotelListVO);
 			}
 			addStrToVO(hotelSearchInfoVO.getCustomerID());
@@ -65,7 +68,13 @@ public class SearchHotel {
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
 			Hotel hotel = new Hotel();
-			ArrayList<HotelStrVO> hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
+			ArrayList<HotelStrVO> hotelStrVOs=new ArrayList<HotelStrVO>();
+			try {
+				hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
+			} catch (NotFoundHotelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			hotelListVO.setHotelStrVO(hotelStrVOs);
 		}
 

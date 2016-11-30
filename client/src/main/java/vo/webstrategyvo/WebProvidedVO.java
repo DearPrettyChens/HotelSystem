@@ -27,7 +27,7 @@ public class WebProvidedVO {
 	public String getCredit() {
 		return credit;
 	}
-	public void setCredit(String credit) {
+	public void setCredit(String  credit) {
 		this.credit = credit;
 	}
 	public TradingArea getArea() {

@@ -3,6 +3,7 @@ package businesslogic.bl.webstrategybl;
 import java.rmi.RemoteException;
 
 import dao.webstrategydao.WebStrategyDao;
+import exception.NotIntException;
 import init.RMIHelper;
 import po.WebStrPO;
 import util.ResultMessage;
@@ -21,7 +22,8 @@ public class WebStrategy {
 	private static WebStrategy webStrategy;
 	private WebStrategyDao webStrategyDao;
 	private  WebStrategy() {
-		webStrategyDao=RMIHelper.getWebStrategyDao();
+		webStrategyDao=new WebStrategyDao_Stub();
+//		webStrategyDao=RMIHelper.getWebStrategyDao();
 		webStrategyMap=WebStrategyMap.getInstance();
 	}
 	
@@ -53,7 +55,13 @@ public class WebStrategy {
 			
 			//委托给每个策略去计算折扣值
 			webStrategyInterface=webStrategyMap.get(type);
-			double tempDiscount=webStrategyInterface.getDiscount(info);
+			double tempDiscount=0;
+			try {
+				tempDiscount = webStrategyInterface.getDiscount(info);
+			} catch (NotIntException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			//选取折扣最大的，即折扣值最小的。
 			if(tempDiscount<discount){

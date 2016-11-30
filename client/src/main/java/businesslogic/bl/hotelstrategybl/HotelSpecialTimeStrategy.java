@@ -27,7 +27,9 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 
 	// 构造方法
 	private HotelSpecialTimeStrategy() {
-		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
+//		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
+	    hotelStrategyDao =new HotelStrategyDao_Stub();
+	
 	}
 
 	public static HotelStrategyInterface getInstance() {

@@ -23,7 +23,8 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
     private HotelStrPO hotelStrPO;
 	//构造方法
 	private HotelBirthStrategy() {
-		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+//		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+	    hotelStrategyDao=new HotelStrategyDao_Stub();
 	}
 
 	public static HotelStrategyInterface getInstance() {

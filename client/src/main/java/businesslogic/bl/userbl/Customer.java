@@ -86,6 +86,12 @@ public class Customer {
 		return new BasicInfoVO(personDetailVO.getName(), personDetailVO.getImage(), personDetailVO.getId(), UserType.Customer);
 	}
 	
+	/**
+	 * 
+	 * 酒店策略调用这个方法来获得顾客的生日
+	 * @param customerID
+	 * @return
+	 */
 	public String getBirthDay(String customerID) {
 		PersonDetailVO personDetailVO =getDetailInfo(customerID);
 		Date time=personDetailVO.getBirthday();

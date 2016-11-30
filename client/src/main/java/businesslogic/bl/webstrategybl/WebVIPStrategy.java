@@ -6,6 +6,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 import dao.webstrategydao.WebStrategyDao;
+import exception.NotIntException;
 import init.RMIHelper;
 import po.WebStrPO;
 import util.WebStrategyType;
@@ -25,7 +26,8 @@ public class WebVIPStrategy implements WebStrategyInterface {
 	private static WebStrategyInterface webVIPStrategy;
 
 	private WebVIPStrategy() {
-		webStrategyDao = RMIHelper.getWebStrategyDao();
+		webStrategyDao=new WebStrategyDao_Stub();
+//		webStrategyDao = RMIHelper.getWebStrategyDao();
 	}
 
 	public static WebStrategyInterface getInstance() {
@@ -48,10 +50,15 @@ public class WebVIPStrategy implements WebStrategyInterface {
 
 
 	@Override
-	public double getDiscount(String info) {
+	public double getDiscount(String info) throws NotIntException{
 		getWebStrategy();
 		double discount=1;//即没有折扣
 		int credit=0;
+		
+		if(!info.matches("[0-9]+")){
+			throw new NotIntException("传入的vip等级信息不是数值");
+		}
+		
 		if(info!=null){
 			credit=Integer.parseInt(info);//如果不是int型怎么办，此处考虑exception
 		}

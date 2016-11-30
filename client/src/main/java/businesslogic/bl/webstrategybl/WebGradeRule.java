@@ -18,7 +18,8 @@ public class WebGradeRule {
 	
 	private static WebGradeRule webGradeRule;
 	private WebGradeRule(){
-		webStrategyDao=RMIHelper.getWebStrategyDao();
+//		webStrategyDao=RMIHelper.getWebStrategyDao();
+	    webStrategyDao=new WebStrategyDao_Stub();
 	}
 	public static WebGradeRule getInstance() {
 		if(webGradeRule==null){
