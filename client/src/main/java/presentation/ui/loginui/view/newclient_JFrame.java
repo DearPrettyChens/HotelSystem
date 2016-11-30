@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.loginui.view;
 
 import java.awt.Component;
 import java.awt.Container;
@@ -10,6 +10,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javafx.scene.control.Button;
+import presentation.ui.tools.MyButton;
+import presentation.ui.tools.close_JButton;
+import presentation.ui.tools.narrow_JButton;
 /**
  * 选择企业会员还是普通会员的主面板
  * @author cy

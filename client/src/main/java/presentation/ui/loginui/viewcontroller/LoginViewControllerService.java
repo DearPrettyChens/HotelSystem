@@ -1,6 +1,5 @@
 package presentation.ui.loginui.viewcontroller;
 
-import presentation.ui.loginui.view.LoginView;
 import util.UserType;
 /**
  * 控制登录界面跳转的接口

@@ -12,7 +12,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame; 
 import javax.swing.JLabel; 
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener; 
+import javax.swing.event.MouseInputListener;
+
+import presentation.ui.loginui.viewcontroller.LoginViewController;
+import presentation.ui.loginui.viewcontroller.LoginViewControllerService;
 import presentation.ui.tools.*;
 import util.UserType;
 
@@ -31,12 +34,13 @@ public class login_JFrame extends JFrame {
 	private login_JButton jb=new login_JButton();//登录按钮
 	private newclient_JLabel jl=new newclient_JLabel();//是否没有账户标签
 	
-			
+	private LoginViewControllerService controller;		
 	
 	
 
      public login_JFrame() { 
-	  
+    	 controller=new LoginViewController();
+    	 
     	    this.setLocation
          ( 
             (int) (Toolkit.getDefaultToolkit().getScreenSize().

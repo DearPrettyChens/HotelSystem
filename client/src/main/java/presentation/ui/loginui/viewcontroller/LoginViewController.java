@@ -2,11 +2,8 @@ package presentation.ui.loginui.viewcontroller;
 
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import presentation.ui.loginui.view.LoginView;
-import presentation.ui.loginui.view.RegisterView;
-import presentation.ui.loginui.view.login_JFrame;
+import presentation.ui.loginui.view.newclient_JFrame;
 import presentation.ui.tools.Hotelworker_JFrame;
 import presentation.ui.tools.Webmannger_JFrame;
 import presentation.ui.tools.Webstrmaker_JFrame;
@@ -46,7 +43,7 @@ public class LoginViewController implements LoginViewControllerService{
 
 	@Override
 	public void jumpToRegisterView() {
-		frame=new RegisterView();
+		frame=new newclient_JFrame();
 	}
 
 }
