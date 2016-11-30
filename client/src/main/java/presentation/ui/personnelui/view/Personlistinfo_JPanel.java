@@ -24,7 +24,7 @@ public class Personlistinfo_JPanel extends JPanel{
 	
 	
 	
-	
+	·
 	
 
 }

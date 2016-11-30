@@ -1,5 +1,5 @@
 package presentation.ui.hotelstrategyui.view;
 
-public class HotelEnterpriseStr_Jpanel {
+public class SingleHotelEnterpriseStr_JPanel {
 
 }
