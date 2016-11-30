@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.orderui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,6 +6,8 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import presentation.ui.tools.MyButton;
 
 public class Orderdetailinfo_JPanel  extends JPanel{
 	

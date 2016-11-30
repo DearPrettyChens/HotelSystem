@@ -16,7 +16,7 @@ import util.UserType;
  *
  */
 public class PersonnelControllerImpl implements PersonnelControllerService{
-	private JPanel view;
+	private JPanel view;//发起界面跳转的界面对象
 	/**
 	 * 将searchoraddpanel作为参数传进来
 	 * @param view

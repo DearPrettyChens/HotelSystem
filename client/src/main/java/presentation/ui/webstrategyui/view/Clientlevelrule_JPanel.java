@@ -34,10 +34,12 @@ public class Clientlevelrule_JPanel extends JPanel {
 	private MyButton confirm=new MyButton();
 	
 	
-	public Clientlevelrule_JPanel(int number,int credit){
+	public Clientlevelrule_JPanel(){
 		
-		this.number=number;
-		this.credit=credit;
+		/**
+		 * number,credit应该通过控件监听得到,
+		 * 一开始应该显示当前的规则，通过distributecontroller向逻辑层取得
+		 */
 		
 		numberjtf=new MyTextfield(""+number);
 		creditjtf=new MyTextfield(""+credit);

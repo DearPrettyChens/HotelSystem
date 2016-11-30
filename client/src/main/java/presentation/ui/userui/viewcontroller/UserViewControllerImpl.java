@@ -14,7 +14,7 @@ import util.UserType;
  */
 public class UserViewControllerImpl implements UserViewControllerService{
 	private JPanel view;
-	private JFrame mainFrame;
+	private JFrame mainFrame;//发起界面跳转的界面对象
 	private UserType userType;
 	public UserViewControllerImpl(JFrame mainFrame,UserType type){
 		this.mainFrame=mainFrame;

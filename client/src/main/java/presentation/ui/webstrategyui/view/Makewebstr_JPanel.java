@@ -30,10 +30,10 @@ public class Makewebstr_JPanel  extends JPanel{
 	
 	
 	
-	public Makewebstr_JPanel(Webvipstr_JPanel  vipstr, Webclientlevelstr_Jpanel clientlevelstr,Webspecialtimestr_JPanel specialtimestr){
-		this.vipstr=vipstr;
-		this.clientlevelstr=clientlevelstr;
-		this.specialtimestr=specialtimestr;
+	public Makewebstr_JPanel(){
+		//TODO this.vipstr=new Webvipstr_JPanel();参数从distributecontroller到逻辑层拿list
+		//TODO this.clientlevelstr=new Webclientlevelstr_Jpanel();
+		//TODO this.specialtimestr=new Webspecialtimestr_JPanel();
 		this.setBackground(Color.white);
 		this.setSize(800,600);
 		this.setLayout(null);

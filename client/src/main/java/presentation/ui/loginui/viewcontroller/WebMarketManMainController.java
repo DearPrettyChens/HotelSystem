@@ -1,23 +1,45 @@
 package presentation.ui.loginui.viewcontroller;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import presentation.ui.creditui.view.Clientdeposite_JPanel;
+import presentation.ui.orderui.view.Searchorder_JPanel;
+import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
+import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
+
 /**
  * 控制网站营销人员界面的跳转
  * @author CLL
  *
  */
 public class WebMarketManMainController {
+	private JFrame frame;//发起界面跳转的界面对象
+	private JPanel view;
+	public WebMarketManMainController(JFrame frame){
+		this.frame=frame;
+	}
 	public void jumpToOrderListView(){
-		//TODO
+		frame.remove(view);
+		view=new Searchorder_JPanel();
+		frame.add(view);
 	}
 	
 	public void jumpToCreditDepositView(){
-		//TODO
+		frame.remove(view);
+		view=new Clientdeposite_JPanel();
+		frame.add(view);
 	}
 	
 	public void jumpToMakeVIPRulesView(){
-		//TODO
+		frame.remove(view);
+		view=new Clientlevelrule_JPanel();
+		frame.add(view);
 	}
 	
 	public void jumpToMakeStrategyView(){
-		//TODO
+		frame.remove(view);
+		view=new Makewebstr_JPanel();
+		frame.add(view);
 	}
 }

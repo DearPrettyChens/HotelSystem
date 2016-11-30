@@ -31,7 +31,9 @@ public class Clientdeposite_JPanel extends JPanel {
 	private JTextField depositenumberjtf=new JTextField();
 			
 	
-	
+	/**
+	 * 应该设置控件往里面填吧，通过监听获取
+	 */
 	private  String id;
 	private  String name;
 	private  String tel;
@@ -43,11 +45,8 @@ public class Clientdeposite_JPanel extends JPanel {
 	
 	
 	
-	public Clientdeposite_JPanel(String id,String name,String tel, String credit){
-		this.id=id;
-		this.name=name;
-		this.tel=tel;
-		this.credit=credit;
+	public Clientdeposite_JPanel(){
+		
 		
 		this.setLayout(null);
 		this.setBackground(Color.white);
