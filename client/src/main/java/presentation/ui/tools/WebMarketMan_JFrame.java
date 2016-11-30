@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  * @version 1.0
  * 
  */
-public class Webstrmaker_JFrame extends JFrame{
+public class WebMarketMan_JFrame extends JFrame{
 	
 	
 	
@@ -57,7 +57,7 @@ public class Webstrmaker_JFrame extends JFrame{
 	
 	
 	
-	 public Webstrmaker_JFrame(){
+	 public WebMarketMan_JFrame(){
 		 
 		 this.setLocation
 	        ( 
@@ -172,7 +172,7 @@ public class Webstrmaker_JFrame extends JFrame{
 	  
 	  public static void main(String[] args){
 		  
-		  new Webstrmaker_JFrame();
+		  new WebMarketMan_JFrame();
 		  
 		  
 	  }

@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.personnelui.view;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import presentation.ui.tools.MyTextfield;
 
 /**
  * 网站管理人员搜索的面板

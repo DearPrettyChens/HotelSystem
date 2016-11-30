@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.creditui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import presentation.ui.tools.MyButton;
 
 /**
  * 进行信用充值的界面

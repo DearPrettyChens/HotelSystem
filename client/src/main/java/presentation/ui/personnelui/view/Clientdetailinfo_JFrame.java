@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.personnelui.view;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,13 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import presentation.ui.tools.MyButton;
+
 /**
- * 网站营销人员详细信息面板
+ * 网站工作人员详细信息面板
  * @author cy
  * @version 1.0
  * 
  */
-public class Webmarketmandetailinfo_JFrame extends JFrame{
+public class Clientdetailinfo_JFrame extends JFrame{
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
 	
@@ -26,7 +28,7 @@ public class Webmarketmandetailinfo_JFrame extends JFrame{
 	private  String type;
 	private  String password;
 	
-	private JLabel typejl=new JLabel("职务：   ");
+	private JLabel typejl=new JLabel("身份：   ");
 	private JLabel idjl=new JLabel("I   D:   ");
 	private JLabel namejl=new JLabel("姓名：   ");
 	private JLabel teljl=new JLabel("电话：   ");
@@ -47,7 +49,7 @@ public class Webmarketmandetailinfo_JFrame extends JFrame{
 	
 	
 	
-	public Webmarketmandetailinfo_JFrame(String id,String name,String tel,String type,String password){
+	public Clientdetailinfo_JFrame(String id,String name,String tel,String type,String password){
 		
 		this.id=id;
 		this.name=name;
@@ -131,8 +133,8 @@ public class Webmarketmandetailinfo_JFrame extends JFrame{
 				// TODO Auto-generated method stub
 				passwordjtx.setEditable(true);
 				teljtx.setEditable(true);
-				Webmarketmandetailinfo_JFrame.this.remove(editjb);
-				Webmarketmandetailinfo_JFrame.this.add(confirmjb);
+				Clientdetailinfo_JFrame.this.remove(editjb);
+				Clientdetailinfo_JFrame.this.add(confirmjb);
 				
 				
 			}
@@ -148,7 +150,7 @@ public class Webmarketmandetailinfo_JFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
-			Webmarketmandetailinfo_JFrame.this.setVisible(false);
+			Clientdetailinfo_JFrame.this.setVisible(false);
 			
 		}
     	   

@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.creditui.view;
 
 import java.awt.Color;
 import java.awt.Font;

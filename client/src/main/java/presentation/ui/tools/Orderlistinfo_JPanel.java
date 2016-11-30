@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.personnelui.view.Personlistinfo_JPanel;
+
 /**
  * 网站营销人员列表信息面板 
  * 大小应该是600*90

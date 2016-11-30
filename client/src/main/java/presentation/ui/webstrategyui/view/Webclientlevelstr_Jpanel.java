@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.webstrategyui.view;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
+
+import presentation.ui.tools.MyButton;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.personnelui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,7 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Hotelworkerlistinfo_JPanel extends Personlistinfo_JPanel {
+import presentation.ui.tools.MyButton;
+
+public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 	private JLabel imagejl=new JLabel();
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
@@ -28,24 +30,21 @@ public class Hotelworkerlistinfo_JPanel extends Personlistinfo_JPanel {
 	private  String tel;
 	private  String type;
 	private  String password;
-	private  String hotelname;
 	
 	
 	private  MyButton moreinfojb=new MyButton();
 	
-	private Hotelworkerdetailinfo_JFrame detailinfojp;
+	private Clientdetailinfo_JFrame detailinfojp;
 	
-	public Hotelworkerlistinfo_JPanel(String image,String id,String name,String tel,String type,String password,String hotelname){
+	public Clientlistinfo_JPanel(String image,String id,String name,String tel,String type,String password){
 		this.image=image;
 		this.id=id;
 		this.name=name;
 		this.tel=tel;
 		this.type=type;
 		this.password=password;
-		this.hotelname=hotelname;
 		
-		
-		detailinfojp=new Hotelworkerdetailinfo_JFrame(image,id,name,tel,type,password,hotelname);
+		detailinfojp=new Clientdetailinfo_JFrame(id,name,tel,type,password);
 		this.setBackground(Color.white);
 		
 		//setBak();
@@ -105,7 +104,7 @@ public class Hotelworkerlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.add(backjl);
     	
 		
-		detailinfojp.setBounds(600,300,350,400);
+		detailinfojp.setBounds(600,300,350,350);
 		detailinfojp.setVisible(true);
 		//this.add(detailinfojp);
 		

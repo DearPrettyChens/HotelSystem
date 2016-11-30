@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.personnelui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,7 +9,15 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
+import presentation.ui.tools.MyButton;
+
+/**
+ * 网站营销人员列表信息面板
+ * @author cy
+ * @version 1.0
+ * 
+ */
+public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
 	private JLabel imagejl=new JLabel();
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
@@ -29,12 +37,11 @@ public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 	private  String type;
 	private  String password;
 	
-	
 	private  MyButton moreinfojb=new MyButton();
 	
-	private Clientdetailinfo_JFrame detailinfojp;
+	private Webmarketmandetailinfo_JFrame detailinfojp;
 	
-	public Clientlistinfo_JPanel(String image,String id,String name,String tel,String type,String password){
+	public Webmarketmanlistinfo_JPanel(String image,String id,String name,String tel,String type,String password){
 		this.image=image;
 		this.id=id;
 		this.name=name;
@@ -42,7 +49,7 @@ public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.type=type;
 		this.password=password;
 		
-		detailinfojp=new Clientdetailinfo_JFrame(id,name,tel,type,password);
+		detailinfojp=new Webmarketmandetailinfo_JFrame(id,name,tel,type,password);
 		this.setBackground(Color.white);
 		
 		//setBak();

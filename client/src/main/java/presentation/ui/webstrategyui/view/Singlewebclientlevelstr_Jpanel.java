@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.webstrategyui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,21 +7,21 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 /**
- * 修改网站营销策略时，单条的特殊商圈策略
+ * 修改网站营销策略时，单条的会员等级策略
  * @author cy
  * @version 1.0
  * 
  */
-public class Singlewebvipstr_Jpanel  extends JLabel{
+public class Singlewebclientlevelstr_Jpanel  extends JLabel{
 	private Font font=new Font("宋体",Font.BOLD, 20);
-	private String place;
+	private int level;
 	private int count;
-	private JLabel leveljl=new JLabel("商圈："); 
+	private JLabel leveljl=new JLabel("会员等级："); 
 	private JLabel countjl=new JLabel("折扣值："); 
 	private JTextField leveljtf=new JTextField(); 
 	private JTextField countjtf=new JTextField(); 
-	Singlewebvipstr_Jpanel(String place,int cout){
-		this.place=place;
+	Singlewebclientlevelstr_Jpanel(int level,int cout){
+		this.level=level;
 		this.count=count;
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -45,7 +45,7 @@ public class Singlewebvipstr_Jpanel  extends JLabel{
 	    	this.add(leveljl);
 	    	
 	    	leveljtf.setBounds(300,15,100,30);
-	    	leveljtf.setText(place+"");
+	    	leveljtf.setText(level+"");
 	    	this.add(leveljtf);
 	    	
 	    	

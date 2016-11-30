@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.personnelui.view.Changemessage_JPanel;
+
 import presentation.ui.userui.view.Changepassword_JPanel;
 
 /**
@@ -68,39 +68,39 @@ public class Client_JFrame  extends JFrame{
 	//Clientdeposite_JPanel cp=new Clientdeposite_JPanel("enwf","enwf","enwf","enwf");
 	//private Hotelworkerlistinfo_JPanel cp=new Hotelworkerlistinfo_JPanel("fw","120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
 	
-	 Singlewebclientlevelstr_Jpanel jphh=new Singlewebclientlevelstr_Jpanel(1,2);
-	 Singlewebclientlevelstr_Jpanel jphhh=new Singlewebclientlevelstr_Jpanel(3,4);
-	 
-	 Singlewebspecialtimestr_JPanel jpc=new Singlewebspecialtimestr_JPanel("bd","ougd",9);
-	 Singlewebvipstr_Jpanel jpa=new  Singlewebvipstr_Jpanel("wejfb",9);
-	 
-	 ArrayList<Singlewebclientlevelstr_Jpanel > arry;
-	 ArrayList< Singlewebspecialtimestr_JPanel > arry1;
-	 ArrayList<Singlewebvipstr_Jpanel > arry2;
-	 Webvipstr_JPanel  vipstr;Webclientlevelstr_Jpanel clientlevelstr;Webspecialtimestr_JPanel specialtimestr;
-	 
-	Makewebstr_JPanel cp;
-	 
-	 
+//	 Singlewebclientlevelstr_Jpanel jphh=new Singlewebclientlevelstr_Jpanel(1,2);
+//	 Singlewebclientlevelstr_Jpanel jphhh=new Singlewebclientlevelstr_Jpanel(3,4);
+//	 
+//	 Singlewebspecialtimestr_JPanel jpc=new Singlewebspecialtimestr_JPanel("bd","ougd",9);
+//	 Singlewebvipstr_Jpanel jpa=new  Singlewebvipstr_Jpanel("wejfb",9);
+//	 
+//	 ArrayList<Singlewebclientlevelstr_Jpanel > arry;
+//	 ArrayList< Singlewebspecialtimestr_JPanel > arry1;
+//	 ArrayList<Singlewebvipstr_Jpanel > arry2;
+//	 Webvipstr_JPanel  vipstr;Webclientlevelstr_Jpanel clientlevelstr;Webspecialtimestr_JPanel specialtimestr;
+//	 
+//	Makewebstr_JPanel cp;
+//	 
+//	 
 	public Client_JFrame(){
-		
-		arry=new ArrayList<Singlewebclientlevelstr_Jpanel >();
-		arry.add(jphh);
-		arry.add(jphhh);
-		
-		arry1=new ArrayList<Singlewebspecialtimestr_JPanel >();
-		arry1.add(jpc);
-		
-		
-		arry2=new ArrayList<Singlewebvipstr_Jpanel >();
-		arry2.add(jpa);
-		
-		
-		clientlevelstr=new Webclientlevelstr_Jpanel(arry);
-		
-		vipstr=new Webvipstr_JPanel(arry2);
-		specialtimestr=new Webspecialtimestr_JPanel(arry1);
-		cp=new Makewebstr_JPanel(vipstr,clientlevelstr,specialtimestr);
+//		
+//		arry=new ArrayList<Singlewebclientlevelstr_Jpanel >();
+//		arry.add(jphh);
+//		arry.add(jphhh);
+//		
+//		arry1=new ArrayList<Singlewebspecialtimestr_JPanel >();
+//		arry1.add(jpc);
+//		
+//		
+//		arry2=new ArrayList<Singlewebvipstr_Jpanel >();
+//		arry2.add(jpa);
+//		
+//		
+//		clientlevelstr=new Webclientlevelstr_Jpanel(arry);
+//		
+//		vipstr=new Webvipstr_JPanel(arry2);
+//		specialtimestr=new Webspecialtimestr_JPanel(arry1);
+//		cp=new Makewebstr_JPanel(vipstr,clientlevelstr,specialtimestr);
 		//Webclientlevelstr_Jpanel cp=new Webclientlevelstr_Jpanel(arry);
 		
 		
@@ -197,8 +197,8 @@ public class Client_JFrame  extends JFrame{
 	     
 	     
       	
-         cp.setBounds(200,100,800,600);
-         this.add(cp);
+        // cp.setBounds(200,100,800,600);
+         //this.add(cp);
          
 //    	
     }

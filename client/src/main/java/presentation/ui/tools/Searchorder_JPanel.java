@@ -35,9 +35,10 @@ public class Searchorder_JPanel extends JPanel{
 	 this.setLayout(null);
 	 addComp();
 	
-		comboBox.addItem("");
-		comboBox.addItem("驾驶证");
-		comboBox.addItem("军官证");
+		comboBox.addItem("未执行订单");
+		comboBox.addItem("已执行订单");
+		comboBox.addItem("异常订单");
+		
 		
 	
 	 }

@@ -1,4 +1,7 @@
-package presentation.ui.tools;
+package presentation.ui.creditui.view;
+
+
+
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,13 +12,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.personnelui.view.Clientdetailinfo_JFrame;
+import presentation.ui.tools.MyButton;
+
 /**
- * 网站营销人员列表信息面板
+ * 进行信用充值搜索出来的顾客列表信息
  * @author cy
  * @version 1.0
  * 
  */
-public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
+public class Clientdepositelistinfo_JPanel extends JPanel {
 	private JLabel imagejl=new JLabel();
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
@@ -23,34 +29,35 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
 	private  JLabel idjl=new JLabel();
 	private  JLabel namejl=new JLabel();
 	private  JLabel teljl=new JLabel();
-	private  JLabel typejl=new JLabel();
-	private  JLabel passwordjl=new JLabel();
+	
+	
 	JLabel backjl=new JLabel();
 	
-	private  String image;
+	
 	
 	private  String id;
 	private  String name;
 	private  String tel;
-	private  String type;
-	private  String password;
 	
-	private  MyButton moreinfojb=new MyButton();
+	private  String credit;
 	
-	private Webmarketmandetailinfo_JFrame detailinfojp;
 	
-	public Webmarketmanlistinfo_JPanel(String image,String id,String name,String tel,String type,String password){
-		this.image=image;
+	private  MyButton depositjb=new MyButton();
+	
+	//private Clientdetailinfo_JFrame detailinfojp;
+	
+	public Clientdepositelistinfo_JPanel(String id,String name,String tel, String credit){
+		
 		this.id=id;
 		this.name=name;
 		this.tel=tel;
-		this.type=type;
-		this.password=password;
 		
-		detailinfojp=new Webmarketmandetailinfo_JFrame(id,name,tel,type,password);
+		this.credit=credit;
+		
+		
 		this.setBackground(Color.white);
 		
-		//setBak();
+		this.setLayout(null);
 		addComp();
 		setListener();
 		
@@ -74,32 +81,28 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
     	
     	
 
-		ImageIcon icon=new ImageIcon(image);
-		imagejl.setIcon(icon);
 		
-		typejl.setText("职务:   "+type);
-		typejl.setFont(font);
-		typejl.setBounds(120,10,200,30);
-		this.add(typejl);
+		
+		
 		
 		idjl.setText("I   D:   "+id);
 		idjl.setFont(font);
-		idjl.setBounds(120,50,200,30);
+		idjl.setBounds(120,10,200,30);
 		this.add(idjl);
 		
 		namejl.setText("姓名:   "+name);
 		namejl.setFont(font);
-		namejl.setBounds(320,10,200,30);
+		namejl.setBounds(120,50,200,30);
 		this.add(namejl);
 		
 		teljl.setText("电话:   "+tel);
 		teljl.setFont(font);
-		teljl.setBounds(320,50,200,30);
+		teljl.setBounds(320,10,200,30);
 		this.add(teljl);
 		
-		moreinfojb.setText("更多信息");
-		moreinfojb.setBounds(450,30,130,30);
-		this.add(moreinfojb);
+		depositjb.setText("充值");
+		depositjb.setBounds(450,30,130,30);
+		this.add(depositjb);
 		
 		ImageIcon iconback=new ImageIcon("image//listback.png");
 		backjl.setIcon(iconback);
@@ -107,9 +110,7 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.add(backjl);
     	
 		
-		detailinfojp.setBounds(600,300,350,350);
-		detailinfojp.setVisible(true);
-		//this.add(detailinfojp);
+		
 		
     }
 	
@@ -117,14 +118,13 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
     public void setListener(){
     	
     	
-    	moreinfojb.addActionListener(new ActionListener(){
+    	depositjb.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				detailinfojp.setVisible(true);
-				
+				//未写
 			}
     		
     	});

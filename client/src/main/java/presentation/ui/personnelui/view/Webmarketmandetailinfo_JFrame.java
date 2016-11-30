@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.personnelui.view;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -9,13 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import presentation.ui.tools.MyButton;
+
 /**
- * 网站工作人员详细信息面板
+ * 网站营销人员详细信息面板
  * @author cy
  * @version 1.0
  * 
  */
-public class Hotelworkerdetailinfo_JFrame extends JFrame{
+public class Webmarketmandetailinfo_JFrame extends JFrame{
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
 	
@@ -25,15 +27,12 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
 	private  String tel;
 	private  String type;
 	private  String password;
-	private  String hotelname;
 	
 	private JLabel typejl=new JLabel("职务：   ");
 	private JLabel idjl=new JLabel("I   D:   ");
 	private JLabel namejl=new JLabel("姓名：   ");
 	private JLabel teljl=new JLabel("电话：   ");
 	private JLabel passwordjl=new JLabel("密码：   ");
-	private JLabel hotelnamejl=new JLabel("酒店：   ");
-	
 	
 	
 	private JTextField idjtx=new JTextField();
@@ -41,7 +40,6 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
 	private JTextField teljtx=new JTextField();
 	private JTextField typejtx=new JTextField();
 	private JTextField passwordjtx=new JTextField();
-	private JTextField hotelnamejtx=new JTextField();
 	
 	private MyButton editjb=new MyButton();
 	private MyButton confirmjb=new MyButton();
@@ -51,21 +49,18 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
 	
 	
 	
-	public Hotelworkerdetailinfo_JFrame(String image,String id,String name,String tel,String type,String password,String hotelname){
+	public Webmarketmandetailinfo_JFrame(String id,String name,String tel,String type,String password){
 		
 		this.id=id;
 		this.name=name;
 		this.tel=tel;
 		this.type=type;
 		this.password=password;
-		this.hotelname=hotelname;
-		
 		
 		typejtx.setText(type);
 		idjtx.setText(id);
 		namejtx.setText(name);
 		teljtx.setText(tel);
-		hotelnamejtx.setText(hotelname);
 		
 		passwordjtx.setText(password);
 		
@@ -129,16 +124,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
        passwordjtx.setEditable(false);
        this.add(passwordjtx);
        
-       
-       hotelnamejl.setBounds(50,270,200,30);
-       hotelnamejl.setFont(font);
-       this.add(hotelnamejl);
-       hotelnamejtx.setBounds(100,270,200,30);
-       hotelnamejtx.setFont(font);
-       hotelnamejtx.setEditable(false);
-       this.add(hotelnamejtx);
-       
-       editjb.setBounds(50,330,250,30);
+       editjb.setBounds(50,270,250,30);
        editjb.setText("编辑");
        editjb.addActionListener(new ActionListener(){
 
@@ -147,8 +133,8 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
 				// TODO Auto-generated method stub
 				passwordjtx.setEditable(true);
 				teljtx.setEditable(true);
-				Hotelworkerdetailinfo_JFrame.this.remove(editjb);
-				Hotelworkerdetailinfo_JFrame.this.add(confirmjb);
+				Webmarketmandetailinfo_JFrame.this.remove(editjb);
+				Webmarketmandetailinfo_JFrame.this.add(confirmjb);
 				
 				
 			}
@@ -156,7 +142,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
    	});
     	this.add(editjb);
        
-       confirmjb.setBounds(50,330,250,30);
+       confirmjb.setBounds(50,270,250,30);
        confirmjb.setText("确定");
        confirmjb.addActionListener(new ActionListener(){
 
@@ -164,7 +150,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			
-			Hotelworkerdetailinfo_JFrame.this.setVisible(false);
+			Webmarketmandetailinfo_JFrame.this.setVisible(false);
 			
 		}
     	   
