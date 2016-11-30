@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import presentation.ui.orderui.view.Orderdetailinfo_JPanel;
 import presentation.ui.orderui.view.Searchorder_JPanel;
+import util.UserType;
 
 /**
  * 网站营销人员管理订单的控制器
@@ -33,7 +34,7 @@ public class ManageOrderViewController implements ManageOrderViewControllerServi
 
 	@Override
 	public void cancelOrder() {
-		view=new Searchorder_JPanel();
+		view=new Searchorder_JPanel(UserType.WebMarketMan);
 	}
 
 }

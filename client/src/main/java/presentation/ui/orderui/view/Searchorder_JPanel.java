@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.UserType;
+
 /**
  * 网站营销人员搜索订单的搜索栏面板
  * @author cy
@@ -24,11 +26,11 @@ public class Searchorder_JPanel extends JPanel{
 	 private JLabel endtimejl=new JLabel("到");
 	 private JComboBox comboBox=new JComboBox();
     
+	private UserType userType;//查看订单列表的人的类型
 	
 	
-	
-	 public Searchorder_JPanel(){
-		 
+	 public Searchorder_JPanel(UserType type){
+		this.userType=type;
 		 
 	 this.setBackground(Color.white);
 	 this.setSize(800,50);
