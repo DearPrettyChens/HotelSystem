@@ -9,8 +9,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.UserType;
+
 /**
- * 网站管理人员选择搜索或添加的面板
+ * 网站管理人员选择搜索浏览或添加用户的面板
  * @author cy
  * @version 1.0
  * 
@@ -23,8 +25,10 @@ public class Searchoradd_JPanel  extends JPanel{
 	
     private Font font=new Font("宋体",Font.BOLD, 16);
     private Color color =new Color(148,221,184);
-	public Searchoradd_JPanel(){
-		
+    
+    private UserType userType;//代表时哪种类型的人的列表
+	public Searchoradd_JPanel(UserType type){
+		this.userType=type;
 		//this.setBackground(Color.white);
 		this.setLayout(null);
 		

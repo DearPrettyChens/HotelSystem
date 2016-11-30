@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import presentation.ui.tools.Hotelworker_JFrame;
-import presentation.ui.tools.Hotelworkerdetailinfo_JFrame;
-import presentation.ui.tools.Webmarketmandetailinfo_JFrame;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.UserType;
 
@@ -32,7 +30,7 @@ public class UserViewControllerImpl implements UserViewControllerService{
 			//TODO
 			break;
 		case HotelWorker:
-			//mainFrame.add(new Hotelworkerdetailinfo_JFrame());
+			//未完成酒店工作人员维护个人信息面板
 			break;
 		default:
 			break;
@@ -48,6 +46,6 @@ public class UserViewControllerImpl implements UserViewControllerService{
 
 	@Override
 	public void jumpToMainFrame() {
-		mainFrame.remove(view);
+		mainFrame.removeAll();
 	}
 }

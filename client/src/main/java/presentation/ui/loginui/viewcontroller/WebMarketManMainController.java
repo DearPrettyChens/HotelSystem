@@ -5,5 +5,19 @@ package presentation.ui.loginui.viewcontroller;
  *
  */
 public class WebMarketManMainController {
-
+	public void jumpToOrderListView(){
+		//TODO
+	}
+	
+	public void jumpToCreditDepositView(){
+		//TODO
+	}
+	
+	public void jumpToMakeVIPRulesView(){
+		//TODO
+	}
+	
+	public void jumpToMakeStrategyView(){
+		//TODO
+	}
 }

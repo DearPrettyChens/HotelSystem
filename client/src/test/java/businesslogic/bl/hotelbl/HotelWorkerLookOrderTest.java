@@ -16,7 +16,7 @@ import vo.hotelvo.HotelOrderVO;
  * @author csy
  * @version 1.0
  */
-public class HotelWorkerLookOrderTest {
+/*public class HotelWorkerLookOrderTest {
 
 	ArrayList<HotelOrderVO> hotelOrderVOs;
     HotelOrderInfoVO hotelOrderInfoVO;
@@ -34,4 +34,4 @@ public class HotelWorkerLookOrderTest {
 		hotel.getHotelOrderInfo("201611030001000001");
 	}
 
-}
+}*/
