@@ -54,7 +54,9 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 
 	@Override
 	public double getDiscount(String info, String hotelID) {
-		getHotelStrategy(hotelID);
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
 		long dateInfo=TransHelper.stringToDate(info);		
 		long startTime=date[0].getTime();
 		long endTime=date[1].getTime();

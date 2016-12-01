@@ -49,7 +49,9 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
 
 	@Override
 	public double getDiscount(String info, String hotelID) {
-		getHotelStrategy(hotelID);
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
 		
 		//通过user模块的customer类来获取顾客生日
 		Customer customer=Customer.getInstance();

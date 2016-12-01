@@ -68,8 +68,7 @@ public class HotelStrategy {
 
 			// 委托给每个策略去计算折扣值
 			hotelStrategyInterface = hotelStrategyMap.get(type);
-			if (hotelStrategyInterface == null)
-				continue;
+			
 			double tempDiscount = hotelStrategyInterface.getDiscount(info, hotelID);
 
 			// 选取折扣最大的，即折扣值最小的。
@@ -78,6 +77,11 @@ public class HotelStrategy {
 				hotelStrategyType = type;
 			}
 		}
+		
+		if(discount==1){//该酒店没有任何酒店策略，没有折扣
+			hotelStrategyType=HotelStrategyType.NULLTYPE;
+		}
+		
 		if (hotelStrategyType == HotelStrategyType.NULLTYPE) {
 			discount = 1;//该酒店没有任何酒店策略，没有折扣
 		}
@@ -94,7 +98,6 @@ public class HotelStrategy {
 	 */
 	public HotelStrVO getHotelStrategy(String hotelID, HotelStrategyType hotelStrategyType) {
 		hotelStrategyInterface = hotelStrategyMap.get(hotelStrategyType);
-		if(hotelStrategyInterface==null) return null;
 		return hotelStrategyInterface.getHotelStrategy(hotelID);
 	}
 

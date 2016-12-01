@@ -47,7 +47,10 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 
 	@Override
 	public double getDiscount(String info, String hotelID) {
-		getHotelStrategy(hotelID);
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
+		
 		if(info==null){
 			return 1;
 		}
