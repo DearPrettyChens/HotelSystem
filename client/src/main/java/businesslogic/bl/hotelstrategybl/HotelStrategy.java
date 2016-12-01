@@ -25,15 +25,15 @@ public class HotelStrategy {
 	private static HotelStrategy hotelStrategy;
 
 	private HotelStrategy() {
-<<<<<<< Updated upstream
+
 //		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
 		hotelStrategyDao =new HotelStrategyDao_Stub();
 		hotelStrategyMap = HotelStrategyMap.getInstance();
-=======
+
 		RMIHelper.init();
 		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
 hotelStrategyMap=HotelStrategyMap.getInstance();
->>>>>>> Stashed changes
+
 	}
 
 	public static HotelStrategy getInstance() {
