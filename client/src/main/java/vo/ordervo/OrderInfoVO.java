@@ -124,12 +124,13 @@ public class OrderInfoVO {
 		this.cancleTime=po.getCancleTime();
 	}
 	//顾客下订单时的订单信息
-	public OrderInfoVO(String orderID,String hotelID, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
+	public OrderInfoVO(String orderID,String hotelID,String hotelName, String customerID, String customerName, String liveinPersonName,String liveinPersonTelephone,
 			Date orderTime,Date expectedCheckInTime, Date expectedCheckOutTime,String roomType, BedType bedType, int amount,
 			int numberOfPeople, Children hasChild,double price,OrderState state) {
 		this.setOrderID(orderID);
 		this.setCustomerID(customerID);
 		this.setHotelID(hotelID);
+		this.setHotelName(hotelName);
 		this.setCustomerName(customerName);
 		this.setLiveinPersonName(liveinPersonName);
 		this.setLiveinPersonTelephone(liveinPersonTelephone);

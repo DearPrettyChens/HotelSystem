@@ -20,7 +20,7 @@ import util.UserType;
 
 public class OrderDataServiceImpl_Driver {
 	public void drive(OrderDao dao) throws RemoteException {
-		OrderInfoPO po = new OrderInfoPO("00000000001234567890", "5", "AAAAA", "2", "CustomerA", "A", "12345678910",
+		OrderInfoPO po = new OrderInfoPO("20161119000002000001", "5", "AAAAA", "1", "CustomerA", "A", "12345678910",
 				new Date(), new Date(), new Date(), "BIGROOM", BedType.BIGBED, 3, 3, Children.EXIST, 399,
 				OrderState.NOTREMARKED);
 		System.out.println(dao.addOrder(po));
@@ -72,8 +72,13 @@ public class OrderDataServiceImpl_Driver {
 		}
 
 	}
-
+public void runclienttest(OrderDao dao) throws RemoteException{
+//	dao.addOrder(
+//			new OrderInfoPO("20161119000002000001", "000002", "000001", "chen", "chen", "12345678999", new Date(),
+//					new Date(), new Date(), "", BedType.BIGBED, 1, 1, Children.EXIST, 680, null));
+}
 	public static void main(String[] args) throws RemoteException {
-		new OrderDataServiceImpl_Driver().drive(OrderDaoImpl.getInstance());
+//		new OrderDataServiceImpl_Driver().drive(OrderDaoImpl.getInstance());
+		new OrderDataServiceImpl_Driver().runclienttest(OrderDaoImpl.getInstance());
 	}
 }

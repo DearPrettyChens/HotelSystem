@@ -20,7 +20,7 @@ import util.OrderState;
  * @version 1.0
  */
 @Entity
-@Table(name = "t_order")
+@Table(name = "new_order")
 public class OrderInfoPO implements Serializable {
 	// 顾客编号
 	@Column(name = "customer_id")
@@ -401,6 +401,9 @@ public class OrderInfoPO implements Serializable {
 
 	public OrderState getState() {
 		OrderState orderState = null;
+		if(state==null){
+			return null;
+		}
 		switch (state) {
 		case "HASCANCELED":
 			orderState = OrderState.HASCANCELED;
