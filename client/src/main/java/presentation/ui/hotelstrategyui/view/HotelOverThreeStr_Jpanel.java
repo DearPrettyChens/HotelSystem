@@ -6,12 +6,19 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 
+/**
+ * 三间及三间以上策略
+ * @author cy
+ * @version 1.0
+ * 
+ */
 public class HotelOverThreeStr_Jpanel extends JPanel{
 	
-	private Font font=new Font("宋体",Font.BOLD, 16);
-	private Color color =new Color(148,221,184);
+	private Font font=new Font("宋体",Font.BOLD, 20);
+	
 	
 	
 	private JLabel title=new JLabel("三间级以上策略");
@@ -19,13 +26,16 @@ public class HotelOverThreeStr_Jpanel extends JPanel{
 	private int count;
 	
 	
-	private JLabel roomnumberjl=new JLabel("满足该策略的最小房间数量：");
-	private JLabel countjl=new JLabel("折扣值");
+	private JLabel roomnumberjl=new JLabel("满足该策略的最小房间数量:");
+	private JLabel countjl=new JLabel("折扣值:");
 	
 	
 	private MyTextfield roomnumberjtf=new MyTextfield("");
 	private MyTextfield countjtf=new MyTextfield("");
 	
+	private MyButton canclejb=new MyButton();
+	private MyButton confirmjb=new MyButton();
+
 	
 	
 	
@@ -37,6 +47,13 @@ public class HotelOverThreeStr_Jpanel extends JPanel{
 		
 		countjtf.setText(""+count);
 		
+		this.setLayout(null);
+		this.setBackground(Color.white);
+	
+		this.setSize(800,600);
+		
+		
+		addComp();
 		
 		
 		
@@ -48,7 +65,7 @@ public class HotelOverThreeStr_Jpanel extends JPanel{
 		this.setLayout(null);
 		this.setBackground(Color.white);
 	
-		this.setSize(800,500);
+		this.setSize(800,600);
 		
 		
 		addComp();
@@ -67,10 +84,37 @@ public class HotelOverThreeStr_Jpanel extends JPanel{
     */
     public void addComp(){
     	title.setFont(font);
-    	title.setBounds(100,200,300,50);
+    	title.setBounds(20,50,300,50);
     	this.add(title);
     	
     	
+    	roomnumberjl.setFont(font);
+    	roomnumberjl.setBounds(200,200,300,50);
+    	this.add(roomnumberjl);
+    	
+    	
+    	
+    	roomnumberjtf.setFont(font);
+    	roomnumberjtf.setBounds(500,200,200,50);
+    	roomnumberjtf.setText(roomnumber+"");
+    	this.add(roomnumberjtf);
+    	
+    	countjl.setFont(font);
+    	countjl.setBounds(200,300,200,50);
+    	this.add(countjl);
+    	
+    	countjtf.setFont(font);
+    	countjtf.setBounds(300,300,200,50);
+    	countjtf.setText(count+"");
+    	this.add(countjtf);
+    	
+    	canclejb.setText("取消");
+		canclejb.setBounds(600,500,80,30);
+		this.add(canclejb);
+		
+		confirmjb.setText("确定");
+		confirmjb.setBounds(500,500,80,30);
+		this.add(confirmjb);
     	
     	
     	

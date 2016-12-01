@@ -12,7 +12,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
+import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
+import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
+import presentation.ui.hotelstrategyui.view.HotelOverThreeStr_Jpanel;
+import presentation.ui.hotelstrategyui.view.SingleHotelEnterpriseStr_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 
 /**
@@ -82,6 +85,7 @@ public class Client_JFrame  extends JFrame{
 //	Makewebstr_JPanel cp;
 //	 
 //	 
+	SingleHotelEnterpriseStr_JPanel cp=new  SingleHotelEnterpriseStr_JPanel();
 	public Client_JFrame(){
 //		
 //		arry=new ArrayList<Singlewebclientlevelstr_Jpanel >();
@@ -197,10 +201,10 @@ public class Client_JFrame  extends JFrame{
 	     
 	     
       	
-        // cp.setBounds(200,100,800,600);
-         //this.add(cp);
+        cp.setBounds(200,100,800,50);
+         this.add(cp);
          
-//    	
+   	
     }
     
     
@@ -216,10 +220,13 @@ public class Client_JFrame  extends JFrame{
    */
   public void setBak(){ 
 	
+	  
+	  
+	  
 	
     
     } 
-  
+   
   
  
 

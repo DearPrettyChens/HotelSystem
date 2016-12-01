@@ -8,29 +8,29 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- * 单条的合作企业优惠
+ * 单条的特殊时期优惠
  * @author cy
  * @version 1.0
  * 
  */
-public class SingleHotelEnterpriseStr_JPanel  extends JPanel{
-	private String enterprisename="";
+public class SingleHotelSpecialTimeStr  extends JPanel{
+	private String time="";
 	private int count;
 	
 	
 	private Font font=new Font("宋体",Font.BOLD, 18);
 	
 	
-	private JLabel enterprisenamejl=new JLabel("合作企业:");
-	private JTextField enterprisenamejtf=new JTextField();
+	private JLabel timejl=new JLabel("时间:");
+	private JTextField timejtf=new JTextField();
 	
 	private JLabel countjl=new JLabel("折扣值:");
 	private JTextField countjtf=new JTextField();
 	
-	public SingleHotelEnterpriseStr_JPanel(String enterprisename,int count){
-		this.enterprisename=enterprisename;
+	public SingleHotelSpecialTimeStr(String time,int count){
+		this.time=time;
 		this.count=count;
-		enterprisenamejtf.setText(enterprisename);
+		timejtf.setText(time);
 		countjtf.setText(count+"");
 		
 		
@@ -46,7 +46,7 @@ public class SingleHotelEnterpriseStr_JPanel  extends JPanel{
 	}
 	
 	
-	public SingleHotelEnterpriseStr_JPanel(){
+	public SingleHotelSpecialTimeStr(){
 		
 		
 		
@@ -67,13 +67,13 @@ public class SingleHotelEnterpriseStr_JPanel  extends JPanel{
 		
 		
 		
-		enterprisenamejl.setFont(font);
-		enterprisenamejl.setBounds(50,10,200,30);
-		this.add(enterprisenamejl);
+		timejl.setFont(font);
+		timejl.setBounds(50,10,200,30);
+		this.add(timejl);
 		
-		enterprisenamejtf.setFont(font);
-		enterprisenamejtf.setBounds(150,10,200,30);
-		this.add(enterprisenamejtf);
+		timejtf.setFont(font);
+		timejtf.setBounds(150,10,200,30);
+		this.add(timejtf);
 		
 		
 		countjl.setFont(font);
