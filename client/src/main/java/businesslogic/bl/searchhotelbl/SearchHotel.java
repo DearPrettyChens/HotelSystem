@@ -51,6 +51,7 @@ public class SearchHotel {
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
 				hotelListVOs=new ArrayList<HotelListVO>();
+				System.out.println(hotelListVOs.size());
 				hotelListVOs.add(hotelListVO);
 			}
 			addStrToVO(hotelSearchInfoVO.getCustomerID());

@@ -9,8 +9,8 @@ import po.ClientPO;
 
 public class UserDataServiceImpl_Driver {
 	public void drive(UserDao userDao) throws RemoteException {
-		System.out.println(userDao.getUserPassword("Manager").getPassword());
-		ClientPO po = new ClientPO("Manager", "123456", 1);
+		System.out.println(userDao.getUserPassword("小菲菲").getPassword());
+		ClientPO po = new ClientPO("小菲菲", "feifei", 1);
 		System.out.println(userDao.setPassword(po));
 
 	}

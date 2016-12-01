@@ -55,14 +55,14 @@ public class User {
 	public ResultMessage login(String name, String password) {
 		try {
 			clientPO=userDao.getUserPassword(name);
-	       
+
 			//用户不存在
 			if(clientPO==null){
 				return ResultMessage.USERNOTEXIST;
 		    }
 			
 			//密码错误
-			if(password!=clientPO.getPassword()){
+			if(!password.equals(clientPO.getPassword())){
 				return ResultMessage.PASSWORDERROR;
 			}
 			

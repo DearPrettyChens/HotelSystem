@@ -20,7 +20,7 @@ import util.UserType;
  * @version 1.0
  */
 @Entity
-@Table(name = "t_user")
+@Table(name = "new_user")
 public class ClientPO implements Serializable {
 	@Id
 	@GenericGenerator(name = "generator", strategy = "increment")
@@ -32,10 +32,11 @@ public class ClientPO implements Serializable {
 	@Column(name = "user_password")
 	private String password;
 	@Column(name = "user_type")
-	private UserType type;
+	private String type;
 	@Version
 	@Column(name = "version")
 	private int version;
+
 	class Builder {
 		ClientPO po;
 
@@ -58,10 +59,10 @@ public class ClientPO implements Serializable {
 			return this;
 		}
 
-		public Builder type(UserType type) {
-			this.po.type = type;
-			return this;
-		}
+//		public Builder type(UserType type) {
+//			this.po.type = type;
+//			return this;
+//		}
 
 		public ClientPO build() {
 			return this.po;
@@ -82,7 +83,7 @@ public class ClientPO implements Serializable {
 		this.userName = userName;
 		this.password = password;
 		this.userID = userID;
-		this.type = type;
+		this.setType(type);
 	}
 
 	public String getUserName() {
@@ -110,15 +111,37 @@ public class ClientPO implements Serializable {
 	}
 
 	public UserType getType() {
-		return type;
+		if (type == null) {
+			return null;
+		}
+		UserType userType = null;
+		switch (type) {
+		case "Customer":
+			userType = UserType.Customer;
+			break;
+		case "HotelWorker":
+			userType = UserType.HotelWorker;
+			break;
+		case "Manager":
+			userType = UserType.Manager;
+			break;
+		case "WebMarketMan":
+			userType = UserType.WebMarketMan;
+			break;
+		default:
+			break;
+		}
+		return userType;
 	}
 
 	public void setType(UserType type) {
-		this.type = type;
+		if (type != null) {
+			this.type = type.getString();
+		}
 	}
 
 	public ClientPO copy() {
-		ClientPO po = new ClientPO(this.userName, this.password, this.userID, this.type);
+		ClientPO po = new ClientPO(getUserName(), getPassword(), getUserID(), getType());
 		return po;
 	}
 }
