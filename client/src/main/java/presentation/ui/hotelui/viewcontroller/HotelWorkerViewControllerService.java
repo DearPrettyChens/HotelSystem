@@ -9,7 +9,9 @@ public interface HotelWorkerViewControllerService {
 	 * 更新界面上的酒店信息
 	 */
 	public void modifyHotelInfoSuccess();
-	
-	public void addRoomInfoSuccess();
+	/**
+	 * 返回酒店工作人员主界面
+	 */
+	public void jumpToMainFrame();
 	
 }

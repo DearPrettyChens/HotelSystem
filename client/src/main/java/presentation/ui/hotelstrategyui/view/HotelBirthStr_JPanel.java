@@ -29,8 +29,8 @@ public class HotelBirthStr_JPanel extends JPanel{
 	private int count;
 	
 	
-	public  HotelBirthStr_JPanel (int count){
-		this.count=count;
+	public  HotelBirthStr_JPanel (){
+		//this.count=问逻辑层拿
 		
 		countjtf.setText(count+"");
 		

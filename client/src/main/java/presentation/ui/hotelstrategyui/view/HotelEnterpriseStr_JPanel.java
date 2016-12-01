@@ -34,9 +34,9 @@ public class HotelEnterpriseStr_JPanel   extends JPanel {
 	    
 	    ArrayList<SingleHotelEnterpriseStr_JPanel > singleinfos=new  ArrayList<SingleHotelEnterpriseStr_JPanel>();
 	    
-	     public HotelEnterpriseStr_JPanel(ArrayList<SingleHotelEnterpriseStr_JPanel> singleinfos){
+	     public HotelEnterpriseStr_JPanel(){
 	    	 
-	    	 this.singleinfos=singleinfos;
+	    	 //this.singleinfos=到逻辑层拿
 	    	 
 	    	 
 	   this.setLayout(null); 

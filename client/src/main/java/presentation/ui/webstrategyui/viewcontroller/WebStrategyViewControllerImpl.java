@@ -67,4 +67,9 @@ public class WebStrategyViewControllerImpl implements  WebStrategyViewController
 		
 	}
 
+	@Override
+	public void backToselectStrategy() {
+		view.removeAll();
+	}
+
 }

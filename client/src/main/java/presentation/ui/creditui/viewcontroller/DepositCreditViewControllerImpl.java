@@ -17,5 +17,10 @@ public class DepositCreditViewControllerImpl implements DepositCreditViewControl
 	public void depositCreditSuccess() {
 		view=new Clientdeposite_JPanel();
 	}
+	@Override
+	public void jumpToMainFrame() {
+		view=null;
+		
+	}
 
 }

@@ -34,9 +34,9 @@ public class HotelSpecialTimeStr_JPanel   extends JPanel {
 	    
 	    ArrayList<SingleHotelSpecialTimeStr> singleinfos=new  ArrayList<SingleHotelSpecialTimeStr>();
 	    
-	     public HotelSpecialTimeStr_JPanel(ArrayList<SingleHotelSpecialTimeStr> singleinfos){
+	     public HotelSpecialTimeStr_JPanel(){
 	    	 
-	    	 this.singleinfos=singleinfos;
+	    	 //this.singleinfos=到逻辑层拿
 	    	 
 	    	 
 	   this.setLayout(null); 

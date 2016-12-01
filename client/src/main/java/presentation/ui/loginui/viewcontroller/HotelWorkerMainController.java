@@ -3,6 +3,11 @@ package presentation.ui.loginui.viewcontroller;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import presentation.ui.availableroomui.view.RoomInfo_JPanel;
+import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
+import presentation.ui.orderui.view.Searchorder_JPanel;
+import util.UserType;
+
 /**
  * 控制酒店工作人员界面的跳转
  * @author CLL
@@ -19,26 +24,38 @@ public class HotelWorkerMainController {
 	}
 	
 	public void jumpToAddRoomInfoView(){
-		//TODO
+		frame.removeAll();
+		view=new RoomInfo_JPanel();
+		frame.add(view);
 	}
 	
 	public void jumpToOrderListView(){
-		//TODO
+		frame.removeAll();
+		view=new Searchorder_JPanel(UserType.HotelWorker);
+		frame.add(view);
 	}
 	
 	public void jumpToStrategyView(){
-		//TODO
+		frame.removeAll();
+		view=new ChooseHotelStr_JPanel();
+		frame.add(view);
 	}
 	
 	public void jumpToOnlineCheckinView(){
-		//TODO
+		frame.removeAll();
+		//TODO view=new 
+		frame.add(view);
 	}
 	
 	public void jumpToOnlineCheckoutView(){
-		//TODO
+		frame.removeAll();
+		//TODO view=new 
+		frame.add(view);
 	}
 	
 	public void jumpToOfflineCheckinoutView(){
-		//TODO
+		frame.removeAll();
+		//TODO view=new 
+		frame.add(view);
 	}
 }

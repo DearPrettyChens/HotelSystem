@@ -17,9 +17,10 @@ public class HotelWorkerViewController implements HotelWorkerViewControllerServi
 		
 	}
 	@Override
-	public void addRoomInfoSuccess() {
-		// TODO Auto-generated method stub
+	public void jumpToMainFrame() {
+		view=null;
 		
 	}
+
 
 }

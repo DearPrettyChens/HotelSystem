@@ -21,4 +21,8 @@ public interface WebStrategyViewControllerService {
 	 * 返回主界面
 	 */
 	public void jumpToMainFrame();
+	/**
+	 * 返回选择策略类型界面
+	 */
+	public void backToselectStrategy();
 }
