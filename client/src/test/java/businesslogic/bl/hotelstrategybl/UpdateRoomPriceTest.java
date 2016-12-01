@@ -15,23 +15,23 @@ import vo.hotelstrategyvo.HotelStrVO;
  * @author CLL
  * @version
  */
-/*public class UpdateRoomPriceTest {
+public class UpdateRoomPriceTest {
 	HotelStrategyInterface hotelStrategyInterface;
+	HotelStrategy hotelStrategy;
 	HotelStrVO vo1;
 	@Before
 	public void setUp() throws Exception {
-		hotelStrategyInterface=new HotelBirthStrategy();
-		vo1=new HotelStrVO();
+		hotelStrategy=HotelStrategy.getInstance();
+		hotelStrategyInterface= HotelBirthStrategy.getInstance();
+		vo1=new HotelStrVO("000001", 0.5);
 	}
 
+	/**
+	 * 在hotel strategy的confirmHotelStrategy里面用了mock，如果要测试两个模块之间是否正确，把那边注释即可
+	 */
 	@Test
 	public void test() {
-		HotelStrategy hotelStrategy=new HotelStrategy();
-		assertEquals(hotelStrategy.confirmHotelStrategy(hotelStrategyInterface,vo1),null);
-		MockAvailableRoom availableRoom=new MockAvailableRoom();
-		MockUser user=new MockUser();
-		assertEquals(user.getUserID(null),"000001");
-		assertEquals(availableRoom.setBestPrice(user.getUserID(null), 0.8),ResultMessage.SUCCESS);
+		assertEquals(ResultMessage.SUCCESS,hotelStrategy.confirmHotelStrategy(vo1));
 	}
 
-}*/
+}

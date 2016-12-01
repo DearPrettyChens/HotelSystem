@@ -39,6 +39,7 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		discount = hotelStrPO.getDiscount();
 		amount = hotelStrPO.getAmount();
 		return new HotelStrVO(hotelStrPO);

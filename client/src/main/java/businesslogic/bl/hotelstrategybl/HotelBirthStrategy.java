@@ -41,6 +41,7 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		discount=hotelStrPO.getDiscount();
 		return new HotelStrVO(hotelStrPO);
 	}

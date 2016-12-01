@@ -44,6 +44,7 @@ public class HotelEnterpriseStrategy implements HotelStrategyInterface {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		enterprise=hotelStrPO.getEnterprise();
 		discount=hotelStrPO.getDiscount();
 		return new HotelStrVO(hotelStrPO);

@@ -68,7 +68,7 @@ public class ProvidedInfoMap {
 	
 	/**
 	 * 根据策略种类获取相关的界面提供的策略信息
-	 * @param webStrategyType
+	 * @param hotelStrategyType
 	 * @return
 	 */
 	public String get(HotelStrategyType hotelStrategyType) {

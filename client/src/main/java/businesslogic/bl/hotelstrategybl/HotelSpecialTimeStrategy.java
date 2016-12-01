@@ -46,6 +46,7 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		discount = hotelStrPO.getDiscount();
 		date = hotelStrPO.getDate();
 		return new HotelStrVO(hotelStrPO);
