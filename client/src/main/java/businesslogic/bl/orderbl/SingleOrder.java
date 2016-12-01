@@ -10,6 +10,7 @@ import businesslogic.bl.hotelbl.Hotel;
 import dao.orderdao.OrderDao;
 import exception.NullCustomerIDException;
 import exception.NullOrderIDException;
+import init.RMIHelper;
 import po.CheckTimePO;
 import po.OrderInfoPO;
 import po.OrderStatePO;
@@ -33,13 +34,15 @@ public class SingleOrder {
 	private Credit credit;
 	private AvailableRoom availableRoom;
 	public SingleOrder() {
-//		orderDao=RMIHelper.getOrderDao();
-		orderDao=new OrderDao_Stub();
+		RMIHelper.init();
+		orderDao=RMIHelper.getOrderDao();
+//		orderDao=new OrderDao_Stub();
 	}
 	public SingleOrder(Hotel hotel){
-//		orderDao=RMIHelper.getOrderDao();
+		RMIHelper.init();
+		orderDao=RMIHelper.getOrderDao();
 		orderDao=new OrderDao_Stub();
-		this.hotelInfoOrderService=hotel;
+//		this.hotelInfoOrderService=hotel;
 	}
 	
 	/**

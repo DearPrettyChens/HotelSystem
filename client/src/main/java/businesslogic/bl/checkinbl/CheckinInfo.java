@@ -39,8 +39,8 @@ public class CheckinInfo {
 	private SingleOrder singleOrder;
 	
 	public CheckinInfo(){
-//		checkinDao=RMIHelper.getCheckinDao();
-		checkinDao=new CheckinDao_Stub();
+		checkinDao=RMIHelper.getCheckinDao();
+//		checkinDao=new CheckinDao_Stub();
 	}
 	
 	/**

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import dao.availableroomdao.AvailableRoomDao;
 import exception.NullHotelIDException;
+import init.RMIHelper;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
@@ -23,8 +24,9 @@ public class AvailableRoom {
 	//数据层的引用
 	private AvailableRoomDao availableRoomDao;
 	public AvailableRoom(){
-//		availableRoomDao=RMIHelper.getAvailableRoomDao();
-		availableRoomDao=new AvailableRoomDao_Stub();
+//		RMIHelper.init();
+		availableRoomDao=RMIHelper.getAvailableRoomDao();
+//		availableRoomDao=new AvailableRoomDao_Stub();
 	}
 	
 	/**

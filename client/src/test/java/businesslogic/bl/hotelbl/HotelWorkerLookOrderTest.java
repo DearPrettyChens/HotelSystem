@@ -4,9 +4,12 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 
+import javax.swing.text.AsyncBoxView.ChildLocator;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import util.Children;
 import vo.hotelvo.HotelOrderInfoVO;
 import vo.hotelvo.HotelOrderVO;
 
@@ -16,7 +19,7 @@ import vo.hotelvo.HotelOrderVO;
  * @author csy
  * @version 1.0
  */
-/*public class HotelWorkerLookOrderTest {
+public class HotelWorkerLookOrderTest {
 
 	ArrayList<HotelOrderVO> hotelOrderVOs;
     HotelOrderInfoVO hotelOrderInfoVO;
@@ -30,8 +33,9 @@ import vo.hotelvo.HotelOrderVO;
 	@Test
 	public void test() {
 		Hotel hotel = new Hotel();
-		hotel.getHotelOrderList("000002");
-		hotel.getHotelOrderInfo("201611030001000001");
+		assertEquals(1,hotel.getHotelOrderList("000005").size() );
+//		hotel.getHotelOrderInfo("201611030001000001");
+		assertEquals(Children.EXIST, hotel.getHotelOrderInfo("00000000001234567890").getHasChild());
 	}
 
-}*/
+}
