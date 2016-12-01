@@ -13,13 +13,13 @@ import presentation.ui.personnelui.view.Personlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
 
 /**
- * 网站营销人员查看的订单列表面板 
+ * 酒店工作人员查看的订单列表信息
  * 大小应该是600*90
  * @author cy
  * @version 1.0
  * 
  */
-public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
+public class OrderListInfoToHotelWorker_Jpanel extends Personlistinfo_JPanel {
 	
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
@@ -28,53 +28,46 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 	private  JLabel orderstatejl=new JLabel();
 	
 	private  JLabel clientnamejl=new JLabel();
-	private  JLabel hotelnamejl=new JLabel();
+	private  JLabel bedtypejl=new JLabel();
 	
 	JLabel backjl=new JLabel();
 	
-	private String ordernumber;
-	private String clientname;
-	private String clienttel;
-	private String ordertime;
-	private String latestcheckintime;
-	private String realcheckintime;
-	private String checkouttime;
-	private String orderstate;
-	private String hotelname;
-	private String hoteltel;
-	private String payment;
-	private String roomtype;
-	private String bedtype;
+	private String ordernumber="";
+	private String clientnumber="";
+	private String tel="";
+	private String bedtype="";
+	private  String ordertime="";
+	private String orderstate="";
+	private String latestcheckintime="";
+	private String checkouttime="";
+	private double price=0;
+	private String checkintime="";
+	private String isremarked="";
 	
-	private Orderdetailinfo_JPanel detailjp;
+	private OrderDetailInfoToHotelWorker_JPanel detailjp;
 	
 	
 	private  MyButton moreinfojb=new MyButton();
-	private  MyButton canclejb=new MyButton();
 	
 	
-	public Orderlistinfo_JPanel( String ordernumber,String clientname,String clienttel,String ordertime
-			,String latestcheckintime,String realcheckintime,String checkouttime,String orderstate,String hotelname
-			, String hoteltel,String payment,String roomtype,String bedtype){
+	public OrderListInfoToHotelWorker_Jpanel( String ordernumber,String clientnumber,String tel,String bedtype,String ordertime,String orderstate,String latestcheckintime
+			,String checkouttime,double price, String checkintime,String isremarked){
 		
 		this.ordernumber=ordernumber;
-		this.clientname=clientname;
-		this.clienttel=clienttel;
-		this.ordertime=ordertime;
-		this.latestcheckintime=latestcheckintime;
-		this.realcheckintime=realcheckintime;
-		this.checkouttime=checkouttime;
-		this.orderstate=orderstate;
-		this.hotelname=hotelname;
-		this.hoteltel=hoteltel;
-		this.payment=payment;
-		this.roomtype=roomtype;
+		this.clientnumber=clientnumber;
+		this.tel=tel;
 		this.bedtype=bedtype;
+		this.ordertime=ordertime;
+		this.orderstate=orderstate;
+		this.latestcheckintime=latestcheckintime;
+		this.checkintime=checkintime;
+		this.price=price;
+		this.checkintime=checkintime;
+		this.isremarked=isremarked;
 		
 		
-		detailjp=new Orderdetailinfo_JPanel(ordernumber, clientname, clienttel, ordertime
-				, latestcheckintime, realcheckintime, checkouttime, orderstate,hotelname
-				,  hoteltel, payment, roomtype, bedtype);
+		detailjp=new OrderDetailInfoToHotelWorker_JPanel( ordernumber,clientnumber, tel, bedtype, ordertime, orderstate, latestcheckintime
+				, checkouttime, price,  checkintime, isremarked);
 		this.setLayout(null);
 		
 		
@@ -107,16 +100,16 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.add(orderstatejl);
 		
 		
-		clientnamejl.setText("顾客姓名："+clientname);
+		clientnamejl.setText("顾客姓名："+clientnumber);
 		clientnamejl.setFont(font);
 		clientnamejl.setBounds(320,10,200,30);
 		this.add(clientnamejl);
 		
 		
-		hotelnamejl.setText("酒店名字："+hotelname);
-		hotelnamejl.setFont(font);
-		hotelnamejl.setBounds(320,50,200,30);
-		this.add(hotelnamejl);
+		bedtypejl.setText("床型："+bedtype);
+		bedtypejl.setFont(font);
+		bedtypejl.setBounds(320,50,200,30);
+		this.add(bedtypejl);
 		
 		
 		moreinfojb.setText("详情");
@@ -124,10 +117,7 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.add(moreinfojb);
 		
 		
-		canclejb.setText("撤销");
-		canclejb.setBounds(500,60,80,20);
-		this.add(canclejb);
-    	
+		
     	
     	ImageIcon iconback=new ImageIcon("image//listback.png");
 		backjl.setIcon(iconback);
@@ -135,8 +125,8 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.add(backjl);
     	
 		detailjp.setBounds(200,100,800,600);
-		detailjp.setVisible(true);
-		this.add(detailjp);
+		
+		//this.add(detailjp);
 		
     	
     }
@@ -152,7 +142,8 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				
-				detailjp.setVisible(true);
+				OrderListInfoToHotelWorker_Jpanel.this.add(detailjp);
+				
 				
 			}
     		
