@@ -29,7 +29,7 @@ public class SearchHotelTest {
 	      searchHotel=new SearchHotel(hotelSearchInfoVO);
 	}
 	
-//	由于要在逻辑层调用hotel模块，还要涉及的数据层，所以未能测试
+
 	@Test
 	public void test(){
 		ArrayList<HotelListVO>hotelListVOs=searchHotel.getHotelList();

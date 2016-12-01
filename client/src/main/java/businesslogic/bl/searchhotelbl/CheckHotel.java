@@ -6,7 +6,9 @@ import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.hotelbl.Hotel;
+import businesslogic.bl.searchhotelbl.SearchHotelmock.MockHotel;
 import exception.NotFoundHotelException;
+import exception.NullCityandTradingArea;
 import exception.SizeNotEqualException;
 import util.BedType;
 import util.City;
@@ -47,7 +49,9 @@ public class CheckHotel {
 			String hotelID = hotelListVO.getHotelID();
 			String customerID = hotelSearchInfoVO.getCustomerID();
 			try {
-				hotelDetailInfoVO = new Hotel().getHotelDetailInfo(hotelID, customerID);
+				// Hotel hotel=new Hotel();
+				MockHotel hotel = new MockHotel();
+				hotelDetailInfoVO = hotel.getHotelDetailInfo(hotelID, customerID);
 			} catch (NotFoundHotelException e) {
 				e.printStackTrace();
 			}
@@ -64,19 +68,25 @@ public class CheckHotel {
 	 */
 	private boolean checkAll(HotelListVO hotelListVO) {
 		boolean check = true;
-		try {
-			check = checkHotelName(hotelListVO.getHotelName());
+	try {
 			check = checkArea(hotelDetailInfoVO.getCity(), hotelDetailInfoVO.getArea());
-			check = checkTime();
-			check = checkBedType();
-			check = checkPrice(hotelListVO.getLowestPrice());
-			check = checkStars(hotelListVO.getStar());
-			check = checkRemark(hotelListVO.getRemark());
-			check = checkOrder(hotelListVO.getOrderStates());
-		} catch (SizeNotEqualException e) {
+		} catch (NullCityandTradingArea e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		check = checkHotelName(hotelListVO.getHotelName());
+		check = checkTime();
+		check = checkBedType();
+		check = checkStars(hotelListVO.getStar());
+		try {
+			check = checkPrice(hotelListVO.getLowestPrice());
+			check = checkRemark(hotelListVO.getRemark());
+		} catch (SizeNotEqualException e) {
+			e.printStackTrace();
+		}
+		
+		check = checkOrder(hotelListVO.getOrderStates());
+
 		return check;
 	}
 
@@ -99,18 +109,19 @@ public class CheckHotel {
 	}
 
 	/**
-	 * 检测城市和商圈
+	 * 检测城市和商圈 城市和商圈在界面是必须选择的
 	 * 
 	 * @param city
 	 * @param tradingArea
 	 * @return
 	 */
-	private boolean checkArea(City city, TradingArea tradingArea) {
+	private boolean checkArea(City city, TradingArea tradingArea) throws NullCityandTradingArea {
 		City searchCity = hotelSearchInfoVO.getCity();
 		TradingArea searchTradingArea = hotelSearchInfoVO.getTradingArea();
 
 		if ((searchCity == null) || (searchTradingArea == null)) {
 			// 抛出异常
+			throw new NullCityandTradingArea("城市和商圈未选择");
 		}
 		if ((city == searchCity) && (tradingArea == searchTradingArea)) {
 			return true;
@@ -131,6 +142,9 @@ public class CheckHotel {
 		// 如果输入的床型为空就将床型设为该酒店所拥有的床型
 		if (bedTypes == null) {
 			bedTypes = getBedTypes();
+			if(bedTypes==null){//如果该酒店没有床型，那么该酒店不能住人
+				return false;
+			}
 		}
 
 		// 搜索信息中时间都为空，直接返回
@@ -182,6 +196,8 @@ public class CheckHotel {
 	private ArrayList<BedType> getBedTypes() {
 		ArrayList<BedType> bedTypes = new ArrayList<BedType>();
 		ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = hotelDetailInfoVO.getAvailableRoomInfoVO();
+		
+		if(availableRoomInfoVOs==null) return null;
 		for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
 			BedType bedType = availableRoomInfoVO.getBedType();
 			bedTypes.add(bedType);
@@ -342,6 +358,7 @@ public class CheckHotel {
 			return true;
 		}
 		for (OrderState orderState : searchOrder) {
+
 			if (orderStates.contains(orderState)) {
 				return true;
 			}

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.bl.orderbl.OrderList;
+import businesslogic.bl.searchhotelbl.SearchHotelmock.MockHotel;
 import dao.searchhoteldao.SearchHotelDao;
 import exception.NotFoundHotelException;
 import init.RMIHelper;
@@ -38,11 +39,12 @@ public class SearchHotel {
 	 * @param hotelSearchInfoVO
 	 */
 	public SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
+		this.hotelSearchInfoVO=hotelSearchInfoVO;
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
-			RMIHelper.init();
-			searchHotelDao = RMIHelper.getSearchHotelDao();
-//			searchHotelDao=new SearchHotelDao_Stub();
+//			RMIHelper.init();
+//			searchHotelDao = RMIHelper.getSearchHotelDao();
+			searchHotelDao=new SearchHotelDao_Stub();
 			if (hotelSortType == null) {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
@@ -69,7 +71,8 @@ public class SearchHotel {
 	private void addStrToVO(String customerID) {
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
-			Hotel hotel = new Hotel();
+//			Hotel hotel = new Hotel();
+			MockHotel  hotel=new MockHotel();
 			ArrayList<HotelStrVO> hotelStrVOs=new ArrayList<HotelStrVO>();
 			try {
 				hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
@@ -92,14 +95,24 @@ public class SearchHotel {
 			String hotelID=hotelListVO.getHotelID();
 			ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
 			
-			//遍历顾客的订单，获得顾客在该酒店的订单状态
-			ArrayList<OrderListVO> orderListVOs=new OrderList().getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
-			for(OrderListVO orderListVO:orderListVOs){
-				String orderHotelID=orderListVO.getHotelID();
-				if(orderHotelID.equals(hotelID)){
-					orderStates.add(orderListVO.getState());
-				}
-			}
+			
+			//注：从这里开始是为了测试用
+			orderStates.add(OrderState.HASREMARKED);
+			orderStates.add(OrderState.NOTEXECUTED);
+			orderStates.add(OrderState.NOTREMARKED);
+			//注：这里注释是因为这里写mock模块来获取和我直接返回orderstate差别不大
+			
+			
+			//注：这下面都是正式代码，会和order模块交互
+//			OrderList orderList=new OrderList();
+//			//遍历顾客的订单，获得顾客在该酒店的订单状态
+//			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
+//			for(OrderListVO orderListVO:orderListVOs){
+//				String orderHotelID=orderListVO.getHotelID();
+//				if(orderHotelID.equals(hotelID)){
+//					orderStates.add(orderListVO.getState());
+//				}
+//			}
 			
 			hotelListVO.setOrderStates(orderStates);
 		}
