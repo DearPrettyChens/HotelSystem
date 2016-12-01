@@ -168,7 +168,11 @@ public class SingleOrder {
 			String customerID=orderInfo.getCustomerID();
 			credit=new Credit(customerID);
 			CreditInfoVO creditInfo=credit.getUserCreditInfoList();
-			int preCredit=creditInfo.getCredit();
+			int preCredit=0;
+			//在没有信用记录的情况下，信用值为0
+			if(creditInfo!=null){
+				preCredit=creditInfo.getCredit();
+			}
 			//调用Credit.cutCredit扣除顾客信用值
 			double hourGap=0.0;
 			Date latestCheckTime=orderInfo.getLateCheckInTime();
