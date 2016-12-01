@@ -17,11 +17,11 @@ public class HotelStrategyMap {
 	 	 private HotelStrategyMap() {
 	 		hotelStrategyFactory=HotelStrategyFactory.getInstance();
 	 		enumMap=new EnumMap<HotelStrategyType, HotelStrategyInterface>(HotelStrategyType.class);
-	 	    enumMap.put(HotelStrategyType.SPECIALTIME, hotelStrategyFactory.getHotelSpecialTimeStrategy());
+	 		enumMap.put(HotelStrategyType.SPECIALTIME, hotelStrategyFactory.getHotelSpecialTimeStrategy());
 	 	    enumMap.put(HotelStrategyType.AMOUNT, hotelStrategyFactory.getHotelAmountStrategy());
 	 	    enumMap.put(HotelStrategyType.BIRTH, hotelStrategyFactory.getHotelBirthStrategy());
 	 	    enumMap.put(HotelStrategyType.ENTERPRISE, hotelStrategyFactory.getHotelEnterpriseStrategy());	      
-	 	}
+	 	 }
 
 	 	public static HotelStrategyMap getInstance(){
 	 		if(hotelStrategyMap==null){

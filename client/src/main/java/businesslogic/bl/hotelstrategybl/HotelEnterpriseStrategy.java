@@ -38,6 +38,9 @@ public class HotelEnterpriseStrategy implements HotelStrategyInterface {
 	public HotelStrVO getHotelStrategy(String hotelID) {
 		try {
 			hotelStrPO=hotelStrategyDao.getHotelStrategy(hotelID, HotelStrategyType.ENTERPRISE);
+			if(hotelStrPO==null){
+				return null;
+			}
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -64,6 +64,11 @@ public class Client_JFrame extends JFrame {
 	private JLabel vipjl= new JLabel(new ImageIcon("image//vip.png"));
 	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
 
+	private Changepassword_JPanel panel=new Changepassword_JPanel();
+	
+	
+	
+	
 	public Client_JFrame() {
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
@@ -141,6 +146,9 @@ public class Client_JFrame extends JFrame {
 		sidepanel.setBackground(backgroundcolor);
 		sidepanel.setBounds(0, 580, 200, 140);
 		getContentPane().add(sidepanel);
+		
+		panel.setBounds(200,100,800,600);
+		getContentPane().add(panel);
 
 	}
 
