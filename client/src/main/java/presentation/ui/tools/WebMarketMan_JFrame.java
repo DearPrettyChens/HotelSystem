@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.UserType;
+
 /**
  * 网站营销人员的左上角所有
  * @author cy
@@ -17,11 +19,12 @@ import javax.swing.JPanel;
  * 
  */
 public class WebMarketMan_JFrame extends JFrame{
-	
-	
-	
-	
-	
+	   //关于网站营销人员基本信息
+		private String webMarketManID="000820";
+		private String webMarketManName="营销员：俐俐";
+		
+		
+		//关于界面
 	private close_JButton close_jbutton=new close_JButton();
 	private narrow_JButton narrow_jbutton=new narrow_JButton(this);
 	private Reflesh_JButton reflesh_JButton=new Reflesh_JButton();
@@ -33,13 +36,14 @@ public class WebMarketMan_JFrame extends JFrame{
 	
 	
 	
-	private Basic_JPanel jp1=new Basic_JPanel("搜索和浏览酒店","image//search.png",0,allpanel);
+	private Basic_JPanel jp1=new Basic_JPanel("搜索酒店","image//search.png",0,allpanel);
 	private Basic_JPanel jp2=new Basic_JPanel("信用充值","image//touzichanpin.png",1,allpanel);
-	private Basic_JPanel jp3=new Basic_JPanel("会员等级规则","image//zizhi-2.png",2,allpanel);
-	private Basic_JPanel jp4=new Basic_JPanel("网站营销策略","image//bulb.png",3,allpanel);
+	private Basic_JPanel jp3=new Basic_JPanel("会员等级","image//zizhi-2.png",2,allpanel);
+	private Basic_JPanel jp4=new Basic_JPanel("营销策略","image//bulb.png",3,allpanel);
 	
+	private HeadPanel headPanel;
 	
-	private JLabel namejl=new JLabel("网站营销人员:XXX");
+	private JLabel namejl=new JLabel(webMarketManName);
 	
 
 	
@@ -82,7 +86,7 @@ public class WebMarketMan_JFrame extends JFrame{
 			
 		      setBak(); //调用背景方法
 	          addComp();//调用添加组件方法
-	        
+	          addHeadImage();//添加头像
 		     
 		     
 	          
@@ -107,21 +111,21 @@ public class WebMarketMan_JFrame extends JFrame{
 	    	
 	    	
 
-	    	close_jbutton.setBounds(970,40,20,20);
-	    	abovepanel.add(close_jbutton);
-	      	narrow_jbutton.setBounds(930,40,20,20);
-	      	abovepanel.add(narrow_jbutton);
-	      	arrow_JButton.setBounds(850,40,20,20);
-	      	abovepanel.add(arrow_JButton);
-	      	home_JButton.setBounds(810,40,20,20);
-	      	abovepanel.add(home_JButton);
-	      	reflesh_JButton.setBounds(770,40,20,20);
-	      	abovepanel.add(reflesh_JButton);
-	      	line.setBounds(885,35,30,30);
-	      	abovepanel.add(line);
+	    	close_jbutton.setBounds(950, 40, 24, 24);
+			abovepanel.add(close_jbutton);
+			narrow_jbutton.setBounds(910, 40, 24, 24);
+			abovepanel.add(narrow_jbutton);
+			arrow_JButton.setBounds(830, 40, 24, 24);
+			abovepanel.add(arrow_JButton);
+			home_JButton.setBounds(780, 40, 24, 24);
+			abovepanel.add(home_JButton);
+			reflesh_JButton.setBounds(730, 40, 24, 24);
+			abovepanel.add(reflesh_JButton);
+			line.setBounds(875, 38, 32, 32);
+			abovepanel.add(line);
 	      	
 	      	
-	      	namejl.setBounds(30,70,200,30);
+	      	namejl.setBounds(90,40,200,30);
 	      	namejl.setFont(new Font("宋体",Font.BOLD, 16));
 	      	namejl.setForeground(Color.white);
 	      	abovepanel.add(namejl);
@@ -134,13 +138,13 @@ public class WebMarketMan_JFrame extends JFrame{
 		     
 		     
 		     
-		     jp1.setBounds(0,100,200,80);
+		     jp1.setBounds(0,140,200,80);
 		     this.add(jp1);
-			 jp2.setBounds(0,220,200,80);
+			 jp2.setBounds(0,260,200,80);
 			 this.add(jp2);
-			 jp3.setBounds(0,340,200,80);
+			 jp3.setBounds(0,380,200,80);
 			 this.add(jp3);
-			 jp4.setBounds(0,460,200,80);
+			 jp4.setBounds(0,500,200,80);
 			 this.add(jp4);
 			 sidepanel.setBackground(backgroundcolor);
 		     sidepanel.setBounds(0,100, 200, 600);
@@ -151,7 +155,15 @@ public class WebMarketMan_JFrame extends JFrame{
 	    }
 	    
 	    
-	    
+
+		/**
+		 * 添加头像
+		 */
+		public void addHeadImage() {
+			headPanel=new HeadPanel(null, UserType.WebMarketMan);
+			headPanel.setBounds(15, 20, 65, 65);
+			getContentPane().add(headPanel);
+		}   
 	    
 	    
 	    

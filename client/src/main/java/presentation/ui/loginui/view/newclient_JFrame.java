@@ -134,7 +134,7 @@ public class newclient_JFrame  extends JFrame{
    
 	
 	
-	
+//	
 //	public static void main(String[] args){
 //		
 //		new newclient_JFrame();

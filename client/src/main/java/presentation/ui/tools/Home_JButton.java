@@ -18,7 +18,7 @@ import javax.swing.JFrame;
  * 
  */
 public class Home_JButton extends JButton{
-	 private ImageIcon icon=new ImageIcon("image//bank.png");
+	 private ImageIcon icon=new ImageIcon("image//home.png");
 	 //private JFrame jf;
 	 
 	 public Home_JButton(){

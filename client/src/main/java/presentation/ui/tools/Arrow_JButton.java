@@ -18,7 +18,7 @@ import javax.swing.JFrame;
  * 
  */
 public class Arrow_JButton extends JButton{
-	 private ImageIcon icon=new ImageIcon("image//tuiguang.png");
+	 private ImageIcon icon=new ImageIcon("image//out.png");
 	 //private JFrame jf;
 	 
 	 public Arrow_JButton(){
@@ -57,7 +57,7 @@ public class Arrow_JButton extends JButton{
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
-				//newclient_JLabel.this.setForeground( new Color(112,255,0));
+//				newclient_JLabel.this.setForeground( new Color(112,255,0));
 					
 				}
 				@Override

@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.UserType;
+
 /**
  * 酒店工作人员左上角的所有面板
  * @author cy
@@ -17,11 +19,14 @@ import javax.swing.JPanel;
  * 
  */
 public class Hotelworker_JFrame extends JFrame{
+    //关于顾客基本信息
+	private String hotelWorkerID="";
+	private String hotelName="南京金鹰国际酒店";
+//	private String hotelWorkerName="工作员：菲菲";
+    private ImageIcon imageIcon=null;
 	
 	
-	
-	
-	
+	//关于界面
 	private close_JButton close_jbutton=new close_JButton();
 	private narrow_JButton narrow_jbutton=new narrow_JButton(this);
 	private Reflesh_JButton reflesh_JButton=new Reflesh_JButton();
@@ -31,8 +36,8 @@ public class Hotelworker_JFrame extends JFrame{
 	
 	ArrayList <Basic_JPanel>   allpanel=new   ArrayList < Basic_JPanel>();
 	
-	private JLabel namejl=new JLabel("酒店工作人员:XXX");
-	 
+	private JLabel namejl1=new JLabel(hotelName);
+//	private JLabel namejl2=new JLabel(hotelWorkerName);
 	
 
 	private JLabel myhotel_Jlabel=new JLabel("我的酒店");
@@ -62,7 +67,7 @@ public class Hotelworker_JFrame extends JFrame{
 	private Color backgroundcolor =new Color(148,221,184);
 	private JPanel abovepanel=new JPanel();
 	private JPanel sidepanel=new JPanel();
-	
+	private HeadPanel headPanel;
 	
 	
 	
@@ -85,7 +90,8 @@ public class Hotelworker_JFrame extends JFrame{
 			
 		      setBak(); //调用背景方法
 	          addComp();//调用添加组件方法
-	        
+
+	          addHeadImage();//添加头像
 		     
 		     
 	          
@@ -109,26 +115,31 @@ public class Hotelworker_JFrame extends JFrame{
 	    	
 	    	
 	    	
-
-	    	close_jbutton.setBounds(970,40,20,20);
-	    	abovepanel.add(close_jbutton);
-	      	narrow_jbutton.setBounds(930,40,20,20);
-	      	abovepanel.add(narrow_jbutton);
-	      	arrow_JButton.setBounds(850,40,20,20);
-	      	abovepanel.add(arrow_JButton);
-	      	home_JButton.setBounds(810,40,20,20);
-	      	abovepanel.add(home_JButton);
-	      	reflesh_JButton.setBounds(770,40,20,20);
-	      	abovepanel.add(reflesh_JButton);
-	      	line.setBounds(885,35,30,30);
-	      	abovepanel.add(line);
+			close_jbutton.setBounds(950, 40, 24, 24);
+			abovepanel.add(close_jbutton);
+			narrow_jbutton.setBounds(910, 40, 24, 24);
+			abovepanel.add(narrow_jbutton);
+			arrow_JButton.setBounds(830, 40, 24, 24);
+			abovepanel.add(arrow_JButton);
+			home_JButton.setBounds(780, 40, 24, 24);
+			abovepanel.add(home_JButton);
+			reflesh_JButton.setBounds(730, 40, 24, 24);
+			abovepanel.add(reflesh_JButton);
+			line.setBounds(875, 38, 32, 32);
+			abovepanel.add(line);
 	    	
 	      	
 	      	
-	      	namejl.setBounds(30,70,200,30);
-	      	namejl.setFont(new Font("宋体",Font.BOLD, 16));
-	      	namejl.setForeground(Color.white);
-	      	abovepanel.add(namejl);
+	      	namejl1.setBounds(90,40,200,30);
+	      	namejl1.setFont(new Font("宋体",Font.BOLD, 16));
+	      	namejl1.setForeground(Color.white);
+	      	abovepanel.add(namejl1);
+	      	
+	      	
+//	    	namejl2.setBounds(90,52,200,30);
+//	      	namejl2.setFont(new Font("宋体",Font.BOLD, 16));
+//	      	namejl2.setForeground(Color.white);
+//	      	abovepanel.add(namejl2);
 	      	
 	      	
 	      	abovepanel.setBackground( backgroundcolor);
@@ -145,66 +156,74 @@ public class Hotelworker_JFrame extends JFrame{
 		     
 		     myhotel_Jlabel.setFont(new Font("宋体",Font.BOLD, 18));
 		     myhotel_Jlabel.setForeground(Color.white);
-		     myhotel_Jlabel.setBounds(80,0,100,30);
+		     myhotel_Jlabel.setBounds(60,20,100,30);
 		     sidepanel.add(myhotel_Jlabel);
 		     
 		     ImageIcon icon1=new ImageIcon("image//user.png");
 		     myhotelimg_Jlabel.setIcon(icon1);
-		     myhotelimg_Jlabel.setBounds(40,0,30,30);
+		     myhotelimg_Jlabel.setBounds(15,20,30,30);
 		     sidepanel.add(myhotelimg_Jlabel);
 		     
 		     myorder_Jlabel.setFont(new Font("宋体",Font.BOLD, 18));
 		     myorder_Jlabel.setForeground(Color.white);
-		     myorder_Jlabel.setBounds(80,100,100,30);
+		     myorder_Jlabel.setBounds(60,120,100,30);
 		     sidepanel.add(myorder_Jlabel);
 		     
 		     ImageIcon icon2=new ImageIcon("image//star.png");
 		     myorderimg_Jlabel.setIcon(icon2);
-		     myorderimg_Jlabel.setBounds(40,100,30,30);
+		     myorderimg_Jlabel.setBounds(15,120,30,30);
 		     sidepanel.add(myorderimg_Jlabel);
 		     
 		     mystr_Jlabel.setFont(new Font("宋体",Font.BOLD, 18));
 		     mystr_Jlabel.setForeground(Color.white);
-		     mystr_Jlabel.setBounds(80,200,100,30);
+		     mystr_Jlabel.setBounds(60,220,100,30);
 		     sidepanel.add(mystr_Jlabel);
 		     
 		     ImageIcon icon3=new ImageIcon("image//note.png");
 		     mystrimg_Jlabel.setIcon(icon3);
-		     mystrimg_Jlabel.setBounds(40,200,30,30);
+		     mystrimg_Jlabel.setBounds(15,220,30,30);
 		     sidepanel.add(mystrimg_Jlabel);
 		     
 		     checkin_Jlabel.setFont(new Font("宋体",Font.BOLD, 18));
 		     checkin_Jlabel.setForeground(Color.white);
-		     checkin_Jlabel.setBounds(80,300,100,30);
+		     checkin_Jlabel.setBounds(60,320,100,30);
 		     sidepanel.add(checkin_Jlabel);
 		     
 		     ImageIcon icon4=new ImageIcon("image//shop.png");
 		     checkinimg_Jlabel.setIcon(icon4);
-		     checkinimg_Jlabel.setBounds(40,300,30,30);
+		     checkinimg_Jlabel.setBounds(15,320,30,30);
 		     sidepanel.add(checkinimg_Jlabel);
 		     
 		     
-		     myhotel_Jlabel1.setBounds(80,30,180,30);
+		     myhotel_Jlabel1.setBounds(60,50,180,30);
 		     sidepanel.add(myhotel_Jlabel1);
-		     myhotel_Jlabel2.setBounds(80,60,180,30);
+		     myhotel_Jlabel2.setBounds(60,80,180,30);
 		     sidepanel.add(myhotel_Jlabel2);
 		     
-		     myorder_Jlabel1.setBounds(80,130,180,30);
+		     myorder_Jlabel1.setBounds(60,150,180,30);
 		     sidepanel.add(myorder_Jlabel1);
 		     
-		     mystr_Jlabel1.setBounds(80,230,180,30);
+		     mystr_Jlabel1.setBounds(60,250,180,30);
 		     sidepanel.add(mystr_Jlabel1);
 	      	
-		     checkin_Jlabel1.setBounds(80,330,180,30);
+		     checkin_Jlabel1.setBounds(60,350,180,30);
 		     sidepanel.add(checkin_Jlabel1);
-		     checkin_Jlabel2.setBounds(80,360,180,30);
+		     checkin_Jlabel2.setBounds(60,380,180,30);
 		     sidepanel.add(checkin_Jlabel2);
-		     checkin_Jlabel3.setBounds(80,390,180,30);
+		     checkin_Jlabel3.setBounds(60,410,180,30);
 		     sidepanel.add(checkin_Jlabel3);
 	    
 	    }
 	    
-	    
+
+		/**
+		 * 添加头像
+		 */
+		public void addHeadImage() {
+			headPanel=new HeadPanel(imageIcon, UserType.HotelWorker);
+			headPanel.setBounds(15, 20, 65, 65);
+			getContentPane().add(headPanel);
+		}
 	    
 	    
 	    
