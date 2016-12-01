@@ -1,4 +1,4 @@
-package businesslogic.blservice.searchhotelblservice;
+package presentation.ui.availableroomui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import presentation.ui.tools.MyButton;
+import util.UserType;
 
 /**
  * 录入客房信息的界面
@@ -18,7 +19,7 @@ import presentation.ui.tools.MyButton;
  * 
  */
 public class RoomInfo_JPanel  extends JPanel {
-	
+	//private UserType userType;
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
 	
@@ -30,9 +31,9 @@ public class RoomInfo_JPanel  extends JPanel {
 	
 	ArrayList<SingleRoomInfo_JPanel> singleinfos=new ArrayList<SingleRoomInfo_JPanel>();
 	
-	public RoomInfo_JPanel(ArrayList<SingleRoomInfo_JPanel> singleinfos){
+	public RoomInfo_JPanel(){
 		
-		this.singleinfos=singleinfos;
+		//this.singleinfos=singleinfos;应改为向逻辑层要
 		
 		
 		this.setSize(800,50);

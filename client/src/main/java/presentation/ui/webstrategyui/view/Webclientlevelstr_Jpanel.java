@@ -24,8 +24,8 @@ public class Webclientlevelstr_Jpanel  extends JPanel{
 	 private ArrayList<Singlewebclientlevelstr_Jpanel> singleinfo=new  ArrayList<Singlewebclientlevelstr_Jpanel>();
 	 
 	
-	public Webclientlevelstr_Jpanel(ArrayList<Singlewebclientlevelstr_Jpanel> singleinfo){
-		this.singleinfo=singleinfo;
+	public Webclientlevelstr_Jpanel(){
+		//this.singleinfo;到逻辑层取
 		
 		
 		

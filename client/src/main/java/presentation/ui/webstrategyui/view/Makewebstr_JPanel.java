@@ -8,10 +8,10 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+//这个类是用来选择哪种类型的吗？
 public class Makewebstr_JPanel  extends JPanel{
 	
-	private  Webvipstr_JPanel  vipstr;
+	private  WebSpecialAreaStr_JPanel  vipstr;
 	private  Webclientlevelstr_Jpanel clientlevelstr;
 	private Webspecialtimestr_JPanel specialtimestr;
 	

@@ -1,4 +1,4 @@
-package businesslogic.blservice.searchhotelblservice;
+package presentation.ui.availableroomui.view;
 
 import java.awt.Color;
 import java.awt.Font;
