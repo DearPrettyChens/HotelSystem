@@ -24,8 +24,8 @@ public class Webspecialtimestr_JPanel  extends JPanel{
 	 private ArrayList<Singlewebspecialtimestr_JPanel> singleinfo=new  ArrayList<Singlewebspecialtimestr_JPanel>();
 	 
 	
-	public Webspecialtimestr_JPanel(ArrayList<Singlewebspecialtimestr_JPanel> singleinfo){
-		this.singleinfo=singleinfo;
+	public Webspecialtimestr_JPanel(){
+		//this.singleinfo; 向逻辑层要
 		
 		
 		

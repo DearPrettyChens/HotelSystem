@@ -27,8 +27,8 @@ public class SetAvailableRoomNumberTest {
 	@Test
 	public void test() {
 		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(8,BedType.BIGBED,
-				new Date(),"000002")),ResultMessage.SUCCESS);
-		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000002");
+				new Date(),"000005")),ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000005");
 		for(int i=0;i<roomInfo.size();i++){
 			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
 				assertEquals(roomInfo.get(i).getCurrentNumber(),8);

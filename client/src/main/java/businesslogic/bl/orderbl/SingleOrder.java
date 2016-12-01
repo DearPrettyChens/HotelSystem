@@ -10,6 +10,7 @@ import businesslogic.bl.hotelbl.Hotel;
 import dao.orderdao.OrderDao;
 import exception.NullCustomerIDException;
 import exception.NullOrderIDException;
+import init.RMIHelper;
 import po.CheckTimePO;
 import po.OrderInfoPO;
 import po.OrderStatePO;
@@ -33,13 +34,15 @@ public class SingleOrder {
 	private Credit credit;
 	private AvailableRoom availableRoom;
 	public SingleOrder() {
-//		orderDao=RMIHelper.getOrderDao();
-		orderDao=new OrderDao_Stub();
+		RMIHelper.init();
+		orderDao=RMIHelper.getOrderDao();
+//		orderDao=new OrderDao_Stub();
 	}
 	public SingleOrder(Hotel hotel){
-//		orderDao=RMIHelper.getOrderDao();
+		RMIHelper.init();
+		orderDao=RMIHelper.getOrderDao();
 		orderDao=new OrderDao_Stub();
-		this.hotelInfoOrderService=hotel;
+//		this.hotelInfoOrderService=hotel;
 	}
 	
 	/**
@@ -165,7 +168,11 @@ public class SingleOrder {
 			String customerID=orderInfo.getCustomerID();
 			credit=new Credit(customerID);
 			CreditInfoVO creditInfo=credit.getUserCreditInfoList();
-			int preCredit=creditInfo.getCredit();
+			int preCredit=0;
+			//在没有信用记录的情况下，信用值为0
+			if(creditInfo!=null){
+				preCredit=creditInfo.getCredit();
+			}
 			//调用Credit.cutCredit扣除顾客信用值
 			double hourGap=0.0;
 			Date latestCheckTime=orderInfo.getLateCheckInTime();

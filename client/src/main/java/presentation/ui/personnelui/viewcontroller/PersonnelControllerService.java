@@ -32,4 +32,8 @@ public interface PersonnelControllerService {
 	 * 关闭详细信息窗口
 	 */
 	public void closeDetailInfoFrame();
+	/**
+	 * 返回主界面
+	 */
+	public void jumpToMainFrame();
 }

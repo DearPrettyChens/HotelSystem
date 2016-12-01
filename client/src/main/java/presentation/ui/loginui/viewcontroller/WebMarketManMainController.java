@@ -7,6 +7,10 @@ import presentation.ui.creditui.view.Clientdeposite_JPanel;
 import presentation.ui.orderui.view.Searchorder_JPanel;
 import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
 import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
+import presentation.ui.webstrategyui.view.WebSpecialAreaStr_JPanel;
+import presentation.ui.webstrategyui.view.Webspecialtimestr_JPanel;
+import util.UserType;
+import util.WebStrategyType;
 
 /**
  * 控制网站营销人员界面的跳转
@@ -21,7 +25,7 @@ public class WebMarketManMainController {
 	}
 	public void jumpToOrderListView(){
 		frame.remove(view);
-		view=new Searchorder_JPanel();
+		view=new Searchorder_JPanel(UserType.WebMarketMan);
 		frame.add(view);
 	}
 	

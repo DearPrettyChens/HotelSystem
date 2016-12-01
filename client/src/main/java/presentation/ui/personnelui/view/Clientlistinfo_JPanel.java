@@ -11,6 +11,12 @@ import javax.swing.JPanel;
 
 import presentation.ui.tools.MyButton;
 
+/**
+ * 
+ * @author cy
+ * @version 1.0
+ * 
+ */
 public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 	private JLabel imagejl=new JLabel();
 	

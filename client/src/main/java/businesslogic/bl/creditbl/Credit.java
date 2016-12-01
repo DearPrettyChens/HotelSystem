@@ -6,6 +6,7 @@ import java.util.List;
 
 import dao.creditdao.CreditDao;
 import exception.NullCustomerIDException;
+import init.RMIHelper;
 import po.CreditInfoPO;
 import po.CreditPO;
 import util.ResultMessage;
@@ -31,8 +32,9 @@ public class Credit {
 	}*/
 	public Credit(String customerID){
 		this.customerID=customerID;
-//		creditDao=RMIHelper.getCreditDao();
-		creditDao=new CreditDao_Stub();
+//		RMIHelper.init();
+		creditDao=RMIHelper.getCreditDao();
+//		creditDao=new CreditDao_Stub();
 	}
 	/**
 	 * 获得该顾客的信用记录

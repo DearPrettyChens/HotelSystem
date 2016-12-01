@@ -15,13 +15,13 @@ public class DepositCreditTest {
 	Credit credit;
 	@Before
 	public void setUp() throws Exception {
-		credit=new Credit("000001");
+		credit=new Credit("000002");
 	}
 
 	@Test
 	public void test() {
 		int preCredit=credit.getUserCreditInfoList().getCredit();
-		assertEquals(ResultMessage.SUCCESS, credit.confirmCreditDeposit(10, "000001"));
+		assertEquals(ResultMessage.SUCCESS, credit.confirmCreditDeposit(10, "000002"));
 		int nowCredit=credit.getUserCreditInfoList().getCredit();
 		assertEquals(preCredit+10*100,nowCredit);
 	}

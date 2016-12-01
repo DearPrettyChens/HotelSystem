@@ -13,12 +13,12 @@ import presentation.ui.tools.MyButton;
 
 /**
  * 
- * 特殊时期策略策略
+ * 企业优惠策略
  * @author cy
  * @version 1.0
  * 
  */
-public class HotelSpecialTimeStr_JPanel   extends JPanel {
+public class HotelEnterpriseStr_JPanel   extends JPanel {
 	    
 	  
 	    private JLabel titlejl=new JLabel("合作企业顾客折扣策略");
@@ -32,9 +32,9 @@ public class HotelSpecialTimeStr_JPanel   extends JPanel {
 		
 		
 	    
-	    ArrayList<SingleHotelSpecialTimeStr> singleinfos=new  ArrayList<SingleHotelSpecialTimeStr>();
+	    ArrayList<SingleHotelEnterpriseStr_JPanel > singleinfos=new  ArrayList<SingleHotelEnterpriseStr_JPanel>();
 	    
-	     public HotelSpecialTimeStr_JPanel(ArrayList<SingleHotelSpecialTimeStr> singleinfos){
+	     public HotelEnterpriseStr_JPanel(ArrayList<SingleHotelEnterpriseStr_JPanel> singleinfos){
 	    	 
 	    	 this.singleinfos=singleinfos;
 	    	 
@@ -68,11 +68,11 @@ public class HotelSpecialTimeStr_JPanel   extends JPanel {
 				// TODO Auto-generated method stub
 				
 				
-				SingleHotelSpecialTimeStr newinfo=new SingleHotelSpecialTimeStr();
-				HotelSpecialTimeStr_JPanel.this.singleinfos.add(newinfo);
-				newinfo.setBounds(0,100+HotelSpecialTimeStr_JPanel.this.singleinfos.size()*50,800,50);
-				HotelSpecialTimeStr_JPanel.this.add(newinfo);
-				HotelSpecialTimeStr_JPanel.this.repaint();
+				SingleHotelEnterpriseStr_JPanel newinfo=new SingleHotelEnterpriseStr_JPanel();
+				HotelEnterpriseStr_JPanel.this.singleinfos.add(newinfo);
+				newinfo.setBounds(0,100+HotelEnterpriseStr_JPanel.this.singleinfos.size()*50,800,50);
+				HotelEnterpriseStr_JPanel.this.add(newinfo);
+				HotelEnterpriseStr_JPanel.this.repaint();
 				
 			}
 			
@@ -85,7 +85,7 @@ public class HotelSpecialTimeStr_JPanel   extends JPanel {
 		
 		
 		for(int i=0;i<singleinfos.size();i++){
-			SingleHotelSpecialTimeStr tempinfo=singleinfos.get(i);
+			SingleHotelEnterpriseStr_JPanel tempinfo=singleinfos.get(i);
 			
 			tempinfo.setBounds(0,100+50*i,800,50);
 			this.add(tempinfo);

@@ -1,5 +1,7 @@
 package dao.driver;
 
+import static org.junit.Assert.assertEquals;
+
 import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -10,6 +12,7 @@ import dao.impl.AvailableRoomDaoImpl;
 import po.AvailableRoomInfoPO;
 import po.AvailableRoomNumberPO;
 import util.BedType;
+import util.ResultMessage;
 
 public class AvailableRoomDataServiceImpl_Driver {
 	public void drive(AvailableRoomDao dao) throws RemoteException, ParseException {
@@ -44,8 +47,24 @@ public class AvailableRoomDataServiceImpl_Driver {
 		System.out.println(getPO.getHotelNumber() + " " + getPO.getBedType() + " " + getPO.getNumber());
 		
 	}
-
+	public void test(AvailableRoomDao dao) throws RemoteException {
+//		assertEquals(
+		System.out.println(		dao.setAvailableRoomNumber(new AvailableRoomNumberPO(8,BedType.BIGBED,
+				new Date(),5)));
+//				,ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoPO> roomInfo=dao.getAvailableRoomInfo("000005");
+		for(int i=0;i<roomInfo.size();i++){
+			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
+				System.out.println(
+//						assertEquals(
+						roomInfo.get(i).getCurrentNumber());
+//						,8);
+			}
+		}
+	}
 	public static void main(String[] args) throws RemoteException, ParseException {
-		new AvailableRoomDataServiceImpl_Driver().drive(AvailableRoomDaoImpl.getInstance());
+		new AvailableRoomDataServiceImpl_Driver().test(AvailableRoomDaoImpl.getInstance());
+//		.drive(AvailableRoomDaoImpl.getInstance());
+		
 	}
 }

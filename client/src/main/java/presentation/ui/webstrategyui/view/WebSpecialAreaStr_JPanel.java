@@ -17,7 +17,7 @@ import presentation.ui.tools.MyButton;
  * @version 1.0
  * 
  */
-public class Webvipstr_JPanel  extends JPanel{
+public class WebSpecialAreaStr_JPanel  extends JPanel{
 	
 	private MyButton addjb=new MyButton();
 	private MyButton confirmjb=new MyButton();
@@ -25,8 +25,8 @@ public class Webvipstr_JPanel  extends JPanel{
 	 
 	
 	
-	public Webvipstr_JPanel(ArrayList<Singlewebvipstr_Jpanel> singleinfo){
-		this.singleinfo=singleinfo;
+	public WebSpecialAreaStr_JPanel(){
+		//this.singleinfo=;到逻辑层取
 		
 		
 		
@@ -75,8 +75,8 @@ public class Webvipstr_JPanel  extends JPanel{
 				singleinfo.add(newsingleinfo);
 				
 				newsingleinfo.setBounds(0,(singleinfo.size()-1)*50,800,50);
-				Webvipstr_JPanel.this.add(newsingleinfo);
-				Webvipstr_JPanel.this.repaint();
+				WebSpecialAreaStr_JPanel.this.add(newsingleinfo);
+				WebSpecialAreaStr_JPanel.this.repaint();
 			}
 	    	
 	    	

@@ -72,4 +72,11 @@ public class PersonnelControllerImpl implements PersonnelControllerService{
 	public void closeDetailInfoFrame() {
 		view.removeAll();
 	}
+
+	@Override
+	public void jumpToMainFrame() {
+		view=null;
+		
+	}
+
 }

@@ -1,10 +1,6 @@
 package presentation.ui.orderui.viewcontroller;
-/**
- * 控制网站营销人员管理订单的界面的接口
- * @author CLL
- *
- */
-public interface ManageOrderViewControllerService {
+
+public interface HotelWorkerOrderViewControllerService {
 	/**
 	 * 显示订单详细信息窗口
 	 * @param ordernumber
@@ -30,11 +26,7 @@ public interface ManageOrderViewControllerService {
 	 */
 	public void closeOrderDetail();
 	/**
-	 * 撤销订单后更新订单列表
-	 */
-	public void cancelOrder();
-	/**
-	 * 返回主界面
+	 * 返回酒店工作人员主界面
 	 */
 	public void jumpToMainFrame();
 }

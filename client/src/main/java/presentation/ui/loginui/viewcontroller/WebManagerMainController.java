@@ -13,7 +13,7 @@ import util.UserType;
  *
  */
 public class WebManagerMainController {
-	private JFrame frame;
+	private JFrame frame;//发起界面跳转请求的界面对象
 	private JPanel view;
 	public WebManagerMainController(JFrame frame){
 		this.frame=frame;
