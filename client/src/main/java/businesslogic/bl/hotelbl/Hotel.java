@@ -111,10 +111,18 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		//调用HotelStrategy.getHotelStrategy获得酒店优惠策略
 		hotelStrategy=HotelStrategy.getInstance();
 		ArrayList<HotelStrVO> hotelStrs=new ArrayList<HotelStrVO>();
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT));
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.BIRTH));
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.ENTERPRISE ));
-		hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.SPECIALTIME));
+		if(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT)!=null){
+			hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT));
+		}
+		if(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.BIRTH)!=null){
+			hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID, HotelStrategyType.BIRTH));
+		}
+		if(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.ENTERPRISE )!=null){
+			hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.ENTERPRISE ));
+		}
+		if(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.SPECIALTIME)!=null){
+			hotelStrs.add(hotelStrategy.getHotelStrategy(hotelID,HotelStrategyType.SPECIALTIME));
+		}
 		//调用hotel.getHotelOrderList获得酒店订单列表
 		ArrayList<HotelOrderVO> orders=this.getHotelOrderList(hotelID);
 		//调用数据层获得酒店基本信息
