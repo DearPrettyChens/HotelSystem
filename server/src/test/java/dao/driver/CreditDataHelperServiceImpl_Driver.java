@@ -14,7 +14,7 @@ public class CreditDataHelperServiceImpl_Driver {
 		System.out.println(dao.setCredit(po));
 		po.setCredit(200);
 		System.out.println(dao.setCredit(po));
-		CreditInfoPO list = dao.getCreditInfo("2");
+		CreditInfoPO list = dao.getCreditInfo("0001");
 		for (CreditPO each : list.getCreditRecords()) {
 			System.out.println(
 					each.getName() + " " + each.getCreditChange() + " " + each.getCredit() + " " + each.getReason()+" "+each.getTime());

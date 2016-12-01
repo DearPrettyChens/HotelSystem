@@ -72,13 +72,22 @@ public class OrderDataServiceImpl_Driver {
 		}
 
 	}
-public void runclienttest(OrderDao dao) throws RemoteException{
-//	dao.addOrder(
-//			new OrderInfoPO("20161119000002000001", "000002", "000001", "chen", "chen", "12345678999", new Date(),
-//					new Date(), new Date(), "", BedType.BIGBED, 1, 1, Children.EXIST, 680, null));
-}
+
+	public void runclienttest(OrderDao dao) throws RemoteException {
+		// dao.addOrder(
+		// new OrderInfoPO("20161119000002000001", "000002", "000001", "chen",
+		// "chen", "12345678999", new Date(),
+		// new Date(), new Date(), "", BedType.BIGBED, 1, 1, Children.EXIST,
+		// 680, null));
+		dao.addOrder(new OrderInfoPO("2", "20161120000002000001", "ccc", "ann", "12345678910", "AAAAA", "5",
+				"12345678910", "big", BedType.BIGBED, 2, new Date(), 4, Children.EXIST, false, new Date(), new Date(),
+				new Date(), new Date(), new Date(), 200, OrderState.NOTEXECUTED, null));
+		System.out.println(dao.getOrderInfo("20161120000002000001").getExpectedCheckInTime());
+		System.out.println(dao.getOrderInfo("20161120000002000001").getActualCheckInTime());
+	}
+
 	public static void main(String[] args) throws RemoteException {
-//		new OrderDataServiceImpl_Driver().drive(OrderDaoImpl.getInstance());
+		// new OrderDataServiceImpl_Driver().drive(OrderDaoImpl.getInstance());
 		new OrderDataServiceImpl_Driver().runclienttest(OrderDaoImpl.getInstance());
 	}
 }

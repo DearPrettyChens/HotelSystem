@@ -36,11 +36,11 @@ public class CreditVO  implements Serializable{
 		
 	}
     public CreditVO(String name,String ID,int credit,int CreditChange,String reason,Date time){
+    	this.name=name;
 		this.credit=credit;
 		this.CreditChange=CreditChange;
 		this.reason=reason;
 		this.time=time;
-		this.reason=reason;
 		this.ID=ID;
 		
 		

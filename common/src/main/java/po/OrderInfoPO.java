@@ -96,6 +96,7 @@ public class OrderInfoPO implements Serializable {
 	@Version
 	@Column(name = "version")
 	private int version;
+
 	// 空方法
 	public OrderInfoPO() {
 
@@ -154,7 +155,6 @@ public class OrderInfoPO implements Serializable {
 		this.setPrice(price);
 		this.setState(state);
 		this.setReserveTime(orderTime);
-		;
 	}
 
 	// 顾客在撤销订单前及入住之前查看订单时显示的订单信息
@@ -359,14 +359,16 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public Date getLateCheckInTime() {
-		if (lateCheckInTimeStamp == null)
+		if (lateCheckInTimeStamp == null) {
 			return null;
+		}
 		return new Date(lateCheckInTimeStamp.getTime());
 	}
 
 	public void setLateCheckInTime(Date lateCheckInTime) {
-		if (lateCheckInTime != null)
+		if (lateCheckInTime != null) {
 			this.lateCheckInTimeStamp = new java.sql.Timestamp(lateCheckInTime.getTime());
+		}
 	}
 
 	public Date getActualCheckInTime() {
@@ -401,7 +403,7 @@ public class OrderInfoPO implements Serializable {
 
 	public OrderState getState() {
 		OrderState orderState = null;
-		if(state==null){
+		if (state == null) {
 			return null;
 		}
 		switch (state) {
@@ -471,10 +473,11 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public OrderInfoPO copy() {
-		return new OrderInfoPO(getOrderID(), getHotelID(), getHotelName(), getCustomerID(), getCustomerName(),
-				getLiveinPersonName(), getLiveinPersonTelephone(), getReserveTime(), getExpectedCheckInTime(),
-				getExpectedCheckOutTime(), getRoomType(), getBedType(), getAmount(), getNumberOfPeople(), getHasChild(),
-				getPrice(), getState());
+		return new OrderInfoPO(getCustomerID(), getOrderID(), getCustomerName(), getLiveinPersonName(),
+				getLiveinPersonTelephone(), getHotelName(), getHotelID(), getHotelTelephone(), getRoomType(),
+				getBedType(), getAmount(), getReserveTime(), getNumberOfPeople(), getHasChild(), isHasRemarked(),
+				getExpectedCheckInTime(), getExpectedCheckOutTime(), getLateCheckInTime(), getActualCheckInTime(),
+				getActualCheckOutTime(), getPrice(), getState(), getCancleTime());
 	}
 
 }

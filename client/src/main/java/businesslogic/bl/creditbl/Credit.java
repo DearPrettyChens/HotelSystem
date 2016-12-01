@@ -32,7 +32,7 @@ public class Credit {
 	}*/
 	public Credit(String customerID){
 		this.customerID=customerID;
-//		RMIHelper.init();
+		RMIHelper.init();
 		creditDao=RMIHelper.getCreditDao();
 //		creditDao=new CreditDao_Stub();
 	}
