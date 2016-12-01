@@ -201,7 +201,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	private ArrayList<OrderListPO> getOrderListByCustomer(String string, OrderState state) {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from OrderListPO where ( customer_id = '" + string + "' ) and ( state = '"
+		Query query = session.createQuery("from OrderListPO where ( customer_id = " + Integer.parseInt(string) + " ) and ( state = '"
 				+ state.getString() + "' )");
 		List<OrderListPO> list = query.list();
 		ArrayList<OrderListPO> ret = new ArrayList<OrderListPO>();
@@ -229,7 +229,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	public ArrayList<OrderListPO> getOrderList(String hotelID) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from OrderListPO where hotel_id = '" + hotelID + "' ");
+		Query query = session.createQuery("from OrderListPO where hotel_id = " + Integer.parseInt(hotelID) + " ");
 		List<OrderListPO> list = query.list();
 		ArrayList<OrderListPO> ret = new ArrayList<OrderListPO>();
 		for (OrderListPO each : list) {

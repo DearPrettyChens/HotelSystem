@@ -88,6 +88,7 @@ public class OrderDataServiceImpl_Driver {
 		// System.out.println(dao.getOrderInfo("20161120000002000001").getExpectedCheckInTime());
 		// System.out.println(dao.getOrderInfo("20161120000002000001").getActualCheckInTime());
 		System.out.println(dao.getOrderList("0005").size());
+		System.out.println(dao.getOrderInfo("20161120000002000001").getHasChild());
 	}
 
 	public static void main(String[] args) throws RemoteException {

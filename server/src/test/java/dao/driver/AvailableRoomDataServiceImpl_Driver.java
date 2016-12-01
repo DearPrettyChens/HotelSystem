@@ -62,9 +62,12 @@ public class AvailableRoomDataServiceImpl_Driver {
 			}
 		}
 	}
+	public void runClientCode(AvailableRoomDao dao) throws RemoteException{
+		System.out.println(dao.getAvailableRoomInfo("00005").size());//("000005", "000001")
+	}
 	public static void main(String[] args) throws RemoteException, ParseException {
-		new AvailableRoomDataServiceImpl_Driver().test(AvailableRoomDaoImpl.getInstance());
+//		new AvailableRoomDataServiceImpl_Driver().test(AvailableRoomDaoImpl.getInstance());
 //		.drive(AvailableRoomDaoImpl.getInstance());
-		
+		new AvailableRoomDataServiceImpl_Driver().runClientCode(AvailableRoomDaoImpl.getInstance());
 	}
 }
