@@ -130,7 +130,7 @@ public class Hotelworker_JFrame extends JFrame{
 	    	
 	      	
 	      	
-	      	namejl1.setBounds(90,40,200,30);
+	      	namejl1.setBounds(90,37,200,30);
 	      	namejl1.setFont(new Font("宋体",Font.BOLD, 16));
 	      	namejl1.setForeground(Color.white);
 	      	abovepanel.add(namejl1);

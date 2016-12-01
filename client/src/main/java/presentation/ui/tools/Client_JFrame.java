@@ -20,13 +20,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-<<<<<<< HEAD
-=======
-import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
-import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
-import presentation.ui.hotelstrategyui.view.HotelOverThreeStr_Jpanel;
-import presentation.ui.hotelstrategyui.view.SingleHotelEnterpriseStr_JPanel;
->>>>>>> origin/master
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.UserType;
 
@@ -65,8 +58,7 @@ public class Client_JFrame extends JFrame {
 	private Basic_JPanel jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel);
 
 	private HeadPanel headPanel;
-	
-<<<<<<< HEAD
+
 	// private Basic_JPanel jp1=new Basic_JPanel();
 	private JLabel namejl = new JLabel(customerName);
 	private JLabel vipjl= new JLabel(new ImageIcon("image//vip.png"));
@@ -90,59 +82,7 @@ public class Client_JFrame extends JFrame {
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
         addHeadImage();//添加头像
-=======
-	
-	private JLabel line =new JLabel(new ImageIcon("image//line.png"));
-	
-    
-	
-	//private Changepassword_JPanel cp=new Changepassword_JPanel();
-	//private Changemessage_JPanel cp=new Changemessage_JPanel();
-	//private SingleCreditinfo_JPanel cp=new SingleCreditinfo_JPanel("4.19", "wjbce", "wobc", "owfbnc", "+1000");
-	//private Clientlistinfo_JPanel cp=new Clientlistinfo_JPanel("120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
-	//Searchperson_JPanel cp=new Searchperson_JPanel();
-	//Searchoradd_JPanel cp=new Searchoradd_JPanel();
-	//Orderlistinfo_JPanel cp=new Orderlistinfo_JPanel("", "", "","", "", "");
-	//Orderlistinfo_JPanel cp=new Orderlistinfo_JPanel("120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374", "120374");
-	//Clientdeposite_JPanel cp=new Clientdeposite_JPanel("enwf","enwf","enwf","enwf");
-	//private Hotelworkerlistinfo_JPanel cp=new Hotelworkerlistinfo_JPanel("fw","120374", "22039482", "jcie", "lknfrce", "jbvcekj", "fvbcejnevj");
-	
-//	 Singlewebclientlevelstr_Jpanel jphh=new Singlewebclientlevelstr_Jpanel(1,2);
-//	 Singlewebclientlevelstr_Jpanel jphhh=new Singlewebclientlevelstr_Jpanel(3,4);
-//	 
-//	 Singlewebspecialtimestr_JPanel jpc=new Singlewebspecialtimestr_JPanel("bd","ougd",9);
-//	 Singlewebvipstr_Jpanel jpa=new  Singlewebvipstr_Jpanel("wejfb",9);
-//	 
-//	 ArrayList<Singlewebclientlevelstr_Jpanel > arry;
-//	 ArrayList< Singlewebspecialtimestr_JPanel > arry1;
-//	 ArrayList<Singlewebvipstr_Jpanel > arry2;
-//	 Webvipstr_JPanel  vipstr;Webclientlevelstr_Jpanel clientlevelstr;Webspecialtimestr_JPanel specialtimestr;
-//	 
-//	Makewebstr_JPanel cp;
-//	 
-//	 
-	SingleHotelEnterpriseStr_JPanel cp=new  SingleHotelEnterpriseStr_JPanel();
-	public Client_JFrame(){
-//		
-//		arry=new ArrayList<Singlewebclientlevelstr_Jpanel >();
-//		arry.add(jphh);
-//		arry.add(jphhh);
-//		
-//		arry1=new ArrayList<Singlewebspecialtimestr_JPanel >();
-//		arry1.add(jpc);
-//		
-//		
-//		arry2=new ArrayList<Singlewebvipstr_Jpanel >();
-//		arry2.add(jpa);
-//		
-//		
-//		clientlevelstr=new Webclientlevelstr_Jpanel(arry);
-//		
-//		vipstr=new Webvipstr_JPanel(arry2);
-//		specialtimestr=new Webspecialtimestr_JPanel(arry1);
-//		cp=new Makewebstr_JPanel(vipstr,clientlevelstr,specialtimestr);
-		//Webclientlevelstr_Jpanel cp=new Webclientlevelstr_Jpanel(arry);
->>>>>>> origin/master
+
 		
 		this.setVisible(true);
 	}
@@ -205,7 +145,6 @@ public class Client_JFrame extends JFrame {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * 添加头像
 	 */
 	public void addHeadImage() {
@@ -221,93 +160,7 @@ public class Client_JFrame extends JFrame {
 	 * @throws 未定
 	 */
 	public void setBak() {
-=======
-     * 添加组件
-    * @param
-    * @return
-    * @throws 未定
-    */
-    public void addComp(){
-    	
-    	
-    	close_jbutton.setBounds(970,40,20,20);
-    	abovepanel.add(close_jbutton);
-      	narrow_jbutton.setBounds(930,40,20,20);
-      	abovepanel.add(narrow_jbutton);
-      	arrow_JButton.setBounds(850,40,20,20);
-      	abovepanel.add(arrow_JButton);
-      	home_JButton.setBounds(810,40,20,20);
-      	abovepanel.add(home_JButton);
-      	reflesh_JButton.setBounds(770,40,20,20);
-      	abovepanel.add(reflesh_JButton);
-      	line.setBounds(885,35,30,30);
-      	abovepanel.add(line);
-      	
-      	
-      	namejl.setBounds(30,70,200,30);
-      	namejl.setFont(new Font("宋体",Font.BOLD, 16));
-      	namejl.setForeground(Color.white);
-      	abovepanel.add(namejl);
-    	
-      	abovepanel.setBackground( backgroundcolor);
-      	abovepanel.setBounds(0,0,1000,100);
-      	abovepanel.setLayout(null);
-	     this.add(abovepanel);
-      	
-      	
-	     
-	   
-	    
-      	   
-	     
-	     jp1.setBounds(0,100,200,80);
-	     this.add(jp1);
-		 jp2.setBounds(0,180,200,80);
-		 this.add(jp2);
-		 jp3.setBounds(0,260,200,80);
-		 this.add(jp3);
-		 jp4.setBounds(0,340,200,80);
-		 this.add(jp4);
-		 jp5.setBounds(0,420,200,80);
-		 this.add(jp5);
-		 jp6.setBounds(0,500,200,80);
-		 this.add(jp6);
-			
-		 sidepanel.setBackground(backgroundcolor);
-	     sidepanel.setBounds(0,580, 200, 140);
-	     this.add(sidepanel);
-	     
-	     
-      	
-        cp.setBounds(200,100,800,50);
-         this.add(cp);
-         
-   	
-    }
-    
-    
-    
-    
-    
-    
-    /**
-     * 设置背景图片
-   * @param
-   * @return
-   * @throws 未定
-   */
-  public void setBak(){ 
-	
-	  
-	  
-	  
-	
-    
-    } 
-   
-  
- 
->>>>>>> origin/master
+
 
 	}
 
