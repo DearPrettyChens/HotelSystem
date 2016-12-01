@@ -3,6 +3,8 @@ package businesslogic.bl.personnelbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import javax.jws.soap.SOAPBinding.Use;
+
 import dao.personneldao.PersonnelDao;
 import init.RMIHelper;
 import po.PersonListPO;
@@ -23,9 +25,9 @@ public class PersonList {
 	private static PersonList personList;
 
 	private PersonList() {
-		RMIHelper.init();
-		personnelDao = RMIHelper.getPersonnelDao();
-//		personnelDao=new PersonnelDao_Stub();
+//		RMIHelper.init();
+//		personnelDao = RMIHelper.getPersonnelDao();
+		personnelDao=new PersonnelDao_Stub();
 		
 	}
 
@@ -57,7 +59,14 @@ public class PersonList {
 		}
 		
 		try {
-			personListPOs=personnelDao.getPersonList(userType, userName, TransHelper.idToInt(userID));
+			if(userName!=null){
+				personListVOs=getListByUserName(userType, userName);
+			}
+			if(userID!=null){
+				personListVOs=getListByUserID(userType,  TransHelper.idToInt(userID));
+			}
+			personListPOs=personnelDao.getPersonList(userType, null, -1);
+			if(personListPOs==null) return null;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -66,6 +75,60 @@ public class PersonList {
 			personListVOs.add(new PersonListVO(personListPO));
 		}
 		
+		if(personListVOs.isEmpty()) return null;		
 		return personListVOs;
 	}
+	
+	/**
+	 * 根据用户名进行检索
+	 * @param userType
+	 * @param userName
+	 * @return
+	 */
+	private ArrayList<PersonListVO> getListByUserName(UserType userType,String userName) {
+		  ArrayList<PersonListVO> personListVOs=new ArrayList<PersonListVO>();
+		try {
+			
+				personListPOs=personnelDao.getPersonList(null, userName, -1);
+				if (personListPOs==null) return null;
+				for(PersonListPO personListPO:personListPOs){
+					if(personListPO.getUserType()==userType){
+						personListVOs.add(new PersonListVO(personListPO));
+					}			
+				}
+				if(personListVOs.isEmpty()) return null;
+			
+			
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return personListVOs;
+	}
+
+	/**
+	 * 根据用户编号进行检索
+	 * @param userType
+	 * @param userid
+	 * @return
+	 */
+    private ArrayList<PersonListVO> getListByUserID(UserType userType,int userID){
+    	  ArrayList<PersonListVO> personListVOs=new ArrayList<PersonListVO>();
+  		try {
+  				personListPOs=personnelDao.getPersonList(null, null, userID);
+  				if (personListPOs==null) return null;
+  				for(PersonListPO personListPO:personListPOs){
+  					if(personListPO.getUserType()==userType){
+  						personListVOs.add(new PersonListVO(personListPO));
+  					}			
+  				}
+               if (personListVOs.isEmpty()) return null;//便于界面判断
+  			
+  		} catch (RemoteException e) {
+  			e.printStackTrace();
+  		}
+  		return personListVOs;
+    }
+
+
+
 }
