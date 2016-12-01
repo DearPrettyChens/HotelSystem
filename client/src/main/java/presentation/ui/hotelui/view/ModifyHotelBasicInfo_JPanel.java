@@ -11,12 +11,12 @@ import javax.swing.JTextField;
 import presentation.ui.tools.MyButton;
 
 /**
- * 酒店详细信息
+ * 酒店工作人员维护酒店信息界面
  * @author cy
  * @version 1.0
  * 
  */
-public class HotelDetailInfo_JPanel  extends JPanel{
+public class ModifyHotelBasicInfo_JPanel  extends JPanel{
 	
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
@@ -52,14 +52,14 @@ public class HotelDetailInfo_JPanel  extends JPanel{
     private JTextArea introductionjtf;
     
     
-    public HotelDetailInfo_JPanel(String number,String hotelname,String area,int star,String location,String tel,String service,String introduction){
-    	this.number=number;
+    public ModifyHotelBasicInfo_JPanel(){
+    	/*this.number=number;
     	this.area=area;
     	this.hotelname=hotelname;
     	this.location=location;
     	this.tel=tel;
     	this.service=service;
-    	this.introduction=introduction;
+    	this.introduction=introduction;*///去逻辑层取...
     	
     	
     	hotelnamejl=new JLabel(hotelname+"酒店");

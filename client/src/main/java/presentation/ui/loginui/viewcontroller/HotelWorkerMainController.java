@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 
 import presentation.ui.availableroomui.view.RoomInfo_JPanel;
 import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
+import presentation.ui.hotelui.view.ModifyHotelBasicInfo_JPanel;
 import presentation.ui.orderui.view.Searchorder_JPanel;
 import util.UserType;
 
@@ -20,7 +21,9 @@ public class HotelWorkerMainController {
 		this.frame=frame;
 	}
 	public void jumpToMaintainHotelInfoView(){
-		//TODO
+		frame.removeAll();
+		view=new ModifyHotelBasicInfo_JPanel();
+		frame.add(view);
 	}
 	
 	public void jumpToAddRoomInfoView(){
