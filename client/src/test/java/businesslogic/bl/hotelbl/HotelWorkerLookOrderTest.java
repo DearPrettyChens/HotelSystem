@@ -33,7 +33,7 @@ public class HotelWorkerLookOrderTest {
 	@Test
 	public void test() {
 		Hotel hotel = new Hotel();
-		assertEquals(1,hotel.getHotelOrderList("000005").size() );
+		assertEquals(1,hotel.getHotelOrderList("000005").size());
 //		hotel.getHotelOrderInfo("201611030001000001");
 		assertEquals(Children.EXIST, hotel.getHotelOrderInfo("00000000001234567890").getHasChild());
 	}

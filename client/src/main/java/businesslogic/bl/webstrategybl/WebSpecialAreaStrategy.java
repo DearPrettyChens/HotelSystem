@@ -23,8 +23,9 @@ public class WebSpecialAreaStrategy implements WebStrategyInterface {
 	private static WebStrategyInterface webSpecialAreaStrategy;
 	
     private  WebSpecialAreaStrategy(){
-    	webStrategyDao=new WebStrategyDao_Stub();
-//         webStrategyDao=RMIHelper.getWebStrategyDao();
+//    	webStrategyDao=new WebStrategyDao_Stub();
+    	RMIHelper.init();
+         webStrategyDao=RMIHelper.getWebStrategyDao();
     }
     
     public static WebStrategyInterface getInstance() {

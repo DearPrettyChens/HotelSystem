@@ -41,7 +41,7 @@ public class SingleOrder {
 	public SingleOrder(Hotel hotel){
 		RMIHelper.init();
 		orderDao=RMIHelper.getOrderDao();
-		orderDao=new OrderDao_Stub();
+	//	orderDao=new OrderDao_Stub();
 //		this.hotelInfoOrderService=hotel;
 	}
 	

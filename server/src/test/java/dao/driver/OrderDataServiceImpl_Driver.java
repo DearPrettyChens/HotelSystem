@@ -79,11 +79,15 @@ public class OrderDataServiceImpl_Driver {
 		// "chen", "12345678999", new Date(),
 		// new Date(), new Date(), "", BedType.BIGBED, 1, 1, Children.EXIST,
 		// 680, null));
-		dao.addOrder(new OrderInfoPO("2", "20161120000002000001", "ccc", "ann", "12345678910", "AAAAA", "5",
-				"12345678910", "big", BedType.BIGBED, 2, new Date(), 4, Children.EXIST, false, new Date(), new Date(),
-				new Date(), new Date(), new Date(), 200, OrderState.NOTEXECUTED, null));
-		System.out.println(dao.getOrderInfo("20161120000002000001").getExpectedCheckInTime());
-		System.out.println(dao.getOrderInfo("20161120000002000001").getActualCheckInTime());
+		// dao.addOrder(new OrderInfoPO("2", "20161120000002000001", "ccc",
+		// "ann", "12345678910", "AAAAA", "5",
+		// "12345678910", "big", BedType.BIGBED, 2, new Date(), 4,
+		// Children.EXIST, false, new Date(), new Date(),
+		// new Date(), new Date(), new Date(), 200, OrderState.NOTEXECUTED,
+		// null));
+		// System.out.println(dao.getOrderInfo("20161120000002000001").getExpectedCheckInTime());
+		// System.out.println(dao.getOrderInfo("20161120000002000001").getActualCheckInTime());
+		System.out.println(dao.getOrderList("0005").size());
 	}
 
 	public static void main(String[] args) throws RemoteException {

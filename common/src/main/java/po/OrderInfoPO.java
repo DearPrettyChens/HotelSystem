@@ -20,7 +20,7 @@ import util.OrderState;
  * @version 1.0
  */
 @Entity
-@Table(name = "new_order")
+@Table(name = "t_order2")
 public class OrderInfoPO implements Serializable {
 	// 顾客编号
 	@Column(name = "customer_id")

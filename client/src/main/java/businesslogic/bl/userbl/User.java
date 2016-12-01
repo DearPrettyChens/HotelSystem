@@ -3,6 +3,7 @@ package businesslogic.bl.userbl;
 import java.rmi.RemoteException;
 
 import dao.userdao.UserDao;
+import init.RMIHelper;
 import po.ClientPO;
 import util.Password;
 import util.ResultMessage;
@@ -28,8 +29,9 @@ public class User {
 	private ClientPO clientPO;
 	
 	private User(){
-		userDao=new UserDao_Stub();
-//		userDao=RMIHelper.getUserDao();
+//		userDao=new UserDao_Stub();
+		RMIHelper.init();
+		userDao=RMIHelper.getUserDao();
 		personMap=PersonMap.getInstance();
 	}
 	

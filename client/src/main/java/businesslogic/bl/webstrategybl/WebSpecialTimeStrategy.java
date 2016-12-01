@@ -23,8 +23,8 @@ public class WebSpecialTimeStrategy implements WebStrategyInterface{
     private  WebStrPO webStrPO;
     private static WebStrategyInterface webSpecialAreaStrategy;
 	private WebSpecialTimeStrategy(){
-	webStrategyDao=new WebStrategyDao_Stub();
-//		webStrategyDao=RMIHelper.getWebStrategyDao();
+//	webStrategyDao=new WebStrategyDao_Stub();
+		webStrategyDao=RMIHelper.getWebStrategyDao();
 	
 	}
 	public static WebStrategyInterface getInstance() {

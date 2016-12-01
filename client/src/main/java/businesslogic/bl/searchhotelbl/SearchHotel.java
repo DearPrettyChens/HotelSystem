@@ -40,8 +40,9 @@ public class SearchHotel {
 	public SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
-//			searchHotelDao = RMIHelper.getSearchHotelDao();
-			searchHotelDao=new SearchHotelDao_Stub();
+			RMIHelper.init();
+			searchHotelDao = RMIHelper.getSearchHotelDao();
+//			searchHotelDao=new SearchHotelDao_Stub();
 			if (hotelSortType == null) {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {

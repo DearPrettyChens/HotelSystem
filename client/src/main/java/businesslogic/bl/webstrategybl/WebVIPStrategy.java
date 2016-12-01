@@ -26,8 +26,9 @@ public class WebVIPStrategy implements WebStrategyInterface {
 	private static WebStrategyInterface webVIPStrategy;
 
 	private WebVIPStrategy() {
-		webStrategyDao=new WebStrategyDao_Stub();
-//		webStrategyDao = RMIHelper.getWebStrategyDao();
+//		webStrategyDao=new WebStrategyDao_Stub();
+		RMIHelper.init();
+		webStrategyDao = RMIHelper.getWebStrategyDao();
 	}
 
 	public static WebStrategyInterface getInstance() {
