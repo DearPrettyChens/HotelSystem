@@ -30,10 +30,10 @@ public class SearchHotelTest {
 	}
 	
 //	由于要在逻辑层调用hotel模块，还要涉及的数据层，所以未能测试
-//	@Test
-//	public void test(){
-//		ArrayList<HotelListVO>hotelListVOs=searchHotel.getHotelList();
-//		assertEquals("锦江之星大酒店",hotelListVOs.get(0).getHotelName());
-//	}
+	@Test
+	public void test(){
+		ArrayList<HotelListVO>hotelListVOs=searchHotel.getHotelList();
+		assertEquals("锦江之星大酒店",hotelListVOs.get(0).getHotelName());
+	}
 
 }

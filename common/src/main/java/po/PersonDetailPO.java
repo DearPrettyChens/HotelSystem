@@ -1,5 +1,6 @@
 package po;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.annotation.Generated;
@@ -18,7 +19,7 @@ import util.UserType;
 
 @Entity
 @Table(name = "new_user")
-public class PersonDetailPO {
+public class PersonDetailPO implements Serializable{
 	/**
 	 * 用户详细信息的po类，职责为实现逻辑层和数据层之间详细信息的交互
 	 * 
@@ -160,6 +161,9 @@ public class PersonDetailPO {
 
 	public CustomerType getVIPType() {
 		CustomerType customerType = null;
+		if(vipTypeInSQL==null){
+			return null;
+		}
 		switch (vipTypeInSQL) {
 		case "INDIVIDUAL":
 			customerType = CustomerType.INDIVIDUAL;

@@ -57,7 +57,16 @@ public class PersonnelDataServiceImpl_Driver {
 
 	}
 
+	public void testClientCode(PersonnelDao dao) throws RemoteException {
+//		PersonDetailPO personDetailVO2=new PersonDetailPO(0, "小俐俐",   null,"12345678901",0,null, null,null,"xiaolili","锦江之星大酒店", UserType.HotelWorker);
+//		Personnel personnel= Personnel.getInstance();
+//		System.out.println(dao.addPerson(personDetailVO2));
+		PersonListPO vo1=dao.getPersonList(null,"小俐俐",0).get(0);
+		System.out.println(vo1.getHotelName());
+	}
+
 	public static void main(String[] args) throws RemoteException {
-		new PersonnelDataServiceImpl_Driver().drive(PersonnelDaoImpl.getInstance());
+//		new PersonnelDataServiceImpl_Driver().drive(PersonnelDaoImpl.getInstance());
+		new PersonnelDataServiceImpl_Driver().testClientCode(PersonnelDaoImpl.getInstance());
 	}
 }

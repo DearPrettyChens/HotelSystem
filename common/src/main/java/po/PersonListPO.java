@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -12,7 +14,7 @@ import util.UserType;
 
 @Entity
 @Table(name = "new_user")
-public class PersonListPO {
+public class PersonListPO implements Serializable{
 	/**
 	 * 用户列表信息的po类，职责为实现逻辑层和数据层之间用户详细信息的交互
 	 * 

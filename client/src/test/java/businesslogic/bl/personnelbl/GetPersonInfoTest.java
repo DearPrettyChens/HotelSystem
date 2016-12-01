@@ -32,8 +32,8 @@ public class GetPersonInfoTest {
 	public void test() {
 		assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO1));
 		assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO2));
-		PersonListVO vo1=personList.getPersonList(UserType.HotelWorker, "小俐俐").get(0);
-		PersonDetailVO vo2= personnel.getPersonDetail("000002");
+		PersonListVO vo1=personList.getPersonList(null, "小俐俐").get(0);
+		PersonDetailVO vo2= personnel.getPersonDetail("000022");
 		assertEquals("锦江之星大酒店", vo1.getHotelName());
 		assertEquals("小菲菲",vo2.getName());
 	}

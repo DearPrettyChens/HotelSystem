@@ -23,7 +23,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 	@Override
 	public ResultMessage addPerson(PersonDetailPO personDetailPO) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		session.beginTransaction();
+		Transaction transaction = session.beginTransaction();
 		PersonDetailPO savePO = personDetailPO.copy();
 		// new PersonDetailPO(personDetailPO.getId(), personDetailPO.getName(),
 		// personDetailPO.getImage(), personDetailPO.getTelephone(),
@@ -38,12 +38,14 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		}
 		try {
 			session.save(savePO);
+			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.getTransaction().rollback();
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			return ResultMessage.FAIL;
 		} finally {
-			session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -73,7 +75,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		for (PersonListPO each : list) {
 			PersonListPO addPO = each.copy();
 			addPO.setImageInSQL(each.getImageInSQL());
-			//设置图片
+			// 设置图片
 			if (addPO.getImageInSQL() != null) {
 				addPO.setImage(ImageUtil.getImage(each.getImageInSQL()));
 			}
@@ -93,7 +95,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 			PersonListPO addPO = each.copy();
 			addPO.setImageInSQL(each.getImageInSQL());
 			if (addPO.getImageInSQL() != null) {
-				//设置图片
+				// 设置图片
 				addPO.setImage(ImageUtil.getImage(each.getImageInSQL()));
 			}
 			retList.add(addPO);
@@ -112,7 +114,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 			PersonListPO addPO = each.copy();
 			addPO.setImageInSQL(each.getImageInSQL());
 			if (addPO.getImageInSQL() != null) {
-				//设置图片
+				// 设置图片
 				addPO.setImage(ImageUtil.getImage(each.getImageInSQL()));
 			}
 			retList.add(addPO);
@@ -135,7 +137,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		PersonDetailPO retPO = po.copy();
 		retPO.setUserImagePosition(po.getUserImagePosition());
 		if (retPO.getUserImagePosition() != null) {
-			//设置图片
+			// 设置图片
 			retPO.setImage(ImageUtil.getImage(retPO.getUserImagePosition()));
 		}
 		return retPO;
@@ -161,7 +163,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		setPO.setTelephone(po.getTelephone());
 		setPO.setImage(po.getImage());
 		if (setPO.getImage() != null) {
-			//图片存到服务器端
+			// 图片存到服务器端
 			setPO.setUserImagePosition(ImageUtil.SaveImage(setPO.getImage(), ImageType.userImage));
 		}
 		try {

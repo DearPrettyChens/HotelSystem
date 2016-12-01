@@ -1,5 +1,7 @@
 package po;
 
+import java.io.Serializable;
+
 import util.OrderState;
 import util.UserType;
 
@@ -9,7 +11,7 @@ import util.UserType;
  * @author CLL
  * @version 1.0
  */
-public class TypeInfoPO {
+public class TypeInfoPO implements Serializable{
 	// 浏览订单的发起者
 	private UserType userType;
 	// 浏览订单的状态
