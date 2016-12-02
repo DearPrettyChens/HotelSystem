@@ -20,6 +20,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.checkinui.view.OrderToCheckIn_JPanel;
+import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.UserType;
 
@@ -36,7 +38,9 @@ public class Client_JFrame extends JFrame {
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
 	
-	
+	private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
+    
+    
 	//关于界面
 	private Font font = new Font("宋体", Font.BOLD, 16);
 	private Color backgroundcolor = new Color(148, 221, 184);
@@ -141,6 +145,10 @@ public class Client_JFrame extends JFrame {
 		sidepanel.setBackground(backgroundcolor);
 		sidepanel.setBounds(0, 580, 200, 140);
 		getContentPane().add(sidepanel);
+		
+		
+		cp.setBounds(200,200,800,500);
+		this.add(cp);
 
 	}
 

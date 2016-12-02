@@ -40,9 +40,9 @@ public class ModifyHotelBasicInfo_JPanel  extends JPanel{
     private JLabel starjl=new JLabel("星级：");
     private JLabel locationjl=new JLabel("联系方式：");
     private JLabel areajl=new JLabel("设施服务：");
-    private JLabel teljl=new JLabel("星级：");
-    private JLabel servicejl=new JLabel("星级：");
-    private JLabel introductionjl=new JLabel("星级：");
+    private JLabel teljl=new JLabel("电话：");
+    private JLabel servicejl=new JLabel("设施服务：");
+    private JLabel introductionjl=new JLabel("简介：");
     
     private JTextField starjtf;
     private JTextField locationjtf;
