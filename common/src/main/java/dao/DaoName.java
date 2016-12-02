@@ -16,5 +16,6 @@ public enum DaoName {
     PersonnelDao,
     SearchHotelDao,
     UserDao,
-    WebStrategyDao
+    WebStrategyDao,
+    LogDao
 }

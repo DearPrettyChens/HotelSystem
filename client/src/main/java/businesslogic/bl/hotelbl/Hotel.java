@@ -72,7 +72,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	
 	//构造方法
 	public Hotel() {
-//		RMIHelper.init();
+		RMIHelper.init();
 		hotelDao=RMIHelper.getHotelDao();
 //		System.out.println(hotelDao);
 		//hotelDao=new HotelDao_Stub();
