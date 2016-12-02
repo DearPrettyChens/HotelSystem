@@ -10,6 +10,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.hibernate.loader.entity.EntityJoinWalker;
+
+import presentation.ui.personnelui.view.Clientlistinfo_JPanel;
 import util.UserType;
 
 /**
@@ -23,6 +26,8 @@ public class Webmannger_JFrame extends JFrame{
 		
 		private String managerName="管理员：悦悦";
 		
+		
+	private	Clientlistinfo_JPanel panel= new Clientlistinfo_JPanel("image//customer.png","123456", "小豆", "123456789", UserType.Customer.name(), "123456");
 	
 	//关于界面
 	private close_JButton close_jbutton=new close_JButton();
@@ -44,11 +49,7 @@ public class Webmannger_JFrame extends JFrame{
 	private HeadPanel headPanel;//头像部分
 	
 	private JLabel namejl=new JLabel(managerName);
-	
-	
 
-	
-	
 	
 	private Color backgroundcolor =new Color(148,221,184);
 	private JPanel abovepanel=new JPanel();
@@ -149,7 +150,10 @@ public class Webmannger_JFrame extends JFrame{
 		     sidepanel.setLayout(null);
 		     this.add(sidepanel);
 		     
-	      	
+		    //各个面板设置进来进行观察
+		     panel.setBounds(200,100,800,600);
+				getContentPane().add(panel);
+		     
 	    
 	    }
 	    
