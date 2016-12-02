@@ -254,7 +254,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	}
 
 	@Override
-	public ResultMessage setBestPrice(int price, String hotelID) throws NullHotelIDException{
+	public ResultMessage setBestPrice(double price, String hotelID) throws NullHotelIDException{
 		if(hotelID==null){
 			throw new NullHotelIDException();
 		}

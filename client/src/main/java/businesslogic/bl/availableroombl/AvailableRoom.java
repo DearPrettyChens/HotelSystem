@@ -3,6 +3,7 @@ package businesslogic.bl.availableroombl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.bl.hotelbl.Hotel;
 import dao.availableroomdao.AvailableRoomDao;
 import exception.NullHotelIDException;
 import init.RMIHelper;
@@ -18,14 +19,16 @@ import vo.availableroomvo.AvailableRoomNumberVO;
  * @author CLL
  * @version 1.0
  */
-public class AvailableRoom {
+public class AvailableRoom{
 	//可用住房信息列表
 	private ArrayList<SingleAvailableRoomInfo> singleAvailableRoomInfoList=new ArrayList<SingleAvailableRoomInfo>();
 	//数据层的引用
 	private AvailableRoomDao availableRoomDao;
+	private HotelInfoAvailService hotel;
 	public AvailableRoom(){
 		RMIHelper.init();
 		availableRoomDao=RMIHelper.getAvailableRoomDao();
+		hotel=new Hotel();
 //		availableRoomDao=new AvailableRoomDao_Stub();
 	}
 	
@@ -115,8 +118,18 @@ public class AvailableRoom {
 			for(int i=0;i<roomInfo.size();i++){
 				newPOs.add(singleAvailableRoomInfoList.get(i).getAvailableRoomInfo());
 			}
+			double lowestPrice=0;
+			if(roomInfo.size()!=0){
+				lowestPrice=singleAvailableRoomInfoList.get(0).getLowestPrice();
+			}
+			for(int i=0;i<roomInfo.size();i++){
+				if(singleAvailableRoomInfoList.get(i).getLowestPrice()<lowestPrice){
+					lowestPrice=singleAvailableRoomInfoList.get(i).getLowestPrice();
+				}
+			}
 			//交给数据层更新价格
-			return availableRoomDao.setBestPrice(newPOs);
+			availableRoomDao.setBestPrice(newPOs);
+			return hotel.setBestPrice(lowestPrice, hotelID);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;
@@ -187,5 +200,6 @@ public class AvailableRoom {
 		
 		return ResultMessage.FAIL;
 	}
+
 
 }
