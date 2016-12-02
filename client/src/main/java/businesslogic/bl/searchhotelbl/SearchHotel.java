@@ -44,9 +44,9 @@ public class SearchHotel {
 		this.hotelSearchInfoVO=hotelSearchInfoVO;
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
-//			RMIHelper.init();
-//			searchHotelDao = RMIHelper.getSearchHotelDao();
-			searchHotelDao=new SearchHotelDao_Stub();
+			RMIHelper.init();
+			searchHotelDao = RMIHelper.getSearchHotelDao();
+//			searchHotelDao=new SearchHotelDao_Stub();
 			if (hotelSortType == null) {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
@@ -73,8 +73,8 @@ public class SearchHotel {
 	private void addStrToVO(String customerID) {
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
-//			Hotel hotel = new Hotel();
-			MockHotel  hotel=new MockHotel();
+			Hotel hotel = new Hotel();
+//			MockHotel  hotel=new MockHotel();
 			ArrayList<HotelStrVO> hotelStrVOs=new ArrayList<HotelStrVO>();
 			try {
 				hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
@@ -97,9 +97,10 @@ public class SearchHotel {
 			String hotelID=hotelListVO.getHotelID();
 			ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
 			
-			MockOrderList orderList=new MockOrderList();
-//			OrderList orderList=new OrderList();
+//			MockOrderList orderList=new MockOrderList();
+			OrderList orderList=new OrderList();
 			//遍历顾客的订单，获得顾客在该酒店的订单状态
+			System.out.println(customerID);
 			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
 			for(OrderListVO orderListVO:orderListVOs){
 				String orderHotelID=orderListVO.getHotelID();

@@ -25,7 +25,7 @@ public class SearchHotelTest {
  
 	@Before
 	public void setUp(){
-		 hotelSearchInfoVO=new HotelSearchInfoVO("锦江之星大酒店", City.NANJING, TradingArea.XINJIEKOU, null, null, null, null, null, null, null, null, null, null, null);
+		 hotelSearchInfoVO=new HotelSearchInfoVO("锦江之星大酒店", City.NANJING, TradingArea.XINJIEKOU, null, null, null, null, null, null, null, null, null, null, "000022");
 	      searchHotel=new SearchHotel(hotelSearchInfoVO);
 	}
 	

@@ -54,10 +54,10 @@ public class User {
 	 */
 	public ResultMessage login(String name, String password) {
 		//每次登录都要将内部变量进行初始化
-		userName=null;
-		userID=null;
-		password=null;
-		firstPassword=null;
+		this.userName=null;
+		this.userID=null;
+		this.password=null;
+		this.firstPassword=null;
 		
 		try {
 			clientPO=userDao.getUserPassword(name);

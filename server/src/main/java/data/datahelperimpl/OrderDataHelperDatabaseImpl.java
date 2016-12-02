@@ -67,13 +67,13 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	public ResultMessage setOrderRemark(RemarkPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
-		//修改订单状态 已评价
+		// 修改订单状态 已评价
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderID() + "'");
 		List<OrderInfoPO> orderInfoPOlist = query.list();
-		//修改评价
+		// 修改评价
 		query = session.createQuery("from RemarkPO where order_id = '" + po.getOrderID() + "'");
 		List<RemarkPO> remarkPOlist = query.list();
-		//无订单信息或无评价信息
+		// 无订单信息或无评价信息
 		if (orderInfoPOlist.size() == 0 || remarkPOlist.size() == 0) {
 			session.close();
 			return ResultMessage.FAIL;
@@ -150,7 +150,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
 		} finally {
-//			session.getTransaction().commit();
+			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -162,7 +162,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		session.beginTransaction();
 		Query query = session.createQuery("from OrderInfoPO where order_id = '" + po.getOrderID() + "'");
 		List<OrderInfoPO> list = query.list();
-		//检查订单号是否存在
+		// 检查订单号是否存在
 		if (list.size() != 0) {
 			session.close();
 			return ResultMessage.ORDERIDHASEXISTED;
@@ -183,7 +183,7 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 
 	@Override
 	public ArrayList<OrderListPO> getOrderList(TypeInfoPO po) throws RemoteException {
-		//按照用户种类获取订单po
+		// 按照用户种类获取订单po
 		ArrayList<OrderListPO> list = new ArrayList<OrderListPO>();
 		switch (po.getUserType()) {
 		case Customer:
@@ -201,8 +201,9 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 	private ArrayList<OrderListPO> getOrderListByCustomer(String string, OrderState state) {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from OrderListPO where ( customer_id = " + Integer.parseInt(string) + " ) and ( state = '"
-				+ state.getString() + "' )");
+		Query query;
+		query = session.createQuery("from OrderListPO where ( customer_id = " + Integer.parseInt(string)
+				+ " ) and ( state = '" + state.getString() + "' )");
 		List<OrderListPO> list = query.list();
 		ArrayList<OrderListPO> ret = new ArrayList<OrderListPO>();
 		for (OrderListPO each : list) {

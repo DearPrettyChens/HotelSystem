@@ -27,12 +27,14 @@ public class TypeInfoVO {
 	public TypeInfoVO(UserType userType, OrderState orderState,String customerID) {
 		this.setUserType(userType);
 		this.setOrderState(orderState);
+		this.setCustomerID(customerID);
 		// this.setHotelID(hotelID);
 	}
 
 	public TypeInfoVO(TypeInfoPO po) {
 		this.setUserType(po.getUserType());
 		this.setOrderState(po.getOrderState());
+		this.setCustomerID(po.getCustomerID());
 		// this.setHotelID(po.getHotelID());
 	}
 
@@ -54,6 +56,14 @@ public class TypeInfoVO {
 
 	public void setOrderState(OrderState orderState) {
 		this.orderState = orderState;
+	}
+
+	public String getCustomerID() {
+		return customerID;
+	}
+
+	public void setCustomerID(String customerID) {
+		this.customerID = customerID;
 	}
 
 }
