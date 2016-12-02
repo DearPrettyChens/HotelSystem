@@ -7,6 +7,7 @@ import businesslogic.bl.userbl.Customer;
 import dao.hotelstrategydao.HotelStrategyDao;
 import init.RMIHelper;
 import po.HotelStrPO;
+import presentation.ui.loginui.view.newclient_JFrame;
 import util.HotelStrategyType;
 import util.TransHelper;
 import vo.hotelstrategyvo.HotelStrVO;
@@ -23,8 +24,8 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
     private HotelStrPO hotelStrPO;
 	//构造方法
 	private HotelBirthStrategy() {
-//		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
-	    hotelStrategyDao=new HotelStrategyDao_Stub();
+		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+//	    hotelStrategyDao=new HotelStrategyDao_Stub();
 	}
 
 	public static HotelStrategyInterface getInstance() {

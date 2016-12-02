@@ -22,8 +22,8 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 	private static HotelStrategyInterface hotelAmountStrategy;
     //构造方法
 	private HotelAmountStrategy(){
-//		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
-	    hotelStrategyDao=new HotelStrategyDao_Stub();
+		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+//	    hotelStrategyDao=new HotelStrategyDao_Stub();
 	}
 	public static HotelStrategyInterface getInstance() {
 		if(hotelAmountStrategy==null){

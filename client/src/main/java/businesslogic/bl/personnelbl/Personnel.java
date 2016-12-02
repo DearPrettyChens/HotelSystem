@@ -25,9 +25,9 @@ public class Personnel {
 	private static Personnel personnel;
 	
 	private Personnel() {
-//		RMIHelper.init();
-//		personnelDao=RMIHelper.getPersonnelDao();
-	personnelDao=new PersonnelDao_Stub();
+		RMIHelper.init();
+		personnelDao=RMIHelper.getPersonnelDao();
+//	personnelDao=new PersonnelDao_Stub();
 	
 	}	
 	public static Personnel getInstance() {
