@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.UserType;
 
@@ -64,7 +65,7 @@ public class Client_JFrame extends JFrame {
 	private JLabel vipjl= new JLabel(new ImageIcon("image//vip.png"));
 	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
 
-	private Changepassword_JPanel panel=new Changepassword_JPanel();
+	private ChooseArea_JPanel panel=new ChooseArea_JPanel();
 	
 	
 	

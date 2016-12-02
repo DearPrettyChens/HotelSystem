@@ -113,8 +113,8 @@ public class HotelStrategy {
 		try {
 			ResultMessage resultMessage = hotelStrategyDao.setHotelStrategy(hotelStrPO);
 			if (resultMessage == ResultMessage.SUCCESS) {
-				double discount = hotelStrVO.getDiscount();
-
+                double discount=getHotelLowestDiscount(hotelStrVO.getHotelID());       
+				
 				// 给酒店的可用客房设置最低价格
 				AvailableRoom availableRoom = new AvailableRoom();
 				availableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
@@ -127,4 +127,27 @@ public class HotelStrategy {
 		}
 		return ResultMessage.FAIL;
 	}
+
+    /**
+     * 
+     * 获得酒店所有策略的最低折扣
+     * @param hotelID
+     * @return
+     */
+    private double getHotelLowestDiscount(String hotelID){
+
+		double discount = 1;// 折扣值在0-1之间,没有折扣就是1
+        while (hotelStrategyMap.hasNext()){
+        	hotelStrategyMap.next();
+        	hotelStrategyInterface = hotelStrategyMap.getHotelStrategy();
+			double tempDiscount = hotelStrategyInterface.getDiscount(hotelID);
+			// 选取折扣最大的，即折扣值最小的。
+			if (tempDiscount < discount) {
+				discount = tempDiscount;
+			}
+		}
+    
+    	return discount;
+    }
+
 }

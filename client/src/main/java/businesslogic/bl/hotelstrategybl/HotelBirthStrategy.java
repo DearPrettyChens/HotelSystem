@@ -65,6 +65,14 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
 		}
 		return 1;
 	}
+
+	@Override
+	public double getDiscount(String hotelID) {
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
+		return discount;
+	}
 	
 	
 
