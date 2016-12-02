@@ -97,5 +97,6 @@ public class TransHelper {
 //	public static void main(String[]args ) {
 //		System.out.println(TransHelper.idToInt("000101"));
 //		System.out.println(TransHelper.idToString(208, 6));
+//		stringToArea("XINJIEKOU");
 //	}
 }

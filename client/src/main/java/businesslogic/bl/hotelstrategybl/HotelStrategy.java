@@ -33,7 +33,7 @@ public class HotelStrategy {
 
 		RMIHelper.init();
 		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
-		hotelStrategyMap = HotelStrategyMap.getInstance();
+		hotelStrategyMap = new HotelStrategyMap();
 
 	}
 
@@ -135,7 +135,7 @@ public class HotelStrategy {
      * @return
      */
     private double getHotelLowestDiscount(String hotelID){
-
+        hotelStrategyMap=new HotelStrategyMap();
 		double discount = 1;// 折扣值在0-1之间,没有折扣就是1
         while (hotelStrategyMap.hasNext()){
         	hotelStrategyMap.next();

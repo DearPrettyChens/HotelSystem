@@ -15,12 +15,11 @@ public class HotelStrategyMap {
 	  private HotelStrategyInterface hotelStrategyInterface;
 	     private EnumMap<HotelStrategyType, HotelStrategyInterface> enumMap;
 	     private HotelStrategyFactory hotelStrategyFactory;
-	     private static HotelStrategyMap hotelStrategyMap;
 	     private Iterator<EnumMap.Entry<HotelStrategyType, HotelStrategyInterface>> entries ;
 	 	private EnumMap.Entry<HotelStrategyType, HotelStrategyInterface> entry;
 	     
 	     
-	 	 private HotelStrategyMap() {
+	 	 public HotelStrategyMap() {
 	 		hotelStrategyFactory=HotelStrategyFactory.getInstance();
 	 		enumMap=new EnumMap<HotelStrategyType, HotelStrategyInterface>(HotelStrategyType.class);
 	 		enumMap.put(HotelStrategyType.SPECIALTIME, hotelStrategyFactory.getHotelSpecialTimeStrategy());
@@ -31,12 +30,6 @@ public class HotelStrategyMap {
 	 	   entries = enumMap.entrySet().iterator();
 	 	 }
 
-	 	public static HotelStrategyMap getInstance(){
-	 		if(hotelStrategyMap==null){
-	 			hotelStrategyMap=new HotelStrategyMap();
-	 		}
-	 		return hotelStrategyMap;
-	 	}
 	 	
 	 	
 	 	public boolean hasNext(){

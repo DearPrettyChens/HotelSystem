@@ -22,9 +22,9 @@ public class WebStrategy {
 	private static WebStrategy webStrategy;
 	private WebStrategyDao webStrategyDao;
 	private  WebStrategy() {
-//		webStrategyDao=new WebStrategyDao_Stub();
-		RMIHelper.init();
-		webStrategyDao=RMIHelper.getWebStrategyDao();
+		webStrategyDao=new WebStrategyDao_Stub();
+//		RMIHelper.init();
+//		webStrategyDao=RMIHelper.getWebStrategyDao();
 		webStrategyMap=WebStrategyMap.getInstance();
 	}
 	
