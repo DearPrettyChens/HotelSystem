@@ -19,8 +19,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+<<<<<<< Updated upstream
 import presentation.ui.checkinui.view.CheckInInfo_Info;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
+=======
+import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
+import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
+import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
+
+import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
+
+>>>>>>> Stashed changes
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.OrderState;
 import util.UserType;
@@ -40,7 +50,7 @@ public class Client_JFrame extends JFrame {
 	
 	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
     
-    private CheckInInfo_Info cp=new CheckInInfo_Info();
+    private SingleRoomInfo_JPanel cp=new SingleRoomInfo_JPanel();
     
 	//关于界面
 	private Font font = new Font("宋体", Font.BOLD, 16);
@@ -154,7 +164,15 @@ public class Client_JFrame extends JFrame {
 		getContentPane().add(sidepanel);
 		
 
+<<<<<<< Updated upstream
 		panel.setBounds(200,100,800,600);
+=======
+		
+		cp.setBounds(200,100,800,600);
+		this.add(cp);
+
+		panel.setBounds(200,100,800,50);
+>>>>>>> Stashed changes
 		getContentPane().add(panel);
 
 

@@ -1,4 +1,4 @@
-package presentation.ui.hotelui.view;
+package presentation.ui.checkinui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -7,7 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SingleRoomInfo_JPanel  extends JPanel{
+/**
+ * 单条的可用客房信息，用来进行用户线下入住退房
+ * @author cy
+ * @version 1.0
+ * 
+ */
+public class SingleAvailableRoomInfo_JPanel  extends JPanel{
 	
 	private String bedtype;
 	private String roomtype;
@@ -28,7 +34,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JTextField pricejtf=new JTextField();
 	
 	
-	public SingleRoomInfo_JPanel(String bedtype,String roomtype, int number,int price){
+	public SingleAvailableRoomInfo_JPanel(String bedtype,String roomtype, int number,int price){
 		this.bedtype=bedtype;
 		this.roomtype=roomtype;
 		this.number=number;
@@ -53,7 +59,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		
 	}
 
-	public SingleRoomInfo_JPanel(){
+	public SingleAvailableRoomInfo_JPanel(){
 		
 		this.setBackground(Color.white);
 		this.setLayout(null);
