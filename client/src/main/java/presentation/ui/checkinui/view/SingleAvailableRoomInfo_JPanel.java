@@ -18,7 +18,9 @@ public class SingleAvailableRoomInfo_JPanel  extends JPanel{
 	private String bedtype;
 	private String roomtype;
 	private int number;
-	private int price;
+	
+	
+	
 	
 	
 	private Font font=new Font("宋体",Font.BOLD, 20);
@@ -26,25 +28,25 @@ public class SingleAvailableRoomInfo_JPanel  extends JPanel{
 	private JLabel bedtypejl=new JLabel("床型：");
 	private JLabel roomtypejl=new JLabel("房型：");
 	private JLabel numberjl=new JLabel("数量：");
-	private JLabel pricejl=new JLabel("价格：");
 	
-	private JTextField bedtypejtf=new JTextField();
-	private JTextField roomtypejtf=new JTextField();
+	
+	
+	
 	private JTextField numberjtf=new JTextField();
-	private JTextField pricejtf=new JTextField();
 	
 	
-	public SingleAvailableRoomInfo_JPanel(String bedtype,String roomtype, int number,int price){
+	public SingleAvailableRoomInfo_JPanel(String bedtype,String roomtype, int number){
 		this.bedtype=bedtype;
 		this.roomtype=roomtype;
 		this.number=number;
-		this.price=price;
+	
+		bedtypejl.setText("床型："+bedtype);
+		
+		roomtypejl.setText("房型："+roomtype);
 		
 		
-		bedtypejtf.setText(bedtype);
-		roomtypejtf.setText(roomtype);
 		numberjtf.setText(number+"");
-		pricejtf.setText(price+"");
+		
 		
 		
 		
@@ -77,17 +79,13 @@ public class SingleAvailableRoomInfo_JPanel  extends JPanel{
 		bedtypejl.setBounds(20,10,80,30);
 		this.add(bedtypejl);
 		
-		bedtypejtf.setFont(font);
-		bedtypejtf.setBounds(100,10,80,30);
-		this.add(bedtypejtf);
+	
 		
 		roomtypejl.setFont(font);
 		roomtypejl.setBounds(220,10,80,30);
 		this.add(roomtypejl);
 		
-		roomtypejtf.setFont(font);
-		roomtypejtf.setBounds(300,10,80,30);
-		this.add(roomtypejtf);
+		
 		
 		numberjl.setFont(font);
 		numberjl.setBounds(420,10,80,30);
@@ -97,13 +95,8 @@ public class SingleAvailableRoomInfo_JPanel  extends JPanel{
 		numberjtf.setBounds(500,10,80,30);
 		this.add(numberjtf);
 		
-		pricejl.setFont(font);
-		pricejl.setBounds(620,10,80,30);
-		this.add(pricejl);
 		
-		pricejtf.setFont(font);
-		pricejtf.setBounds(700,10,80,30);
-		this.add(pricejtf);
+		
 		
 		
 		this.setLayout(null);
