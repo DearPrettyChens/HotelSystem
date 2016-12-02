@@ -239,11 +239,11 @@ public class CheckHotel {
 	 * @return
 	 */
 	private boolean checkAvailableRoom(AvailableRoomNumberVO availableRoomNumberVO) {
-//		AvailableRoom availableRoom = new AvailableRoom();
-//		ResultMessage resultMessage = availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
-//		if (resultMessage == ResultMessage.SUCCESS) {
-//			return true;
-//		}
+		AvailableRoom availableRoom = new AvailableRoom();
+		ResultMessage resultMessage = availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
+		if (resultMessage == ResultMessage.SUCCESS) {
+			return true;
+		}
 		return false;
 	}
 
