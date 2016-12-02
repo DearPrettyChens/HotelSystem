@@ -67,7 +67,7 @@ public class SingleAvailableRoomInfo {
 		this.lowestPrice = discount*this.originalPrice;
 	}
 	public double getLowestPrice() {
-		return 0;
+		return this.lowestPrice;
 	}
 
 }

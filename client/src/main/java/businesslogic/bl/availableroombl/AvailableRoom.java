@@ -128,7 +128,9 @@ public class AvailableRoom{
 				}
 			}
 			//交给数据层更新价格
-			availableRoomDao.setBestPrice(newPOs);
+			if(availableRoomDao.setBestPrice(newPOs)!=ResultMessage.SUCCESS){
+				return ResultMessage.FAIL;
+			}
 			return hotel.setBestPrice(lowestPrice, hotelID);
 		} catch (RemoteException e) {
 			e.printStackTrace();
