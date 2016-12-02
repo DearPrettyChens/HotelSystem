@@ -18,6 +18,7 @@ import util.UserType;
  * @author cy
  * @version 1.0
  * 
+ * 
  */
 public class Searchorder_JPanel extends JPanel{
 	 private Font font=new Font("宋体",Font.BOLD, 20);

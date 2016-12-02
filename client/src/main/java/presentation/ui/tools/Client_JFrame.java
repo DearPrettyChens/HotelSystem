@@ -1,6 +1,5 @@
 package presentation.ui.tools;
 
-import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -20,7 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.checkinui.view.OrderToCheckIn_JPanel;
+import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.UserType;
@@ -38,8 +38,9 @@ public class Client_JFrame extends JFrame {
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
 	
-	private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
+	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
     
+    private CheckInInfo_Info cp=new CheckInInfo_Info();
     
 	//关于界面
 	private Font font = new Font("宋体", Font.BOLD, 16);
@@ -147,7 +148,7 @@ public class Client_JFrame extends JFrame {
 		getContentPane().add(sidepanel);
 		
 		
-		cp.setBounds(200,200,800,500);
+		cp.setBounds(200,100,800,600);
 		this.add(cp);
 
 	}
