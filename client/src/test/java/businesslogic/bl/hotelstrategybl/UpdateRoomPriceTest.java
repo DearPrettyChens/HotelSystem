@@ -23,7 +23,7 @@ public class UpdateRoomPriceTest {
 	public void setUp() throws Exception {
 		hotelStrategy=HotelStrategy.getInstance();
 		hotelStrategyInterface= HotelBirthStrategy.getInstance();
-		vo1=new HotelStrVO("000001", 0.5);
+		vo1=new HotelStrVO("000005", 0.5);
 	}
 
 	/**

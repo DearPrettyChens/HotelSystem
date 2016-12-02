@@ -27,12 +27,12 @@ public class HotelStrategy {
 
 	private HotelStrategy() {
 
-		// hotelStrategyDao = RMIHelper.getHotelStrategyDao();
-		hotelStrategyDao = new HotelStrategyDao_Stub();
-		hotelStrategyMap = HotelStrategyMap.getInstance();
+//		 hotelStrategyDao = RMIHelper.getHotelStrategyDao();
+//		hotelStrategyDao = new HotelStrategyDao_Stub();
+//		hotelStrategyMap = HotelStrategyMap.getInstance();
 
-//		RMIHelper.init();
-//		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
+		RMIHelper.init();
+		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
 		hotelStrategyMap = HotelStrategyMap.getInstance();
 
 	}
@@ -116,10 +116,10 @@ public class HotelStrategy {
 				double discount = hotelStrVO.getDiscount();
 
 				// 给酒店的可用客房设置最低价格
-//				AvailableRoom availableRoom = new AvailableRoom();
-//				availableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
-				MockAvailableRoom mockAvailableRoom=new MockAvailableRoom();
-				mockAvailableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
+				AvailableRoom availableRoom = new AvailableRoom();
+				availableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
+//				MockAvailableRoom mockAvailableRoom=new MockAvailableRoom();
+//				mockAvailableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
 			}
 			return resultMessage;
 		} catch (RemoteException e) {
