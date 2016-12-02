@@ -35,7 +35,7 @@ public class HotelWorkerLookOrderTest {
 		Hotel hotel = new Hotel();
 		assertEquals(1,hotel.getHotelOrderList("000005").size());
 //		hotel.getHotelOrderInfo("201611030001000001");
-		assertEquals(Children.EXIST, hotel.getHotelOrderInfo("20161120000002000001").getHasChild());
+		assertEquals(Children.EXIST, hotel.getHotelOrderInfo("20161119000002000001").getHasChild());
 	}
 
 }

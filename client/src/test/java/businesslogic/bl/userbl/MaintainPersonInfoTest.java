@@ -22,7 +22,7 @@ public class MaintainPersonInfoTest {
     Customer customer=Customer.getInstance();
 	@Before
 	public void setUp() throws Exception {
-		personDetailVO=new PersonDetailVO(null, "小菲菲", "feifei", null, "12345678901",100 , new Date(1997, 4, 14), null, CustomerType.INDIVIDUAL, null, UserType.Customer);
+		personDetailVO=new PersonDetailVO("000022", "小菲菲", "feifei", null, "12345678901",100 , new Date(1997, 4, 14), null, CustomerType.INDIVIDUAL, null, UserType.Customer);
 	}
 
 	@Test

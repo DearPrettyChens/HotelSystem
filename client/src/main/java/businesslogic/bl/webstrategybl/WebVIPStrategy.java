@@ -74,7 +74,7 @@ public class WebVIPStrategy implements WebStrategyInterface {
 		int pre=0;//等级的下界
 		
 		while(iterator.hasPrevious()){
-			Map.Entry<Integer, Double> entry=iterator.next();
+			Map.Entry<Integer, Double> entry=iterator.previous();
 			pre=entry.getKey();
 			
 			//判断是否在对应的等级范围内,从最大的比较到最小的

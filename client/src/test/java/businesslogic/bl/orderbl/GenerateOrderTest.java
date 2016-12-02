@@ -24,7 +24,7 @@ public class GenerateOrderTest {
 	@Test
 	public void test() {
 		order.confirmAddOrder(new OrderInfoVO("20161119000002000001","000002","AAAAA","000001",
-				"chen","chen","12345678999",new Date(),new Date(),new Date(),"",BedType.BIGBED,
+				"chen","chen","12345678999",new Date(),new Date(),new Date(),new Date(),"",BedType.BIGBED,
 				1,1,Children.EXIST,680,OrderState.NOTEXECUTED));
 		assertEquals(singleOrder.getOrderInfo("20161119000002000001").getState(),OrderState.NOTEXECUTED);
 	}

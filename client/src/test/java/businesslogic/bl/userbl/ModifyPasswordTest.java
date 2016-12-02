@@ -29,6 +29,9 @@ public class ModifyPasswordTest {
 		assertEquals(ResultMessage.SUCCESS, user.checkNewPassword(new Password("123456")));
 		passwordVO.setPassword("123456");
 	    assertEquals(ResultMessage.SUCCESS,user.confirmPassword(passwordVO) );
+	    assertEquals(ResultMessage.SUCCESS, user.checkNewPassword(new Password("feifei")));
+	    passwordVO.setPassword("feifei");
+	    assertEquals(ResultMessage.SUCCESS, user.confirmPassword(passwordVO));
 	}
 
 }
