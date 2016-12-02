@@ -27,7 +27,7 @@ public class SetBestPriceTest {
 		assertEquals(availableRoom.setBestPrice("000005", 0.8),ResultMessage.SUCCESS);
 		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000005");
 		//第三个参数为允许误差
-		assertEquals(0.8*preRoomInfo.get(0).getLowestPrice(),roomInfo.get(0).getLowestPrice(),0.01);
+		assertEquals(0.8*preRoomInfo.get(0).getOriginalPrice(),roomInfo.get(0).getLowestPrice(),0.01);
 	}
 
 

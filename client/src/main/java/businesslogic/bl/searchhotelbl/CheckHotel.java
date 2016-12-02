@@ -49,8 +49,8 @@ public class CheckHotel {
 			String hotelID = hotelListVO.getHotelID();
 			String customerID = hotelSearchInfoVO.getCustomerID();
 			try {
-				// Hotel hotel=new Hotel();
-				MockHotel hotel = new MockHotel();
+			    Hotel hotel=new Hotel();
+//				MockHotel hotel = new MockHotel();
 				hotelDetailInfoVO = hotel.getHotelDetailInfo(hotelID, customerID);
 			} catch (NotFoundHotelException e) {
 				e.printStackTrace();

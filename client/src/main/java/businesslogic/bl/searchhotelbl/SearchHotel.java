@@ -42,9 +42,9 @@ public class SearchHotel {
 		this.hotelSearchInfoVO=hotelSearchInfoVO;
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
-//			RMIHelper.init();
-//			searchHotelDao = RMIHelper.getSearchHotelDao();
-			searchHotelDao=new SearchHotelDao_Stub();
+			RMIHelper.init();
+			searchHotelDao = RMIHelper.getSearchHotelDao();
+//			searchHotelDao=new SearchHotelDao_Stub();
 			if (hotelSortType == null) {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
@@ -71,8 +71,8 @@ public class SearchHotel {
 	private void addStrToVO(String customerID) {
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
-//			Hotel hotel = new Hotel();
-			MockHotel  hotel=new MockHotel();
+			Hotel hotel = new Hotel();
+//			MockHotel  hotel=new MockHotel();
 			ArrayList<HotelStrVO> hotelStrVOs=new ArrayList<HotelStrVO>();
 			try {
 				hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
