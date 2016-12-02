@@ -15,12 +15,9 @@ import util.TradingArea;
 import vo.hotelvo.HotelDetailInfoVO;
 
 
-public class MockHotel extends Hotel{
-	private HotelDao hotelDao;//数据层的应用
-	private AvailableRoom availableRoom;//酒店可用客房信息
-	private HotelStrategy hotelStrategy;//酒店策略信息
-	private SingleOrder singleOrder;
-	private OrderList orderList;
+public class MockHotel {
+	
+
 	
 	//构造方法
 	public MockHotel() {

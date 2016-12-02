@@ -22,7 +22,7 @@ import vo.searchhotelvo.HotelSearchInfoVO;
 public class SearchHotelTest {
     SearchHotel searchHotel;
     HotelSearchInfoVO hotelSearchInfoVO;
-   
+ 
 	@Before
 	public void setUp(){
 		 hotelSearchInfoVO=new HotelSearchInfoVO("锦江之星大酒店", City.NANJING, TradingArea.XINJIEKOU, null, null, null, null, null, null, null, null, null, null, null);

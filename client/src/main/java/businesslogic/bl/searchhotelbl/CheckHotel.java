@@ -49,8 +49,8 @@ public class CheckHotel {
 			String hotelID = hotelListVO.getHotelID();
 			String customerID = hotelSearchInfoVO.getCustomerID();
 			try {
-			    Hotel hotel=new Hotel();
-//				MockHotel hotel = new MockHotel();
+//			    Hotel hotel=new Hotel();
+				MockHotel hotel = new MockHotel();
 				hotelDetailInfoVO = hotel.getHotelDetailInfo(hotelID, customerID);
 			} catch (NotFoundHotelException e) {
 				e.printStackTrace();
@@ -239,11 +239,11 @@ public class CheckHotel {
 	 * @return
 	 */
 	private boolean checkAvailableRoom(AvailableRoomNumberVO availableRoomNumberVO) {
-		AvailableRoom availableRoom = new AvailableRoom();
-		ResultMessage resultMessage = availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
-		if (resultMessage == ResultMessage.SUCCESS) {
-			return true;
-		}
+//		AvailableRoom availableRoom = new AvailableRoom();
+//		ResultMessage resultMessage = availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
+//		if (resultMessage == ResultMessage.SUCCESS) {
+//			return true;
+//		}
 		return false;
 	}
 
