@@ -53,16 +53,22 @@ public class User {
 	 * @return ResultMessage
 	 */
 	public ResultMessage login(String name, String password) {
+		//每次登录都要将内部变量进行初始化
+		userName=null;
+		userID=null;
+		password=null;
+		firstPassword=null;
+		
 		try {
 			clientPO=userDao.getUserPassword(name);
-	       
+
 			//用户不存在
 			if(clientPO==null){
 				return ResultMessage.USERNOTEXIST;
 		    }
 			
 			//密码错误
-			if(password!=clientPO.getPassword()){
+			if(!password.equals(clientPO.getPassword())){
 				return ResultMessage.PASSWORDERROR;
 			}
 			

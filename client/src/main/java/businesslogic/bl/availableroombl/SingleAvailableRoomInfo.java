@@ -64,10 +64,10 @@ public class SingleAvailableRoomInfo {
 	 * @return null
 	 */
 	public void setDiscount(double discount) {
-		this.lowestPrice = discount*this.lowestPrice;
+		this.lowestPrice = discount*this.originalPrice;
 	}
 	public double getLowestPrice() {
-		return 0;
+		return this.lowestPrice;
 	}
 
 }

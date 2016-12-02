@@ -22,14 +22,14 @@ import vo.searchhotelvo.HotelSearchInfoVO;
 public class SearchHotelTest {
     SearchHotel searchHotel;
     HotelSearchInfoVO hotelSearchInfoVO;
-   
+ 
 	@Before
 	public void setUp(){
 		 hotelSearchInfoVO=new HotelSearchInfoVO("锦江之星大酒店", City.NANJING, TradingArea.XINJIEKOU, null, null, null, null, null, null, null, null, null, null, null);
 	      searchHotel=new SearchHotel(hotelSearchInfoVO);
 	}
 	
-//	由于要在逻辑层调用hotel模块，还要涉及的数据层，所以未能测试
+
 	@Test
 	public void test(){
 		ArrayList<HotelListVO>hotelListVOs=searchHotel.getHotelList();

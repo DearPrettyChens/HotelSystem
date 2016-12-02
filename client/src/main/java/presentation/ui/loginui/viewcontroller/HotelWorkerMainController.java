@@ -7,6 +7,7 @@ import presentation.ui.availableroomui.view.RoomInfo_JPanel;
 import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
 import presentation.ui.hotelui.view.ModifyHotelBasicInfo_JPanel;
 import presentation.ui.orderui.view.Searchorder_JPanel;
+import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
 import util.UserType;
 
 /**
@@ -34,7 +35,8 @@ public class HotelWorkerMainController {
 	
 	public void jumpToOrderListView(){
 		frame.removeAll();
-		view=new Searchorder_JPanel(UserType.HotelWorker);
+		//TODO
+		//view=new Searchorder_JPanel(UserType.HotelWorker);
 		frame.add(view);
 	}
 	

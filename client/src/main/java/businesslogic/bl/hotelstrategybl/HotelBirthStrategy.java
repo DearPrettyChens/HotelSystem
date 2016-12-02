@@ -7,6 +7,7 @@ import businesslogic.bl.userbl.Customer;
 import dao.hotelstrategydao.HotelStrategyDao;
 import init.RMIHelper;
 import po.HotelStrPO;
+import presentation.ui.loginui.view.newclient_JFrame;
 import util.HotelStrategyType;
 import util.TransHelper;
 import vo.hotelstrategyvo.HotelStrVO;
@@ -23,8 +24,8 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
     private HotelStrPO hotelStrPO;
 	//构造方法
 	private HotelBirthStrategy() {
-//		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
-	    hotelStrategyDao=new HotelStrategyDao_Stub();
+		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+//	    hotelStrategyDao=new HotelStrategyDao_Stub();
 	}
 
 	public static HotelStrategyInterface getInstance() {
@@ -41,6 +42,7 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		discount=hotelStrPO.getDiscount();
 		return new HotelStrVO(hotelStrPO);
 	}
@@ -48,7 +50,9 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
 
 	@Override
 	public double getDiscount(String info, String hotelID) {
-		getHotelStrategy(hotelID);
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
 		
 		//通过user模块的customer类来获取顾客生日
 		Customer customer=Customer.getInstance();
@@ -60,6 +64,14 @@ public class HotelBirthStrategy implements HotelStrategyInterface {
 			return discount;
 		}
 		return 1;
+	}
+
+	@Override
+	public double getDiscount(String hotelID) {
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
+		return discount;
 	}
 	
 	

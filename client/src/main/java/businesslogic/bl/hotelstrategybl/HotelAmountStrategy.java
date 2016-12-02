@@ -22,8 +22,8 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 	private static HotelStrategyInterface hotelAmountStrategy;
     //构造方法
 	private HotelAmountStrategy(){
-//		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
-	    hotelStrategyDao=new HotelStrategyDao_Stub();
+		hotelStrategyDao=RMIHelper.getHotelStrategyDao();
+//	    hotelStrategyDao=new HotelStrategyDao_Stub();
 	}
 	public static HotelStrategyInterface getInstance() {
 		if(hotelAmountStrategy==null){
@@ -39,6 +39,7 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		discount = hotelStrPO.getDiscount();
 		amount = hotelStrPO.getAmount();
 		return new HotelStrVO(hotelStrPO);
@@ -46,7 +47,10 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 
 	@Override
 	public double getDiscount(String info, String hotelID) {
-		getHotelStrategy(hotelID);
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
+		
 		if(info==null){
 			return 1;
 		}
@@ -55,6 +59,14 @@ public class HotelAmountStrategy implements HotelStrategyInterface{
 			return discount;
 		}
 		return 1;
+	}
+	
+	@Override
+	public double getDiscount(String hotelID) {
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
+		return discount;
 	}
 	
 }

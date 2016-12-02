@@ -1,8 +1,10 @@
 package dao.driver;
 
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import dao.hotelstrategydao.HotelStrategyDao;
+import dao.impl.HotelDaoImpl;
 import dao.impl.HotelStrategyDaoImpl;
 import po.HotelStrPO;
 import util.HotelStrategyType;
@@ -25,7 +27,12 @@ public class HotelStrategyDataServiceImpl_Driver {
 				"after get : " + po.getHotelID() + " " + po.getAmount() + " " + po.getDiscount() + " " + po.getType());
 	}
 
+	public void runClientCode(HotelStrategyDao dao) throws RemoteException {
+		System.out.println(dao.getHotelStrategy("0005", HotelStrategyType.BIRTH).getDiscount());
+	}
+
 	public static void main(String[] args) throws RemoteException {
-		new HotelStrategyDataServiceImpl_Driver().drive(HotelStrategyDaoImpl.getInstance());
+//		new HotelStrategyDataServiceImpl_Driver().drive(HotelStrategyDaoImpl.getInstance());
+		new HotelStrategyDataServiceImpl_Driver().runClientCode(HotelStrategyDaoImpl.getInstance());
 	}
 }

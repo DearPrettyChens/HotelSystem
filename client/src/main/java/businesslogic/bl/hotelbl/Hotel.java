@@ -72,7 +72,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	
 	//构造方法
 	public Hotel() {
-//		RMIHelper.init();
+		RMIHelper.init();
 		hotelDao=RMIHelper.getHotelDao();
 //		System.out.println(hotelDao);
 		//hotelDao=new HotelDao_Stub();
@@ -134,9 +134,12 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 			}
 			//获得酒店评价信息
 			ArrayList<RemarkPO> remarks=basic.getRemarks();
+			
 			ArrayList<String> remarkDetails=new ArrayList<String>();
-			for(int i=0;i<remarks.size();i++){
-				remarkDetails.add(remarks.get(i).getRemark());
+			if(remarks!=null){
+				for(int i=0;i<remarks.size();i++){
+					remarkDetails.add(remarks.get(i).getRemark());
+				}
 			}
 			//综合酒店细节信息
 			HotelDetailInfoVO detail=new HotelDetailInfoVO(basic.getName(),
@@ -254,7 +257,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	}
 
 	@Override
-	public ResultMessage setBestPrice(int price, String hotelID) throws NullHotelIDException{
+	public ResultMessage setBestPrice(double price, String hotelID) throws NullHotelIDException{
 		if(hotelID==null){
 			throw new NullHotelIDException();
 		}

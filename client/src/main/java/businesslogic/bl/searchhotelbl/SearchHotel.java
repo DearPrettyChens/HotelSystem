@@ -4,7 +4,10 @@ import java.rmi.RemoteException;
 import java.util.ArrayList;
 
 import businesslogic.bl.hotelbl.Hotel;
+
 import businesslogic.bl.orderbl.OrderList;
+import businesslogic.bl.searchhotelbl.SearchHotelmock.MockHotel;
+import businesslogic.bl.searchhotelbl.SearchHotelmock.MockOrderList;
 import dao.searchhoteldao.SearchHotelDao;
 import exception.NotFoundHotelException;
 import init.RMIHelper;
@@ -38,11 +41,12 @@ public class SearchHotel {
 	 * @param hotelSearchInfoVO
 	 */
 	public SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
+		this.hotelSearchInfoVO=hotelSearchInfoVO;
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
-			RMIHelper.init();
-			searchHotelDao = RMIHelper.getSearchHotelDao();
-//			searchHotelDao=new SearchHotelDao_Stub();
+//			RMIHelper.init();
+//			searchHotelDao = RMIHelper.getSearchHotelDao();
+			searchHotelDao=new SearchHotelDao_Stub();
 			if (hotelSortType == null) {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
@@ -51,6 +55,7 @@ public class SearchHotel {
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
 				hotelListVOs=new ArrayList<HotelListVO>();
+				System.out.println(hotelListVOs.size());
 				hotelListVOs.add(hotelListVO);
 			}
 			addStrToVO(hotelSearchInfoVO.getCustomerID());
@@ -68,7 +73,8 @@ public class SearchHotel {
 	private void addStrToVO(String customerID) {
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
-			Hotel hotel = new Hotel();
+//			Hotel hotel = new Hotel();
+			MockHotel  hotel=new MockHotel();
 			ArrayList<HotelStrVO> hotelStrVOs=new ArrayList<HotelStrVO>();
 			try {
 				hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
@@ -91,8 +97,10 @@ public class SearchHotel {
 			String hotelID=hotelListVO.getHotelID();
 			ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
 			
+			MockOrderList orderList=new MockOrderList();
+//			OrderList orderList=new OrderList();
 			//遍历顾客的订单，获得顾客在该酒店的订单状态
-			ArrayList<OrderListVO> orderListVOs=new OrderList().getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
+			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
 			for(OrderListVO orderListVO:orderListVOs){
 				String orderHotelID=orderListVO.getHotelID();
 				if(orderHotelID.equals(hotelID)){

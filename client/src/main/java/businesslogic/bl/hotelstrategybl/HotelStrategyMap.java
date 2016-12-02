@@ -1,6 +1,8 @@
 package businesslogic.bl.hotelstrategybl;
 
 import java.util.EnumMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import util.HotelStrategyType;
 /**
@@ -13,22 +15,39 @@ public class HotelStrategyMap {
 	  private HotelStrategyInterface hotelStrategyInterface;
 	     private EnumMap<HotelStrategyType, HotelStrategyInterface> enumMap;
 	     private HotelStrategyFactory hotelStrategyFactory;
-	     private static HotelStrategyMap hotelStrategyMap;
-	 	 private HotelStrategyMap() {
+	     private Iterator<EnumMap.Entry<HotelStrategyType, HotelStrategyInterface>> entries ;
+	 	private EnumMap.Entry<HotelStrategyType, HotelStrategyInterface> entry;
+	     
+	     
+	 	 public HotelStrategyMap() {
 	 		hotelStrategyFactory=HotelStrategyFactory.getInstance();
 	 		enumMap=new EnumMap<HotelStrategyType, HotelStrategyInterface>(HotelStrategyType.class);
-	 	    enumMap.put(HotelStrategyType.SPECIALTIME, hotelStrategyFactory.getHotelSpecialTimeStrategy());
+	 		enumMap.put(HotelStrategyType.SPECIALTIME, hotelStrategyFactory.getHotelSpecialTimeStrategy());
 	 	    enumMap.put(HotelStrategyType.AMOUNT, hotelStrategyFactory.getHotelAmountStrategy());
 	 	    enumMap.put(HotelStrategyType.BIRTH, hotelStrategyFactory.getHotelBirthStrategy());
 	 	    enumMap.put(HotelStrategyType.ENTERPRISE, hotelStrategyFactory.getHotelEnterpriseStrategy());	      
-	 	}
+	 	
+	 	   entries = enumMap.entrySet().iterator();
+	 	 }
 
-	 	public static HotelStrategyMap getInstance(){
-	 		if(hotelStrategyMap==null){
-	 			hotelStrategyMap=new HotelStrategyMap();
-	 		}
-	 		return hotelStrategyMap;
-	 	}
+	 	
+	 	
+	 	public boolean hasNext(){
+			return entries.hasNext();
+		}
+		public void next() {
+			entry=entries.next();
+		}
+		
+		public HotelStrategyType getHotelStrategyType() {
+			HotelStrategyType hotelStrategyType=entry.getKey();
+			return hotelStrategyType;
+		}
+		
+		public HotelStrategyInterface getHotelStrategy() {
+			HotelStrategyInterface info=entry.getValue();
+			return info;
+		}
 	 	
 	 	/**
 	 	 * 返回对应的hotelStrategy

@@ -22,7 +22,7 @@ public class GetBestStrategyTest {
 	@Before
 	public void setUp() throws Exception {
 		hotelStrategy=HotelStrategy.getInstance();
-		orderProvidedVO=new OrderProvidedVO("000002", 5, null, new Date(1997, 4, 14), "000001");
+		orderProvidedVO=new OrderProvidedVO("000002", 5, null, new Date(1997, 12, 2), "000005");
 	}
 
 	@Test

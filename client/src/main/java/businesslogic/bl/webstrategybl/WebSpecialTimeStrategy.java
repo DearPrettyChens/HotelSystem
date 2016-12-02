@@ -24,6 +24,7 @@ public class WebSpecialTimeStrategy implements WebStrategyInterface{
     private static WebStrategyInterface webSpecialAreaStrategy;
 	private WebSpecialTimeStrategy(){
 //	webStrategyDao=new WebStrategyDao_Stub();
+		RMIHelper.init();
 		webStrategyDao=RMIHelper.getWebStrategyDao();
 	
 	}

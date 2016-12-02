@@ -1,5 +1,9 @@
 package presentation.ui.orderui.viewcontroller;
-
+/**
+ * 控制酒店工作人员查看订单界面跳转的接口
+ * @author CLL
+ *
+ */
 public interface HotelWorkerOrderViewControllerService {
 	/**
 	 * 显示订单详细信息窗口
@@ -17,10 +21,9 @@ public interface HotelWorkerOrderViewControllerService {
 	 * @param roomtype
 	 * @param bedtype
 	 */
-	public void showOrderDetailInfo(String ordernumber,String clientname,String clienttel,
-			String ordertime,String latestcheckintime,String realcheckintime,String checkouttime,
-			String orderstate,String hotelname, String hoteltel,String payment,
-			String roomtype,String bedtype);
+	public void showOrderDetailInfo(String ordernumber,String clientnumber,String tel,
+			String bedtype,String ordertime,String orderstate,String latestcheckintime
+			,String checkouttime,double price, String checkintime,String isremarked);
 	/**
 	 * 关闭订单详细信息窗口
 	 */

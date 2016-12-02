@@ -27,8 +27,8 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 
 	// 构造方法
 	private HotelSpecialTimeStrategy() {
-//		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
-	    hotelStrategyDao =new HotelStrategyDao_Stub();
+		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
+//	    hotelStrategyDao =new HotelStrategyDao_Stub();
 	
 	}
 
@@ -46,6 +46,7 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(hotelStrPO==null) return null;
 		discount = hotelStrPO.getDiscount();
 		date = hotelStrPO.getDate();
 		return new HotelStrVO(hotelStrPO);
@@ -53,7 +54,9 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 
 	@Override
 	public double getDiscount(String info, String hotelID) {
-		getHotelStrategy(hotelID);
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
 		long dateInfo=TransHelper.stringToDate(info);		
 		long startTime=date[0].getTime();
 		long endTime=date[1].getTime();
@@ -63,6 +66,14 @@ public class HotelSpecialTimeStrategy implements HotelStrategyInterface {
 			return discount;
 		}
 		return 1;
+	}
+
+	@Override
+	public double getDiscount(String hotelID) {
+		if(getHotelStrategy(hotelID)==null){
+			return 1;
+		}
+		return discount;
 	}
 
 }

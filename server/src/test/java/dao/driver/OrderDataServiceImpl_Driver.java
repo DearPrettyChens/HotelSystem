@@ -21,7 +21,7 @@ import util.UserType;
 public class OrderDataServiceImpl_Driver {
 	public void drive(OrderDao dao) throws RemoteException {
 		OrderInfoPO po = new OrderInfoPO("20161119000002000001", "5", "AAAAA", "1", "CustomerA", "A", "12345678910",
-				new Date(), new Date(), new Date(), "BIGROOM", BedType.BIGBED, 3, 3, Children.EXIST, 399,
+				new Date(), new Date(), new Date(),new Date(), "BIGROOM", BedType.BIGBED, 3, 3, Children.EXIST, 399,
 				OrderState.NOTREMARKED);
 		System.out.println(dao.addOrder(po));
 

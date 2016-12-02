@@ -21,4 +21,11 @@ public interface HotelStrategyInterface {
 	 * @return
 	 */
 	public double getDiscount(String info,String hotelID);
+	
+	/**
+	 * 更新酒店策略时，需要知道酒店已有策略的最低价格
+	 * @return
+	 */
+	public double getDiscount(String hotelID);
+	
 }
