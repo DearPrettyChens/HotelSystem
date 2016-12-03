@@ -27,23 +27,25 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 	private DataFactory dataFactory;
 	private SearchHotelDataHelper searchHotelDataHelper;
 
-	public static SearchHotelDao getInstance() throws RemoteException {
-		if(searchHotelDao==null){
-			try {
-				searchHotelDao = new SearchHotelDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+	static {
+		try {
+			searchHotelDao = new SearchHotelDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+
+	public static SearchHotelDao getInstance() throws RemoteException {
+
 		return searchHotelDao;
 	}
 
 	private SearchHotelDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		searchHotelDataHelper = dataFactory.getSearchHotelDataHelper();
 	}

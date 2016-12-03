@@ -21,31 +21,31 @@ import util.WebStrategyType;
  * @author csy
  *
  */
-public class WebStrategyDaoImpl extends  UnicastRemoteObject implements WebStrategyDao {
+public class WebStrategyDaoImpl extends UnicastRemoteObject implements WebStrategyDao {
 
 	private static final long serialVersionUID = 3741314626971097134L;
 	private static WebStrategyDao webStrategyDao;
 	private DataFactory dataFactory;
 	private WebStrategyDataHelper webStrategyDataHelper;
-
+	static {
+		try {
+			webStrategyDao = new WebStrategyDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static WebStrategyDao getInstance() throws RemoteException {
-		if(webStrategyDao==null){
-			try {
-				webStrategyDao = new WebStrategyDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return webStrategyDao;
 	}
 
-	private WebStrategyDaoImpl() throws RemoteException, Exception  {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+	private WebStrategyDaoImpl() throws RemoteException, Exception {
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		webStrategyDataHelper = dataFactory.getWebStrategyDataHelper();
 	}

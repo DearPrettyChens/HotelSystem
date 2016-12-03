@@ -18,36 +18,37 @@ import security.RMISSLServerSocketFactory;
 import util.ResultMessage;
 
 /**
- * UserDao的实现
- * 以及记录登录的一些信息，方便显示到服务器界面
+ * UserDao的实现 以及记录登录的一些信息，方便显示到服务器界面
+ * 
  * @author csy
  *
  */
-public class UserDaoImpl extends  UnicastRemoteObject implements UserDao {
+public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 
 	private static final long serialVersionUID = 2151592669947030124L;
 	private static UserDao userDao;
 	private static DataFactory dataFactory;
 	private UserDataHelper userDataHelper;
 
+	static {
+		try {
+			userDao = new UserDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static UserDao getInstance() throws RemoteException {
-		if(userDao==null){
-			try {
-				userDao = new UserDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return userDao;
 	}
 
 	private UserDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		userDataHelper = dataFactory.getUserDataHelper();
 	}

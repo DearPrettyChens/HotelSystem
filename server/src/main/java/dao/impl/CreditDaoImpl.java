@@ -26,24 +26,25 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 	private static CreditDao creditDao;
 	private DataFactory dataFactory;
 	private CreditDataHelper creditDataHelper;
+	static {
+		try {
+			creditDao = new CreditDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static CreditDao getInstance() throws RemoteException {
-		if(creditDao==null){
-			try {
-				creditDao=new CreditDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return creditDao;
 	}
 
 	private CreditDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		creditDataHelper = dataFactory.getCreditDataHelper();
 	}

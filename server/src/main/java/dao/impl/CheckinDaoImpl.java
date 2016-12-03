@@ -19,7 +19,7 @@ import util.ResultMessage;
  * @author csy
  *
  */
-public class CheckinDaoImpl extends  UnicastRemoteObject implements CheckinDao {
+public class CheckinDaoImpl extends UnicastRemoteObject implements CheckinDao {
 
 	private static final long serialVersionUID = 4215636459437070989L;
 
@@ -27,24 +27,25 @@ public class CheckinDaoImpl extends  UnicastRemoteObject implements CheckinDao {
 	private DataFactory dataFactory;
 	private CheckInDataHelper checkInDataHelper;
 
+	static {
+		try {
+			checkinDao = new CheckinDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static CheckinDao getInstance() {
-		if(checkinDao==null){
-			try {
-				checkinDao=new CheckinDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return checkinDao;
 	}
 
 	private CheckinDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		checkInDataHelper = dataFactory.getCheckInDataHelper();
 	}

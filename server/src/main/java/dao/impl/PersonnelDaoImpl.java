@@ -29,24 +29,25 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 	private DataFactory dataFactory;
 	private PersonnelDataHelper personnelDataHelper;
 
+	static {
+		try {
+			personnelDao = new PersonnelDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static PersonnelDao getInstance() throws RemoteException {
-		if(personnelDao==null){
-			try {
-				personnelDao = new PersonnelDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return personnelDao;
 	}
 
 	private PersonnelDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		personnelDataHelper = dataFactory.getPersonnelDataHelper();
 	}

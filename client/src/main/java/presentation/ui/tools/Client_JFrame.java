@@ -27,7 +27,6 @@ import presentation.ui.checkinui.view.CheckInInfo_Info;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
-import presentation.ui.personnelui.view.Hotelworkeradd_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 
 
