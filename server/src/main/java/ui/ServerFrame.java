@@ -164,6 +164,12 @@ public class ServerFrame extends JFrame {
 				} else {
 					startServerLable.setText(startString);
 					RMIHelper.stop();
+					// initAbovePanel();
+					// initServerInfoPanel();
+					// initUserPanel();
+					logInNumber.setText(logInNumberString + " 0 ");
+					startTime.setText(startTimeString);
+					userPanel.stop();
 				}
 				startServerLable.setForeground(Color.GRAY);
 			}

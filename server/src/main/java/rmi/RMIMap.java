@@ -54,6 +54,8 @@ public class RMIMap {
 	private UserDao userDao;
 	private WebStrategyDao webStrategyDao;
 	private LogDao logDao;
+	
+	private static UnicastRemoteObject dao;
 
 	private RMIMap() {
 		try {
@@ -105,7 +107,11 @@ public class RMIMap {
 
 	
 	public boolean hasNext(){
-		return entries.hasNext();
+		boolean hasNext= entries.hasNext();
+		if(!hasNext){
+			entries=map.entrySet().iterator();
+		}
+		return hasNext;
 	}
 	public void next() {
 		entry=entries.next();
@@ -117,7 +123,8 @@ public class RMIMap {
 	}
 	
 	public UnicastRemoteObject getDao() {
-		UnicastRemoteObject dao=(UnicastRemoteObject) entry.getValue();
+//		UnicastRemoteObject 
+		dao=(UnicastRemoteObject) entry.getValue();
 		return dao;
 	}
 	

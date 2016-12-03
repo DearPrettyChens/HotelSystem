@@ -40,6 +40,7 @@ public class RMIHelper {
 					new RMISSLServerSocketFactory());
 			relate();
 			isStart = true;
+			System.out.println("start");
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,6 +82,7 @@ public class RMIHelper {
 		try {
 			UnicastRemoteObject.unexportObject(registry, true);
 			isStart = false;
+			System.out.println("end");
 		} catch (NoSuchObjectException e) {
 			e.printStackTrace();
 		}

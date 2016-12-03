@@ -21,6 +21,7 @@ public class LogInfo extends JLabel {
 
 //		this.setForeground(Color.gray);
 		this.setSize(600, 25);
+		this.setLayout(null);
 		initComponent();
 	}
 
