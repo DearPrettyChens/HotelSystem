@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * 每条信用记录的面板
+ * 顾客查看每条信用记录的面板,大小是400*300
  * @author cy
  * @version 1.0
  * 
