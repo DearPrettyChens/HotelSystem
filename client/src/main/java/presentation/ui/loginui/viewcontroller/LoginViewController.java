@@ -4,9 +4,9 @@ package presentation.ui.loginui.viewcontroller;
 import javax.swing.JFrame;
 
 import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.personnelui.view.Webmannger_JFrame;
 import presentation.ui.tools.Hotelworker_JFrame;
 import presentation.ui.tools.WebMarketMan_JFrame;
-import presentation.ui.tools.Webmannger_JFrame;
 import util.UserType;
 /**
  * 登录界面跳转的控制器

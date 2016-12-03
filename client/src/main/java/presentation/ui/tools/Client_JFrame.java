@@ -47,8 +47,10 @@ public class Client_JFrame extends JFrame {
 	private String customerID="";
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
+    
 	
 	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
+    private RightContainerPanel rightContainerPanel=new RightContainerPanel();
     
     private  SingleAvailableRoomInfo_JPanel  cp=new SingleAvailableRoomInfo_JPanel ();
     
@@ -65,12 +67,12 @@ public class Client_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private Basic_JPanel jp1 = new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel);
-	private Basic_JPanel jp2 = new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel);
-	private Basic_JPanel jp3 = new Basic_JPanel("修改密码", "image//key.png", 2, allpanel);
-	private Basic_JPanel jp4 = new Basic_JPanel("我的订单", "image//note.png", 3, allpanel);
-	private Basic_JPanel jp5 = new Basic_JPanel("我的足迹", "image//shop.png", 4, allpanel);
-	private Basic_JPanel jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel);
+	private Basic_JPanel jp1 = new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel);
+	private Basic_JPanel jp2 = new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel);
+	private Basic_JPanel jp3 = new Basic_JPanel("修改密码", "image//key.png", 2, allpanel,rightContainerPanel);
+	private Basic_JPanel jp4 = new Basic_JPanel("我的订单", "image//note.png", 3, allpanel,rightContainerPanel);
+	private Basic_JPanel jp5 = new Basic_JPanel("我的足迹", "image//shop.png", 4, allpanel,rightContainerPanel);
+	private Basic_JPanel jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel,rightContainerPanel);
 
 	private HeadPanel headPanel;
 

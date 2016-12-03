@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.personnelui.view.Clientdetailinfo_JFrame;
+import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.tools.MyButton;
 
 /**

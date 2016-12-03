@@ -65,6 +65,7 @@ public class PersonList {
 			if(userID!=null){
 				personListVOs=getListByUserID(userType,  TransHelper.idToInt(userID));
 			}
+			
 			personListPOs=personnelDao.getPersonList(userType, null, -1);
 			if(personListPOs==null) return null;
 		} catch (RemoteException e) {

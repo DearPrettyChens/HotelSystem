@@ -40,7 +40,7 @@ public class Changepassword_JPanel  extends JPanel{
 		this.setLayout(null);
 		
 		addComp();
-		
+		this.setBounds(0, 0, 800, 600);
 		
 		
 		

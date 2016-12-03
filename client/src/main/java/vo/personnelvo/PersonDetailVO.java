@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.swing.ImageIcon;
 
+import com.mysql.fabric.xmlrpc.base.Data;
+
 import po.PersonDetailPO;
 import util.CustomerType;
 import util.TransHelper;
@@ -44,11 +46,7 @@ public class PersonDetailVO {
 	private UserType userType;
 	
 	
-	
 
-	public PersonDetailVO() {
-
-	}
 	/**
 	 * vo的构造函数
 	 * 
@@ -71,10 +69,11 @@ public class PersonDetailVO {
 
 
  
-	public PersonDetailVO(String userId, String userName, String password, ImageIcon userImage, String telephone,
+	
+	public PersonDetailVO(String userId, String userName,  String password,ImageIcon userImage, String telephone,
 			int credit, Date birthday, String enterpriseName, CustomerType vIPType, String hotelName,
 			UserType userType) {
-		super();
+
 		this.userId = userId;
 		this.userName = userName;
 		this.password = password;
@@ -83,7 +82,7 @@ public class PersonDetailVO {
 		this.credit = credit;
 		this.birthday = birthday;
 		this.enterpriseName = enterpriseName;
-		this.VIPType = vIPType;
+		VIPType = vIPType;
 		this.hotelName = hotelName;
 		this.userType = userType;
 	}

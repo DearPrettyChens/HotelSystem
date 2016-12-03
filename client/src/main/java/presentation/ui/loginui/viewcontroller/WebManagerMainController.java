@@ -18,23 +18,23 @@ public class WebManagerMainController {
 	public WebManagerMainController(JFrame frame){
 		this.frame=frame;
 	}
-	public void jumpToWebMarketManManageView(){
-		frame.remove(view);
-		view=new Searchoradd_JPanel(UserType.WebMarketMan);
-		frame.add(view);
-	}
-	
-	public void jumpToCustomerManageView(){
-		frame.remove(view);
-		view=new Searchoradd_JPanel(UserType.Customer);
-		frame.add(view);
-	}
-	
-	public void jumpToHotelWorkerManageView(){
-		frame.remove(view);
-		view=new Searchoradd_JPanel(UserType.HotelWorker);
-		frame.add(view);
-	}
+//	public void jumpToWebMarketManManageView(){
+//		frame.remove(view);
+//		view=new Searchoradd_JPanel(UserType.WebMarketMan);
+//		frame.add(view);
+//	}
+//	
+//	public void jumpToCustomerManageView(){
+//		frame.remove(view);
+//		view=new Searchoradd_JPanel(UserType.Customer);
+//		frame.add(view);
+//	}
+//	
+//	public void jumpToHotelWorkerManageView(){
+//		frame.remove(view);
+//		view=new Searchoradd_JPanel(UserType.HotelWorker);
+//		frame.add(view);
+//	}
 	
 	public void jumpToChangePasswordView(){
 		frame.remove(view);
