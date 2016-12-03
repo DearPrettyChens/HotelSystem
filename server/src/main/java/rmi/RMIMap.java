@@ -17,11 +17,13 @@ import dao.impl.CheckinDaoImpl;
 import dao.impl.CreditDaoImpl;
 import dao.impl.HotelDaoImpl;
 import dao.impl.HotelStrategyDaoImpl;
+import dao.impl.LogDaoImpl;
 import dao.impl.OrderDaoImpl;
 import dao.impl.PersonnelDaoImpl;
 import dao.impl.SearchHotelDaoImpl;
 import dao.impl.UserDaoImpl;
 import dao.impl.WebStrategyDaoImpl;
+import dao.logdao.LogDao;
 import dao.orderdao.OrderDao;
 import dao.personneldao.PersonnelDao;
 import dao.searchhoteldao.SearchHotelDao;
@@ -51,6 +53,7 @@ public class RMIMap {
 	private SearchHotelDao searchHotelDao;
 	private UserDao userDao;
 	private WebStrategyDao webStrategyDao;
+	private LogDao logDao;
 
 	private RMIMap() {
 		try {
@@ -82,6 +85,7 @@ public class RMIMap {
 		map.put(DaoName.SearchHotelDao.name(), searchHotelDao);
 		map.put(DaoName.UserDao.name(), userDao);
 		map.put(DaoName.WebStrategyDao.name(), webStrategyDao);
+		map.put(DaoName.LogDao.name(), logDao);
 	}
 
 	private void createDAO() throws RemoteException {
@@ -95,6 +99,7 @@ public class RMIMap {
 		searchHotelDao = SearchHotelDaoImpl.getInstance();
 		userDao = UserDaoImpl.getInstance();
 		webStrategyDao = WebStrategyDaoImpl.getInstance();
+		logDao = LogDaoImpl.getInstance();
 	}
 
 

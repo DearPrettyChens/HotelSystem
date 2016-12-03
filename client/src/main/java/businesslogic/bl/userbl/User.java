@@ -1,7 +1,10 @@
 package businesslogic.bl.userbl;
 
+import java.net.UnknownHostException;
 import java.rmi.RemoteException;
+import java.rmi.server.ServerNotActiveException;
 
+import dao.logdao.LogDao;
 import dao.userdao.UserDao;
 import init.RMIHelper;
 import po.ClientPO;
@@ -26,12 +29,14 @@ public class User {
 	private UserType userType;
 	private PersonMap personMap;//对应的人种类表
 	private UserDao userDao;
+	private LogDao logDao;
 	private ClientPO clientPO;
 	
 	private User(){
 //		userDao=new UserDao_Stub();
 		RMIHelper.init();
 		userDao=RMIHelper.getUserDao();
+		logDao = RMIHelper.getLogDao();
 		personMap=PersonMap.getInstance();
 	}
 	
@@ -77,9 +82,12 @@ public class User {
 			userID=TransHelper.idToString(clientPO.getUserID(), 6);		
 			this.password=password;
 			userType=clientPO.getType();
+			
+			logDao.logIn(clientPO);
+			
 			return personMap.get(userType);//返回是哪种人登录成功了。
 			
-		} catch (RemoteException e) {
+		} catch (RemoteException | UnknownHostException | ServerNotActiveException e) {
 			e.printStackTrace();
 		}
 		return ResultMessage.FAIL;
@@ -162,9 +170,10 @@ public class User {
 	/**
 	 * 登出操作
 	 * @return
+	 * @throws RemoteException 
 	 */
-	public ResultMessage logout() {
+	public ResultMessage logout() throws RemoteException {
 		user=null;
-		return ResultMessage.SUCCESS;
+		return logDao.logOut(clientPO);
 	}
 }

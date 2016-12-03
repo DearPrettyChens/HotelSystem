@@ -1,5 +1,7 @@
 package rmi;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.rmi.AccessException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.NoSuchObjectException;
@@ -7,6 +9,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+
+import org.springframework.context.support.StaticApplicationContext;
 
 import security.RMISSLClientSocketFactory;
 import security.RMISSLServerSocketFactory;
@@ -23,6 +27,11 @@ public class RMIHelper {
 	private static RMIMap rmiMap = RMIMap.getInstance();
 	private static Registry registry;
 
+	private static InetAddress inetAddress;
+	private static String hostAddress;
+	private static boolean isStart = false;
+
+	// private String
 	public static void connect() {
 
 		try {
@@ -30,6 +39,7 @@ public class RMIHelper {
 			registry = LocateRegistry.createRegistry(RMIconfig.getPort(), new RMISSLClientSocketFactory(),
 					new RMISSLServerSocketFactory());
 			relate();
+			isStart = true;
 		} catch (RemoteException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,9 +80,28 @@ public class RMIHelper {
 
 		try {
 			UnicastRemoteObject.unexportObject(registry, true);
+			isStart = false;
 		} catch (NoSuchObjectException e) {
 			e.printStackTrace();
 		}
 
 	}
+
+	public static String getHostAddress() {
+		if (inetAddress == null) {
+			try {
+				inetAddress = InetAddress.getLocalHost();
+				hostAddress = inetAddress.getHostAddress();
+			} catch (UnknownHostException e) {
+				hostAddress = "cannot find host address";
+				e.printStackTrace();
+			}
+		}
+		return hostAddress;
+	}
+
+	public static boolean isStart() {
+		return isStart;
+	}
+
 }

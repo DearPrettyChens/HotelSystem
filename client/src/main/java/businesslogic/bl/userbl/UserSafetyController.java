@@ -1,5 +1,7 @@
 package businesslogic.bl.userbl;
 
+import java.rmi.RemoteException;
+
 import businesslogic.blservice.userblservice.UserSafetyService;
 import util.Password;
 import util.ResultMessage;
@@ -57,7 +59,7 @@ public class UserSafetyController implements UserSafetyService{
 	}
 
 	@Override
-	public ResultMessage logout() {
+	public ResultMessage logout() throws RemoteException {
 		userSafetyController=null;
 		return user.logout();
 	}
