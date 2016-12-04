@@ -43,12 +43,12 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 	private JLabel passwordjl = new JLabel("密码：   ");
 	private JLabel hotelnamejl = new JLabel("酒店：   ");
 
-	private JTextField idjtx = new JTextField();
-	private JTextField namejtx = new JTextField();
+	private JLabel idjtx = new JLabel();
+	private JLabel namejtx = new JLabel();
 	private JTextField teljtx = new JTextField();
-	private JTextField typejtx = new JTextField();
+	private JLabel typejtx = new JLabel();
 	private JTextField passwordjtx = new JTextField();
-	private JTextField hotelnamejtx = new JTextField();
+	private JLabel hotelnamejtx = new JLabel();
 
 	private MyButton editjb = new MyButton();
 	private MyButton confirmjb = new MyButton();
@@ -97,7 +97,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(typejl);
 		typejtx.setBounds(100, 20, 200, 30);
 		typejtx.setFont(font);
-		typejtx.setEditable(false);
+		//typejtx.setEditable(false);
 		this.add(typejtx);
 
 		idjl.setBounds(50, 70, 200, 30);
@@ -105,7 +105,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(idjl);
 		idjtx.setBounds(100, 70, 200, 30);
 		idjtx.setFont(font);
-		idjtx.setEditable(false);
+		//idjtx.setEditable(false);
 		this.add(idjtx);
 
 		namejl.setBounds(50, 120, 200, 30);
@@ -113,7 +113,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(namejl);
 		namejtx.setBounds(100, 120, 200, 30);
 		namejtx.setFont(font);
-		namejtx.setEditable(false);
+		//namejtx.setEditable(false);
 		this.add(namejtx);
 
 		teljl.setBounds(50, 170, 200, 30);
@@ -137,7 +137,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(hotelnamejl);
 		hotelnamejtx.setBounds(100, 270, 200, 30);
 		hotelnamejtx.setFont(font);
-		hotelnamejtx.setEditable(false);
+		//hotelnamejtx.setEditable(false);
 		this.add(hotelnamejtx);
 
 		editjb.setBounds(50, 330, 250, 30);

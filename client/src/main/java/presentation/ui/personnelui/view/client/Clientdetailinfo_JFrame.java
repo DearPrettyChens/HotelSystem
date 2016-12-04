@@ -28,7 +28,6 @@ import vo.personnelvo.PersonDetailVO;
  * 
  */
 public class Clientdetailinfo_JFrame extends JFrame {
-
 	private Font font = new Font("宋体", Font.BOLD, 16);
 
 	private String id;
@@ -52,14 +51,14 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	private JLabel enterpriseNamejl = new JLabel("企业:   ");
 	private JLabel birthdayjl = new JLabel("生日:   ");
 
-	private JTextField idjtx = new JTextField();
-	private JTextField namejtx = new JTextField();
+	private JLabel idjtx = new JLabel();
+	private JLabel namejtx = new JLabel();
 	private JTextField teljtx = new JTextField();
-	private JTextField typejtx = new JTextField();
+	private JLabel typejtx = new JLabel();
 	private JTextField passwordjtx = new JTextField();
-	private JTextField creditjtx = new JTextField();
-	private JTextField enterpriseNamejtx = new JTextField();
-	private JTextField birthdayjtx = new JTextField();
+	private JLabel creditjtx = new JLabel();
+	private JLabel enterpriseNamejtx = new JLabel();
+	private JLabel birthdayjtx = new JLabel();
 
 	private MyButton editjb = new MyButton();
 	private MyButton confirmjb = new MyButton();
@@ -120,7 +119,7 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(typejl);
 		typejtx.setBounds(100, 20, 200, 30);
 		typejtx.setFont(font);
-		typejtx.setEditable(false);
+		//typejtx.setEditable(false);
 		this.add(typejtx);
 
 		idjl.setBounds(50, 70, 200, 30);
@@ -128,7 +127,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(idjl);
 		idjtx.setBounds(100, 70, 200, 30);
 		idjtx.setFont(font);
-		idjtx.setEditable(false);
 		this.add(idjtx);
 
 		namejl.setBounds(50, 120, 200, 30);
@@ -136,7 +134,7 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(namejl);
 		namejtx.setBounds(100, 120, 200, 30);
 		namejtx.setFont(font);
-		namejtx.setEditable(false);
+		//namejtx.setEditable(false);
 		this.add(namejtx);
 
 		teljl.setBounds(50, 170, 200, 30);
@@ -160,7 +158,7 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(creditjl);
 		creditjtx.setBounds(100, 270, 200, 30);
 		creditjtx.setFont(font);
-		creditjtx.setEditable(false);
+		//creditjtx.setEditable(false);
 		this.add(creditjtx);
 
 		switch (customerType) {
@@ -170,7 +168,7 @@ public class Clientdetailinfo_JFrame extends JFrame {
 			this.add(enterpriseNamejl);
 			enterpriseNamejtx.setBounds(100, 320, 200, 30);
 			enterpriseNamejtx.setFont(font);
-			enterpriseNamejtx.setEditable(false);
+			//enterpriseNamejtx.setEditable(false);
 			this.add(enterpriseNamejtx);
 			break;
 		case INDIVIDUAL:
@@ -179,7 +177,7 @@ public class Clientdetailinfo_JFrame extends JFrame {
 			this.add(birthdayjl);
 			birthdayjtx.setBounds(100, 320, 200, 30);
 			birthdayjtx.setFont(font);
-			birthdayjtx.setEditable(false);
+			//birthdayjtx.setEditable(false);
 			this.add(birthdayjtx);
 			break;
 		}
@@ -190,13 +188,13 @@ public class Clientdetailinfo_JFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				
 				passwordjtx.setEditable(true);
 				teljtx.setEditable(true);
 				Clientdetailinfo_JFrame.this.remove(editjb);
 				Clientdetailinfo_JFrame.this.add(confirmjb);
 				// !!!!!!!!!这里没有实现时时检查？？？
-
+				// TODO
 			}
 
 		});
@@ -208,10 +206,8 @@ public class Clientdetailinfo_JFrame extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
 				// 此处还未写什么保存成功之类的
-
+				//TODO
 				Clientdetailinfo_JFrame.this.setVisible(false);
 				PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, image, tel, credit,
 						birthdayByDate, enterpriseName, customerType, null, type);
