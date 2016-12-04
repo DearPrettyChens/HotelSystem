@@ -105,12 +105,6 @@ public class LoginDistributionController {
 	 * @return resultMessage
 	 */
 	public ResultMessage logout(){
-		try {
-			return userSafetyService.logout();
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return ResultMessage.FAIL;
+		return userSafetyService.logout();
 	}
 }
