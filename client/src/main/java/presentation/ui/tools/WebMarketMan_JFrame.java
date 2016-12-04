@@ -10,6 +10,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.creditui.view.Clientdeposite_JPanel;
+import presentation.ui.creditui.view.DepositPanel;
+import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
+import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
+import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
+import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
 import util.UserType;
 
 /**
@@ -38,7 +44,7 @@ public class WebMarketMan_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private Basic_JPanel jp1 = new Basic_JPanel("搜索酒店", "image//search.png", 0, allpanel, rightContainerPanel);
+	private Basic_JPanel jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel);
 	private Basic_JPanel jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel);
 	private Basic_JPanel jp3 = new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel);
 	private Basic_JPanel jp4 = new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel);
@@ -50,7 +56,12 @@ public class WebMarketMan_JFrame extends JFrame {
 	private Color backgroundcolor = new Color(148, 221, 184);
 	private JPanel abovepanel = new JPanel();
 	private JPanel sidepanel = new JPanel();
-
+	
+	private Clientlevelrule_JPanel clientlevelrule_JPanel=new Clientlevelrule_JPanel();
+    private Makewebstr_JPanel makewebstr_JPanel=new Makewebstr_JPanel();
+	private DepositPanel depositPanel=DepositPanel.getInstance();
+	private OrderPanelInWebMarketMan orderPanelInWebMarketMan=OrderPanelInWebMarketMan.getInstance();
+	
 	public WebMarketMan_JFrame() {
 
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
@@ -117,7 +128,23 @@ public class WebMarketMan_JFrame extends JFrame {
 		sidepanel.setBounds(0, 100, 200, 600);
 		sidepanel.setLayout(null);
 		this.add(sidepanel);
-
+		
+//		depositPanel.setBounds(200, 100, 800, 600);
+//	    this.add(depositPanel);
+//        clientdepositelistinfo_JPanel.setBounds(200, 100, 800, 600);
+//		this.add(clientdepositelistinfo_JPanel);
+//        clientlevelrule_JPanel.setBounds(200, 100, 800, 600);
+//		this.add(clientlevelrule_JPanel);
+//		 makewebstr_JPanel.setBounds(200, 100, 800, 600);
+//			this.add(makewebstr_JPanel);
+//		 orderPanelInWebMarketMan.setBounds(200, 100, 800, 600);
+//			this.add(orderPanelInWebMarketMan);
+         
+     	//用于界面初始化左边栏的第一项和右边的营销人员
+			
+	    rightContainerPanel.add(orderPanelInWebMarketMan);
+ 		getContentPane().add(rightContainerPanel);
+ 		jp1.init();
 	}
 
 	/**

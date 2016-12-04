@@ -1,33 +1,46 @@
-package presentation.ui.personnelui.view.client;
+package presentation.ui.creditui.view;
+
+
+
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.personnelui.view.SearchInterface;
 import presentation.ui.personnelui.view.Searchperson_JPanel;
+import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
+import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
+import presentation.ui.tools.MyButton;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 
 /**
- * 右边的面板，这个是管理顾客的总面板
- * @author csy
- *
+ * 进行信用充值搜索出来的顾客列表信息
+ * 
+ * @author cy
+ * @version 1.0
+ * 
  */
-public class ManageCustomerPanel extends JPanel implements SearchInterface{
+public class ClientDepositeSearch_JPanel extends JPanel implements SearchInterface{
 	private Searchperson_JPanel searchperson_JPanel = new Searchperson_JPanel(UserType.Customer,this);
 	
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel searchResultPanel = new JPanel();
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
-	private static ArrayList<Clientlistinfo_JPanel> clientlistinfo_JPanels;
+	private static ArrayList<ClientDepositeList_JPanel> clientDepositeList_JPanels;
 	
-	public ManageCustomerPanel() {
+	public ClientDepositeSearch_JPanel() {
 		this.setBounds(0, 0, 800, 600);
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
@@ -66,23 +79,20 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
 		searchResultPanel.repaint();
 //		scrollPane.repaint();
 		searchResultPanel.setBackground(Color.WHITE);
-		 clientlistinfo_JPanels=new ArrayList<Clientlistinfo_JPanel>();
+		clientDepositeList_JPanels=new ArrayList<ClientDepositeList_JPanel>();
 		for(PersonListVO personListVO:personListVOs){
-	    	Clientlistinfo_JPanel clientlistinfo_JPanel=new Clientlistinfo_JPanel(personListVO);
-	    	clientlistinfo_JPanels.add(clientlistinfo_JPanel);
+			ClientDepositeList_JPanel clientDepositeList_JPanel=new ClientDepositeList_JPanel(personListVO);
+			clientDepositeList_JPanels.add(clientDepositeList_JPanel);
 	    }
-	    for(int i=0;i<clientlistinfo_JPanels.size();i++){
-	    	Clientlistinfo_JPanel clientlistinfo_JPanel=clientlistinfo_JPanels.get(i);
-	    	clientlistinfo_JPanel.setBounds(100, 10+120*i, 800, 100);
-	    	searchResultPanel.add(clientlistinfo_JPanel);
+	    for(int i=0;i<clientDepositeList_JPanels.size();i++){
+	    	ClientDepositeList_JPanel clientDepositeList_JPanel=clientDepositeList_JPanels.get(i);
+	    	clientDepositeList_JPanel.setBounds(100, 10+120*i, 800, 100);
+	    	searchResultPanel.add(clientDepositeList_JPanel);
 	    }
-	    searchResultPanel.setPreferredSize(new Dimension(800, 120+120*clientlistinfo_JPanels.size()));
+	    searchResultPanel.setPreferredSize(new Dimension(800, 120+120*clientDepositeList_JPanels.size()));
 	    scrollPane.setViewportView(searchResultPanel);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 //	    this.add(scrollPane);
 	}
 
-	
-	
 }
-

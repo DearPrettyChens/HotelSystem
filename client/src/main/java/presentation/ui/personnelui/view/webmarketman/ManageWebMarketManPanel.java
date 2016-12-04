@@ -54,7 +54,7 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(null);
 
-		initHotelWorkerList();
+		initWebMarkerManList();
 		this.add(scrollPane);
 
 	}
@@ -74,7 +74,7 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 	/**
 	 * 界面初始化获得所有网站营销人员信息
 	 */
-	public void initHotelWorkerList() {
+	public void initWebMarkerManList() {
 		ArrayList<PersonListVO> personListVOs = personnelDistributionController.getPersonList(UserType.WebMarketMan,
 				null);
 		changeScrollPane(personListVOs);

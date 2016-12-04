@@ -14,4 +14,18 @@ public enum TradingArea {
 		}
 		return str;
 	}
+	
+	public String getChinese() {
+		String str = null;
+		switch (this) {
+		case XINJIEKOU:
+			str = "新街口";
+			break;
+		case HUNANLU:
+			str = "湖南路";
+			break;
+		}
+		return str;
+	}
+	
 }

@@ -1,6 +1,7 @@
 package presentation.ui.webstrategyui.distributecontroller;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,18 +34,25 @@ public class WebStrategyBLService_Stub implements WebStrategyBLService{
 	@Override
 	public WebStrVO getWebStrategy(WebStrategyType type) {
 		// TODO Auto-generated method stub
-		Date[] date=new Date[]{
-				new Date(2016, 5, 20),new Date(2016, 11, 30)
-		};
+		Calendar calendar1=Calendar.getInstance();
+		calendar1.set(2016, 5, 20);
+		Calendar calendar2=Calendar.getInstance();
+		calendar2.set(2016, 12, 4);
+		
+		Date[] date=new Date[]{calendar1.getTime(),calendar2.getTime()};
+//		System.out.println(date[0]);
 		Map<Integer, Double> area=new HashMap<Integer, Double>();
 		area.put(TradingArea.XINJIEKOU.ordinal(), 0.5);
+		area.put(TradingArea.HUNANLU.ordinal(), 0.8);
 		Map<Integer, Double> vip=new HashMap<Integer, Double>();
-		area.put(1, 0.5);
+		vip.put(10, 0.9);
+		vip.put(20, 0.8);
+		vip.put(30, 0.7);
 		switch(type){
 		case SPECIALAREA:
 			return new WebStrVO(area , 0.5, WebStrategyType.SPECIALAREA);
 		case SPECIALTIME:
-			return new WebStrVO(date, 0.5,WebStrategyType.SPECIALTIME);
+			return new WebStrVO(date, 0.75, WebStrategyType.SPECIALTIME);
 		case VIP:
 			return new WebStrVO(vip, 0.5, WebStrategyType.VIP);
 		default:

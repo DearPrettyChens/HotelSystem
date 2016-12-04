@@ -2,12 +2,21 @@ package presentation.ui.orderui.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.orderui.distributecontroller.OrderDistributionController;
+import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 import presentation.ui.tools.MyButton;
+import util.BedType;
+import util.OrderState;
+import util.TransHelper;
+import vo.ordervo.OrderInfoVO;
 
 public class Orderdetailinfo_JPanel  extends JPanel{
 	
@@ -30,6 +39,14 @@ public class Orderdetailinfo_JPanel  extends JPanel{
 	private String roomtype;
 	private String bedtype;
 	
+	private Date ordertimeInDate;
+	private Date latestcheckintimeInDate;
+	private Date realcheckintimeInDate;
+	private Date checkouttimeInDate;
+	private OrderState state;
+	private double price;
+	private BedType bedType2;
+	
 	private JLabel ordernumberjl;
 	private JLabel clientnamejl;
 	private JLabel clientteljl;
@@ -49,26 +66,32 @@ public class Orderdetailinfo_JPanel  extends JPanel{
     
     private MyButton backjb=new MyButton();
     
+	private OrderDistributionController orderDistributionController=OrderDistributionController.getInstance();
+	private ManageOrderViewController manageOrderViewController =ManageOrderViewController.getInstance(null);
 	
-	
-	
-	public Orderdetailinfo_JPanel( String ordernumber,String clientname,String clienttel,String ordertime
-			,String latestcheckintime,String realcheckintime,String checkouttime,String orderstate,String hotelname
-			, String hoteltel,String payment,String roomtype,String bedtype){
+	public Orderdetailinfo_JPanel(String orderID){
+		OrderInfoVO orderInfoVO = orderDistributionController.getOrderInfo(orderID);
 		
-		this.ordernumber=ordernumber;
-		this.clientname=clientname;
-		this.clienttel=clienttel;
-		this.ordertime=ordertime;
-		this.latestcheckintime=latestcheckintime;
-		this.realcheckintime=realcheckintime;
-		this.checkouttime=checkouttime;
-		this.orderstate=orderstate;
-		this.hotelname=hotelname;
-		this.hoteltel=hoteltel;
-		this.payment=payment;
-		this.roomtype=roomtype;
-		this.bedtype=bedtype;
+		this.ordernumber=orderInfoVO.getOrderID();
+		this.clientname=orderInfoVO.getCustomerName();
+		this.clienttel=orderInfoVO.getLiveinPersonTelephone();
+		this.ordertimeInDate=orderInfoVO.getOrderTime();
+		this.ordertime=TransHelper.dateToString(ordertimeInDate);
+		this.latestcheckintimeInDate=orderInfoVO.getLateCheckInTime();
+		this.latestcheckintime=TransHelper.dateToString(latestcheckintimeInDate);
+		this.realcheckintimeInDate=orderInfoVO.getExpectedCheckInTime();
+		this.realcheckintime=TransHelper.dateToString(realcheckintimeInDate);
+		this.checkouttimeInDate=orderInfoVO.getExpectedCheckOutTime();
+		this.checkouttime=TransHelper.dateToString(checkouttimeInDate);
+		this.state= orderInfoVO.getState();
+		this.orderstate= state.toChinese();
+		this.hotelname=orderInfoVO.getHotelName();
+		this.hoteltel=orderInfoVO.getHotelTelephone();
+		this.price=orderInfoVO.getPrice();
+		this.payment=String.valueOf(price);
+		this.roomtype=orderInfoVO.getRoomType();
+		this.bedType2=orderInfoVO.getBedType();
+		this.bedtype=bedType2.toChinese();
 		
 		
 		ordernumberjl=new JLabel("订单号："+ordernumber);
@@ -173,7 +196,14 @@ public class Orderdetailinfo_JPanel  extends JPanel{
     	backjb.setText("返回");
     	backjb.setBounds(600,500,100,30);
     	this.add(backjb);
-    	
+    	backjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				manageOrderViewController.jumpToMainFrame();
+				
+			}
+		});
     	
     }
     

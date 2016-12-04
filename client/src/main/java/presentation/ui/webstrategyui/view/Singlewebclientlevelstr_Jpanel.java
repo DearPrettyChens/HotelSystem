@@ -15,18 +15,18 @@ import javax.swing.JTextField;
 public class Singlewebclientlevelstr_Jpanel  extends JLabel{
 	private Font font=new Font("宋体",Font.BOLD, 20);
 	private int level;
-	private int count;
+	private double count;
 	private JLabel leveljl=new JLabel("会员等级："); 
 	private JLabel countjl=new JLabel("折扣值："); 
 	private JTextField leveljtf=new JTextField(); 
 	private JTextField countjtf=new JTextField(); 
-	Singlewebclientlevelstr_Jpanel(int level,int cout){
+	Singlewebclientlevelstr_Jpanel(int level,double cout){
 		this.level=level;
-		this.count=count;
+		this.count=cout;
 		this.setLayout(null);
 		this.setBackground(Color.white);
 	    
-	    this.setSize(800,50);
+	    this.setSize(700,50);
 		addComp();
 		
 	}
@@ -44,7 +44,7 @@ public class Singlewebclientlevelstr_Jpanel  extends JLabel{
 	    	leveljl.setFont(font);
 	    	this.add(leveljl);
 	    	
-	    	leveljtf.setBounds(300,15,100,30);
+	    	leveljtf.setBounds(300,16,100,30);
 	    	leveljtf.setText(level+"");
 	    	this.add(leveljtf);
 	    	
@@ -53,12 +53,10 @@ public class Singlewebclientlevelstr_Jpanel  extends JLabel{
 	    	countjl.setFont(font);
 	    	this.add(countjl);
 	    	
-	    	countjtf.setBounds(500,15,100,30);
+	    	countjtf.setBounds(510,16,100,30);
 	    	countjtf.setText(count+"");
 	    	this.add(countjtf);
-	    	
-	    	
-	    	
+ 	
 	    }
 	
 	

@@ -1,5 +1,6 @@
 package presentation.ui.orderui.distributecontroller;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import businesslogic.bl.orderbl.CancleOrderController;
@@ -10,13 +11,16 @@ import businesslogic.blservice.orderblservice.CancleOrderService;
 import businesslogic.blservice.orderblservice.ExecuteOrderService;
 import businesslogic.blservice.orderblservice.GenerateOrderService;
 import businesslogic.blservice.orderblservice.LookOrderService;
+
 import exception.NotFoundHotelException;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.hotelvo.HotelDetailInfoVO;
 import vo.ordervo.OrderInfoVO;
+import vo.ordervo.OrderListVO;
 import vo.ordervo.RemarkVO;
 import vo.ordervo.StrategyVO;
+import vo.ordervo.TypeInfoVO;
 /**
  * order界面调用逻辑层的控制类
  * @author CLL
@@ -29,10 +33,15 @@ public class OrderDistributionController {
 	private GenerateOrderService generateOrderService;
 	private LookOrderService lookOrderService;
 	private OrderDistributionController(){
-		cancleOrderService=CancleOrderController.getInstance();
-		executeOrderService=ExecuteOrderController.getInstance();
-		generateOrderService=GenerateOrderController.getInstance();
-		lookOrderService=LookOrderController.getInstance();
+//		cancleOrderService=CancleOrderController.getInstance();
+//		executeOrderService=ExecuteOrderController.getInstance();
+//		generateOrderService=GenerateOrderController.getInstance();
+//		lookOrderService=LookOrderController.getInstance();
+	    cancleOrderService=new CancleOrderService_Stub();
+	    executeOrderService=new ExecuteOrderService_Stub();
+	    generateOrderService=new GenerateOrderService_Stub();
+	    lookOrderService=new LookOrderService_Stub();
+
 	}
 	public static OrderDistributionController getInstance(){
 		if(controller==null){
@@ -173,4 +182,27 @@ public class OrderDistributionController {
 	public ResultMessage checkAvailableRoomNumber (AvailableRoomNumberVO vo){
 		return generateOrderService.checkAvailableRoomNumber(vo);
 	}
+	
+	/**
+	 * 获取订单详细信息
+	 * @param orderID String型，传递订单号
+	 * @return OrderInfoVO ，将订单详细信息返回给界面或hotel模块
+	 * @throws 未定
+	 *
+	 */
+	public OrderInfoVO getOrderInfo(String orderID){
+		return lookOrderService.getOrderInfo(orderID);
+	}
+	
+	/**
+	 * 获取特定类型的订单列表
+	 * @param typeInfoVO TypeInfoVO型,传递订单类型信息
+	 * @return  ArrayList<OrderVO> ，将特定订单列表返回给界面
+	 * @throws 未定
+	 *
+	 */
+	public ArrayList<OrderListVO> getOrderList(TypeInfoVO typeInfoVO){
+		return lookOrderService.getOrderList(typeInfoVO);
+	}
+	
 }

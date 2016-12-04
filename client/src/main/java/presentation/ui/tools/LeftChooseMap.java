@@ -5,11 +5,15 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 import businesslogic.bl.webstrategybl.WebStrategyInterface;
+import presentation.ui.creditui.view.DepositPanel;
+import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.personnelui.view.client.ManageCustomerPanel;
 import presentation.ui.personnelui.view.hotelworker.ManageHotelWorkerPanel;
 import presentation.ui.personnelui.view.webmarketman.ManageWebMarketManPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
+import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
+import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
 import util.WebStrategyType;
 
 /**
@@ -31,6 +35,10 @@ public class LeftChooseMap {
 		map.put("修改密码", new Changepassword_JPanel());
 		
 		//网站营销人员的左边栏
+		map.put("管理订单", OrderPanelInWebMarketMan.getInstance());
+		map.put("信用充值", DepositPanel.getInstance());
+		map.put("会员等级", new Clientlevelrule_JPanel());
+		map.put("营销策略", new Makewebstr_JPanel());
 		
 //		酒店工作人员的左边栏
 		

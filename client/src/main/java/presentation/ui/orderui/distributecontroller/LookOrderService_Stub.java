@@ -28,8 +28,16 @@ public class LookOrderService_Stub implements LookOrderService{
 	public ArrayList<OrderListVO> getOrderList(TypeInfoVO typeInfoVO) {
 		// TODO Auto-generated method stub
 		ArrayList<OrderListVO> vos=new ArrayList<OrderListVO>();
-		OrderListPO po1=new OrderListPO("201611030001000001","000001","chen",new Date(),OrderState.NOTEXECUTED);
+		OrderListPO po1=new OrderListPO("201611030001000001","","南京金鹰国际大酒店","","chen",new Date(),OrderState.NOTEXECUTED);
 		vos.add(new OrderListVO(po1));
+		OrderListPO po2=new OrderListPO("201611030001000001",null,"南京金鹰国际大酒店",null,"chen",new Date(),OrderState.NOTEXECUTED);
+		vos.add(new OrderListVO(po2));
+		OrderListPO po3=new OrderListPO("201611030001000001",null,"南京金鹰国际大酒店",null,"chen",new Date(),OrderState.NOTEXECUTED);
+		vos.add(new OrderListVO(po3));
+		OrderListPO po4=new OrderListPO("201611030001000001",null,"南京金鹰国际大酒店",null,"chen",new Date(),OrderState.NOTEXECUTED);
+		vos.add(new OrderListVO(po4));
+		OrderListPO po5=new OrderListPO("201611030001000001",null,"南京金鹰国际大酒店",null,"chen",new Date(),OrderState.NOTEXECUTED);
+		vos.add(new OrderListVO(po5));
 		return vos;
 	}
 

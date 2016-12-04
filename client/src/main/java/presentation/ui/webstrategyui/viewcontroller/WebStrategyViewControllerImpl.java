@@ -2,6 +2,7 @@ package presentation.ui.webstrategyui.viewcontroller;
 
 import javax.swing.JPanel;
 
+import presentation.ui.webstrategyui.view.ChooseStrategy_JPanel;
 import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
 import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
 import presentation.ui.webstrategyui.view.WebSpecialAreaStr_JPanel;
@@ -13,13 +14,16 @@ import util.WebStrategyType;
  * @author CLL
  *
  */
-public class WebStrategyViewControllerImpl implements  WebStrategyViewControllerService{
+public class WebStrategyViewControllerImpl{
 	private JPanel view;//发起界面跳转的界面对象
+	public WebStrategyViewControllerImpl() {
+		// TODO Auto-generated constructor stub
+	}
 	public WebStrategyViewControllerImpl(JPanel view){
 		this.view=view;
 	}
 	
-	@Override
+
 	public void addStrategySuccess(WebStrategyType type) {
 		view.removeAll();
 		switch(type){
@@ -37,28 +41,27 @@ public class WebStrategyViewControllerImpl implements  WebStrategyViewController
 		}
 	}
 
-	@Override
 	public void modifyVIPRuleSuccess() {
 		view.removeAll();
 		view=new Clientlevelrule_JPanel();
 	}
-	@Override
+
 	public void jumpToMainFrame() {
 		view=null;
 		
 	}
 
-	@Override
-	public void selectStrategyType(WebStrategyType type) {
+	
+	public void selectStrategyType(WebStrategyType type,ChooseStrategy_JPanel chooseStrategy_JPanel) {
 		switch(type){
 		case SPECIALAREA:
-			view.add(new WebSpecialAreaStr_JPanel());
+			chooseStrategy_JPanel.changeToAreaStr();
 			break;
 		case SPECIALTIME:
-			view.add(new Webspecialtimestr_JPanel());
+			chooseStrategy_JPanel.changeToTimeStr();
 			break;
 		case VIP:
-			view.add(new Webclientlevelstr_Jpanel());
+			chooseStrategy_JPanel.changeToLevelStr();
 			break;
 		default:
 			break;
@@ -67,7 +70,7 @@ public class WebStrategyViewControllerImpl implements  WebStrategyViewController
 		
 	}
 
-	@Override
+	
 	public void backToselectStrategy() {
 		view.removeAll();
 	}

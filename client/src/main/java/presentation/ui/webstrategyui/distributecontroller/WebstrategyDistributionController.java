@@ -21,7 +21,8 @@ public class WebstrategyDistributionController {
 	private static WebstrategyDistributionController controller=null;
 	private WebStrategyBLService webStrategyBLService;
 	private WebstrategyDistributionController(){
-		webStrategyBLService=WebStrategyController.getInstance();
+//		webStrategyBLService=WebStrategyController.getInstance();
+	    webStrategyBLService=new WebStrategyBLService_Stub();
 	}
 	public static WebstrategyDistributionController getInstance(){
 		if(controller==null){
