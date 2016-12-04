@@ -38,7 +38,7 @@ public class WebManagerMainController {
 	
 	public void jumpToChangePasswordView(){
 		frame.remove(view);
-		view=new Changepassword_JPanel();
+//		view=new Changepassword_JPanel();
 		frame.add(view);
 	}
 }

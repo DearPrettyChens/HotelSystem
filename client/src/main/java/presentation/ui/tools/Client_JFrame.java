@@ -53,13 +53,11 @@ public class Client_JFrame extends JFrame {
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
     
-	
-<<<<<<< HEAD
+
 	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
-=======
 	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
->>>>>>> origin/master
+
     
    // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
     
