@@ -85,6 +85,10 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 		this.add(confirmjb);
 	}
 
+	
+	/**
+	 * 增加滚动条面板
+	 */
 	public void addScrollPane() {
 		scrollPane.setBounds(0, 0, 800, 350);
 		scrollPane.setBackground(Color.WHITE);
@@ -94,6 +98,9 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 		this.add(scrollPane);
 	}
 
+	/**
+	 * 初始化策略列表，以及初始化单条策略panel
+	 */
 	public void initStrategyList() {
 		singleinfo = new ArrayList<Singlewebclientlevelstr_Jpanel>();
 
@@ -109,7 +116,13 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 		addToPanel();
 	}
 
+
+	/**
+	 * 将单条策略panel加到panel上。再加到scrollpane
+	 * 单独把这个方法抽出来写是因为，在增加新的策略后，arraylist里面会加有新的策略，需要重新显示
+	 */	
 	public void addToPanel() {
+	
 		panel.removeAll();
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);

@@ -33,7 +33,7 @@ public class WebMarketMan_JFrame extends JFrame {
 
 	// 关于界面
 
-	private RightContainerPanel rightContainerPanel = new RightContainerPanel();
+	private RightContainerPanel rightContainerPanel = new RightContainerPanel();//右边界面的容器
 
 	private close_JButton close_jbutton = new close_JButton();
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
@@ -57,9 +57,6 @@ public class WebMarketMan_JFrame extends JFrame {
 	private JPanel abovepanel = new JPanel();
 	private JPanel sidepanel = new JPanel();
 	
-	private Clientlevelrule_JPanel clientlevelrule_JPanel=new Clientlevelrule_JPanel();
-    private Makewebstr_JPanel makewebstr_JPanel=new Makewebstr_JPanel();
-	private DepositPanel depositPanel=DepositPanel.getInstance();
 	private OrderPanelInWebMarketMan orderPanelInWebMarketMan=OrderPanelInWebMarketMan.getInstance();
 	
 	public WebMarketMan_JFrame() {
@@ -128,19 +125,8 @@ public class WebMarketMan_JFrame extends JFrame {
 		sidepanel.setBounds(0, 100, 200, 600);
 		sidepanel.setLayout(null);
 		this.add(sidepanel);
-		
-//		depositPanel.setBounds(200, 100, 800, 600);
-//	    this.add(depositPanel);
-//        clientdepositelistinfo_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(clientdepositelistinfo_JPanel);
-//        clientlevelrule_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(clientlevelrule_JPanel);
-//		 makewebstr_JPanel.setBounds(200, 100, 800, 600);
-//			this.add(makewebstr_JPanel);
-//		 orderPanelInWebMarketMan.setBounds(200, 100, 800, 600);
-//			this.add(orderPanelInWebMarketMan);
          
-     	//用于界面初始化左边栏的第一项和右边的营销人员
+     	//用于界面初始化左边栏的第一项和右边的管理订单panel
 			
 	    rightContainerPanel.add(orderPanelInWebMarketMan);
  		getContentPane().add(rightContainerPanel);

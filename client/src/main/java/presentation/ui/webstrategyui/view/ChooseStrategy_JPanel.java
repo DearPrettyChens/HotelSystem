@@ -4,6 +4,13 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+/**
+ * 
+ * 装各个策略的面板容器
+ * 
+ * @author csy
+ *
+ */
 public class ChooseStrategy_JPanel extends JPanel {
 
 	private Webclientlevelstr_Jpanel webclientlevelstr_Jpanel;

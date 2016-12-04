@@ -18,6 +18,12 @@ import util.OrderState;
 import util.TransHelper;
 import vo.ordervo.OrderInfoVO;
 
+/**
+ * 
+ * 网站营销人员查看的订单详细信息界面
+ * @author cy
+ *
+ */
 public class Orderdetailinfo_JPanel  extends JPanel{
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
