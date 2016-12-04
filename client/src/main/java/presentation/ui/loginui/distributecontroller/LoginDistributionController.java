@@ -1,5 +1,7 @@
 package presentation.ui.loginui.distributecontroller;
 
+import java.rmi.RemoteException;
+
 import businesslogic.bl.userbl.UserSafetyController;
 import businesslogic.blservice.userblservice.UserSafetyService;
 import util.ResultMessage;
@@ -103,6 +105,12 @@ public class LoginDistributionController {
 	 * @return resultMessage
 	 */
 	public ResultMessage logout(){
-		return userSafetyService.logout();
+		try {
+			return userSafetyService.logout();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ResultMessage.FAIL;
 	}
 }
