@@ -25,9 +25,9 @@ public class PersonList {
 	private static PersonList personList;
 
 	private PersonList() {
-//		RMIHelper.init();
-//		personnelDao = RMIHelper.getPersonnelDao();
-		personnelDao=new PersonnelDao_Stub();
+		RMIHelper.init();
+		personnelDao = RMIHelper.getPersonnelDao();
+//		personnelDao=new PersonnelDao_Stub();
 		
 	}
 
@@ -62,19 +62,20 @@ public class PersonList {
 			if(userName!=null){
 				personListVOs=getListByUserName(userType, userName);
 			}
-			if(userID!=null){
+			else if(userID!=null){
 				personListVOs=getListByUserID(userType,  TransHelper.idToInt(userID));
 			}
-			personListPOs=personnelDao.getPersonList(userType, null, -1);
-			if(personListPOs==null) return null;
+			else{
+				personListPOs=personnelDao.getPersonList(userType, null, -1);
+				if(personListPOs==null) return null;
+				for(PersonListPO personListPO:personListPOs){
+					personListVOs.add(new PersonListVO(personListPO));
+				}
+			}
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
-		for(PersonListPO personListPO:personListPOs){
-			personListVOs.add(new PersonListVO(personListPO));
-		}
-		
 		if(personListVOs.isEmpty()) return null;		
 		return personListVOs;
 	}

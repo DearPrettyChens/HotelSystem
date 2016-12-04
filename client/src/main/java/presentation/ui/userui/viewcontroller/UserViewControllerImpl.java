@@ -40,7 +40,7 @@ public class UserViewControllerImpl implements UserViewControllerService{
 
 	@Override
 	public void jumpToChangePasswordView() {
-		view=new Changepassword_JPanel();
+		view=new Changepassword_JPanel(userType);
 		mainFrame.add(view);
 	}
 

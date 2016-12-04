@@ -31,24 +31,26 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 	private static OrderDao orderDao;
 	public DataFactory dataFactory;
 	public OrderDataHelper orderDataHelper;
+	
+	static {
+		try {
+			orderDao = new OrderDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static OrderDao getInstance() throws RemoteException {
-		if(orderDao==null){
-			try {
-				orderDao = new OrderDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return orderDao;
 	}
 
 	private OrderDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		orderDataHelper = dataFactory.getOrderDataHelper();
 	}

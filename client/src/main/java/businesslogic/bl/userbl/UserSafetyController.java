@@ -1,5 +1,7 @@
 package businesslogic.bl.userbl;
 
+import java.rmi.RemoteException;
+
 import businesslogic.blservice.userblservice.UserSafetyService;
 import util.Password;
 import util.ResultMessage;

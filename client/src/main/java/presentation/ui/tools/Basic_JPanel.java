@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -20,11 +21,18 @@ import javax.swing.JPanel;
 public class Basic_JPanel extends JPanel {
 
 	private JLabel jl4 = new JLabel();
+	private RightContainerPanel rightContainerPanel;
+	private LeftChooseMap leftChooseMap = LeftChooseMap.getInstance();
+	private String labelName;
 
 	ArrayList<Basic_JPanel> allpanel;
 	int tab;
 
-	public Basic_JPanel(String s, String image, int tab, ArrayList<Basic_JPanel> allpanel) {
+	public Basic_JPanel(String s, String image, int tab, ArrayList<Basic_JPanel> allpanel,
+			RightContainerPanel rightContainerPanel) {
+		this.labelName = s;
+		this.rightContainerPanel = rightContainerPanel;
+
 		this.tab = tab;
 		this.allpanel = allpanel;
 		JLabel jl1 = new JLabel();
@@ -54,9 +62,16 @@ public class Basic_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				// TODO Auto-generated method stub
 				Basic_JPanel.this.setBackground(new Color(133, 196, 163));
 				Basic_JPanel.this.jl4.setVisible(true);
+				String info = Basic_JPanel.this.labelName;
+				JPanel panel = leftChooseMap.get(info);
+				rightContainerPanel.removeAll();
+				rightContainerPanel.repaint();
+				rightContainerPanel.add(panel);
+
 				for (int i = 0; i < allpanel.size(); i++) {
 					if (i != Basic_JPanel.this.tab) {
 
@@ -99,6 +114,26 @@ public class Basic_JPanel extends JPanel {
 
 		});
 
+	}
+
+	/**
+	 * 用于初始化左边栏第一项
+	 */
+	public void init() {
+		// TODO Auto-generated method stub
+		Basic_JPanel.this.setBackground(new Color(133, 196, 163));
+		Basic_JPanel.this.jl4.setVisible(true);
+
+		for (int i = 0; i < allpanel.size(); i++) {
+			if (i != Basic_JPanel.this.tab) {
+
+				allpanel.get(i).setBackground(new Color(148, 221, 184));
+
+				allpanel.get(i).jl4.setVisible(false);
+
+			}
+
+		}
 	}
 
 }

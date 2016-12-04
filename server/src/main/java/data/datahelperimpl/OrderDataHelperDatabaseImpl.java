@@ -2,6 +2,7 @@ package data.datahelperimpl;
 
 import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -48,6 +49,9 @@ public class OrderDataHelperDatabaseImpl implements OrderDataHelper {
 		try {
 			OrderInfoPO orderInfoPO = list.get(0);
 			orderInfoPO.setState(po.getState());
+			if(po.getState()==OrderState.HASCANCELED){
+				orderInfoPO.setCancleTime(new Date());
+			}
 			session.update(orderInfoPO);
 			transaction.commit();
 		} catch (StaleObjectStateException e) {

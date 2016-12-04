@@ -11,6 +11,7 @@ import dao.checkindao.CheckinDao;
 import dao.creditdao.CreditDao;
 import dao.hoteldao.HotelDao;
 import dao.hotelstrategydao.HotelStrategyDao;
+import dao.logdao.LogDao;
 import dao.orderdao.OrderDao;
 import dao.personneldao.PersonnelDao;
 import dao.searchhoteldao.SearchHotelDao;
@@ -36,6 +37,7 @@ public class RMIHelper {
 	private static SearchHotelDao searchHotelDao;
 	private static UserDao userDao;
 	private static WebStrategyDao webStrategyDao;
+	private static LogDao logDao;
 	
 	private static String url = RMIconfig.getUrl();
 
@@ -56,7 +58,7 @@ public class RMIHelper {
 				searchHotelDao = (SearchHotelDao) registry.lookup( DaoName.SearchHotelDao.name());
 				userDao = (UserDao) registry.lookup( DaoName.UserDao.name());
 				webStrategyDao = (WebStrategyDao) registry.lookup( DaoName.WebStrategyDao.name());
-				
+				logDao = (LogDao)registry.lookup(DaoName.LogDao.name());
 		 
 		 
 		 } catch (RemoteException e) {
@@ -105,6 +107,9 @@ public class RMIHelper {
 
 		public static WebStrategyDao getWebStrategyDao() {
 			return webStrategyDao;
+		}
+		public static LogDao getLogDao() {
+			return logDao;
 		}
 
 }

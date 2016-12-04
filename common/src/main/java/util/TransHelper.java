@@ -94,6 +94,12 @@ public class TransHelper {
 		return tradingArea.ordinal();
 	} 
 	
+	public static TradingArea intToArea (int area) {
+	    TradingArea[] tradingAreas=TradingArea.values();
+		return tradingAreas[area];
+	} 
+	
+	
 //	public static void main(String[]args ) {
 //		System.out.println(TransHelper.idToInt("000101"));
 //		System.out.println(TransHelper.idToString(208, 6));

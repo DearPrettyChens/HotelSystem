@@ -18,6 +18,7 @@ public enum ResultMessage {
 	PASSWORDFORMATERROR,//设置的密码格式错误
 	PASSWORDNOTSAME,//新密码输入两次不一致
 	HOTELTELFORMATERROR,//酒店联系方式格式错误
+	USERHASLOGGEDIN,//用户已登入
 	
 	IDFORMATERROR,//身份证号格式错误
 	ORDERIDERROR,//订单编号错误

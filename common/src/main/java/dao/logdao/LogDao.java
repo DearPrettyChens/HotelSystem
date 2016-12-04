@@ -1,7 +1,9 @@
 package dao.logdao;
 
+import java.net.UnknownHostException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.rmi.server.ServerNotActiveException;
 
 import po.ClientPO;
 import util.ResultMessage;
@@ -18,8 +20,10 @@ public interface LogDao extends Remote {
 	 * @param ClientPO 型
 	 * @return ResultMessage
 	 * @throws RemoteException
+	 * @throws ServerNotActiveException 
+	 * @throws UnknownHostException 
 	 */
-	public ResultMessage logIn(ClientPO po) throws RemoteException;
+	public ResultMessage logIn(ClientPO po) throws RemoteException, ServerNotActiveException, UnknownHostException;
 
 	/**
 	 * 登出方法
@@ -27,6 +31,5 @@ public interface LogDao extends Remote {
 	 * @return ResultMessage
 	 * @throws RemoteException
 	 */
-	public ResultMessage logOut(ClientPO po) throws RemoteException;
-	
+	public ResultMessage logOut(String userName) throws RemoteException;
 }

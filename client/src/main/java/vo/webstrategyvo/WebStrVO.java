@@ -48,7 +48,7 @@ public class WebStrVO {
 		return new WebStrPO( VIPOrTradingAreaStrategy, date, discount, type);
 	}
 	public WebStrVO(Map<Integer,Double> VIPOrTradingAreaStrategy,double discount,WebStrategyType type) {
-		this.setVIPOrTradingAreaStrategy(getVIPOrTradingAreaStrategy());
+		this.setVIPOrTradingAreaStrategy(VIPOrTradingAreaStrategy);
 		this.setDiscount(discount);
 		this.setType(type);
 	}

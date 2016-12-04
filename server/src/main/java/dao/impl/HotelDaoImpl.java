@@ -28,24 +28,25 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
 	private DataFactory dataFactory;
 	private HotelDataHelper hotelDataHelper;
 
+	static {
+		try {
+			hotelDao = new HotelDaoImpl();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static HotelDao getInstance() throws RemoteException {
-		if(hotelDao==null){
-			try {
-				hotelDao = new HotelDaoImpl();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+
 		return hotelDao;
 	}
 
 	private HotelDaoImpl() throws RemoteException, Exception {
-		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(),new RMISSLServerSocketFactory());
+		super(RMIconfig.getPort(), new RMISSLClientSocketFactory(), new RMISSLServerSocketFactory());
 		dataFactory = new DataFactoryImpl();
 		hotelDataHelper = dataFactory.getHotelDataHelper();
 	}

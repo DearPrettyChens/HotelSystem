@@ -1,5 +1,7 @@
 package businesslogic.blservice.userblservice;
 
+import java.rmi.RemoteException;
+
 import util.ResultMessage;
 import vo.uservo.BasicInfoVO;
 import vo.uservo.PasswordVO;
@@ -75,6 +77,7 @@ public interface UserSafetyService {
 	/**
 	 * 登出操作，将用户一切进行原始化
 	 * @return resultMessage
+	 * @throws RemoteException 
 	 */
-	public ResultMessage logout();
+	public ResultMessage logout() ;
 }

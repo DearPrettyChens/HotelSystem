@@ -29,20 +29,20 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 	private static AvailableRoomDao availableRoomDao;
 	private static DataFactory dataFactory;
 	private AvailableRoomDataHelper availableRoomDataHelper;
-
-	public static AvailableRoomDao getInstance() {
-		if (availableRoomDao == null) {
-			try {
-				availableRoomDao = new AvailableRoomDaoImpl();
-			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
+	static {
+		try {
+			availableRoomDao = new AvailableRoomDaoImpl();
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+
+	}
+
+	public static AvailableRoomDao getInstance() throws RemoteException {
 		return availableRoomDao;
 	}
 

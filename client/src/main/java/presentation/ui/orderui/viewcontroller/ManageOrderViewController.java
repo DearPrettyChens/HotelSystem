@@ -2,6 +2,7 @@ package presentation.ui.orderui.viewcontroller;
 
 import javax.swing.JPanel;
 
+import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
 import presentation.ui.orderui.view.Orderdetailinfo_JPanel;
 import presentation.ui.orderui.view.Searchorder_JPanel;
 import util.UserType;
@@ -11,35 +12,38 @@ import util.UserType;
  * @author CLL
  *
  */
-public class ManageOrderViewController implements ManageOrderViewControllerService{
-	private JPanel view;
-	public ManageOrderViewController(JPanel panel){
+public class ManageOrderViewController {
+	private OrderPanelInWebMarketMan view;
+	private static ManageOrderViewController manageOrderViewController;
+	
+	public static ManageOrderViewController getInstance(OrderPanelInWebMarketMan orderPanelInWebMarketMan) {
+		if(manageOrderViewController==null){
+			manageOrderViewController=new ManageOrderViewController(orderPanelInWebMarketMan);
+		}
+		return manageOrderViewController;
+	}
+	
+	private ManageOrderViewController(OrderPanelInWebMarketMan panel){
 		this.view=panel;
 	}
-	@Override
-	public void showOrderDetailInfo(String ordernumber, String clientname, String clienttel, String ordertime,
-			String latestcheckintime, String realcheckintime, String checkouttime, String orderstate, String hotelname,
-			String hoteltel, String payment, String roomtype, String bedtype) {
-		view.removeAll();
-		view.add(new Orderdetailinfo_JPanel(ordernumber,clientname,clienttel,ordertime,
-				latestcheckintime,realcheckintime,checkouttime,orderstate,hotelname,
-				hoteltel,payment,roomtype,bedtype));
+
+	public void showOrderDetailInfo(String orderID) {
+		view.changeToDetailPanel(orderID);
 		
 	}
 
-	@Override
+
 	public void closeOrderDetail() {
 		view.removeAll();	
 	}
 
-	@Override
+
 	public void cancelOrder() {
-		view=new Searchorder_JPanel(UserType.WebMarketMan);
+//		view=new Searchorder_JPanel(UserType.WebMarketMan);
 	}
-	@Override
+
 	public void jumpToMainFrame() {
-		view=null;
-		
+		view.changeToLookPanel();
 	}
 
 }

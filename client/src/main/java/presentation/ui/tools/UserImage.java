@@ -28,8 +28,8 @@ public class UserImage {
 			return getImageFromPath("image//customer.png");
 //			return getImageFromImageIcon(imageicon);
 		case HotelWorker:
-			return getImageFromPath("image//hotel.jpg");
-//			return getImageFromImageIcon(imageicon);
+//			return getImageFromPath("image//hotel.jpg");
+			return getImageFromImageIcon(imageicon);
 		case WebMarketMan:
 			return getImageFromPath("image//logo.png");
 		case Manager:
@@ -39,7 +39,9 @@ public class UserImage {
 	}
 	private static Image getImageFromImageIcon(ImageIcon icon) {
 		Image image= icon.getImage();
-			image.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+		BufferedImage bufferedImage=ImageTool.toBufferedImage(image);
+		image=bufferedImage.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+			
 			return image;
 	}
 	private static Image getImageFromPath(String path) {
