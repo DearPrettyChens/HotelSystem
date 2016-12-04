@@ -14,6 +14,7 @@ import presentation.ui.personnelui.view.webmarketman.ManageWebMarketManPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
 import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
+import util.UserType;
 import util.WebStrategyType;
 
 /**
@@ -32,7 +33,7 @@ public class LeftChooseMap {
 		map.put("营销人员", new ManageWebMarketManPanel());
 		map.put("顾客会员", new ManageCustomerPanel());
 		map.put("酒店人员", new ManageHotelWorkerPanel() );
-		map.put("修改密码", new Changepassword_JPanel());
+		map.put("修改密码", new Changepassword_JPanel(UserType.Manager));
 		
 		//网站营销人员的左边栏
 		map.put("管理订单", OrderPanelInWebMarketMan.getInstance());

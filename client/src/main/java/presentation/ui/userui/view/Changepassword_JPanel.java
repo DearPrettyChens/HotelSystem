@@ -1,5 +1,6 @@
 package presentation.ui.userui.view;
 import presentation.ui.tools.*;
+import util.UserType;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 public class Changepassword_JPanel  extends JPanel{
+	private UserType userType;
+	
 	private MyTextfield oldpasswordfield=new MyTextfield("请输入旧密码");
 	private MyTextfield newpasswordfield=new MyTextfield("请输入新密码");
 	private JLabel oldpasswordJl=new JLabel("旧密码");
@@ -35,7 +38,8 @@ public class Changepassword_JPanel  extends JPanel{
     private Font font=new Font("宋体",Font.BOLD, 16);
     
     
-	public Changepassword_JPanel(){
+	public Changepassword_JPanel(UserType type){
+		this.userType=type;
 		this.setBackground(Color.white);
 		this.setLayout(null);
 		
