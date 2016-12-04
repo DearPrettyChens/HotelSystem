@@ -59,7 +59,7 @@ public class UserSafetyController implements UserSafetyService{
 	}
 
 	@Override
-	public ResultMessage logout() throws RemoteException {
+	public ResultMessage logout() {
 		userSafetyController=null;
 		return user.logout();
 	}

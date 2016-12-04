@@ -1,48 +1,36 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
+import java.awt.event.MouseMotionAdapter;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import com.mysql.jdbc.JDBC4LoadBalancedMySQLConnection;
-import com.mysql.jdbc.log.Log;
-
 import dao.impl.LogDaoImpl;
 import dao.logdao.LogDao;
 import rmi.RMIHelper;
-import ui.tools.ArrowButton;
-import ui.tools.RefleshButton;
 import ui.tools.CloseButton;
 import ui.tools.NarrowButton;
 
 public class ServerFrame extends JFrame {
-	// ArrayList<LogInfo> list = new ArrayList<LogInfo>();
 
 	private CloseButton closeJBT;
 	private NarrowButton narrowJBT;
 
 	private final String nameString = "服务器";
-	private final String ipAddressString = "本机ip:";
-	private final String logInNumberString = "当前在线用户数量:";
-	private final String startTimeString = "开始时间:";
+	private final String ipAddressString = "本机ip : ";
+	private final String logInNumberString = "当前在线用户数量 : ";
+	private final String startTimeString = "开始时间 : ";
 	private final String startString = "开始服务";
 	private final String endString = "停止服务";
 	private JLabel name;
@@ -55,9 +43,14 @@ public class ServerFrame extends JFrame {
 	private Color buttonColor = new Color(120, 200, 160);
 	private JPanel abovepanel = new JPanel();
 	private JPanel backPanel = new JPanel();
-	private ServerPanel userPanel;
 
+	private UserPanel userPanel;
+
+	private boolean isDragged = false;
+	private Point tmp;
+	private Point loc;
 	// private JPanel userPanel = new JPanel();
+	private Timer timer;
 
 	private LogDao logDao;
 
@@ -73,6 +66,7 @@ public class ServerFrame extends JFrame {
 		this.initAbovePanel();
 		this.initServerInfoPanel();
 		this.initUserPanel();
+		this.setDragable();
 
 		this.setVisible(true);
 	}
@@ -97,8 +91,60 @@ public class ServerFrame extends JFrame {
 		this.getContentPane().add(abovepanel);
 	}
 
+	private int hour = 0;
+	private int minute = 0;
+	private int second = 0;
+
+	private class Time extends Thread {
+		public void run() {
+			while (true) {
+				try {
+					second++;
+					if (second == 60) {
+						second = 0;
+						minute += 1;
+					}
+					if (minute == 60) {
+						minute = 0;
+						hour += 1;
+					}
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				startTime.setText(startTimeString+formattedTime());
+				startTime.repaint();
+			}
+		}
+
+	}
+
+	private class myTask extends TimerTask {
+
+		@Override
+		public void run() {
+			second++;
+			if (second == 60) {
+				second = 0;
+				minute += 1;
+			}
+			if (minute == 60) {
+				minute = 0;
+				hour += 1;
+			}
+			startTime.setText(startTimeString+formattedTime());
+			startTime.repaint();
+		}
+
+	}
+
+	private String formattedTime() {
+		String time = String.format("%2d", hour).replace(" ", "0") + " : "
+				+ String.format("%2d", minute).replace(" ", "0") + " : " + String.format("%2d", second).replace(" ", "0");
+		return time;
+	}
+
 	public void initServerInfoPanel() {
-		// list = new ArrayList<LogInfo>();
 
 		name = new JLabel(nameString, JLabel.CENTER);
 		name.setBounds(300, 0, 300, 35);
@@ -114,14 +160,14 @@ public class ServerFrame extends JFrame {
 		ipAddress.setFont(new Font("宋体", Font.BOLD, 20));
 		ipAddress.setForeground(Color.WHITE);
 
-		logInNumber = new JLabel(logInNumberString + " 0 ");
+		logInNumber = new JLabel(logInNumberString + "0");
 		logInNumber.setBounds(300, 80, 300, 35);
 		logInNumber.setHorizontalAlignment(JLabel.CENTER);
 		logInNumber.setVerticalAlignment(JLabel.CENTER);
 		logInNumber.setFont(new Font("宋体", Font.BOLD, 20));
 		logInNumber.setForeground(Color.WHITE);
 
-		startTime = new JLabel(startTimeString, JLabel.CENTER);
+		startTime = new JLabel(startTimeString + formattedTime(), JLabel.CENTER);
 		startTime.setHorizontalAlignment(SwingConstants.CENTER);
 		startTime.setFont(new Font("宋体", Font.BOLD, 20));
 		startTime.setForeground(Color.white);
@@ -161,6 +207,9 @@ public class ServerFrame extends JFrame {
 				if (!RMIHelper.isStart()) {
 					startServerLable.setText(endString);
 					RMIHelper.connect();
+					timer = new Timer();
+					timer.schedule(new myTask(), 0, 1000);
+					// timer.run();
 				} else {
 					startServerLable.setText(startString);
 					RMIHelper.stop();
@@ -170,6 +219,8 @@ public class ServerFrame extends JFrame {
 					logInNumber.setText(logInNumberString + " 0 ");
 					startTime.setText(startTimeString);
 					userPanel.stop();
+					timer.cancel();
+					resetAllTime();
 				}
 				startServerLable.setForeground(Color.GRAY);
 			}
@@ -188,16 +239,12 @@ public class ServerFrame extends JFrame {
 	}
 
 	public void initUserPanel() {
-		userPanel = new ServerPanel(this);
+		userPanel = new UserPanel(this);
 		userPanel.setBounds(200, 270, 600, 350);
 		logDao = LogDaoImpl.getInstance();
 		((LogDaoImpl) logDao).setPanel(userPanel);
 
 		this.getContentPane().add(userPanel);
-	}
-
-	public static void main(String[] args) {
-		new ServerFrame();
 	}
 
 	public void setNumber(int number) {
@@ -208,4 +255,36 @@ public class ServerFrame extends JFrame {
 		return logDao;
 	}
 
+	public void setDragable() {
+		this.addMouseListener(new MouseAdapter() {
+
+			public void mouseReleased(MouseEvent e) {
+				isDragged = false;
+			}
+
+			public void mousePressed(MouseEvent e) {
+				tmp = new Point(e.getX(), e.getY());
+				isDragged = true;
+			}
+
+		});
+
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				if (isDragged) {
+					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+					setLocation(loc);
+				}
+			}
+		});
+	}
+
+	public void resetAllTime() {
+		hour = 0;
+		minute = 0;
+		second = 0;
+		startTime.setText(formattedTime());
+		startTime.repaint();
+	}
 }

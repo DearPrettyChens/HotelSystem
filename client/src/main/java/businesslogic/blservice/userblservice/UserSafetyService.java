@@ -79,5 +79,5 @@ public interface UserSafetyService {
 	 * @return resultMessage
 	 * @throws RemoteException 
 	 */
-	public ResultMessage logout() throws RemoteException;
+	public ResultMessage logout() ;
 }

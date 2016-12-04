@@ -15,17 +15,17 @@ import com.mysql.jdbc.log.Log;
 import javafx.fxml.Initializable;
 import util.ResultMessage;
 
-public class ServerPanel extends JPanel {
+public class UserPanel extends JPanel {
 	private ArrayList<LogInfo> list;
 
 	private LogInfo nameLabel;
 	private ServerFrame frame;
-	private int position = 0;
+	private static int position = 0;
 
 	// private JLabel passwordLable;
 	// private JLabel userTypeLable;
 	// private JLabel
-	public ServerPanel(ServerFrame frame) {
+	public UserPanel(ServerFrame frame) {
 		super();
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -61,8 +61,11 @@ public class ServerPanel extends JPanel {
 		}
 	}
 
-	public void addList(LogInfo newInfo) {
-		newInfo.setForeColor(Color.lightGray);
+	public ResultMessage addList(LogInfo newInfo) {
+		if (judgeHasLoggedIn(newInfo.getUserName().getText()) == ResultMessage.USERHASLOGGEDIN) {
+			return ResultMessage.USERHASLOGGEDIN;
+		}
+		newInfo.setForeColor(Color.darkGray);
 		newInfo.setNameFont(new Font("宋体", Font.BOLD, 13));
 		for (LogInfo each : list) {
 			this.remove(each);
@@ -71,18 +74,36 @@ public class ServerPanel extends JPanel {
 		list.add(newInfo);
 		this.frame.setNumber(list.size());
 		this.repaint();
+		return ResultMessage.SUCCESS;
+	}
+
+	public ResultMessage judgeHasLoggedIn(String userName) {
+		if (list == null || list.size() == 0) {
+			return ResultMessage.SUCCESS;
+		}
+		for (LogInfo each : list) {
+			if (each.getUserName().getText().equals(userName)) {
+				return ResultMessage.USERHASLOGGEDIN;
+			}
+		}
+		return ResultMessage.SUCCESS;
 	}
 
 	public ResultMessage deleteList(String userName) {
 		ResultMessage message = ResultMessage.FAIL;
+		LogInfo toRemove = null;
 		if (list != null && list.size() > 0) {
 			for (LogInfo each : list) {
 				this.remove(each);
 				position -= 26;
 				if (each.getUserName().getText().equals(userName)) {
-					list.remove(each);
+					// list.remove(each);
+					toRemove = each;
 					message = ResultMessage.SUCCESS;
 				}
+			}
+			if (toRemove != null) {
+				list.remove(toRemove);
 			}
 		}
 		if (list != null) {

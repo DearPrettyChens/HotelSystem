@@ -23,7 +23,7 @@ public interface LogDao extends Remote {
 	 * @throws ServerNotActiveException 
 	 * @throws UnknownHostException 
 	 */
-	public void logIn(ClientPO po) throws RemoteException, ServerNotActiveException, UnknownHostException;
+	public ResultMessage logIn(ClientPO po) throws RemoteException, ServerNotActiveException, UnknownHostException;
 
 	/**
 	 * 登出方法
@@ -31,5 +31,5 @@ public interface LogDao extends Remote {
 	 * @return ResultMessage
 	 * @throws RemoteException
 	 */
-	public ResultMessage logOut(ClientPO po) throws RemoteException;
+	public ResultMessage logOut(String userName) throws RemoteException;
 }
