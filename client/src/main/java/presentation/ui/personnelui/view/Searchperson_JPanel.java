@@ -38,9 +38,9 @@ public class Searchperson_JPanel extends JPanel {
 		this.setBackground(Color.WHITE);
 		this.setSize(600, 50);
 		this.setLayout(null);
-		addComp();
 		this.userType = userType;
 		this.personPanel = personPanel;
+		addComp();
 	}
 
 	/**
