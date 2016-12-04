@@ -41,7 +41,7 @@ public class Singlewebareastr_Jpanel extends JLabel {
 		this.setLayout(null);
 		this.setBackground(Color.white);
 
-		this.setSize(700, 50);
+		this.setSize(800, 50);
 		addComp();
 
 	}

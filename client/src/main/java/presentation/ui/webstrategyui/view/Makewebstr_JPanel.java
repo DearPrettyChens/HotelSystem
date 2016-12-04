@@ -60,7 +60,7 @@ public class Makewebstr_JPanel extends JPanel {
 
 		vipareastrjl.setFont(font);
 		vipareastrjl.setForeground(lightcolor);
-		vipareastrjl.setBounds(120, 28, 120, 30);
+		vipareastrjl.setBounds(100, 28, 150, 30);
 		this.add(vipareastrjl);
 
 		vipareastrjl.addMouseListener(new MouseListener() {
@@ -101,7 +101,7 @@ public class Makewebstr_JPanel extends JPanel {
 		});
 		clientlevelstrjl.setFont(font);
 		clientlevelstrjl.setForeground(dackcolor);
-		clientlevelstrjl.setBounds(350, 28, 120, 30);
+		clientlevelstrjl.setBounds(330, 28, 150, 30);
 		clientlevelstrjl.addMouseListener(new MouseListener() {
 
 			@Override
@@ -143,7 +143,7 @@ public class Makewebstr_JPanel extends JPanel {
 
 		specialtimestrjl.setFont(font);
 		specialtimestrjl.setForeground(dackcolor);
-		specialtimestrjl.setBounds(590, 28, 120, 30);
+		specialtimestrjl.setBounds(570, 28, 150, 30);
 		specialtimestrjl.addMouseListener(new MouseListener() {
 
 			@Override

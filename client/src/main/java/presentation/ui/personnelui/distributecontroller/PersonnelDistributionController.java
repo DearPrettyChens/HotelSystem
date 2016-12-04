@@ -20,8 +20,8 @@ public class PersonnelDistributionController {
 	private PersonnelBLService personnelBLService;
 
 	private PersonnelDistributionController() {
-		personnelBLService=PersonnelController.getInstance();
-		//personnelBLService = new PersonnelBLService_Stub();
+//		personnelBLService=PersonnelController.getInstance();
+		personnelBLService = new PersonnelBLService_Stub();
 	}
 
 	public static PersonnelDistributionController getInstance() {

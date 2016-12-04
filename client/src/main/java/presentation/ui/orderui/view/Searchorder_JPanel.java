@@ -17,6 +17,8 @@ import util.UserType;
 /**
  * 网站营销人员搜索订单的搜索栏面板
  * 
+ * 获取订单类型的列表的订单
+ * 
  * @author cy
  * @version 1.0
  * 
@@ -50,12 +52,12 @@ public class Searchorder_JPanel extends JPanel {
 	 * @throws 未定
 	 */
 	public void addComp() {
-		ordertypejl.setBounds(60, 40, 120, 30);
+		ordertypejl.setBounds(110, 50, 120, 30);
 		ordertypejl.setFont(font);
 		ordertypejl.setForeground(Color.black);
 		this.add(ordertypejl);
 
-		comboBox.setBounds(160, 40, 180, 30);
+		comboBox.setBounds(210, 50, 180, 30);
 		comboBox.addItem("异常订单");
 		comboBox.addItem("未执行订单");
 		comboBox.addItem("已执行订单");

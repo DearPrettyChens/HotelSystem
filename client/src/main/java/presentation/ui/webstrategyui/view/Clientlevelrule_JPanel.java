@@ -48,7 +48,7 @@ public class Clientlevelrule_JPanel extends JPanel {
 		
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		
+		this.setBounds(0, 0, 800, 600);
 		 addComp();
 		 
 	}
