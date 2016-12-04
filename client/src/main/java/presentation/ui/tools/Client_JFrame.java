@@ -26,6 +26,12 @@ import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
 import presentation.ui.checkinui.view.CheckInInfo_Info;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
+import presentation.ui.orderui.view.ChooseOrderTypetoClient_JPanel;
+import presentation.ui.orderui.view.ConfirmCounttoClient_JPanel;
+import presentation.ui.orderui.view.DetailOrderInfotoClient_JPanel;
+import presentation.ui.orderui.view.MakeOrdertoClient_JPanel;
+import presentation.ui.orderui.view.RemarkHoteltoClient_JPanel;
+import presentation.ui.orderui.view.SingleOrderListInfotoClient;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
 import presentation.ui.personnelui.view.Hotelworkeradd_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
@@ -48,9 +54,9 @@ public class Client_JFrame extends JFrame {
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
 	
-	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
+	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
     
-    private  SingleAvailableRoomInfo_JPanel  cp=new SingleAvailableRoomInfo_JPanel ();
+   // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
     
 	//关于界面
 	private Font font = new Font("宋体", Font.BOLD, 16);
@@ -168,7 +174,7 @@ public class Client_JFrame extends JFrame {
 		panel.setBounds(200,100,800,600);
 
 		
-		cp.setBounds(200,100,800,50);
+		cp.setBounds(200,100,800,300);
 		this.add(cp);
 
 		panel.setBounds(200,100,800,50);
