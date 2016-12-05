@@ -11,7 +11,7 @@ import presentation.ui.orderui.view.SingleOrderListInfotoClient;
  * 顾客浏览酒店时，看到的自己在该酒店的订单
  * @author cy
  * @version 1.0
- * @param <SingleOrderListInfotoClient>
+ *
  * 
  */
 public class HotelOrdertoClient_JPanel  extends JPanel{
