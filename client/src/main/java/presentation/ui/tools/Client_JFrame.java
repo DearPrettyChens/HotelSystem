@@ -1,6 +1,8 @@
 package presentation.ui.tools;
 
 import java.awt.Color;
+
+
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -22,10 +24,11 @@ import javax.swing.JPanel;
 import presentation.ui.checkinui.view.CheckInInfo_Info;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 
-import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
+
 import presentation.ui.checkinui.view.CheckInInfo_Info;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
+import presentation.ui.hotelui.view.SingleHotelRemarktoClient_JPanel;
 import presentation.ui.orderui.view.ChooseOrderTypetoClient_JPanel;
 import presentation.ui.orderui.view.ConfirmCounttoClient_JPanel;
 import presentation.ui.orderui.view.DetailOrderInfotoClient_JPanel;
@@ -33,6 +36,7 @@ import presentation.ui.orderui.view.MakeOrdertoClient_JPanel;
 import presentation.ui.orderui.view.RemarkHoteltoClient_JPanel;
 import presentation.ui.orderui.view.SingleOrderListInfotoClient;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
+import presentation.ui.orderui.view.WriteOrdertoClient_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 
 
@@ -54,12 +58,11 @@ public class Client_JFrame extends JFrame {
     private ImageIcon imageIcon=null;
     
 	
-<<<<<<< HEAD
-	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
-=======
+
+	private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
 	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
->>>>>>> origin/master
+
     
    // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
     
@@ -179,7 +182,7 @@ public class Client_JFrame extends JFrame {
 		panel.setBounds(200,100,800,600);
 
 		
-		cp.setBounds(200,100,800,300);
+		cp.setBounds(200,100,800,100);
 		this.add(cp);
 
 		panel.setBounds(200,100,800,50);
