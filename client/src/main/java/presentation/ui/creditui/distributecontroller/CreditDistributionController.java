@@ -18,8 +18,10 @@ public class CreditDistributionController {
 	private CreditInfoService creditInfoService;
 	private static String customer;
 	private CreditDistributionController(String customerID){
-		creditChangeService=CreditChangeController.getInstance(customerID);
-		creditInfoService=CreditInfoController.getInstance(customerID);
+//		creditChangeService=CreditChangeController.getInstance(customerID);
+//		creditInfoService=CreditInfoController.getInstance(customerID);
+		creditChangeService=new CreditChangeService_Stub();
+		creditInfoService=new CreditInfoService_Stub();
 		customer=customerID;
 	}
 	public static CreditDistributionController getInstance(String customerID){

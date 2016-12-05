@@ -135,61 +135,74 @@ public class Orderdetailinfo_JPanel  extends JPanel{
     public void addComp(){
     	
     	ordernumberjl.setFont(font);
-    	ordernumberjl.setBounds(120,120,200,50);
+//    	ordernumberjl.setBounds(120,120,200,50);
+    	ordernumberjl.setBounds(100,120,300,50);
     	this.add(ordernumberjl);
     	
     	clientnamejl.setFont(font);
-    	clientnamejl.setBounds(120,180,200,50);
+//    	clientnamejl.setBounds(120,180,200,50);
+    	clientnamejl.setBounds(100,180,250,50);
     	this.add(clientnamejl);
     	
     	clientteljl.setFont(font);
-    	clientteljl.setBounds(120,240,200,50);
+//    	clientteljl.setBounds(120,240,200,50);
+    	clientteljl.setBounds(100,240,250,50);
     	this.add(clientteljl);
     	
     	ordertimejl.setFont(font);
-    	ordertimejl.setBounds(120,300,200,50);
+//    	ordertimejl.setBounds(120,300,200,50);
+    	ordertimejl.setBounds(100,300,250,50);
     	this.add(ordertimejl);
     	
     	latestcheckintimejl.setFont(font);
-    	latestcheckintimejl.setBounds(120,360,200,50);
+//    	latestcheckintimejl.setBounds(120,360,200,50);
+    	latestcheckintimejl.setBounds(100,360,250,50);
     	this.add(latestcheckintimejl);
     	
     	realcheckintimejl.setFont(font);
-    	realcheckintimejl.setBounds(120,420,200,50);
+//    	realcheckintimejl.setBounds(120,420,200,50);
+    	realcheckintimejl.setBounds(100,420,250,50);
     	this.add(realcheckintimejl);
     	
     	checkouttimejl.setFont(font);
-    	checkouttimejl.setBounds(120,480,200,50);
+//    	checkouttimejl.setBounds(120,480,200,50);
+    	checkouttimejl.setBounds(100,480,250,50);
     	this.add(checkouttimejl);
     	
     	
     	paymentjl.setFont(font);
-    	paymentjl.setBounds(420,120,200,50);
+//    	paymentjl.setBounds(420,120,200,50);
+    	paymentjl.setBounds(440,120,250,50);
     	this.add(paymentjl);
     	
     	
     	orderstatejl.setFont(font);
-    	orderstatejl.setBounds(420,180,200,50);
+//    	orderstatejl.setBounds(420,180,200,50);
+    	orderstatejl.setBounds(440,180,250,50);
     	this.add(orderstatejl);
     	
     	
     	hotelnamejl.setFont(font);
-    	hotelnamejl.setBounds(420,240,200,50);
+//    	hotelnamejl.setBounds(420,240,200,50);
+    	hotelnamejl.setBounds(440,240,250,50);
     	this.add(hotelnamejl);
     	
     	
     	hotelteljl.setFont(font);
-    	hotelteljl.setBounds(420,300,200,50);
+//    	hotelteljl.setBounds(420,300,200,50);
+    	hotelteljl.setBounds(440,300,250,50);
     	this.add(hotelteljl);
     	
     	
     	roomtypejl.setFont(font);
-    	roomtypejl.setBounds(420,360,200,50);
+//    	roomtypejl.setBounds(420,360,200,50);
+    	roomtypejl.setBounds(440,360,250,50);
     	this.add(roomtypejl);
     	
     	
     	bedtypejl.setFont(font);
-    	bedtypejl.setBounds(420,420,200,50);
+//    	bedtypejl.setBounds(420,420,200,50);
+    	bedtypejl.setBounds(440,420,250,50);
     	this.add(bedtypejl);
     	
     	

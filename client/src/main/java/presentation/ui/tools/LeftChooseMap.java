@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import businesslogic.bl.webstrategybl.WebStrategyInterface;
 import presentation.ui.creditui.view.DepositPanel;
+import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
 import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.personnelui.view.client.ManageCustomerPanel;
@@ -26,6 +27,7 @@ public class LeftChooseMap {
 	private static LeftChooseMap leftChooseMap;
 	private HashMap<String, JPanel> map;
 	private JPanel jPanel;
+	private String hotelID="";
 	
 	private LeftChooseMap() {
 		map=new HashMap<String, JPanel>();
@@ -42,6 +44,7 @@ public class LeftChooseMap {
 		map.put("营销策略", new Makewebstr_JPanel());
 		
 //		酒店工作人员的左边栏
+		map.put("● 制定酒店策略", HotelStrategyPanel.getInstance(hotelID));
 		
 //		顾客的左边栏
 		

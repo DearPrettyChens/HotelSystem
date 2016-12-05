@@ -79,10 +79,12 @@ public class Clientlevelrule_JPanel extends JPanel {
 		// this.add(numberjtf);
 
 		creditjl.setFont(font);
-		creditjl.setBounds(200, 250, 200, 50);
+//		creditjl.setBounds(200, 250, 200, 50);
+		creditjl.setBounds(200, 200, 200, 50);
 		this.add(creditjl);
 
-		creditjtf.setBounds(400, 250, 200, 50);
+//		creditjtf.setBounds(400, 250, 200, 50);
+		creditjtf.setBounds(400, 200, 200, 50);
 		this.add(creditjtf);
 
 		confirm.setBounds(500, 380, 100, 30);
@@ -91,7 +93,8 @@ public class Clientlevelrule_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int newValue = Integer.parseInt(creditjl.getText());
+				int newValue = Integer.parseInt(creditjtf.getText());
+				System.out.println(newValue);
 				if (newValue != credit) {
 					GradeRuleVO vo = new GradeRuleVO(newValue);
 					webstrategyDistributionController.confirmGradeRule(vo);

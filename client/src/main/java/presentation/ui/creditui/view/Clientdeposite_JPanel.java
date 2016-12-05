@@ -123,8 +123,12 @@ public class Clientdeposite_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//钱还是信用值？
-				creditDistributionController.confirmCreditDeposit(Double.parseDouble(depositjl.getText()), id);
+				// 钱还是信用值？
+				// 正整数
+				if (depositenumberjtf.getText().matches("^\\+?[1-9][0-9]*$")) {
+					creditDistributionController.confirmCreditDeposit(Double.parseDouble(depositenumberjtf.getText()),
+							id);
+				}
 			}
 		});
 

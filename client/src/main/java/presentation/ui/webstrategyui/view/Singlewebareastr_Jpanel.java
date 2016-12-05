@@ -84,7 +84,7 @@ public class Singlewebareastr_Jpanel extends JLabel {
 
 	// WebSpecialArea调用，每次新建策略时都要判断，用来判断是否输入策略。
 	public boolean hasInputStr() {
-		return !(tradingArea == null) && (Double.parseDouble(countjl.getText()) != 0);
+		return !(tradingArea == null) && (Double.parseDouble(countjtf.getText()) != 0);
 	}
 
 	public int getTradingArea() {
@@ -96,7 +96,7 @@ public class Singlewebareastr_Jpanel extends JLabel {
 	}
 
 	public double getDiscount() {
-		return Double.parseDouble(countjl.getText());
+		return Double.parseDouble(countjtf.getText());
 	}
 
 }
