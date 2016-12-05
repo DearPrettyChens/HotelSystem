@@ -5,11 +5,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 import javax.swing.JPanel;
 
+import presentation.ui.loginui.view.newclient_JFrame;
 import presentation.ui.tools.MyButton;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
+import util.ResultMessage;
 import util.WebStrategyType;
 import vo.webstrategyvo.WebStrVO;
 
@@ -25,57 +28,73 @@ import vo.webstrategyvo.WebStrVO;
  * @version 1.0
  * 
  */
-public class Webspecialtimestr_JPanel  extends JPanel{
-	
-	private MyButton canclejb=new MyButton();
-	private MyButton confirmjb=new MyButton();
-    private Singlewebspecialtimestr_JPanel singlewebspecialtimestr_JPanel;
-	private WebstrategyDistributionController webstrategyDistributionController=WebstrategyDistributionController.getInstance(); 
-	
-	
-	public Webspecialtimestr_JPanel(){
-		//this.singleinfo; 向逻辑层要
+public class Webspecialtimestr_JPanel extends JPanel {
+
+	private MyButton canclejb = new MyButton();
+	private MyButton confirmjb = new MyButton();
+	private Singlewebspecialtimestr_JPanel singlewebspecialtimestr_JPanel;
+	private WebstrategyDistributionController webstrategyDistributionController = WebstrategyDistributionController
+			.getInstance();
+	private WebStrVO webStrVO;
+
+	public Webspecialtimestr_JPanel() {
+		// this.singleinfo; 向逻辑层要
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		this.setSize(800,500);
-		
+		this.setSize(800, 500);
+
 		addComp();
 	}
-	
-	
+
 	/**
-	    * 添加组件
-	    * @param
-	    * @return
-	    * @throws 未定
-	    */
-	    public void addComp(){
-	    
-	    WebStrVO webStrVO=webstrategyDistributionController.getWebStrategy(WebStrategyType.SPECIALTIME);
-	    	
-	    singlewebspecialtimestr_JPanel=new Singlewebspecialtimestr_JPanel(webStrVO);	
-	    this.add(singlewebspecialtimestr_JPanel);
-	    
-	    canclejb.setText("取消");
-	    canclejb.setBounds(420,300,80,30);
-	    this.add(canclejb);
-	    
-	    	
-	    confirmjb.setText("确认");
-	    confirmjb.setBounds(300,300,80,30);
-	    this.add(confirmjb);
-	    confirmjb.addActionListener(new ActionListener(){
+	 * 添加组件
+	 * 
+	 * @param
+	 * @return
+	 * @throws 未定
+	 */
+	public void addComp() {
+
+		webStrVO = webstrategyDistributionController.getWebStrategy(WebStrategyType.SPECIALTIME);
+
+		singlewebspecialtimestr_JPanel = new Singlewebspecialtimestr_JPanel(webStrVO);
+		this.add(singlewebspecialtimestr_JPanel);
+
+		canclejb.setText("取消");
+		canclejb.setBounds(420, 300, 80, 30);
+		this.add(canclejb);
+		canclejb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-//				
+				remove(singlewebspecialtimestr_JPanel);
+				singlewebspecialtimestr_JPanel = new Singlewebspecialtimestr_JPanel(webStrVO);
+				add(singlewebspecialtimestr_JPanel);
 			}
-	    	
-	    	
-	    });
-	    }
-	
-	
+		});
+
+		confirmjb.setText("确认");
+		confirmjb.setBounds(300, 300, 80, 30);
+		this.add(confirmjb);
+		confirmjb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (singlewebspecialtimestr_JPanel.hasInputStr()) {
+					WebStrVO vo = new WebStrVO(singlewebspecialtimestr_JPanel.getTime(),
+							singlewebspecialtimestr_JPanel.getCount(), WebStrategyType.SPECIALTIME);
+					// 根据message跳出提示框
+					ResultMessage message = webstrategyDistributionController.confirmWebStrategy(vo);
+					if (message == ResultMessage.SUCCESS) {
+						//更新vo 保证下次再进入该界面时为最新的策略
+						webStrVO = vo;
+					}
+				} else {
+					// 提示输入无效
+				}
+			}
+
+		});
+	}
 
 }

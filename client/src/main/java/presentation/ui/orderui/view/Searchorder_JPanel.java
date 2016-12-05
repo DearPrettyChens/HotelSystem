@@ -61,6 +61,13 @@ public class Searchorder_JPanel extends JPanel {
 		comboBox.addItem("异常订单");
 		comboBox.addItem("未执行订单");
 		comboBox.addItem("已执行订单");
+		comboBox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});;
 		
 		this.add(comboBox);
 	}

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
+import util.ResultMessage;
 import util.UserType;
 import util.WebStrategyType;
 import vo.personnelvo.PersonListVO;
@@ -82,10 +84,34 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 
 		confirmjb.setText("确认");
 		confirmjb.setBounds(450, 400, 80, 30);
+		confirmjb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map <Integer,Double> newVipStrategy = new HashMap<Integer, Double>();
+				if (singleinfo.size() != 0) {
+					for (Singlewebclientlevelstr_Jpanel each : singleinfo) {
+						if (each.hasInputStr()) {
+							newVipStrategy.put(each.getLevel(), each.getCount());
+						}
+					}
+				}
+				if (newVipStrategy.size() > 0) {
+					WebStrVO vo = new WebStrVO(newVipStrategy, -1, WebStrategyType.VIP);
+					//根据返回信息message跳出提示框
+					ResultMessage message = webstrategyDistributionController.confirmWebStrategy(vo);
+					if(message==ResultMessage.SUCCESS){
+						//更新vipstrategy 保证下次取出的是最新的
+						vipStrategy = newVipStrategy ;
+					}
+				}else{
+					//跳出未输入有效信息 无法确认 提示框
+				}
+			}
+		});
 		this.add(confirmjb);
 	}
 
-	
 	/**
 	 * 增加滚动条面板
 	 */
@@ -116,13 +142,12 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 		addToPanel();
 	}
 
-
 	/**
 	 * 将单条策略panel加到panel上。再加到scrollpane
 	 * 单独把这个方法抽出来写是因为，在增加新的策略后，arraylist里面会加有新的策略，需要重新显示
-	 */	
+	 */
 	public void addToPanel() {
-	
+
 		panel.removeAll();
 		panel.setBackground(Color.WHITE);
 		panel.setLayout(null);

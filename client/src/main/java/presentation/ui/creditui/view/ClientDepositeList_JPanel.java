@@ -49,7 +49,7 @@ public class ClientDepositeList_JPanel extends Personlistinfo_JPanel{
 
 	private Clientdetailinfo_JFrame detailinfojp;
 	
-	private DepositCreditViewControllerImpl depositCreditViewControllerImpl=DepositCreditViewControllerImpl.getInstance(null);
+	private DepositCreditViewControllerImpl depositCreditViewControllerImpl	=DepositCreditViewControllerImpl.getInstance(null);
 
 	public ClientDepositeList_JPanel(PersonListVO personListVO) {
 		this.image = personListVO.getImage();

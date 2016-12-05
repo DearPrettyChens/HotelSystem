@@ -2,6 +2,7 @@ package presentation.ui.webstrategyui.viewcontroller;
 
 import javax.swing.JPanel;
 
+import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import presentation.ui.webstrategyui.view.ChooseStrategy_JPanel;
 import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
 import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
@@ -17,7 +18,6 @@ import util.WebStrategyType;
 public class WebStrategyViewControllerImpl{
 	private JPanel view;//发起界面跳转的界面对象
 	public WebStrategyViewControllerImpl() {
-		// TODO Auto-generated constructor stub
 	}
 	public WebStrategyViewControllerImpl(JPanel view){
 		this.view=view;

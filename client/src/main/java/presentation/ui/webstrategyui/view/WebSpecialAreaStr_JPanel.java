@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JPanel;
@@ -12,6 +13,7 @@ import javax.swing.JScrollPane;
 
 import presentation.ui.tools.MyButton;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
+import util.ResultMessage;
 import util.TradingArea;
 import util.WebStrategyType;
 import vo.webstrategyvo.WebStrVO;
@@ -35,13 +37,11 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 	private ArrayList<Singlewebareastr_Jpanel> singleinfo = new ArrayList<Singlewebareastr_Jpanel>();
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel panel = new JPanel();
-	private WebstrategyDistributionController webstrategyDistributionController = WebstrategyDistributionController
-			.getInstance();
+	private WebstrategyDistributionController webstrategyDistributionController=WebstrategyDistributionController.getInstance();
 	private Map<Integer, Double> areaStrategy;
 
 	public WebSpecialAreaStr_JPanel() {
 		// this.singleinfo=;到逻辑层取
-
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setSize(800, 500);
@@ -67,7 +67,6 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Singlewebareastr_Jpanel newsingleinfo = new Singlewebareastr_Jpanel(-1, 0);
 				singleinfo.add(newsingleinfo);
 				addToPanel();
@@ -78,10 +77,36 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 
 		confirmjb.setText("确认");
 		confirmjb.setBounds(450, 400, 80, 30);
+		confirmjb.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Map<Integer, Double> newAreaStrategy = new HashMap<Integer, Double>();
+				if (singleinfo.size() != 0) {
+					for (Singlewebareastr_Jpanel each : singleinfo) {
+						if (each.hasInputStr()) {
+							newAreaStrategy.put(each.getTradingArea(), each.getDiscount());
+						}
+					}
+				}
+				if (newAreaStrategy.size() > 0) {
+					WebStrVO vo = new WebStrVO(newAreaStrategy, -1, WebStrategyType.SPECIALAREA);
+					//根据返回的resultmessage跳出提示界面。
+					ResultMessage resultMessage = webstrategyDistributionController.confirmWebStrategy(vo);
+					if(resultMessage == ResultMessage.SUCCESS){
+						//更新 保证下次界面显示是最新的策略。
+						areaStrategy = newAreaStrategy ;
+					}
+					
+				}else{
+					//跳出未输入有效信息 无法确认 提示框
+				}
+			}
+		});
 		this.add(confirmjb);
 
 	}
-	
+
 	/**
 	 * 增加滚动条面板
 	 */
@@ -114,7 +139,7 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 	/**
 	 * 将单条策略panel加到panel上。再加到scrollpane
 	 * 单独把这个方法抽出来写是因为，在增加新的策略后，arraylist里面会加有新的策略，需要重新显示
-	 */	
+	 */
 	public void addToPanel() {
 		panel.removeAll();
 		panel.setBackground(Color.WHITE);
