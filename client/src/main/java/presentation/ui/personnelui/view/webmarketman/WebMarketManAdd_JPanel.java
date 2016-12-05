@@ -8,9 +8,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
+import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import util.ResultMessage;
+import util.UserType;
+import vo.personnelvo.PersonDetailVO;
 
 /**
  * 网站管理人员添加酒店工作人员的面板
@@ -47,7 +55,9 @@ public class WebMarketManAdd_JPanel extends JPanel {
 
 	private MyButton canclejb = new MyButton();
 	private MyButton confirmjb = new MyButton();
-
+	
+	private PersonnelDistributionController personnelDistributionController=
+								PersonnelDistributionController.getInstance();
 	public WebMarketManAdd_JPanel() {
 		// this.id=id;
 		this.setBackground(Color.white);
@@ -102,17 +112,169 @@ public class WebMarketManAdd_JPanel extends JPanel {
 		canclejb.setText("取消");
 		canclejb.setBounds(430, 390, 100, 30);
 		this.add(canclejb);
+		/**
+		 * 实现用户名的实时检查
+		 */
+		Document nameDoc=namejtx.getDocument();
+		nameDoc.addDocumentListener(new DocumentListener(){
 
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				Document doc = e.getDocument();
+				try {
+					JLabel nameErrorJl1=new JLabel("用户名已存在");
+					nameErrorJl1.setForeground(Color.RED);
+					nameErrorJl1.setFont(font);
+					nameErrorJl1.setBounds(540,80,200,50);
+					JLabel nameErrorJl2=new JLabel("2-8位字母数字或中文");
+					nameErrorJl2.setForeground(Color.RED);
+					nameErrorJl2.setFont(font);
+					nameErrorJl2.setBounds(540,80,250,50);
+					JLabel nameErrorJl3=new JLabel();
+					nameErrorJl3.setForeground(Color.RED);
+					nameErrorJl3.setFont(font);
+					nameErrorJl3.setBounds(540,80,250,50);
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkTel(s)==ResultMessage.USEREXISTED){
+						WebMarketManAdd_JPanel.this.add(nameErrorJl1);
+					}
+					else if(personnelDistributionController.checkTel(s)==ResultMessage.USERFORMATERROR){
+						WebMarketManAdd_JPanel.this.add(nameErrorJl2);
+					}
+					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
+						WebMarketManAdd_JPanel.this.add(nameErrorJl3);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				
+			}
+			
+		});
+		
+		/**
+		 * 实现联系方式的实时检查
+		 */
+		Document telDoc=teljtx.getDocument();
+		telDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				Document doc = e.getDocument();
+				try {
+					JLabel telErrorJl=new JLabel("请输入11位的手机号码");
+					telErrorJl.setForeground(Color.RED);
+					telErrorJl.setFont(font);
+					telErrorJl.setBounds(540,180,200,50);
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
+						WebMarketManAdd_JPanel.this.add(telErrorJl);
+					}
+					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
+						WebMarketManAdd_JPanel.this.remove(telErrorJl);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				
+			}
+			
+		});
+		/**
+		 * 实现密码的实时检查
+		 */
+		Document passwordDoc=passwordjtx.getDocument();
+		passwordDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				Document doc = e.getDocument();
+				try {
+					JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
+					passwordErrorJl.setForeground(Color.RED);
+					passwordErrorJl.setFont(font);
+					passwordErrorJl.setBounds(540,280,200,50);
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkTel(s)==ResultMessage.PASSWORDFORMATERROR){
+						WebMarketManAdd_JPanel.this.add(passwordErrorJl);
+					}
+					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
+						WebMarketManAdd_JPanel.this.remove(passwordErrorJl);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				
+			}
+			
+		});
+		/**
+		 * 点击确认按钮，添加用户
+		 */
 		confirmjb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 确认按钮此处用来添加人员信息，未实现时时更新？？？
-				// TODO Auto-generated method stub
-
+				PersonDetailVO detail=new PersonDetailVO(null,namejtx.getText(),passwordjtx.getText(),
+						null,teljtx.getText(),0,null,null,null,null,UserType.WebMarketMan);
+				if(personnelDistributionController.addPerson(detail)==ResultMessage.SUCCESS){
+					//保存成功
+					//TODO
+				}
 			}
 		});
+		/**
+		 * 点击取消按钮，清空输入框
+		 */
+		canclejb.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				WebMarketManAdd_JPanel.this.remove(namejtx);
+				namejtx=new MyTextfield("请输入姓名");
+				namejtx.setBounds(330, 80, 200, 50);
+				WebMarketManAdd_JPanel.this.add(namejtx);
+				
+				WebMarketManAdd_JPanel.this.remove(teljtx);
+				teljtx= new MyTextfield("请输入联系方式");
+				teljtx.setBounds(330, 180, 200, 50);
+				WebMarketManAdd_JPanel.this.add(teljtx);
+				
+				WebMarketManAdd_JPanel.this.remove(passwordjtx);
+				passwordjtx= new MyTextfield("请输入密码");
+				passwordjtx.setBounds(330, 280, 200, 50);
+				WebMarketManAdd_JPanel.this.add(passwordjtx);
+			}
+			
+		});
 	}
 
 }
