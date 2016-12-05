@@ -337,12 +337,17 @@ public class Hotelworkeradd_JPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(namejtx.getText().equals("")){
+					nameErrorJl1.setVisible(false);
+					nameErrorJl2.setVisible(false);
+					nameErrorJl3.setVisible(false);
 					nameErrorJl4.setVisible(true);
 				}
 				if(passwordjtx.getText().equals("")){
+					passwordErrorJl.setVisible(false);
 					passwordErrorJl2.setVisible(true);
 				}
 				if(teljtx.getText().equals("")){
+					telErrorJl.setVisible(false);
 					telErrorJl2.setVisible(true);
 				}
 				if(hotelnamejtx.getText().equals("")){
