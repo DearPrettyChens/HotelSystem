@@ -22,6 +22,7 @@ import vo.webstrategyvo.WebStrVO;
  * 制定网站营销策略时，包含所有的特殊商圈策略面板
  * 
  * 确认和取消按钮还没加监听
+ * 已加
  * 
  * 
  * @author cy
@@ -85,6 +86,7 @@ public class Webspecialtimestr_JPanel extends JPanel {
 							singlewebspecialtimestr_JPanel.getCount(), WebStrategyType.SPECIALTIME);
 					// 根据message跳出提示框
 					ResultMessage message = webstrategyDistributionController.confirmWebStrategy(vo);
+//					System.out.println(message);
 					if (message == ResultMessage.SUCCESS) {
 						//更新vo 保证下次再进入该界面时为最新的策略
 						webStrVO = vo;

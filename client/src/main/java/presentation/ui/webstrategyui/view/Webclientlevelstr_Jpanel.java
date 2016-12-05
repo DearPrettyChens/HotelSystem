@@ -100,6 +100,7 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 					WebStrVO vo = new WebStrVO(newVipStrategy, -1, WebStrategyType.VIP);
 					//根据返回信息message跳出提示框
 					ResultMessage message = webstrategyDistributionController.confirmWebStrategy(vo);
+//					System.out.println(message);
 					if(message==ResultMessage.SUCCESS){
 						//更新vipstrategy 保证下次取出的是最新的
 						vipStrategy = newVipStrategy ;

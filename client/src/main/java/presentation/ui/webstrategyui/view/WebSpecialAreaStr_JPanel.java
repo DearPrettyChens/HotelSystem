@@ -93,6 +93,7 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 					WebStrVO vo = new WebStrVO(newAreaStrategy, -1, WebStrategyType.SPECIALAREA);
 					//根据返回的resultmessage跳出提示界面。
 					ResultMessage resultMessage = webstrategyDistributionController.confirmWebStrategy(vo);
+//					System.out.println(resultMessage);
 					if(resultMessage == ResultMessage.SUCCESS){
 						//更新 保证下次界面显示是最新的策略。
 						areaStrategy = newAreaStrategy ;
