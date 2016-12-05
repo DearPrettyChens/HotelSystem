@@ -19,7 +19,7 @@ import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 
 /**
- * 网站工作人员详细信息窗口
+ * 顾客详细信息窗口
  * 
  * 未实现时时检查，还没有保存成功失败的窗口，以及处理
  * 

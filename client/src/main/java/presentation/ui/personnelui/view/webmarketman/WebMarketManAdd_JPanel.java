@@ -14,6 +14,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
+import presentation.ui.personnelui.view.hotelworker.Hotelworkeradd_JPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 import util.ResultMessage;
@@ -22,8 +23,6 @@ import vo.personnelvo.PersonDetailVO;
 
 /**
  * 网站管理人员添加酒店工作人员的面板
- * 
- * 还未实现时时更新，还未和逻辑层链接
  * 
  * @author cy
  * @version 1.0
@@ -112,6 +111,35 @@ public class WebMarketManAdd_JPanel extends JPanel {
 		canclejb.setText("取消");
 		canclejb.setBounds(430, 390, 100, 30);
 		this.add(canclejb);
+		
+		JLabel nameErrorJl1=new JLabel("用户名已存在");
+		nameErrorJl1.setForeground(Color.RED);
+		nameErrorJl1.setFont(font);
+		nameErrorJl1.setBounds(540,80,200,50);
+		WebMarketManAdd_JPanel.this.add(nameErrorJl1);
+		nameErrorJl1.setVisible(false);
+		
+		JLabel nameErrorJl2=new JLabel("2-8位字母数字或中文");
+		nameErrorJl2.setForeground(Color.RED);
+		nameErrorJl2.setFont(font);
+		nameErrorJl2.setBounds(540,80,250,50);
+		WebMarketManAdd_JPanel.this.add(nameErrorJl2);
+		nameErrorJl2.setVisible(false);
+		
+		JLabel nameErrorJl3=new JLabel();
+		nameErrorJl3.setForeground(Color.RED);
+		nameErrorJl3.setFont(font);
+		nameErrorJl3.setBounds(540,80,250,50);
+		nameErrorJl3.setVisible(false);
+		WebMarketManAdd_JPanel.this.add(nameErrorJl3);
+		
+		JLabel nameErrorJl4=new JLabel("不能为空");
+		nameErrorJl4.setForeground(Color.RED);
+		nameErrorJl4.setFont(font);
+		nameErrorJl4.setBounds(540,80,200,50);
+		WebMarketManAdd_JPanel.this.add(nameErrorJl4);
+		nameErrorJl4.setVisible(false);
+	
 		/**
 		 * 实现用户名的实时检查
 		 */
@@ -121,28 +149,18 @@ public class WebMarketManAdd_JPanel extends JPanel {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				Document doc = e.getDocument();
+				nameErrorJl4.setVisible(false);
 				try {
-					JLabel nameErrorJl1=new JLabel("用户名已存在");
-					nameErrorJl1.setForeground(Color.RED);
-					nameErrorJl1.setFont(font);
-					nameErrorJl1.setBounds(540,80,200,50);
-					JLabel nameErrorJl2=new JLabel("2-8位字母数字或中文");
-					nameErrorJl2.setForeground(Color.RED);
-					nameErrorJl2.setFont(font);
-					nameErrorJl2.setBounds(540,80,250,50);
-					JLabel nameErrorJl3=new JLabel();
-					nameErrorJl3.setForeground(Color.RED);
-					nameErrorJl3.setFont(font);
-					nameErrorJl3.setBounds(540,80,250,50);
-					String s = doc.getText(0, doc.getLength());
-					if(personnelDistributionController.checkTel(s)==ResultMessage.USEREXISTED){
-						WebMarketManAdd_JPanel.this.add(nameErrorJl1);
+					String s = doc.getText(0, doc.getLength());	
+					if(personnelDistributionController.checkUserName(s)==ResultMessage.USEREXISTED){
+						nameErrorJl1.setVisible(true);
 					}
-					else if(personnelDistributionController.checkTel(s)==ResultMessage.USERFORMATERROR){
-						WebMarketManAdd_JPanel.this.add(nameErrorJl2);
+					else if(personnelDistributionController.checkUserName(s)==ResultMessage.USERFORMATERROR){
+						nameErrorJl2.setVisible(true);
 					}
-					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
-						WebMarketManAdd_JPanel.this.add(nameErrorJl3);
+					else if(personnelDistributionController.checkUserName(s)==ResultMessage.SUCCESS){
+						nameErrorJl1.setVisible(false);
+						nameErrorJl2.setVisible(false);
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -151,7 +169,84 @@ public class WebMarketManAdd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
+				Document doc = e.getDocument();
+				nameErrorJl4.setVisible(false);
+				try {
+					String s = doc.getText(0, doc.getLength());	
+					if(personnelDistributionController.checkUserName(s)==ResultMessage.USEREXISTED){
+						nameErrorJl1.setVisible(true);
+					}
+					else if(personnelDistributionController.checkUserName(s)==ResultMessage.USERFORMATERROR){
+						nameErrorJl2.setVisible(true);
+					}
+					else if(personnelDistributionController.checkUserName(s)==ResultMessage.SUCCESS){
+						nameErrorJl1.setVisible(false);
+						nameErrorJl2.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
 				
+			}
+			
+		});
+		JLabel telErrorJl=new JLabel("请输入11位的手机号码");
+		telErrorJl.setForeground(Color.RED);
+		telErrorJl.setFont(font);
+		telErrorJl.setBounds(540,180,200,50);
+		telErrorJl.setVisible(false);
+		WebMarketManAdd_JPanel.this.add(telErrorJl);
+		
+		JLabel telErrorJl2=new JLabel("不能为空");
+		telErrorJl2.setForeground(Color.RED);
+		telErrorJl2.setFont(font);
+		telErrorJl2.setBounds(540,180,200,50);
+		WebMarketManAdd_JPanel.this.add(telErrorJl2);
+		telErrorJl2.setVisible(false);
+		/**
+		 * 实现联系方式的实时检查
+		 */
+		Document telDoc=teljtx.getDocument();
+		telDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
+						telErrorJl.setVisible(true);
+					}
+					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
+						telErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
+						telErrorJl.setVisible(true);
+					}
+					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
+						telErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 			@Override
@@ -161,43 +256,19 @@ public class WebMarketManAdd_JPanel extends JPanel {
 			
 		});
 		
-		/**
-		 * 实现联系方式的实时检查
-		 */
-		Document telDoc=teljtx.getDocument();
-		telDoc.addDocumentListener(new DocumentListener(){
-
-			@Override
-			public void insertUpdate(DocumentEvent e) {
-				Document doc = e.getDocument();
-				try {
-					JLabel telErrorJl=new JLabel("请输入11位的手机号码");
-					telErrorJl.setForeground(Color.RED);
-					telErrorJl.setFont(font);
-					telErrorJl.setBounds(540,180,200,50);
-					String s = doc.getText(0, doc.getLength());
-					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
-						WebMarketManAdd_JPanel.this.add(telErrorJl);
-					}
-					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
-						WebMarketManAdd_JPanel.this.remove(telErrorJl);
-					}
-				} catch (BadLocationException e1) {
-					e1.printStackTrace();
-				}
-			}
-
-			@Override
-			public void removeUpdate(DocumentEvent e) {
-				
-			}
-
-			@Override
-			public void changedUpdate(DocumentEvent e) {
-				
-			}
-			
-		});
+		JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
+		passwordErrorJl.setForeground(Color.RED);
+		passwordErrorJl.setFont(font);
+		passwordErrorJl.setBounds(540,280,200,50);
+		WebMarketManAdd_JPanel.this.add(passwordErrorJl);
+		passwordErrorJl.setVisible(false);
+		
+		JLabel passwordErrorJl2=new JLabel("不能为空");
+		passwordErrorJl2.setForeground(Color.RED);
+		passwordErrorJl2.setFont(font);
+		passwordErrorJl2.setBounds(540,280,200,50);
+		WebMarketManAdd_JPanel.this.add(passwordErrorJl2);
+		passwordErrorJl2.setVisible(false);
 		/**
 		 * 实现密码的实时检查
 		 */
@@ -206,18 +277,16 @@ public class WebMarketManAdd_JPanel extends JPanel {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
+				passwordErrorJl2.setVisible(false);
 				Document doc = e.getDocument();
 				try {
-					JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
-					passwordErrorJl.setForeground(Color.RED);
-					passwordErrorJl.setFont(font);
-					passwordErrorJl.setBounds(540,280,200,50);
+
 					String s = doc.getText(0, doc.getLength());
-					if(personnelDistributionController.checkTel(s)==ResultMessage.PASSWORDFORMATERROR){
-						WebMarketManAdd_JPanel.this.add(passwordErrorJl);
+					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
+						passwordErrorJl.setVisible(true);
 					}
-					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
-						WebMarketManAdd_JPanel.this.remove(passwordErrorJl);
+					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
+						passwordErrorJl.setVisible(false);
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -227,7 +296,20 @@ public class WebMarketManAdd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				
+				passwordErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
+						passwordErrorJl.setVisible(true);
+					}
+					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
+						passwordErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 			@Override
@@ -236,6 +318,20 @@ public class WebMarketManAdd_JPanel extends JPanel {
 			}
 			
 		});
+		
+		JLabel saveError=new JLabel("保存失败");
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(540,390,150,50);
+		WebMarketManAdd_JPanel.this.add(saveError);
+		saveError.setVisible(false);
+		
+		JLabel saveSuccess=new JLabel("保存成功");
+		saveSuccess.setForeground(Color.RED);
+		saveSuccess.setFont(font);
+		saveSuccess.setBounds(540,390,150,50);
+		WebMarketManAdd_JPanel.this.add(saveSuccess);
+		saveSuccess.setVisible(false);
 		/**
 		 * 点击确认按钮，添加用户
 		 */
@@ -243,12 +339,31 @@ public class WebMarketManAdd_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PersonDetailVO detail=new PersonDetailVO(null,namejtx.getText(),passwordjtx.getText(),
+				System.out.println(namejtx.getText());
+					if(namejtx.getText().equals("")){
+						nameErrorJl4.setVisible(true);
+					}
+					if(passwordjtx.getText().equals("")){
+						passwordErrorJl2.setVisible(true);
+					}
+					if(teljtx.getText().equals("")){
+						telErrorJl2.setVisible(true);
+					}
+					if(!namejtx.getText().equals("")&&!passwordjtx.getText().equals("")&&
+							!teljtx.getText().equals("")){
+						PersonDetailVO detail=new PersonDetailVO(null,namejtx.getText(),passwordjtx.getText(),
 						null,teljtx.getText(),0,null,null,null,null,UserType.WebMarketMan);
-				if(personnelDistributionController.addPerson(detail)==ResultMessage.SUCCESS){
-					//保存成功
-					//TODO
-				}
+						if(personnelDistributionController.addPerson(detail)==ResultMessage.SUCCESS){
+							//保存成功
+							//TODO
+							saveError.setVisible(false);
+							saveSuccess.setVisible(true);
+						}
+						else{
+							saveSuccess.setVisible(false);
+							saveError.setVisible(true);
+						}
+					}
 			}
 		});
 		/**

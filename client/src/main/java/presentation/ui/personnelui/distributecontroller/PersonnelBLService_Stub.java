@@ -33,7 +33,10 @@ public class PersonnelBLService_Stub implements PersonnelBLService {
 	 * @throws 未定
 	 */
 	public ResultMessage checkTel(String userTel) {
-		return ResultMessage.SUCCESS;
+		if(userTel.length()==11){
+			return ResultMessage.SUCCESS;
+		}
+		return ResultMessage.FAIL;
 	}
 
 	/**
