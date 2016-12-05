@@ -58,6 +58,8 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	private JLabel enterpriseNamejl = new JLabel("企业:   ");
 	private JLabel birthdayjl = new JLabel("生日:   ");
 
+	private Color backgroundcolor = new Color(148, 221, 184);
+	
 	private JLabel idjtx = new JLabel();
 	private JLabel namejtx = new JLabel();
 	private JTextField teljtx = new JTextField();
@@ -104,10 +106,10 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		teljtx.setText(tel);
 		passwordjtx.setText(password);
 		creditjtx.setText(String.valueOf(credit));
-
+	
 		this.setLayout(null);
 		this.setBounds(600, 200, 350, 480);
-
+		
 		addComp();
 
 	}

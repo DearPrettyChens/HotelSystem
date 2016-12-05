@@ -1,4 +1,6 @@
 package presentation.ui.userui.view;
+import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
+import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.tools.*;
 import presentation.ui.userui.distributecontroller.UserSafetyDistributeController;
 import util.ResultMessage;
@@ -12,9 +14,15 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 public class Changepassword_JPanel  extends JPanel{
 	private UserType userType;
 	private UserSafetyDistributeController distributeController=UserSafetyDistributeController.getInstance();
+	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
+			.getInstance();
 	
 	private MyTextfield oldpasswordfield=new MyTextfield("请输入旧密码");
 	private MyTextfield newpasswordfield=new MyTextfield("请输入新密码");
@@ -52,24 +60,7 @@ public class Changepassword_JPanel  extends JPanel{
 		addComp();
 		this.setBounds(0, 0, 800, 600);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
-	
-	
-	
-	
 	
 	 
     /**
@@ -109,6 +100,12 @@ public class Changepassword_JPanel  extends JPanel{
     	makechangeJl.setBounds(350,300,200,50);
     	//this.add(makechangeJl);
     	
+		JLabel passwordErrorJl4=new JLabel("密码错误！");
+		passwordErrorJl4.setForeground(Color.RED);
+		passwordErrorJl4.setFont(font);
+		passwordErrorJl4.setBounds(510,300,150,50);
+		Changepassword_JPanel.this.add(passwordErrorJl4);
+		passwordErrorJl4.setVisible(false);
     	
     	button1.setText("下一步，输入新密码");
     	button1.setBounds(300,400,200,50);
@@ -131,28 +128,103 @@ public class Changepassword_JPanel  extends JPanel{
 					Changepassword_JPanel .this.repaint();
 				}
 				else if(distributeController.checkOldPassword(oldpasswordfield.getText())==ResultMessage.PASSWORDERROR){
-					//TODO
 					//密码错误
-					JLabel passwordErrorJl=new JLabel("密码错误！");
-					passwordErrorJl.setForeground(Color.RED);
-					passwordErrorJl.setFont(font);
-					passwordErrorJl.setBounds(510,300,150,50);
-					Changepassword_JPanel.this.add(passwordErrorJl);
+					passwordErrorJl4.setVisible(true);
 				}
 			}
     		
     	});
     	this.add(button1);
     	
+		JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
+		passwordErrorJl.setForeground(Color.RED);
+		passwordErrorJl.setFont(font);
+		passwordErrorJl.setBounds(380,250,200,20);
+		Changepassword_JPanel.this.add(passwordErrorJl);
+		passwordErrorJl.setVisible(false);
+		
+		JLabel passwordErrorJl2=new JLabel("不能为空");
+		passwordErrorJl2.setForeground(Color.RED);
+		passwordErrorJl2.setFont(font);
+		passwordErrorJl2.setBounds(380, 250, 200, 20);
+		Changepassword_JPanel.this.add(passwordErrorJl2);
+		passwordErrorJl2.setVisible(false);
+		/**
+		 * 实现密码的实时检查
+		 */
+		Document passwordDoc=newpasswordfield.getDocument();
+		passwordDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				passwordErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
+						passwordErrorJl.setVisible(true);
+					}
+					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
+						passwordErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				passwordErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
+						passwordErrorJl.setVisible(true);
+					}
+					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
+						passwordErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				passwordErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
+						passwordErrorJl.setVisible(true);
+					}
+					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
+						passwordErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		});
+		
+		JLabel passwordErrorJl3=new JLabel("密码不一致！");
+		passwordErrorJl3.setForeground(Color.RED);
+		passwordErrorJl3.setFont(font);
+		passwordErrorJl3.setBounds(540,325,150,50);
+		Changepassword_JPanel.this.add(passwordErrorJl3);
+		passwordErrorJl3.setVisible(false);
+		
     	button2.setText("确认新密码");
     	button2.setBounds(300,400,200,50);
     	button2.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			//	if(distributeController.checkNewPassword(newpasswordfield.getText())==ResultMessage.PASSWORDFORMATERROR){
-			//	}
-			//	else{
 				//判断两遍新密码是否相同
 				if(newpasswordfield.getText().equals(newpasswordfield.getText())){
 				
@@ -168,13 +240,8 @@ public class Changepassword_JPanel  extends JPanel{
 				Changepassword_JPanel .this.repaint();
 				}
 				else {
-					//TODO
 					//密码不一致
-					JLabel passwordErrorJl=new JLabel("密码不一致！");
-					passwordErrorJl.setForeground(Color.RED);
-					passwordErrorJl.setFont(font);
-					passwordErrorJl.setBounds(540,325,150,50);
-					Changepassword_JPanel.this.add(passwordErrorJl);
+					passwordErrorJl3.setVisible(true);
 				}
 			}
 			//}
