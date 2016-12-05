@@ -73,6 +73,9 @@ public class ClientDepositeSearch_JPanel extends JPanel implements SearchInterfa
 	   changeScrollPane(personListVOs);
 	}
     
+	/**
+	 * 进行检索后，更换滚动面板
+	 */
 	public void changeScrollPane(ArrayList<PersonListVO>personListVOs) {
 		searchResultPanel=new JPanel();
 		searchResultPanel.setLayout(null);

@@ -2,12 +2,15 @@ package presentation.ui.webstrategyui.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import util.TradingArea;
 import util.TransHelper;
+import vo.webstrategyvo.WebStrVO;
 
 /**
  * 修改网站营销策略时，单条的特殊商圈策略
@@ -60,6 +63,13 @@ public class Singlewebareastr_Jpanel extends JLabel {
 
 		leveljtf.setBounds(260, 16, 100, 30);
 		leveljtf.setText(place + "");
+		leveljtf.addActionListener(new ActionListener() {
+			// 每次选择商圈之后要更新tradingare属性
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+			}
+		});
 		this.add(leveljtf);
 
 		countjl.setBounds(430, 15, 200, 30);
@@ -70,6 +80,23 @@ public class Singlewebareastr_Jpanel extends JLabel {
 		countjtf.setText(count + "");
 		this.add(countjtf);
 
+	}
+
+	// WebSpecialArea调用，每次新建策略时都要判断，用来判断是否输入策略。
+	public boolean hasInputStr() {
+		return !(tradingArea == null) && (Double.parseDouble(countjl.getText()) != 0);
+	}
+
+	public int getTradingArea() {
+		if (tradingArea != null) {
+			return tradingArea.ordinal();
+		} else {
+			return -1;
+		}
+	}
+
+	public double getDiscount() {
+		return Double.parseDouble(countjl.getText());
 	}
 
 }

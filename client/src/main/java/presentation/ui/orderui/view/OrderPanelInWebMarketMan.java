@@ -8,6 +8,13 @@ import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
 import presentation.ui.creditui.view.Clientdeposite_JPanel;
 import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 
+/**
+ * 
+ * 网站营销人员管理订单选项的总界面
+ * 
+ * @author csy
+ *
+ */
 public class OrderPanelInWebMarketMan extends JPanel {
 	private LookOrderPanelInWeb_JPanel lookOrderPanelInWeb_JPanel;
 	private Orderdetailinfo_JPanel orderdetailinfo_JPanel;

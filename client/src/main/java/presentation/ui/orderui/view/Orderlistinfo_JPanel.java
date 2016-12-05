@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 import presentation.ui.personnelui.view.Personlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
@@ -49,7 +50,8 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 	
 	private ManageOrderViewController manageOrderViewController=ManageOrderViewController.getInstance(null);
 	
-
+	private OrderDistributionController orderDistributionController = OrderDistributionController.getInstance();
+	
 	public Orderlistinfo_JPanel(OrderListVO orderListVO) {
 
 		this.ordernumber = orderListVO.getOrderNumber();
@@ -123,5 +125,17 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 
 		});
 
+	}
+	
+	public void setCancleListener(){
+		canclejb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 }

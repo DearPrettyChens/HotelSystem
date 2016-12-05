@@ -14,7 +14,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 	private String image="";
 	private String location="";
 	private String tel="";
-	private String 
+//	private String 
 	
 	
 	public HotelListInfo_JPanel(){

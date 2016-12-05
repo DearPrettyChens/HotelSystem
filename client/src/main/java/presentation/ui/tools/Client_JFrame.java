@@ -57,9 +57,14 @@ public class Client_JFrame extends JFrame {
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
     
+<<<<<<< HEAD
 	
 
 	private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
+=======
+
+	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
+>>>>>>> origin/master
 	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
 

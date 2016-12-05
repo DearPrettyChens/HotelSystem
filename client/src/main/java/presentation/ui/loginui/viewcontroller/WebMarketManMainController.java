@@ -31,7 +31,7 @@ public class WebMarketManMainController {
 	
 	public void jumpToCreditDepositView(){
 		frame.remove(view);
-		view=new Clientdeposite_JPanel();
+//		view=new Clientdeposite_JPanel();
 		frame.add(view);
 	}
 	

@@ -33,6 +33,9 @@ public class DepositPanel extends JPanel {
 		this.setSize(800, 600);
 	}
 
+	/**
+	 * 跳到信用充值检索界面
+	 */
 	public void changeToSearchPanel() {
         this.removeAll();
         clientDepositeSearch_JPanel=new ClientDepositeSearch_JPanel();
@@ -40,6 +43,9 @@ public class DepositPanel extends JPanel {
         this.updateUI();
 	}
 
+	/**
+	 * 跳到信用充值输入信用值界面
+	 */
 	public void changeToCreditPanel(String id) {
 		this.removeAll();
 		clientdeposite_JPanel=new Clientdeposite_JPanel(id);

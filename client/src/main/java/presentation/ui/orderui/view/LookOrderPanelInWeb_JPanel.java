@@ -17,9 +17,14 @@ import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 import vo.personnelvo.PersonListVO;
 
+/**
+ * 网站营销人员管理订单选项中的浏览订单列表的面板
+ * @author csy
+ *
+ */
 public class LookOrderPanelInWeb_JPanel extends JPanel {
 	
-	private Searchorder_JPanel searchorder_JPanel=new Searchorder_JPanel(UserType.WebMarketMan);
+	private Searchorder_JPanel searchorder_JPanel=new Searchorder_JPanel(UserType.WebMarketMan);//搜索框
 	
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel searchResultPanel = new JPanel();
@@ -57,6 +62,9 @@ public class LookOrderPanelInWeb_JPanel extends JPanel {
 	    changeScrollPane(orderListVOs);
 	}
     
+	/**
+	 * 由于检索，改变滚动条面板
+	 */
 	public void changeScrollPane(ArrayList<OrderListVO>orderListVOs) {
 		searchResultPanel=new JPanel();
 		searchResultPanel.setLayout(null);
