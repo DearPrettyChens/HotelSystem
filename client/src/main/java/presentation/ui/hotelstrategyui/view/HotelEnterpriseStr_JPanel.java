@@ -19,6 +19,7 @@ import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControlle
 import presentation.ui.tools.MyButton;
 import presentation.ui.webstrategyui.view.Singlewebclientlevelstr_Jpanel;
 import util.HotelStrategyType;
+import util.ResultMessage;
 import util.WebStrategyType;
 import vo.hotelstrategyvo.HotelStrVO;
 import vo.webstrategyvo.WebStrVO;
@@ -32,7 +33,7 @@ import vo.webstrategyvo.WebStrVO;
  * 
  */
 public class HotelEnterpriseStr_JPanel extends JPanel {
-
+	private String hotelID;
 	private JLabel titlejl = new JLabel("合作企业顾客折扣策略");
 
 	private Font font = new Font("宋体", Font.BOLD, 18);
@@ -57,6 +58,7 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 	ArrayList<SingleHotelEnterpriseStr_JPanel> singleinfos = new ArrayList<SingleHotelEnterpriseStr_JPanel>();
 
 	public HotelEnterpriseStr_JPanel(String hotelID) {
+		this.hotelID=hotelID;
 		HotelStrVO hotelStrVO = hotelStrategyDistributionControll.getHotelStrategy(hotelID,
 				HotelStrategyType.ENTERPRISE);
 		enterprise = hotelStrVO.getEnterprise();
@@ -103,12 +105,11 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 
 				SingleHotelEnterpriseStr_JPanel newinfo = new SingleHotelEnterpriseStr_JPanel();
 				singleinfos.add(newinfo);
 				addToPanel();
-
+				
 			}
 
 		});
@@ -118,8 +119,41 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 		titlejl.setBounds(280, 60, 300, 30);
 		this.add(titlejl);
 
+		JLabel saveError=new JLabel("请输入0～1之间的数字");
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(280, 440, 100, 25);
+		HotelEnterpriseStr_JPanel.this.add(saveError);
+		saveError.setVisible(false);
+		
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Double.parseDouble(countjtf.getText())<=1.0&&Double.parseDouble(countjtf.getText())>0){
+
+					for(int i=0;i<singleinfos.size();i++){
+						enterprise.add(singleinfos.get(i).getEnterpriseName().getText());
+					}
+					HotelStrVO str=new HotelStrVO(hotelID,Double.parseDouble(countjtf.getText()),
+							enterprise);
+					if(hotelStrategyDistributionControll.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+						hotelStrategyViewControllerImpl.backToselectStrategy();
+					}
+					else{
+						//TODO
+						//保存失败
+					}
+				}
+				else{
+					saveError.setVisible(true);
+				}
+			}
+			
+		});
 	}
 
+	
 	/**
 	 * 增加滚动条面板
 	 */

@@ -8,12 +8,17 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistributionController;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
+import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.tools.MyButton;
 import util.HotelStrategyType;
+import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
 
 /**
@@ -89,9 +94,58 @@ public class HotelBirthStr_JPanel extends JPanel{
 		countjtf.setBounds(320,200,200,50);
 		this.add(countjtf);
 		
+		JLabel saveError=new JLabel("请输入0～1之间的数字");
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(530,200,200,30);
+		HotelBirthStr_JPanel.this.add(saveError);
+		saveError.setVisible(false);
 		
-		
-		
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Double.parseDouble(countjtf.getText())<=1.0&&Double.parseDouble(countjtf.getText())>0){
+					HotelStrVO str=new HotelStrVO(hotelID,Double.parseDouble(countjtf.getText()));
+					if(hotelStrategyDistributionController.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+						hotelStrategyViewControllerImpl.backToselectStrategy();
+					}
+					else{
+						//保存失败
+						//TODO
+					}
+				}
+				else{
+					saveError.setVisible(true);
+				}
+			}
+			
+		});
+		/**
+		 * 实现编辑折扣值时提示错误消息消失
+		 */
+		Document countDoc=countjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+			
+		});
 		
 	}
 

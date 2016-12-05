@@ -46,7 +46,9 @@ public class SingleHotelEnterpriseStr_JPanel extends JPanel {
 		addComp();
 
 	}
-
+	public JTextField getEnterpriseName(){
+		return this.enterprisenamejtf;
+	}
 	public void addComp() {
 
 		enterprisenamejl.setFont(font);

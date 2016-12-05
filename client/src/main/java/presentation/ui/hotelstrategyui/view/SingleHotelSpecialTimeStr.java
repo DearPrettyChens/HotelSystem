@@ -33,6 +33,17 @@ public class SingleHotelSpecialTimeStr  extends JPanel{
 	private Date beginTimeinDate;
 	private Date endTimeinDate;
 	
+	public JTextField getBeginJtf(){
+		return this.begintimejtf;
+	}
+	
+	public JTextField getEndJtf(){
+		return this.endtimejtf;
+	}
+	
+	public JTextField getCountJtf(){
+		return this.countjtf;
+	}
 	SingleHotelSpecialTimeStr(HotelStrVO hotelStrVO){
 		Date[] dates=hotelStrVO.getDate();
 		beginTimeinDate=dates[0];

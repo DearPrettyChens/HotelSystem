@@ -7,12 +7,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistributionController;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 import util.HotelStrategyType;
+import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
 
 /**
@@ -30,7 +34,7 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = -3269373873347409616L;
-
+	private String hotelID;
 	private Font font = new Font("宋体", Font.BOLD, 20);
 
 	private JLabel title = new JLabel("房间数量优惠策略");
@@ -53,7 +57,7 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 
 	public HotelOverThreeStr_Jpanel(String hotelID) {
 		HotelStrVO hotelStrVO = hotelStrategyDistributionController.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT);
-
+		this.hotelID=hotelID;
 		this.roomnumber = hotelStrVO.getAmount();
 		this.count = hotelStrVO.getDiscount();
 
@@ -124,6 +128,90 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 		confirmjb.setBounds(280, 450, 80, 30);
 		this.add(confirmjb);
 
-	}
+		JLabel saveError1=new JLabel("房间数为正");
+		saveError1.setForeground(Color.RED);
+		saveError1.setFont(font);
+		saveError1.setBounds(400,360, 150, 30);
+		HotelOverThreeStr_Jpanel.this.add(saveError1);
+		saveError1.setVisible(false);
+		
+		JLabel saveError2=new JLabel("请输入0～1之间的数字");
+		saveError2.setForeground(Color.RED);
+		saveError2.setFont(font);
+		saveError2.setBounds(610,300,200,30);
+		HotelOverThreeStr_Jpanel.this.add(saveError2);
+		saveError2.setVisible(false);
+		
+		confirmjb.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(Integer.parseInt(roomnumberjtf.getText())<=0){
+					saveError1.setVisible(true);
+				}
+				if(Double.parseDouble(countjtf.getText())>1.0&&Double.parseDouble(countjtf.getText())<=0){
+					saveError2.setVisible(true);
+				}
+				if(Integer.parseInt(roomnumberjtf.getText())>0&&Double.parseDouble(countjtf.getText())<=1.0
+						&&Double.parseDouble(countjtf.getText())>0){
+					HotelStrVO str=new HotelStrVO(hotelID,Integer.parseInt(roomnumberjtf.getText()),
+							Double.parseDouble(countjtf.getText()));
+					if(hotelStrategyDistributionController.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+						hotelStrategyViewControllerImpl.backToselectStrategy();
+					}
+					else{
+						//TODO
+						//保存失败
+					}
+				}
+
+			}
+			
+		});
+		Document roomNumDoc=roomnumberjtf.getDocument();
+		roomNumDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError1.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError1.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError1.setVisible(false);
+				
+			}
+			
+		});
+		
+		Document countDoc=countjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError2.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError2.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError2.setVisible(false);
+				
+			}
+			
+		});
+	}
 }

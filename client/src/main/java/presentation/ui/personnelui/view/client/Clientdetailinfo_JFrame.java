@@ -58,7 +58,8 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	private JLabel enterpriseNamejl = new JLabel("企业:   ");
 	private JLabel birthdayjl = new JLabel("生日:   ");
 
-	private Color backgroundcolor = new Color(148, 221, 184);
+	private Color backgroundcolor = new Color(180, 237, 204);
+	//private Color backgroundcolor = new Color(148, 221, 184);
 	
 	private JLabel idjtx = new JLabel();
 	private JLabel namejtx = new JLabel();
@@ -109,7 +110,8 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	
 		this.setLayout(null);
 		this.setBounds(600, 200, 350, 480);
-		
+		//this.getContentPane().setBackground(backgroundcolor);
+		//this.setUndecorated(true);
 		addComp();
 
 	}

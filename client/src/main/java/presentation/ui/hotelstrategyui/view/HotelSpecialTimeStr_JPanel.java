@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,6 +17,8 @@ import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributio
 import presentation.ui.webstrategyui.view.Singlewebspecialtimestr_JPanel;
 
 import util.HotelStrategyType;
+import util.ResultMessage;
+import util.TransHelper;
 import util.WebStrategyType;
 import vo.hotelstrategyvo.HotelStrVO;
 import vo.webstrategyvo.WebStrVO;
@@ -33,7 +36,7 @@ import vo.webstrategyvo.WebStrVO;
 public class HotelSpecialTimeStr_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 18);
-	private JLabel titlejl = new JLabel("会员生日特惠策略");
+	private JLabel titlejl = new JLabel("特定节日优惠策略");
 	private MyButton canclejb = new MyButton();
 	private MyButton confirmjb = new MyButton();
 	private SingleHotelSpecialTimeStr singleHotelSpecialTimeStr;
@@ -83,6 +86,14 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 			}
 		});
 
+		
+		JLabel saveError=new JLabel("请输入0～1之间的数字");
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(510,200,200,25);
+		HotelSpecialTimeStr_JPanel.this.add(saveError);
+		saveError.setVisible(false);
+		
 		confirmjb.setText("确认");
 		confirmjb.setBounds(300, 420, 80, 30);
 		this.add(confirmjb);
@@ -90,8 +101,24 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//
+				if(Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())<=1.0&&
+						Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())>0){
+					Date[] dates=new Date[2];
+					dates[0]=new Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getBeginJtf().getText()));
+					dates[1]=new Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getEndJtf().getText()));
+					HotelStrVO str=new HotelStrVO(hotelID,Double.parseDouble(singleHotelSpecialTimeStr.
+							getCountJtf().getText()),dates);
+					if(hotelStrategyDistributionController.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+						hotelStrategyViewControllerImpl.backToselectStrategy();
+					}
+					else{
+						//TODO
+						//保存失败
+					}
+				}
+				else{
+					saveError.setVisible(true);
+				}
 			}
 
 		});
