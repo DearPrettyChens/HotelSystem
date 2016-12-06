@@ -7,6 +7,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import util.BedType;
+import vo.availableroomvo.AvailableRoomInfoVO;
+
 /**
  * 
  * 单条的房间信息，在酒店工作人员录入客房信息时作用
@@ -19,10 +22,11 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private String bedtype;
 	private String roomtype;
 	private int number;
-	private int price;
+	private double price;
 	
+	private BedType bedType2;
 	
-	private Font font=new Font("宋体",Font.BOLD, 20);
+	private Font font=new Font("宋体",Font.BOLD, 16);
 	
 	private JLabel bedtypejl=new JLabel("床型：");
 	private JLabel roomtypejl=new JLabel("房型：");
@@ -35,11 +39,12 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JTextField pricejtf=new JTextField();
 	
 	
-	public SingleRoomInfo_JPanel(String bedtype,String roomtype, int number,int price){
-		this.bedtype=bedtype;
-		this.roomtype=roomtype;
-		this.number=number;
-		this.price=price;
+	public SingleRoomInfo_JPanel(AvailableRoomInfoVO availableRoomInfoVO){
+		this.bedType2=availableRoomInfoVO.getBedType();
+		this.bedtype=bedType2.toChinese();
+		this.roomtype=availableRoomInfoVO.getRoomType();
+		this.number=availableRoomInfoVO.getOriginalNumbers();
+		this.price=availableRoomInfoVO.getOriginalPrice();
 		
 		
 		bedtypejtf.setText(bedtype);
@@ -79,31 +84,31 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.add(bedtypejl);
 		
 		bedtypejtf.setFont(font);
-		bedtypejtf.setBounds(100,10,80,30);
+		bedtypejtf.setBounds(70,10,100,30);
 		this.add(bedtypejtf);
 		
 		roomtypejl.setFont(font);
-		roomtypejl.setBounds(220,10,80,30);
+		roomtypejl.setBounds(190,10,80,30);
 		this.add(roomtypejl);
 		
 		roomtypejtf.setFont(font);
-		roomtypejtf.setBounds(300,10,80,30);
+		roomtypejtf.setBounds(240,10,100,30);
 		this.add(roomtypejtf);
 		
 		numberjl.setFont(font);
-		numberjl.setBounds(420,10,80,30);
+		numberjl.setBounds(360,10,80,30);
 		this.add(numberjl);
 		
 		numberjtf.setFont(font);
-		numberjtf.setBounds(500,10,80,30);
+		numberjtf.setBounds(410,10,100,30);
 		this.add(numberjtf);
 		
 		pricejl.setFont(font);
-		pricejl.setBounds(620,10,80,30);
+		pricejl.setBounds(530,10,80,30);
 		this.add(pricejl);
 		
 		pricejtf.setFont(font);
-		pricejtf.setBounds(700,10,80,30);
+		pricejtf.setBounds(580,10,100,30);
 		this.add(pricejtf);
 		
 		

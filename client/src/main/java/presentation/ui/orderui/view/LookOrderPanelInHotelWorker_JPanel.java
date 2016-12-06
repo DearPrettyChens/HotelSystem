@@ -2,8 +2,10 @@ package presentation.ui.orderui.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -24,7 +26,8 @@ import vo.ordervo.TypeInfoVO;
 
 public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 	private ViewOrderToHotelWorker_JPanel viewOrderToHotelWorker_JPanel=new ViewOrderToHotelWorker_JPanel();//搜索框
-	
+
+	private JLabel titlejl = new JLabel("浏览订单列表");
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel searchResultPanel = new JPanel();
 	private HotelDistributionController hotelDistributionController=HotelDistributionController.getInstance();
@@ -41,12 +44,16 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 	}
 
 	public void addComp() {
+		titlejl.setFont( new Font("宋体", Font.BOLD, 20));
+		titlejl.setBounds(40, 30, 800, 50);
+		this.add(titlejl);
+		
 		//设置订单状态选择框
-        viewOrderToHotelWorker_JPanel.setBounds(0, 0, 800, 100);
+        viewOrderToHotelWorker_JPanel.setBounds(0, 50, 800, 100);
         this.add(viewOrderToHotelWorker_JPanel);
         
 	     //设置列表
-	    scrollPane.setBounds(0, 100, 800, 550);
+	    scrollPane.setBounds(0, 150, 800, 550);
 	    scrollPane.setBackground(Color.WHITE);
 	    scrollPane.setBorder(null);
 	   

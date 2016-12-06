@@ -41,8 +41,8 @@ public class ChooseHotelStr_JPanel extends JPanel {
 
 	public void addComp() {
 
-		titlejl.setFont(font);
-		titlejl.setBounds(20, 30, 200, 50);
+		titlejl.setFont(new Font("宋体", Font.BOLD, 20));
+		titlejl.setBounds(15, 30, 200, 50);
 		this.add(titlejl);
 
 		birthjl.setFont(font);

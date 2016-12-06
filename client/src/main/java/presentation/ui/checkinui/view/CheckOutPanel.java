@@ -13,7 +13,7 @@ import vo.hotelvo.HotelOrderInfoVO;
  *
  */
 public class CheckOutPanel extends JPanel{
-	private SearchOrderToCheckIn_JPanel searchOrderToCheckIn_JPanel;
+	private SearchOrderToCheckOut_JPanel searchOrderToCheckOut_JPanel;
 	private CheckOutInfo_JPanel checkOutInfo_JPanel;
 	private OnlineCheckoutViewController onlineCheckoutViewController=OnlineCheckoutViewController.getInstance(this);
 	private static CheckOutPanel checkOutPanel;
@@ -39,8 +39,8 @@ public class CheckOutPanel extends JPanel{
 	 */
 	public void changeToSearchPanel() {
         this.removeAll();
-        searchOrderToCheckIn_JPanel=new SearchOrderToCheckIn_JPanel();
-        this.add(searchOrderToCheckIn_JPanel);
+        searchOrderToCheckOut_JPanel=new SearchOrderToCheckOut_JPanel();
+        this.add(searchOrderToCheckOut_JPanel);
         this.updateUI();
 	}
 

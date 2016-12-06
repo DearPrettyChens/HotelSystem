@@ -2,6 +2,7 @@ package presentation.ui.orderui.view;
 
 import java.awt.Color;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import presentation.ui.orderui.viewcontroller.HotelWorkerOrderViewController;
@@ -14,6 +15,7 @@ import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
  *
  */
 public class OrderPanelViewInHotelWorker extends JPanel{
+	
 	private LookOrderPanelInHotelWorker_JPanel lookOrderPanelInHotelWorker_JPanel;
 	private OrderDetailInfoToHotelWorker_JPanel orderDetailInfoToHotelWorker_JPanel;
 	private static OrderPanelViewInHotelWorker orderPanelViewInHotelWorker;

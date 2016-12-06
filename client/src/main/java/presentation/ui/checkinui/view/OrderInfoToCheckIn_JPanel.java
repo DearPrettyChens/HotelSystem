@@ -96,7 +96,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 			this.price = hotelOrderInfoVO.getPrice();
 		}
 
-		this.setBounds(0, 160, 800, 400);
+		this.setBounds(0, 180, 800, 400);
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		addComp();

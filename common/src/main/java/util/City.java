@@ -5,4 +5,8 @@ public enum City {
 	public String getString() {
 		return "NANJING";
 	}
+	
+	public String toChinese() {
+		return "南京";
+	}
 }

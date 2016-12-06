@@ -4,18 +4,15 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import presentation.ui.tools.MyTextfield;
-
 /**
  * 
- * 酒店工作人员入住时，搜索订单的面板
+ * 酒店工作人员退房时，搜索订单的面板
  * 
  * @author cy
  * @version 1.0
@@ -23,20 +20,20 @@ import presentation.ui.tools.MyTextfield;
  * 
  * 
  */
-public class SearchOrderToCheckIn_JPanel extends JPanel {
+public class SearchOrderToCheckOut_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 18);
 
 	private JLabel ordernumberjl = new JLabel("请输入订单号：");
 	private MyTextfield ordernumberjtf = new MyTextfield("请输入订单号");
 
-	private JLabel titlejl = new JLabel("线上入住办理");
+	private JLabel titlejl = new JLabel("线上退房办理");
 	
 	private JLabel searchimagejl = new JLabel(new ImageIcon("image//search1.png"));
 
 	private OrderInfoToCheckIn_JPanel orderInfoToCheckIn_JPanel;
 	
-	public SearchOrderToCheckIn_JPanel() {
+	public SearchOrderToCheckOut_JPanel() {
 
 		this.setSize(800, 600);
 		this.setLayout(null);
@@ -66,8 +63,8 @@ public class SearchOrderToCheckIn_JPanel extends JPanel {
 				String hotelID=ordernumberjtf.getText();
 				if((hotelID!=null)&&(hotelID.matches("[0-9]+"))){
 						orderInfoToCheckIn_JPanel=new OrderInfoToCheckIn_JPanel(hotelID);
-						SearchOrderToCheckIn_JPanel.this.add(orderInfoToCheckIn_JPanel);
-						SearchOrderToCheckIn_JPanel.this.updateUI();
+						SearchOrderToCheckOut_JPanel.this.add(orderInfoToCheckIn_JPanel);
+						SearchOrderToCheckOut_JPanel.this.updateUI();
 				}
 			    
 			}
@@ -75,3 +72,4 @@ public class SearchOrderToCheckIn_JPanel extends JPanel {
 	}
 
 }
+
