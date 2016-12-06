@@ -27,8 +27,6 @@ import vo.webstrategyvo.WebStrVO;
  * 
  * 特殊时期策略策略
  * 
- * 未添加确认监听
- * 
  * @author cy
  * @version 1.0
  * 
@@ -87,10 +85,10 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 		});
 
 		
-		JLabel saveError=new JLabel("请输入0～1之间的数字");
+		JLabel saveError=new JLabel("折扣值为0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(510,200,200,25);
+		saveError.setBounds(510,420,200,25);
 		HotelSpecialTimeStr_JPanel.this.add(saveError);
 		saveError.setVisible(false);
 		

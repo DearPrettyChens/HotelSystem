@@ -122,7 +122,7 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 		JLabel saveError=new JLabel("请输入0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(280, 440, 100, 25);
+		saveError.setBounds(280, 440, 200, 25);
 		HotelEnterpriseStr_JPanel.this.add(saveError);
 		saveError.setVisible(false);
 		
