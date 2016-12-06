@@ -31,6 +31,7 @@ public class CheckinBLService_Stub implements CheckinBLService{
 		// TODO Auto-generated method stub
 		CheckinInfoVO vo=new CheckinInfoVO("chen","123456789123456789","12345678999","201","商务间",
 				BedType.BIGBED,null,null,"000002","20161119000002000001");
+		
 		return vo;
 	}
 

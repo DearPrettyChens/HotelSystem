@@ -21,11 +21,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 
 
-import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
 import presentation.ui.hotelui.view.RoomInfotoClient_JPanel;

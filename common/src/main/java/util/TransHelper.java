@@ -71,6 +71,39 @@ public class TransHelper {
 	}
 	
 	/**
+	 * 策略中将精确到秒到时间转化为string
+	 * @param date
+	 * @return
+	 */
+	public static String timeToString(Date date){
+		if(date==null){
+			return null;
+		}
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		String str=sdf.format(date);
+		return str;
+	}
+
+	/**
+	 * 策略中将string转化为时间，精确到秒
+	 * @param time
+	 * @return
+	 */
+	public static long stringToTime(String time) {
+		if(time==null){
+			return 0;
+		}
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date date=new Date();
+		try {
+			date = sdf.parse(time);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}  
+		return date.getTime();
+	}
+	
+	/**
 	 * 将商圈枚举类转化为string
 	 * @param tradingArea
 	 * @return
@@ -101,8 +134,12 @@ public class TransHelper {
 	
 	
 //	public static void main(String[]args ) {
-//		System.out.println(TransHelper.idToInt("000101"));
-//		System.out.println(TransHelper.idToString(208, 6));
-//		stringToArea("XINJIEKOU");
+////		System.out.println(TransHelper.idToInt("000101"));
+////		System.out.println(TransHelper.idToString(208, 6));
+////		stringToArea("XINJIEKOU");
+//		String date="2016-12-5 23:23:23";
+//		System.out.println(stringToTime(date));
+//		Date date2=new Date();
+//		System.out.println(timeToString(date2));
 //	}
 }

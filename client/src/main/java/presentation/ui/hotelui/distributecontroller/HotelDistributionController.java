@@ -25,9 +25,12 @@ public class HotelDistributionController {
 	private LookHotelService lookHotelService;
 	private MaintainHotelService maintainHotelService;
 	private HotelDistributionController(){
-		hotelOrderService=HotelOrderController.getInstance();
-		lookHotelService=LookHotelController.getInstance();
-		maintainHotelService=MaintainHotelController.getInstance();
+//		hotelOrderService=HotelOrderController.getInstance();
+//		lookHotelService=LookHotelController.getInstance();
+//		maintainHotelService=MaintainHotelController.getInstance();
+		hotelOrderService=new HotelOrderService_Stub();
+		lookHotelService=new LookHotelService_Stub();
+		maintainHotelService=new MaintainHotelService_Stub();
 	}
 	public static HotelDistributionController getInstance(){
 		if(controller==null){
