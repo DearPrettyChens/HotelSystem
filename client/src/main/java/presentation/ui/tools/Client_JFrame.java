@@ -21,14 +21,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 
 
-import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
+import presentation.ui.hotelui.view.RoomInfotoClient_JPanel;
 import presentation.ui.hotelui.view.SingleHotelRemarktoClient_JPanel;
+import presentation.ui.hotelui.view.SingleRoomInfotoClient_JPanel;
 import presentation.ui.orderui.view.ChooseOrderTypetoClient_JPanel;
 import presentation.ui.orderui.view.ConfirmCounttoClient_JPanel;
 import presentation.ui.orderui.view.DetailOrderInfotoClient_JPanel;
@@ -60,11 +62,18 @@ public class Client_JFrame extends JFrame {
 
 	
 
+<<<<<<< HEAD
+	//private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
+
+
+	
+=======
 	private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
 
 //	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
 
 	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
+>>>>>>> origin/master
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
 
     
@@ -185,8 +194,11 @@ public class Client_JFrame extends JFrame {
 
 		panel.setBounds(200,100,800,600);
 
-		
-		cp.setBounds(200,100,800,100);
+	    SingleRoomInfotoClient_JPanel  cp1=new  SingleRoomInfotoClient_JPanel ("bcoe","oeirv",8);
+	    ArrayList<SingleRoomInfotoClient_JPanel> singleinfos=new ArrayList<SingleRoomInfotoClient_JPanel>();
+	    singleinfos.add(cp1);
+		RoomInfotoClient_JPanel  cp=new  RoomInfotoClient_JPanel (singleinfos);
+		cp.setBounds(200,100,800,400);
 		this.add(cp);
 
 		panel.setBounds(200,100,800,50);

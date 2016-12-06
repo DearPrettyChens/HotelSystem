@@ -17,7 +17,8 @@ public class CheckinDistributionController {
 	private static CheckinDistributionController controller=null;
 	private CheckinBLService checkinBLService;
 	private CheckinDistributionController(){
-		checkinBLService=CheckinController.getInstance();
+//		checkinBLService=CheckinController.getInstance();
+		checkinBLService=new CheckinBLService_Stub();
 	}
 	public static CheckinDistributionController getInstance(){
 		if(controller==null){

@@ -10,12 +10,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.checkinui.view.CheckOutInfo_JPanel;
+import presentation.ui.checkinui.view.CheckOutPanel;
+import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelOverThreeStr_Jpanel;
 import presentation.ui.hotelstrategyui.view.HotelSpecialTimeStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
+import presentation.ui.orderui.view.LookOrderPanelInHotelWorker_JPanel;
+import presentation.ui.orderui.view.OrderDetailInfoToHotelWorker_JPanel;
 import util.UserType;
 
 /**
@@ -77,6 +82,11 @@ public class Hotelworker_JFrame extends JFrame {
 	private HotelSpecialTimeStr_JPanel hotelSpecialTimeStr_JPanel=new HotelSpecialTimeStr_JPanel(""); 
 	private HotelEnterpriseStr_JPanel hotelEnterpriseStr_JPanel=new HotelEnterpriseStr_JPanel("");
 	private HotelStrategyPanel hotelStrategyPanel=HotelStrategyPanel.getInstance("");
+	private OrderDetailInfoToHotelWorker_JPanel orderDetailInfoToHotelWorker_JPanel=new OrderDetailInfoToHotelWorker_JPanel("");
+	private LookOrderPanelInHotelWorker_JPanel lookOrderPanelInHotelWorker_JPanel=new LookOrderPanelInHotelWorker_JPanel("");
+	private CheckOutInfo_JPanel checkOutInfo_JPanel=new CheckOutInfo_JPanel("");
+	private SearchOrderToCheckIn_JPanel searchOrderToCheckIn_JPanel=new SearchOrderToCheckIn_JPanel();
+	private CheckOutPanel checkOutPanel=CheckOutPanel.getInstance("");
 	
 	public Hotelworker_JFrame() {
 
@@ -204,20 +214,11 @@ public class Hotelworker_JFrame extends JFrame {
 		checkin_Jlabel3.setBounds(60, 410, 180, 30);
 		sidepanel.add(checkin_Jlabel3);
 
-//		chooseHotelStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(chooseHotelStr_JPanel);
+//		searchOrderToCheckIn_JPanel.setBounds(200, 100, 800, 600);
+//		this.add(searchOrderToCheckIn_JPanel);
+
 		
-//		hotelBirthStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelBirthStr_JPanel);
-//		
-//		hotelOverThreeStr_Jpanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelOverThreeStr_Jpanel);
-//		
-//		hotelSpecialTimeStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelSpecialTimeStr_JPanel);
-//		hotelEnterpriseStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelEnterpriseStr_JPanel);
-		rightContainerPanel.add(hotelStrategyPanel);
+		rightContainerPanel.add(checkOutPanel);
 		this.add(rightContainerPanel);
 		mystr_Jlabel1.init();
 	}

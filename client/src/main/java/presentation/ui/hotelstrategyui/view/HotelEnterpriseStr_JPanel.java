@@ -28,6 +28,8 @@ import vo.webstrategyvo.WebStrVO;
  * 
  * 企业优惠策略
  * 
+ *  未加确认按钮监听
+ * 
  * @author cy
  * @version 1.0
  * 
