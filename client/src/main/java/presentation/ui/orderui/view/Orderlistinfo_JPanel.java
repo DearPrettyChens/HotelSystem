@@ -65,6 +65,7 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.setBackground(Color.white);
 		addComp();
 		setListener();
+		setCancleListener();
 
 	}
 
@@ -132,8 +133,7 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				
+				manageOrderViewController.cancelOrder(ordernumber);
 			}
 			
 		});

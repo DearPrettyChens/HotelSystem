@@ -29,17 +29,19 @@ public class ManageOrderViewController {
 
 	public void showOrderDetailInfo(String orderID) {
 		view.changeToDetailPanel(orderID);
-		
 	}
 
-
+//?
 	public void closeOrderDetail() {
 		view.removeAll();	
 	}
 
-
-	public void cancelOrder() {
-//		view=new Searchorder_JPanel(UserType.WebMarketMan);
+	public void closeReturnCreditFrame(){
+		view.closeReturnCreditFrame();
+	}
+	
+	public void cancelOrder(String orderID) {
+		view.changeToReturnCreditPanel(orderID);
 	}
 
 	public void jumpToMainFrame() {
