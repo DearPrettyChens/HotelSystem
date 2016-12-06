@@ -10,12 +10,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
+import presentation.ui.hotelstrategyui.view.HotelSpecialTimeStr_JPanel;
 import presentation.ui.tools.MyTextfield;
 
 /**
  * 
- * 酒店工作人员入住时，搜索订单的面板
+ * 酒店工作人员办理入住时，搜索订单的面板
  * 
  * @author cy
  * @version 1.0
@@ -36,8 +40,12 @@ public class SearchOrderToCheckIn_JPanel extends JPanel {
 
 	private OrderInfoToCheckIn_JPanel orderInfoToCheckIn_JPanel;
 	
-	public SearchOrderToCheckIn_JPanel() {
-
+	private String hotelID;
+	
+	private JLabel orderError=new JLabel("请输入18位的订单号");
+	
+	public SearchOrderToCheckIn_JPanel(String hotelID) {
+		this.hotelID=hotelID;
 		this.setSize(800, 600);
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -61,16 +69,52 @@ public class SearchOrderToCheckIn_JPanel extends JPanel {
 
 		searchimagejl.setBounds(650, 110, 40, 40);
 		this.add(searchimagejl);
+		
+		orderError.setForeground(Color.RED);
+		orderError.setFont(font);
+		orderError.setBounds(225,150,200,30);
+		SearchOrderToCheckIn_JPanel.this.add(orderError);
+		orderError.setVisible(false);
+		
         searchimagejl.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String hotelID=ordernumberjtf.getText();
-				if((hotelID!=null)&&(hotelID.matches("[0-9]+"))){
-						orderInfoToCheckIn_JPanel=new OrderInfoToCheckIn_JPanel(hotelID);
+				String orderID=ordernumberjtf.getText();
+				//订单18位
+				if(orderID!=null&&orderID.length()==18){
+						orderInfoToCheckIn_JPanel=new OrderInfoToCheckIn_JPanel(orderID,hotelID);
 						SearchOrderToCheckIn_JPanel.this.add(orderInfoToCheckIn_JPanel);
 						SearchOrderToCheckIn_JPanel.this.updateUI();
 				}
-			    
+				else{
+					orderError.setVisible(true);
+				}
 			}
+		});
+        
+		/**
+		 * 实现编辑时提示错误消息消失
+		 */
+		Document countDoc=ordernumberjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				orderError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				orderError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				orderError.setVisible(false);
+				
+			}
+			
 		});
 	}
 

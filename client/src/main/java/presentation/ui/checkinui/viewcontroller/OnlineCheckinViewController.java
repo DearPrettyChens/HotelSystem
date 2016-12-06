@@ -23,8 +23,8 @@ public class OnlineCheckinViewController{
 		this.view=panel;
 	}
 	
-	public void jumpToHotelCheckInfoView(HotelOrderInfoVO hotelOrderInfoVO) {
-		view.changeToCheckInInfoPanel(hotelOrderInfoVO);
+	public void jumpToHotelCheckInfoView(HotelOrderInfoVO hotelOrderInfoVO,String hotelID) {
+		view.changeToCheckInInfoPanel(hotelOrderInfoVO,hotelID);
 	}
 
 	

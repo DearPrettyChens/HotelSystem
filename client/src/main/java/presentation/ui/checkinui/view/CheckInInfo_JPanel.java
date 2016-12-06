@@ -4,21 +4,29 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
+import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
+import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
+import util.BedType;
+import util.ResultMessage;
+import util.TransHelper;
+import vo.checkinvo.CheckinInfoVO;
 import vo.hotelvo.HotelOrderInfoVO;
 
 /**
  * 
- * 用户入住时，显示出来的酒店入住信息
- * 
- * 确认按钮的监听未实现
+ * 用户入住时，填写酒店入住信息
  * 
  * @author cy
  * @version 1.0
@@ -33,10 +41,13 @@ public class CheckInInfo_JPanel extends JPanel {
 	private String name = "";
 	private String idnumber = "";
 	private String tel = "";
-	private int roomnumber;
+	private String roomnumber;
 	private String roomtype = "";
 	private String realcheckintime = "";
 	private String realcheckouttime = "";
+	private BedType bedType;
+	private String  hotelID;
+	private String orderID;
 
 	private JLabel titlejl = new JLabel("酒店住房记录");
 	private JLabel clientjl = new JLabel("●入住人登记");
@@ -55,17 +66,23 @@ public class CheckInInfo_JPanel extends JPanel {
 	private JLabel realcheckouttimejl = new JLabel();
 
 	private JTextField idnumberjtf = new JTextField(idnumber);
-	private JTextField realcheckintimejtf = new JTextField(realcheckintime);
-	private JTextField realcheckouttimejtf = new JTextField(realcheckouttime);
+	private JTextField realcheckintimejtf = new JTextField("");
+	private JTextField realcheckouttimejtf = new JTextField("");
+	private JTextField roomnumberjtf=new JTextField(roomnumber);
 
 	private OnlineCheckinViewController onlineCheckinViewController = OnlineCheckinViewController.getInstance(null);
-
-	public CheckInInfo_JPanel(HotelOrderInfoVO hotelOrderInfoVO) {
+	private CheckinDistributionController checkinDistributionController=CheckinDistributionController.getInstance();
+	
+	public CheckInInfo_JPanel(HotelOrderInfoVO hotelOrderInfoVO,String hotelID) {
 
 		this.name = hotelOrderInfoVO.getCustomerName();
 		this.tel = hotelOrderInfoVO.getLodgerTel();
-		this.roomnumber = hotelOrderInfoVO.getRoomNumber();
 		this.roomtype = hotelOrderInfoVO.getRoomType();
+		this.hotelID=hotelID;
+		this.orderID=hotelOrderInfoVO.getOrderId();
+		//TODO
+		//缺少床型
+		//this.bedtype=hotelOrderInfoVO.
 
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -99,6 +116,10 @@ public class CheckInInfo_JPanel extends JPanel {
 		idnumberjtf.setFont(font3);
 		idnumberjtf.setBounds(300, 150, 200, 30);
 		this.add(idnumberjtf);
+		
+		roomnumberjtf.setFont(font3);
+		roomnumberjtf.setBounds(150, 250, 50, 30);
+		this.add(roomnumberjtf);
 
 		teljl.setFont(font3);
 		teljl.setText("联系方式：" + tel);
@@ -111,7 +132,7 @@ public class CheckInInfo_JPanel extends JPanel {
 		this.add(roomjl);
 
 		roomnumberjl.setFont(font3);
-		roomnumberjl.setText("房间号：" + roomnumber);
+		roomnumberjl.setText("房间号：" );
 		roomnumberjl.setBounds(50, 250, 100, 30);
 		this.add(roomnumberjl);
 
@@ -134,7 +155,7 @@ public class CheckInInfo_JPanel extends JPanel {
 		this.add(realcheckintimejtf);
 
 		realcheckouttimejl.setFont(font3);
-		realcheckouttimejl.setText("实际退房时间：" + realcheckouttime);
+		realcheckouttimejl.setText("实际退房时间：" );
 		realcheckouttimejl.setBounds(50, 400, 200, 30);
 		this.add(realcheckouttimejl);
 
@@ -146,7 +167,60 @@ public class CheckInInfo_JPanel extends JPanel {
 		confirmjb.setText("确认");
 		confirmjb.setBounds(510, 500, 100, 30);
 		this.add(confirmjb);
+		
+		JLabel idError=new JLabel("身份证长度为18");
+		idError.setForeground(Color.RED);
+		idError.setFont(font3);
+		idError.setBounds(300, 180, 200, 25);
+		CheckInInfo_JPanel.this.add(idError);
+		idError.setVisible(false);
+		
+		JLabel timeError=new JLabel("不能为空");
+		timeError.setForeground(Color.RED);
+		timeError.setFont(font3);
+		timeError.setBounds(460,350, 200, 25);
+		CheckInInfo_JPanel.this.add(timeError);
+		timeError.setVisible(false);
+		
+		JLabel roomError=new JLabel("不能为空");
+		roomError.setForeground(Color.RED);
+		roomError.setFont(font3);
+		roomError.setBounds(150,280, 200, 25);
+		CheckInInfo_JPanel.this.add(roomError);
+		roomError.setVisible(false);
+		
+		confirmjb.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(checkinDistributionController.checkIDLength(idnumberjtf.getText())==
+						ResultMessage.IDFORMATERROR||idnumberjtf.getText().equals("")){
+					idError.setVisible(true);
+				}
+				if(realcheckintimejtf.getText().equals("")){
+					timeError.setVisible(true);
+				}
+				if(roomnumberjtf.getText().equals("")){
+					roomError.setVisible(true);
+				}
+				if(checkinDistributionController.checkIDLength(idnumberjtf.getText())==
+						ResultMessage.SUCCESS&&!realcheckintimejtf.getText().equals("")&&
+						!roomnumberjtf.getText().equals("")&&!idnumberjtf.getText().equals("")){
+					CheckinInfoVO info=new CheckinInfoVO(name,idnumberjtf.getText(),tel,
+							roomnumberjtf.getText(),roomtype,bedType,new Date(TransHelper.stringToDate(realcheckintimejtf.getText())),
+							new Date(TransHelper.stringToDate(realcheckouttimejtf.getText())),hotelID,orderID);
+					if(checkinDistributionController.confirmCheckinInfo(info)==ResultMessage.SUCCESS){
+						onlineCheckinViewController.jumpToMainFrame();
+					}
+					else{
+						//TODO
+						//保存失败
+					}
+				}
+			}
+			
+		});
+		
 		canclejb.setText("取消");
 		canclejb.setBounds(640, 500, 100, 30);
 		this.add(canclejb);
@@ -158,6 +232,77 @@ public class CheckInInfo_JPanel extends JPanel {
 			}
 		});
 
+		/**
+		 * 实现编辑时提示错误消息消失
+		 */
+		Document idDoc=idnumberjtf.getDocument();
+		idDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				idError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				idError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				idError.setVisible(false);
+				
+			}
+			
+		});
+		
+		Document timeDoc=realcheckintimejtf.getDocument();
+		timeDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				timeError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				timeError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				timeError.setVisible(false);
+				
+			}
+			
+		});
+		
+		Document roomDoc=roomnumberjtf.getDocument();
+		roomDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				roomError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				roomError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				roomError.setVisible(false);
+				
+			}
+			
+		});
 	}
 
 }

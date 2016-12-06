@@ -39,7 +39,7 @@ public class CheckOutPanel extends JPanel{
 	 */
 	public void changeToSearchPanel() {
         this.removeAll();
-        searchOrderToCheckOut_JPanel=new SearchOrderToCheckOut_JPanel();
+        searchOrderToCheckOut_JPanel=new SearchOrderToCheckOut_JPanel(hotelID);
         this.add(searchOrderToCheckOut_JPanel);
         this.updateUI();
 	}

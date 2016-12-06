@@ -3,8 +3,13 @@ package presentation.ui.orderui.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,6 +38,7 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 	private HotelDistributionController hotelDistributionController=HotelDistributionController.getInstance();
 	private static ArrayList<OrderListInfoToHotelWorker_JPanel> orderListInfoToHotelWorker_JPanels;
 	private String hotelID;
+	private JComboBox stateJCombo;
 	
 	public LookOrderPanelInHotelWorker_JPanel(String hotelID) {
 		
@@ -51,6 +57,7 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 		//设置订单状态选择框
         viewOrderToHotelWorker_JPanel.setBounds(0, 50, 800, 100);
         this.add(viewOrderToHotelWorker_JPanel);
+        stateJCombo=viewOrderToHotelWorker_JPanel.getStateSelect();
         
 	     //设置列表
 	    scrollPane.setBounds(0, 150, 800, 550);
@@ -59,6 +66,64 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 	   
 	    initOrderList();
 	    this.add(scrollPane);
+	    
+	    /**
+	     * 根据所选订单类型更新列表
+	     */
+	    stateJCombo.addItemListener(new ItemListener(){
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				ArrayList<HotelOrderVO> orderListVOs=hotelDistributionController.getHotelOrderList(hotelID);
+				ArrayList<HotelOrderVO> orders=new ArrayList<HotelOrderVO>();
+				switch((String)stateJCombo.getSelectedItem()){
+				case "已撤销":
+					for(int i=0;i<orderListVOs.size();i++){
+						if(orderListVOs.get(i).getState()==OrderState.HASCANCELED){
+							orders.add(orderListVOs.get(i));
+						}
+					}
+					break;
+				case "已评价":
+					for(int i=0;i<orderListVOs.size();i++){
+						if(orderListVOs.get(i).getState()==OrderState.HASREMARKED){
+							orders.add(orderListVOs.get(i));
+						}
+					}
+					break;
+				case "未执行":
+					for(int i=0;i<orderListVOs.size();i++){
+						if(orderListVOs.get(i).getState()==OrderState.NOTEXECUTED){
+							orders.add(orderListVOs.get(i));
+						}
+					}
+					break;
+				case "未评价":
+					for(int i=0;i<orderListVOs.size();i++){
+						if(orderListVOs.get(i).getState()==OrderState.NOTREMARKED){
+							orders.add(orderListVOs.get(i));
+						}
+					}
+					break;
+				case "订单异常":
+					for(int i=0;i<orderListVOs.size();i++){
+						if(orderListVOs.get(i).getState()==OrderState.UNUSUAL){
+							orders.add(orderListVOs.get(i));
+						}
+					}
+					break;
+				default:
+					for(int i=0;i<orderListVOs.size();i++){
+							orders.add(orderListVOs.get(i));
+						
+					}
+					break;
+				
+				}
+				changeScrollPane(orders);
+			}
+			
+	    });
         
 	}
 	/**

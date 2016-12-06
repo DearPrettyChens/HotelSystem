@@ -55,7 +55,7 @@ public class LeftChooseMap {
 		map.put("● 录入客房信息", new RoomInfo_JPanel(hotelID));
 		map.put("● 浏览订单列表", OrderPanelViewInHotelWorker.getInstance(hotelID));
 		map.put("● 制定酒店策略", HotelStrategyPanel.getInstance(hotelID));
-		map.put("● 线上入住办理", CheckInPanel.getInstance());
+		map.put("● 线上入住办理", CheckInPanel.getInstance(hotelID));
 		map.put("● 线上退房办理", CheckOutPanel.getInstance(hotelID));
 		map.put("● 线下入住退房", new OfflineCheckIn_JPanel(hotelID));
 		

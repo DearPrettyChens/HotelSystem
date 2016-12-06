@@ -11,12 +11,17 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import exception.NotFoundHotelException;
+import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
 import util.City;
+import util.ResultMessage;
 import util.TradingArea;
 import vo.hotelvo.HotelBasicInfoVO;
 
@@ -69,8 +74,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 	private JTextField starjtf;
 	private JTextField locationjtf;
-	private JTextField areajtf;
-	private JTextField cityjtf;
+	//private JTextField areajtf;
+	private JLabel areajtf;
+	private JLabel cityjtf;
 	private JTextField teljtf;
 	private JTextArea commonFacilityjtf;
 	private JTextArea activityFacilityjtf;
@@ -78,6 +84,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private JTextArea servicejtf;
 	private JTextArea introductionjtf;
     private JButton hotelimagejb;
+	JLabel telError=new JLabel("电话不能为空");
+	JLabel starError=new JLabel("星级不能为空");
+	JLabel locaError=new JLabel("地址不能为空");
 	
 	private HotelDistributionController hotelDistributionController = HotelDistributionController.getInstance();
 
@@ -117,8 +126,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelnamejl = new JLabel("酒店名称："+hotelname);
 		starjtf = new JTextField(star + "");
 		locationjtf = new JTextField(location);
-		cityjtf=new JTextField(city);
-		areajtf = new JTextField(area);
+		cityjtf=new JLabel(city);
+		areajtf = new JLabel(area);
 		teljtf = new JTextField(tel);
 		servicejtf = new JTextArea(service);
 		introductionjtf = new JTextArea(introduction);
@@ -251,7 +260,167 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		roomFacilityjtf.setBorder(border);
 		this.add(roomFacilityjtf);
 
-		
-	}
 
+		telError.setForeground(Color.RED);
+		telError.setFont(font);
+		telError.setBounds(160,280,150,20);
+		ModifyHotelBasicInfo_JPanel.this.add(telError);
+		telError.setVisible(false);
+		
+		starError.setForeground(Color.RED);
+		starError.setFont(font);
+		starError.setBounds(500,280,150,20);
+		ModifyHotelBasicInfo_JPanel.this.add(starError);
+		starError.setVisible(false);
+		
+		locaError.setForeground(Color.RED);
+		locaError.setFont(font);
+		locaError.setBounds(160,380,150,20);
+		ModifyHotelBasicInfo_JPanel.this.add(locaError);
+		locaError.setVisible(false);
+		
+		/**
+		 * 实现编辑值时提示错误消息消失
+		 */
+		Document telDoc=teljtf.getDocument();
+		telDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				telError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				telError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				telError.setVisible(false);
+				
+			}
+			
+		});
+
+		Document countDoc=starjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				starError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				starError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				starError.setVisible(false);
+				
+			}
+			
+		});
+		
+		Document locaDoc=locationjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				locaError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				locaError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				locaError.setVisible(false);
+				
+			}
+			
+		});
+	}
+	/**
+	 * 上层面板获得内容
+	 * @return
+	 */
+/*	public JTextField getTel(){
+		return this.teljtf;
+	}
+	
+	public JTextField getStar(){
+		return this.starjtf;
+	}
+	
+	public JTextField getArea(){
+		return this.areajtf;
+	}
+	
+	public JTextField getLoca(){
+		return this.locationjtf;
+	}
+	
+	public JTextField getCity(){
+		return this.cityjtf;
+	}
+	*/
+
+	/**
+	 * 保存当前酒店信息(city那边中英文怎么转换？)
+	 */
+	public ResultMessage saveInfo(){
+		if(teljtf.getText()==""){
+			telError.setVisible(true);
+			return ResultMessage.FAIL;
+		}
+		if(starjtf.getText()==""){
+			starError.setVisible(true);
+			return ResultMessage.FAIL;
+		}
+		
+		if(locationjtf.getText()==""){
+			locaError.setVisible(true);
+			return ResultMessage.FAIL;
+		}
+		HotelBasicInfoVO basic=new HotelBasicInfoVO(hotelname,hotelimage,
+				locationjtf.getText(),City.valueOf("NANJING"),TradingArea.valueOf(area),teljtf.getText(),
+				Integer.parseInt(starjtf.getText()),introductionjtf.getText(),commonFacilityjtf.getText(),
+				activityFacilityjtf.getText(),servicejtf.getText(),roomFacilityjtf.getText()
+				,enterprise);
+		if(hotelDistributionController.confirmModifyInfo(basic)==ResultMessage.SUCCESS){
+			return ResultMessage.SUCCESS;
+		}
+		else{
+			return ResultMessage.FAIL;
+		}
+	}
+	
+	/**
+	 * 恢复信息到未编辑之前
+	 */
+	public void recoverInfo(){
+		hotelnamejl.setText("酒店名称："+hotelname);
+		starjtf .setText(star + "");
+		locationjtf .setText(location);
+		cityjtf.setText(city);
+		areajtf .setText(area);
+		teljtf .setText(tel);
+		servicejtf.setText(service);
+		introductionjtf .setText(introduction);
+        commonFacilityjtf.setText(commonFacility);
+        activityFacilityjtf.setText(activityFacility);
+        roomFacilityjtf.setText(roomFacility);
+		enterprisesjl.setText("合作企业："+enterprise);
+	}
 }

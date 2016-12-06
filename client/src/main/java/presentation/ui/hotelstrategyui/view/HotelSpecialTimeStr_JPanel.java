@@ -9,6 +9,9 @@ import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistributionController;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
@@ -119,6 +122,32 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 				}
 			}
 
+		});
+		
+		/**
+		 * 实现编辑折扣值时提示错误消息消失
+		 */
+		Document countDoc=singleHotelSpecialTimeStr.getCountJtf().getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+			
 		});
 	}
 

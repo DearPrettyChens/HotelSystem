@@ -33,8 +33,10 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 
 	private OrderInfoToCheckIn_JPanel orderInfoToCheckIn_JPanel;
 	
-	public SearchOrderToCheckOut_JPanel() {
-
+	private String hotelID;
+	
+	public SearchOrderToCheckOut_JPanel(String hotelID) {
+		this.hotelID=hotelID;
 		this.setSize(800, 600);
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -60,9 +62,9 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 		this.add(searchimagejl);
         searchimagejl.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				String hotelID=ordernumberjtf.getText();
-				if((hotelID!=null)&&(hotelID.matches("[0-9]+"))){
-						orderInfoToCheckIn_JPanel=new OrderInfoToCheckIn_JPanel(hotelID);
+				String orderID=ordernumberjtf.getText();
+				if((orderID!=null)&&(orderID.length()==18)){
+						orderInfoToCheckIn_JPanel=new OrderInfoToCheckIn_JPanel(orderID,hotelID);
 						SearchOrderToCheckOut_JPanel.this.add(orderInfoToCheckIn_JPanel);
 						SearchOrderToCheckOut_JPanel.this.updateUI();
 				}

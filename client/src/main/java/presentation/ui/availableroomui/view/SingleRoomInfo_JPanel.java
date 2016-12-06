@@ -7,7 +7,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presentation.ui.availableroomui.distributecontroller.AvailableroomDistributionController;
+import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import util.BedType;
+import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
 
 /**
@@ -18,11 +21,13 @@ import vo.availableroomvo.AvailableRoomInfoVO;
  * 
  */
 public class SingleRoomInfo_JPanel  extends JPanel{
-	
+	private String hotelID;
 	private String bedtype;
 	private String roomtype;
 	private int number;
 	private double price;
+	private double lowestPrice;
+	private int currentNum;
 	
 	private BedType bedType2;
 	
@@ -38,6 +43,9 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JTextField numberjtf=new JTextField();
 	private JTextField pricejtf=new JTextField();
 	
+	JLabel saveError=new JLabel("不能为空");
+	
+	private AvailableroomDistributionController controller=AvailableroomDistributionController.getInstance();
 	
 	public SingleRoomInfo_JPanel(AvailableRoomInfoVO availableRoomInfoVO){
 		this.bedType2=availableRoomInfoVO.getBedType();
@@ -45,6 +53,9 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.roomtype=availableRoomInfoVO.getRoomType();
 		this.number=availableRoomInfoVO.getOriginalNumbers();
 		this.price=availableRoomInfoVO.getOriginalPrice();
+		this.hotelID=availableRoomInfoVO.getHotelNumber();
+		this.lowestPrice=availableRoomInfoVO.getLowestPrice();
+		this.currentNum=availableRoomInfoVO.getCurrentNumber();
 		
 		
 		bedtypejtf.setText(bedtype);
@@ -115,7 +126,27 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.setLayout(null);
 		
 		
+
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(580,40,50,20);
+		SingleRoomInfo_JPanel.this.add(saveError);
+		saveError.setVisible(false);
+		
 	}
-	
+	/**
+	 * 保存房间信息
+	 * @return
+	 */
+	public ResultMessage saveRoom(){
+		if(roomtypejtf.getText()==""||bedtypejtf.getText()==""||pricejtf.getText()==""
+				||numberjtf.getText()==""){
+			saveError.setVisible(true);
+		}
+		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
+				BedType.valueOf(bedtypejtf.getText()),Double.parseDouble(pricejtf.getText()),
+						lowestPrice,Integer.parseInt(numberjtf.getText()));
+		return controller.confirmAvailableRoomInfo(hotelID, room);
+	}
 	
 }

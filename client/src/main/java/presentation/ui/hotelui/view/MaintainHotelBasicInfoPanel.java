@@ -3,20 +3,21 @@ package presentation.ui.hotelui.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import presentation.ui.hotelui.viewcontroller.HotelWorkerViewController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
+import util.ResultMessage;
 
 /**
  * 
  * 维护酒店基本信息的总面板
- * 
- * 确认和取消按钮未实现监听
- * 
  * @author csy
  * 
  *
@@ -31,6 +32,8 @@ public class MaintainHotelBasicInfoPanel extends JPanel {
 	private JScrollPane scrollPane = new JScrollPane();
 	private String hotelID;
 	private ModifyHotelBasicInfo_JPanel modifyHotelBasicInfo_JPanel;
+	
+	private HotelWorkerViewController controller=new HotelWorkerViewController(this);
 
 	public MaintainHotelBasicInfoPanel(String hotelID) {
 		this.hotelID = hotelID;
@@ -55,7 +58,32 @@ public class MaintainHotelBasicInfoPanel extends JPanel {
 		cancle.setText("取消");
 		cancle.setBounds(650, 500, 100, 30);
 		this.add(cancle);
+		
+		/**
+		 * 回到编辑前的信息
+		 */
+		cancle.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modifyHotelBasicInfo_JPanel.recoverInfo();	
+			}
+			
+		});
+		confirm.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(modifyHotelBasicInfo_JPanel.saveInfo()==ResultMessage.SUCCESS){
+					//TODO
+					//保存成功
+				}
+				else{
+					//保存失败
+				}
+			}
+			
+		});
 	}
 
 	public void initScrollpane() {

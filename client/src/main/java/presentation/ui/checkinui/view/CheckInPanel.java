@@ -19,15 +19,17 @@ public class CheckInPanel extends JPanel {
 	private CheckInInfo_JPanel checkInInfo_JPanel;
 	private OnlineCheckinViewController onlineCheckinViewController=OnlineCheckinViewController.getInstance(this);
 	private static CheckInPanel checkInPanel;
+	private String hotelID;
 	
-	public static CheckInPanel getInstance() {
+	public static CheckInPanel getInstance(String hotelID) {
 		if(checkInPanel==null){
-			checkInPanel=new CheckInPanel();
+			checkInPanel=new CheckInPanel(hotelID);
 		}
 		return checkInPanel;
 	}
 	
-	private CheckInPanel(){
+	private CheckInPanel(String hotelID){
+		this.hotelID=hotelID;
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		changeToSearchPanel();
@@ -39,7 +41,7 @@ public class CheckInPanel extends JPanel {
 	 */
 	public void changeToSearchPanel() {
         this.removeAll();
-        searchOrderToCheckIn_JPanel=new SearchOrderToCheckIn_JPanel();
+        searchOrderToCheckIn_JPanel=new SearchOrderToCheckIn_JPanel(hotelID);
         this.add(searchOrderToCheckIn_JPanel);
         this.updateUI();
 	}
@@ -47,9 +49,9 @@ public class CheckInPanel extends JPanel {
 	/**
 	 * 跳到住房信息界面
 	 */
-	public void changeToCheckInInfoPanel(HotelOrderInfoVO hotelOrderInfoVO) {
+	public void changeToCheckInInfoPanel(HotelOrderInfoVO hotelOrderInfoVO,String hotelID) {
 		this.removeAll();
-		checkInInfo_JPanel=new CheckInInfo_JPanel(hotelOrderInfoVO);
+		checkInInfo_JPanel=new CheckInInfo_JPanel(hotelOrderInfoVO,hotelID);
         this.add(checkInInfo_JPanel) ;
 		this.updateUI();
 	}

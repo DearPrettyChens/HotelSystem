@@ -14,14 +14,13 @@ import javax.swing.JScrollPane;
 import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.tools.MyButton;
+import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.checkinvo.AvailableRoomNumberVO;
 
 /**
  * 
  * 酒店工作人员进行线下入住退房管理
- * 
- * 未实现确认和取消监听
  * 
  * @author cy
  * @version 1.0
@@ -73,18 +72,39 @@ public class OfflineCheckIn_JPanel extends JPanel {
 		canclejb.setText("取消");
 		canclejb.setBounds(700, 500, 80, 30);
 		this.add(canclejb);
+		/**
+		 * 恢复成未编辑之前的状态
+		 */
 		canclejb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				for(int i=0;i<singleinfo.size();i++){
+					singleinfo.get(i).recoverRoom();
+				}
 			}
 		});
 
 		confirmjb.setText("确认");
 		confirmjb.setBounds(600, 500, 80, 30);
 		this.add(confirmjb);
+		confirmjb.addActionListener(new ActionListener(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for(int i=0;i<singleinfo.size();i++){
+					if(singleinfo.get(i).saveRoom()==ResultMessage.SUCCESS){
+						//TODO
+						//保存成功
+					}
+					else{
+						//TODO
+						//保存失败
+					}
+				}	
+			}
+			
+		});
 	}
 	/**
 	 * 增加滚动条面板

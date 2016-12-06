@@ -49,4 +49,7 @@ public class ViewOrderToHotelWorker_JPanel extends JPanel {
 		this.add(comboBox);
 	}
 
+	public JComboBox getStateSelect(){
+		return this.comboBox;
+	}
 }

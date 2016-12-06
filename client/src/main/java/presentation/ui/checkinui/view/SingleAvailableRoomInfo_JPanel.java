@@ -8,10 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
+import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import util.BedType;
+import util.ResultMessage;
 import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
+import vo.availableroomvo.AvailableRoomNumberVO;
 
 /**
  * 单条的可用客房信息，用来进行用户线下入住退房
@@ -25,6 +27,7 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 	private String bedtype;
 	 private String roomtype;
 	private int number;
+	private String hotelID;
 
 	private BedType bedType2;
 
@@ -35,19 +38,20 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 	private JLabel numberjl = new JLabel("数量：");
 
 	private JTextField numberjtf = new JTextField();
+	private CheckinDistributionController controller=CheckinDistributionController.getInstance();
 
 	public SingleAvailableRoomInfo_JPanel(AvailableRoomInfoVO availableRoomInfoVO) {
 
 		this.bedType2 = availableRoomInfoVO.getBedType();
 		this.bedtype = bedType2.toChinese();
 
-
+		this.hotelID=availableRoomInfoVO.getHotelNumber();
 		 this.roomtype=availableRoomInfoVO.getRoomType();
 		this.number = availableRoomInfoVO.getCurrentNumber();
 
-		bedtypejl.setText("床型：" + bedtype);
+		bedtypejl.setText("床型：");
 
-		roomtypejl.setText("日期：" + roomtype);
+		roomtypejl.setText("房型：");
 
 		numberjtf.setText(number + "");
 
@@ -88,5 +92,26 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 		this.setLayout(null);
 
 	}
-
+	
+	public void recoverRoom(){
+		numberjtf.setText(number + "");
+	}
+	
+	public ResultMessage saveRoom(){
+		if(numberjtf.getText()==""){
+			
+		}
+		else{
+			AvailableRoomNumberVO info=new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()),
+					this.bedType2,new Date(),hotelID);
+			if(controller.confirmAvailableRoomNumber(info)==ResultMessage.SUCCESS){
+				return ResultMessage.SUCCESS;
+			}
+			else{
+				//保存失败
+				return ResultMessage.FAIL;
+			}
+		}
+		return ResultMessage.FAIL;
+	}
 }

@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import presentation.ui.availableroomui.distributecontroller.AvailableroomDistributionController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.webstrategyui.view.Singlewebareastr_Jpanel;
+import util.ResultMessage;
 import util.WebStrategyType;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.webstrategyvo.WebStrVO;
@@ -72,7 +73,6 @@ public class RoomInfo_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				SingleRoomInfo_JPanel newsingleinfo = new SingleRoomInfo_JPanel();
 				singleinfo.add(newsingleinfo);
 				addToPanel();
@@ -99,6 +99,27 @@ public class RoomInfo_JPanel extends JPanel {
 		confirmjb.setBounds(700, 500, 80, 30);
 		this.add(confirmjb);
 
+		/**
+		 * 确认保存
+		 */
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ResultMessage result=ResultMessage.SUCCESS;
+				for(int i=0;i<singleinfo.size();i++){
+					result=singleinfo.get(i).saveRoom();
+				}
+				if(result==ResultMessage.SUCCESS){
+					//TODO
+					// 保存成功
+				}
+				else{
+					//保存失败
+				}
+			}
+			
+		});
 	}
 
 	/**

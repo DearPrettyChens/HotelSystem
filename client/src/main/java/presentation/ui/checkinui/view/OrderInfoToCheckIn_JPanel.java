@@ -48,6 +48,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 	private String plannedcheckintime = "";
 	private String acturalcheckintime;
 	private double price = 0;
+	private String hotelID;
 
 	private OrderState orderState2;
 	private Date plannedcheckintimeInDate;
@@ -67,8 +68,19 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 	private OnlineCheckoutViewController onlineCheckoutViewController=OnlineCheckoutViewController.getInstance(null);
 	private HotelOrderInfoVO hotelOrderInfoVO;
 
-	public OrderInfoToCheckIn_JPanel(String orderID) {
-
+	public OrderInfoToCheckIn_JPanel(String orderID,String hotelID) {
+		this.hotelID=hotelID;
+		if(hotelDistributionController.getHotelOrderInfo(orderID)==null){
+			JPanel panel=new JPanel();
+			panel.setBounds(0, 180, 800, 400);
+			OrderInfoToCheckIn_JPanel.this.add(panel);
+			JLabel orderError=new JLabel("无该订单信息!");
+			orderError.setForeground(Color.BLACK);
+			orderError.setFont(font);
+			orderError.setBounds(250,50,200,50);
+			panel.add(orderError);
+			orderError.setVisible(true);
+		}
 		hotelOrderInfoVO = hotelDistributionController.getHotelOrderInfo(orderID);
 		if (hotelOrderInfoVO == null) {
 			this.setVisible(false);
@@ -170,7 +182,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 					OrderInfoToCheckIn_JPanel.this.onlineCheckoutViewController.jumpToHotelCheckInfoView();
 				}else{
 					OrderInfoToCheckIn_JPanel.this.onlineCheckinViewController
-						.jumpToHotelCheckInfoView(OrderInfoToCheckIn_JPanel.this.hotelOrderInfoVO);
+						.jumpToHotelCheckInfoView(OrderInfoToCheckIn_JPanel.this.hotelOrderInfoVO,hotelID);
 				}
 				
 				

@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
 
@@ -150,6 +153,32 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 				else{
 					saveError.setVisible(true);
 				}
+			}
+			
+		});
+		
+		/**
+		 * 实现编辑折扣值时提示错误消息消失
+		 */
+		Document countDoc=countjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
 			}
 			
 		});

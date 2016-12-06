@@ -9,18 +9,21 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckoutViewController;
 import presentation.ui.tools.MyButton;
+import util.BedType;
+import util.ResultMessage;
 import util.TransHelper;
 import vo.checkinvo.CheckinInfoVO;
 
 /**
  * 
  * 用户退房时，显示出来的酒店入住信息
- * 
- * 未实现确认监听
  * 
  * @author cy
  * @version 1.0
@@ -39,9 +42,12 @@ public class CheckOutInfo_JPanel extends JPanel {
 	private String roomtype="";
 	private String realcheckintime="";
 	private String realcheckouttime="";
+	private BedType bedType;
 	
 	private Date checkintimeInDate;
 	private Date checkouttimeInDate;
+	private String hotelID;
+	private String orderID;
 	
 	
 	private JLabel titlejl=new JLabel("酒店住房记录");
@@ -52,7 +58,7 @@ public class CheckOutInfo_JPanel extends JPanel {
 	private MyButton confirmjb=new MyButton();
 	private MyButton canclejb=new MyButton();
 	
-	
+	private CheckinDistributionController checkinDistributionController=CheckinDistributionController.getInstance();
 	
 	
 	
@@ -81,7 +87,9 @@ public class CheckOutInfo_JPanel extends JPanel {
 		this.roomtype=checkinInfoVO.getRoomType();
 		this.checkintimeInDate=checkinInfoVO.getCheckintime();
 		this.realcheckintime=TransHelper.timeToString(checkintimeInDate);
-		
+		this.hotelID=checkinInfoVO.getHotelnumber();
+		this.orderID=checkinInfoVO.getOrdernumber();
+		this.bedType=checkinInfoVO.getBedtype();
 		
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -175,12 +183,64 @@ public class CheckOutInfo_JPanel extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				onlineCheckoutViewController.jumpToMainFrame();
 			}
 		});
 		
+		JLabel timeError=new JLabel("不能为空");
+		timeError.setForeground(Color.RED);
+		timeError.setFont(font3);
+		timeError.setBounds(340,400, 100, 25);
+		CheckOutInfo_JPanel.this.add(timeError);
+		timeError.setVisible(false);
 		
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				if(realcheckouttimejtf.getText().equals("")){
+					timeError.setVisible(true);
+				}
+
+				if(!realcheckouttimejtf.getText().equals("")){
+					CheckinInfoVO info=new CheckinInfoVO(name,idnumber,tel,
+							roomnumber,roomtype,bedType,new Date(TransHelper.stringToDate(realcheckintime)),
+							new Date(TransHelper.stringToDate(realcheckouttimejtf.getText())),hotelID,orderID);
+					if(checkinDistributionController.confirmCheckoutInfo(info)==ResultMessage.SUCCESS){
+						onlineCheckoutViewController.jumpToMainFrame();
+					}
+					else{
+						//TODO
+						//保存失败
+					}
+				}
+			}
+			
+		});
+		
+		Document timeDoc=realcheckouttimejtf.getDocument();
+		timeDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				timeError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				timeError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				timeError.setVisible(false);
+				
+			}
+			
+		});
 		
 	}
 	
