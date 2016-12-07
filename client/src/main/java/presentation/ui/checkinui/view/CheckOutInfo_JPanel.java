@@ -16,6 +16,7 @@ import javax.swing.text.Document;
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckoutViewController;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
 import util.BedType;
 import util.ResultMessage;
 import util.TransHelper;
@@ -213,6 +214,7 @@ public class CheckOutInfo_JPanel extends JPanel {
 					else{
 						//TODO
 						//保存失败
+						new SaveFail_JFrame();
 					}
 				}
 			}

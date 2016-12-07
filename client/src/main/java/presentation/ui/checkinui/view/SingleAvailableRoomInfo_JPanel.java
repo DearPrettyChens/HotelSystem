@@ -49,9 +49,9 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 		 this.roomtype=availableRoomInfoVO.getRoomType();
 		this.number = availableRoomInfoVO.getCurrentNumber();
 
-		bedtypejl.setText("床型：");
+		bedtypejl.setText("床型："+bedtype);
 
-		roomtypejl.setText("房型：");
+		roomtypejl.setText("房型："+roomtype);
 
 		numberjtf.setText(number + "");
 
@@ -108,6 +108,7 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 				return ResultMessage.SUCCESS;
 			}
 			else{
+				//TODO
 				//保存失败
 				return ResultMessage.FAIL;
 			}

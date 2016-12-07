@@ -305,8 +305,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			
 		});
 
-		Document countDoc=starjtf.getDocument();
-		countDoc.addDocumentListener(new DocumentListener(){
+		Document starDoc=starjtf.getDocument();
+		starDoc.addDocumentListener(new DocumentListener(){
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -329,7 +329,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		});
 		
 		Document locaDoc=locationjtf.getDocument();
-		countDoc.addDocumentListener(new DocumentListener(){
+		locaDoc.addDocumentListener(new DocumentListener(){
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -394,7 +394,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			return ResultMessage.FAIL;
 		}
 		HotelBasicInfoVO basic=new HotelBasicInfoVO(hotelname,hotelimage,
-				locationjtf.getText(),City.valueOf("NANJING"),TradingArea.valueOf(area),teljtf.getText(),
+				locationjtf.getText(),City.valueOf("NANJING"),TradingArea.valueOf("XINJIEKOU"),teljtf.getText(),
 				Integer.parseInt(starjtf.getText()),introductionjtf.getText(),commonFacilityjtf.getText(),
 				activityFacilityjtf.getText(),servicejtf.getText(),roomFacilityjtf.getText()
 				,enterprise);

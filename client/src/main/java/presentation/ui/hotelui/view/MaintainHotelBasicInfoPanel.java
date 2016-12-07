@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 
 import presentation.ui.hotelui.viewcontroller.HotelWorkerViewController;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
 import util.ResultMessage;
 
@@ -77,9 +79,11 @@ public class MaintainHotelBasicInfoPanel extends JPanel {
 				if(modifyHotelBasicInfo_JPanel.saveInfo()==ResultMessage.SUCCESS){
 					//TODO
 					//保存成功
+					new SaveSuccess_JFrame();
 				}
 				else{
 					//保存失败
+					new SaveFail_JFrame();
 				}
 			}
 			

@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.checkinvo.AvailableRoomNumberVO;
@@ -96,10 +98,12 @@ public class OfflineCheckIn_JPanel extends JPanel {
 					if(singleinfo.get(i).saveRoom()==ResultMessage.SUCCESS){
 						//TODO
 						//保存成功
+						new SaveSuccess_JFrame();
 					}
 					else{
 						//TODO
 						//保存失败
+						new SaveFail_JFrame();
 					}
 				}	
 			}

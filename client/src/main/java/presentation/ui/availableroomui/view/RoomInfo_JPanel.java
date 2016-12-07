@@ -13,6 +13,8 @@ import javax.swing.JScrollPane;
 
 import presentation.ui.availableroomui.distributecontroller.AvailableroomDistributionController;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.webstrategyui.view.Singlewebareastr_Jpanel;
 import util.ResultMessage;
 import util.WebStrategyType;
@@ -111,11 +113,12 @@ public class RoomInfo_JPanel extends JPanel {
 					result=singleinfo.get(i).saveRoom();
 				}
 				if(result==ResultMessage.SUCCESS){
-					//TODO
 					// 保存成功
+					new SaveSuccess_JFrame();
 				}
 				else{
 					//保存失败
+					new SaveFail_JFrame();
 				}
 			}
 			

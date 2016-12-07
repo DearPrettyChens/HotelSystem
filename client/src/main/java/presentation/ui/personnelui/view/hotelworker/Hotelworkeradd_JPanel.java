@@ -18,6 +18,7 @@ import presentation.ui.personnelui.view.webmarketman.WebMarketManAdd_JPanel;
 import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
 import util.ResultMessage;
 import util.UserType;
@@ -360,6 +361,7 @@ public class Hotelworkeradd_JPanel extends JPanel {
 				if(personnelDistributionController.addPerson(detail)==ResultMessage.SUCCESS){
 					//保存成功
 					//TODO
+					new SaveSuccess_JFrame();
 					saveError.setVisible(false);
 					saveSuccess.setVisible(true);
 				}

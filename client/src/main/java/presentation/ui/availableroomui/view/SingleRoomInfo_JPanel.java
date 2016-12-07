@@ -143,8 +143,14 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 				||numberjtf.getText()==""){
 			saveError.setVisible(true);
 		}
+		BedType bedtype2=BedType.BIGBED;
+		switch(bedtypejtf.getText()){
+		case "大床房":
+			bedtype2=BedType.BIGBED;
+		
+		}
 		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
-				BedType.valueOf(bedtypejtf.getText()),Double.parseDouble(pricejtf.getText()),
+				bedtype2,Double.parseDouble(pricejtf.getText()),
 						lowestPrice,Integer.parseInt(numberjtf.getText()));
 		return controller.confirmAvailableRoomInfo(hotelID, room);
 	}

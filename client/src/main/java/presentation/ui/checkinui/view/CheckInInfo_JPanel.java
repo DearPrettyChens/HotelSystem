@@ -17,6 +17,7 @@ import presentation.ui.checkinui.distributecontroller.CheckinDistributionControl
 import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
 import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.newclient_JLabel;
 import util.BedType;
 import util.ResultMessage;
@@ -215,6 +216,7 @@ public class CheckInInfo_JPanel extends JPanel {
 					else{
 						//TODO
 						//保存失败
+						new SaveFail_JFrame();
 					}
 				}
 			}
