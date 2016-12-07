@@ -1,4 +1,4 @@
-package presentation.ui.checkinui.view;
+package presentation.ui.creditui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,7 +10,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.orderui.distributecontroller.OrderDistributionController;
+import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
+import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 import presentation.ui.tools.close_JButton;
+import util.ResultMessage;
+import vo.creditvo.CreditInfoVO;
+import vo.ordervo.OrderInfoVO;
 
 /**
  * 
@@ -25,13 +31,17 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 	private JPanel upjp=new JPanel();
 	private Font font=new Font("宋体", Font.BOLD, 16);
 	private Color color=new Color(148, 221, 184);
-	
+	private OrderDistributionController orderDistributionController=OrderDistributionController.getInstance();
+	private ManageOrderViewController manageOrderViewController = ManageOrderViewController.getInstance(null);
 	
 	private JLabel halfjl=new JLabel("返回一半信用值");
 	private JLabel alljl=new JLabel("返回全部信用值");
 	
+	private String orderID;
 	
-	public ReturnHalforAll_JFrame(){
+	public ReturnHalforAll_JFrame(String orderID){
+		
+		this.orderID = orderID;
 		
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 400) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 300) / 2); // 定位框架位置
@@ -46,6 +56,7 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 		
 		
 		this.setVisible(true);
+		
 		
 	}
 	
@@ -69,31 +80,35 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				OrderInfoVO orderInfoVO = orderDistributionController.getOrderInfo(orderID);
+				int returnCredit = (int)(orderInfoVO.getPrice()*0.5);
+				ResultMessage resultMessage = orderDistributionController.setReturnCredit(orderID, returnCredit);
+				//成功要加上 跳出提示框
+				if(resultMessage==ResultMessage.SUCCESS){
+					manageOrderViewController.closeReturnCreditFrame();
+					manageOrderViewController.jumpToMainFrame();
+				}else{
+					
+				}				
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				halfjl.setForeground(color);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				halfjl.setForeground(Color.BLACK);
 			}
 			
@@ -107,31 +122,35 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
+				OrderInfoVO orderInfoVO = orderDistributionController.getOrderInfo(orderID);
+				int returnCredit = (int)(orderInfoVO.getPrice());
+				ResultMessage resultMessage = orderDistributionController.setReturnCredit(orderID, returnCredit);
+				//成功 要加上 跳出提示框
+				if(resultMessage==ResultMessage.SUCCESS){
+					manageOrderViewController.closeReturnCreditFrame();
+					manageOrderViewController.jumpToMainFrame();
+				}else{
+					
+				}	
 			}
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 				
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				alljl.setForeground(color);
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				alljl.setForeground(Color.BLACK);
 			}
 			
@@ -142,6 +161,7 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 	}
 	
 
+<<<<<<< HEAD:client/src/main/java/presentation/ui/checkinui/view/ReturnHalforAll_JFrame.java
 	public static void main(String[] args){
 		
 		  
@@ -153,5 +173,13 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 		
 	}
 	
+=======
+//	public static void main(String[] args){
+//		new ReturnHalforAll_JFrame ();
+//		
+//		
+//	}
+//	
+>>>>>>> origin/master:client/src/main/java/presentation/ui/creditui/view/ReturnHalforAll_JFrame.java
 	
 }

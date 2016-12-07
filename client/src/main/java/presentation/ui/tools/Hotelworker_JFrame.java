@@ -10,16 +10,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.availableroomui.view.RoomInfo_JPanel;
+import presentation.ui.checkinui.view.CheckOutInfo_JPanel;
+import presentation.ui.checkinui.view.CheckOutPanel;
+import presentation.ui.checkinui.view.OfflineCheckIn_JPanel;
+import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.hotelstrategyui.view.ChooseHotelStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelOverThreeStr_Jpanel;
 import presentation.ui.hotelstrategyui.view.HotelSpecialTimeStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
+import presentation.ui.hotelui.view.MaintainHotelBasicInfoPanel;
+import presentation.ui.orderui.view.LookOrderPanelInHotelWorker_JPanel;
+import presentation.ui.orderui.view.OrderDetailInfoToHotelWorker_JPanel;
 import util.UserType;
 
 /**
  * 酒店工作人员左上角的所有面板
+ * 
+ * 注意！！！！
  * 
  * @author cy
  * @version 1.0
@@ -71,15 +81,15 @@ public class Hotelworker_JFrame extends JFrame {
 	private JPanel sidepanel = new JPanel();
 	private HeadPanel headPanel;
 
-	private ChooseHotelStr_JPanel chooseHotelStr_JPanel = new ChooseHotelStr_JPanel();
-    private HotelBirthStr_JPanel hotelBirthStr_JPanel=new HotelBirthStr_JPanel("");
-	private HotelOverThreeStr_Jpanel hotelOverThreeStr_Jpanel=new HotelOverThreeStr_Jpanel("");
-	private HotelSpecialTimeStr_JPanel hotelSpecialTimeStr_JPanel=new HotelSpecialTimeStr_JPanel(""); 
-	private HotelEnterpriseStr_JPanel hotelEnterpriseStr_JPanel=new HotelEnterpriseStr_JPanel("");
-	private HotelStrategyPanel hotelStrategyPanel=HotelStrategyPanel.getInstance("");
+	private String hotelID="";
 	
+	private MaintainHotelBasicInfoPanel maintainHotelBasicInfoPanel;
+	 
 	public Hotelworker_JFrame() {
 
+//		this.hotelID=...  注意应该是传信息进来初始化的
+		maintainHotelBasicInfoPanel=new MaintainHotelBasicInfoPanel(hotelID);
+		
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);
@@ -204,22 +214,10 @@ public class Hotelworker_JFrame extends JFrame {
 		checkin_Jlabel3.setBounds(60, 410, 180, 30);
 		sidepanel.add(checkin_Jlabel3);
 
-//		chooseHotelStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(chooseHotelStr_JPanel);
 		
-//		hotelBirthStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelBirthStr_JPanel);
-//		
-//		hotelOverThreeStr_Jpanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelOverThreeStr_Jpanel);
-//		
-//		hotelSpecialTimeStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelSpecialTimeStr_JPanel);
-//		hotelEnterpriseStr_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(hotelEnterpriseStr_JPanel);
-		rightContainerPanel.add(hotelStrategyPanel);
+		rightContainerPanel.add(maintainHotelBasicInfoPanel);
 		this.add(rightContainerPanel);
-		mystr_Jlabel1.init();
+		myhotel_Jlabel1.init();
 	}
 
 	/**

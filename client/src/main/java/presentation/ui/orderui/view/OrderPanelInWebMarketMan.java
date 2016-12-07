@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
 import presentation.ui.creditui.view.Clientdeposite_JPanel;
+import presentation.ui.creditui.view.ReturnHalforAll_JFrame;
 import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 
 /**
@@ -18,6 +19,7 @@ import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 public class OrderPanelInWebMarketMan extends JPanel {
 	private LookOrderPanelInWeb_JPanel lookOrderPanelInWeb_JPanel;
 	private Orderdetailinfo_JPanel orderdetailinfo_JPanel;
+	private ReturnHalforAll_JFrame returnHalforAll_JFrame;
 	private static OrderPanelInWebMarketMan orderPanelInWebMarketMan;
 	private ManageOrderViewController manageOrderViewController=ManageOrderViewController.getInstance(this);
 	
@@ -49,4 +51,18 @@ public class OrderPanelInWebMarketMan extends JPanel {
 		this.add(orderdetailinfo_JPanel);
 		this.updateUI();
 	}
+	
+	public void changeToReturnCreditPanel(String orderID) {
+		this.removeAll();
+		returnHalforAll_JFrame = new ReturnHalforAll_JFrame(orderID);
+//		this.add(returnHalforAll_JFrame);
+//		this.updateUI();
+	}
+	
+	public void closeReturnCreditFrame(){
+		if(returnHalforAll_JFrame!=null){
+			returnHalforAll_JFrame.dispose();
+		}
+	}
+	
 }

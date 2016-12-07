@@ -7,6 +7,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presentation.ui.availableroomui.distributecontroller.AvailableroomDistributionController;
+import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
+import util.BedType;
+import util.ResultMessage;
+import vo.availableroomvo.AvailableRoomInfoVO;
+
 /**
  * 
  * 单条的房间信息，在酒店工作人员录入客房信息时作用
@@ -15,14 +21,17 @@ import javax.swing.JTextField;
  * 
  */
 public class SingleRoomInfo_JPanel  extends JPanel{
-	
+	private String hotelID;
 	private String bedtype;
 	private String roomtype;
 	private int number;
-	private int price;
+	private double price;
+	private double lowestPrice;
+	private int currentNum;
 	
+	private BedType bedType2;
 	
-	private Font font=new Font("宋体",Font.BOLD, 20);
+	private Font font=new Font("宋体",Font.BOLD, 16);
 	
 	private JLabel bedtypejl=new JLabel("床型：");
 	private JLabel roomtypejl=new JLabel("房型：");
@@ -34,12 +43,19 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JTextField numberjtf=new JTextField();
 	private JTextField pricejtf=new JTextField();
 	
+	JLabel saveError=new JLabel("不能为空");
 	
-	public SingleRoomInfo_JPanel(String bedtype,String roomtype, int number,int price){
-		this.bedtype=bedtype;
-		this.roomtype=roomtype;
-		this.number=number;
-		this.price=price;
+	private AvailableroomDistributionController controller=AvailableroomDistributionController.getInstance();
+	
+	public SingleRoomInfo_JPanel(AvailableRoomInfoVO availableRoomInfoVO){
+		this.bedType2=availableRoomInfoVO.getBedType();
+		this.bedtype=bedType2.toChinese();
+		this.roomtype=availableRoomInfoVO.getRoomType();
+		this.number=availableRoomInfoVO.getOriginalNumbers();
+		this.price=availableRoomInfoVO.getOriginalPrice();
+		this.hotelID=availableRoomInfoVO.getHotelNumber();
+		this.lowestPrice=availableRoomInfoVO.getLowestPrice();
+		this.currentNum=availableRoomInfoVO.getCurrentNumber();
 		
 		
 		bedtypejtf.setText(bedtype);
@@ -79,38 +95,58 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.add(bedtypejl);
 		
 		bedtypejtf.setFont(font);
-		bedtypejtf.setBounds(100,10,80,30);
+		bedtypejtf.setBounds(70,10,100,30);
 		this.add(bedtypejtf);
 		
 		roomtypejl.setFont(font);
-		roomtypejl.setBounds(220,10,80,30);
+		roomtypejl.setBounds(190,10,80,30);
 		this.add(roomtypejl);
 		
 		roomtypejtf.setFont(font);
-		roomtypejtf.setBounds(300,10,80,30);
+		roomtypejtf.setBounds(240,10,100,30);
 		this.add(roomtypejtf);
 		
 		numberjl.setFont(font);
-		numberjl.setBounds(420,10,80,30);
+		numberjl.setBounds(360,10,80,30);
 		this.add(numberjl);
 		
 		numberjtf.setFont(font);
-		numberjtf.setBounds(500,10,80,30);
+		numberjtf.setBounds(410,10,100,30);
 		this.add(numberjtf);
 		
 		pricejl.setFont(font);
-		pricejl.setBounds(620,10,80,30);
+		pricejl.setBounds(530,10,80,30);
 		this.add(pricejl);
 		
 		pricejtf.setFont(font);
-		pricejtf.setBounds(700,10,80,30);
+		pricejtf.setBounds(580,10,100,30);
 		this.add(pricejtf);
 		
 		
 		this.setLayout(null);
 		
 		
+
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(580,40,50,20);
+		SingleRoomInfo_JPanel.this.add(saveError);
+		saveError.setVisible(false);
+		
 	}
-	
+	/**
+	 * 保存房间信息
+	 * @return
+	 */
+	public ResultMessage saveRoom(){
+		if(roomtypejtf.getText()==""||bedtypejtf.getText()==""||pricejtf.getText()==""
+				||numberjtf.getText()==""){
+			saveError.setVisible(true);
+		}
+		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
+				BedType.valueOf(bedtypejtf.getText()),Double.parseDouble(pricejtf.getText()),
+						lowestPrice,Integer.parseInt(numberjtf.getText()));
+		return controller.confirmAvailableRoomInfo(hotelID, room);
+	}
 	
 }

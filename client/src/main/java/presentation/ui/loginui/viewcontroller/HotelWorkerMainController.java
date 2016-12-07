@@ -21,15 +21,15 @@ public class HotelWorkerMainController {
 	public HotelWorkerMainController(JFrame frame){
 		this.frame=frame;
 	}
-	public void jumpToMaintainHotelInfoView(){
+	public void jumpToMaintainHotelInfoView(String hotelID){
 		frame.removeAll();
-		view=new ModifyHotelBasicInfo_JPanel();
+		view=new ModifyHotelBasicInfo_JPanel(hotelID);
 		frame.add(view);
 	}
 	
-	public void jumpToAddRoomInfoView(){
+	public void jumpToAddRoomInfoView(String hotelID){
 		frame.removeAll();
-		view=new RoomInfo_JPanel();
+		view=new RoomInfo_JPanel(hotelID);
 		frame.add(view);
 	}
 	

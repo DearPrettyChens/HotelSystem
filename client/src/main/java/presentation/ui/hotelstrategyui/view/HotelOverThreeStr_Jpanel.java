@@ -22,8 +22,6 @@ import vo.hotelstrategyvo.HotelStrVO;
 /**
  * 三间及三间以上策略
  * 
- * 未加确认监听
- * 
  * @author cy
  * @version 1.0
  * 
@@ -135,10 +133,10 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 		HotelOverThreeStr_Jpanel.this.add(saveError1);
 		saveError1.setVisible(false);
 		
-		JLabel saveError2=new JLabel("请输入0～1之间的数字");
+		JLabel saveError2=new JLabel("折扣值为0～1之间的数字");
 		saveError2.setForeground(Color.RED);
 		saveError2.setFont(font);
-		saveError2.setBounds(610,300,200,30);
+		saveError2.setBounds(400,400,200,30);
 		HotelOverThreeStr_Jpanel.this.add(saveError2);
 		saveError2.setVisible(false);
 		
@@ -146,16 +144,24 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(Integer.parseInt(roomnumberjtf.getText())<=0){
+				double discount=count;
+				if(roomnumberjtf.getText()!=""){
+					roomnumber=Integer.parseInt(roomnumberjtf.getText());
+				}
+				if(countjtf.getText()!=""){
+					discount=Double.parseDouble(countjtf.getText());
+				}
+				if(roomnumber<=0){
+					
 					saveError1.setVisible(true);
 				}
-				if(Double.parseDouble(countjtf.getText())>1.0&&Double.parseDouble(countjtf.getText())<=0){
+				if(discount>1.0&&discount<=0){
 					saveError2.setVisible(true);
 				}
-				if(Integer.parseInt(roomnumberjtf.getText())>0&&Double.parseDouble(countjtf.getText())<=1.0
-						&&Double.parseDouble(countjtf.getText())>0){
-					HotelStrVO str=new HotelStrVO(hotelID,Integer.parseInt(roomnumberjtf.getText()),
-							Double.parseDouble(countjtf.getText()));
+				if(roomnumber>0&&discount<=1.0
+						&&discount>0){
+					HotelStrVO str=new HotelStrVO(hotelID,roomnumber,
+							discount);
 					if(hotelStrategyDistributionController.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
 						hotelStrategyViewControllerImpl.backToselectStrategy();
 					}

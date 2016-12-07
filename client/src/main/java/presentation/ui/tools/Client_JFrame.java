@@ -21,11 +21,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 
 
-import presentation.ui.checkinui.view.CheckInInfo_Info;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
 import presentation.ui.hotelui.view.HotelListInfo_JPanel;
@@ -60,9 +60,24 @@ public class Client_JFrame extends JFrame {
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
 
+<<<<<<< HEAD
 	//private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
 
 
+=======
+
+	//private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
+
+
+	
+
+	private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
+
+//	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
+
+	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
+
+>>>>>>> origin/master
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
 
     

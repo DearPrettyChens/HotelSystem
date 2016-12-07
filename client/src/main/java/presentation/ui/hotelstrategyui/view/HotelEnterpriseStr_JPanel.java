@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import org.omg.CORBA.PRIVATE_MEMBER;
 
@@ -27,6 +30,8 @@ import vo.webstrategyvo.WebStrVO;
 /**
  * 
  * 企业优惠策略
+ * 
+ *  未加确认按钮监听
  * 
  * @author cy
  * @version 1.0
@@ -122,7 +127,7 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 		JLabel saveError=new JLabel("请输入0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(280, 440, 100, 25);
+		saveError.setBounds(280, 440, 200, 25);
 		HotelEnterpriseStr_JPanel.this.add(saveError);
 		saveError.setVisible(false);
 		
@@ -148,6 +153,32 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 				else{
 					saveError.setVisible(true);
 				}
+			}
+			
+		});
+		
+		/**
+		 * 实现编辑折扣值时提示错误消息消失
+		 */
+		Document countDoc=countjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
 			}
 			
 		});

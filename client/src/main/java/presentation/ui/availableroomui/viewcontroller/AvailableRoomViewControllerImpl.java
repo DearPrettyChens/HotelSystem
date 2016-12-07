@@ -9,17 +9,17 @@ import presentation.ui.availableroomui.view.RoomInfo_JPanel;
  * @author CLL
  *
  */
-public class AvailableRoomViewControllerImpl implements AvailableRoomViewControllerService{
+public class AvailableRoomViewControllerImpl {
 	private JPanel view;//发起界面跳转请求的界面对象
 	public AvailableRoomViewControllerImpl(JPanel panel){
 		this.view=panel;
 	}
-	@Override
+	
 	public void addRoomInfoSuccess() {
-		view=new RoomInfo_JPanel();
+//		view=new RoomInfo_JPanel();
 	}
 
-	@Override
+	
 	public void jumpToMainFrame() {
 		view=null;
 	}

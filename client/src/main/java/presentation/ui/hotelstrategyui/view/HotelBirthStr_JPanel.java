@@ -23,9 +23,12 @@ import vo.hotelstrategyvo.HotelStrVO;
 
 /**
  * 生日特惠策略
+<<<<<<< HEAD
+=======
  * 
- * 未加确认按钮
+ * 未加确认按钮监听
  * 
+>>>>>>> origin/master
  * @author cy
  * @version 1.0
  * 

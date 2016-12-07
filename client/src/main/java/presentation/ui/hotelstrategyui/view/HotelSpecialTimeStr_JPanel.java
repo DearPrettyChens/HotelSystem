@@ -9,6 +9,9 @@ import java.util.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistributionController;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
@@ -26,8 +29,6 @@ import vo.webstrategyvo.WebStrVO;
 /**
  * 
  * 特殊时期策略策略
- * 
- * 未添加确认监听
  * 
  * @author cy
  * @version 1.0
@@ -87,10 +88,10 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 		});
 
 		
-		JLabel saveError=new JLabel("请输入0～1之间的数字");
+		JLabel saveError=new JLabel("折扣值为0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(510,200,200,25);
+		saveError.setBounds(510,420,200,25);
 		HotelSpecialTimeStr_JPanel.this.add(saveError);
 		saveError.setVisible(false);
 		
@@ -121,6 +122,32 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 				}
 			}
 
+		});
+		
+		/**
+		 * 实现编辑折扣值时提示错误消息消失
+		 */
+		Document countDoc=singleHotelSpecialTimeStr.getCountJtf().getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				
+			}
+			
 		});
 	}
 

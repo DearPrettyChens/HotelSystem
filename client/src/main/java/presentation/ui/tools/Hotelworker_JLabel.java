@@ -56,10 +56,9 @@ public class Hotelworker_JLabel  extends JLabel{
 				
 				for (int i = 0; i < alllabels.size(); i++) {
 					if (i != Hotelworker_JLabel.this.tab) {
-						Hotelworker_JLabel.this.setForeground(Color.GRAY);
+						alllabels.get(i).setForeground(Color.GRAY);
 //		            	 Hotelworker_JLabel.this.setForeground(new Color(255, 255, 255));
-		            	 Hotelworker_JLabel. this.setFont(new Font("宋体",Font.BOLD, 16));
-
+		            	 alllabels.get(i).setFont(new Font("宋体",Font.BOLD, 16));
 
 					}
 

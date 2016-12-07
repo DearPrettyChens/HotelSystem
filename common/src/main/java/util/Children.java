@@ -16,5 +16,19 @@ public enum Children {
 		}
 		return string;
 	}
-
+	
+	public String toChinese() {
+		String string = null;
+		switch (this) {
+		case EXIST:
+			string = "有";
+			break;
+		case NOTEXIST:
+			string = "无";
+			break;
+		default:
+			break;
+		}
+		return string;
+	}
 }

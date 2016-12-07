@@ -4,22 +4,22 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
+import presentation.ui.orderui.viewcontroller.HotelWorkerOrderViewController;
 import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 import presentation.ui.personnelui.view.Personlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
 import util.OrderState;
-import vo.ordervo.OrderInfoVO;
+import util.TransHelper;
+import vo.hotelvo.HotelOrderVO;
 import vo.ordervo.OrderListVO;
-
 /**
- * 网站营销人员查看的订单列表面板 大小应该是600*90
+ * 酒店人员查看的订单列表面板 大小应该是600*90
  * 
  * 撤销按钮还未实现
  * 
@@ -27,7 +27,7 @@ import vo.ordervo.OrderListVO;
  * @version 1.0
  * 
  */
-public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
+public class OrderListInfoToHotelWorker_JPanel extends Personlistinfo_JPanel{
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 
@@ -35,37 +35,37 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 	private JLabel orderstatejl = new JLabel();
 
 	private JLabel clientnamejl = new JLabel();
-	private JLabel hotelnamejl = new JLabel();
+	private JLabel orderTimejl = new JLabel();
 
 	JLabel backjl = new JLabel();
 
 	private String ordernumber;
 	private String clientname;
 	private String orderstate;
-	private String hotelname;
-	private OrderState state;
-
+     private String reserveTime;//下订单的时间
+	
+     private OrderState state;
+    private Date orderTime;
 	private MyButton moreinfojb = new MyButton();
-	private MyButton canclejb = new MyButton();
 	
-	private ManageOrderViewController manageOrderViewController=ManageOrderViewController.getInstance(null);
 	
+	private HotelWorkerOrderViewController hotelWorkerOrderViewController=HotelWorkerOrderViewController.getInstance(null);
 	private OrderDistributionController orderDistributionController = OrderDistributionController.getInstance();
 	
-	public Orderlistinfo_JPanel(OrderListVO orderListVO) {
+	public OrderListInfoToHotelWorker_JPanel(HotelOrderVO orderListVO) {
 
-		this.ordernumber = orderListVO.getOrderNumber();
+		this.ordernumber = orderListVO.getOrderID();
 		this.clientname = orderListVO.getCustomerName();
 		this.state = orderListVO.getState();
 		this.orderstate = state.toChinese();
-        this.hotelname=orderListVO.getHotelName();
+        this.orderTime=orderListVO.getReserveTime();
+        this.reserveTime=TransHelper.timeToString(orderTime);
 		
 		this.setBounds(0, 0, 800, 120);
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		addComp();
 		setListener();
-		setCancleListener();
 
 	}
 
@@ -93,20 +93,16 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 		clientnamejl.setBounds(310, 15, 200, 30);
 		this.add(clientnamejl);
 
-		hotelnamejl.setText("酒店名字：" + hotelname);
-		hotelnamejl.setFont(font);
-		hotelnamejl.setBounds(20, 45, 300, 30);
-		this.add(hotelnamejl);
+		orderTimejl.setText("订单时间：" + reserveTime);
+		orderTimejl.setFont(font);
+		orderTimejl.setBounds(20, 45, 400, 30);
+		this.add(orderTimejl);
 
 		moreinfojb.setText("详情");
-		moreinfojb.setBounds(500, 20, 80, 20);
+		moreinfojb.setBounds(500, 30, 80, 30);
 		this.add(moreinfojb);
 
-		canclejb.setText("撤销");
-		canclejb.setBounds(500, 50
-				
-				, 80, 20);
-		this.add(canclejb);
+
 
 		ImageIcon iconback = new ImageIcon("image//listback.png");
 		backjl.setIcon(iconback);
@@ -121,21 +117,11 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				manageOrderViewController.showOrderDetailInfo(ordernumber);
+				hotelWorkerOrderViewController.showOrderDetailInfo(ordernumber);
 			}
 
 		});
 
 	}
 	
-	public void setCancleListener(){
-		canclejb.addActionListener(new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				manageOrderViewController.cancelOrder(ordernumber);
-			}
-			
-		});
-	}
 }

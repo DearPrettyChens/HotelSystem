@@ -5,9 +5,16 @@ import java.util.HashMap;
 import javax.swing.JPanel;
 
 import businesslogic.bl.webstrategybl.WebStrategyInterface;
+import presentation.ui.availableroomui.view.RoomInfo_JPanel;
+import presentation.ui.checkinui.view.CheckInInfo_JPanel;
+import presentation.ui.checkinui.view.CheckInPanel;
+import presentation.ui.checkinui.view.CheckOutPanel;
+import presentation.ui.checkinui.view.OfflineCheckIn_JPanel;
 import presentation.ui.creditui.view.DepositPanel;
 import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
+import presentation.ui.hotelui.view.MaintainHotelBasicInfoPanel;
 import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
+import presentation.ui.orderui.view.OrderPanelViewInHotelWorker;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.personnelui.view.client.ManageCustomerPanel;
 import presentation.ui.personnelui.view.hotelworker.ManageHotelWorkerPanel;
@@ -44,7 +51,13 @@ public class LeftChooseMap {
 		map.put("营销策略", new Makewebstr_JPanel());
 		
 //		酒店工作人员的左边栏
+		map.put("● 维护酒店信息", new MaintainHotelBasicInfoPanel(hotelID));
+		map.put("● 录入客房信息", new RoomInfo_JPanel(hotelID));
+		map.put("● 浏览订单列表", OrderPanelViewInHotelWorker.getInstance(hotelID));
 		map.put("● 制定酒店策略", HotelStrategyPanel.getInstance(hotelID));
+		map.put("● 线上入住办理", CheckInPanel.getInstance(hotelID));
+		map.put("● 线上退房办理", CheckOutPanel.getInstance(hotelID));
+		map.put("● 线下入住退房", new OfflineCheckIn_JPanel(hotelID));
 		
 //		顾客的左边栏
 		

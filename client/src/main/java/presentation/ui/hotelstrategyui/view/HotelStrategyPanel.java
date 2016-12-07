@@ -13,14 +13,7 @@ import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControlle
  * @author csy
  *
  */
-/**
- * @author green-cherry
- *
- */
-/**
- * @author green-cherry
- *
- */
+
 public class HotelStrategyPanel extends JPanel {
 	private String hotelID;
 	private ChooseHotelStr_JPanel chooseHotelStr_JPanel;
