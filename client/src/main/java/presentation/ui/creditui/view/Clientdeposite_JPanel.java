@@ -12,9 +12,9 @@ import javax.swing.JTextField;
 
 import presentation.ui.creditui.distributecontroller.CreditDistributionController;
 import presentation.ui.creditui.viewcontroller.DepositCreditViewControllerImpl;
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
 import vo.personnelvo.PersonDetailVO;
 
 /**

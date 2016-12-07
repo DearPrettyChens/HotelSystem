@@ -3,22 +3,45 @@ package presentation.ui.loginui.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
+import presentation.ui.loginui.viewcontroller.RegisterViewController;
+import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
+import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.close_JButton;
 import presentation.ui.tools.narrow_JButton;
+import util.CustomerType;
+import util.ResultMessage;
+import util.TransHelper;
+import util.UserType;
+import vo.personnelvo.PersonDetailVO;
 
 /**
  * 注册企业会员时的界面
  * @author cy
  * @version 1.0
  * 
+ */
+/**
+ * 不确定部分：vo头像get方法未定             line 491
+ * 			 注册成功 提示框 跳出 未定？      line 497
+ * 			 注册失败会出现吗               line 500
+ * 
+ * @author CYF
+ *
  */
 public class Enterpriseregister_JFrame extends JFrame{
 	
@@ -48,14 +71,24 @@ public class Enterpriseregister_JFrame extends JFrame{
 	private MyTextfield tel_TextField=new MyTextfield("--11位手机号--");
 	private MyTextfield enterprisename_TextField=new MyTextfield("--企业名称--");
 	
+	private JLabel registerInfoBesideName=new JLabel();
+	private JLabel registerInfoBesidePassword=new JLabel();
+	private JLabel registerInfoBesideSecondPassword=new JLabel();
+	private JLabel registerInfoBesideTel=new JLabel();
+	private JLabel registerInfoBesideEnterpriseName=new JLabel();
+	
 	private MyButton confirm_button=new MyButton();
 	private MyButton cancle_button=new MyButton();
 	private MyButton image_button=new MyButton();
 	
+	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController.getInstance();
 	
+	private RegisterViewControllerService registerViewController = RegisterViewController.getInstance();
 	
-   
-	
+
+	private boolean nameValid = false;
+	private boolean passwordValid = false;
+	private boolean telephoneValid = false;
 	
 	public Enterpriseregister_JFrame(){
 
@@ -159,25 +192,329 @@ public class Enterpriseregister_JFrame extends JFrame{
       	name_TextField.setBounds(400,250,300,50);
       	this.add(name_TextField);
       	
+      	registerInfoBesideName.setBounds(720,250,200,50);
+      	registerInfoBesideName.setForeground(Color.RED);
+      	registerInfoBesideName.setFont(font);
+      	this.add(registerInfoBesideName);
+      	
+      	Document nameDoc = name_TextField.getDocument();
+      	nameDoc.addDocumentListener(new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				registerInfoBesideName.setText("");
+				if(name_TextField.getText().equals("--2-8位字母、数字或中文--")
+						||name_TextField.getText().trim().equals("")){//||name_TextField.getText().trim().length()==0){
+					nameValid=false;
+					registerInfoBesideName.setText("请输入用户名！");
+				}else{
+					Document document = e.getDocument();
+					try {
+						String name = document.getText(0, document.getLength());
+						ResultMessage message = personnelDistributionController.checkUserName(name);
+						if(message==ResultMessage.USEREXISTED){
+							nameValid=false;
+							registerInfoBesideName.setText("用户名已存在！");
+						}else if(message==ResultMessage.USERFORMATERROR){
+							nameValid=false;
+							registerInfoBesideName.setText("用户名格式错误");
+						}else if(message==ResultMessage.SUCCESS){
+							nameValid=true;
+							registerInfoBesideName.setText("√");
+						}
+					} catch (BadLocationException e1) {	
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				registerInfoBesideName.setText("");
+				if(name_TextField.getText().equals("--2-8位字母、数字或中文--")
+						||name_TextField.getText().trim().equals("")){//||name_TextField.getText().trim().length()==0){
+					nameValid=false;
+					registerInfoBesideName.setText("请输入用户名！");
+				}else{
+					Document document = e.getDocument();
+					try {
+						String name = document.getText(0, document.getLength());
+						ResultMessage message = personnelDistributionController.checkUserName(name);
+						if(message==ResultMessage.USEREXISTED){
+							nameValid=false;
+							registerInfoBesideName.setText("用户名已存在！");
+						}else if(message==ResultMessage.USERFORMATERROR){
+							nameValid=false;
+							registerInfoBesideName.setText("用户名格式错误");
+						}else if(message==ResultMessage.SUCCESS){
+							nameValid=true;
+							registerInfoBesideName.setText("√");
+						}
+					} catch (BadLocationException e1) {	
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				registerInfoBesideName.setText("");
+				if(name_TextField.getText().equals("--2-8位字母、数字或中文--")
+						||name_TextField.getText().trim().equals("")){//||name_TextField.getText().trim().length()==0){
+					nameValid=false;
+					registerInfoBesideName.setText("请输入用户名！");
+				}else{
+					Document document = e.getDocument();
+					try {
+						String name = document.getText(0, document.getLength());
+						ResultMessage message = personnelDistributionController.checkUserName(name);
+						if(message==ResultMessage.USEREXISTED){
+							nameValid=false;
+							registerInfoBesideName.setText("用户名已存在！");
+						}else if(message==ResultMessage.USERFORMATERROR){
+							nameValid=false;
+							registerInfoBesideName.setText("用户名格式错误");
+						}else if(message==ResultMessage.SUCCESS){
+							nameValid=true;
+							registerInfoBesideName.setText("√");
+						}
+					} catch (BadLocationException e1) {	
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+      	
       	password_TextField.setBounds(400,300,300,50);
       	this.add(password_TextField);
-      	
+      	registerInfoBesidePassword.setBounds(720,300,200,50);
+      	registerInfoBesidePassword.setForeground(Color.RED);
+      	registerInfoBesidePassword.setFont(font);
+        this.add(registerInfoBesidePassword);
+        
+      	 Document passwordDoc = password_TextField.getDocument();
+         passwordDoc.addDocumentListener(new DocumentListener() {
+ 			
+ 			@Override
+ 			public void removeUpdate(DocumentEvent e) {
+ 				registerInfoBesidePassword.setText("");
+ 				if(password_TextField.getText().equals("--4-10位字母或数字--")
+ 						||password_TextField.getText().trim().equals("")){//||password_TextField.getText().trim().length()==0){
+ 					passwordValid = false;
+ 					registerInfoBesidePassword.setText("请输入密码！");
+ 				}else{
+ 					Document document = e.getDocument();
+ 					try {
+ 						String password = document.getText(0, document.getLength());
+ 						ResultMessage message = personnelDistributionController.checkPassword(password);
+ 						if(message==ResultMessage.PASSWORDFORMATERROR){
+ 							passwordValid = false;
+ 							registerInfoBesidePassword.setText("密码格式错误");
+ 						}else{
+ 							passwordValid = true;
+ 							registerInfoBesidePassword.setText("√");
+ 						}
+ 					} catch (BadLocationException e1) {	
+ 						e1.printStackTrace();
+ 					}
+ 				}
+ 			}
+ 			
+ 			@Override
+ 			public void insertUpdate(DocumentEvent e) {
+ 				registerInfoBesidePassword.setText("");
+ 				if(password_TextField.getText().equals("--4-10位字母或数字--")
+ 						||password_TextField.getText().trim().equals("")){//||password_TextField.getText().trim().length()==0){
+ 					passwordValid = false;
+ 					registerInfoBesidePassword.setText("请输入密码！");
+ 				}else{
+ 					Document document = e.getDocument();
+ 					try {
+ 						String password = document.getText(0, document.getLength());
+ 						ResultMessage message = personnelDistributionController.checkPassword(password);
+ 						if(message==ResultMessage.PASSWORDFORMATERROR){
+ 							passwordValid = false;
+ 							registerInfoBesidePassword.setText("密码格式错误");
+ 						}else{
+ 							passwordValid = true;
+ 							registerInfoBesidePassword.setText("√");
+ 						}
+ 					} catch (BadLocationException e1) {	
+ 						e1.printStackTrace();
+ 					}
+ 				}
+ 			}
+ 			
+ 			@Override
+ 			public void changedUpdate(DocumentEvent e) {
+ 				registerInfoBesidePassword.setText("");
+ 				if(password_TextField.getText().equals("--4-10位字母或数字--")
+ 						||password_TextField.getText().trim().equals("")){//||password_TextField.getText().trim().length()==0){
+ 					passwordValid = false;
+ 					registerInfoBesidePassword.setText("请输入密码！");
+ 				}else{
+ 					Document document = e.getDocument();
+ 					try {
+ 						String password = document.getText(0, document.getLength());
+ 						ResultMessage message = personnelDistributionController.checkPassword(password);
+ 						if(message==ResultMessage.PASSWORDFORMATERROR){
+ 							passwordValid = false;
+ 							registerInfoBesidePassword.setText("密码格式错误");
+ 						}else{
+ 							passwordValid = true;
+ 							registerInfoBesidePassword.setText("√");
+ 						}
+ 					} catch (BadLocationException e1) {	
+ 						e1.printStackTrace();
+ 					}
+ 				}
+ 			}
+ 		});
+         
       	confirmpassword_TextField.setBounds(400,350,300,50);
       	this.add(confirmpassword_TextField);
       	
+      	registerInfoBesideSecondPassword.setBounds(720,350,200,50);
+      	registerInfoBesideSecondPassword.setForeground(Color.RED);
+      	registerInfoBesideSecondPassword.setFont(font);
+      	this.add(registerInfoBesideSecondPassword);
+      	
+      	
       	tel_TextField.setBounds(400,400,300,50);
       	this.add(tel_TextField);
+    	registerInfoBesideTel.setBounds(720,400,200,50);
+      	registerInfoBesideTel.setForeground(Color.RED);
+      	registerInfoBesideTel.setFont(font);
+      	this.add(registerInfoBesideTel);
+      	
+      	Document telDoc = tel_TextField.getDocument();
+      	telDoc.addDocumentListener(new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				registerInfoBesideTel.setText("");
+				if(tel_TextField.getText().equals("--11位手机号--")
+						||tel_TextField.getText().trim().equals("")){//||password_TextField.getText().trim().length()==0){
+					telephoneValid=false;
+					registerInfoBesideTel.setText("请输入联系方式！");
+				}else{
+					Document document = e.getDocument();
+					try {
+						String telephone = document.getText(0, document.getLength());
+						ResultMessage message = personnelDistributionController.checkTel(telephone);
+						if(message==ResultMessage.FAIL){
+							telephoneValid=false;
+							registerInfoBesideTel.setText("联系方式格式错误");
+						}else{
+							telephoneValid=true;
+							registerInfoBesideTel.setText("√");
+						}
+					} catch (BadLocationException e1) {	
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				registerInfoBesideTel.setText("");
+				if(tel_TextField.getText().equals("--11位手机号--")
+						||tel_TextField.getText().trim().equals("")){//||password_TextField.getText().trim().length()==0){
+					telephoneValid=false;
+					registerInfoBesideTel.setText("请输入联系方式！");
+				}else{
+					Document document = e.getDocument();
+					try {
+						String telephone = document.getText(0, document.getLength());
+						ResultMessage message = personnelDistributionController.checkTel(telephone);
+						if(message==ResultMessage.FAIL){
+							telephoneValid=false;
+							registerInfoBesideTel.setText("联系方式格式错误");
+						}else{
+							telephoneValid=true;
+							registerInfoBesideTel.setText("√");
+						}
+					} catch (BadLocationException e1) {	
+						e1.printStackTrace();
+					}
+				}
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				registerInfoBesideTel.setText("");
+				if(tel_TextField.getText().equals("--11位手机号--")
+						||tel_TextField.getText().trim().equals("")){//||password_TextField.getText().trim().length()==0){
+					telephoneValid=false;
+					registerInfoBesideTel.setText("请输入联系方式！");
+				}else{
+					Document document = e.getDocument();
+					try {
+						String telephone = document.getText(0, document.getLength());
+						ResultMessage message = personnelDistributionController.checkTel(telephone);
+						if(message==ResultMessage.FAIL){
+							telephoneValid=false;
+							registerInfoBesideTel.setText("联系方式格式错误");
+						}else{
+							telephoneValid=true;
+							registerInfoBesideTel.setText("√");
+						}
+					} catch (BadLocationException e1) {	
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
       	
       	enterprisename_TextField.setBounds(400,450,300,50);
       	this.add(enterprisename_TextField);
       	
-      	
+      	registerInfoBesideEnterpriseName.setBounds(720,450,200,50);
+      	registerInfoBesideEnterpriseName.setForeground(Color.RED);
+      	registerInfoBesideEnterpriseName.setFont(font);
+      	this.add(registerInfoBesideEnterpriseName);
         
         confirm_button.setText("确定");
         confirm_button.setBounds(400,630,100,30);
+        confirm_button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				registerInfoBesideEnterpriseName.setText("");
+				registerInfoBesideSecondPassword.setText("");
+				if(enterprisename_TextField.getText().equals("--企业名称--")
+						||enterprisename_TextField.getText().trim().equals("")){
+					registerInfoBesideEnterpriseName.setText("请输入企业名！");
+				}else if((confirmpassword_TextField.getText().equals("--再次输入密码--"))
+						||(!confirmpassword_TextField.getText().equals(password_TextField.getText()))){
+					registerInfoBesideSecondPassword.setText("两次密码输入不一致！");
+				}else if(nameValid&&telephoneValid&&passwordValid){
+					//vo头像get方法未定
+					PersonDetailVO vo = new PersonDetailVO(null, name_TextField.getText(), password_TextField.getText(), null,
+							tel_TextField.getText(), 0, null, null, CustomerType.ENTERPRISE, enterprisename_TextField.getText(),
+							UserType.Customer);
+					ResultMessage resultMessage=personnelDistributionController.addPerson(vo);
+					if(resultMessage==ResultMessage.SUCCESS){
+						//跳出注册成功
+						dispose();
+					}else{
+						//跳出注册失败
+					}
+				}
+			}
+		});
         this.add(confirm_button);
         cancle_button.setText("取消");
         cancle_button.setBounds(600,630,100,30);
+        cancle_button.setBounds(600,630,100,30);
+        cancle_button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				registerViewController.jumpToRegisterChooseFrame();
+				dispose();
+			}
+		});
       	this.add(cancle_button);
       	image_button.setText("选取头像");
       	image_button.setBounds(550,570,120,30);

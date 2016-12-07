@@ -17,7 +17,8 @@ public class LoginDistributionController {
 	private static LoginDistributionController controller=null;
 	private UserSafetyService userSafetyService;
 	private LoginDistributionController(){
-		userSafetyService=UserSafetyController.getInstance();
+//		userSafetyService=UserSafetyController.getInstance();
+		userSafetyService = new UserSafetyService_Stub();
 	}
 	public static LoginDistributionController getInstance(){
 		if(controller==null){
@@ -29,7 +30,8 @@ public class LoginDistributionController {
 	/**
 	 * 验证账号密码是否正确
 	 * @param name String型,password String型，传递用户名和密码
-	 * @return ResultMessage，账号密码正确返回SUCCESS,密码错误返回PASSWORDERROR，用户名不存在返回USERNOTEXIST
+	 * @return ResultMessage，账号密码正确返回登录的用户类型,密码错误返回PASSWORDERROR，用户名不存在返回USERNOTEXIST，
+	 *         用户已登入显示USERHASLOGGEDIN，其他失败返回FAIL
 	 * @throws 未定
 	 *
 	 */

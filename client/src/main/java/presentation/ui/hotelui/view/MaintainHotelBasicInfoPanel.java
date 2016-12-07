@@ -11,10 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import presentation.ui.hotelui.viewcontroller.HotelWorkerViewController;
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.tools.MyButton;
+<<<<<<< Updated upstream
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
+=======
+>>>>>>> Stashed changes
 import util.ResultMessage;
 
 /**

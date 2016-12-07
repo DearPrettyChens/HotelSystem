@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
-import presentation.ui.tools.newclient_JLabel;
 import util.OrderState;
 import util.UserType;
 import vo.hotelvo.HotelOrderVO;

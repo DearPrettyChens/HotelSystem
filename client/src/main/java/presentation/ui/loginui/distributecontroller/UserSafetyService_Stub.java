@@ -1,5 +1,7 @@
 package presentation.ui.loginui.distributecontroller;
 
+
+
 import businesslogic.blservice.userblservice.UserSafetyService;
 import util.ResultMessage;
 import util.UserType;
@@ -8,10 +10,22 @@ import vo.uservo.PasswordVO;
 
 public class UserSafetyService_Stub implements UserSafetyService{
 
+	private int i = 0;
 	@Override
 	public ResultMessage login(String name, String password) {
 		// TODO Auto-generated method stub
-		return ResultMessage.SUCCESS;
+		if(i==0){
+			i++;
+			return ResultMessage.USERNOTEXIST;
+		}else if(i==1){
+			i++;
+			return ResultMessage.PASSWORDERROR;
+		}else if(i==2){
+			i++;
+			return ResultMessage.USERHASLOGGEDIN;
+		}else{
+			return ResultMessage.WebMarketMan;
+		}
 	}
 
 	@Override

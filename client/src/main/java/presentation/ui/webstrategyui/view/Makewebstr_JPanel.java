@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.webstrategyui.viewcontroller.WebStrategyViewControllerImpl;
 import util.WebStrategyType;
 

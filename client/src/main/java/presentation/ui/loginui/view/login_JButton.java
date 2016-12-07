@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.loginui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -6,6 +6,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+
+import presentation.ui.loginui.viewcontroller.LoginViewController;
+import presentation.ui.loginui.viewcontroller.LoginViewControllerService;
+import presentation.ui.tools.MyButton;
 
 /**
  * 
@@ -17,8 +21,9 @@ import javax.swing.JButton;
  */
 public class login_JButton extends MyButton{
 	Color c=new Color(69,140,116);
+//	login_JFrame frame;
+//	LoginViewControllerService controller;
 	public login_JButton(){
-		
 		
 		this.setFont(new Font("宋体",Font.BOLD, 16));
 		this.setText("登录");
@@ -29,19 +34,14 @@ public class login_JButton extends MyButton{
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-									
-					
 					
 				}
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				@Override

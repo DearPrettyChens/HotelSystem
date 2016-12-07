@@ -9,11 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
-import presentation.ui.tools.newclient_JLabel;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 

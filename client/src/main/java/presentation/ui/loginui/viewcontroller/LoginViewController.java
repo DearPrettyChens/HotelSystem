@@ -15,6 +15,7 @@ import util.UserType;
  */
 public class LoginViewController implements LoginViewControllerService{
 	JFrame frame;
+	
 	@Override
 	public void jumpToUserMainFrame(UserType userType) {
 		switch(userType){

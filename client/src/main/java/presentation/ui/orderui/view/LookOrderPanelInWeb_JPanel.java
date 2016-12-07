@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.orderui.viewcontroller.ManageOrderViewController;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
-import presentation.ui.tools.newclient_JLabel;
 import util.OrderState;
 import util.UserType;
 import vo.ordervo.OrderListVO;

@@ -27,4 +27,9 @@ public interface RegisterViewControllerService {
 	 * 输入第二遍密码与第一遍不一致
 	 */
 	public void showPasswordMistaken();
+	
+	/**
+	 *  跳到注册用户选择界面
+	 */
+	public void jumpToRegisterChooseFrame();
 }

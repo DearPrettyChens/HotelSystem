@@ -11,13 +11,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.view.Personlistinfo_JPanel;
 import presentation.ui.personnelui.view.UserHeadPanel;
 import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.HeadPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.UserImage;
-import presentation.ui.tools.newclient_JLabel;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 /**

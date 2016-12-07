@@ -3,6 +3,10 @@ package presentation.ui.loginui.view;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -10,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import javafx.scene.control.Button;
+import presentation.ui.loginui.viewcontroller.RegisterViewController;
+import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.close_JButton;
 import presentation.ui.tools.narrow_JButton;
@@ -18,6 +24,11 @@ import presentation.ui.tools.narrow_JButton;
  * @author cy
  * @version 1.0
  * 
+ */
+/**
+ * 新增逻辑
+ * @author CYF
+ *
  */
 public class newclient_JFrame  extends JFrame{
 	
@@ -31,10 +42,10 @@ public class newclient_JFrame  extends JFrame{
 	
 	
 	
+	private MyButton returnButton=new MyButton();
 	
 	
-	
-	
+	private RegisterViewControllerService registerViewController = RegisterViewController.getInstance();
 	
 	
 	
@@ -103,12 +114,39 @@ public class newclient_JFrame  extends JFrame{
    	 
   	 individual_button.setBounds(250,500,150,40);
   	 individual_button.setText("普通会员");
+  	 individual_button.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			registerViewController.jumpToIndividualRegisterView();
+			dispose();
+		}
+	});
   	 this.add(individual_button);
+  	 
   	 enterprise_button.setBounds(600, 500, 150, 40);
   	 enterprise_button.setText("企业会员");
+  	 enterprise_button.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			registerViewController.jumpToEnterpriseRegisterView();
+			dispose();
+		}
+	});
   	 this.add(enterprise_button);
   	 
-  	 
+  	 returnButton.setBounds(450,600,100,40);
+  	 returnButton.setText("返回");
+  	 returnButton.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			registerViewController.jumpToLoginView();
+//			dispose();
+		}
+	});
+  	 this.add(returnButton);
    	 
     }
 
