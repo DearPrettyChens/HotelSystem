@@ -9,9 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.RightContainerPanel;
+import presentation.ui.tools.newclient_JLabel;
 import util.UserType;
 
 /**

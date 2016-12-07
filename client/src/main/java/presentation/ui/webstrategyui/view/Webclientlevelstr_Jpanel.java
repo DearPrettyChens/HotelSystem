@@ -13,9 +13,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
-import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.newclient_JLabel;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import util.ResultMessage;
 import util.UserType;

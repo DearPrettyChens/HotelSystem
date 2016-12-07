@@ -16,13 +16,9 @@ import javax.swing.text.Document;
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
 import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
-import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.tools.MyButton;
-<<<<<<< Updated upstream
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.newclient_JLabel;
-=======
->>>>>>> Stashed changes
 import util.BedType;
 import util.ResultMessage;
 import util.TransHelper;

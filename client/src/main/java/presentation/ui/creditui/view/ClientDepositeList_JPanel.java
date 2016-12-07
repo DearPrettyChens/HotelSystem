@@ -9,12 +9,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import presentation.ui.creditui.viewcontroller.DepositCreditViewControllerImpl;
-import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.view.Personlistinfo_JPanel;
 import presentation.ui.personnelui.view.UserHeadPanel;
 import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.newclient_JLabel;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 

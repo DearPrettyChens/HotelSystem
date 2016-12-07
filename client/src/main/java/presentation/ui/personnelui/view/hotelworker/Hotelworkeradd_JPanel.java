@@ -13,17 +13,13 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
-import presentation.ui.loginui.view.newclient_JLabel;
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.personnelui.view.webmarketman.WebMarketManAdd_JPanel;
 import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
-<<<<<<< Updated upstream
 import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
-=======
->>>>>>> Stashed changes
 import util.ResultMessage;
 import util.UserType;
 import vo.personnelvo.PersonDetailVO;
