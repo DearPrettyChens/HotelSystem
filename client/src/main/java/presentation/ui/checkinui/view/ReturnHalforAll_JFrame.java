@@ -19,7 +19,7 @@ import presentation.ui.tools.close_JButton;
  * @version 1.0
  * 
  */
-public class ReturnHalforAll_JFrame  extends JFrame{
+public class ReturnHalforAll_JFrame  extends JFrame{ 
 	
 	private close_JButton close_jbutton = new close_JButton();
 	private JPanel upjp=new JPanel();
@@ -42,6 +42,8 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 		
 		this.getContentPane().setBackground(Color.white);
 		addComp();
+		
+		
 		
 		this.setVisible(true);
 		
@@ -141,7 +143,12 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 	
 
 	public static void main(String[] args){
+		
+		  
 		new ReturnHalforAll_JFrame ();
+		
+		
+		
 		
 		
 	}
