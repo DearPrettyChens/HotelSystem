@@ -13,6 +13,7 @@ import vo.hotelvo.HotelDetailInfoVO;
 import vo.hotelvo.HotelOrderVO;
 
 /**
+ * 顾客查看的酒店详细信息，在点击酒店详情时出现
  * @author cy
  * @version 1.0
  * 
@@ -103,14 +104,10 @@ public class HotelDetailInfotoClient_JPanel {
     	   this.remarkNumber=vo.getRemarkNumber();
     	   
     	   
+    	   this
     	   
     	   
-    	   
-			
-			
-			
-			
-			
+  
 		}
 
 

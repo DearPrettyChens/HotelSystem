@@ -119,6 +119,19 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JLabel starsortjl=new JLabel("星级");
 	private JLabel scoresortjl=new JLabel("评分");
 	
+	private ImageIcon upicon=new ImageIcon("image/top.png");
+	private ImageIcon downicon=new ImageIcon("image/down.png");
+	
+	
+	private JButton popularSortUpjb=new JButton(upicon);
+	private JButton popularSortDownjb=new JButton(downicon);
+	private JButton priceSortUpjb=new JButton(upicon);
+	private JButton priceSortDownjb=new JButton(downicon);
+	private JButton starSortUpjb=new JButton(upicon);
+	private JButton starSortDownjb=new JButton(downicon);
+	private JButton scoreSortUpjb=new JButton(upicon);
+	private JButton scoreSortDownjb=new JButton(downicon);
+	
 	
 	private JPanel moresearchjp=new JPanel();
 	private JPanel lesssearchjp=new JPanel();
@@ -479,17 +492,50 @@ public class SearchHoteltoClient_JPanel extends JPanel {
     	popularsortjl.setBounds(20,5,100,30);
     	sortjp.add(popularsortjl);
     	
+    	popularSortUpjb.setBounds(90,5,20,14);
+    	popularSortUpjb.setBorder(null);
+    	sortjp.add(popularSortUpjb);
+    	
+    	popularSortDownjb.setBounds(90,20,20,15);
+    	popularSortDownjb.setBorder(null);
+    	sortjp.add(popularSortDownjb);
+    	
+    	
     	pricesortjl.setFont(font);
     	pricesortjl.setBounds(195,5,100,30);
     	sortjp.add(pricesortjl);
+    	
+    	priceSortUpjb.setBounds(245,5,20,14);
+    	priceSortUpjb.setBorder(null);
+    	sortjp.add(priceSortUpjb);
+    	
+    	priceSortDownjb.setBounds(245,20,20,15);
+    	priceSortDownjb.setBorder(null);
+    	sortjp.add(priceSortDownjb);
     	
     	starsortjl.setFont(font);
     	starsortjl.setBounds(370,5,100,30);
     	sortjp.add(starsortjl);
     	
+    	starSortUpjb.setBounds(420,5,20,14);
+    	starSortUpjb.setBorder(null);
+    	sortjp.add(starSortUpjb);
+    	
+    	starSortDownjb.setBounds(420,20,20,15);
+    	starSortDownjb.setBorder(null);
+    	sortjp.add(starSortDownjb);
+    	
     	scoresortjl.setFont(font);
     	scoresortjl.setBounds(545,5,100,30);
     	sortjp.add(scoresortjl);
+    	
+    	scoreSortUpjb.setBounds(595,5,20,14);
+    	scoreSortUpjb.setBorder(null);
+    	sortjp.add(scoreSortUpjb);
+    	
+    	scoreSortDownjb.setBounds(595,20,20,15);
+    	scoreSortDownjb.setBorder(null);
+    	sortjp.add(scoreSortDownjb);
     	
     	sortjp.setBackground(color);
     	sortjp.setLayout(null);

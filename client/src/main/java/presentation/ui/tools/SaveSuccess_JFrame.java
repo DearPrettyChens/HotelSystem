@@ -3,6 +3,8 @@ package presentation.ui.tools;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -29,7 +31,7 @@ public class SaveSuccess_JFrame  extends JFrame{
 	
 	private JLabel halfjl=new JLabel("保存成功！");
 	
-	
+	private MyButton confirmjb=new MyButton ();
 	public SaveSuccess_JFrame(){
 		
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 400) / 2,
@@ -61,7 +63,7 @@ public class SaveSuccess_JFrame  extends JFrame{
 		
 		
 		close_jbutton.setBounds(350, 10, 24, 24);
-		upjp.add(close_jbutton);
+		//upjp.add(close_jbutton);
 		
 		
 		halfjl.setFont(font);
@@ -69,7 +71,25 @@ public class SaveSuccess_JFrame  extends JFrame{
 		halfjl.setBounds(160,100,200,50);
 		this.add(halfjl);
 		
+		
+		confirmjb.setText("我知道啦~");
+		confirmjb.setBounds(130,170,140,30);
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				 SaveSuccess_JFrame.this.dispose();
+				
+				
+			}
+			
+		});
+		this.add(confirmjb);
+		
 	}
+		
+	
 	
 
 	public static void main(String[] args){
