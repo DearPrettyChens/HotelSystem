@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import presentation.ui.orderui.view.SingleOrderListInfotoClient;
+import presentation.ui.orderui.view.client.SingleOrderListInfotoClient;
 
 /**
  * 顾客浏览酒店时，看到的自己在该酒店的订单

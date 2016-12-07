@@ -10,15 +10,18 @@ import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.checkinui.view.CheckInPanel;
 import presentation.ui.checkinui.view.CheckOutPanel;
 import presentation.ui.checkinui.view.OfflineCheckIn_JPanel;
+import presentation.ui.creditui.view.ClientCreditInfos_JPanel;
 import presentation.ui.creditui.view.DepositPanel;
 import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
 import presentation.ui.hotelui.view.MaintainHotelBasicInfoPanel;
 import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
 import presentation.ui.orderui.view.OrderPanelViewInHotelWorker;
+import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.personnelui.view.client.ManageCustomerPanel;
 import presentation.ui.personnelui.view.hotelworker.ManageHotelWorkerPanel;
 import presentation.ui.personnelui.view.webmarketman.ManageWebMarketManPanel;
+import presentation.ui.userui.view.Changemessage_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
 import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
@@ -35,6 +38,7 @@ public class LeftChooseMap {
 	private HashMap<String, JPanel> map;
 	private JPanel jPanel;
 	private String hotelID="";
+	private String userID="";
 	
 	private LeftChooseMap() {
 		map=new HashMap<String, JPanel>();
@@ -61,9 +65,11 @@ public class LeftChooseMap {
 		
 //		顾客的左边栏
 		
-		
+		map.put("我的信息", new Changemessage_JPanel(userID));
 		map.put("我的密码", new Changepassword_JPanel(UserType.Customer));
+		map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
 		
+		map.put("我的信用", new ClientCreditInfos_JPanel(userID));
 	}
 
 	public static LeftChooseMap getInstance() {

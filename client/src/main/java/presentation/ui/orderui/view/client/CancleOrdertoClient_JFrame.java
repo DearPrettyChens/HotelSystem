@@ -1,4 +1,4 @@
-package presentation.ui.orderui.view;
+package presentation.ui.orderui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -8,10 +8,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.tools.MyButton;
 
 /**
  * 撤销订单时弹出来的对顾客的提醒
+ * 
+ * 还未写撤销确认与取消的监听
+ * 
  * @author cy
  * @version 1.0
  * 
@@ -23,12 +27,17 @@ public class CancleOrdertoClient_JFrame  extends JFrame{
 	private MyButton canclejb=new MyButton();
 	private MyButton confirmjb=new MyButton();
 	
-	
+	private OrderDistributionController orderDistributionController=OrderDistributionController.getInstance();
     private JLabel messagejl1=new JLabel("客官，您撤销的订单最晚执行时间已不足");
     private JLabel messagejl2=new JLabel("6小时，若继续撤销订单，将扣除订单价");
     private JLabel messagejl3=new JLabel("值一半的信用值！");
 	
-	public CancleOrdertoClient_JFrame(){
+    private String orderID;
+    
+	public CancleOrdertoClient_JFrame(String orderID){
+		
+		this.orderID=orderID;
+		
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 400) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 300) / 2); // 定位框架位置
 		this.setSize(400, 300);
@@ -75,10 +84,6 @@ public class CancleOrdertoClient_JFrame  extends JFrame{
 		
 	}
 	
-	
-	public static void main(String[] args){
-		new CancleOrdertoClient_JFrame();
-		
-	}
+
 	
 }

@@ -1,4 +1,4 @@
-package presentation.ui.orderui.view;
+package presentation.ui.orderui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;

@@ -26,9 +26,9 @@ public class UserImage {
 		switch (userType) {
 		case Customer:
 			if(imageicon==null){
-				return getImageFromImageIcon(imageicon);
+				return getImageFromPath("image//customer.png");		
 			}
-			return getImageFromPath("image//customer.png");		
+			return getImageFromImageIcon(imageicon);
 		case HotelWorker:
 			if(imageicon==null){
 				return getImageFromPath("image//hotel.jpg");

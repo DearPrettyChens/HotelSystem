@@ -2,6 +2,8 @@ package presentation.ui.userui.distributecontroller;
 
 import java.util.Date;
 
+import javax.swing.ImageIcon;
+
 import businesslogic.blservice.userblservice.UserMaintainInfoService;
 import util.CustomerType;
 import util.ResultMessage;
@@ -13,8 +15,8 @@ public class UserMaintainInfoService_Stub implements UserMaintainInfoService{
 	@Override
 	public PersonDetailVO getDetailInfo(String userID) {
 		// TODO Auto-generated method stub
-		PersonDetailVO vo=new PersonDetailVO("000001", "chen", "12345678", null, 
-				"12345678999",100, new Date(1997,8,20), "南京大学", CustomerType.INDIVIDUAL,
+		PersonDetailVO vo=new PersonDetailVO("000001", "chen", "12345678", new ImageIcon("image//customer.png"), 
+				"12345678999",100, new Date(1997,8,20), "南京大学", CustomerType.ENTERPRISE,
 				null,UserType.Customer);
 		return vo;
 	}

@@ -62,4 +62,13 @@ public class ImageTool {
 		 
 		    return bimage;
 		}
+
+      public static ImageIcon getScaledImage(ImageIcon imageIcon,int size){
+    	  Image image= imageIcon.getImage();
+  		BufferedImage bufferedImage=ImageTool.toBufferedImage(image);
+  		image=bufferedImage.getScaledInstance(size, size, Image.SCALE_SMOOTH);
+  			
+  			return new ImageIcon(image);
+      }
+
 }

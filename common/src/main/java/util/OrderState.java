@@ -1,7 +1,7 @@
 package util;
 
 public enum OrderState {
-	NOTEXECUTED, NOTREMARKED, HASREMARKED, UNUSUAL, HASCANCELED;
+	NOTEXECUTED, NOTREMARKED, HASREMARKED, UNUSUAL, HASCANCELED,EXECUTED;
 	public String getString() {
 		String string = null;
 		switch (this) {
@@ -43,6 +43,30 @@ public enum OrderState {
 			break;
 		case HASCANCELED:
 			string = "撤销订单";
+			break;
+		default:
+			break;
+		}
+		return string;
+	}
+	
+	public String getOperation() {
+		String string = null;
+		switch (this) {
+		case NOTEXECUTED:
+			string = "撤     销";
+			break;
+		case NOTREMARKED:
+			string = "追加评价";
+			break;
+		case HASREMARKED:
+			string = "";
+			break;
+		case UNUSUAL:
+			string = "";
+			break;
+		case HASCANCELED:
+			string = "";
 			break;
 		default:
 			break;

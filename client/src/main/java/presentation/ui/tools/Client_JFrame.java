@@ -15,6 +15,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.print.PrinterAbortException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -28,23 +29,27 @@ import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
+import presentation.ui.creditui.view.ClientCreditInfos_JPanel;
+import presentation.ui.creditui.view.SingleCreditinfo_JPanel;
 import presentation.ui.hotelui.view.RoomInfotoClient_JPanel;
 import presentation.ui.hotelui.view.SingleHotelRemarktoClient_JPanel;
 import presentation.ui.hotelui.view.SingleRoomInfotoClient_JPanel;
-import presentation.ui.orderui.view.ChooseOrderTypetoClient_JPanel;
-import presentation.ui.orderui.view.ConfirmCounttoClient_JPanel;
-import presentation.ui.orderui.view.DetailOrderInfotoClient_JPanel;
-import presentation.ui.orderui.view.MakeOrdertoClient_JPanel;
-import presentation.ui.orderui.view.RemarkHoteltoClient_JPanel;
-import presentation.ui.orderui.view.SingleOrderListInfotoClient;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
-import presentation.ui.orderui.view.WriteOrdertoClient_JPanel;
+import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
+import presentation.ui.orderui.view.client.ConfirmCounttoClient_JPanel;
+import presentation.ui.orderui.view.client.DetailOrderInfotoClient_JPanel;
+import presentation.ui.orderui.view.client.MakeOrdertoClient_JPanel;
+import presentation.ui.orderui.view.client.OrderListPanel_JPanel;
+import presentation.ui.orderui.view.client.RemarkHoteltoClient_JPanel;
+import presentation.ui.orderui.view.client.SingleOrderListInfotoClient;
+import presentation.ui.orderui.view.client.WriteOrdertoClient_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
-
-
+import presentation.ui.userui.view.Changemessage_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.OrderState;
 import util.UserType;
+import vo.creditvo.CreditVO;
+import vo.ordervo.OrderListVO;
 
 /**
  * 顾客客户端左上不变的地方
@@ -74,8 +79,7 @@ public class Client_JFrame extends JFrame {
 
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
 
-    
-   // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
+    // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
     
 	//关于界面
 	private Font font = new Font("宋体", Font.BOLD, 16);
@@ -106,7 +110,9 @@ public class Client_JFrame extends JFrame {
 
 	private ChooseArea_JPanel panel=new ChooseArea_JPanel();
 	
-	
+    private Changemessage_JPanel changemessage_JPanel=new Changemessage_JPanel("");
+    private ClientCreditInfos_JPanel clientCreditInfos_JPanel=new ClientCreditInfos_JPanel("");
+   	private ChooseOrderTypetoClient_JPanel chooseOrderTypetoClient_JPanel=ChooseOrderTypetoClient_JPanel.getInstance("", "");
 	
 	
 	public Client_JFrame() {
@@ -189,19 +195,24 @@ public class Client_JFrame extends JFrame {
 		getContentPane().add(sidepanel);
 		
 
+//		clientCreditInfos_JPanel.setBounds(200, 100, 800, 600);
+//		this.add(clientCreditInfos_JPanel);
+		
+		rightContainerPanel.add(chooseOrderTypetoClient_JPanel);
+		this.add(rightContainerPanel);
 
-		panel.setBounds(200,100,800,600);
-
-	    SingleRoomInfotoClient_JPanel  cp1=new  SingleRoomInfotoClient_JPanel ("bcoe","oeirv",8);
-	    ArrayList<SingleRoomInfotoClient_JPanel> singleinfos=new ArrayList<SingleRoomInfotoClient_JPanel>();
-	    singleinfos.add(cp1);
-		RoomInfotoClient_JPanel  cp=new  RoomInfotoClient_JPanel (singleinfos);
-		cp.setBounds(200,100,800,400);
-		this.add(cp);
-
-		panel.setBounds(200,100,800,50);
-
-		getContentPane().add(panel);
+//		panel.setBounds(200,100,800,600);
+//
+//	    SingleRoomInfotoClient_JPanel  cp1=new  SingleRoomInfotoClient_JPanel ("bcoe","oeirv",8);
+//	    ArrayList<SingleRoomInfotoClient_JPanel> singleinfos=new ArrayList<SingleRoomInfotoClient_JPanel>();
+//	    singleinfos.add(cp1);
+//		RoomInfotoClient_JPanel  cp=new  RoomInfotoClient_JPanel (singleinfos);
+//		cp.setBounds(200,100,800,400);
+//		this.add(cp);
+//
+//		panel.setBounds(200,100,800,50);
+//
+//		getContentPane().add(panel);
 
 
 	}

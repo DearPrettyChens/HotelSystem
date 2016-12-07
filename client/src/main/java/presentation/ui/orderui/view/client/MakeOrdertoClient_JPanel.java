@@ -1,4 +1,4 @@
-package presentation.ui.orderui.view;
+package presentation.ui.orderui.view.client;
 import presentation.ui.tools.*;
 import presentation.ui.userui.view.Changepassword_JPanel;
 
