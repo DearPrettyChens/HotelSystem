@@ -539,7 +539,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
     	
     	sortjp.setBackground(color);
     	sortjp.setLayout(null);
-    	sortjp.setBounds(50,220,700,40);
+    	sortjp.setBounds(50,240,700,40);
     	this.add(sortjp);
     	
     	
