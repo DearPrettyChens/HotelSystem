@@ -62,6 +62,7 @@ public class LeftChooseMap {
 //		顾客的左边栏
 		
 		
+		map.put("我的密码", new Changepassword_JPanel(UserType.Customer));
 		
 	}
 
