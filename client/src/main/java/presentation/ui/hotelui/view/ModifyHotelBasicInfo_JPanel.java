@@ -394,7 +394,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			return ResultMessage.FAIL;
 		}
 		HotelBasicInfoVO basic=new HotelBasicInfoVO(hotelname,hotelimage,
-				locationjtf.getText(),City.valueOf("NANJING"),TradingArea.valueOf("XINJIEKOU"),teljtf.getText(),
+				locationjtf.getText(),City.toCity(cityjtf.getText()),TradingArea.toArea(areajtf.getText()),teljtf.getText(),
 				Integer.parseInt(starjtf.getText()),introductionjtf.getText(),commonFacilityjtf.getText(),
 				activityFacilityjtf.getText(),servicejtf.getText(),roomFacilityjtf.getText()
 				,enterprise);

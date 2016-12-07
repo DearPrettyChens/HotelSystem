@@ -28,4 +28,16 @@ public enum TradingArea {
 		return str;
 	}
 	
+	public static TradingArea toArea(String str){
+		TradingArea area=TradingArea.XINJIEKOU;
+		switch(str){
+		case "新街口":
+			area=TradingArea.XINJIEKOU;
+			break;
+		case "湖南路":
+			area=TradingArea.HUNANLU;
+			break;
+		}
+		return area;
+	}
 }

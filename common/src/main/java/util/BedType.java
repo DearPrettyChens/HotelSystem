@@ -41,4 +41,23 @@ public enum BedType {
 		}
 		return str;
 	}
+	
+	public static BedType toBedType(String str){
+		BedType bedType=BedType.BIGBED;
+		switch(str){
+		case "大床房":
+			bedType=BedType.BIGBED;
+			break;
+		case "标间":
+			bedType=BedType.TWOBEDS;
+			break;
+		case "三人间":
+			bedType=BedType.THREEBEDS;
+			break;
+		case "四人间":
+			bedType=BedType.FAMILYBED;
+			break;
+		}
+		return bedType;
+	}
 }
