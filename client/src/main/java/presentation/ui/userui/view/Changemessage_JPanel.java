@@ -1,4 +1,4 @@
-package presentation.ui.personnelui.view;
+package presentation.ui.userui.view;
 
 import java.awt.Color;
 import java.awt.Font;

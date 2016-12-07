@@ -161,25 +161,6 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 	}
 	
 
-<<<<<<< HEAD:client/src/main/java/presentation/ui/checkinui/view/ReturnHalforAll_JFrame.java
-	public static void main(String[] args){
-		
-		  
-		new ReturnHalforAll_JFrame ();
-		
-		
-		
-		
-		
-	}
-	
-=======
-//	public static void main(String[] args){
-//		new ReturnHalforAll_JFrame ();
-//		
-//		
-//	}
-//	
->>>>>>> origin/master:client/src/main/java/presentation/ui/creditui/view/ReturnHalforAll_JFrame.java
-	
+
+
 }
