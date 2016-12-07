@@ -21,6 +21,8 @@ import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.close_JButton;
 import presentation.ui.tools.narrow_JButton;
 import util.CustomerType;
@@ -37,8 +39,7 @@ import vo.personnelvo.PersonDetailVO;
  */
 /**
  * 不确定部分：vo头像get方法未定             line 491
- * 			 注册成功 提示框 跳出 未定？      line 497
- * 			 注册失败会出现吗               line 500
+ *          头像部分 imagebutton的监听 不确定 
  * 
  * @author CYF
  *
@@ -495,10 +496,10 @@ public class Enterpriseregister_JFrame extends JFrame{
 							UserType.Customer);
 					ResultMessage resultMessage=personnelDistributionController.addPerson(vo);
 					if(resultMessage==ResultMessage.SUCCESS){
-						//跳出注册成功
+						new SaveSuccess_JFrame();
 						dispose();
 					}else{
-						//跳出注册失败
+						new SaveFail_JFrame();
 					}
 				}
 			}

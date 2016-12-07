@@ -19,6 +19,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
+import org.omg.PortableServer.POAPackage.ServantAlreadyActive;
+
 import presentation.ui.loginui.distributecontroller.RegisterDistributionController;
 import presentation.ui.loginui.viewcontroller.RegisterViewController;
 import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
@@ -26,6 +28,8 @@ import presentation.ui.personnelui.distributecontroller.PersonnelDistributionCon
 import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.close_JButton;
 import presentation.ui.tools.name_JTextField;
 import presentation.ui.tools.narrow_JButton;
@@ -42,10 +46,8 @@ import vo.personnelvo.PersonDetailVO;
  * 
  */
 /**
- * 不确定部分：头像部分 imagebutton的监听 不确定
- * 			 vo头像get方法未定             line 514
- * 			 注册成功 提示框 跳出 未定？      line 519
- * 			 注册失败会出现吗               line 522
+ * 不确定部分：头像部分 imagebutton的监听 不确定   line 544
+ * 			 vo头像get方法未定                 line 514
  * 
  * @author CYF
  *
@@ -517,10 +519,10 @@ public class Individualregister_JFrame extends JFrame{
 							tel_TextField.getText(), 0, birth, null, CustomerType.INDIVIDUAL, null, UserType.Customer);
 					ResultMessage resultMessage=personnelDistributionController.addPerson(vo);
 					if(resultMessage==ResultMessage.SUCCESS){
-						//跳出注册成功
+						SaveSuccess_JFrame saveSuccess_JFrame = new SaveSuccess_JFrame();
 						dispose();
 					}else{
-						//跳出注册失败
+						SaveFail_JFrame saveFail_JFrame = new SaveFail_JFrame();
 					}
 				}
 			}

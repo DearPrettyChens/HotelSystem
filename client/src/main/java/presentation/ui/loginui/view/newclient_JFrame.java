@@ -25,11 +25,6 @@ import presentation.ui.tools.narrow_JButton;
  * @version 1.0
  * 
  */
-/**
- * 新增逻辑
- * @author CYF
- *
- */
 public class newclient_JFrame  extends JFrame{
 	
 	private close_JButton close_jbutton=new close_JButton();
