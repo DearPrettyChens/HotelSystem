@@ -37,7 +37,7 @@ public class MyTextfield  extends JTextField implements FocusListener{
 
 	    	  @Override
 	    	  public void focusGained(FocusEvent e) {
-	    	    if(this.getText().isEmpty()) {
+	    	    if(this.getText().equals(hint)) {
 	    	      super.setText("");
 	    	      this.setForeground(Color.black);
 	    	      showingHint = false;
@@ -45,7 +45,7 @@ public class MyTextfield  extends JTextField implements FocusListener{
 	    	  }
 	    	  @Override
 	    	  public void focusLost(FocusEvent e) {
-	    	    if(this.getText().isEmpty()) {
+	    	    if(this.getText().equals(hint)) {
 	    	      super.setText(hint);
 	    	      this.setForeground(Color.GRAY);
 	    	      showingHint = true;

@@ -92,16 +92,7 @@ public class SaveSuccess_JFrame  extends JFrame{
 	
 	
 
-	public static void main(String[] args){
-		
-		  
-		new SaveSuccess_JFrame ();
-		
-		
-		
-		
-		
-	}
+
 	
 	
 }

@@ -33,7 +33,7 @@ public class HotelOrderService_Stub implements HotelOrderService{
 	public HotelOrderInfoVO getHotelOrderInfo(String orderID) {
 		// TODO Auto-generated method stub
 		HotelOrderInfoVO info=new HotelOrderInfoVO("201611030001000005", "chen", 680, "chen","12345678999", new Date(),
-				new Date(),  "商务间", 1,1,Children.EXIST,null,null, new Date(), 
+				new Date(),  "商务间",BedType.BIGBED, 1,1,Children.EXIST,null,null, new Date(), 
 				 OrderState.NOTEXECUTED, "南京绿地洲际酒店","12345678999",new Date());
 		return info;
 	}

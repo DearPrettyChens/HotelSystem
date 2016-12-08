@@ -81,9 +81,7 @@ public class CheckInInfo_JPanel extends JPanel {
 		this.roomtype = hotelOrderInfoVO.getRoomType();
 		this.hotelID=hotelID;
 		this.orderID=hotelOrderInfoVO.getOrderId();
-		//TODO
-		//缺少床型
-		//this.bedtype=hotelOrderInfoVO.
+		this.bedType=hotelOrderInfoVO.getBedType();
 
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -194,8 +192,8 @@ public class CheckInInfo_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(checkinDistributionController.checkIDLength(idnumberjtf.getText())==
-						ResultMessage.IDFORMATERROR||idnumberjtf.getText().equals("")){
+				if(idnumberjtf.getText().length()!=
+						18||idnumberjtf.getText().equals("")){
 					idError.setVisible(true);
 				}
 				if(realcheckintimejtf.getText().equals("")){
@@ -214,7 +212,6 @@ public class CheckInInfo_JPanel extends JPanel {
 						onlineCheckinViewController.jumpToMainFrame();
 					}
 					else{
-						//TODO
 						//保存失败
 						new SaveFail_JFrame();
 					}

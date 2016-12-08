@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import util.BedType;
 import util.ResultMessage;
@@ -37,6 +38,8 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 	private JLabel roomtypejl = new JLabel("房型：");
 	private JLabel numberjl = new JLabel("数量：");
 
+	JLabel saveError=new JLabel("不能为空");
+	
 	private JTextField numberjtf = new JTextField();
 	private CheckinDistributionController controller=CheckinDistributionController.getInstance();
 
@@ -90,6 +93,12 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 		this.add(numberjtf);
 
 		this.setLayout(null);
+		
+		saveError.setForeground(Color.RED);
+		saveError.setFont(font);
+		saveError.setBounds(730,10,40,10);
+		SingleAvailableRoomInfo_JPanel.this.add(saveError);
+		saveError.setVisible(false);
 
 	}
 	
@@ -98,8 +107,9 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 	}
 	
 	public ResultMessage saveRoom(){
-		if(numberjtf.getText()==""){
-			
+		if(numberjtf.getText().equals("")){
+			//saveError.setVisible(true);
+			return ResultMessage.FAIL;
 		}
 		else{
 			AvailableRoomNumberVO info=new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()),
@@ -108,11 +118,9 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 				return ResultMessage.SUCCESS;
 			}
 			else{
-				//TODO
 				//保存失败
 				return ResultMessage.FAIL;
 			}
 		}
-		return ResultMessage.FAIL;
 	}
 }

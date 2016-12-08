@@ -220,7 +220,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		OrderInfoVO vo=singleOrder.getOrderInfo(orderID);
 		return new HotelOrderInfoVO(vo.getOrderID(),vo.getCustomerName(),vo.getPrice(),
 				vo.getLiveinPersonName(),vo.getLiveinPersonTelephone(),vo.getExpectedCheckInTime()
-				,vo.getExpectedCheckOutTime(),vo.getRoomType(),vo.getAmount(),vo.getNumberOfPeople()
+				,vo.getExpectedCheckOutTime(),vo.getRoomType(),vo.getBedType(),vo.getAmount(),vo.getNumberOfPeople()
 				,vo.getHasChild(),vo.getActualCheckInTime(),vo.getActualCheckOutTime(),
 				vo.getOrderTime(),vo.getState(),vo.getHotelName(),vo.getHotelTelephone(),
 				vo.getLateCheckInTime());

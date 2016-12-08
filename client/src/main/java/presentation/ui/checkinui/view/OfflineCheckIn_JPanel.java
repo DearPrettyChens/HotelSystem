@@ -94,18 +94,17 @@ public class OfflineCheckIn_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				ResultMessage result=ResultMessage.SUCCESS;
 				for(int i=0;i<singleinfo.size();i++){
-					if(singleinfo.get(i).saveRoom()==ResultMessage.SUCCESS){
-						//TODO
-						//保存成功
-						new SaveSuccess_JFrame();
-					}
-					else{
-						//TODO
+					result=singleinfo.get(i).saveRoom();
+					if(result==ResultMessage.FAIL){
 						//保存失败
 						new SaveFail_JFrame();
+						break;
 					}
 				}	
+				//保存成功
+				new SaveSuccess_JFrame();
 			}
 			
 		});

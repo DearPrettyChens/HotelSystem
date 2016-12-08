@@ -92,16 +92,7 @@ public class SaveFail_JFrame  extends JFrame{
 	}
 	
 
-	public static void main(String[] args){
-		
-		  
-		new SaveFail_JFrame ();
-		
-		
-		
-		
-		
-	}
+
 	
 	
 }

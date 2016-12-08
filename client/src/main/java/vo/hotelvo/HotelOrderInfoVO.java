@@ -2,6 +2,7 @@ package vo.hotelvo;
 
 import java.util.Date;
 
+import util.BedType;
 import util.Children;
 import util.OrderState;
 /**
@@ -32,6 +33,8 @@ public class HotelOrderInfoVO {
 		private OrderState orderState;
 		//房间类型
 		private String roomType;
+		//床型
+		private BedType bedType;
 		//房间数量
 		private int roomNumber;
 		//入住人数
@@ -50,7 +53,7 @@ public class HotelOrderInfoVO {
 		//酒店看到的本酒店的订单信息
 		public HotelOrderInfoVO(String orderId,String customerName,double price,
 				String lodgerName,String lodgerTel,Date expectedCheckInTime,Date expectedCheckOutTime,
-				String roomType,int roomNumber,int numberOfPeople,Children hasChild,Date actualCheckInTime,
+				String roomType,BedType bedType,int roomNumber,int numberOfPeople,Children hasChild,Date actualCheckInTime,
 				Date actualCheckOutTime,Date orderTime,OrderState orderState,String hotelName,
 				String hotelTel,Date lateCheckInTime){
 			this.setOrderId(orderId);
@@ -69,6 +72,7 @@ public class HotelOrderInfoVO {
 			this.setOrderTime(orderTime);
 			this.setOrderState(orderState);
 			this.setLateCheckInTime(lateCheckInTime);
+			this.setBedType(bedType);
 		}
 
 		public String getOrderId() {
@@ -197,6 +201,12 @@ public class HotelOrderInfoVO {
 
 		public void setHasChild(Children hasChild) {
 			this.hasChild = hasChild;
+		}
+		public BedType getBedType() {
+			return bedType;
+		}
+		public void setBedType(BedType bedType) {
+			this.bedType = bedType;
 		}
 
 	

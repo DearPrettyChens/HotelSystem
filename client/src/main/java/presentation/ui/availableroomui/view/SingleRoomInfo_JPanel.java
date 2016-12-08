@@ -119,7 +119,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.add(pricejl);
 		
 		pricejtf.setFont(font);
-		pricejtf.setBounds(580,10,100,30);
+		pricejtf.setBounds(580,10,80,30);
 		this.add(pricejtf);
 		
 		
@@ -129,7 +129,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(580,40,50,20);
+		saveError.setBounds(730,10,40,10);
 		SingleRoomInfo_JPanel.this.add(saveError);
 		saveError.setVisible(false);
 		
@@ -139,9 +139,10 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	 * @return
 	 */
 	public ResultMessage saveRoom(){
-		if(roomtypejtf.getText()==""||bedtypejtf.getText()==""||pricejtf.getText()==""
-				||numberjtf.getText()==""){
+		if(roomtypejtf.getText().equals("")||bedtypejtf.getText().equals("")||pricejtf.getText().equals("")
+				||numberjtf.getText().equals("")){
 			saveError.setVisible(true);
+			return ResultMessage.FAIL;
 		}
 		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
 				BedType.toBedType(bedtypejtf.getText()),Double.parseDouble(pricejtf.getText()),

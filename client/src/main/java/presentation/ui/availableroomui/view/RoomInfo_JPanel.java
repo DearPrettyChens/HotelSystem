@@ -111,15 +111,20 @@ public class RoomInfo_JPanel extends JPanel {
 				ResultMessage result=ResultMessage.SUCCESS;
 				for(int i=0;i<singleinfo.size();i++){
 					result=singleinfo.get(i).saveRoom();
+					if(result==ResultMessage.FAIL){
+						new SaveFail_JFrame();
+						break;
+					}
+					
 				}
 				if(result==ResultMessage.SUCCESS){
 					// 保存成功
 					new SaveSuccess_JFrame();
 				}
-				else{
+				/*else if(result==ResultMessage.FAIL){
 					//保存失败
 					new SaveFail_JFrame();
-				}
+				}*/
 			}
 			
 		});
