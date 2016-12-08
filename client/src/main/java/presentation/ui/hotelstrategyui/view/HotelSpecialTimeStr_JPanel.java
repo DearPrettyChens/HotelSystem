@@ -16,6 +16,7 @@ import javax.swing.text.Document;
 import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistributionController;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import presentation.ui.webstrategyui.view.Singlewebspecialtimestr_JPanel;
 
@@ -81,7 +82,6 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 
 				hotelStrategyViewControllerImpl.backToselectStrategy();
 			}
@@ -91,9 +91,16 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 		JLabel saveError=new JLabel("折扣值为0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(510,420,200,25);
+		saveError.setBounds(510,420,220,25);
 		HotelSpecialTimeStr_JPanel.this.add(saveError);
 		saveError.setVisible(false);
+		
+		JLabel saveError2=new JLabel("日期格式为yyyy-mm-dd");
+		saveError2.setForeground(Color.RED);
+		saveError2.setFont(font);
+		saveError2.setBounds(510,420,220,25);
+		HotelSpecialTimeStr_JPanel.this.add(saveError2);
+		saveError2.setVisible(false);
 		
 		confirmjb.setText("确认");
 		confirmjb.setBounds(300, 420, 80, 30);
@@ -103,7 +110,9 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())<=1.0&&
-						Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())>0){
+						Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())>0&&
+						singleHotelSpecialTimeStr.getBeginJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")
+						&&singleHotelSpecialTimeStr.getEndJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
 					Date[] dates=new Date[2];
 					dates[0]=new Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getBeginJtf().getText()));
 					dates[1]=new Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getEndJtf().getText()));
@@ -113,9 +122,13 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 						hotelStrategyViewControllerImpl.backToselectStrategy();
 					}
 					else{
-						//TODO
 						//保存失败
+						new SaveFail_JFrame();
 					}
+				}
+				else if(!singleHotelSpecialTimeStr.getBeginJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")
+						||!singleHotelSpecialTimeStr.getEndJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
+					saveError2.setVisible(true);
 				}
 				else{
 					saveError.setVisible(true);

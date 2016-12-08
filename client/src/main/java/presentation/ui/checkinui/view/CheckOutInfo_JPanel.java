@@ -195,6 +195,13 @@ public class CheckOutInfo_JPanel extends JPanel {
 		CheckOutInfo_JPanel.this.add(timeError);
 		timeError.setVisible(false);
 		
+		JLabel timeError2=new JLabel("日期格式为yyyy-mm-dd");
+		timeError2.setForeground(Color.RED);
+		timeError2.setFont(font3);
+		timeError2.setBounds(340,400, 100, 25);
+		CheckOutInfo_JPanel.this.add(timeError2);
+		timeError2.setVisible(false);
+		
 		confirmjb.addActionListener(new ActionListener(){
 
 			@Override
@@ -203,8 +210,12 @@ public class CheckOutInfo_JPanel extends JPanel {
 				if(realcheckouttimejtf.getText().equals("")){
 					timeError.setVisible(true);
 				}
+				
+				if(!realcheckouttimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
+					timeError2.setVisible(true);
+				}
 
-				if(!realcheckouttimejtf.getText().equals("")){
+				if(!realcheckouttimejtf.getText().equals("")&&realcheckouttimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
 					CheckinInfoVO info=new CheckinInfoVO(name,idnumber,tel,
 							roomnumber,roomtype,bedType,new Date(TransHelper.stringToDate(realcheckintime)),
 							new Date(TransHelper.stringToDate(realcheckouttimejtf.getText())),hotelID,orderID);
@@ -212,7 +223,6 @@ public class CheckOutInfo_JPanel extends JPanel {
 						onlineCheckoutViewController.jumpToMainFrame();
 					}
 					else{
-						//TODO
 						//保存失败
 						new SaveFail_JFrame();
 					}
@@ -227,19 +237,19 @@ public class CheckOutInfo_JPanel extends JPanel {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				timeError.setVisible(false);
-				
+				timeError2.setVisible(false);
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				timeError.setVisible(false);
-				
+				timeError2.setVisible(false);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				timeError.setVisible(false);
-				
+				timeError2.setVisible(false);
 			}
 			
 		});

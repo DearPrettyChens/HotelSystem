@@ -17,6 +17,7 @@ import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControlle
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
 import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
 import util.HotelStrategyType;
 import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
@@ -115,7 +116,7 @@ public class HotelBirthStr_JPanel extends JPanel{
 					}
 					else{
 						//保存失败
-						//TODO
+						new SaveFail_JFrame();
 					}
 				}
 				else{

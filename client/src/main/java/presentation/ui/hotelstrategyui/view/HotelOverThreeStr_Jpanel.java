@@ -15,6 +15,7 @@ import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistrib
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveFail_JFrame;
 import util.HotelStrategyType;
 import util.ResultMessage;
 import vo.hotelstrategyvo.HotelStrVO;
@@ -166,8 +167,8 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 						hotelStrategyViewControllerImpl.backToselectStrategy();
 					}
 					else{
-						//TODO
 						//保存失败
+						new SaveFail_JFrame();
 					}
 				}
 

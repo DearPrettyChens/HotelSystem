@@ -181,6 +181,13 @@ public class CheckInInfo_JPanel extends JPanel {
 		CheckInInfo_JPanel.this.add(timeError);
 		timeError.setVisible(false);
 		
+		JLabel timeError2=new JLabel("日期格式为yyyy-mm-dd");
+		timeError2.setForeground(Color.RED);
+		timeError2.setFont(font3);
+		timeError2.setBounds(460,350, 100, 25);
+		CheckInInfo_JPanel.this.add(timeError2);
+		timeError2.setVisible(false);
+		
 		JLabel roomError=new JLabel("不能为空");
 		roomError.setForeground(Color.RED);
 		roomError.setFont(font3);
@@ -199,15 +206,19 @@ public class CheckInInfo_JPanel extends JPanel {
 				if(realcheckintimejtf.getText().equals("")){
 					timeError.setVisible(true);
 				}
+				if(!realcheckintimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
+					timeError2.setVisible(true);
+				}
 				if(roomnumberjtf.getText().equals("")){
 					roomError.setVisible(true);
 				}
 				if(checkinDistributionController.checkIDLength(idnumberjtf.getText())==
 						ResultMessage.SUCCESS&&!realcheckintimejtf.getText().equals("")&&
-						!roomnumberjtf.getText().equals("")&&!idnumberjtf.getText().equals("")){
+						!roomnumberjtf.getText().equals("")&&!idnumberjtf.getText().equals("")
+						&&realcheckintimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
 					CheckinInfoVO info=new CheckinInfoVO(name,idnumberjtf.getText(),tel,
 							roomnumberjtf.getText(),roomtype,bedType,new Date(TransHelper.stringToDate(realcheckintimejtf.getText())),
-							new Date(TransHelper.stringToDate(realcheckouttimejtf.getText())),hotelID,orderID);
+							null,hotelID,orderID);
 					if(checkinDistributionController.confirmCheckinInfo(info)==ResultMessage.SUCCESS){
 						onlineCheckinViewController.jumpToMainFrame();
 					}

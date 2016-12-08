@@ -20,6 +20,7 @@ import org.omg.CORBA.PRIVATE_MEMBER;
 import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistributionController;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.webstrategyui.view.Singlewebclientlevelstr_Jpanel;
 import util.HotelStrategyType;
 import util.ResultMessage;
@@ -146,8 +147,8 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 						hotelStrategyViewControllerImpl.backToselectStrategy();
 					}
 					else{
-						//TODO
 						//保存失败
+						new SaveFail_JFrame();
 					}
 				}
 				else{
