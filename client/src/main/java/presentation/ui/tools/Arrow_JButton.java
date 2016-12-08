@@ -11,6 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import presentation.ui.loginui.distributecontroller.LoginDistributionController;
+import presentation.ui.loginui.view.login_JFrame;
+
 /**
  * 右上角箭头按钮
  * @author cy
@@ -20,17 +23,25 @@ import javax.swing.JFrame;
 public class Arrow_JButton extends JButton{
 	 private ImageIcon icon=new ImageIcon("image//out.png");
 	 //private JFrame jf;
-	 
-	 public Arrow_JButton(){
+	 private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
+     private JFrame jf;
+     
+	 public Arrow_JButton( JFrame jf){
 		
-		 
+		 this.jf=jf;
 		 this.setIcon(icon);
 		 this.setBorderPainted(false);
 		 this.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	            //未写
 	            	
-	                
+	            	loginDistributionController.logout();
+	            	jf.dispose();
+	            	new login_JFrame().setVisible(true);
+	            	
+	            	
+	            	
+	            	
 	            }
 	        });
 		 

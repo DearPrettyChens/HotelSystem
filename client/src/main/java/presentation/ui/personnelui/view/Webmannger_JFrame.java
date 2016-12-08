@@ -47,7 +47,7 @@ public class Webmannger_JFrame extends JFrame {
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
 	private Home_JButton home_JButton = new Home_JButton();
-	private Arrow_JButton arrow_JButton = new Arrow_JButton();
+	private Arrow_JButton arrow_JButton = new Arrow_JButton(this);
 	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
