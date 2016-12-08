@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 
 import org.hibernate.mapping.PersistentClassVisitor;
 
+import presentation.ui.loginui.view.Individualregister_JFrame;
+import presentation.ui.tools.FileChooseHelper;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
@@ -37,7 +39,6 @@ public class Changemessage_JPanel extends JPanel {
 
 	private String userName;
 	private String userTel;
-	private ImageIcon userImage;
 	private String userBirth;
 	private String userEnterprise;
 	private double userCredit;
@@ -60,7 +61,9 @@ public class Changemessage_JPanel extends JPanel {
 	private JLabel credit = new JLabel("");
 	private JLabel level = new JLabel("");
 
-	private JLabel image = new JLabel();
+	String imagePath="image//logo.png";
+	ImageIcon userImage=ImageTool.getScaledImage(new ImageIcon(imagePath),150);
+	private JLabel image = new JLabel(userImage);
 
 	private JLabel editing = new JLabel();
 
@@ -71,7 +74,12 @@ public class Changemessage_JPanel extends JPanel {
 		PersonDetailVO personDetailVO = userDistributeController.getDetailInfo(userID);
 		userName = personDetailVO.getName();
 		userTel = personDetailVO.getTelephone();
-		userImage = personDetailVO.getImage();
+		
+		ImageIcon icon=personDetailVO.getImage();
+		if(icon!=null){
+			userImage=ImageTool.getScaledImage(icon,150);
+		}
+		
 		customerType = personDetailVO.getVIPType();
 		userCredit = personDetailVO.getCredit();
 		userGrade = userDistributeController.getGrade(userID);
@@ -110,11 +118,24 @@ public class Changemessage_JPanel extends JPanel {
 		name.setFont(font);
 		this.add(name);
 
-		userImage = ImageTool.getScaledImage(userImage, 150);
 		image.setIcon(userImage);
 		image.setBounds(130, 180, 150, 150);
 		this.add(image);
+        image.addMouseListener(new MouseAdapter() {
+        	public void mouseClicked(MouseEvent e) {
+        		String path=FileChooseHelper.fileChoose();
+				if(path!=null){
+					imagePath=path;
+					ImageIcon imageIcon=new ImageIcon(imagePath);
+					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
+					image.setIcon(imageIcon);
+					Changemessage_JPanel.this.image.updateUI();
+				}
 
+       		 	 }
+       		 
+		});
+		
 		teljl.setBounds(400, 100, 300, 50);
 		teljl.setFont(font);
 		this.add(teljl);

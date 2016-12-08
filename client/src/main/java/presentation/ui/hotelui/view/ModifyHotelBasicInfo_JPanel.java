@@ -2,6 +2,9 @@ package presentation.ui.hotelui.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +21,9 @@ import javax.swing.text.Document;
 import exception.NotFoundHotelException;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
+import presentation.ui.loginui.view.Individualregister_JFrame;
+import presentation.ui.tools.FileChooseHelper;
+import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
 import util.City;
@@ -46,7 +52,6 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private String area;
 	private String city;
 	private String tel;
-	private ImageIcon hotelimage;
 	private String introduction;
 	private String commonFacility; // 通用设施
 	private String activityFacility;// 活动设施
@@ -54,6 +59,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private String roomFacility;// 客房设施
 	private String enterprise;
 
+	private String imagePath="image//hotel.jpg";
+	private ImageIcon hotelimage=new ImageIcon(imagePath);
+	
 	private City city2;
 	private TradingArea tradingArea;
 
@@ -83,7 +91,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private JTextArea roomFacilityjtf;
 	private JTextArea servicejtf;
 	private JTextArea introductionjtf;
-    private JButton hotelimagejb;
+    private MyButton hotelimagejb;
+    private JLabel hotelImageShow;
+
 	JLabel telError=new JLabel("电话不能为空");
 	JLabel starError=new JLabel("星级不能为空");
 	JLabel locaError=new JLabel("地址不能为空");
@@ -96,7 +106,12 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		try {
 			HotelBasicInfoVO hotelBasicInfoVO = hotelDistributionController.getHotelBasicInfo(hotelID);
 			this.hotelname =hotelBasicInfoVO.getHotelName();
-			this.hotelimage=hotelBasicInfoVO.getHotelImage();
+			
+			ImageIcon icon=hotelBasicInfoVO.getHotelImage();
+			if(icon!=null){
+				icon=ImageTool.getScaledImage(icon, 160);
+				this.hotelimage=icon;
+			}
 			
 			this.city2=hotelBasicInfoVO.getCity();
 			this.city=city2.toChinese();
@@ -135,8 +150,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
         activityFacilityjtf=new JTextArea(activityFacility);
         roomFacilityjtf=new JTextArea(roomFacility);
 		enterprisesjl=new JLabel("合作企业："+enterprise);
-        hotelimagejb=new JButton(hotelimage);
-		
+        hotelImageShow=new JLabel(hotelimage);
+		hotelimagejb=new MyButton();
+        
 		this.setSize(800, 600);
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -158,9 +174,28 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelimagejl.setBounds(80, 50, 100, 30);
 		this.add(hotelimagejl);
 
-		hotelimagejb.setFont(font);
-		hotelimagejb.setBounds(163, 60, 160, 160);
+		hotelImageShow.setFont(font);
+		hotelImageShow.setBounds(163, 60, 160, 160);
+		this.add(hotelImageShow);
+		
+		hotelimagejb.setText("选取酒店图片");
+		hotelimagejb.setBounds(420, 190, 150, 30);
 		this.add(hotelimagejb);
+		
+		//实现选择图片文件
+		hotelimagejb.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String path=FileChooseHelper.fileChoose();
+				if(path!=null){
+					imagePath=path;
+					ImageIcon imageIcon=new ImageIcon(imagePath);
+					imageIcon=ImageTool.getScaledImage(imageIcon, 160);
+					hotelImageShow.setIcon(imageIcon);
+					ModifyHotelBasicInfo_JPanel.this.hotelImageShow.updateUI();
+				}
+
+			}
+		});
 		
 		teljl.setFont(font);
 		teljl.setBounds(80, 250, 100, 30);
