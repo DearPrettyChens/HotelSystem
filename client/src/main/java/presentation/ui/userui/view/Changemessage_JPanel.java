@@ -17,12 +17,7 @@ import javax.swing.text.Document;
 
 import org.hibernate.mapping.PersistentClassVisitor;
 
-<<<<<<< HEAD
-import presentation.ui.loginui.view.Individualregister_JFrame;
 import presentation.ui.tools.FileChooseHelper;
-=======
-import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
->>>>>>> origin/master
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
