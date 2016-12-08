@@ -1,6 +1,7 @@
 package presentation.ui.loginui.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -11,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -56,7 +58,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 
 	private JLabel ninthday_logo = new JLabel();
 
-	private JLabel individualtab_JLabel = new JLabel("企业会员注册");
+	private JLabel enterprisetab_JLabel = new JLabel("企业会员注册");
 	private JLabel name_JLabel = new JLabel("用户名");
 	private JLabel password_JLabel = new JLabel("密码");
 	private JLabel confirmpassword_JLabel = new JLabel("确认密码");
@@ -94,6 +96,9 @@ public class Enterpriseregister_JFrame extends JFrame {
 	private String imagePath = "image//logo.png";
 	private ImageIcon imageIcon=null;
 	
+	private JScrollPane scrollPane=new JScrollPane();
+	private JPanel panel=new JPanel();
+	
 	public Enterpriseregister_JFrame() {
 
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
@@ -105,11 +110,19 @@ public class Enterpriseregister_JFrame extends JFrame {
 
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
-
+		addScrollPane();
 		this.setVisible(true);
 
 	}
 
+	public void addScrollPane() {
+		scrollPane.setBounds(300, 250, 700, 350);
+		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBorder(null);
+		scrollPane.setViewportView(panel);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		this.add(scrollPane);
+	}
 	/**
 	 * 添加组件
 	 * 
@@ -118,70 +131,91 @@ public class Enterpriseregister_JFrame extends JFrame {
 	 * @throws 未定
 	 */
 	public void addComp() {
-
-		realimage_JLabel.setBounds(400, 500, 100, 100);
+		panel.setLayout(null);
+		panel.setPreferredSize(new Dimension(680, 680));
+        panel.setBackground(Color.WHITE);
+        
+//		realimage_JLabel.setBounds(400, 500, 100, 100);
+        realimage_JLabel.setBounds(100, 450, 150, 150);
 		ImageIcon icon2 = new ImageIcon("image//clientimage.png");
+		icon2 = ImageTool.getScaledImage(icon2, 150);
 		realimage_JLabel.setIcon(icon2);
 		// this.add(realimage_JLabel);
-		this.getContentPane().add(realimage_JLabel);
-
+//		this.getContentPane().add(realimage_JLabel);
+		panel.add(realimage_JLabel);
+		
 		close_jbutton.setBounds(970, 10, 20, 20);
 		this.add(close_jbutton);
 		narrow_jbutton.setBounds(930, 10, 20, 20);
 		this.add(narrow_jbutton);
 
-		individualtab_JLabel.setFont(new Font("宋体", Font.BOLD, 30));
-		individualtab_JLabel.setForeground(color);
-		individualtab_JLabel.setBounds(400, 180, 200, 70);
-		this.add(individualtab_JLabel);
+		enterprisetab_JLabel.setFont(new Font("宋体", Font.BOLD, 30));
+		enterprisetab_JLabel.setForeground(color);
+		enterprisetab_JLabel.setBounds(400, 180, 200, 70);
+		this.add(enterprisetab_JLabel);
 
-		name_JLabel.setBounds(300, 250, 100, 50);
+//		name_JLabel.setBounds(300, 250, 100, 50);
+		name_JLabel.setBounds(0, 20, 100, 50);
 		name_JLabel.setForeground(color);
 		name_JLabel.setFont(font);
-		this.add(name_JLabel);
+//		this.add(name_JLabel);
+		panel.add(name_JLabel);
 
-		password_JLabel.setBounds(300, 300, 100, 50);
+//		password_JLabel.setBounds(300, 300, 100, 50);
+		password_JLabel.setBounds(0, 100, 100, 50);
 		password_JLabel.setForeground(color);
 		password_JLabel.setFont(font);
-		this.add(password_JLabel);
+//		this.add(password_JLabel);
+		panel.add(password_JLabel);
 
-		confirmpassword_JLabel.setBounds(300, 350, 100, 50);
+//		confirmpassword_JLabel.setBounds(300, 350, 100, 50);
+		confirmpassword_JLabel.setBounds(0, 180, 100, 50);
 		confirmpassword_JLabel.setForeground(color);
 		confirmpassword_JLabel.setFont(font);
-		this.add(confirmpassword_JLabel);
+//		this.add(confirmpassword_JLabel);
+		panel.add(confirmpassword_JLabel);
 
-		tel_JLabel.setBounds(300, 400, 100, 50);
+//		tel_JLabel.setBounds(300, 400, 100, 50);
+		tel_JLabel.setBounds(0, 260, 100, 50);
 		tel_JLabel.setForeground(color);
 		tel_JLabel.setFont(font);
-		this.add(tel_JLabel);
+//		this.add(tel_JLabel);
+		panel.add(tel_JLabel);
 
 		// birthday_JLabel.setBounds(300,450,100,50);
 		// birthday_JLabel.setForeground(color);
 		// birthday_JLabel.setFont(font);
 		// this.add(birthday_JLabel);
 
-		image_JLabel.setBounds(300, 500, 100, 50);
+//		image_JLabel.setBounds(300, 500, 100, 50);
+		image_JLabel.setBounds(0, 420, 100, 50);
 		image_JLabel.setForeground(color);
 		image_JLabel.setFont(font);
-		this.add(image_JLabel);
+//		this.add(image_JLabel);
+		panel.add(image_JLabel);
 
-		enterprisename_JLabel.setBounds(300, 450, 100, 50);
+		enterprisename_JLabel.setBounds(0, 340, 100, 50);
 		enterprisename_JLabel.setForeground(color);
 		enterprisename_JLabel.setFont(font);
-		this.add(enterprisename_JLabel);
+//		this.add(enterprisename_JLabel);
+		panel.add(enterprisename_JLabel);
 
 		ImageIcon icon3 = new ImageIcon("image//ninthday.png");
 		ninthday_logo.setBounds(300, 10, 400, 150);
 		ninthday_logo.setIcon(icon3);
 		this.add(ninthday_logo);
 
-		name_TextField.setBounds(400, 250, 300, 50);
-		this.add(name_TextField);
+//		name_TextField.setBounds(400, 250, 300, 50);
+		name_TextField.setBounds(100, 20, 300, 50);
+//		this.add(name_TextField);
+		panel.add(name_TextField);
 
-		registerInfoBesideName.setBounds(720, 250, 200, 50);
+//		registerInfoBesideName.setBounds(720, 250, 200, 50);
+		registerInfoBesideName.setBounds(420, 20, 200, 50);
 		registerInfoBesideName.setForeground(Color.RED);
 		registerInfoBesideName.setFont(font);
-		this.add(registerInfoBesideName);
+//		this.add(registerInfoBesideName);
+		panel.add(registerInfoBesideName);
 
 		Document nameDoc = name_TextField.getDocument();
 		nameDoc.addDocumentListener(new DocumentListener() {
@@ -268,12 +302,17 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 
-		password_TextField.setBounds(400, 300, 300, 50);
-		this.add(password_TextField);
-		registerInfoBesidePassword.setBounds(720, 300, 200, 50);
+//		password_TextField.setBounds(400, 300, 300, 50);
+		password_TextField.setBounds(100, 100, 300, 50);
+//		this.add(password_TextField);
+		panel.add(password_TextField);
+		
+//		registerInfoBesidePassword.setBounds(720, 300, 200, 50);
+		registerInfoBesidePassword.setBounds(420, 100, 200, 50);
 		registerInfoBesidePassword.setForeground(Color.RED);
 		registerInfoBesidePassword.setFont(font);
-		this.add(registerInfoBesidePassword);
+//		this.add(registerInfoBesidePassword);
+		panel.add(registerInfoBesidePassword);
 
 		Document passwordDoc = password_TextField.getDocument();
 		passwordDoc.addDocumentListener(new DocumentListener() {
@@ -354,20 +393,29 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 
-		confirmpassword_TextField.setBounds(400, 350, 300, 50);
-		this.add(confirmpassword_TextField);
+//		confirmpassword_TextField.setBounds(400, 350, 300, 50);
+		confirmpassword_TextField.setBounds(100, 180, 300, 50);
+//		this.add(confirmpassword_TextField);
+		panel.add(confirmpassword_TextField);
 
-		registerInfoBesideSecondPassword.setBounds(720, 350, 200, 50);
+//		registerInfoBesideSecondPassword.setBounds(720, 350, 200, 50);
+		registerInfoBesideSecondPassword.setBounds(420, 180, 200, 50);
 		registerInfoBesideSecondPassword.setForeground(Color.RED);
 		registerInfoBesideSecondPassword.setFont(font);
-		this.add(registerInfoBesideSecondPassword);
+//		this.add(registerInfoBesideSecondPassword);
+		panel.add(registerInfoBesideSecondPassword);
 
-		tel_TextField.setBounds(400, 400, 300, 50);
-		this.add(tel_TextField);
-		registerInfoBesideTel.setBounds(720, 400, 200, 50);
+//		tel_TextField.setBounds(400, 400, 300, 50);
+		tel_TextField.setBounds(100, 260, 300, 50);
+//		this.add(tel_TextField);
+		panel.add(tel_TextField);
+		
+//		registerInfoBesideTel.setBounds(720, 400, 200, 50);
+		registerInfoBesideTel.setBounds(420, 260, 200, 50);
 		registerInfoBesideTel.setForeground(Color.RED);
 		registerInfoBesideTel.setFont(font);
-		this.add(registerInfoBesideTel);
+//		this.add(registerInfoBesideTel);
+		panel.add(registerInfoBesideTel);
 
 		Document telDoc = tel_TextField.getDocument();
 		telDoc.addDocumentListener(new DocumentListener() {
@@ -445,13 +493,17 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 
-		enterprisename_TextField.setBounds(400, 450, 300, 50);
-		this.add(enterprisename_TextField);
+//		enterprisename_TextField.setBounds(400, 450, 300, 50);
+		enterprisename_TextField.setBounds(100, 340, 300, 50);
+//		this.add(enterprisename_TextField);
+		panel.add(enterprisename_TextField);
 
-		registerInfoBesideEnterpriseName.setBounds(720, 450, 200, 50);
+//		registerInfoBesideEnterpriseName.setBounds(720, 450, 200, 50);
+		registerInfoBesideEnterpriseName.setBounds(420, 340, 300, 50);
 		registerInfoBesideEnterpriseName.setForeground(Color.RED);
 		registerInfoBesideEnterpriseName.setFont(font);
-		this.add(registerInfoBesideEnterpriseName);
+//		this.add(registerInfoBesideEnterpriseName);
+		panel.add(registerInfoBesideEnterpriseName);
 
 		confirm_button.setText("确定");
 		confirm_button.setBounds(400, 630, 100, 30);
@@ -495,9 +547,12 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 		this.add(cancle_button);
+		
 		image_button.setText("选取头像");
-		image_button.setBounds(550, 570, 120, 30);
-		this.add(image_button);
+//		image_button.setBounds(550, 570, 120, 30);
+		image_button.setBounds(280, 570, 120, 30);
+//		this.add(image_button);
+		panel.add(image_button);
 
 		//实现选择图片文件
 		image_button.addActionListener(new ActionListener() {
