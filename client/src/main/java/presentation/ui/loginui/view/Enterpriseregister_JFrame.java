@@ -19,6 +19,8 @@ import javax.swing.text.Document;
 import presentation.ui.loginui.viewcontroller.RegisterViewController;
 import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
+import presentation.ui.tools.FileChooseHelper;
+import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.SaveFail_JFrame;
@@ -89,6 +91,9 @@ public class Enterpriseregister_JFrame extends JFrame {
 	private boolean passwordValid = false;
 	private boolean telephoneValid = false;
 
+	private String imagePath = "image//logo.png";
+	private ImageIcon imageIcon=null;
+	
 	public Enterpriseregister_JFrame() {
 
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
@@ -493,6 +498,21 @@ public class Enterpriseregister_JFrame extends JFrame {
 		image_button.setText("选取头像");
 		image_button.setBounds(550, 570, 120, 30);
 		this.add(image_button);
+
+		//实现选择图片文件
+		image_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String path=FileChooseHelper.fileChoose();
+				if(path!=null){
+					imagePath=path;
+					imageIcon=new ImageIcon(imagePath);
+					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
+					realimage_JLabel.setIcon(imageIcon);
+					Enterpriseregister_JFrame.this.realimage_JLabel.updateUI();
+				}
+
+			}
+		});
 	}
 
 	/**

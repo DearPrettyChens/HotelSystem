@@ -50,7 +50,6 @@ import vo.personnelvo.PersonDetailVO;
  * 
  */
 /**
- * 不确定部分：头像部分 imagebutton的监听 不确定 line 544 vo头像get方法未定 line 514
  * 
  * @author CYF
  *
@@ -97,6 +96,7 @@ public class Individualregister_JFrame extends JFrame {
 	private boolean telephoneValid = false;
 	// boolean birthdayValide = false;
 
+	private ImageIcon imageIcon=null;
 	private CalendarPanel p = new CalendarPanel(birthday_TextField, "yyyy-MM-dd");
 
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
@@ -504,10 +504,8 @@ public class Individualregister_JFrame extends JFrame {
 					registerInfoBesideSecondPassword.setText("两次密码输入不一致！");
 				} else if (nameValid && telephoneValid && passwordValid) {
 					Date birth = new Date(TransHelper.stringToDate(p.getReturnDateStr()));
-
-					// vo头像get方法未定
 					PersonDetailVO vo = new PersonDetailVO(null, name_TextField.getText(), password_TextField.getText(),
-							null, tel_TextField.getText(), 0, birth, null, CustomerType.INDIVIDUAL, null,
+							imageIcon, tel_TextField.getText(), 0, birth, null, CustomerType.INDIVIDUAL, null,
 							UserType.Customer);
 					ResultMessage resultMessage = personnelDistributionController.addPerson(vo);
 					if (resultMessage == ResultMessage.SUCCESS) {
@@ -542,7 +540,7 @@ public class Individualregister_JFrame extends JFrame {
 				String path=FileChooseHelper.fileChoose();
 				if(path!=null){
 					imagePath=path;
-					ImageIcon imageIcon=new ImageIcon(imagePath);
+					imageIcon=new ImageIcon(imagePath);
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
 					realimage_JLabel.setIcon(imageIcon);
 					Individualregister_JFrame.this.realimage_JLabel.updateUI();
