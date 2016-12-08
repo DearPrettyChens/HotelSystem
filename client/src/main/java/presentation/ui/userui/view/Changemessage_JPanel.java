@@ -10,22 +10,29 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 import org.hibernate.mapping.PersistentClassVisitor;
 
+import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
 import presentation.ui.userui.distributecontroller.UserDistributeController;
 import util.CustomerType;
+import util.ResultMessage;
 import util.TransHelper;
+import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 
 /**
  * 顾客界面维护个人信息
- * 
- * 缺少confirm的controller调用
  * 
  * @author cy
  *
@@ -36,11 +43,13 @@ public class Changemessage_JPanel extends JPanel {
 	private Font font = new Font("宋体", Font.BOLD, 16);
 
 	private String userName;
+	private String userID;
 	private String userTel;
 	private ImageIcon userImage;
 	private String userBirth;
+	private String userPassword;
 	private String userEnterprise;
-	private double userCredit;
+	private int userCredit;
 	private int userGrade;// 用户等级
 	private CustomerType customerType;
 
@@ -74,7 +83,9 @@ public class Changemessage_JPanel extends JPanel {
 		userImage = personDetailVO.getImage();
 		customerType = personDetailVO.getVIPType();
 		userCredit = personDetailVO.getCredit();
+		userID=personDetailVO.getId();
 		userGrade = userDistributeController.getGrade(userID);
+		userPassword=personDetailVO.getPassword();
 		switch (customerType) {
 		case ENTERPRISE:
 			userEnterprise = personDetailVO.getEnterpriseName();
@@ -177,6 +188,77 @@ public class Changemessage_JPanel extends JPanel {
 		editing.setBounds(650, 110, 30, 30);
 		this.add(editing);
 
+		JLabel telErrorJl=new JLabel("请输入11位的手机号码");
+		telErrorJl.setForeground(Color.RED);
+		telErrorJl.setFont(font);
+		telErrorJl.setBounds(500, 150, 200, 30);
+		telErrorJl.setVisible(false);
+		Changemessage_JPanel.this.add(telErrorJl);
+		
+		JLabel telErrorJl2=new JLabel("不能为空");
+		telErrorJl2.setForeground(Color.RED);
+		telErrorJl2.setFont(font);
+		telErrorJl2.setBounds(500, 15, 200, 30);
+		Changemessage_JPanel.this.add(telErrorJl2);
+		telErrorJl2.setVisible(false);
+		
+		Document telDoc=tel.getDocument();
+		telDoc.addDocumentListener(new DocumentListener(){
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(s.length()!=11){
+						telErrorJl.setVisible(true);
+					}
+					else if(s.length()==11){
+						telErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(s.length()!=11){
+						telErrorJl.setVisible(true);
+					}
+					else if(s.length()==11){
+						telErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
+
+					String s = doc.getText(0, doc.getLength());
+					if(s.length()!=11){
+						telErrorJl.setVisible(true);
+					}
+					else if(s.length()==11){
+						telErrorJl.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		editing.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -210,11 +292,22 @@ public class Changemessage_JPanel extends JPanel {
 		
 		 public void mouseClicked(MouseEvent e) {
 		 String text=tel.getText();
-		
-		 //此处缺少调用controller
+		 if(text.equals("")){
+			 telErrorJl2.setVisible(true);
+		 }
+		 if(!text.equals("")&&text.length()==11){
+			 PersonDetailVO detail=new PersonDetailVO(userID,userName,userPassword,userImage,
+					 userTel,userCredit,new Date(TransHelper.stringToDate(userBirth)),userEnterprise,customerType,null,UserType.Customer);
+			 if(userDistributeController.confirmUserInfo(detail)==ResultMessage.SUCCESS){
+				 new SaveSuccess_JFrame();
+				 showTelLabel();
+			 }
+			 else{
+				 new SaveFail_JFrame();
+			 }
+		 }
 		 
-		 
-		showTelLabel();
+	
 		 	 }
 		 });
 		

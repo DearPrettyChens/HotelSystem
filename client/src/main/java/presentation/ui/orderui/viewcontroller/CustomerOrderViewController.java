@@ -23,6 +23,10 @@ public class CustomerOrderViewController {
 		view.returnToOrderListPanelFromRemark();
 	}
 	
+	public void returnToOrderListFromCancel(){
+		view.returnToOrderListPanelFromCancel();
+	}
+	
 	public void returnToOrderListFromDetail(){
 		view.returnToOrderListPanelFromDetail();
 	}

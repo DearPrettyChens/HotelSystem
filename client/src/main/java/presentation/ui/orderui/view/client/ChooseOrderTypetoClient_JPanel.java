@@ -109,7 +109,6 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				allorderjl.setForeground(color);
 				excutedoderjl.setForeground(Color.black);
 				unexcutedjl.setForeground(Color.black);
@@ -120,25 +119,21 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -151,7 +146,6 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 				ChooseOrderTypetoClient_JPanel.this.allorderjl.setForeground(Color.black);
 				excutedoderjl.setForeground(color);
@@ -163,25 +157,21 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -194,7 +184,6 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				ChooseOrderTypetoClient_JPanel.this.allorderjl.setForeground(Color.black);
 				excutedoderjl.setForeground(Color.black);
 				unexcutedjl.setForeground(color);
@@ -205,25 +194,21 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -236,7 +221,6 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				ChooseOrderTypetoClient_JPanel.this.allorderjl.setForeground(Color.black);
 				excutedoderjl.setForeground(Color.black);
 				unexcutedjl.setForeground(Color.black);
@@ -247,25 +231,21 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -278,7 +258,6 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 				ChooseOrderTypetoClient_JPanel.this.allorderjl.setForeground(Color.black);
 				excutedoderjl.setForeground(Color.black);
@@ -291,25 +270,21 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -361,4 +336,10 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
         this.add(orderListPanel_JPanel);
         this.updateUI();
     }
+	
+	public void returnToOrderListPanelFromCancel(){
+        orderListPanel_JPanel.setBounds(0, 100, 800, 500);
+        this.add(orderListPanel_JPanel);
+        this.updateUI();
+	}
 }

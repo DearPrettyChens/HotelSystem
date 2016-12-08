@@ -8,13 +8,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
+import presentation.ui.orderui.viewcontroller.CustomerOrderViewController;
+import presentation.ui.tools.CancelFail_JFrame;
 import presentation.ui.tools.MyButton;
+import util.ResultMessage;
 
 /**
  * 撤销订单时弹出来的对顾客的提醒
- * 
- * 还未写撤销确认与取消的监听
  * 
  * @author cy
  * @version 1.0
@@ -26,6 +30,7 @@ public class CancleOrdertoClient_JFrame  extends JFrame{
 	private JPanel backgroundjp=new JPanel();
 	private MyButton canclejb=new MyButton();
 	private MyButton confirmjb=new MyButton();
+	private CustomerOrderViewController customerOrderViewController=CustomerOrderViewController.getInstance(null);
 	
 	private OrderDistributionController orderDistributionController=OrderDistributionController.getInstance();
     private JLabel messagejl1=new JLabel("客官，您撤销的订单最晚执行时间已不足");
@@ -35,7 +40,6 @@ public class CancleOrdertoClient_JFrame  extends JFrame{
     private String orderID;
     
 	public CancleOrdertoClient_JFrame(String orderID){
-		
 		this.orderID=orderID;
 		
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 400) / 2,
@@ -81,9 +85,33 @@ public class CancleOrdertoClient_JFrame  extends JFrame{
 		confirmjb.setBounds(150,200,230,30);
 		backgroundjp.add(confirmjb);
 		
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(orderDistributionController.cancelOrderConfirm(orderID)==ResultMessage.SUCCESS){
+					CancleOrdertoClient_JFrame.this.setVisible(false);
+					//刷新订单信息
+					customerOrderViewController.returnToOrderListFromCancel();
+				}
+				else{
+					//撤销失败
+					new CancelFail_JFrame();
+				}
+				
+			}
+			
+		});
 		
+		canclejb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				CancleOrdertoClient_JFrame.this.setVisible(false);
+			}
+			
+		});
 	}
-	
 
 	
 }

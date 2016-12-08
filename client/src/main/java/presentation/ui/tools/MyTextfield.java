@@ -54,7 +54,7 @@ public class MyTextfield  extends JTextField implements FocusListener{
 
 	    	  @Override
 	    	  public String getText() {
-	    	    return showingHint ? "" : super.getText();
+	    	    return showingHint ? hint : super.getText();
 	    	  }
 		
 		
