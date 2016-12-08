@@ -145,42 +145,42 @@ private Font font=new Font("宋体",Font.BOLD, 14);
     	   
     	   cityjl.setText("城市："+city);
     	   cityjl.setFont(font);
-    	   cityjl.setBounds(50,0,200,30);
+    	   cityjl.setBounds(50,0,600,30);
     	   this.add(cityjl);
     	   
     	   areajl.setText("商圈："+city);
     	   areajl.setFont(font);
-    	   areajl.setBounds(50,30,200,30);
+    	   areajl.setBounds(50,30,600,30);
     	   this.add(areajl);
     	   
     	   introducejl.setText("简介："+introduce);
     	   introducejl.setFont(font);
-    	   introducejl.setBounds(50,60,200,30);
+    	   introducejl.setBounds(50,60,600,30);
     	   this.add(introducejl);
     	   
     	   commonFacilityjl.setText("通用设施："+commonFacility);
     	   commonFacilityjl.setFont(font);
-    	   commonFacilityjl.setBounds(50,120,200,30);
+    	   commonFacilityjl.setBounds(50,120,600,30);
     	   this.add(commonFacilityjl);
     	   
     	   activityFacilityjl.setText("活动设施："+activityFacility);
     	   activityFacilityjl.setFont(font);
-    	   activityFacilityjl.setBounds(50,150,200,30);
+    	   activityFacilityjl.setBounds(50,150,600,30);
     	   this.add(activityFacilityjl);
     	   
     	   servicejl.setText("服务设施："+city);
     	   servicejl.setFont(font);
-    	   servicejl.setBounds(50,180,200,30);
+    	   servicejl.setBounds(50,180,600,30);
     	   this.add(servicejl);
     	   
     	   roomFacilityjl.setText("客房设施："+roomFacility);
     	   roomFacilityjl.setFont(font);
-    	   roomFacilityjl.setBounds(50,210,200,30);
+    	   roomFacilityjl.setBounds(50,210,600,30);
     	   this.add(roomFacilityjl);
     	   
     	   enterprisesjl.setText("合作企业："+enterprises);
     	   enterprisesjl.setFont(font);
-    	   enterprisesjl.setBounds(50,240,200,30);
+    	   enterprisesjl.setBounds(50,240,600,30);
     	   this.add(enterprisesjl);
     	   
     	  
@@ -196,7 +196,7 @@ private Font font=new Font("宋体",Font.BOLD, 14);
     	   }
     	   hotelStrVOjl.setText(s);
     	   hotelStrVOjl.setFont(font);
-    	   hotelStrVOjl.setBounds(50,270,200,30);
+    	   hotelStrVOjl.setBounds(50,270,600,30);
     	   this.add(hotelStrVOjl);
     	   
     	   
