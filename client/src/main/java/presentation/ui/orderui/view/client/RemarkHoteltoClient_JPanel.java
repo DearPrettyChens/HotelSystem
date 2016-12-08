@@ -2,6 +2,8 @@ package presentation.ui.orderui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -10,6 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.orderui.viewcontroller.CustomerOrderViewController;
@@ -17,8 +23,12 @@ import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.JLabelTool;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.RemarkFail_JFrame;
+import presentation.ui.userui.view.Changemessage_JPanel;
+import util.ResultMessage;
 import vo.ordervo.OrderInfoVO;
 import vo.ordervo.OrderListVO;
+import vo.ordervo.RemarkVO;
 
 /**
  * 顾客评价酒店的面板
@@ -33,6 +43,8 @@ public class RemarkHoteltoClient_JPanel extends JPanel {
 	private Color color = new Color(148, 221, 184);
 
 	private String hotelname;
+	private String hotelID;
+	private String orderID;
 	private ImageIcon image;
 
 	private JPanel titlejp = new JPanel();
@@ -59,6 +71,8 @@ public class RemarkHoteltoClient_JPanel extends JPanel {
 
 		this.hotelname = orderListVO.getHotelName();
 		this.image = orderListVO.getHotelIcon();
+		this.hotelID=orderListVO.getHotelID();
+		this.orderID=orderListVO.getOrderNumber();
 
 		image = ImageTool.getScaledImage(image, 135);
 		imagejl.setIcon(image);
@@ -103,7 +117,6 @@ public class RemarkHoteltoClient_JPanel extends JPanel {
 		try {
 			JLabelTool.JlabelSetText(hotelnamejl, hotelname);
 		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		this.add(hotelnamejl);
@@ -139,35 +152,121 @@ public class RemarkHoteltoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				backjl.setFont(new Font("宋体", Font.BOLD, 16));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				backjl.setFont(new Font("宋体", Font.BOLD, 15));
 			}
 
 		});
 		this.add(backjl);
+		
+		JLabel scoreError=new JLabel("请输入0～5之间的数字");
+		scoreError.setForeground(Color.RED);
+		scoreError.setFont(font);
+		scoreError.setBounds(550, 105, 200, 30);
+		scoreError.setVisible(false);
+		RemarkHoteltoClient_JPanel.this.add(scoreError);
+		
+		JLabel scoreError2=new JLabel("不能为空");
+		scoreError2.setForeground(Color.RED);
+		scoreError2.setFont(font);
+		scoreError2.setBounds(550,105, 200, 30);
+		RemarkHoteltoClient_JPanel.this.add(scoreError2);
+		scoreError2.setVisible(false);
+		
+		Document scoreDoc=scorejtf.getDocument();
+		scoreDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				scoreError2.setVisible(false);
+				Document doc=e.getDocument();
+				try {
+					String s = doc.getText(0, doc.getLength());
+					if(Double.parseDouble(s)<0||Double.parseDouble(s)>5.0){
+						scoreError.setVisible(true);
+					}
+					else{
+						scoreError.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				/*scoreError2.setVisible(false);
+				Document doc=e.getDocument();
+				try {
+					String s = doc.getText(0, doc.getLength());
+					if(Double.parseDouble(s)<0||Double.parseDouble(s)>5.0){
+						scoreError.setVisible(true);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}*/
+				
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				scoreError2.setVisible(false);
+				Document doc=e.getDocument();
+				try {
+					String s = doc.getText(0, doc.getLength());
+					if(Double.parseDouble(s)<0||Double.parseDouble(s)>5.0){
+						scoreError.setVisible(true);
+					}
+					else{
+						scoreError.setVisible(false);
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
+				
+			}
+			
+		});
 
 		confirmjb.setText("确认评价");
 		confirmjb.setBounds(400, 410, 200, 40);
 		this.add(confirmjb);
 
+		confirmjb.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(scorejtf.getText().equals("")){
+					scoreError2.setVisible(true);
+				}
+				else if(Double.parseDouble(scorejtf.getText())>=0&&Double.parseDouble(scorejtf.getText())<=5.0){
+					RemarkVO remarkVO=new RemarkVO(orderID,hotelID,Double.parseDouble(scorejtf.getText()),
+							remarkjtf.getText());
+					if(orderDistributionController.remarkOrder(remarkVO)==ResultMessage.SUCCESS){
+						customerOrderViewController.returnToOrderListFromRemark();
+					}
+					else{
+						new RemarkFail_JFrame();
+					}
+				}
+			}
+			
+		});
 	}
 
 }

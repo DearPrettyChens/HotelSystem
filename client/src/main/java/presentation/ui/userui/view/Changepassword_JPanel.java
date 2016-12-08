@@ -227,7 +227,7 @@ public class Changepassword_JPanel  extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				//判断两遍新密码是否相同
 				if(newpasswordfield.getText().equals(newpasswordfield.getText())){
-				
+
 				Changepassword_JPanel.this.circle2.setIcon(icon2);
 				Changepassword_JPanel.this.circle3.setIcon(icon1);
 				Changepassword_JPanel.this.remove(newpasswordfield);
@@ -254,6 +254,9 @@ public class Changepassword_JPanel  extends JPanel{
     		//返回到修改密码初始界面
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				oldpasswordfield.setText("");
+				newpasswordfield.setText("");
+				newpasswordfield2.setText("");
 				Changepassword_JPanel.this.circle3.setIcon(icon2);
 				Changepassword_JPanel.this.circle1.setIcon(icon1);
 				Changepassword_JPanel.this.remove(makechangeJl);
