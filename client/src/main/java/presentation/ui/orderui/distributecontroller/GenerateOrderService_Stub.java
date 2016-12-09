@@ -68,9 +68,12 @@ public class GenerateOrderService_Stub implements GenerateOrderService{
 		list.add(new HotelStrVO("000005",  0.5));
 		list.add(new HotelStrVO("000005", 4, 0.5));
 		list.add(new HotelStrVO("000005",0.8,enterprises));
-		AvailableRoomInfoVO vo=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
+		AvailableRoomInfoVO vo1=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
+		AvailableRoomInfoVO vo2=new AvailableRoomInfoVO("000003"," 宿舍房",BedType. FOURBEDS,680,500,10);
+		
 		ArrayList<AvailableRoomInfoVO> roomlist=new ArrayList<AvailableRoomInfoVO>();
-		roomlist.add(vo);
+		roomlist.add(vo1);
+		roomlist.add(vo2);
 		HotelDetailInfoVO detailvo=new HotelDetailInfoVO("绿地洲际大酒店","南京市鼓楼区",null, TradingArea.XINJIEKOU,"12345678999"
 				,5,"好","设施齐全",City.NANJING,"设施齐全","设施齐全","设施齐全","华为",list,roomlist,
 				null,0,null,500);

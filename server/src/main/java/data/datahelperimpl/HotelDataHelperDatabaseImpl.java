@@ -65,7 +65,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			// session.getTransaction().commit();
 			session.close();
@@ -137,7 +137,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			// session.getTransaction().commit();
 			session.close();
@@ -165,7 +165,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			// session.getTransaction().commit();
 			session.close();

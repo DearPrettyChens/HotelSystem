@@ -29,7 +29,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			session.close();
 		}
@@ -69,7 +69,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			// session.getTransaction().commit();
 			session.close();

@@ -21,23 +21,21 @@ public class SingleHotelRemarktoClient_JPanel  extends JPanel{
 	private Font font=new Font("宋体",Font.BOLD, 16);
 	
 	private String clientname="";
-	private double score=5.0;
+//	private double score=5.0;
 	private String remark="";
 	
 	
 	private JLabel namejl=new JLabel();
-	private JLabel scorejl=new JLabel("评分：");
-	private JLabel scorejl1=new JLabel();
+//	private JLabel scorejl=new JLabel("评分：");
+//	private JLabel scorejl1=new JLabel();
 	private JTextArea remarkjta=new JTextArea ();
 	
 	
 	
-	private JLabel bg=new JLabel(new ImageIcon("image/roundbg.png"));
+	private JLabel bg=new JLabel(new ImageIcon("image/listback.png"));
 	
-	public SingleHotelRemarktoClient_JPanel (String clientname,double score,String remark){
+	public SingleHotelRemarktoClient_JPanel (String remark){
 		
-		this.clientname=clientname;
-		this.score=score;
 		this.remark=remark;
 		
 		
@@ -47,43 +45,30 @@ public class SingleHotelRemarktoClient_JPanel  extends JPanel{
     	addComp();
     	setback();
 	}
-	
-    public SingleHotelRemarktoClient_JPanel (){
-    	
-    	
-    	
-    	this.setLayout(null);
-    	this.setSize(800,100);
-    	this.setBackground(Color.white);
-    	addComp();
-    	setback();
-    	
-		
-		
-	}
+
     
     
     public void addComp(){
     	
-    	namejl.setText(clientname);
-    	scorejl1.setText(score+"");
+//    	namejl.setText(clientname);
+//    	scorejl1.setText(score+"");
     	remarkjta.setText(remark);
     	
-    	namejl.setBounds(100,20,150,30);
-    	namejl.setForeground(color1);
-    	namejl.setFont(font);
-    	this.add(namejl);
+//    	namejl.setBounds(100,20,150,30);
+//    	namejl.setForeground(color1);
+//    	namejl.setFont(font);
+//    	this.add(namejl);
     	
-    	scorejl.setBounds(100,50,100,30);
-    	scorejl.setFont(font);
-    	this.add(scorejl);
-    	
-    	scorejl1.setBounds(150,50,50,30);
-    	scorejl1.setFont(font);
-    	scorejl1.setForeground(color);
-    	this.add(scorejl1);
+//    	scorejl.setBounds(100,50,100,30);
+//    	scorejl.setFont(font);
+//    	this.add(scorejl);
+//    	
+//    	scorejl1.setBounds(150,50,50,30);
+//    	scorejl1.setFont(font);
+//    	scorejl1.setForeground(color);
+//    	this.add(scorejl1);
     
-    	remarkjta.setBounds(200,20,500,60);
+    	remarkjta.setBounds(150,20,500,60);
     	remarkjta.setEditable(false);
     	remarkjta.setBackground(Color.white);
     	remarkjta.setBorder(null);

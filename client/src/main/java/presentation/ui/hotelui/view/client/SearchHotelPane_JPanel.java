@@ -5,14 +5,16 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.text.html.HTML.Tag;
 
 import presentation.ui.tools.newclient_JLabel;
+import util.ViewTag;
 import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
  * 顾客的搜索酒店界面
  * 
- * 
+ * 未实现复选框的监听
  * 
  * @author cy
  * @version 1.0
@@ -23,12 +25,14 @@ public class SearchHotelPane_JPanel extends JPanel {
     private HotelListPane_JPanel hotelListPane_JPanel ;
 	private JScrollPane scrollPane=new JScrollPane();
 	private JPanel panel=new JPanel();
-    
-	public SearchHotelPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO) {
+    private ViewTag tag;
+	
+	public SearchHotelPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO,ViewTag tag) {
+		this.tag=tag;
 		this.setLayout(null);
-		this.setBounds(200,100, 800, 600);
+		this.setBounds(0,0, 800, 600);
 		searchHoteltoClient_JPanel=new SearchHoteltoClient_JPanel(hotelSearchInfoVO);
-		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO);
+		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO,tag);
 		addScrollpane();
 	}
 	public void addScrollpane() {

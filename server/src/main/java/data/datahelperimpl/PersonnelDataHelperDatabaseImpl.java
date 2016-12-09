@@ -174,7 +174,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			// session.getTransaction().commit();
 			session.close();

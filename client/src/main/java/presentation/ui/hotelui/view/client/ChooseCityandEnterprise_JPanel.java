@@ -10,8 +10,11 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
 import presentation.ui.searchhotelui.distributecontroller.SearchhotelDistributionController;
 import presentation.ui.tools.newclient_JLabel;
+import util.City;
+import util.TradingArea;
 import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
@@ -35,9 +38,10 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 	private JLabel tradingareajl=new JLabel("商圈");
 	private JComboBox citycomboBox=new JComboBox();
 	private JComboBox tradingareacomboBox=new JComboBox();
-	private HotelSearchInfoVO hotelSearchInfoVO;
+	private HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
 	private String userID;
 	private JButton confirmjb=new JButton("确认");
+	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
 	
 	public ChooseCityandEnterprise_JPanel (String userID){
 		
@@ -78,10 +82,16 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//
+				hotelSearchInfoVO.setCity(City.NANJING);
+				hotelSearchInfoVO.setTradingArea(TradingArea.XINJIEKOU);
+				//
+				//上面用注释围起来的仅仅是为了方便显示后面的东西，需要删掉这三行，然后完成监听。
 				
-				
+				reserveHotelViewController.generateNewHotelListView(hotelSearchInfoVO);
 			}
 		});
+		this.add(confirmjb);
 		
 	}
 

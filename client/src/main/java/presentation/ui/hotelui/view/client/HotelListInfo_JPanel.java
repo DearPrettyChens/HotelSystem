@@ -2,6 +2,11 @@ package presentation.ui.hotelui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -9,9 +14,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import presentation.ui.hotelui.viewcontroller.MyFootViewController;
+import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
 import util.OrderState;
+import util.ViewTag;
 import vo.searchhotelvo.HotelListVO;
 
 /**
@@ -76,6 +84,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 	
 	private JLabel[] allstar=new JLabel[]{starjl1,starjl2,starjl3,starjl4,starjl5};
 	
+	private String hotelID;
 	private String name="";
 	private ImageIcon image;
 	private int star=5;
@@ -86,13 +95,14 @@ public class HotelListInfo_JPanel  extends JPanel{
 //	private int threeroomcount=0;
 //	private int birthcount=0;
 	private ArrayList<OrderState> orderstate;
+	private ViewTag viewTag;
+	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
+	private MyFootViewController myFootViewController=MyFootViewController.getInstance(null);
 	
-	
-//	private String 
-	
-	
-	public HotelListInfo_JPanel(HotelListVO hotelListVO){
+	public HotelListInfo_JPanel(HotelListVO hotelListVO,ViewTag viewTag){
+		this.viewTag=viewTag;
 		
+		this.hotelID=hotelListVO.getHotelID();
 		this.name=hotelListVO.getHotelName();
 		this.image=hotelListVO.getHotelImage();
 		this.star=hotelListVO.getStar();
@@ -225,8 +235,40 @@ public class HotelListInfo_JPanel  extends JPanel{
        orderjb.setText("预定");
        orderjb.setBounds(0,80,90,30);
        pricejp.add(orderjb);
-       
-       
+       orderjb.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			switch (viewTag) {
+			case HOTELRESERVERSION:
+				reserveHotelViewController.generateNewOrder(hotelID);
+				break;
+			case MYHOTEL:
+				myFootViewController.generateNewOrder(hotelID);
+				break;
+			default:
+				break;
+			
+			}
+			
+		}
+	});
+       this.addMouseListener(new MouseAdapter() {
+		public void mouseClicked(MouseEvent e) {
+			switch (viewTag) {
+			case HOTELRESERVERSION:
+				reserveHotelViewController.generateNewHotelDetailView(hotelID);;
+				break;
+			case MYHOTEL:
+				myFootViewController.generateNewHotelDetailView(hotelID);;
+				break;
+			default:
+				break;
+			
+			}
+			
+		}
+	});
        
 //       strjp.setLayout(null);
 //       strjp.setBackground(Color.white);

@@ -487,7 +487,7 @@ public class CalendarPanel extends JPanel {
   
     public static void main(String[] args) {  
         Calendar c = new GregorianCalendar(2011,11,1);  
-        System.out.println( c.get(Calendar.DAY_OF_WEEK));  
+//        System.out.println( c.get(Calendar.DAY_OF_WEEK));  
     }  
   
   
@@ -498,7 +498,7 @@ public class CalendarPanel extends JPanel {
             int h = j.getHeight();  
             int x = j.getX();  
             int y = j.getY();  
-            System.out.println("with:"+w +"height:"+h+"x:"+x+"y:"+y);  
+//            System.out.println("with:"+w +"height:"+h+"x:"+x+"y:"+y);  
             this.setComponent(component);  
             this.setBounds((x), y+h, 251, 245);  
             this.setVisible(false);  

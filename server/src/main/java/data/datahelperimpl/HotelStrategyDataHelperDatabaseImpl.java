@@ -49,7 +49,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 				if(transaction!=null){
 					transaction.rollback();
 				}
-				return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+				return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 			} finally {
 				session.close();
 			}
@@ -68,7 +68,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 				if(transaction!=null){
 					transaction.rollback();
 				}
-				return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+				return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 			} finally {
 				session.close();
 			}

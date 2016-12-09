@@ -2,12 +2,20 @@ package presentation.ui.hotelui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.hotelui.viewcontroller.MyFootViewController;
+import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
 import presentation.ui.tools.MyButton;
+import util.ViewTag;
+import vo.availableroomvo.AvailableRoomInfoVO;
 
 /**
  * 顾客查看酒店信息时的单条房型信息
@@ -34,52 +42,39 @@ public class SingleRoomInfotoClient_JPanel extends JPanel{
 	
 	
 	
-	private JLabel bgjl=new JLabel(new ImageIcon("image/underline.png"));
+	private JLabel bgjl=new JLabel(new ImageIcon("image/longxuxian.png"));
 	
 	
 	private MyButton searchjb=new MyButton();
 	private MyButton makeorderjb=new MyButton();
 	
-	public SingleRoomInfotoClient_JPanel(String roomtype,String bedtype,double price){
+	private String hotelID;
+	private String userID;
+	private ViewTag viewTag;
+	
+	 private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
+	    private MyFootViewController myFootViewController=MyFootViewController.getInstance(null);
 		
+	public SingleRoomInfotoClient_JPanel(AvailableRoomInfoVO availableRoomInfoVO,ViewTag tag){
 		
-		
-		
-		this.roomtype=roomtype;
-		this.bedtype=bedtype;
-		this.price=price;
-		
-		
-		
+		this.viewTag=tag;
+		this.hotelID=availableRoomInfoVO.getHotelNumber();
+		this.roomtype=availableRoomInfoVO.getRoomType();
+		this.bedtype=availableRoomInfoVO.getBedType().toChinese();
+		this.price=availableRoomInfoVO.getLowestPrice();
 		
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		this.setSize(800,50);
+		this.setSize(800,60);
 		setBack();
 		addComp();
 		
 	}
-	
-	
-    public SingleRoomInfotoClient_JPanel(){
-		
-    	this.setLayout(null);
-		this.setBackground(Color.white);
-		this.setSize(800,50);
-		setBack();
-		addComp();
-		
-		
-		
-	}
-	
-	
-	
 	
 	public void setBack(){
 		
 		
-		bgjl.setBounds(50,0,700,50);
+		bgjl.setBounds(50,55,700,10);
 		this.add(bgjl);
 		
 		
@@ -90,24 +85,40 @@ public class SingleRoomInfotoClient_JPanel extends JPanel{
 		
     	roomtypejl.setFont(font);
     	roomtypejl.setText(roomtype);
-    	roomtypejl.setBounds(100,10,100,30);
+    	roomtypejl.setBounds(95,15,100,30);
     	this.add(roomtypejl);
     	
     	bedtypejl.setFont(font);
     	bedtypejl.setText(bedtype);
-    	bedtypejl.setBounds(200,10,100,30);
+    	bedtypejl.setBounds(270,15,100,30);
     	this.add(bedtypejl);
     	
-    	pricejl.setFont(font);
+    	pricejl.setFont(new Font("宋体",Font.BOLD, 18));
     	pricejl.setText(price+"");
-    	pricejl.setBounds(300,10,100,30);
-    	pricejl.setForeground(new Color(234,119,93));
+    	pricejl.setBounds(440,15,100,30);
+    	pricejl.setForeground(new Color(231, 64, 37));
     	this.add(pricejl);
     	
     	makeorderjb.setText("预定");
-    	makeorderjb.setBounds(600,10,100,30);
+    	makeorderjb.setBounds(650,15,100,30);
     	this.add(makeorderjb);
-    	
+    	makeorderjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				switch (viewTag) {
+				case HOTELRESERVERSION:
+					reserveHotelViewController.generateNewOrder(hotelID);
+					break;
+				case MYHOTEL:
+					myFootViewController.generateNewOrder(hotelID);
+					break;
+				default:
+					break;
+				
+				}
+			}
+		});
     	
 	}
 	

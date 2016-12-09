@@ -21,6 +21,7 @@ import presentation.ui.orderui.view.client.RemarkHoteltoClient_JPanel;
 import presentation.ui.orderui.view.client.SingleOrderListInfotoClient;
 import presentation.ui.orderui.viewcontroller.CustomerOrderViewController;
 import util.OrderState;
+import util.ViewTag;
 import vo.ordervo.OrderListVO;
 import vo.searchhotelvo.HotelSearchInfoVO;
 
@@ -55,18 +56,20 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 	private JScrollPane scrollPane=new JScrollPane();
 	private JPanel panel=new JPanel();
 	
-   
+   private ViewTag viewTag;
+	
     private  static HotelHasOrdered_JPanel hotelHasOrdered_JPanel;
     
-    public static HotelHasOrdered_JPanel getInstance(String userID) {
+    public static HotelHasOrdered_JPanel getInstance(String userID,ViewTag viewTag) {
 		if(hotelHasOrdered_JPanel==null){
-			hotelHasOrdered_JPanel=new HotelHasOrdered_JPanel(userID);
+			hotelHasOrdered_JPanel=new HotelHasOrdered_JPanel(userID,viewTag);
 		}
 		return hotelHasOrdered_JPanel;
 	}
     
-    private HotelHasOrdered_JPanel(String userID) {
-		this.userID = userID;
+    private HotelHasOrdered_JPanel(String userID,ViewTag viewTag) {
+		this.viewTag=viewTag;
+    	this.userID = userID;
 		this.setSize(800, 600);
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -184,7 +187,7 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 		
 		HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
 		hotelSearchInfoVO.setCustomerID(userID);
-		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO);
+		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO,viewTag);
 		hotelListPane_JPanel.setPreferredSize(new Dimension(780, hotelListPane_JPanel.getHeight() ));
 		scrollPane.setBounds(0, 80, 800, 520);
 		scrollPane.setBackground(Color.WHITE);
@@ -206,7 +209,7 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 		}else{
 			hotelSearchInfoVO=new HotelSearchInfoVO(orderState, userID);
 		}
-		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO);
+		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO,viewTag);
 		hotelListPane_JPanel.setPreferredSize(new Dimension(780, hotelListPane_JPanel.getHeight() ));
 		scrollPane.setViewportView(hotelListPane_JPanel);
 	}

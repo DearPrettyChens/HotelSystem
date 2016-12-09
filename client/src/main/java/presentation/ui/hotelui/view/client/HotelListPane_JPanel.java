@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import presentation.ui.searchhotelui.distributecontroller.SearchhotelDistributionController;
 import presentation.ui.tools.newclient_JLabel;
 import util.OrderState;
+import util.ViewTag;
 import vo.ordervo.TypeInfoVO;
 import vo.searchhotelvo.HotelListVO;
 import vo.searchhotelvo.HotelSearchInfoVO;
@@ -25,7 +26,10 @@ public class HotelListPane_JPanel extends JPanel {
 	private SearchhotelDistributionController searchhotelDistributionController = SearchhotelDistributionController
 			.getInstance();
 
-	public HotelListPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO) {
+	private ViewTag viewTag;
+	
+	public HotelListPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO,ViewTag viewTag) {
+		this.viewTag=viewTag;
 		this.setBackground(Color.white);
 		this.setLayout(null);
 		addComp(hotelSearchInfoVO);
@@ -35,7 +39,7 @@ public class HotelListPane_JPanel extends JPanel {
 
 		ArrayList<HotelListVO> hotelListVOs = searchhotelDistributionController.getSortedHotelList(hotelSearchInfoVO);
 		for (HotelListVO hotelListVO : hotelListVOs) {
-			HotelListInfo_JPanel hotelListInfo_JPanel = new HotelListInfo_JPanel(hotelListVO);
+			HotelListInfo_JPanel hotelListInfo_JPanel = new HotelListInfo_JPanel(hotelListVO,viewTag);
 			hotelListInfo_JPanels.add(hotelListInfo_JPanel);
 		}
 

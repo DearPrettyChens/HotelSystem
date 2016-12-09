@@ -54,7 +54,7 @@ public class UserDataHelperDatabaseImpl implements UserDataHelper {
 			if (transaction != null) {
 				transaction.rollback();
 			}
-			return ResultMessage.CONFLICTIONINSQLNEEDCOMMITAGAIN;
+			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 //			session.getTransaction().commit();
 			session.close();

@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+import presentation.ui.tools.JLabelTool;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.newclient_JLabel;
 import util.City;
 import util.TradingArea;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -65,48 +67,8 @@ private Font font=new Font("宋体",Font.BOLD, 14);
 		// 酒店策略
 		private ArrayList<HotelStrVO> hotelStrVO;
 		private JLabel hotelStrVOjl=new JLabel();
-		
-		
-		
-		
-	    
-		
-		public HotelDetailInfotoClient_JPanel( City city,TradingArea area,String introduce,String commonFacility,
-				String activityFacility,String service,String roomFacility,String enterprises){
-			
-			
-			this.city=city;
-			this.area=area;
-			this.introduce=introduce;
-			this.commonFacility=commonFacility;
-			this.activityFacility=activityFacility;
-			this.service=service;
-			this.roomFacility=roomFacility;
-			this.enterprises=enterprises;
-			//this.hotelStrVO=hotelStrVO;
-			
-			
-			this.setSize(800,400);
-			this.setLayout(null);
-			this.setBackground(Color.white);
-			addComp();
-			
-			
-			
-			
-		}
-		
-		
-		public HotelDetailInfotoClient_JPanel(){
-			
-			this.setSize(800,400);
-			this.setLayout(null);
-			this.setBackground(Color.white);
-			addComp();
-				
-			
-		}
-		
+		private JLabel strTitlejl=new JLabel();
+
        public HotelDetailInfotoClient_JPanel(HotelDetailInfoVO vo){
     	    
     	  
@@ -141,65 +103,73 @@ private Font font=new Font("宋体",Font.BOLD, 14);
 		
        
        
-       public void addComp(){
-    	   
-    	   cityjl.setText("城市："+city);
-    	   cityjl.setFont(font);
-    	   cityjl.setBounds(50,0,600,30);
-    	   this.add(cityjl);
-    	   
-    	   areajl.setText("商圈："+city);
-    	   areajl.setFont(font);
-    	   areajl.setBounds(50,30,600,30);
-    	   this.add(areajl);
-    	   
-    	   introducejl.setText("简介："+introduce);
-    	   introducejl.setFont(font);
-    	   introducejl.setBounds(50,60,600,30);
-    	   this.add(introducejl);
-    	   
-    	   commonFacilityjl.setText("通用设施："+commonFacility);
-    	   commonFacilityjl.setFont(font);
-    	   commonFacilityjl.setBounds(50,120,600,30);
-    	   this.add(commonFacilityjl);
-    	   
-    	   activityFacilityjl.setText("活动设施："+activityFacility);
-    	   activityFacilityjl.setFont(font);
-    	   activityFacilityjl.setBounds(50,150,600,30);
-    	   this.add(activityFacilityjl);
-    	   
-    	   servicejl.setText("服务设施："+city);
-    	   servicejl.setFont(font);
-    	   servicejl.setBounds(50,180,600,30);
-    	   this.add(servicejl);
-    	   
-    	   roomFacilityjl.setText("客房设施："+roomFacility);
-    	   roomFacilityjl.setFont(font);
-    	   roomFacilityjl.setBounds(50,210,600,30);
-    	   this.add(roomFacilityjl);
-    	   
-    	   enterprisesjl.setText("合作企业："+enterprises);
-    	   enterprisesjl.setFont(font);
-    	   enterprisesjl.setBounds(50,240,600,30);
-    	   this.add(enterprisesjl);
-    	   
-    	  
-    	   int size=hotelStrVO.size();
-    	   String s="";
-    	   for(int i=0;i<size;i++){
-    		   HotelStrVO tempvo=hotelStrVO.get(i);
-    		   
-    		   s=s+tempvo.getType()+tempvo.getAmount()+"折;";
-    				   
-    				   
-    		   
-    	   }
-    	   hotelStrVOjl.setText(s);
-    	   hotelStrVOjl.setFont(font);
-    	   hotelStrVOjl.setBounds(50,270,600,30);
-    	   this.add(hotelStrVOjl);
-    	   
-    	   
-       }
+	public void addComp() {
+
+		cityjl.setText("城      市：" + city);
+		cityjl.setFont(font);
+		cityjl.setBounds(50, 0, 600, 30);
+		this.add(cityjl);
+
+		areajl.setText("商      圈：" + city);
+		areajl.setFont(font);
+		areajl.setBounds(50, 30, 600, 30);
+		this.add(areajl);
+
+		introducejl.setText("简      介：" + introduce);
+		introducejl.setFont(font);
+		introducejl.setBounds(50, 60, 600, 30);
+		this.add(introducejl);
+
+		commonFacilityjl.setText("通用设施：" + commonFacility);
+		commonFacilityjl.setFont(font);
+		commonFacilityjl.setBounds(50, 120, 600, 30);
+		this.add(commonFacilityjl);
+
+		activityFacilityjl.setText("活动设施：" + activityFacility);
+		activityFacilityjl.setFont(font);
+		activityFacilityjl.setBounds(50, 150, 600, 30);
+		this.add(activityFacilityjl);
+
+		servicejl.setText("服务设施：" + city);
+		servicejl.setFont(font);
+		servicejl.setBounds(50, 180, 600, 30);
+		this.add(servicejl);
+
+		roomFacilityjl.setText("客房设施：" + roomFacility);
+		roomFacilityjl.setFont(font);
+		roomFacilityjl.setBounds(50, 210, 600, 30);
+		this.add(roomFacilityjl);
+
+		enterprisesjl.setText("合作企业：" + enterprises);
+		enterprisesjl.setFont(font);
+		enterprisesjl.setBounds(50, 240, 600, 30);
+		this.add(enterprisesjl);
+
+		strTitlejl.setText("酒店优惠：");
+		strTitlejl.setFont(font);
+		strTitlejl.setBounds(50, 270, 70, 30);
+		this.add(strTitlejl);
+		
+		int size = hotelStrVO.size();
+		String s = "";
+		for (int i = 0; i < size; i++) {
+			HotelStrVO tempvo = hotelStrVO.get(i);
+
+			s = s + tempvo.getType().getChinese() + tempvo.getAmount() + "折;";
+
+		}
+//		hotelStrVOjl.setText(s);
+		hotelStrVOjl.setFont(font);
+		hotelStrVOjl.setBounds(120, 270, 120, 80);
+		try {
+			JLabelTool.JlabelSetText(hotelStrVOjl, s);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.add(hotelStrVOjl);
+
+		
+	}
 
 }

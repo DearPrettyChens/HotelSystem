@@ -14,6 +14,8 @@ import presentation.ui.creditui.view.ClientCreditInfos_JPanel;
 import presentation.ui.creditui.view.DepositPanel;
 import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
 import presentation.ui.hotelui.view.MaintainHotelBasicInfoPanel;
+import presentation.ui.hotelui.view.client.MyFootView;
+import presentation.ui.hotelui.view.client.ReserveHotelView;
 import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
 import presentation.ui.orderui.view.OrderPanelViewInHotelWorker;
 import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
@@ -64,11 +66,11 @@ public class LeftChooseMap {
 		map.put("● 线下入住退房", new OfflineCheckIn_JPanel(hotelID));
 		
 //		顾客的左边栏
-		
+		map.put("预订酒店", ReserveHotelView.getInstance(userID));
 		map.put("我的信息", new Changemessage_JPanel(userID));
 		map.put("我的密码", new Changepassword_JPanel(UserType.Customer));
 		map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
-		
+		map.put("我的足迹", MyFootView.getInstance(userID));
 		map.put("我的信用", new ClientCreditInfos_JPanel(userID));
 	}
 

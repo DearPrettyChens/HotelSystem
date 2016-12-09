@@ -39,5 +39,5 @@ public enum ResultMessage {
 	FAIL,
 	UnkownFormat,
 	
-	CONFLICTIONINSQLNEEDCOMMITAGAIN //数据库同步出错，并发问题，需要用户重新提交信息
+	CONFLICTIONINSQLNEEDCOMMIViewTagAIN //数据库同步出错，并发问题，需要用户重新提交信息
 }

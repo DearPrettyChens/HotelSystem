@@ -33,8 +33,11 @@ import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
 import presentation.ui.creditui.view.ClientCreditInfos_JPanel;
 import presentation.ui.creditui.view.SingleCreditinfo_JPanel;
 import presentation.ui.hotelui.view.client.ChooseCityandEnterprise_JPanel;
+import presentation.ui.hotelui.view.client.HotelGeneralInfotoClient_JPanel;
 import presentation.ui.hotelui.view.client.HotelHasOrdered_JPanel;
 import presentation.ui.hotelui.view.client.HotelListInfo_JPanel;
+import presentation.ui.hotelui.view.client.HotelPanetoClient_JPanel;
+import presentation.ui.hotelui.view.client.ReserveHotelView;
 import presentation.ui.hotelui.view.client.RoomInfotoClient_JPanel;
 import presentation.ui.hotelui.view.client.SearchHotelPane_JPanel;
 import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
@@ -75,26 +78,10 @@ public class Client_JFrame extends JFrame {
     private ImageIcon imageIcon=null;
     
 
-
-	//private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
-
-
-	
-
-	private SingleHotelRemarktoClient_JPanel  cp=new  SingleHotelRemarktoClient_JPanel ("iwuefbw",5.5,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去");
-
-//	private ConfirmCounttoClient_JPanel  cp=new  ConfirmCounttoClient_JPanel ();
-
-	//private OrderToCheckIn_JPanel  cp=new  OrderToCheckIn_JPanel ();
-
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
+    private ReserveHotelView reserveHotelView;
 
-
-//    private SearchHoteltoClient_JPanel searchHoteltoClient_JPanel=new SearchHoteltoClient_JPanel("","");
    
-    private HotelHasOrdered_JPanel hotelHasOrdered_JPanel=HotelHasOrdered_JPanel.getInstance("") ;
-    // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
-    
 	//关于界面
 	private Font font = new Font("宋体", Font.BOLD, 16);
 	private Color backgroundcolor = new Color(148, 221, 184);
@@ -104,7 +91,7 @@ public class Client_JFrame extends JFrame {
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
 	private Home_JButton home_JButton = new Home_JButton();
-	private Arrow_JButton arrow_JButton = new Arrow_JButton();
+	private Arrow_JButton arrow_JButton = new Arrow_JButton(this);
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
@@ -124,14 +111,10 @@ public class Client_JFrame extends JFrame {
 
 	private ChooseArea_JPanel panel=new ChooseArea_JPanel();
 	
-    private Changemessage_JPanel changemessage_JPanel=new Changemessage_JPanel("");
-    private ClientCreditInfos_JPanel clientCreditInfos_JPanel=new ClientCreditInfos_JPanel("");
-   	private ChooseOrderTypetoClient_JPanel chooseOrderTypetoClient_JPanel=ChooseOrderTypetoClient_JPanel.getInstance("", "");
-//	private ChooseCityandEnterprise_JPanel chooseCityandEnterprise_JPanel=new ChooseCityandEnterprise_JPanel();
-	private SearchHotelPane_JPanel searchHoteltoClient_JPanel2;
-   	
-	public Client_JFrame() {
-	
+   
+   	public Client_JFrame() {
+	    reserveHotelView=ReserveHotelView.getInstance(customerID);
+	    
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);
@@ -150,7 +133,7 @@ public class Client_JFrame extends JFrame {
 		addComp();// 调用添加组件方法
         addHeadImage();//添加头像
 
-		
+        
 		this.setVisible(true);
 	}
 
@@ -209,39 +192,13 @@ public class Client_JFrame extends JFrame {
 		sidepanel.setBounds(0, 580, 200, 140);
 		getContentPane().add(sidepanel);
 		
-		 ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
-		 	orderStates.add(OrderState.NOTEXECUTED);
-			orderStates.add(OrderState.HASCANCELED);
-			orderStates.add(OrderState.HASREMARKED);
-			orderStates.add(OrderState.UNUSUAL);
-		  
-			HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
-			hotelSearchInfoVO .setCity(City.NANJING);
-			hotelSearchInfoVO.setTradingArea(TradingArea.HUNANLU);
-			hotelSearchInfoVO.setCustomerID("333");
-		searchHoteltoClient_JPanel2=new SearchHotelPane_JPanel(hotelSearchInfoVO);
-			
-		searchHoteltoClient_JPanel2.setBounds(200, 100, 800, 600);
-		this.add(searchHoteltoClient_JPanel2);
-		
-//			hotelHasOrdered_JPanel.setBounds(200, 100, 800, 600);
-//			this.add(hotelHasOrdered_JPanel);
-//			
-//		rightContainerPanel.add(chooseOrderTypetoClient_JPanel);
-//		this.add(rightContainerPanel);
 
-//		panel.setBounds(200,100,800,600);
-//
-//	    SingleRoomInfotoClient_JPanel  cp1=new  SingleRoomInfotoClient_JPanel ("bcoe","oeirv",8);
-//	    ArrayList<SingleRoomInfotoClient_JPanel> singleinfos=new ArrayList<SingleRoomInfotoClient_JPanel>();
-//	    singleinfos.add(cp1);
-//		RoomInfotoClient_JPanel  cp=new  RoomInfotoClient_JPanel (singleinfos);
-//		cp.setBounds(200,100,800,400);
-//		this.add(cp);
-//
-//		panel.setBounds(200,100,800,50);
-//
-//		getContentPane().add(panel);
+		
+		rightContainerPanel.add(reserveHotelView);
+		this.add(rightContainerPanel);
+		jp1.init();
+
+
 
 
 	}
