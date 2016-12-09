@@ -4,11 +4,11 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-import presentation.ui.hotelui.view.ChooseCityandEnterprise_JPanel;
-import presentation.ui.hotelui.view.HotelDetailInfotoClient_JPanel;
-import presentation.ui.hotelui.view.HotelGeneralInfotoClient_JPanel;
-import presentation.ui.hotelui.view.HotelListInfo_JPanel;
-import presentation.ui.hotelui.view.SearchHoteltoClient_JPanel;
+import presentation.ui.hotelui.view.client.ChooseCityandEnterprise_JPanel;
+import presentation.ui.hotelui.view.client.HotelDetailInfotoClient_JPanel;
+import presentation.ui.hotelui.view.client.HotelGeneralInfotoClient_JPanel;
+import presentation.ui.hotelui.view.client.HotelListInfo_JPanel;
+import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
 import util.City;
 import util.TradingArea;
 

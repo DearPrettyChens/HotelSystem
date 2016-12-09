@@ -16,7 +16,8 @@ public class SearchhotelDistributionController {
 	private static SearchhotelDistributionController controller=null;
 	private SearchHotelBLService searchHotelBLService;
 	private SearchhotelDistributionController(){
-		searchHotelBLService=SearchHotelController.getInstance();
+//		searchHotelBLService=SearchHotelController.getInstance();
+		searchHotelBLService=new SearchHotelBLService_Stub();
 	}
 	public static SearchhotelDistributionController getInstance(){
 		if(controller==null){

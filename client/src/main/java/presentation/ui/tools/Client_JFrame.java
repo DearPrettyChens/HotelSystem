@@ -22,18 +22,24 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import businesslogic.bl.orderbl.Order;
+import po.HotelListPO;
 import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
-
-
+import presentation.ui.searchhotelui.view.Searchhotel_JPanel;
 import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.checkinui.view.SearchOrderToCheckIn_JPanel;
 import presentation.ui.checkinui.view.SingleAvailableRoomInfo_JPanel;
 import presentation.ui.creditui.view.ClientCreditInfos_JPanel;
 import presentation.ui.creditui.view.SingleCreditinfo_JPanel;
-import presentation.ui.hotelui.view.RoomInfotoClient_JPanel;
-import presentation.ui.hotelui.view.SingleHotelRemarktoClient_JPanel;
-import presentation.ui.hotelui.view.SingleRoomInfotoClient_JPanel;
+import presentation.ui.hotelui.view.client.ChooseCityandEnterprise_JPanel;
+import presentation.ui.hotelui.view.client.HotelHasOrdered_JPanel;
+import presentation.ui.hotelui.view.client.HotelListInfo_JPanel;
+import presentation.ui.hotelui.view.client.RoomInfotoClient_JPanel;
+import presentation.ui.hotelui.view.client.SearchHotelPane_JPanel;
+import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
+import presentation.ui.hotelui.view.client.SingleHotelRemarktoClient_JPanel;
+import presentation.ui.hotelui.view.client.SingleRoomInfotoClient_JPanel;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
 import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
 import presentation.ui.orderui.view.client.ConfirmCounttoClient_JPanel;
@@ -46,10 +52,14 @@ import presentation.ui.orderui.view.client.WriteOrdertoClient_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
 import presentation.ui.userui.view.Changemessage_JPanel;
 import presentation.ui.userui.view.Changepassword_JPanel;
+import util.City;
 import util.OrderState;
+import util.TradingArea;
 import util.UserType;
 import vo.creditvo.CreditVO;
 import vo.ordervo.OrderListVO;
+import vo.searchhotelvo.HotelListVO;
+import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
  * 顾客客户端左上不变的地方
@@ -79,6 +89,10 @@ public class Client_JFrame extends JFrame {
 
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
 
+
+//    private SearchHoteltoClient_JPanel searchHoteltoClient_JPanel=new SearchHoteltoClient_JPanel("","");
+   
+    private HotelHasOrdered_JPanel hotelHasOrdered_JPanel=HotelHasOrdered_JPanel.getInstance("") ;
     // private SingleOrderListInfotoClient  cp=new SingleOrderListInfotoClient ("uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi","uebhwurbhi");
     
 	//关于界面
@@ -113,8 +127,9 @@ public class Client_JFrame extends JFrame {
     private Changemessage_JPanel changemessage_JPanel=new Changemessage_JPanel("");
     private ClientCreditInfos_JPanel clientCreditInfos_JPanel=new ClientCreditInfos_JPanel("");
    	private ChooseOrderTypetoClient_JPanel chooseOrderTypetoClient_JPanel=ChooseOrderTypetoClient_JPanel.getInstance("", "");
-	
-	
+//	private ChooseCityandEnterprise_JPanel chooseCityandEnterprise_JPanel=new ChooseCityandEnterprise_JPanel();
+	private SearchHotelPane_JPanel searchHoteltoClient_JPanel2;
+   	
 	public Client_JFrame() {
 	
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
@@ -194,12 +209,26 @@ public class Client_JFrame extends JFrame {
 		sidepanel.setBounds(0, 580, 200, 140);
 		getContentPane().add(sidepanel);
 		
-
-//		clientCreditInfos_JPanel.setBounds(200, 100, 800, 600);
-//		this.add(clientCreditInfos_JPanel);
+		 ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
+		 	orderStates.add(OrderState.NOTEXECUTED);
+			orderStates.add(OrderState.HASCANCELED);
+			orderStates.add(OrderState.HASREMARKED);
+			orderStates.add(OrderState.UNUSUAL);
+		  
+			HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
+			hotelSearchInfoVO .setCity(City.NANJING);
+			hotelSearchInfoVO.setTradingArea(TradingArea.HUNANLU);
+			hotelSearchInfoVO.setCustomerID("333");
+		searchHoteltoClient_JPanel2=new SearchHotelPane_JPanel(hotelSearchInfoVO);
+			
+		searchHoteltoClient_JPanel2.setBounds(200, 100, 800, 600);
+		this.add(searchHoteltoClient_JPanel2);
 		
-		rightContainerPanel.add(chooseOrderTypetoClient_JPanel);
-		this.add(rightContainerPanel);
+//			hotelHasOrdered_JPanel.setBounds(200, 100, 800, 600);
+//			this.add(hotelHasOrdered_JPanel);
+//			
+//		rightContainerPanel.add(chooseOrderTypetoClient_JPanel);
+//		this.add(rightContainerPanel);
 
 //		panel.setBounds(200,100,800,600);
 //
@@ -240,7 +269,10 @@ public class Client_JFrame extends JFrame {
 	public static void main(String[] args) {
 
 		new Client_JFrame();
-
+	
+        
+		
+		
 	}
 
 }

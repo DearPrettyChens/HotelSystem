@@ -1,4 +1,4 @@
-package presentation.ui.hotelui.view;
+package presentation.ui.hotelui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;
