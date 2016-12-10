@@ -60,7 +60,7 @@ public class WebMarketMan_JFrame extends JFrame {
 	private OrderPanelInWebMarketMan orderPanelInWebMarketMan=OrderPanelInWebMarketMan.getInstance();
 	
 	public WebMarketMan_JFrame(String userName,String userID) {
-		this.webMarketManName="营销人员："+userName;
+		this.webMarketManName=userName;
 		this.webMarketManID=userID;
 		this.jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
 		this.jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);

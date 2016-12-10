@@ -66,7 +66,7 @@ public class Webmannger_JFrame extends JFrame {
 	private JPanel sidepanel = new JPanel();
 
 	public Webmannger_JFrame(String userName,String userID) {
-		this.managerName="管理员："+userName;
+		this.managerName=userName;
 		this.userID=userID;
 		this.jp1= new Basic_JPanel("营销人员", "image//user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID);
 		this.jp2= new Basic_JPanel("顾客会员", "image//user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID);
