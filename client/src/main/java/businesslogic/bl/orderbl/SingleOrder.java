@@ -1,8 +1,10 @@
 package businesslogic.bl.orderbl;
 
 import java.rmi.RemoteException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.creditbl.Credit;
@@ -79,7 +81,18 @@ public class SingleOrder {
 			throw new NullCustomerIDException();
 		}
 		try {
-			//顾客下订单时订单信息的po(orderID,orderTime是在界面层设好的吗？不确定）
+			//顾客下订单时订单信息的po
+			Date orderTime=new Date();
+			orderInfoVO.setOrderTime(orderTime);
+			//设置最晚入住时间为当天的18点
+			orderInfoVO.setLateCheckInTime(new Date(orderInfoVO.getExpectedCheckInTime().getYear(),
+					orderInfoVO.getExpectedCheckInTime().getMonth(),
+					orderInfoVO.getExpectedCheckInTime().getDay(),18,0,0));
+			String orderID="";
+			SimpleDateFormat   simpleDateFormat   =   new   SimpleDateFormat("yyyyMMdd");  
+			orderID=simpleDateFormat.format(orderTime);
+			orderID=orderID+orderInfoVO.getHotelID().substring(2)+orderInfoVO.getCustomerID();
+			orderInfoVO.setOrderID(orderID);
 			orderDao.addOrder(orderInfoVO.toMakeOrderPO());
 			//获得当前可用房间数
 			int preRoomNum=0;
