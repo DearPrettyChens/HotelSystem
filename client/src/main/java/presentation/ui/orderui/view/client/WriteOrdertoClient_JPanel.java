@@ -3,6 +3,7 @@ package presentation.ui.orderui.view.client;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -10,6 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 import exception.NotFoundHotelException;
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
@@ -17,8 +22,14 @@ import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.newclient_JLabel;
 import util.BedType;
+import util.Children;
+import util.OrderState;
+import util.ResultMessage;
+import util.Telephone;
+import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.hotelvo.HotelDetailInfoVO;
+import vo.ordervo.OrderInfoVO;
 
 /**
  * 顾客填写订单的界面
@@ -47,15 +58,21 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 	private JPanel bgjp4 = new JPanel();
 
 	private MyTextfield namejtf = new MyTextfield("2—8位汉字");
+	private JLabel infoBesideName = new JLabel();
 	private MyTextfield teljtf = new MyTextfield("11位手机号");
+	private JLabel infoBesideTel = new JLabel();
 
+	boolean telephoneValid = false;
+	
 	private JTextField numberjtf = new JTextField();
+	private JLabel infoBesideNumber = new JLabel();
 
 	private MyTextfield fromtimejtf = new MyTextfield("请选择日期");
 	private MyTextfield totimejtf = new MyTextfield("请选择日期");
+	private JLabel infoBesideTime = new JLabel();
 
-	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy/MM/dd");
-	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy/MM/dd");
+	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy-MM-dd");
+	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy-MM-dd");
 
 	private JLabel roommessagejl = new JLabel("客房信息");
 	private JLabel clientmessagejl = new JLabel("入住人信息");
@@ -138,6 +155,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		totimejtf.setBounds(430, 50, 100, 25);
 
 		this.add(totimejtf);
+		
 		// this.add(jp);
 		p2.initCalendarPanel();
 		JLabel l2 = new JLabel("日历面板");
@@ -145,6 +163,11 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		this.add(p2);
 		// this.getContentPane().add(txt1);
 
+		infoBesideTime.setBounds(550,50,150,25);
+		infoBesideTime.setFont(font);
+		infoBesideTime.setForeground(Color.RED);
+		this.add(infoBesideTime);
+		
 		roommessagejl.setFont(font);
 		roommessagejl.setBounds(50, 120, 150, 30);
 		this.add(roommessagejl);
@@ -156,7 +179,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		checkouttimejl.setFont(font);
 		checkouttimejl.setBounds(400, 50, 100, 25);
 		this.add(checkouttimejl);
-
+		
 		hotelnamejl.setFont(font);
 		hotelnamejl.setText("入住酒店：" + hotelname);
 		hotelnamejl.setBounds(200, 85, 300, 25);
@@ -198,6 +221,10 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		numberjtf.setFont(font);
 		numberjtf.setBounds(300, 190, 100, 25);
 		this.add(numberjtf);
+		infoBesideNumber.setBounds(420,190,150,25);
+		infoBesideNumber.setFont(font);
+		infoBesideNumber.setForeground(Color.RED);
+		this.add(infoBesideNumber);
 
 		clientmessagejl.setFont(font);
 		clientmessagejl.setBounds(50, 280, 150, 25);
@@ -211,6 +238,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		this.add(haschildjb);
 
 		hasnochildjb.setBounds(350, 245, 100, 25);
+		hasnochildjb.setSelected(true);
 		this.add(hasnochildjb);
 
 		clientnamejl.setFont(font);
@@ -219,6 +247,10 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 
 		namejtf.setBounds(300, 280, 200, 25);
 		this.add(namejtf);
+		infoBesideName.setBounds(520, 280, 150, 25);
+		infoBesideName.setFont(font);
+		infoBesideName.setForeground(Color.RED);
+		this.add(infoBesideName);
 
 		clientteljl.setFont(font);
 		clientteljl.setBounds(200, 315, 150, 25);
@@ -226,6 +258,90 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 
 		teljtf.setBounds(300, 315, 200, 25);
 		this.add(teljtf);
+		infoBesideTel.setBounds(520,315,150,25);
+		infoBesideTel.setFont(font);
+		infoBesideTel.setForeground(Color.RED);
+		this.add(infoBesideTel);
+		
+		Document telDoc = teljtf.getDocument();
+		telDoc.addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				infoBesideTel.setText("");
+				if (teljtf.getText().equals("--11位手机号--") || teljtf.getText().trim().equals("")) {// ||password_TextField.getText().trim().length()==0){
+					telephoneValid = false;
+					infoBesideTel.setText("请输入联系方式！");
+				} else {
+					Document document = e.getDocument();
+					try {
+						String telephone = document.getText(0, document.getLength());
+						Telephone tel = new Telephone(telephone);
+						ResultMessage message = tel.checkValid();
+						if (message == ResultMessage.FAIL) {
+							telephoneValid = false;
+							infoBesideTel.setText("联系方式格式错误！");
+						} else {
+							telephoneValid = true;
+							infoBesideTel.setText("√");
+						}
+					} catch (BadLocationException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				infoBesideTel.setText("");
+				if (teljtf.getText().equals("--11位手机号--") || teljtf.getText().trim().equals("")) {// ||password_TextField.getText().trim().length()==0){
+					telephoneValid = false;
+					infoBesideTel.setText("请输入联系方式！");
+				} else {
+					Document document = e.getDocument();
+					try {
+						String telephone = document.getText(0, document.getLength());
+						Telephone tel = new Telephone(telephone);
+						ResultMessage message = tel.checkValid();
+						if (message == ResultMessage.FAIL) {
+							telephoneValid = false;
+							infoBesideTel.setText("联系方式格式错误！");
+						} else {
+							telephoneValid = true;
+							infoBesideTel.setText("√");
+						}
+					} catch (BadLocationException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				infoBesideTel.setText("");
+				if (teljtf.getText().equals("--11位手机号--") || teljtf.getText().trim().equals("")) {// ||password_TextField.getText().trim().length()==0){
+					telephoneValid = false;
+					infoBesideTel.setText("请输入联系方式！");
+				} else {
+					Document document = e.getDocument();
+					try {
+						String telephone = document.getText(0, document.getLength());
+						Telephone tel = new Telephone(telephone);
+						ResultMessage message = tel.checkValid();
+						if (message == ResultMessage.FAIL) {
+							telephoneValid = false;
+							infoBesideTel.setText("联系方式格式错误！");
+						} else {
+							telephoneValid = true;
+							infoBesideTel.setText("√");
+						}
+					} catch (BadLocationException e1) {
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
+
 
 		bgjp1.setBackground(color);
 		bgjp1.setBounds(50, 10, 700, 20);
@@ -246,6 +362,47 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		group.add(haschildjb);
 		group.add(hasnochildjb);
 
+	}
+	
+	public OrderInfoVO getOrderInfo(){
+//		System.out.println(userID);
+//		System.out.println("2");
+		boolean infoValid = true;
+		infoBesideName.setText("");
+		infoBesideNumber.setText("");
+		infoBesideTime.setText("");
+		if(namejtf.getText().equals("2—8位汉字")||namejtf.getText().length()<2||namejtf.getText().length()>8){
+			infoBesideName.setText("姓名长度错误！");
+			infoValid = false;
+		}
+		if(fromtimejtf.getText().equals("请选择日期")||totimejtf.getText().equals("请选择日期")){
+			infoBesideTime.setText("请选择日期！");
+			infoValid=false;
+		}
+		if(!telephoneValid||teljtf.getText().equals("11位手机号")){
+			infoBesideTel.setText("联系方式格式错误！");
+			infoValid=false;
+		}
+		if(numberjtf.getText().length()==0){
+			infoBesideNumber.setText("请输入房间数量！");
+			infoValid=false;
+		}
+		if(!infoValid){
+			return null;
+		}else{
+			//username从哪拿到？
+			//入住人数？
+			Children hasChild = Children.NOTEXIST;
+			if(haschildjb.isSelected()){
+				hasChild=Children.EXIST;
+			}
+		OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, namejtf.getText(), 
+				teljtf.getText(), new Date(), new Date(TransHelper.stringToDate(fromtimejtf.getText())),
+						new Date(TransHelper.stringToDate(totimejtf.getText())), null,
+						roomtypes.get(roomtypecomboBox.getSelectedIndex()), bedtypes.get(bedtypecomboBox.getSelectedIndex()), 
+						Integer.parseInt(numberjtf.getText()), 1, hasChild, 0,OrderState.NOTEXECUTED);
+		return vo;
+	}
 	}
 
 }

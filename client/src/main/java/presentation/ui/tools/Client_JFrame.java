@@ -73,7 +73,7 @@ import vo.searchhotelvo.HotelSearchInfoVO;
  */
 public class Client_JFrame extends JFrame {
     //关于顾客基本信息
-	private String customerID="";
+	private String customerID="1";
 	private String customerName="陈小豆";
     private ImageIcon imageIcon=null;
     
@@ -113,7 +113,7 @@ public class Client_JFrame extends JFrame {
 	
    
    	public Client_JFrame() {
-	    reserveHotelView=ReserveHotelView.getInstance(customerID);
+	    reserveHotelView=ReserveHotelView.getInstance(customerID,customerName);
 	    
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置

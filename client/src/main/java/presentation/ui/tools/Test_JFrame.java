@@ -8,6 +8,7 @@ import presentation.ui.hotelui.view.client.ChooseCityandEnterprise_JPanel;
 import presentation.ui.hotelui.view.client.HotelDetailInfotoClient_JPanel;
 import presentation.ui.hotelui.view.client.HotelGeneralInfotoClient_JPanel;
 import presentation.ui.hotelui.view.client.HotelListInfo_JPanel;
+import presentation.ui.hotelui.view.client.SearchHotelPane_JPanel;
 import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
 import util.City;
 import util.TradingArea;

@@ -20,19 +20,21 @@ public class ReserveHotelView extends JPanel {
 	private HotelPanetoClient_JPanel hotelPanetoClient_JPanel;// 酒店详细信息界面
 	private MakeOrdertoClient_JPanel makeOrdertoClient_JPanel;// 生成订单界面
 	private String userID;
+	private String customerName;
 	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(this);
 	
 	  private static ReserveHotelView reserveHotelView;
 		
-	    public static ReserveHotelView getInstance(String userID) {
+	    public static ReserveHotelView getInstance(String userID,String userName) {
 			if(reserveHotelView==null){
-				reserveHotelView=new ReserveHotelView(userID);
+				reserveHotelView=new ReserveHotelView(userID,userName);
 			}
 			return reserveHotelView;
 		}
 	
-	private ReserveHotelView(String userID) {
+	private ReserveHotelView(String userID,String userName) {
 		this.userID=userID;
+		this.customerName=userName;
 		this.setLayout(null);
 		this.setBackground(Color.WHITE);
 		this.setBounds(0, 0, 800, 600);
@@ -56,7 +58,7 @@ public class ReserveHotelView extends JPanel {
 	
 	public void generateNewOrder(String hotelID){
 		this.removeAll();
-		makeOrdertoClient_JPanel=new MakeOrdertoClient_JPanel(hotelID, userID, ViewTag.HOTELRESERVERSION);
+		makeOrdertoClient_JPanel=new MakeOrdertoClient_JPanel(hotelID, userID,customerName, ViewTag.HOTELRESERVERSION);
 	    this.add(makeOrdertoClient_JPanel);
 	    this.updateUI();
 	}
