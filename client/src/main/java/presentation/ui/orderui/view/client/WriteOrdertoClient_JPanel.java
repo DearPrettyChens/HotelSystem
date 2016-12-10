@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.TransferHandler;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -20,6 +21,7 @@ import exception.NotFoundHotelException;
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.newclient_JLabel;
 import util.BedType;
 import util.Children;
@@ -28,6 +30,7 @@ import util.ResultMessage;
 import util.Telephone;
 import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
+import vo.availableroomvo.AvailableRoomNumberVO;
 import vo.hotelvo.HotelDetailInfoVO;
 import vo.ordervo.OrderInfoVO;
 
@@ -62,7 +65,8 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 	private MyTextfield teljtf = new MyTextfield("11位手机号");
 	private JLabel infoBesideTel = new JLabel();
 
-	boolean telephoneValid = false;
+	private boolean telephoneValid = false;
+	private boolean numberValid = false;
 	
 	private JTextField numberjtf = new JTextField();
 	private JLabel infoBesideNumber = new JLabel();
@@ -221,6 +225,72 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		numberjtf.setFont(font);
 		numberjtf.setBounds(300, 190, 100, 25);
 		this.add(numberjtf);
+		Document numberDoc = teljtf.getDocument();
+		numberDoc.addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				infoBesideNumber.setText("");
+				if ( numberjtf.getText().trim().equals("")) {
+					numberValid = false;
+					infoBesideNumber.setText("请输入房间数！");
+				} else {
+					Document document = e.getDocument();
+					AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()), bedtypes.get(bedtypecomboBox.getSelectedIndex()),
+							new Date(TransHelper.stringToTime(fromtimejtf.getText())), hotelID);
+					ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
+					if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
+						numberValid = false;
+						infoBesideNumber.setText("房间数量不足！");
+					} else {
+						numberValid = true;
+						infoBesideNumber.setText("√");
+					}
+				}
+			}
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				infoBesideNumber.setText("");
+				if ( numberjtf.getText().trim().equals("")) {
+					numberValid = false;
+					infoBesideNumber.setText("请输入房间数！");
+				} else {
+					Document document = e.getDocument();
+					AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()), bedtypes.get(bedtypecomboBox.getSelectedIndex()),
+							new Date(TransHelper.stringToTime(fromtimejtf.getText())), hotelID);
+					ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
+					if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
+						numberValid = false;
+						infoBesideNumber.setText("房间数量不足！");
+					} else {
+						numberValid = true;
+						infoBesideNumber.setText("√");
+					}
+				}
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				infoBesideNumber.setText("");
+				if ( numberjtf.getText().trim().equals("")) {
+					numberValid = false;
+					infoBesideNumber.setText("请输入房间数！");
+				} else {
+					Document document = e.getDocument();
+					AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()), bedtypes.get(bedtypecomboBox.getSelectedIndex()),
+							new Date(TransHelper.stringToTime(fromtimejtf.getText())), hotelID);
+					ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
+					if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
+						numberValid = false;
+						infoBesideNumber.setText("房间数量不足！");
+					} else {
+						numberValid = true;
+						infoBesideNumber.setText("√");
+					}
+				}
+			}
+		});
 		infoBesideNumber.setBounds(420,190,150,25);
 		infoBesideNumber.setFont(font);
 		infoBesideNumber.setForeground(Color.RED);
@@ -276,8 +346,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 					Document document = e.getDocument();
 					try {
 						String telephone = document.getText(0, document.getLength());
-						Telephone tel = new Telephone(telephone);
-						ResultMessage message = tel.checkValid();
+						ResultMessage message = orderDistributionController.checkTelephone(telephone);
 						if (message == ResultMessage.FAIL) {
 							telephoneValid = false;
 							infoBesideTel.setText("联系方式格式错误！");
@@ -301,8 +370,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 					Document document = e.getDocument();
 					try {
 						String telephone = document.getText(0, document.getLength());
-						Telephone tel = new Telephone(telephone);
-						ResultMessage message = tel.checkValid();
+						ResultMessage message = orderDistributionController.checkTelephone(telephone);
 						if (message == ResultMessage.FAIL) {
 							telephoneValid = false;
 							infoBesideTel.setText("联系方式格式错误！");
@@ -326,8 +394,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 					Document document = e.getDocument();
 					try {
 						String telephone = document.getText(0, document.getLength());
-						Telephone tel = new Telephone(telephone);
-						ResultMessage message = tel.checkValid();
+						ResultMessage message = orderDistributionController.checkTelephone(telephone);
 						if (message == ResultMessage.FAIL) {
 							telephoneValid = false;
 							infoBesideTel.setText("联系方式格式错误！");
@@ -365,8 +432,12 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 	}
 	
 	public OrderInfoVO getOrderInfo(){
-//		System.out.println(userID);
-//		System.out.println("2");
+		if(orderDistributionController.checkUserCredit(userID)==ResultMessage.LACKOFCREDIT){
+			//信用不足无法生成订单
+			SaveFail_JFrame fail_JFrame = new SaveFail_JFrame();
+			fail_JFrame.setLableText("您的信用值不足，无法下订单噢～");
+			return null;
+		}
 		boolean infoValid = true;
 		infoBesideName.setText("");
 		infoBesideNumber.setText("");
@@ -383,26 +454,30 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 			infoBesideTel.setText("联系方式格式错误！");
 			infoValid=false;
 		}
-		if(numberjtf.getText().length()==0){
-			infoBesideNumber.setText("请输入房间数量！");
+		if(numberValid=false){
+			infoBesideNumber.setText("房间数量错误！");
+			infoValid=false;
+		}
+		if(orderDistributionController.checkTime(new Date(TransHelper.stringToDate(fromtimejtf.getText())))
+				!=ResultMessage.SUCCESS){
 			infoValid=false;
 		}
 		if(!infoValid){
 			return null;
 		}else{
 			//username从哪拿到？
-			//入住人数？
 			Children hasChild = Children.NOTEXIST;
 			if(haschildjb.isSelected()){
 				hasChild=Children.EXIST;
 			}
-		OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, namejtf.getText(), 
+			//入住人数默认为1
+			OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, namejtf.getText(), 
 				teljtf.getText(), new Date(), new Date(TransHelper.stringToDate(fromtimejtf.getText())),
 						new Date(TransHelper.stringToDate(totimejtf.getText())), null,
 						roomtypes.get(roomtypecomboBox.getSelectedIndex()), bedtypes.get(bedtypecomboBox.getSelectedIndex()), 
 						Integer.parseInt(numberjtf.getText()), 1, hasChild, 0,OrderState.NOTEXECUTED);
-		return vo;
-	}
+			return vo;
+		}
 	}
 
 }

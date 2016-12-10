@@ -91,7 +91,10 @@ public class SaveFail_JFrame  extends JFrame{
 		
 	}
 	
-
+	public void setLableText(String info){
+		this.halfjl.setText(info);
+		halfjl.setBounds(70, 100, 300, 50);
+	}
 
 	
 	
