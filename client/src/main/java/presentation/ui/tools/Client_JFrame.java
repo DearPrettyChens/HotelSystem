@@ -116,12 +116,12 @@ public class Client_JFrame extends JFrame {
   
    		this.customerName=userName;
    		this.customerID=userID;
- 		this.jp1=new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel,this.customerName,this.customerID);
-   		this.jp2= new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel,this.customerName,this.customerID);
-   		this.jp3 = new Basic_JPanel("我的密码", "image//key.png", 2, allpanel,rightContainerPanel,this.customerName,this.customerID);
-   		this.jp4 = new Basic_JPanel("我的订单", "image//note.png", 3, allpanel,rightContainerPanel,this.customerName,this.customerID);
-   		this.jp5 = new Basic_JPanel("我的足迹", "image//shop.png", 4, allpanel,rightContainerPanel,this.customerName,this.customerID);
-   		this.jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel,rightContainerPanel,this.customerName,this.customerID);
+ 		this.jp1=new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp2= new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp3 = new Basic_JPanel("我的密码", "image//key.png", 2, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp4 = new Basic_JPanel("我的订单", "image//note.png", 3, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp5 = new Basic_JPanel("我的足迹", "image//shop.png", 4, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
 	    reserveHotelView=ReserveHotelView.getInstance(customerID,customerName);
 	    
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,

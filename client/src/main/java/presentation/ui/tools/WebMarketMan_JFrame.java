@@ -62,10 +62,10 @@ public class WebMarketMan_JFrame extends JFrame {
 	public WebMarketMan_JFrame(String userName,String userID) {
 		this.webMarketManName=userName;
 		this.webMarketManID=userID;
-		this.jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
-		this.jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
-		this.jp3= new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
-		this.jp4= new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
+		this.jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp3= new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp4= new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);

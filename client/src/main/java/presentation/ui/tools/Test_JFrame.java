@@ -33,12 +33,12 @@ public class Test_JFrame extends JFrame{
 	//HotelDetailInfotoClient_JPanel  cp2=new HotelDetailInfotoClient_JPanel (City.NANJING,TradingArea.HUNANLU,"123456asdfg","123456asdfg","123456asdfg",
 			//"123456asdfg","123456asdfg","123456asdfg");
 
-	SearchHoteltoClient_JPanel cp=new SearchHoteltoClient_JPanel(new HotelSearchInfoVO ());
+//	SearchHoteltoClient_JPanel cp=new SearchHoteltoClient_JPanel(new HotelSearchInfoVO ());
 	public Test_JFrame(){
 		
 		
 		this.setLayout(null);
-		cp.setBounds(0,0,800,600);
+//		cp.setBounds(0,0,800,600);
 		//this.add(cp);
 		
 		//cp2.setBounds(0,200,800,400);
@@ -46,7 +46,7 @@ public class Test_JFrame extends JFrame{
 		
 		a.setBounds(200,30,200,20);
 		a.setForeground(Color.BLACK);
-		this.add(cp);
+//		this.add(cp);
 		
 		
 		this.setSize(800,600);

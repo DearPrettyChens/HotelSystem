@@ -89,13 +89,13 @@ public class Hotelworker_JFrame extends JFrame {
 		this.hotelName=userName;
 		this.hotelID=userID;
 		this.hotelWorkerID=userID;
-		this.myhotel_Jlabel1 = new Hotelworker_JLabel("● 维护酒店信息",0,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
-		this.myhotel_Jlabel2 = new Hotelworker_JLabel("● 录入客房信息",1,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
-		this.myorder_Jlabel1 = new Hotelworker_JLabel("● 浏览订单列表",2,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
-		this.mystr_Jlabel1 = new Hotelworker_JLabel("● 制定酒店策略",3,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
-		this.checkin_Jlabel1 = new Hotelworker_JLabel("● 线上入住办理",4,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
-		this.checkin_Jlabel2 = new Hotelworker_JLabel("● 线上退房办理",5,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
-		this.checkin_Jlabel3 = new Hotelworker_JLabel("● 线下入住退房",6,allLabels,rightContainerPanel,hotelName,hotelWorkerID);
+		this.myhotel_Jlabel1 = new Hotelworker_JLabel("● 维护酒店信息",0,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.myhotel_Jlabel2 = new Hotelworker_JLabel("● 录入客房信息",1,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.myorder_Jlabel1 = new Hotelworker_JLabel("● 浏览订单列表",2,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.mystr_Jlabel1 = new Hotelworker_JLabel("● 制定酒店策略",3,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.checkin_Jlabel1 = new Hotelworker_JLabel("● 线上入住办理",4,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.checkin_Jlabel2 = new Hotelworker_JLabel("● 线上退房办理",5,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.checkin_Jlabel3 = new Hotelworker_JLabel("● 线下入住退房",6,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
 //		this.hotelID=...  注意应该是传信息进来初始化的
 		maintainHotelBasicInfoPanel=new MaintainHotelBasicInfoPanel(hotelID);
 		
