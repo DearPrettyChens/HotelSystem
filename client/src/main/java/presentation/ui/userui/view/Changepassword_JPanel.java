@@ -20,6 +20,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 public class Changepassword_JPanel  extends JPanel{
 	private UserType userType;
+	private String userID;
 	private UserSafetyDistributeController distributeController=UserSafetyDistributeController.getInstance();
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
@@ -52,8 +53,9 @@ public class Changepassword_JPanel  extends JPanel{
     private Font font=new Font("宋体",Font.BOLD, 16);
     
     
-	public Changepassword_JPanel(UserType type){
+	public Changepassword_JPanel(UserType type,String userID){
 		this.userType=type;
+		this.userID=userID;
 		this.setBackground(Color.white);
 		this.setLayout(null);
 		

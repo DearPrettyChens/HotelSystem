@@ -43,13 +43,16 @@ public class LeftChooseMap {
 	private String userID="";
 	private String userName="";
 	
-	private LeftChooseMap() {
+	private LeftChooseMap(String userName,String userID) {
+		this.userName=userName;
+		this.userID=userID;
+		this.hotelID=userID;
 		map=new HashMap<String, JPanel>();
 		//网站管理人员的左边栏
 		map.put("营销人员", new ManageWebMarketManPanel());
 		map.put("顾客会员", new ManageCustomerPanel());
 		map.put("酒店人员", new ManageHotelWorkerPanel() );
-		map.put("修改密码", new Changepassword_JPanel(UserType.Manager));
+		map.put("修改密码", new Changepassword_JPanel(UserType.Manager,userID));
 		
 		//网站营销人员的左边栏
 		map.put("管理订单", OrderPanelInWebMarketMan.getInstance());
@@ -69,15 +72,15 @@ public class LeftChooseMap {
 //		顾客的左边栏
 		map.put("预订酒店", ReserveHotelView.getInstance(userID,userName));
 		map.put("我的信息", new Changemessage_JPanel(userID));
-		map.put("我的密码", new Changepassword_JPanel(UserType.Customer));
+		map.put("我的密码", new Changepassword_JPanel(UserType.Customer,userID));
 		map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
 		map.put("我的足迹", MyFootView.getInstance(userID));
 		map.put("我的信用", new ClientCreditInfos_JPanel(userID));
 	}
 
-	public static LeftChooseMap getInstance() {
+	public static LeftChooseMap getInstance(String userName,String userID) {
          if (leftChooseMap==null){
-        	 leftChooseMap=new LeftChooseMap();
+        	 leftChooseMap=new LeftChooseMap(userName,userID);
          }
          return leftChooseMap;
 	}

@@ -37,8 +37,8 @@ import util.UserType;
  */
 public class Webmannger_JFrame extends JFrame {
 	// 关于网站管理人员基本信息
-
-	private String managerName = "管理员：悦悦";
+	private String managerName;
+	private String userID;
 	public RightContainerPanel allPersonPanel = new RightContainerPanel();
 	private ManageWebMarketManPanel manageWebMarketManPanel = new ManageWebMarketManPanel();
 
@@ -52,10 +52,10 @@ public class Webmannger_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private Basic_JPanel jp1 = new Basic_JPanel("营销人员", "image//user.png", 0, allpanel, allPersonPanel);
-	private Basic_JPanel jp2 = new Basic_JPanel("顾客会员", "image//user2.png", 1, allpanel, allPersonPanel);
-	private Basic_JPanel jp3 = new Basic_JPanel("酒店人员", "image//shop.png", 2, allpanel, allPersonPanel);
-	private Basic_JPanel jp4 = new Basic_JPanel("修改密码", "image//password.png", 3, allpanel, allPersonPanel);
+	private Basic_JPanel jp1 ;
+	private Basic_JPanel jp2 ;
+	private Basic_JPanel jp3 ;
+	private Basic_JPanel jp4 ;
 
 	private HeadPanel headPanel;// 头像部分
 
@@ -65,8 +65,13 @@ public class Webmannger_JFrame extends JFrame {
 	private JPanel abovepanel = new JPanel();
 	private JPanel sidepanel = new JPanel();
 
-	public Webmannger_JFrame() {
-
+	public Webmannger_JFrame(String userName,String userID) {
+		this.managerName="管理员："+userName;
+		this.userID=userID;
+		this.jp1= new Basic_JPanel("营销人员", "image//user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID);
+		this.jp2= new Basic_JPanel("顾客会员", "image//user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID);
+		this.jp3= new Basic_JPanel("酒店人员", "image//shop.png", 2, allpanel, allPersonPanel,this.managerName,this.userID);
+		this.jp4=new Basic_JPanel("修改密码", "image//password.png", 3, allpanel, allPersonPanel,this.managerName,this.userID);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);
@@ -159,10 +164,5 @@ public class Webmannger_JFrame extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-
-		new Webmannger_JFrame();
-
-	}
 
 }

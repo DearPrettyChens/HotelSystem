@@ -28,8 +28,8 @@ import util.UserType;
  */
 public class WebMarketMan_JFrame extends JFrame {
 	// 关于网站营销人员基本信息
-	private String webMarketManID = "000820";
-	private String webMarketManName = "营销员：俐俐";
+	private String webMarketManID;
+	private String webMarketManName;
 
 	// 关于界面
 
@@ -44,10 +44,10 @@ public class WebMarketMan_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private Basic_JPanel jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel);
-	private Basic_JPanel jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel);
-	private Basic_JPanel jp3 = new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel);
-	private Basic_JPanel jp4 = new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel);
+	private Basic_JPanel jp1;
+	private Basic_JPanel jp2;
+	private Basic_JPanel jp3 ;
+	private Basic_JPanel jp4 ;
 
 	private HeadPanel headPanel;
 
@@ -59,8 +59,13 @@ public class WebMarketMan_JFrame extends JFrame {
 	
 	private OrderPanelInWebMarketMan orderPanelInWebMarketMan=OrderPanelInWebMarketMan.getInstance();
 	
-	public WebMarketMan_JFrame() {
-
+	public WebMarketMan_JFrame(String userName,String userID) {
+		this.webMarketManName="营销人员："+userName;
+		this.webMarketManID=userID;
+		this.jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
+		this.jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
+		this.jp3= new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
+		this.jp4= new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);
@@ -155,7 +160,7 @@ public class WebMarketMan_JFrame extends JFrame {
 
 	public static void main(String[] args) {
 
-		new WebMarketMan_JFrame();
+		new WebMarketMan_JFrame("俐俐","000820");
 
 	}
 

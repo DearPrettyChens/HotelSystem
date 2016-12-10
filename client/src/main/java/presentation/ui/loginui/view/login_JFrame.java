@@ -131,7 +131,8 @@ public class login_JFrame extends JFrame {
 						type = UserType.WebMarketMan;
 					}
 					if(type!=null){
-						controller.jumpToUserMainFrame(type);
+						controller.jumpToUserMainFrame(type,name.getText(),
+								loginDistributionController.getUserID(name.getText()));
 						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){

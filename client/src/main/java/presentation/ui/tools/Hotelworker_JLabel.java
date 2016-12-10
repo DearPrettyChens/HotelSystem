@@ -18,11 +18,12 @@ import javax.swing.JPanel;
  */
 public class Hotelworker_JLabel  extends JLabel{
 	private RightContainerPanel rightContainerPanel;
-	private LeftChooseMap leftChooseMap = LeftChooseMap.getInstance();
+	private LeftChooseMap leftChooseMap;
 	private String name;
 	int tab;
 	ArrayList<Hotelworker_JLabel> alllabels;
-	 public Hotelworker_JLabel (String s,int tab,ArrayList<Hotelworker_JLabel> alllabels,RightContainerPanel rightContainerPanel){
+	 public Hotelworker_JLabel (String s,int tab,ArrayList<Hotelworker_JLabel> alllabels,RightContainerPanel rightContainerPanel,String userName,String userID){
+		 this.leftChooseMap=LeftChooseMap.getInstance(userName,userID);
 		 this.setText(s);
 		 this.rightContainerPanel=rightContainerPanel;
 		 name=s;
