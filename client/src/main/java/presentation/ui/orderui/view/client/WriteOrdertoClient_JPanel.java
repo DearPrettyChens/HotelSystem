@@ -225,7 +225,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		numberjtf.setFont(font);
 		numberjtf.setBounds(300, 190, 100, 25);
 		this.add(numberjtf);
-		Document numberDoc = teljtf.getDocument();
+		Document numberDoc = numberjtf.getDocument();
 		numberDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
@@ -236,15 +236,18 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 					infoBesideNumber.setText("请输入房间数！");
 				} else {
 					Document document = e.getDocument();
-					AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()), bedtypes.get(bedtypecomboBox.getSelectedIndex()),
-							new Date(TransHelper.stringToTime(fromtimejtf.getText())), hotelID);
-					ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
-					if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
-						numberValid = false;
-						infoBesideNumber.setText("房间数量不足！");
-					} else {
-						numberValid = true;
-						infoBesideNumber.setText("√");
+					if((!fromtimejtf.getText().equals("请选择日期"))&&(!fromtimejtf.getText().equals(""))){
+						AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()),
+								bedtypes.get(bedtypecomboBox.getSelectedIndex()),
+								new Date(TransHelper.stringToDate(fromtimejtf.getText())), hotelID);
+						ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
+						if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
+							numberValid = false;
+							infoBesideNumber.setText("房间数量不足！");
+						} else {
+							numberValid = true;
+							infoBesideNumber.setText("√");
+						}
 					}
 				}
 			}
@@ -257,15 +260,18 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 					infoBesideNumber.setText("请输入房间数！");
 				} else {
 					Document document = e.getDocument();
-					AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()), bedtypes.get(bedtypecomboBox.getSelectedIndex()),
-							new Date(TransHelper.stringToTime(fromtimejtf.getText())), hotelID);
-					ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
-					if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
-						numberValid = false;
-						infoBesideNumber.setText("房间数量不足！");
-					} else {
-						numberValid = true;
-						infoBesideNumber.setText("√");
+					if((!fromtimejtf.getText().equals("请选择日期"))&&(!fromtimejtf.getText().equals(""))){
+						AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()),
+								bedtypes.get(bedtypecomboBox.getSelectedIndex()),
+								new Date(TransHelper.stringToDate(fromtimejtf.getText())), hotelID);
+						ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
+						if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
+							numberValid = false;
+							infoBesideNumber.setText("房间数量不足！");
+						} else {
+							numberValid = true;
+							infoBesideNumber.setText("√");
+						}
 					}
 				}
 			}
@@ -278,15 +284,18 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 					infoBesideNumber.setText("请输入房间数！");
 				} else {
 					Document document = e.getDocument();
-					AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()), bedtypes.get(bedtypecomboBox.getSelectedIndex()),
-							new Date(TransHelper.stringToTime(fromtimejtf.getText())), hotelID);
-					ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
-					if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
-						numberValid = false;
-						infoBesideNumber.setText("房间数量不足！");
-					} else {
-						numberValid = true;
-						infoBesideNumber.setText("√");
+					if((!fromtimejtf.getText().equals("请选择日期"))&&(!fromtimejtf.getText().equals(""))){
+						AvailableRoomNumberVO vo= new AvailableRoomNumberVO(Integer.parseInt(numberjtf.getText()),
+								bedtypes.get(bedtypecomboBox.getSelectedIndex()),
+								new Date(TransHelper.stringToDate(fromtimejtf.getText())), hotelID);
+						ResultMessage message = orderDistributionController.checkAvailableRoomNumber(vo);
+						if (message == ResultMessage.FAIL||message==ResultMessage.NOTENOUGHAVAILABLEROOM) {
+							numberValid = false;
+							infoBesideNumber.setText("房间数量不足！");
+						} else {
+							numberValid = true;
+							infoBesideNumber.setText("√");
+						}
 					}
 				}
 			}
@@ -449,17 +458,19 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		if(fromtimejtf.getText().equals("请选择日期")||totimejtf.getText().equals("请选择日期")){
 			infoBesideTime.setText("请选择日期！");
 			infoValid=false;
+		}else{
+			if(orderDistributionController.checkTime(new Date(TransHelper.stringToDate(fromtimejtf.getText())))
+					!=ResultMessage.SUCCESS){
+				infoBesideTime.setText("请选择今日之后的日期！");
+				infoValid=false;
+			}
 		}
 		if(!telephoneValid||teljtf.getText().equals("11位手机号")){
 			infoBesideTel.setText("联系方式格式错误！");
 			infoValid=false;
 		}
-		if(numberValid=false){
+		if(!numberValid){
 			infoBesideNumber.setText("房间数量错误！");
-			infoValid=false;
-		}
-		if(orderDistributionController.checkTime(new Date(TransHelper.stringToDate(fromtimejtf.getText())))
-				!=ResultMessage.SUCCESS){
 			infoValid=false;
 		}
 		if(!infoValid){
