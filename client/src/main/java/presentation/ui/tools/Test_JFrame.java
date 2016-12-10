@@ -11,6 +11,7 @@ import presentation.ui.hotelui.view.client.HotelListInfo_JPanel;
 import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
 import util.City;
 import util.TradingArea;
+import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
  * 我写来用来测试的
@@ -31,12 +32,12 @@ public class Test_JFrame extends JFrame{
 	//HotelDetailInfotoClient_JPanel  cp2=new HotelDetailInfotoClient_JPanel (City.NANJING,TradingArea.HUNANLU,"123456asdfg","123456asdfg","123456asdfg",
 			//"123456asdfg","123456asdfg","123456asdfg");
 
-	//SearchHoteltoClient_JPanel cp=new SearchHoteltoClient_JPanel("enrf","rfnp3");
+	SearchHoteltoClient_JPanel cp=new SearchHoteltoClient_JPanel(new HotelSearchInfoVO ());
 	public Test_JFrame(){
 		
 		
 		this.setLayout(null);
-		//cp.setBounds(0,0,800,200);
+		cp.setBounds(0,0,800,600);
 		//this.add(cp);
 		
 		//cp2.setBounds(0,200,800,400);
@@ -44,7 +45,7 @@ public class Test_JFrame extends JFrame{
 		
 		a.setBounds(200,30,200,20);
 		a.setForeground(Color.BLACK);
-		this.add(a);
+		this.add(cp);
 		
 		
 		this.setSize(800,600);

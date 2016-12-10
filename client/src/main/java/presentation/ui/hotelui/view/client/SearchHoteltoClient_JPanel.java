@@ -214,14 +214,14 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		citycomboBox.addItem("南京");
 		citycomboBox.setSelectedItem(city);
-		citycomboBox.setBounds(180, 60, 100, 30);
-		this.add(citycomboBox);
+		citycomboBox.setBounds(180, 60, 80, 30);
+		Searchjp1.add(citycomboBox);
 
 		tradingareacomboBox.addItem("新街口");
 		tradingareacomboBox.addItem("湖南路");
 		tradingareacomboBox.setSelectedItem(tradingarea);
 		tradingareacomboBox.setBounds(400, 60, 100, 30);
-		this.add(tradingareacomboBox);
+		Searchjp1.add(tradingareacomboBox);
 
 		checkintimejl.setFont(font);
 		checkintimejl.setBounds(360, 60, 150, 30);
