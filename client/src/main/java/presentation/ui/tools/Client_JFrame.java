@@ -43,6 +43,7 @@ import presentation.ui.hotelui.view.client.SearchHotelPane_JPanel;
 import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
 import presentation.ui.hotelui.view.client.SingleHotelRemarktoClient_JPanel;
 import presentation.ui.hotelui.view.client.SingleRoomInfotoClient_JPanel;
+import presentation.ui.loginui.distributecontroller.LoginDistributionController;
 import presentation.ui.orderui.view.ViewOrderToHotelWorker_JPanel;
 import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
 import presentation.ui.orderui.view.client.ConfirmCounttoClient_JPanel;
@@ -75,7 +76,7 @@ public class Client_JFrame extends JFrame {
     //关于顾客基本信息
 	private String customerID;
 	private String customerName;
-    private ImageIcon imageIcon=null;
+    private ImageIcon imageIcon;
     
 
     private RightContainerPanel rightContainerPanel=new RightContainerPanel();
@@ -108,7 +109,7 @@ public class Client_JFrame extends JFrame {
 	private JLabel namejl ;
 	private JLabel vipjl= new JLabel(new ImageIcon("image//vip.png"));
 	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
-
+	private LoginDistributionController controller=LoginDistributionController.getInstance();
 	private ChooseArea_JPanel panel=new ChooseArea_JPanel();
 	
    
@@ -116,6 +117,7 @@ public class Client_JFrame extends JFrame {
   
    		this.customerName=userName;
    		this.customerID=userID;
+   		this.imageIcon=controller.getBasicInfo().getUserImage();
    		this.namejl = new JLabel(customerName);
  		this.jp1=new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
    		this.jp2= new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
