@@ -16,8 +16,8 @@ public class HotelStrategyDistributionController {
 	private static HotelStrategyDistributionController controller=null;
 	private HotelStrategyBLService hotelStrategyBLService;
 	private HotelStrategyDistributionController(){
-//		hotelStrategyBLService=HotelStrategyController.getInstance();
-		hotelStrategyBLService=new HotelStrategyBLService_Stub();
+		hotelStrategyBLService=HotelStrategyController.getInstance();
+//		hotelStrategyBLService=new HotelStrategyBLService_Stub();
 	}
 	public static HotelStrategyDistributionController getInstance(){
 		if(controller==null){

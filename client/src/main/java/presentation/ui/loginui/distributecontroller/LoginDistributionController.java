@@ -17,8 +17,8 @@ public class LoginDistributionController {
 	private static LoginDistributionController controller=null;
 	private UserSafetyService userSafetyService;
 	private LoginDistributionController(){
-//		userSafetyService=UserSafetyController.getInstance();
-		userSafetyService = new UserSafetyService_Stub();
+		userSafetyService=UserSafetyController.getInstance();
+//		userSafetyService = new UserSafetyService_Stub();
 	}
 	public static LoginDistributionController getInstance(){
 		if(controller==null){

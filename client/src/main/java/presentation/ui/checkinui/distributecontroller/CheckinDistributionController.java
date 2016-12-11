@@ -2,6 +2,7 @@ package presentation.ui.checkinui.distributecontroller;
 
 import java.util.ArrayList;
 
+import businesslogic.bl.availableroombl.AvailableRoomInfoController;
 import businesslogic.bl.checkinbl.CheckinController;
 import businesslogic.blservice.availableroomblservice.AvailableRoomInfoService;
 import businesslogic.blservice.checkinblservice.CheckinBLService;
@@ -20,9 +21,10 @@ public class CheckinDistributionController {
 	private CheckinBLService checkinBLService;
 	private AvailableRoomInfoService availableRoomInfoService;
 	private CheckinDistributionController(){
-//		checkinBLService=CheckinController.getInstance();
-		checkinBLService=new CheckinBLService_Stub();
-	    availableRoomInfoService=new AvailableRoomInfoService_Stub();
+		checkinBLService=CheckinController.getInstance();
+		availableRoomInfoService=AvailableRoomInfoController.getInstance();
+//		checkinBLService=new CheckinBLService_Stub();
+//	    availableRoomInfoService=new AvailableRoomInfoService_Stub();
 	}
 	public static CheckinDistributionController getInstance(){
 		if(controller==null){

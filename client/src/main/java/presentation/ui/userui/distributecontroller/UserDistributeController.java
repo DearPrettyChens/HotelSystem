@@ -9,8 +9,8 @@ public class UserDistributeController {
 	private static UserDistributeController controller=null;
 	private UserMaintainInfoService userMaintainInfoService;
 	private UserDistributeController(){
-		//userMaintainInfoService=UserMaintainInfoController.getInstance();
-		userMaintainInfoService=new UserMaintainInfoService_Stub();
+		userMaintainInfoService=UserMaintainInfoController.getInstance();
+//		userMaintainInfoService=new UserMaintainInfoService_Stub();
 	}
 	public static UserDistributeController getInstance(){
 		if(controller==null){

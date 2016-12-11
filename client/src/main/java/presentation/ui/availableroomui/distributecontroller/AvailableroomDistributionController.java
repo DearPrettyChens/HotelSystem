@@ -20,10 +20,10 @@ public class AvailableroomDistributionController {
 	private AvailableRoomInfoService availableRoomInfoService;
 	private RoomPriceService roomPriceService;
 	private AvailableroomDistributionController(){
-//		availableRoomInfoService=AvailableRoomInfoController.getInstance();
-//		roomPriceService=RoomPriceController.getInstance();
-	    availableRoomInfoService=new AvailableRoomInfoService_Stub();
-	    roomPriceService=new RoomPriceService_Stub();
+		availableRoomInfoService=AvailableRoomInfoController.getInstance();
+		roomPriceService=RoomPriceController.getInstance();
+//	    availableRoomInfoService=new AvailableRoomInfoService_Stub();
+//	    roomPriceService=new RoomPriceService_Stub();
 	
 	}
 	public static AvailableroomDistributionController getInstance(){

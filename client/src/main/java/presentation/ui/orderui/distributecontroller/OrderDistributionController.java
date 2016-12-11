@@ -33,14 +33,14 @@ public class OrderDistributionController {
 	private GenerateOrderService generateOrderService;
 	private LookOrderService lookOrderService;
 	private OrderDistributionController(){
-//		cancleOrderService=CancleOrderController.getInstance();
-//		executeOrderService=ExecuteOrderController.getInstance();
-//		generateOrderService=GenerateOrderController.getInstance();
-//		lookOrderService=LookOrderController.getInstance();
-	    cancleOrderService=new CancleOrderService_Stub();
-	    executeOrderService=new ExecuteOrderService_Stub();
-	    generateOrderService=new GenerateOrderService_Stub();
-	    lookOrderService=new LookOrderService_Stub();
+		cancleOrderService=CancleOrderController.getInstance();
+		executeOrderService=ExecuteOrderController.getInstance();
+		generateOrderService=GenerateOrderController.getInstance();
+		lookOrderService=LookOrderController.getInstance();
+//	    cancleOrderService=new CancleOrderService_Stub();
+//	    executeOrderService=new ExecuteOrderService_Stub();
+//	    generateOrderService=new GenerateOrderService_Stub();
+//	    lookOrderService=new LookOrderService_Stub();
 
 	}
 	public static OrderDistributionController getInstance(){

@@ -14,8 +14,8 @@ public class RegisterDistributionController {
 	private static RegisterDistributionController controller=null;
 	private PersonnelBLService personnelBLService;
 	private RegisterDistributionController(){
-//		personnelBLService=PersonnelController.getInstance();
-		personnelBLService = new PersonnelBLService_Stub();
+		personnelBLService=PersonnelController.getInstance();
+//		personnelBLService = new PersonnelBLService_Stub();
 	}
 	public static RegisterDistributionController getInstance(){
 		if(controller==null){

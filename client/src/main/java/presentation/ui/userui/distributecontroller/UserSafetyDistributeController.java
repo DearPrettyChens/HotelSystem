@@ -16,8 +16,8 @@ public class UserSafetyDistributeController{
 	}
 	private UserSafetyService service;
 	private UserSafetyDistributeController(){
-		//service=UserSafetyController.getInstance();
-		service=new UserSafetyService_Stub();
+		service=UserSafetyController.getInstance();
+//		service=new UserSafetyService_Stub();
 	}
 	
 
