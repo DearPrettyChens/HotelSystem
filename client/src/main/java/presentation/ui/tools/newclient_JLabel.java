@@ -46,7 +46,7 @@ public class newclient_JLabel extends JLabel {
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					newclient_JLabel.this.setForeground( new Color(112,255,0));
+					newclient_JLabel.this.setForeground(new Color(148, 221, 184));
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {

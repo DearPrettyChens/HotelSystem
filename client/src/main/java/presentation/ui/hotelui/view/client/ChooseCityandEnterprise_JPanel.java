@@ -103,10 +103,10 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 		
 		
 		bgjl.setBounds(0,0,800,600);
-		//this.add(bgjl);
+		this.add(bgjl);
 		
 		logojl.setBounds(200,50,400,400);
-		this.add(logojl);
+		//this.add(logojl);
 		
 		
 	}
