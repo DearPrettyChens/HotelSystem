@@ -107,7 +107,7 @@ public class LoginDistributionController {
 	 * @return resultMessage
 	 */
 	public ResultMessage logout(){
-//		return userSafetyService.logout();
-		return null;
+		return userSafetyService.logout();
+//		return null;
 	}
 }
