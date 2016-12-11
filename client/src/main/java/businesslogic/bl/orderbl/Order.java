@@ -37,9 +37,6 @@ public class Order {
 	private HotelStrategy hotelStrategy;
 	private HotelInfoOrderService hotelInfoOrderService;//解决循环依赖
 	
-	public Order(){
-		
-	}
 	public Order(Hotel hotel){
 		this.hotelInfoOrderService=hotel;
 	}
@@ -58,7 +55,12 @@ public class Order {
 		//person=new Customer();
 		//PersonDetailVO detail=person.getDetail(orderInfo.getCustomerID());
 		credit=new Credit(customerID);
-		int creditNum=credit.getUserCreditInfoList().getCredit();
+		int creditNum;
+		if(credit.getUserCreditInfoList()==null){
+			creditNum=0;
+		}else{
+			creditNum=credit.getUserCreditInfoList().getCredit();
+		}
 		if(creditNum>=0){
 			return ResultMessage.SUCCESS;
 		}
@@ -168,6 +170,8 @@ public class Order {
 			throw new NullHotelIDException();
 		}
 		//调用HotelInfoOrderService里面的方法getHotelDetailInfo
+		System.out.println(hotelInfoOrderService);
+		System.out.println(hotelInfoOrderService.getHotelDetailInfo(hotelID, null));
 		return hotelInfoOrderService.getHotelDetailInfo(hotelID, null);
 		
 	}

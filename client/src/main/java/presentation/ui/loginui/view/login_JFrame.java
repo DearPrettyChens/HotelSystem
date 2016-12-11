@@ -119,7 +119,7 @@ public class login_JFrame extends JFrame {
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
-							password.getPassword().toString().trim());
+							new String(password.getPassword()).trim());
 					UserType type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -133,6 +133,7 @@ public class login_JFrame extends JFrame {
 					if(type!=null){
 						controller.jumpToUserMainFrame(type,name.getText(),
 								loginDistributionController.getUserID(name.getText()));
+						
 						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){

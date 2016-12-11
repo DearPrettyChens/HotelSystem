@@ -101,9 +101,15 @@ public class HotelListInfo_JPanel  extends JPanel{
 	
 	public HotelListInfo_JPanel(HotelListVO hotelListVO,ViewTag viewTag){
 		this.viewTag=viewTag;
-		
 		this.hotelID=hotelListVO.getHotelID();
 		this.name=hotelListVO.getHotelName();
+//		
+//		if(hotelListVO.getHotelImage()==null){
+//			System.out.println("hotelID");
+//			System.out.println("image");
+//		}
+		
+//		this.image=new ImageIcon("image//hotel.jpg");
 		this.image=hotelListVO.getHotelImage();
 		this.star=hotelListVO.getStar();
 		this.location=hotelListVO.getHotelAddress();

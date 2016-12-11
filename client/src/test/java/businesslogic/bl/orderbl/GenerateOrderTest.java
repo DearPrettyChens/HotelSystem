@@ -17,7 +17,7 @@ public class GenerateOrderTest {
 	SingleOrder singleOrder;
 	@Before
 	public void setUp() throws Exception {
-		order=new Order();
+//		order=new Order();
 		singleOrder=new SingleOrder();
 	}
 

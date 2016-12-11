@@ -44,7 +44,7 @@ public class CheckHotel {
 	 * @return ArrayList<HotelListVO>
 	 */
 	public ArrayList<HotelListVO> check() {
-
+      ArrayList<HotelListVO> tempHotelListVOs=new ArrayList<HotelListVO>();
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
 			String customerID = hotelSearchInfoVO.getCustomerID();
@@ -55,11 +55,12 @@ public class CheckHotel {
 			} catch (NotFoundHotelException e) {
 				e.printStackTrace();
 			}
-			if (checkAll(hotelListVO) == false) {
-				hotelListVOs.remove(hotelListVO);
+			if (checkAll(hotelListVO) == true) {
+//				hotelListVOs.remove(hotelListVO);
+				tempHotelListVOs.add(hotelListVO);
 			}
 		}
-
+        hotelListVOs=tempHotelListVOs;
 		return hotelListVOs;
 	}
 
@@ -98,11 +99,11 @@ public class CheckHotel {
 	private boolean checkHotelName(String hotelName) {
 		String searchName = hotelSearchInfoVO.getHotelName();
 
-		if (hotelName == null) {// 说明未搜索酒店名字
+		if (searchName == null) {// 说明未搜索酒店名字
 			return true;
 		}
 
-		if (hotelName.contains(searchName)) {// 只要名字里面含有关键字就满足条件
+		if (hotelName.equals(searchName)) {// 只要名字里面含有关键字就满足条件
 			return true;
 		}
 		return false;
@@ -119,10 +120,10 @@ public class CheckHotel {
 		City searchCity = hotelSearchInfoVO.getCity();
 		TradingArea searchTradingArea = hotelSearchInfoVO.getTradingArea();
 
-		if ((searchCity == null) || (searchTradingArea == null)) {
-			// 抛出异常
-			throw new NullCityandTradingArea("城市和商圈未选择");
-		}
+//		if ((searchCity == null) || (searchTradingArea == null)) {
+//			// 抛出异常
+//			throw new NullCityandTradingArea("城市和商圈未选择");
+//		}
 		if ((city == searchCity) && (tradingArea == searchTradingArea)) {
 			return true;
 		}

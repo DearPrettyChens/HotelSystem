@@ -23,17 +23,22 @@ public class CreditInfoVO {
 	public CreditInfoVO(CreditInfoPO po){
 		CreditVO  tempCreditVO;
 		ArrayList<CreditVO> tempcreditsvo = new ArrayList<CreditVO>();
-		ArrayList<CreditPO> tempcredits=(ArrayList<CreditPO>) po.getCreditRecords();
-		for(int i=0;i<tempcredits.size();i++){
-			tempCreditVO=new CreditVO(tempcredits.get(i));
-			tempcreditsvo.add(tempCreditVO);
+		ArrayList<CreditPO> tempcredits=new ArrayList<CreditPO>();
+	    if(po.getCreditRecords()!=null){
+	    	if(po.getCreditRecords().size()!=0){
+	    	tempcredits= (ArrayList<CreditPO>) po.getCreditRecords();
+	    
+	    	for(int i=0;i<tempcredits.size();i++){
+	    		tempCreditVO=new CreditVO(tempcredits.get(i));
+	    		tempcreditsvo.add(tempCreditVO);
 	
-		}
-		this.credits=tempcreditsvo;
-		this.name=tempcredits.get(0).getName();
-		this.customerNumber=TransHelper.idToString(tempcredits.get(0).getID(), 6);
-		this.credit=(int) tempcredits.get(tempcredits.size()-1).getCredit();
-	
+	    	}
+	    	this.credits=tempcreditsvo;
+	    	this.name=tempcredits.get(0).getName();
+	    	this.customerNumber=TransHelper.idToString(tempcredits.get(0).getID(), 6);
+			this.credit=(int) tempcredits.get(tempcredits.size()-1).getCredit();
+	    	}
+	    }
 	}
 	public CreditInfoVO(){
 	}

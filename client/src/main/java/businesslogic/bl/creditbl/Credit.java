@@ -44,6 +44,9 @@ public class Credit {
 	public CreditInfoVO getUserCreditInfoList() {
 		try {
 			CreditInfoPO po=creditDao.getCreditInfo(this.customerID);
+			if(po==null){
+				return null;
+			}
 			return new CreditInfoVO(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();

@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import presentation.ui.loginui.distributecontroller.LoginDistributionController;
+
 /**
  * 右上角关闭按钮
  * @author cy
@@ -20,7 +22,7 @@ import javax.swing.JFrame;
 public class close_JButton extends JButton{
 	 private ImageIcon icon=new ImageIcon("image//close.png");
 	 //private JFrame jf;
-	 
+	 private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 	 public close_JButton(){
 		
 		 
@@ -28,6 +30,7 @@ public class close_JButton extends JButton{
 		 this.setBorderPainted(false);
 		 this.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
+	            	loginDistributionController.logout();
 	            	System.exit(0);
 	                
 	            }

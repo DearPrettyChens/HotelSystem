@@ -51,6 +51,7 @@ public class ClientCreditInfos_JPanel extends JPanel {
 
 		// 获取信用记录信息
 		CreditInfoVO creditInfoVO = controller.getCreditInfo();
+		if(creditInfoVO!=null){
 		ArrayList<CreditVO> creditVOs = creditInfoVO.getCreditinfo();
 		for (CreditVO creditVO : creditVOs) {
 			SingleCreditinfo_JPanel singleCreditinfo_JPanel = new SingleCreditinfo_JPanel(creditVO);
@@ -75,5 +76,5 @@ public class ClientCreditInfos_JPanel extends JPanel {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.add(scrollPane);
 	}
-
+	}
 }

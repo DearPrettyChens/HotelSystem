@@ -121,6 +121,7 @@ public class SearchHotel {
 	 * @throws 未定
 	 */
 	public ArrayList<HotelListVO> getHotelList() {
+//		if()
 		CheckHotel checkHotel=new CheckHotel(hotelListVOs,hotelSearchInfoVO);
 		return checkHotel.check();
 	}
