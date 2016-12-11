@@ -25,14 +25,14 @@ public class Test_JFrame extends JFrame{
 	String s[]=new String[]{"撤销订单"};
 	
 	
-	RoundCornerTextField a=new RoundCornerTextField();
+	
 	
 
 	//private HotelGeneralInfotoClient_JPanel   cp=new HotelGeneralInfotoClient_JPanel ("南京国际金鹰酒店","ewf",3,"uicbwiuve我IEvbwiiebiqv全部地区企划vwdqhc近期活动去强化基础去","18962780526",798);
 	//HotelDetailInfotoClient_JPanel  cp2=new HotelDetailInfotoClient_JPanel (City.NANJING,TradingArea.HUNANLU,"123456asdfg","123456asdfg","123456asdfg",
 			//"123456asdfg","123456asdfg","123456asdfg");
 
-	SearchHoteltoClient_JPanel cp=new SearchHoteltoClient_JPanel(new HotelSearchInfoVO ());
+	ChooseCityandEnterprise_JPanel cp=new ChooseCityandEnterprise_JPanel("jwebf");
 	public Test_JFrame(){
 		
 		
@@ -43,8 +43,7 @@ public class Test_JFrame extends JFrame{
 		//cp2.setBounds(0,200,800,400);
 		//this.add(cp2);
 		
-		a.setBounds(200,30,200,20);
-		a.setForeground(Color.BLACK);
+		
 		this.add(cp);
 		
 		

@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -12,6 +13,7 @@ import javax.swing.JPanel;
 
 import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
 import presentation.ui.searchhotelui.distributecontroller.SearchhotelDistributionController;
+import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
 import util.City;
 import util.TradingArea;
@@ -40,7 +42,10 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 	private JComboBox tradingareacomboBox=new JComboBox();
 	private HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
 	private String userID;
-	private JButton confirmjb=new JButton("确认");
+	private MyButton confirmjb=new MyButton();
+	private JLabel bgjl=new JLabel(new ImageIcon("image/bgbg.png"));
+	private JLabel logojl=new JLabel(new ImageIcon("image/logo.png"));
+	
 	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
 	
 	public ChooseCityandEnterprise_JPanel (String userID){
@@ -58,6 +63,8 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 	
 	
 	public void addComp(){
+		
+		
 		
 		cityjl.setBounds(300,200,200,30);
 		cityjl.setFont(font);
@@ -92,6 +99,15 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 			}
 		});
 		this.add(confirmjb);
+		
+		
+		
+		bgjl.setBounds(0,0,800,600);
+		//this.add(bgjl);
+		
+		logojl.setBounds(200,50,400,400);
+		this.add(logojl);
+		
 		
 	}
 
