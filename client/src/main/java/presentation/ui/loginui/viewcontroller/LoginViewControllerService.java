@@ -12,7 +12,7 @@ public interface LoginViewControllerService {
 	 * 跳转至各用户的主界面
 	 * @param userType
 	 */
-	public void jumpToUserMainFrame(UserType userType);
+	public void jumpToUserMainFrame(UserType userType,String userName,String hotelID);
 	
 	/**
 	 * 跳转至选择注册类型界面

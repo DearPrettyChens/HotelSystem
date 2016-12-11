@@ -2,12 +2,14 @@ package presentation.ui.orderui.view.client;
 
 import presentation.ui.hotelui.viewcontroller.MyFootViewController;
 import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
+import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.tools.*;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.HotelStrategyType;
 import util.ViewTag;
 import util.WebStrategyType;
 import vo.hotelstrategyvo.HotelBestStrVO;
+import vo.ordervo.OrderInfoVO;
 import vo.ordervo.StrategyVO;
 import vo.webstrategyvo.WebBestStrVO;
 
@@ -64,18 +66,23 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 
+	private OrderInfoVO orderInfoVO;
 	private String hotelID;
 	private String userID;
+	private String customerName;
 	private ViewTag tag;
 
 	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
     private MyFootViewController myFootViewController=MyFootViewController.getInstance(null);
 	
-	public MakeOrdertoClient_JPanel(String hotelID, String userID,ViewTag tag) {
+    private OrderDistributionController orderDistributionController = OrderDistributionController.getInstance();
+    
+	public MakeOrdertoClient_JPanel(String hotelID, String userID,String customerName,ViewTag tag) {
 
 		this.tag=tag;
 		this.userID = userID;
 		this.hotelID = hotelID;
+		this.customerName=customerName;
 		this.writeorderjp = new WriteOrdertoClient_JPanel(hotelID, userID);
 
 		this.setBackground(Color.white);
@@ -130,23 +137,27 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				orderInfoVO = writeorderjp.getOrderInfo();
+				if(orderInfoVO!=null){
+					StrategyVO strategyVO = orderDistributionController.next(orderInfoVO);
+					// 需要在此处调用controller获得策略信息和最低价格，并且新建一个confirmcountpanel，
+					orderInfoVO.setPrice(strategyVO.getPrice());
+					orderInfoVO.setCustomerName(customerName);
+				    confirmcountjp=new ConfirmCounttoClient_JPanel(strategyVO);
+					confirmcountjp.setBounds(0, 130, 800, 300);
+					MakeOrdertoClient_JPanel.this.add(confirmcountjp);
 
-				// 需要在此处调用controller获得策略信息和最低价格，并且新建一个confirmcountpanel，
-                confirmcountjp=new ConfirmCounttoClient_JPanel(null);
-				confirmcountjp.setBounds(0, 130, 800, 300);
-				MakeOrdertoClient_JPanel.this.add(confirmcountjp);
+					MakeOrdertoClient_JPanel.this.remove(button1);
+					MakeOrdertoClient_JPanel.this.add(button2);
 
-				// TODO Auto-generated method stub
-				MakeOrdertoClient_JPanel.this.remove(button1);
-				MakeOrdertoClient_JPanel.this.add(button2);
-
-				MakeOrdertoClient_JPanel.this.remove(writeorderjp);
-
-				MakeOrdertoClient_JPanel.this.remove(return1);
-				MakeOrdertoClient_JPanel.this.add(return2);
-				MakeOrdertoClient_JPanel.this.circle1.setIcon(icon2);
-				MakeOrdertoClient_JPanel.this.circle2.setIcon(icon1);
-				MakeOrdertoClient_JPanel.this.repaint();
+					MakeOrdertoClient_JPanel.this.remove(writeorderjp);
+					
+					MakeOrdertoClient_JPanel.this.remove(return1);
+					MakeOrdertoClient_JPanel.this.add(return2);
+					MakeOrdertoClient_JPanel.this.circle1.setIcon(icon2);
+					MakeOrdertoClient_JPanel.this.circle2.setIcon(icon1);
+					MakeOrdertoClient_JPanel.this.repaint();
+				}
 			}
 
 		});
@@ -158,10 +169,7 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
-				// 需要在此处调用control向下存订单信息
-
+				orderDistributionController.confirmAddOrder(orderInfoVO);
 				MakeOrdertoClient_JPanel.this.circle2.setIcon(icon2);
 				MakeOrdertoClient_JPanel.this.circle3.setIcon(icon1);
 				MakeOrdertoClient_JPanel.this.remove(confirmcountjp);

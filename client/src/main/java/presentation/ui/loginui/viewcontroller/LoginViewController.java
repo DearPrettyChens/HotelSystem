@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 
 import presentation.ui.loginui.view.newclient_JFrame;
 import presentation.ui.personnelui.view.Webmannger_JFrame;
+import presentation.ui.tools.Client_JFrame;
 import presentation.ui.tools.Hotelworker_JFrame;
 import presentation.ui.tools.WebMarketMan_JFrame;
 import util.UserType;
@@ -17,19 +18,19 @@ public class LoginViewController implements LoginViewControllerService{
 	JFrame frame;
 	
 	@Override
-	public void jumpToUserMainFrame(UserType userType) {
+	public void jumpToUserMainFrame(UserType userType,String userName,String userID) {
 		switch(userType){
 		case Customer:
-			//TODO
+			frame=new Client_JFrame(userName,userID);
 			break;
 		case HotelWorker:
-			frame=new Hotelworker_JFrame();
+			frame=new Hotelworker_JFrame(userName,userID);
 			break;
 		case Manager:
-			frame=new Webmannger_JFrame();
+			frame=new Webmannger_JFrame(userName,userID);
 			break;
 		case WebMarketMan:
-			frame=new WebMarketMan_JFrame();
+			frame=new WebMarketMan_JFrame(userName,userID);
 			break;
 		default:
 			break;

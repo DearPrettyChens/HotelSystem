@@ -9,10 +9,7 @@ public interface UserViewControllerService {
 	 * 跳转到用户详细信息界面
 	 */
 	public void jumpToDetailInfoView();
-	/**
-	 * 跳转到修改用户密码界面
-	 */
-	public void jumpToChangePasswordView();
+
 	/**
 	 * 返回用户主界面
 	 */

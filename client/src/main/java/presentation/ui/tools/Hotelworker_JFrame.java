@@ -52,7 +52,7 @@ public class Hotelworker_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private JLabel namejl1 = new JLabel(hotelName);
+	private JLabel namejl1;
 	// private JLabel namejl2=new JLabel(hotelWorkerName);
 
 	private JLabel myhotel_Jlabel = new JLabel("我的酒店");
@@ -68,13 +68,13 @@ public class Hotelworker_JFrame extends JFrame {
 	ArrayList<Hotelworker_JLabel> allLabels=new ArrayList<Hotelworker_JLabel>();
 	
 	private RightContainerPanel rightContainerPanel=new RightContainerPanel();
-	private Hotelworker_JLabel myhotel_Jlabel1 = new Hotelworker_JLabel("● 维护酒店信息",0,allLabels,rightContainerPanel);
-	private Hotelworker_JLabel myhotel_Jlabel2 = new Hotelworker_JLabel("● 录入客房信息",1,allLabels,rightContainerPanel);
-	private Hotelworker_JLabel myorder_Jlabel1 = new Hotelworker_JLabel("● 浏览订单列表",2,allLabels,rightContainerPanel);
-	private Hotelworker_JLabel mystr_Jlabel1 = new Hotelworker_JLabel("● 制定酒店策略",3,allLabels,rightContainerPanel);
-	private Hotelworker_JLabel checkin_Jlabel1 = new Hotelworker_JLabel("● 线上入住办理",4,allLabels,rightContainerPanel);
-	private Hotelworker_JLabel checkin_Jlabel2 = new Hotelworker_JLabel("● 线上退房办理",5,allLabels,rightContainerPanel);
-	private Hotelworker_JLabel checkin_Jlabel3 = new Hotelworker_JLabel("● 线下入住退房",6,allLabels,rightContainerPanel);
+	private Hotelworker_JLabel myhotel_Jlabel1 ;
+	private Hotelworker_JLabel myhotel_Jlabel2 ;
+	private Hotelworker_JLabel myorder_Jlabel1 ;
+	private Hotelworker_JLabel mystr_Jlabel1 ;
+	private Hotelworker_JLabel checkin_Jlabel1 ;
+	private Hotelworker_JLabel checkin_Jlabel2;
+	private Hotelworker_JLabel checkin_Jlabel3 ;
 
 	private Color backgroundcolor = new Color(148, 221, 184);
 	private JPanel abovepanel = new JPanel();
@@ -85,8 +85,18 @@ public class Hotelworker_JFrame extends JFrame {
 	
 	private MaintainHotelBasicInfoPanel maintainHotelBasicInfoPanel;
 	 
-	public Hotelworker_JFrame() {
-
+	public Hotelworker_JFrame(String userName,String userID) {
+		this.hotelName=userName;
+		this.hotelID=userID;
+		this.hotelWorkerID=userID;
+		this.namejl1= new JLabel(hotelName);
+		this.myhotel_Jlabel1 = new Hotelworker_JLabel("● 维护酒店信息",0,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.myhotel_Jlabel2 = new Hotelworker_JLabel("● 录入客房信息",1,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.myorder_Jlabel1 = new Hotelworker_JLabel("● 浏览订单列表",2,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.mystr_Jlabel1 = new Hotelworker_JLabel("● 制定酒店策略",3,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.checkin_Jlabel1 = new Hotelworker_JLabel("● 线上入住办理",4,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.checkin_Jlabel2 = new Hotelworker_JLabel("● 线上退房办理",5,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
+		this.checkin_Jlabel3 = new Hotelworker_JLabel("● 线下入住退房",6,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
 //		this.hotelID=...  注意应该是传信息进来初始化的
 		maintainHotelBasicInfoPanel=new MaintainHotelBasicInfoPanel(hotelID);
 		
@@ -242,7 +252,7 @@ public class Hotelworker_JFrame extends JFrame {
 
 	public static void main(String[] args) {
 
-		new Hotelworker_JFrame();
+		new Hotelworker_JFrame("菲菲","000001");
 
 	}
 

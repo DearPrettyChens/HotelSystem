@@ -41,42 +41,63 @@ public class LeftChooseMap {
 	private JPanel jPanel;
 	private String hotelID="";
 	private String userID="";
+	private String userName="";
 	
-	private LeftChooseMap() {
+	private LeftChooseMap(String userName,String userID,UserType userType) {
+		this.userName=userName;
+		this.userID=userID;
+		this.hotelID=userID;
 		map=new HashMap<String, JPanel>();
-		//网站管理人员的左边栏
-		map.put("营销人员", new ManageWebMarketManPanel());
-		map.put("顾客会员", new ManageCustomerPanel());
-		map.put("酒店人员", new ManageHotelWorkerPanel() );
-		map.put("修改密码", new Changepassword_JPanel(UserType.Manager));
+		switch(userType){
+		case Customer:
+//			顾客的左边栏
+			map.put("预订酒店", ReserveHotelView.getInstance(userID,userName));
+			map.put("我的信息", new Changemessage_JPanel(userID));
+			map.put("我的密码", new Changepassword_JPanel(UserType.Customer,userID));
+			map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
+			map.put("我的足迹", MyFootView.getInstance(userID));
+			map.put("我的信用", new ClientCreditInfos_JPanel(userID));
+			break;
+		case HotelWorker:
+//			酒店工作人员的左边栏
+			map.put("● 维护酒店信息", new MaintainHotelBasicInfoPanel(hotelID));
+			map.put("● 录入客房信息", new RoomInfo_JPanel(hotelID));
+			map.put("● 浏览订单列表", OrderPanelViewInHotelWorker.getInstance(hotelID));
+			map.put("● 制定酒店策略", HotelStrategyPanel.getInstance(hotelID));
+			map.put("● 线上入住办理", CheckInPanel.getInstance(hotelID));
+			map.put("● 线上退房办理", CheckOutPanel.getInstance(hotelID));
+			map.put("● 线下入住退房", new OfflineCheckIn_JPanel(hotelID));
+			break;
+		case Manager:
+			//网站管理人员的左边栏
+			map.put("营销人员", new ManageWebMarketManPanel());
+			map.put("顾客会员", new ManageCustomerPanel());
+			map.put("酒店人员", new ManageHotelWorkerPanel() );
+			map.put("修改密码", new Changepassword_JPanel(UserType.Manager,userID));
+			break;
+		case WebMarketMan:
+			//网站营销人员的左边栏
+			map.put("管理订单", OrderPanelInWebMarketMan.getInstance());
+			map.put("信用充值", DepositPanel.getInstance());
+			map.put("会员等级", new Clientlevelrule_JPanel());
+			map.put("营销策略", new Makewebstr_JPanel());
+			break;
+		default:
+			break;
 		
-		//网站营销人员的左边栏
-		map.put("管理订单", OrderPanelInWebMarketMan.getInstance());
-		map.put("信用充值", DepositPanel.getInstance());
-		map.put("会员等级", new Clientlevelrule_JPanel());
-		map.put("营销策略", new Makewebstr_JPanel());
+		}
 		
-//		酒店工作人员的左边栏
-		map.put("● 维护酒店信息", new MaintainHotelBasicInfoPanel(hotelID));
-		map.put("● 录入客房信息", new RoomInfo_JPanel(hotelID));
-		map.put("● 浏览订单列表", OrderPanelViewInHotelWorker.getInstance(hotelID));
-		map.put("● 制定酒店策略", HotelStrategyPanel.getInstance(hotelID));
-		map.put("● 线上入住办理", CheckInPanel.getInstance(hotelID));
-		map.put("● 线上退房办理", CheckOutPanel.getInstance(hotelID));
-		map.put("● 线下入住退房", new OfflineCheckIn_JPanel(hotelID));
 		
-//		顾客的左边栏
-		map.put("预订酒店", ReserveHotelView.getInstance(userID));
-		map.put("我的信息", new Changemessage_JPanel(userID));
-		map.put("我的密码", new Changepassword_JPanel(UserType.Customer));
-		map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
-		map.put("我的足迹", MyFootView.getInstance(userID));
-		map.put("我的信用", new ClientCreditInfos_JPanel(userID));
+		
+		
+
+		
+
 	}
 
-	public static LeftChooseMap getInstance() {
+	public static LeftChooseMap getInstance(String userName,String userID,UserType userType) {
          if (leftChooseMap==null){
-        	 leftChooseMap=new LeftChooseMap();
+        	 leftChooseMap=new LeftChooseMap(userName,userID,userType);
          }
          return leftChooseMap;
 	}

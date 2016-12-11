@@ -8,6 +8,7 @@ import presentation.ui.hotelui.view.client.ChooseCityandEnterprise_JPanel;
 import presentation.ui.hotelui.view.client.HotelDetailInfotoClient_JPanel;
 import presentation.ui.hotelui.view.client.HotelGeneralInfotoClient_JPanel;
 import presentation.ui.hotelui.view.client.HotelListInfo_JPanel;
+import presentation.ui.hotelui.view.client.SearchHotelPane_JPanel;
 import presentation.ui.hotelui.view.client.SearchHoteltoClient_JPanel;
 import util.City;
 import util.TradingArea;
@@ -32,19 +33,29 @@ public class Test_JFrame extends JFrame{
 	//HotelDetailInfotoClient_JPanel  cp2=new HotelDetailInfotoClient_JPanel (City.NANJING,TradingArea.HUNANLU,"123456asdfg","123456asdfg","123456asdfg",
 			//"123456asdfg","123456asdfg","123456asdfg");
 
+<<<<<<< HEAD
 	ChooseCityandEnterprise_JPanel cp=new ChooseCityandEnterprise_JPanel("jwebf");
+=======
+//	SearchHoteltoClient_JPanel cp=new SearchHoteltoClient_JPanel(new HotelSearchInfoVO ());
+>>>>>>> origin/master
 	public Test_JFrame(){
 		
 		
 		this.setLayout(null);
-		cp.setBounds(0,0,800,600);
+//		cp.setBounds(0,0,800,600);
 		//this.add(cp);
 		
 		//cp2.setBounds(0,200,800,400);
 		//this.add(cp2);
 		
+<<<<<<< HEAD
 		
 		this.add(cp);
+=======
+		a.setBounds(200,30,200,20);
+		a.setForeground(Color.BLACK);
+//		this.add(cp);
+>>>>>>> origin/master
 		
 		
 		this.setSize(800,600);

@@ -73,8 +73,8 @@ import vo.searchhotelvo.HotelSearchInfoVO;
  */
 public class Client_JFrame extends JFrame {
     //关于顾客基本信息
-	private String customerID="";
-	private String customerName="陈小豆";
+	private String customerID;
+	private String customerName;
     private ImageIcon imageIcon=null;
     
 
@@ -95,25 +95,35 @@ public class Client_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private Basic_JPanel jp1 = new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel);
-	private Basic_JPanel jp2 = new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel);
-	private Basic_JPanel jp3 = new Basic_JPanel("我的密码", "image//key.png", 2, allpanel,rightContainerPanel);
-	private Basic_JPanel jp4 = new Basic_JPanel("我的订单", "image//note.png", 3, allpanel,rightContainerPanel);
-	private Basic_JPanel jp5 = new Basic_JPanel("我的足迹", "image//shop.png", 4, allpanel,rightContainerPanel);
-	private Basic_JPanel jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel,rightContainerPanel);
+	private Basic_JPanel jp1;
+	private Basic_JPanel jp2 ;
+	private Basic_JPanel jp3 ;
+	private Basic_JPanel jp4 ;
+	private Basic_JPanel jp5 ;
+	private Basic_JPanel jp6 ;
 
 	private HeadPanel headPanel;
 
 	// private Basic_JPanel jp1=new Basic_JPanel();
-	private JLabel namejl = new JLabel(customerName);
+	private JLabel namejl ;
 	private JLabel vipjl= new JLabel(new ImageIcon("image//vip.png"));
 	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
 
 	private ChooseArea_JPanel panel=new ChooseArea_JPanel();
 	
    
-   	public Client_JFrame() {
-	    reserveHotelView=ReserveHotelView.getInstance(customerID);
+   	public Client_JFrame(String userName,String userID) {
+  
+   		this.customerName=userName;
+   		this.customerID=userID;
+   		this.namejl = new JLabel(customerName);
+ 		this.jp1=new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp2= new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp3 = new Basic_JPanel("我的密码", "image//key.png", 2, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp4 = new Basic_JPanel("我的订单", "image//note.png", 3, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp5 = new Basic_JPanel("我的足迹", "image//shop.png", 4, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+   		this.jp6 = new Basic_JPanel("我的信用", "image//star.png", 5, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
+	    reserveHotelView=ReserveHotelView.getInstance(customerID,customerName);
 	    
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
@@ -225,7 +235,7 @@ public class Client_JFrame extends JFrame {
 
 	public static void main(String[] args) {
 
-		new Client_JFrame();
+		new Client_JFrame("陈小豆","000001");
 	
         
 		

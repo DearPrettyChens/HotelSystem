@@ -20,6 +20,7 @@ public class MyFootView extends JPanel {
 	private HotelPanetoClient_JPanel hotelPanetoClient_JPanel;// 酒店详细信息界面
 	private MakeOrdertoClient_JPanel makeOrdertoClient_JPanel;// 生成订单界面
 	private String userID;
+	private String userName;
 	private MyFootViewController myFootViewController=MyFootViewController.getInstance(this);
     private static MyFootView myFootView;
 	
@@ -55,7 +56,7 @@ public class MyFootView extends JPanel {
 
 	public void generateNewOrder(String hotelID) {
 		this.removeAll();
-		makeOrdertoClient_JPanel = new MakeOrdertoClient_JPanel(hotelID, userID, ViewTag.MYHOTEL);
+		makeOrdertoClient_JPanel = new MakeOrdertoClient_JPanel(hotelID, userID,userName, ViewTag.MYHOTEL);
 		this.add(makeOrdertoClient_JPanel);
 		this.updateUI();
 	}

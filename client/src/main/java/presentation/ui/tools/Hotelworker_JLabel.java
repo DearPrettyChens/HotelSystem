@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.UserType;
+
 /**
  * 酒店工作人员左边的选择栏
  * @author cy
@@ -18,11 +20,12 @@ import javax.swing.JPanel;
  */
 public class Hotelworker_JLabel  extends JLabel{
 	private RightContainerPanel rightContainerPanel;
-	private LeftChooseMap leftChooseMap = LeftChooseMap.getInstance();
+	private LeftChooseMap leftChooseMap;
 	private String name;
 	int tab;
 	ArrayList<Hotelworker_JLabel> alllabels;
-	 public Hotelworker_JLabel (String s,int tab,ArrayList<Hotelworker_JLabel> alllabels,RightContainerPanel rightContainerPanel){
+	 public Hotelworker_JLabel (String s,int tab,ArrayList<Hotelworker_JLabel> alllabels,RightContainerPanel rightContainerPanel,String userName,String userID,UserType userType){
+		 this.leftChooseMap=LeftChooseMap.getInstance(userName,userID,userType);
 		 this.setText(s);
 		 this.rightContainerPanel=rightContainerPanel;
 		 name=s;

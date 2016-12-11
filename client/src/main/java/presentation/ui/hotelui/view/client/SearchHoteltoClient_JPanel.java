@@ -2,8 +2,17 @@ package presentation.ui.hotelui.view.client;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.ItemSelectable;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -12,10 +21,19 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.sun.prism.impl.BaseMesh.FaceMembers;
+
+import businesslogic.bl.orderbl.Order;
+import presentation.ui.loginui.view.newclient_JFrame;
 import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyTextfield;
+import util.BedType;
 import util.City;
+import util.HotelSortType;
+import util.OrderState;
 import util.TradingArea;
+import util.TransHelper;
+import util.ViewTag;
 import vo.searchhotelvo.HotelSearchInfoVO;
 
 /**
@@ -32,6 +50,8 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private Font font = new Font("宋体", Font.BOLD, 16);
 	private Color color = new Color(148, 221, 184);
 
+	private HotelSearchInfoVO vo = new HotelSearchInfoVO();
+	
 	private City city2;
 	private TradingArea tradingArea2;
 	private String city = "";
@@ -89,20 +109,96 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox fourbed = new JCheckBox("四床");
 	private JCheckBox manybed = new JCheckBox("家庭床");
 
+	private boolean chooseAllBeds = false;
+	private Map<String, BedType> bedMap = new HashMap<String,BedType>(){
+		{
+			put("不限", null);
+			put("大床", BedType.BIGBED);
+			put("双床", BedType.TWOBEDS);
+			put("三床", BedType.THREEBEDS);
+			put("四床", BedType.FOURBEDS);
+			put("家庭床", BedType.FAMILYBED);
+		}
+	};
+	private ArrayList<BedType> allBedTypes = new ArrayList<BedType>(){
+		{
+			add(BedType.BIGBED);
+			add(BedType.FAMILYBED);
+			add(BedType.FOURBEDS);
+			add(BedType.THREEBEDS);
+			add(BedType.TWOBEDS);
+		}
+	};
+	private ArrayList<BedType> bedTypes = new ArrayList<BedType>();
+	
 	private JCheckBox allprice = new JCheckBox("不限");
 	private JCheckBox price1 = new JCheckBox("￥200以下");
 	private JCheckBox price2 = new JCheckBox("￥200-400");
 	private JCheckBox price3 = new JCheckBox("￥400-600");
 	private JCheckBox price4 = new JCheckBox("￥600-800");
 	private JCheckBox price5 = new JCheckBox("￥800以上");
-
+	//800以上怎么表示
+	
+	private boolean chooseAllPrice = false;
+    private Map<String, Integer> priceMap = new HashMap<String, Integer>(){
+    	{
+    		put("不限", -1);
+    		put("￥200以下", 0);
+    		put("￥200-400", 200);
+    		put("￥400-600", 400);
+    		put("￥600-800", 600);
+    		put("￥800以上", 800);
+    	}
+    };
+    private ArrayList<Integer> allLowPrice = new ArrayList<Integer>(){
+    	{
+    		add(0);
+    		add(200);
+    		add(400);
+    		add(600);
+    		add(800);
+    	}
+    };
+    private ArrayList<Integer> allHighPrice = new ArrayList<Integer>(){
+    	{
+    		add(200);
+    		add(400);
+    		add(600);
+    		add(800);
+    	}
+    };
+    private ArrayList<Integer> lowPrice = new ArrayList<Integer>();
+    private ArrayList<Integer> highPrice = new ArrayList<Integer>();
+    
 	private JCheckBox allstar = new JCheckBox("不限");
 	private JCheckBox star1 = new JCheckBox("1星");
 	private JCheckBox star2 = new JCheckBox("2星");
 	private JCheckBox star3 = new JCheckBox("3星");
 	private JCheckBox star4 = new JCheckBox("4星");
 	private JCheckBox star5 = new JCheckBox("5星");
-
+	
+	private boolean chooseAllStar = false;
+	private Map<String, Integer> starMap = new HashMap<String,Integer>(){
+		{
+			put("不限", -1);
+			put("1星", 1);
+			put("2星", 2);
+			put("3星", 3);
+			put("4星", 4);
+			put("5星", 5);
+		}
+	};
+	private ArrayList<Integer> allStarArrayList = new ArrayList<Integer>(){
+		{
+			add(1);
+			add(2);
+			add(3);
+			add(4);
+			add(5);
+		}
+	};
+	private ArrayList<Integer> starArrayList = new ArrayList<Integer>();
+	
 	private JCheckBox allscore = new JCheckBox("不限");
 	private JCheckBox score1 = new JCheckBox("<=1");
 	private JCheckBox score2 = new JCheckBox("1~2");
@@ -110,12 +206,64 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox score4 = new JCheckBox("3~4");
 	private JCheckBox score5 = new JCheckBox("4~5");
 
+	private boolean chooseAllScore = false;
+	private Map<String, Double> scoreMap = new HashMap<String ,Double>(){
+		{
+			put("不限",  -1.0);
+			put("<=1", 0.0);
+			put("1~2", 1.0);
+			put("2~3", 2.0);
+			put("3~4", 3.0);
+			put("4~5", 4.0);
+		}
+	};
+	private  ArrayList<Double> allLowScoreNumbers = new ArrayList<Double>(){
+		{
+			add(0.0);
+			add(1.0);
+			add(2.0);
+			add(3.0);
+			add(4.0);
+		}
+	};
+	private  ArrayList<Double> allHighScoreNumbers = new ArrayList<Double>(){
+		{
+			add(1.0);
+			add(2.0);
+			add(3.0);
+			add(4.0);
+			add(5.0);
+		}
+	};
+	private ArrayList<Double> lowScoreNumbers = new ArrayList<Double>();
+	private  ArrayList<Double> highScoreNumbers = new ArrayList<Double>();
+	
 	private JCheckBox allstate = new JCheckBox("不限");
 	private JCheckBox state1 = new JCheckBox("未执行");
 	private JCheckBox state2 = new JCheckBox("已执行");
 	private JCheckBox state3 = new JCheckBox("异常");
 	private JCheckBox state4 = new JCheckBox("撤销");
 
+	private boolean chooseAllState = false;
+	private Map<String, OrderState> stateMap = new HashMap<String,OrderState>(){
+		{
+			put("不限", null);
+			put("未执行", OrderState.NOTEXECUTED);
+			put("已执行", OrderState.EXECUTED);
+			put("异常", OrderState.UNUSUAL);
+			put("撤销", OrderState.HASCANCELED);
+		}
+	};
+	private ArrayList<OrderState> allOrderStates = new ArrayList<OrderState>(){
+		{
+			add(OrderState.EXECUTED);
+			add(OrderState.HASCANCELED);
+			add(OrderState.NOTEXECUTED);
+			add(OrderState.UNUSUAL);
+		}
+	};
+	private ArrayList<OrderState> orderStates = new ArrayList<OrderState>();
+	
 	private JPanel sortjp = new JPanel();
 
 	private JLabel popularsortjl = new JLabel("最受欢迎");
@@ -141,8 +289,13 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	private JLabel lessinfo = new JLabel("↑ 收起", JLabel.CENTER);
 
-	public SearchHoteltoClient_JPanel(HotelSearchInfoVO hotelSearchInfoVO) {
-
+	private SearchHotelPane_JPanel searchHotelPane_JPanel ;
+	
+	public SearchHoteltoClient_JPanel(HotelSearchInfoVO hotelSearchInfoVO,SearchHotelPane_JPanel searchHotelPane_JPanel) {
+		this.searchHotelPane_JPanel = searchHotelPane_JPanel;
+		
+		this.vo = hotelSearchInfoVO;
+		
 		this.city2 = hotelSearchInfoVO.getCity();
 		this.city = city2.toChinese();
 
@@ -201,6 +354,13 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		searchjb.setBounds(650, 5, 30, 30);
 		searchjb.setBorder(null);
 		Searchbgjp1.add(searchjb);
+		searchjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				updateHotelListPanel();				
+			}
+		});
 
 		cityjl.setText("城市：");
 		cityjl.setFont(font);
@@ -244,51 +404,89 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		allbed.setSelected(true);
 		allbed.setBounds(150, 90, 80, 30);
 		Searchjp1.add(allbed);
+		allbed.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED){
+					chooseAllBeds=true;
+				}
+				if(e.getStateChange()==ItemEvent.DESELECTED){
+					chooseAllBeds=false;
+				}
+			}
+		});
 
+		BedItemListenner bedItemListenner = new BedItemListenner();
+		
 		onebed.setFont(font);
 		onebed.setBounds(250, 90, 80, 30);
 		Searchjp1.add(onebed);
+		onebed.addItemListener(bedItemListenner);
 
 		twobed.setFont(font);
 		twobed.setBounds(350, 90, 80, 30);
+		twobed.addItemListener(bedItemListenner);
 		Searchjp1.add(twobed);
 
 		threebed.setFont(font);
 		threebed.setBounds(450, 90, 80, 30);
+		threebed.addItemListener(bedItemListenner);
 		Searchjp1.add(threebed);
 
 		fourbed.setFont(font);
 		fourbed.setBounds(550, 90, 80, 30);
+		fourbed.addItemListener(bedItemListenner);
 		Searchjp1.add(fourbed);
 
 		manybed.setFont(font);
 		manybed.setBounds(650, 90, 80, 30);
+		manybed.addItemListener(bedItemListenner);
 		Searchjp1.add(manybed);
 
 		allprice.setFont(font);
 		allprice.setSelected(true);
 		allprice.setBounds(150, 120, 280, 30);
 		Searchjp1.add(allprice);
+		allprice.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED){
+					chooseAllPrice=true;
+				}
+				if(e.getStateChange()==ItemEvent.DESELECTED){
+					chooseAllPrice=false;
+				}
+			}
+		});
 
+		PriceItemListenner priceItemListenner = new PriceItemListenner();
+		
 		price1.setFont(font);
 		price1.setBounds(350, 120, 280, 30);
 		Searchjp1.add(price1);
+		price1.addItemListener(priceItemListenner);
 
 		price2.setFont(font);
 		price2.setBounds(550, 120, 280, 30);
 		Searchjp1.add(price2);
+		price2.addItemListener(priceItemListenner);
 
 		price3.setFont(font);
 		price3.setBounds(150, 150, 280, 30);
 		Searchjp1.add(price3);
+		price3.addItemListener(priceItemListenner);
 
 		price4.setFont(font);
 		price4.setBounds(350, 150, 280, 30);
 		Searchjp1.add(price4);
+		price4.addItemListener(priceItemListenner);
 
 		price5.setFont(font);
 		price5.setBounds(550, 150, 280, 30);
 		Searchjp1.add(price5);
+		price5.addItemListener(priceItemListenner);
 
 		pricejl.setFont(font);
 		pricejl.setBounds(100, 120, 100, 30);
@@ -331,26 +529,45 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		allstar.setSelected(true);
 		allstar.setBounds(150, 0, 280, 30);
 		Searchjp2.add(allstar);
+		allstar.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED){
+					chooseAllStar=true;
+				}
+				if(e.getStateChange()==ItemEvent.DESELECTED){
+					chooseAllStar=false;
+				}
+			}
+		});
 
+		StarItemListenner starItemListenner = new StarItemListenner();
+		
 		star1.setFont(font);
 		star1.setBounds(250, 0, 280, 30);
 		Searchjp2.add(star1);
+		star1.addItemListener(starItemListenner);
 
 		star2.setFont(font);
 		star2.setBounds(350, 0, 280, 30);
 		Searchjp2.add(star2);
-
+		star2.addItemListener(starItemListenner);
+		
 		star3.setFont(font);
 		star3.setBounds(450, 0, 280, 30);
 		Searchjp2.add(star3);
-
+		star3.addItemListener(starItemListenner);
+		
 		star4.setFont(font);
 		star4.setBounds(550, 0, 280, 30);
 		Searchjp2.add(star4);
+		star4.addItemListener(starItemListenner);
 
 		star5.setFont(font);
 		star5.setBounds(650, 0, 280, 30);
 		Searchjp2.add(star5);
+		star5.addItemListener(starItemListenner);
 
 		scorejl.setFont(font);
 		scorejl.setBounds(100, 30, 100, 30);
@@ -360,26 +577,45 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		allscore.setSelected(true);
 		allscore.setBounds(150, 30, 280, 30);
 		Searchjp2.add(allscore);
-
+		allscore.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED){
+					chooseAllScore=true;
+				}
+				if(e.getStateChange()==ItemEvent.DESELECTED){
+					chooseAllScore=false;
+				}
+			}
+		});
+		
+		ScoreItemListenner scoreItemListenner = new ScoreItemListenner();
+		
 		score1.setFont(font);
 		score1.setBounds(250, 30, 280, 30);
 		Searchjp2.add(score1);
-
+		score1.addItemListener(scoreItemListenner);
+		
 		score2.setFont(font);
 		score2.setBounds(350, 30, 280, 30);
 		Searchjp2.add(score2);
+		score2.addItemListener(scoreItemListenner);
 
 		score3.setFont(font);
 		score3.setBounds(450, 30, 280, 30);
 		Searchjp2.add(score3);
+		score3.addItemListener(scoreItemListenner);
 
 		score4.setFont(font);
 		score4.setBounds(550, 30, 280, 30);
 		Searchjp2.add(score4);
+		score4.addItemListener(scoreItemListenner);
 
 		score5.setFont(font);
 		score5.setBounds(650, 30, 280, 30);
 		Searchjp2.add(score5);
+		score5.addItemListener(scoreItemListenner);
 
 		orderstatejl.setFont(font);
 		orderstatejl.setBounds(100, 60, 100, 30);
@@ -389,22 +625,40 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		allstate.setSelected(true);
 		allstate.setBounds(150, 60, 280, 30);
 		Searchjp2.add(allstate);
+		allstate.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()==ItemEvent.SELECTED){
+					chooseAllState=true;
+				}
+				if(e.getStateChange()==ItemEvent.DESELECTED){
+					chooseAllState=false;
+				}
+			}
+		});
 
+		OrderStateItemListenner orderStateItemListenner = new OrderStateItemListenner();
+		
 		state1.setFont(font);
 		state1.setBounds(250, 60, 280, 30);
 		Searchjp2.add(state1);
+		state1.addItemListener(orderStateItemListenner);
 
 		state2.setFont(font);
 		state2.setBounds(350, 60, 280, 30);
 		Searchjp2.add(state2);
+		state2.addItemListener(orderStateItemListenner);
 
 		state3.setFont(font);
 		state3.setBounds(450, 60, 280, 30);
 		Searchjp2.add(state3);
+		state3.addItemListener(orderStateItemListenner);
 
 		state4.setFont(font);
 		state4.setBounds(550, 60, 280, 30);
 		Searchjp2.add(state4);
+		state4.addItemListener(orderStateItemListenner);
 
 		Searchllintjp10.setBounds(50, 30, 700, 2);
 		Searchllintjp10.setBackground(color);
@@ -436,7 +690,6 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 				SearchHoteltoClient_JPanel.this.remove(Searchjp2);
 				SearchHoteltoClient_JPanel.this.add(moresearchjp);
@@ -446,25 +699,21 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
@@ -485,10 +734,24 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		popularSortUpjb.setBounds(90, 5, 20, 14);
 		popularSortUpjb.setBorder(null);
 		sortjp.add(popularSortUpjb);
+		popularSortUpjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.MULTIPLE_HIGH_TO_LOW);
+			}
+		});
 
 		popularSortDownjb.setBounds(90, 20, 20, 15);
 		popularSortDownjb.setBorder(null);
 		sortjp.add(popularSortDownjb);
+		popularSortDownjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.MULTIPLE_LOW_TO_HIGH);
+			}
+		});
 
 		pricesortjl.setFont(font);
 		pricesortjl.setBounds(195, 5, 100, 30);
@@ -497,10 +760,24 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		priceSortUpjb.setBounds(245, 5, 20, 14);
 		priceSortUpjb.setBorder(null);
 		sortjp.add(priceSortUpjb);
+		priceSortUpjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.PRICE_HIGH_TO_LOW);
+			}
+		});
 
 		priceSortDownjb.setBounds(245, 20, 20, 15);
 		priceSortDownjb.setBorder(null);
 		sortjp.add(priceSortDownjb);
+		priceSortDownjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.PRICE_LOW_TO_HIGH);
+			}
+		});
 
 		starsortjl.setFont(font);
 		starsortjl.setBounds(370, 5, 100, 30);
@@ -509,10 +786,24 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		starSortUpjb.setBounds(420, 5, 20, 14);
 		starSortUpjb.setBorder(null);
 		sortjp.add(starSortUpjb);
+		starSortUpjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.STARLEVEL_HIGH_TO_LOW);
+			}
+		});
 
 		starSortDownjb.setBounds(420, 20, 20, 15);
 		starSortDownjb.setBorder(null);
 		sortjp.add(starSortDownjb);
+		starSortDownjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.STARLEVEL_LOW_TO_HIGH);
+			}
+		});
 
 		scoresortjl.setFont(font);
 		scoresortjl.setBounds(545, 5, 100, 30);
@@ -521,10 +812,24 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		scoreSortUpjb.setBounds(595, 5, 20, 14);
 		scoreSortUpjb.setBorder(null);
 		sortjp.add(scoreSortUpjb);
+		scoreSortUpjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.SCORE_HIGH_TO_LOW);
+			}
+		});
 
 		scoreSortDownjb.setBounds(595, 20, 20, 15);
 		scoreSortDownjb.setBorder(null);
 		sortjp.add(scoreSortDownjb);
+		scoreSortDownjb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sortHotel(HotelSortType.SCORE_LOW_TO_HIGH);
+			}
+		});
 
 		sortjp.setBackground(color);
 		sortjp.setLayout(null);
@@ -586,4 +891,146 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	}
 
+	class BedItemListenner implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			JCheckBox box = (JCheckBox)e.getItem();
+			BedType type = bedMap.get(box.getText());
+			if(e.getStateChange()==ItemEvent.SELECTED){
+				bedTypes.add(type);
+			}
+			if(e.getStateChange()==ItemEvent.DESELECTED){
+				bedTypes.remove(type);
+			}
+			updateHotelListPanel();
+		}
+		
+	}
+	class PriceItemListenner implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			JCheckBox box = (JCheckBox)e.getItem();
+			Integer low = priceMap.get(box.getText());
+			if(e.getStateChange()==ItemEvent.SELECTED){
+				lowPrice.add(low);
+				if(low!=800){
+					highPrice.add(low+200);
+				}
+			}
+			if(e.getStateChange()==ItemEvent.DESELECTED){
+				lowPrice.remove(new Integer(low));
+				if(low!=800){
+					highPrice.remove(new Integer(low+200));
+				}
+			}
+			updateHotelListPanel();
+		}
+		
+		
+	}
+	class StarItemListenner implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			JCheckBox box = (JCheckBox)e.getItem();
+			Integer star = starMap.get(box.getText());
+			if(e.getStateChange()==ItemEvent.SELECTED){
+				starArrayList.add(star);
+			}
+			if(e.getStateChange()==ItemEvent.DESELECTED){
+				starArrayList.remove(new Integer(star));
+			}
+			updateHotelListPanel();
+		}
+		
+	}
+	class OrderStateItemListenner implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			JCheckBox box = (JCheckBox)e.getItem();
+			OrderState state = stateMap.get(box.getText());
+			if(e.getStateChange()==ItemEvent.SELECTED){
+				orderStates.add(state);
+			}
+			if(e.getStateChange()==ItemEvent.DESELECTED){
+				orderStates.remove(state);
+			}
+			updateHotelListPanel();
+		}
+		
+	}
+	class ScoreItemListenner implements ItemListener{
+
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			JCheckBox box = (JCheckBox)e.getItem();
+			Double score = scoreMap.get(box.getText());
+			if(e.getStateChange()==ItemEvent.SELECTED){
+				allLowScoreNumbers.add(score);
+				allHighScoreNumbers.add(score+1);
+			}
+			if(e.getStateChange()==ItemEvent.DESELECTED){
+				allLowScoreNumbers.remove(new Double(score));
+				allHighScoreNumbers.remove(new Double(score+1));
+			}
+			updateHotelListPanel();
+		}
+		
+	}
+	public void updateHotelListPanel(){
+		if(chooseAllBeds){
+			vo.setBedTypes(allBedTypes);
+		}else{
+			vo.setBedTypes(bedTypes);
+		}
+		if(chooseAllPrice){
+			vo.setHighPrice(allHighPrice);
+			vo.setLowPrice(allLowPrice);
+		}else{
+			vo.setHighPrice(highPrice);
+			vo.setLowPrice(lowPrice);
+		}
+		if(chooseAllScore){
+			vo.setHighRemarkNumbers(allHighScoreNumbers);
+			vo.setLowRemarkNumbers(allLowScoreNumbers);
+		}else{
+			vo.setHighRemarkNumbers(highScoreNumbers);
+			vo.setLowRemarkNumbers(lowScoreNumbers);
+		}
+		if(chooseAllState){
+			vo.setOrderStates(allOrderStates);
+		}else{
+			vo.setOrderStates(orderStates);
+		}
+		if(chooseAllStar){
+			vo.setStars(allStarArrayList);
+		}else{
+			vo.setStars(starArrayList);
+		}
+		
+		vo.setHotelSortType(null);
+		
+		if((!fromtimejtf.getText().equals("请选择日期"))&&(!fromtimejtf.getText().equals(""))){
+			vo.setCheckinTime(new Date(TransHelper.stringToDate(fromtimejtf.getText())));
+		}
+		if((!totimejtf.getText().equals("请选择日期"))&&(!totimejtf.getText().equals(""))){
+			vo.setCheckoutTime(new Date(TransHelper.stringToDate(totimejtf.getText())));
+		}
+		if((!searchjtf.getText().equals("请输入酒店名称"))&&(!searchjtf.getText().equals(""))){
+			vo.setHotelName(searchjtf.getText());
+		}
+		
+		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
+		searchHotelPane_JPanel.setHotelListPanePanel(pane_JPanel);
+
+	}
+	public void sortHotel(HotelSortType type){
+		vo.setHotelSortType(type);
+		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
+		searchHotelPane_JPanel.setHotelListPanePanel(pane_JPanel);
+	}
 }
+

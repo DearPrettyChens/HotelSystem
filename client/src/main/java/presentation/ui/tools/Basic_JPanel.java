@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.UserType;
+
 /**
  * 左边的选择栏
  * 
@@ -22,14 +24,15 @@ public class Basic_JPanel extends JPanel {
 
 	private JLabel jl4 = new JLabel();
 	private RightContainerPanel rightContainerPanel;
-	private LeftChooseMap leftChooseMap = LeftChooseMap.getInstance();
+	private LeftChooseMap leftChooseMap;
 	private String labelName;
 
 	ArrayList<Basic_JPanel> allpanel;
 	int tab;
 
 	public Basic_JPanel(String s, String image, int tab, ArrayList<Basic_JPanel> allpanel,
-			RightContainerPanel rightContainerPanel) {
+			RightContainerPanel rightContainerPanel,String userName,String userID,UserType userType) {
+		this.leftChooseMap=LeftChooseMap.getInstance(userName,userID,userType);
 		this.labelName = s;
 		this.rightContainerPanel = rightContainerPanel;
 
