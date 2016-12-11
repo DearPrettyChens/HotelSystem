@@ -52,7 +52,7 @@ public class Hotelworker_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private JLabel namejl1 = new JLabel(hotelName);
+	private JLabel namejl1;
 	// private JLabel namejl2=new JLabel(hotelWorkerName);
 
 	private JLabel myhotel_Jlabel = new JLabel("我的酒店");
@@ -89,6 +89,7 @@ public class Hotelworker_JFrame extends JFrame {
 		this.hotelName=userName;
 		this.hotelID=userID;
 		this.hotelWorkerID=userID;
+		this.namejl1= new JLabel(hotelName);
 		this.myhotel_Jlabel1 = new Hotelworker_JLabel("● 维护酒店信息",0,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
 		this.myhotel_Jlabel2 = new Hotelworker_JLabel("● 录入客房信息",1,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
 		this.myorder_Jlabel1 = new Hotelworker_JLabel("● 浏览订单列表",2,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);

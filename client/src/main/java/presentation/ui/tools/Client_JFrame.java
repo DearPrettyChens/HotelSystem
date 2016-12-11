@@ -105,7 +105,7 @@ public class Client_JFrame extends JFrame {
 	private HeadPanel headPanel;
 
 	// private Basic_JPanel jp1=new Basic_JPanel();
-	private JLabel namejl = new JLabel(customerName);
+	private JLabel namejl ;
 	private JLabel vipjl= new JLabel(new ImageIcon("image//vip.png"));
 	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
 
@@ -116,6 +116,7 @@ public class Client_JFrame extends JFrame {
   
    		this.customerName=userName;
    		this.customerID=userID;
+   		this.namejl = new JLabel(customerName);
  		this.jp1=new Basic_JPanel("预订酒店", "image//Conduc.png", 0, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
    		this.jp2= new Basic_JPanel("我的信息", "image//edit.png", 1, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);
    		this.jp3 = new Basic_JPanel("我的密码", "image//key.png", 2, allpanel,rightContainerPanel,this.customerName,this.customerID,UserType.Customer);

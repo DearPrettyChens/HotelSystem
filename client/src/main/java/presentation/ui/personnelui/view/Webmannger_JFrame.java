@@ -59,7 +59,7 @@ public class Webmannger_JFrame extends JFrame {
 
 	private HeadPanel headPanel;// 头像部分
 
-	private JLabel namejl = new JLabel(managerName);
+	private JLabel namejl;
 
 	private Color backgroundcolor = new Color(148, 221, 184);
 	private JPanel abovepanel = new JPanel();
@@ -68,6 +68,7 @@ public class Webmannger_JFrame extends JFrame {
 	public Webmannger_JFrame(String userName,String userID) {
 		this.managerName=userName;
 		this.userID=userID;
+		this.namejl=new JLabel(managerName);
 		this.jp1= new Basic_JPanel("营销人员", "image//user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.jp2= new Basic_JPanel("顾客会员", "image//user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.jp3= new Basic_JPanel("酒店人员", "image//shop.png", 2, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
