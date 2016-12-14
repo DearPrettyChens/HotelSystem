@@ -17,7 +17,7 @@ import com.sun.javafx.beans.IDProperty;
  * @version 1.0
  */
 @Entity
-@Table(name = "t_order2")
+@Table(name = "new_order")
 public class RemarkPO implements Serializable {
 	// 酒店id
 	@Column(name = "hotel_id")

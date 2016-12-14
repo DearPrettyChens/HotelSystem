@@ -19,7 +19,7 @@ import util.OrderState;
  * @version 1.0
  */
 @Entity
-@Table(name = "t_order2")
+@Table(name = "new_order")
 public class OrderListPO implements Serializable {
 	// 订单编号
 	@Id
