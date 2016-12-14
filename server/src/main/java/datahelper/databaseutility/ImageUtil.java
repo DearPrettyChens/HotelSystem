@@ -1,6 +1,8 @@
 package datahelper.databaseutility;
 
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
@@ -41,7 +43,16 @@ public final class ImageUtil {
 			newFile.mkdirs();
 		}
 		try {
-			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
+			
+			BufferedImage bi = ImageTool.toBufferedImage(image.getImage());
+//			Graphics2D g2d = bi.createGraphics();
+//			g2d.drawImage;
+			ImageIO.write(bi,"png",new File(saveSource + filePath));
+//			g2d.dispose();
+			
+			
+//			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
+//			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

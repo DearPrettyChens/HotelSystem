@@ -383,6 +383,7 @@ public class Clientdetailinfo_JFrame extends JFrame {
 				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, image, tel, credit,
 							birthdayByDate, enterpriseName, customerType, null, type);
+					System.out.println(image);
 					if(personnelDistributionController.setPerson(personDetailVO)==ResultMessage.SUCCESS){
 						Clientdetailinfo_JFrame.this.setVisible(false);
 					}
