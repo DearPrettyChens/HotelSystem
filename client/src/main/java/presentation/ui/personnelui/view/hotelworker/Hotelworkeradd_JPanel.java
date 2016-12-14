@@ -121,38 +121,38 @@ public class Hotelworkeradd_JPanel extends JPanel {
 		canclejb.setText("取消");
 		canclejb.setBounds(430, 430, 100, 30);
 		this.add(canclejb);
-		
-		JLabel nameErrorJl1=new JLabel("用户名已存在");
+
+		JLabel nameErrorJl1 = new JLabel("用户名已存在");
 		nameErrorJl1.setForeground(Color.RED);
 		nameErrorJl1.setFont(font);
-		nameErrorJl1.setBounds(540,80,200,50);
+		nameErrorJl1.setBounds(540, 80, 200, 50);
 		Hotelworkeradd_JPanel.this.add(nameErrorJl1);
 		nameErrorJl1.setVisible(false);
-		
-		JLabel nameErrorJl2=new JLabel("2-8位字母数字或中文");
+
+		JLabel nameErrorJl2 = new JLabel("2-8位字母数字或中文");
 		nameErrorJl2.setForeground(Color.RED);
 		nameErrorJl2.setFont(font);
-		nameErrorJl2.setBounds(540,80,250,50);
+		nameErrorJl2.setBounds(540, 80, 250, 50);
 		Hotelworkeradd_JPanel.this.add(nameErrorJl2);
 		nameErrorJl2.setVisible(false);
-		
-		JLabel nameErrorJl3=new JLabel();
+
+		JLabel nameErrorJl3 = new JLabel();
 		nameErrorJl3.setForeground(Color.RED);
 		nameErrorJl3.setFont(font);
-		nameErrorJl3.setBounds(540,80,250,50);
-		
-		JLabel nameErrorJl4=new JLabel("不能为空");
+		nameErrorJl3.setBounds(540, 80, 250, 50);
+
+		JLabel nameErrorJl4 = new JLabel("不能为空");
 		nameErrorJl4.setForeground(Color.RED);
 		nameErrorJl4.setFont(font);
-		nameErrorJl4.setBounds(540,80,200,50);
+		nameErrorJl4.setBounds(540, 80, 200, 50);
 		Hotelworkeradd_JPanel.this.add(nameErrorJl4);
 		nameErrorJl4.setVisible(false);
-		
+
 		/**
 		 * 实现用户名的实时检查
 		 */
-		Document nameDoc=namejtx.getDocument();
-		nameDoc.addDocumentListener(new DocumentListener(){
+		Document nameDoc = namejtx.getDocument();
+		nameDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -161,13 +161,11 @@ public class Hotelworkeradd_JPanel extends JPanel {
 				try {
 
 					String s = doc.getText(0, doc.getLength());
-					if(personnelDistributionController.checkUserName(s)==ResultMessage.USEREXISTED){
+					if (personnelDistributionController.checkUserName(s) == ResultMessage.USEREXISTED) {
 						nameErrorJl1.setVisible(true);
-					}
-					else if(personnelDistributionController.checkUserName(s)==ResultMessage.USERFORMATERROR){
+					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.USERFORMATERROR) {
 						nameErrorJl2.setVisible(true);
-					}
-					else if(personnelDistributionController.checkUserName(s)==ResultMessage.SUCCESS){
+					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.SUCCESS) {
 						nameErrorJl1.setVisible(false);
 						nameErrorJl2.setVisible(false);
 					}
@@ -176,37 +174,36 @@ public class Hotelworkeradd_JPanel extends JPanel {
 				}
 			}
 
-			
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		JLabel telErrorJl=new JLabel("请输入11位的手机号码");
+
+		JLabel telErrorJl = new JLabel("请输入11位的手机号码");
 		telErrorJl.setForeground(Color.RED);
 		telErrorJl.setFont(font);
-		telErrorJl.setBounds(540,240,200,50);
+		telErrorJl.setBounds(540, 240, 200, 50);
 		Hotelworkeradd_JPanel.this.add(telErrorJl);
 		telErrorJl.setVisible(false);
-		
-		JLabel telErrorJl2=new JLabel("不能为空");
+
+		JLabel telErrorJl2 = new JLabel("不能为空");
 		telErrorJl2.setForeground(Color.RED);
 		telErrorJl2.setFont(font);
-		telErrorJl2.setBounds(540,240,200,50);
+		telErrorJl2.setBounds(540, 240, 200, 50);
 		Hotelworkeradd_JPanel.this.add(telErrorJl2);
 		telErrorJl2.setVisible(false);
 		/**
 		 * 实现联系方式的实时检查
 		 */
-		Document telDoc=teljtx.getDocument();
-		telDoc.addDocumentListener(new DocumentListener(){
+		Document telDoc = teljtx.getDocument();
+		telDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -215,10 +212,9 @@ public class Hotelworkeradd_JPanel extends JPanel {
 				try {
 
 					String s = doc.getText(0, doc.getLength());
-					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
+					if (personnelDistributionController.checkTel(s) == ResultMessage.FAIL) {
 						telErrorJl.setVisible(true);
-					}
-					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
+					} else if (personnelDistributionController.checkTel(s) == ResultMessage.SUCCESS) {
 						telErrorJl.setVisible(false);
 					}
 				} catch (BadLocationException e1) {
@@ -228,34 +224,34 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
+
+		JLabel passwordErrorJl = new JLabel("4-10位的数字或字母");
 		passwordErrorJl.setForeground(Color.RED);
 		passwordErrorJl.setFont(font);
-		passwordErrorJl.setBounds(540,320,200,50);
+		passwordErrorJl.setBounds(540, 320, 200, 50);
 		Hotelworkeradd_JPanel.this.add(passwordErrorJl);
 		passwordErrorJl.setVisible(false);
-		
-		JLabel passwordErrorJl2=new JLabel("不能为空");
+
+		JLabel passwordErrorJl2 = new JLabel("不能为空");
 		passwordErrorJl2.setForeground(Color.RED);
 		passwordErrorJl2.setFont(font);
-		passwordErrorJl2.setBounds(540,320,200,50);
+		passwordErrorJl2.setBounds(540, 320, 200, 50);
 		Hotelworkeradd_JPanel.this.add(passwordErrorJl2);
 		passwordErrorJl2.setVisible(false);
 		/**
 		 * 实现密码的实时检查
 		 */
-		Document passwordDoc=passwordjtx.getDocument();
-		passwordDoc.addDocumentListener(new DocumentListener(){
+		Document passwordDoc = passwordjtx.getDocument();
+		passwordDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -264,40 +260,39 @@ public class Hotelworkeradd_JPanel extends JPanel {
 				try {
 
 					String s = doc.getText(0, doc.getLength());
-					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
+					if (personnelDistributionController.checkPassword(s) == ResultMessage.PASSWORDFORMATERROR) {
 						passwordErrorJl.setVisible(true);
-					}
-					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
+					} else if (personnelDistributionController.checkPassword(s) == ResultMessage.SUCCESS) {
 						passwordErrorJl.setVisible(false);
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
 				}
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				
+
 			}
-			
+
 		});
-		JLabel hotelErrorJl=new JLabel("不能为空");
+		JLabel hotelErrorJl = new JLabel("不能为空");
 		hotelErrorJl.setForeground(Color.RED);
 		hotelErrorJl.setFont(font);
-		hotelErrorJl.setBounds(540,160,200,50);
+		hotelErrorJl.setBounds(540, 160, 200, 50);
 		Hotelworkeradd_JPanel.this.add(hotelErrorJl);
 		hotelErrorJl.setVisible(false);
 		/**
 		 * 实现酒店名称的检查
 		 */
-		Document hotelNameDoc=hotelnamejtx.getDocument();
-		hotelNameDoc.addDocumentListener(new DocumentListener(){
+		Document hotelNameDoc = hotelnamejtx.getDocument();
+		hotelNameDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -306,29 +301,29 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
-				
+
 			}
-			
+
 		});
-		
-		JLabel saveError=new JLabel("保存失败");
+
+		JLabel saveError = new JLabel("保存失败");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(540,430,150,50);
+		saveError.setBounds(540, 420, 150, 50);
 		Hotelworkeradd_JPanel.this.add(saveError);
 		saveError.setVisible(false);
-		
-		JLabel saveSuccess=new JLabel("保存成功");
-		saveSuccess.setForeground(Color.RED);
-		saveSuccess.setFont(font);
-		saveSuccess.setBounds(540,430,150,50);
-		Hotelworkeradd_JPanel.this.add(saveSuccess);
-		saveSuccess.setVisible(false);
+
+		// JLabel saveSuccess=new JLabel("保存成功");
+		// saveSuccess.setForeground(Color.RED);
+		// saveSuccess.setFont(font);
+		// saveSuccess.setBounds(540,430,150,50);
+		// Hotelworkeradd_JPanel.this.add(saveSuccess);
+		// saveSuccess.setVisible(false);
 		/**
 		 * 点击确认按钮，添加人员
 		 */
@@ -336,70 +331,90 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				if(namejtx.getText().equals("")){
+
+				if (namejtx.getText().equals("")) {
 					nameErrorJl1.setVisible(false);
 					nameErrorJl2.setVisible(false);
 					nameErrorJl3.setVisible(false);
 					nameErrorJl4.setVisible(true);
 				}
-				if(passwordjtx.getText().equals("")){
+				if (passwordjtx.getText().equals("")) {
 					passwordErrorJl.setVisible(false);
 					passwordErrorJl2.setVisible(true);
 				}
-				if(teljtx.getText().equals("")){
+				if (teljtx.getText().equals("")) {
 					telErrorJl.setVisible(false);
 					telErrorJl2.setVisible(true);
 				}
-				if(hotelnamejtx.getText().equals("")){
+				if (hotelnamejtx.getText().equals("")) {
 					hotelErrorJl.setVisible(true);
 				}
-				if(!namejtx.getText().equals("")&&!passwordjtx.getText().equals("")&&
-						!teljtx.getText().equals("")&&!hotelnamejtx.getText().equals("")){
-				PersonDetailVO detail=new PersonDetailVO(null,namejtx.getText(),passwordjtx.getText(),
-						null,teljtx.getText(),0,null,null,null,hotelnamejtx.getText(),UserType.HotelWorker);
-				if(personnelDistributionController.addPerson(detail)==ResultMessage.SUCCESS){
-					//保存成功
-					//TODO
-					new SaveSuccess_JFrame();
-					saveError.setVisible(false);
-					saveSuccess.setVisible(true);
-				}
-				else{
-					saveSuccess.setVisible(false);
-					saveError.setVisible(true);
-				}
+				if (!namejtx.getText().equals("") && !passwordjtx.getText().equals("") && !teljtx.getText().equals("")
+						&& !hotelnamejtx.getText().equals("")) {
+					PersonDetailVO detail = new PersonDetailVO(null, namejtx.getText(), passwordjtx.getText(), null,
+							teljtx.getText(), 0, null, null, null, hotelnamejtx.getText(), UserType.HotelWorker);
+
+//					boolean tag = false;
+//					if (nameErrorJl1.isVisible() || nameErrorJl2.isVisible() || nameErrorJl3.isVisible()
+//							|| nameErrorJl4.isVisible() || telErrorJl.isVisible() || telErrorJl2.isVisible()
+//							|| passwordErrorJl.isVisible() || passwordErrorJl2.isVisible()) {
+//						tag = true;
+//					}
+
+					if ((personnelDistributionController.addPerson(detail) == ResultMessage.SUCCESS)) {
+						// 保存成功
+						// TODO
+						new SaveSuccess_JFrame();
+						saveError.setVisible(false);
+						// saveSuccess.setVisible(true);
+					} else {
+						// saveSuccess.setVisible(false);
+						saveError.setVisible(true);
+					}
 				}
 			}
 		});
 		/**
 		 * 点击取消按钮，清空输入框
 		 */
-		canclejb.addActionListener(new ActionListener(){
+		canclejb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
+				// Hotelworkeradd_JPanel.this.repaint();
+				nameErrorJl1.setVisible(false);
+				nameErrorJl2.setVisible(false);
+				nameErrorJl3.setVisible(false);
+				nameErrorJl4.setVisible(false);
+				telErrorJl.setVisible(false);
+				telErrorJl2.setVisible(false);
+				passwordErrorJl.setVisible(false);
+				passwordErrorJl2.setVisible(false);
+				hotelErrorJl.setVisible(false);
+				saveError.setVisible(false);
+
 				Hotelworkeradd_JPanel.this.remove(namejtx);
-				namejtx= new MyTextfield("请输入姓名");
+				namejtx = new MyTextfield("请输入姓名");
 				namejtx.setBounds(330, 80, 200, 50);
 				Hotelworkeradd_JPanel.this.add(namejtx);
-				
+
 				Hotelworkeradd_JPanel.this.remove(hotelnamejtx);
-				hotelnamejtx= new MyTextfield("请输入所属酒店名称");
+				hotelnamejtx = new MyTextfield("请输入所属酒店名称");
 				hotelnamejtx.setBounds(330, 160, 200, 50);
 				Hotelworkeradd_JPanel.this.add(hotelnamejtx);
-				
+
 				Hotelworkeradd_JPanel.this.remove(teljtx);
-				teljtx= new MyTextfield("请输入联系方式");
+				teljtx = new MyTextfield("请输入联系方式");
 				teljtx.setBounds(330, 240, 200, 50);
 				Hotelworkeradd_JPanel.this.add(teljtx);
-				
+
 				Hotelworkeradd_JPanel.this.remove(passwordjtx);
-				passwordjtx= new MyTextfield("请输入密码");
+				passwordjtx = new MyTextfield("请输入密码");
 				passwordjtx.setBounds(330, 320, 200, 50);
 				Hotelworkeradd_JPanel.this.add(passwordjtx);
 			}
-			
+
 		});
 	}
 

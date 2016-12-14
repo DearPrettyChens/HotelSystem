@@ -76,8 +76,9 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
     
 	public void changeScrollPane(ArrayList<PersonListVO>personListVOs) {
 		  if(personListVOs==null){
+			  scrollPane.setLayout(null);
 			  JLabel jLabel=new JLabel("该顾客不存在！",JLabel.CENTER);
-			  jLabel.setBounds(300,100,200,30);
+			  jLabel.setBounds(300,0,200,30);
 			  jLabel.setFont(new Font("宋体", Font.BOLD, 19));
 			  jLabel.setForeground(Color.red);
 			  
