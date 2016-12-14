@@ -11,7 +11,10 @@ import javax.swing.JPanel;
 
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
+import util.ResultMessage;
 import vo.webstrategyvo.GradeRuleVO;
 
 /**
@@ -94,10 +97,18 @@ public class Clientlevelrule_JPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int newValue = Integer.parseInt(creditjtf.getText());
-				System.out.println(newValue);
-				if (newValue != credit) {
+				if(newValue<=0){
+					SaveFail_JFrame frame=new SaveFail_JFrame();
+					frame.setLableText("信用值必须为正哟～");
+				}
+				if (newValue>0) {
 					GradeRuleVO vo = new GradeRuleVO(newValue);
-					webstrategyDistributionController.confirmGradeRule(vo);
+					if(webstrategyDistributionController.confirmGradeRule(vo)==ResultMessage.SUCCESS){
+						new SaveSuccess_JFrame();
+					}
+					else{
+						new SaveFail_JFrame();
+					}
 				}
 			}
 		});

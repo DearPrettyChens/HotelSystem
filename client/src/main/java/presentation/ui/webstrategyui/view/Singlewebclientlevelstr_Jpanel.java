@@ -49,15 +49,7 @@ public class Singlewebclientlevelstr_Jpanel extends JLabel {
 
 		leveljtf.setBounds(300, 16, 100, 30);
 		leveljtf.setText(level + "");
-		leveljtf.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (leveljtf.getText().matches("^[0-9]*[1-9][0-9]*$")) {
-					level = Integer.parseInt(leveljtf.getText());
-				}
-			}
-		});
+		
 		this.add(leveljtf);
 
 		countjl.setBounds(430, 15, 200, 30);
@@ -66,29 +58,23 @@ public class Singlewebclientlevelstr_Jpanel extends JLabel {
 
 		countjtf.setBounds(510, 16, 100, 30);
 		countjtf.setText(count + "");
-		countjtf.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (countjtf.getText().matches("^[0-9]+(.[0-9]{1,3})?$")) {
-					count = Double.parseDouble(countjtf.getText());
-				}
-			}
-		});
+		
 		this.add(countjtf);
 
 	}
 
 	public boolean hasInputStr() {
-		return (level != 0) && (count != 0);
+		return (countjtf.getText().matches("^[0-9]+(.[0-9]{1,3})?$"))
+				&&(countjtf.getText()!="0")
+				&&(leveljtf.getText().matches("^[0-9]*[1-9][0-9]*$"));
 	}
 
 	public int getLevel() {
-		return level;
+		return Integer.parseInt(leveljtf.getText());
 	}
 
 	public double getCount() {
-		return count;
+		return Double.parseDouble(countjtf.getText());
 	}
 
 }

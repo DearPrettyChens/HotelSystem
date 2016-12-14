@@ -63,13 +63,7 @@ public class Singlewebareastr_Jpanel extends JLabel {
 
 		leveljtf.setBounds(260, 16, 100, 30);
 		leveljtf.setText(place + "");
-		leveljtf.addActionListener(new ActionListener() {
-			// 每次选择商圈之后要更新tradingare属性
-			@Override
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
+		
 		this.add(leveljtf);
 
 		countjl.setBounds(430, 15, 200, 30);
@@ -84,10 +78,13 @@ public class Singlewebareastr_Jpanel extends JLabel {
 
 	// WebSpecialArea调用，每次新建策略时都要判断，用来判断是否输入策略。
 	public boolean hasInputStr() {
-		return !(tradingArea == null) && (Double.parseDouble(countjtf.getText()) != 0);
+		return (leveljtf.getText()!=null)
+				&& (countjtf.getText().matches("^[0-9]+(.[0-9]{1,3})?$"))
+				&&(countjtf.getText()!="0");
 	}
 
 	public int getTradingArea() {
+		tradingArea=TradingArea.toArea(leveljtf.getText());
 		if (tradingArea != null) {
 			return tradingArea.ordinal();
 		} else {

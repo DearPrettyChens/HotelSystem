@@ -64,15 +64,6 @@ public class Singlewebspecialtimestr_JPanel extends JLabel {
 		begintimejtf.setBounds(400, 40, 100, 30);
 		begintimejtf.setText(begintime + "");
 		this.add(begintimejtf);
-		begintimejtf.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (begintimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")) {
-					beginTimeinDate = new Date(TransHelper.stringToDate(begintimejtf.getText()));
-				}
-			}
-		});
 
 		endtimejl.setBounds(300, 120, 200, 30);
 		endtimejl.setFont(font);
@@ -81,15 +72,6 @@ public class Singlewebspecialtimestr_JPanel extends JLabel {
 		endtimejtf.setBounds(400, 120, 100, 30);
 		endtimejtf.setText(endtime + "");
 		this.add(endtimejtf);
-		endtimejtf.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (endtimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")) {
-					endTimeinDate = new Date(TransHelper.stringToDate(endtimejtf.getText()));
-				}
-			}
-		});
 
 		countjl.setBounds(300, 200, 200, 30);
 		countjl.setFont(font);
@@ -102,7 +84,10 @@ public class Singlewebspecialtimestr_JPanel extends JLabel {
 	}
 
 	public boolean hasInputStr() {
-		return (begintime != null) && (endTimeinDate != null) && (count > 0) && (count < 1);
+		return (endtimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}") 
+				&& begintimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}") 
+				&& countjtf.getText().matches("^[0-9]+(.[0-9]{1,3})?$"))
+				&&(countjtf.getText()!="0");
 	}
 
 	public Date[] getTime() {
@@ -113,15 +98,15 @@ public class Singlewebspecialtimestr_JPanel extends JLabel {
 	}
 
 	public Date getBeginTimeinDate() {
-		return beginTimeinDate;
+		return new Date(TransHelper.stringToDate(begintimejtf.getText()));
 	}
 
 	public Date getEndTimeinDate() {
-		return endTimeinDate;
+		return new Date(TransHelper.stringToDate(endtimejtf.getText()));
 	}
 
 	public double getCount() {
-		return count;
+		return Double.parseDouble(countjtf.getText());
 	}
 
 }

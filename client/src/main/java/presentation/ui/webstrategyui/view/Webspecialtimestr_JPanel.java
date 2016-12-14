@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 
 import presentation.ui.loginui.view.newclient_JFrame;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import util.ResultMessage;
 import util.WebStrategyType;
@@ -90,9 +92,15 @@ public class Webspecialtimestr_JPanel extends JPanel {
 					if (message == ResultMessage.SUCCESS) {
 						//更新vo 保证下次再进入该界面时为最新的策略
 						webStrVO = vo;
+						new SaveSuccess_JFrame();
+					}
+					else{
+						new SaveFail_JFrame();
 					}
 				} else {
 					// 提示输入无效
+					SaveFail_JFrame frame=new SaveFail_JFrame();
+					frame.setLableText("未输入有效信息");
 				}
 			}
 

@@ -15,6 +15,8 @@ import javax.swing.JScrollPane;
 import net.sf.cglib.transform.impl.AddDelegateTransformer;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import util.ResultMessage;
@@ -28,7 +30,6 @@ import vo.webstrategyvo.WebStrVO;
  * 
  * 制定网站营销策略时，包含所有的会员策略面板
  * 
- * 确认按钮未实现监听
  * 
  * 
  * @author cy
@@ -100,13 +101,17 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 					WebStrVO vo = new WebStrVO(newVipStrategy, -1, WebStrategyType.VIP);
 					//根据返回信息message跳出提示框
 					ResultMessage message = webstrategyDistributionController.confirmWebStrategy(vo);
-//					System.out.println(message);
 					if(message==ResultMessage.SUCCESS){
 						//更新vipstrategy 保证下次取出的是最新的
 						vipStrategy = newVipStrategy ;
+						new SaveSuccess_JFrame();
+					}else{
+						new SaveFail_JFrame();
 					}
 				}else{
 					//跳出未输入有效信息 无法确认 提示框
+					SaveFail_JFrame frame=new SaveFail_JFrame();
+					frame.setLableText("未输入有效信息");
 				}
 			}
 		});

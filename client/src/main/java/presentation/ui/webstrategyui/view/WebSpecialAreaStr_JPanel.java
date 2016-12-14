@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import util.ResultMessage;
 import util.TradingArea;
@@ -97,10 +99,16 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 					if(resultMessage == ResultMessage.SUCCESS){
 						//更新 保证下次界面显示是最新的策略。
 						areaStrategy = newAreaStrategy ;
+						new SaveSuccess_JFrame();
+					}
+					else{
+						new SaveFail_JFrame();
 					}
 					
 				}else{
 					//跳出未输入有效信息 无法确认 提示框
+					SaveFail_JFrame frame=new SaveFail_JFrame();
+					frame.setLableText("未输入有效信息");
 				}
 			}
 		});
