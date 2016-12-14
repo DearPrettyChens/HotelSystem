@@ -21,6 +21,7 @@ import presentation.ui.personnelui.view.Searchperson_JPanel;
 import presentation.ui.personnelui.view.client.Clientdetailinfo_JFrame;
 import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 
@@ -83,6 +84,11 @@ public class ClientDepositeSearch_JPanel extends JPanel implements SearchInterfa
 //		scrollPane.repaint();
 		searchResultPanel.setBackground(Color.WHITE);
 		clientDepositeList_JPanels=new ArrayList<ClientDepositeList_JPanel>();
+		if(personListVOs==null){
+			SaveFail_JFrame frame=new SaveFail_JFrame();
+			frame.setLableText("无该用户信息");
+		}
+		else{
 		for(PersonListVO personListVO:personListVOs){
 			ClientDepositeList_JPanel clientDepositeList_JPanel=new ClientDepositeList_JPanel(personListVO);
 			clientDepositeList_JPanels.add(clientDepositeList_JPanel);
@@ -95,6 +101,7 @@ public class ClientDepositeSearch_JPanel extends JPanel implements SearchInterfa
 	    searchResultPanel.setPreferredSize(new Dimension(800, 120+120*clientDepositeList_JPanels.size()));
 	    scrollPane.setViewportView(searchResultPanel);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	    }
 //	    this.add(scrollPane);
 	}
 
