@@ -130,6 +130,7 @@ public class Personnel {
 	public ResultMessage setPerson (PersonDetailVO personDetailVO){
 		personDetailPO=personDetailVO.toPO();
 		try {
+			System.out.println("personnel");
 			return personnelDao.setPerson(personDetailPO);
 		} catch (RemoteException e) {
 			e.printStackTrace();

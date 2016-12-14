@@ -161,6 +161,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		setPO.setName(po.getName());
 		setPO.setPassword(po.getPassword());
 		setPO.setTelephone(po.getTelephone());
+		System.out.println("datahelper");
 		setPO.setImage(po.getImage());
 		if (setPO.getImage() != null) {
 			// 图片存到服务器端

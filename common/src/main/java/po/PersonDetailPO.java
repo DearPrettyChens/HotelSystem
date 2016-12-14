@@ -129,6 +129,7 @@ public class PersonDetailPO implements Serializable{
 	}
 
 	public void setTelephone(String telephone) {
+		System.out.println(telephone);
 		this.telephone = telephone;
 	}
 
