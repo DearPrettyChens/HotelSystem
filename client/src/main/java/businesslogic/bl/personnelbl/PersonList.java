@@ -76,12 +76,9 @@ public class PersonList {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		if(personListVOs==null) return null;
-		if(personListVOs.isEmpty()) return null;		
-=======
-		//if(personListVOs.isEmpty()) return null;		
->>>>>>> origin/master
+
+		if(personListVOs==null) return null;	
+
 		return personListVOs;
 	}
 	
