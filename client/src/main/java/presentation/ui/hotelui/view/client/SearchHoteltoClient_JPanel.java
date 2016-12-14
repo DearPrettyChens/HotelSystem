@@ -377,8 +377,10 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		citycomboBox.setBounds(180, 60, 80, 30);
 		Searchjp1.add(citycomboBox);
 
-		tradingareacomboBox.addItem("新街口");
-		tradingareacomboBox.addItem("湖南路");
+
+		for(TradingArea e:TradingArea.values()){
+			tradingareacomboBox.addItem(e.toString());
+		}
 		tradingareacomboBox.setSelectedItem(tradingarea);
 		tradingareacomboBox.setBounds(400, 60, 100, 30);
 		Searchjp1.add(tradingareacomboBox);
