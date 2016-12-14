@@ -3,12 +3,15 @@ package businesslogic.bl.personnelbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.bl.creditbl.Credit;
 import dao.personneldao.PersonnelDao;
 import init.RMIHelper;
 import po.PersonDetailPO;
 import util.ResultMessage;
 import util.TransHelper;
 import util.UserType;
+import vo.creditvo.CreditInfoVO;
+import vo.creditvo.CreditVO;
 import vo.personnelvo.PersonDetailVO;
 import vo.personnelvo.PersonListVO;
 
@@ -103,10 +106,18 @@ public class Personnel {
 	public PersonDetailVO getPersonDetail(String personID){
 		try {
 			personDetailPO=personnelDao.getPersonDetail(TransHelper.idToInt(personID));
+		    Credit credit = new Credit(personID);
+		    CreditInfoVO creditInfoVO=credit.getUserCreditInfoList();
+		    ArrayList<CreditVO> creditVOs=creditInfoVO.getCreditinfo();
+		    CreditVO creditVO=creditVOs.get(creditVOs.size()-1);
+		    int creditNumber=creditVO.getCredit();
+		    PersonDetailVO personDetailVO=new PersonDetailVO(personDetailPO);
+		    personDetailVO.setCredit(creditNumber);
+		    return personDetailVO;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return new PersonDetailVO(personDetailPO);
+		return null;
 	}
 	
 	/**

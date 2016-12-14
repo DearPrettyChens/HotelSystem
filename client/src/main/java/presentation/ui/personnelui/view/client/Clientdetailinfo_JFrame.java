@@ -386,9 +386,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					System.out.println(image);
 					if(personnelDistributionController.setPerson(personDetailVO)==ResultMessage.SUCCESS){
 						Clientdetailinfo_JFrame.this.setVisible(false);
+						System.out.println("success");
 					}
 					else{
 						saveError.setVisible(true);
+						System.out.println("fail");
 					}
 				}
 				
