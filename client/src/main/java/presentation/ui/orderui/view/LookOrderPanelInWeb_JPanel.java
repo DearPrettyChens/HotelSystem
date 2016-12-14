@@ -24,7 +24,7 @@ import vo.personnelvo.PersonListVO;
  */
 public class LookOrderPanelInWeb_JPanel extends JPanel {
 	
-	private Searchorder_JPanel searchorder_JPanel=new Searchorder_JPanel(UserType.WebMarketMan);//搜索框
+	private Searchorder_JPanel searchorder_JPanel=new Searchorder_JPanel(UserType.WebMarketMan,this);//搜索框
 	
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel searchResultPanel = new JPanel();
@@ -49,19 +49,22 @@ public class LookOrderPanelInWeb_JPanel extends JPanel {
 	    scrollPane.setBackground(Color.WHITE);
 	    scrollPane.setBorder(null);
 	   
-	    initOrderList();
+	    initOrderList(OrderState.UNUSUAL);
+	    
 	    this.add(scrollPane);
         
 	}
 	/**
 	 * 界面初始化获得异常订单信息
 	 */
-	public void initOrderList() {
-		TypeInfoVO typeInfoVO=new TypeInfoVO(UserType.WebMarketMan, OrderState.UNUSUAL, null );
+	public void initOrderList(OrderState state) {
+		TypeInfoVO typeInfoVO=new TypeInfoVO(UserType.WebMarketMan, state, null );
 		ArrayList<OrderListVO> orderListVOs=orderDistributionController.getOrderList(typeInfoVO);
 	    changeScrollPane(orderListVOs);
 	}
     
+	
+	
 	/**
 	 * 由于检索，改变滚动条面板
 	 */
