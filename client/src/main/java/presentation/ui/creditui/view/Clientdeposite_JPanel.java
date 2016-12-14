@@ -14,7 +14,10 @@ import presentation.ui.creditui.distributecontroller.CreditDistributionControlle
 import presentation.ui.creditui.viewcontroller.DepositCreditViewControllerImpl;
 import presentation.ui.personnelui.distributecontroller.PersonnelDistributionController;
 import presentation.ui.tools.MyButton;
+import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.newclient_JLabel;
+import util.ResultMessage;
 import vo.personnelvo.PersonDetailVO;
 
 /**
@@ -33,7 +36,7 @@ public class Clientdeposite_JPanel extends JPanel {
 	private JLabel namejl = new JLabel();
 	private JLabel teljl = new JLabel();
 	private JLabel creditjl = new JLabel();
-	private JLabel depositjl = new JLabel("充值信用值");
+	private JLabel depositjl = new JLabel("金额：     ");
 	private JLabel depositinfojl = new JLabel("(充值信用值=金额*100)");
 
 	private JTextField depositenumberjtf = new JTextField();
@@ -105,7 +108,7 @@ public class Clientdeposite_JPanel extends JPanel {
 		this.add(creditjl);
 
 		depositjl.setFont(font);
-		depositjl.setBounds(260, 330, 200, 30);
+		depositjl.setBounds(300, 330, 200, 30);
 		this.add(depositjl);
 
 		depositenumberjtf.setBounds(370, 330, 120, 30);
@@ -123,11 +126,19 @@ public class Clientdeposite_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// 钱还是信用值？
-				// 正整数
-				if (depositenumberjtf.getText().matches("^\\+?[1-9][0-9]*$")) {
-					creditDistributionController.confirmCreditDeposit(Double.parseDouble(depositenumberjtf.getText()),
-							id);
+				if(Integer.parseInt(depositenumberjtf.getText())<=0){
+					SaveFail_JFrame frame=new SaveFail_JFrame();
+					frame.setLableText("信用值不能为负");
+				}
+				if (depositenumberjtf.getText().matches("^\\+?[1-9][0-9]*$")&&Integer.parseInt(depositenumberjtf.getText())>0) {
+					if(creditDistributionController.confirmCreditDeposit(Double.parseDouble(depositenumberjtf.getText()),
+							id)==ResultMessage.SUCCESS){
+						new SaveSuccess_JFrame();
+						depositCreditViewControllerImpl.jumpToSearchPanel();
+					}
+					else{
+						new SaveFail_JFrame();
+					}
 				}
 			}
 		});

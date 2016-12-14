@@ -2,6 +2,7 @@ package presentation.ui.tools;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Label;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -93,6 +94,8 @@ public class SaveFail_JFrame  extends JFrame{
 	
 	public void setLableText(String info){
 		this.halfjl.setText(info);
+		halfjl.setHorizontalAlignment(Label.CENTER);
+		halfjl.setVerticalAlignment(Label.CENTER);
 		halfjl.setBounds(70, 100, 300, 50);
 	}
 

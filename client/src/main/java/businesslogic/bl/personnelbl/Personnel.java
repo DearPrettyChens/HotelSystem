@@ -110,7 +110,7 @@ public class Personnel {
 		    CreditInfoVO creditInfoVO=credit.getUserCreditInfoList();
 		    ArrayList<CreditVO> creditVOs=creditInfoVO.getCreditinfo();
 		    CreditVO creditVO=creditVOs.get(creditVOs.size()-1);
-		    int creditNumber=creditVO.getCredit();
+		    int creditNumber=creditInfoVO.getCredit();
 		    PersonDetailVO personDetailVO=new PersonDetailVO(personDetailPO);
 		    personDetailVO.setCredit(creditNumber);
 		    return personDetailVO;
