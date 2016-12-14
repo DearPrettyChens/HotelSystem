@@ -1,4 +1,4 @@
-package presentation.ui.tools;
+package presentation.ui.loginui.view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -10,31 +10,39 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.creditui.view.Clientdeposite_JPanel;
-import presentation.ui.creditui.view.DepositPanel;
-import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
-import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
-import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
-import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
+import org.hibernate.loader.entity.EntityJoinWalker;
+
+import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
+import presentation.ui.personnelui.view.hotelworker.Hotelworkeradd_JPanel;
+import presentation.ui.personnelui.view.hotelworker.Hotelworkerlistinfo_JPanel;
+import presentation.ui.personnelui.view.hotelworker.ManageHotelWorkerPanel;
+import presentation.ui.personnelui.view.webmarketman.ManageWebMarketManPanel;
+import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
+import presentation.ui.tools.Arrow_JButton;
+import presentation.ui.tools.Basic_JPanel;
+import presentation.ui.tools.HeadPanel;
+import presentation.ui.tools.Home_JButton;
+import presentation.ui.tools.Reflesh_JButton;
+import presentation.ui.tools.RightContainerPanel;
+import presentation.ui.tools.close_JButton;
+import presentation.ui.tools.narrow_JButton;
 import util.UserType;
 
 /**
- * 
- * 网站管理人员主界面
+ * 管理员左上角所有
  * 
  * @author cy
  * @version 1.0
  * 
  */
-public class WebMarketMan_JFrame extends JFrame {
-	// 关于网站营销人员基本信息
-	private String webMarketManID;
-	private String webMarketManName;
+public class Webmannger_JFrame extends JFrame {
+	// 关于网站管理人员基本信息
+	private String managerName;
+	private String userID;
+	public RightContainerPanel allPersonPanel = new RightContainerPanel();
+	private ManageWebMarketManPanel manageWebMarketManPanel = new ManageWebMarketManPanel();
 
 	// 关于界面
-
-	private RightContainerPanel rightContainerPanel = new RightContainerPanel();//右边界面的容器
-
 	private close_JButton close_jbutton = new close_JButton();
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
@@ -44,29 +52,27 @@ public class WebMarketMan_JFrame extends JFrame {
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
-	private Basic_JPanel jp1;
-	private Basic_JPanel jp2;
+	private Basic_JPanel jp1 ;
+	private Basic_JPanel jp2 ;
 	private Basic_JPanel jp3 ;
 	private Basic_JPanel jp4 ;
 
-	private HeadPanel headPanel;
+	private HeadPanel headPanel;// 头像部分
 
 	private JLabel namejl;
 
 	private Color backgroundcolor = new Color(148, 221, 184);
 	private JPanel abovepanel = new JPanel();
 	private JPanel sidepanel = new JPanel();
-	
-	private OrderPanelInWebMarketMan orderPanelInWebMarketMan=OrderPanelInWebMarketMan.getInstance();
-	
-	public WebMarketMan_JFrame(String userName,String userID) {
-		this.webMarketManName=userName;
-		this.webMarketManID=userID;
-		this.namejl=new JLabel(webMarketManName);
-		this.jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
-		this.jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
-		this.jp3= new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
-		this.jp4= new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+
+	public Webmannger_JFrame(String userName,String userID) {
+		this.managerName=userName;
+		this.userID=userID;
+		this.namejl=new JLabel(managerName);
+		this.jp1= new Basic_JPanel("营销人员", "image//user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp2= new Basic_JPanel("顾客会员", "image//user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp3= new Basic_JPanel("酒店人员", "image//shop.png", 2, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp4=new Basic_JPanel("修改密码", "image//password.png", 3, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);
@@ -127,16 +133,16 @@ public class WebMarketMan_JFrame extends JFrame {
 		this.add(jp3);
 		jp4.setBounds(0, 500, 200, 80);
 		this.add(jp4);
+
 		sidepanel.setBackground(backgroundcolor);
 		sidepanel.setBounds(0, 100, 200, 600);
 		sidepanel.setLayout(null);
 		this.add(sidepanel);
-         
-     	//用于界面初始化左边栏的第一项和右边的管理订单panel
-			
-	    rightContainerPanel.add(orderPanelInWebMarketMan);
- 		getContentPane().add(rightContainerPanel);
- 		jp1.init();
+
+		//用于界面初始化左边栏的第一项和右边的营销人员
+		allPersonPanel.add(manageWebMarketManPanel);
+		getContentPane().add(allPersonPanel);
+		jp1.init();
 	}
 
 	/**
@@ -159,10 +165,5 @@ public class WebMarketMan_JFrame extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-
-		new WebMarketMan_JFrame("俐俐","000820");
-
-	}
 
 }

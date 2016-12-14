@@ -3,7 +3,7 @@ package presentation.ui.userui.viewcontroller;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import presentation.ui.tools.Hotelworker_JFrame;
+import presentation.ui.loginui.view.Hotelworker_JFrame;
 import presentation.ui.userui.view.Changepassword_JPanel;
 import util.UserType;
 
