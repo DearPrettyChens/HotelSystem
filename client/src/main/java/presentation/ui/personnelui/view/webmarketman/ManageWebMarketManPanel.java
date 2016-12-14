@@ -2,8 +2,10 @@ package presentation.ui.personnelui.view.webmarketman;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -31,8 +33,16 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 			.getInstance();
 	private static ArrayList<Webmarketmanlistinfo_JPanel> webmarketmanlistinfo_JPanels;
 	private WebMarketManAdd_JPanel webMarketManAdd_JPanel;
-
-	public ManageWebMarketManPanel() {
+    private static ManageWebMarketManPanel manageWebMarketManPanel;
+	
+    public static ManageWebMarketManPanel getInstance() {
+		if(manageWebMarketManPanel==null){
+			manageWebMarketManPanel=new ManageWebMarketManPanel();
+		}
+		return manageWebMarketManPanel;
+	}
+    
+	private ManageWebMarketManPanel() {
 		this.setBounds(0, 0, 800, 600);
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
@@ -81,6 +91,14 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 	}
 
 	public void changeScrollPane(ArrayList<PersonListVO> personListVOs) {
+		if(personListVOs==null){
+			  JLabel jLabel=new JLabel("该顾客不存在！",JLabel.CENTER);
+			  jLabel.setBounds(300,100,200,30);
+			  jLabel.setFont(new Font("宋体", Font.BOLD, 19));
+			  jLabel.setForeground(Color.red);
+			  
+			  scrollPane.setViewportView(jLabel);
+		  }else{
 		searchResultPanel = new JPanel();
 		searchResultPanel.setLayout(null);
 		searchResultPanel.repaint();
@@ -98,7 +116,7 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 		}
 		searchResultPanel.setPreferredSize(new Dimension(800, 120 + 120 * webmarketmanlistinfo_JPanels.size()));
 		scrollPane.setViewportView(searchResultPanel);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);}
 		// this.add(scrollPane);
 	}
 

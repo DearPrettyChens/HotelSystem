@@ -61,6 +61,8 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
 
+	private ManageHotelWorkerPanel manageHotelWorkerPanel=ManageHotelWorkerPanel.getInstance();
+	
 	public Hotelworkerdetailinfo_JFrame(String personID) {
 
 		PersonDetailVO personDetailVO = personnelDistributionController.getPersonDetail(personID);
@@ -332,9 +334,12 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					teljtx.setVisible(false);
 				}
 				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
+					tel=teljtx.getText();
+					password=passwordjtx.getText();
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, image, tel, 0, null, null, null,
 							hotelname, type);
 					if(personnelDistributionController.setPerson(personDetailVO)==ResultMessage.SUCCESS){
+						manageHotelWorkerPanel.initHotelWorkerList();
 						Hotelworkerdetailinfo_JFrame.this.setVisible(false);
 					}
 					else{

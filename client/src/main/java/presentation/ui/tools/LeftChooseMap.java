@@ -70,9 +70,9 @@ public class LeftChooseMap {
 			break;
 		case Manager:
 			//网站管理人员的左边栏
-			map.put("营销人员", new ManageWebMarketManPanel());
-			map.put("顾客会员", new ManageCustomerPanel());
-			map.put("酒店人员", new ManageHotelWorkerPanel() );
+			map.put("营销人员", ManageWebMarketManPanel.getInstance());
+			map.put("顾客会员", ManageCustomerPanel.getInstance());
+			map.put("酒店人员", ManageHotelWorkerPanel.getInstance());
 			map.put("修改密码", new Changepassword_JPanel(UserType.Manager,userID));
 			break;
 		case WebMarketMan:

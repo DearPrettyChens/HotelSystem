@@ -56,6 +56,8 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 	private MyButton editjb = new MyButton();
 	private MyButton confirmjb = new MyButton();
 
+	private ManageWebMarketManPanel manageWebMarketManPanel=ManageWebMarketManPanel.getInstance();
+	
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
 
@@ -319,10 +321,13 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					teljtx.setVisible(false);
 				}
 				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
+					password=passwordjtx.getText();
+					tel=teljtx.getText();
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, null, tel, 0, null, null, null,
 							null, type);
 					if(personnelDistributionController.setPerson(personDetailVO)==ResultMessage.SUCCESS){
 						Webmarketmandetailinfo_JFrame.this.setVisible(false);
+					    manageWebMarketManPanel.initWebMarkerManList();
 					}
 					else{
 						saveError.setVisible(true);

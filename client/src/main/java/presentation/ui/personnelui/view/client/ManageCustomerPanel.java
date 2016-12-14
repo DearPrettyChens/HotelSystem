@@ -2,8 +2,12 @@ package presentation.ui.personnelui.view.client;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -27,7 +31,15 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
 			.getInstance();
 	private static ArrayList<Clientlistinfo_JPanel> clientlistinfo_JPanels;
 	
-	public ManageCustomerPanel() {
+	private static ManageCustomerPanel manageCustomerPanel;
+	
+	public static ManageCustomerPanel getInstance() {
+		if(manageCustomerPanel==null){
+			manageCustomerPanel=new ManageCustomerPanel();
+		}
+		return manageCustomerPanel;
+	}
+	private ManageCustomerPanel() {
 		this.setBounds(0, 0, 800, 600);
 		this.setBackground(Color.WHITE);
 		this.setLayout(null);
@@ -57,10 +69,20 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
 	 */
 	public void initCustomerList() {
 		ArrayList<PersonListVO> personListVOs=personnelDistributionController.getPersonList(UserType.Customer, null);
-	   changeScrollPane(personListVOs);
-	}
+	 
+		changeScrollPane(personListVOs);}
+	 
+	
     
 	public void changeScrollPane(ArrayList<PersonListVO>personListVOs) {
+		  if(personListVOs==null){
+			  JLabel jLabel=new JLabel("该顾客不存在！",JLabel.CENTER);
+			  jLabel.setBounds(300,100,200,30);
+			  jLabel.setFont(new Font("宋体", Font.BOLD, 19));
+			  jLabel.setForeground(Color.red);
+			  
+			  scrollPane.setViewportView(jLabel);
+		  }else{
 		searchResultPanel=new JPanel();
 		searchResultPanel.setLayout(null);
 		searchResultPanel.repaint();
@@ -82,7 +104,7 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
 //	    this.add(scrollPane);
 	}
 
-	
+	}
 	
 }
 

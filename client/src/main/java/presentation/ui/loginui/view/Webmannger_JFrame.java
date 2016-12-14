@@ -40,7 +40,7 @@ public class Webmannger_JFrame extends JFrame {
 	private String managerName;
 	private String userID;
 	public RightContainerPanel allPersonPanel = new RightContainerPanel();
-	private ManageWebMarketManPanel manageWebMarketManPanel = new ManageWebMarketManPanel();
+	private ManageWebMarketManPanel manageWebMarketManPanel = ManageWebMarketManPanel.getInstance();
 
 	// 关于界面
 	private close_JButton close_jbutton = new close_JButton();

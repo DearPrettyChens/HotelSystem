@@ -75,6 +75,8 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
 
+	private ManageCustomerPanel manageCustomerPanel=ManageCustomerPanel.getInstance();
+	
 	public Clientdetailinfo_JFrame(String id) {
 		PersonDetailVO personDetailVO = personnelDistributionController.getPersonDetail(id);
 
@@ -381,17 +383,19 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					teljtx.setVisible(false);
 				}
 				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
+					tel=teljtx.getText();
+					password=passwordjtx.getText();
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, image, tel, credit,
 							birthdayByDate, enterpriseName, customerType, null, type);
 					
 					if(personnelDistributionController.setPerson(personDetailVO)==ResultMessage.SUCCESS){
+						manageCustomerPanel.initCustomerList();
 						Clientdetailinfo_JFrame.this.setVisible(false);
-						System.out.println("success");
 					}
 					else{
 						saveError.setVisible(true);
-						System.out.println("fail");
 					}
+					
 				}
 				
 			}

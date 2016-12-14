@@ -76,6 +76,7 @@ public class PersonList {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+		if(personListVOs==null) return null;
 		if(personListVOs.isEmpty()) return null;		
 		return personListVOs;
 	}

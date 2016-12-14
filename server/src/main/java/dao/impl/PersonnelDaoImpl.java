@@ -70,6 +70,7 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 
 	@Override
 	public ResultMessage setPerson(PersonDetailPO personDetailPO) throws RemoteException {
+		System.out.println("daoimpl");
 		return personnelDataHelper.setPerson(personDetailPO);
 	}
 

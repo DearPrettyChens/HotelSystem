@@ -145,6 +145,7 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 
 	@Override
 	public ResultMessage setPerson(PersonDetailPO po) throws RemoteException {
+		System.out.println("ddddatahelper");
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		Query query = session.createQuery("from PersonDetailPO where user_id = " + po.getId());
