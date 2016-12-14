@@ -141,16 +141,23 @@ public class Changepassword_JPanel  extends JPanel{
 		JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
 		passwordErrorJl.setForeground(Color.RED);
 		passwordErrorJl.setFont(font);
-		passwordErrorJl.setBounds(380,250,200,20);
+		passwordErrorJl.setBounds(530,250,200,20);
 		Changepassword_JPanel.this.add(passwordErrorJl);
 		passwordErrorJl.setVisible(false);
 		
 		JLabel passwordErrorJl2=new JLabel("不能为空");
 		passwordErrorJl2.setForeground(Color.RED);
 		passwordErrorJl2.setFont(font);
-		passwordErrorJl2.setBounds(380, 250, 200, 20);
+		passwordErrorJl2.setBounds(530, 250, 200, 20);
 		Changepassword_JPanel.this.add(passwordErrorJl2);
 		passwordErrorJl2.setVisible(false);
+		
+		JLabel passwordErrorJl3=new JLabel("密码不一致！");
+		passwordErrorJl3.setForeground(Color.RED);
+		passwordErrorJl3.setFont(font);
+		passwordErrorJl3.setBounds(540,325,150,50);
+		Changepassword_JPanel.this.add(passwordErrorJl3);
+		passwordErrorJl3.setVisible(false);
 		/**
 		 * 实现密码的实时检查
 		 */
@@ -159,6 +166,7 @@ public class Changepassword_JPanel  extends JPanel{
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
+				passwordErrorJl3.setVisible(false);
 				passwordErrorJl2.setVisible(false);
 				Document doc = e.getDocument();
 				try {
@@ -179,6 +187,7 @@ public class Changepassword_JPanel  extends JPanel{
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				passwordErrorJl2.setVisible(false);
+				passwordErrorJl3.setVisible(false);
 				Document doc = e.getDocument();
 				try {
 
@@ -197,6 +206,7 @@ public class Changepassword_JPanel  extends JPanel{
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				passwordErrorJl2.setVisible(false);
+				passwordErrorJl3.setVisible(false);
 				Document doc = e.getDocument();
 				try {
 
@@ -214,12 +224,6 @@ public class Changepassword_JPanel  extends JPanel{
 			
 		});
 		
-		JLabel passwordErrorJl3=new JLabel("密码不一致！");
-		passwordErrorJl3.setForeground(Color.RED);
-		passwordErrorJl3.setFont(font);
-		passwordErrorJl3.setBounds(540,325,150,50);
-		Changepassword_JPanel.this.add(passwordErrorJl3);
-		passwordErrorJl3.setVisible(false);
 		
     	button2.setText("确认新密码");
     	button2.setBounds(300,400,200,50);

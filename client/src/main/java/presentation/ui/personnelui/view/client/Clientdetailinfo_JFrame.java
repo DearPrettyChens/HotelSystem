@@ -28,14 +28,13 @@ import vo.personnelvo.PersonDetailVO;
 /**
  * 顾客详细信息窗口
  * 
- * 未实现时时检查，还没有保存成功失败的窗口，以及处理
- * 
  * @author cy
  * @version 1.0
  * 
  */
 public class Clientdetailinfo_JFrame extends JFrame {
 	private Font font = new Font("宋体", Font.BOLD, 16);
+	private static boolean canSave=false;
 
 	private String id;
 	private String name;
@@ -223,9 +222,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -241,9 +242,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -259,9 +262,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -298,9 +303,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -317,9 +324,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -335,9 +344,11 @@ public class Clientdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -378,11 +389,13 @@ public class Clientdetailinfo_JFrame extends JFrame {
 
 				if(passwordjtx.getText().equals("")){
 					passwordErrorJl2.setVisible(false);
+					canSave=false;
 				}
 				if(teljtx.getText().equals("")){
 					teljtx.setVisible(false);
+					canSave=false;
 				}
-				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
+				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")&&canSave==true){
 					tel=teljtx.getText();
 					password=passwordjtx.getText();
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, image, tel, credit,
