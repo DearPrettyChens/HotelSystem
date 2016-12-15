@@ -94,7 +94,16 @@ public class Hotelworker_JFrame extends JFrame {
 	
 	private MaintainHotelBasicInfoPanel maintainHotelBasicInfoPanel;
 	 
-	public Hotelworker_JFrame(String userName,String userID) {
+	
+	private static Hotelworker_JFrame hotelworker_JFrame;
+	public static Hotelworker_JFrame getInstance(String userName,String userID){
+		if(hotelworker_JFrame==null){
+			hotelworker_JFrame=new Hotelworker_JFrame(userName, userID);
+		}
+		return hotelworker_JFrame;
+	}
+	
+	private Hotelworker_JFrame(String userName,String userID) {
 		this.hotelName=userName;
 		this.hotelID=userID;
 		this.hotelWorkerID=userID;
@@ -248,6 +257,11 @@ public class Hotelworker_JFrame extends JFrame {
 		getContentPane().add(headPanel);
 	}
 
+	public void  changeImage(ImageIcon icon){
+		
+		headPanel.setImage(icon, UserType.Customer);
+		headPanel.updateUI();
+	}
 	/**
 	 * 设置背景图片
 	 * 
@@ -259,6 +273,8 @@ public class Hotelworker_JFrame extends JFrame {
 
 	}
 
+	
+	
 	public static void main(String[] args) {
 
 		new Hotelworker_JFrame("菲菲","000001");

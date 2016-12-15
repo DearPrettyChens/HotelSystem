@@ -18,7 +18,7 @@ public class MaintainHotelService_Stub implements MaintainHotelService{
 		// TODO Auto-generated method stub
 		ArrayList<String> enterprises=new ArrayList<String>();
 		enterprises.add("华为");
-		HotelBasicInfoVO basic=new HotelBasicInfoVO("绿地洲际酒店",new ImageIcon("image//hotel.jpg"),"南京市鼓楼区",City.NANJING,
+		HotelBasicInfoVO basic=new HotelBasicInfoVO("000001","绿地洲际酒店",new ImageIcon("image//hotel.jpg"),"南京市鼓楼区",City.NANJING,
 				TradingArea.XINJIEKOU,"12345678999",5,"好","设施齐全","设施齐全","设施齐全","设施齐全",
 				"华为");
 		return basic;

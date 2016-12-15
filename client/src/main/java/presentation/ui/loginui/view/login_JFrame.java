@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputListener;
 
+import com.jhlabs.image.TextureFilter;
+
 import presentation.ui.loginui.distributecontroller.LoginDistributionController;
 import presentation.ui.loginui.viewcontroller.LoginViewController;
 import presentation.ui.loginui.viewcontroller.LoginViewControllerService;
@@ -49,9 +51,11 @@ public class login_JFrame extends JFrame {
 	private login_JButton jb = new login_JButton();// 登录按钮
 	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
 
+	private JLabel loginimagejl=new JLabel("image/loginback.gif");
+	
 	private JLabel loginFailBesideName = new JLabel();//登录名旁边的提示信息
 	private JLabel loginFailBesidePassword = new JLabel();//密码旁边的提示信息
-	
+	private UserType type;
 	
 	private LoginViewControllerService controller;
 
@@ -103,6 +107,12 @@ public class login_JFrame extends JFrame {
 		loginFailBesidePassword.setFont(new Font("宋体",Font.PLAIN, 16));
 		this.add(loginFailBesidePassword);
 		
+		
+		
+		loginimagejl.setBounds(400,400,200,100);
+		this.add(loginimagejl);
+		loginimagejl.setVisible(false);
+		
 		jb.setBounds(400, 550, 200, 40);
 		jb.addActionListener(new ActionListener() {
 
@@ -120,7 +130,7 @@ public class login_JFrame extends JFrame {
 				}else{
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());
-					UserType type = null;
+					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
 					}else if(loginMessage == ResultMessage.Manager){
@@ -131,9 +141,20 @@ public class login_JFrame extends JFrame {
 						type = UserType.WebMarketMan;
 					}
 					if(type!=null){
-						controller.jumpToUserMainFrame(type,name.getText(),
-								loginDistributionController.getUserID(name.getText()));
 						
+						loginimagejl.setVisible(true);
+						
+						name.setVisible(false);
+						password.setVisible(false);
+						jb.setEnabled(true); 
+						jl.setVisible(false);
+						System.out.println("login");
+						login_JFrame.this.repaint();
+//					
+//						controller.jumpToUserMainFrame(type,name.getText(),
+//								loginDistributionController.getUserID(name.getText()));
+//					
+						changeJFrame();
 						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){
@@ -154,6 +175,12 @@ public class login_JFrame extends JFrame {
 		jl.setBounds(500, 590, 200, 40);
 		this.add(jl);
 
+	}
+	
+	public void changeJFrame(){
+		controller.jumpToUserMainFrame(type,name.getText(),
+				loginDistributionController.getUserID(name.getText()));
+	
 	}
 
 	/**

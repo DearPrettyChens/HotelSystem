@@ -24,7 +24,7 @@ public class LoginViewController implements LoginViewControllerService{
 			frame=Client_JFrame.getInstance(userName,userID);
 			break;
 		case HotelWorker:
-			frame=new Hotelworker_JFrame(userName,userID);
+			frame=Hotelworker_JFrame.getInstance(userName,userID);
 			break;
 		case Manager:
 			frame=new Webmannger_JFrame(userName,userID);

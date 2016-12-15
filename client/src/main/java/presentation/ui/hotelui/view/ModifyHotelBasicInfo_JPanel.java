@@ -228,7 +228,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 		citycomboBox.addItem("南京");
 		citycomboBox.setSelectedItem(city);
-		citycomboBox.setBounds(160, 300, 200, 30);
+		citycomboBox.setBounds(160, 300, 160, 30);
 		this.add(citycomboBox);
 
 
@@ -451,8 +451,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			locaError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
-		HotelBasicInfoVO basic=new HotelBasicInfoVO(hotelname,hotelimage,
-				locationjtf.getText(),City.toCity(cityjtf.getText()),TradingArea.toArea(areajtf.getText()),teljtf.getText(),
+		HotelBasicInfoVO basic=new HotelBasicInfoVO(hotelID,hotelname,hotelimage,
+				locationjtf.getText(),City.values()[citycomboBox.getSelectedIndex()],
+				TradingArea.values()[tradingareacomboBox.getSelectedIndex()],teljtf.getText(),
 				Integer.parseInt(starjtf.getText()),introductionjtf.getText(),commonFacilityjtf.getText(),
 				activityFacilityjtf.getText(),servicejtf.getText(),roomFacilityjtf.getText()
 				,enterprise);

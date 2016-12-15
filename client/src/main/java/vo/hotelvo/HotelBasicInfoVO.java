@@ -86,10 +86,10 @@ public class HotelBasicInfoVO {
 		
 	}
 	//酒店基本信息
-	public HotelBasicInfoVO(String hotelName,ImageIcon hotelImage, String address,City city, TradingArea tradingArea, String telephone,
+	public HotelBasicInfoVO(String hotelID,String hotelName,ImageIcon hotelImage, String address,City city, TradingArea tradingArea, String telephone,
 			int star, String introduce, String commonFacility, String activityFacility, String service,
 			String roomFacility, String enterprises) {
-	
+	    this.setHotelID(hotelID);
 		this.setHotelName(hotelName);
 		this.setHotelImage(hotelImage);
 		this.setAddress(address);
