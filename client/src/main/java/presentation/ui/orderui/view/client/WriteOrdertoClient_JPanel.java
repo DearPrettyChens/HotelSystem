@@ -110,9 +110,11 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 			HotelDetailInfoVO hotelDetailInfoVO = orderDistributionController.getHotelDetailInfo(hotelID);
 			this.hotelname = hotelDetailInfoVO.getHotelName();
 			ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = hotelDetailInfoVO.getAvailableRoomInfoVO();
-			for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
-				this.roomtypes.add(availableRoomInfoVO.getRoomType());
-				this.bedtypes.add(availableRoomInfoVO.getBedType());
+			if(availableRoomInfoVOs!=null){
+				for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
+					this.roomtypes.add(availableRoomInfoVO.getRoomType());
+					this.bedtypes.add(availableRoomInfoVO.getBedType());
+				}
 			}
 
 			// 删除重复的房型和床型

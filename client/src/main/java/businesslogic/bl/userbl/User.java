@@ -135,18 +135,19 @@ public class User {
 	public ResultMessage confirmPassword(PasswordVO passwordVO) {
 
 		// 判断两次输入的密码一致
-		if ((firstPassword != null) && (passwordVO.getPassword().equals(firstPassword))) {
-			password = firstPassword;
+		//if ((firstPassword != null) && (passwordVO.getPassword().equals(firstPassword))) {
+			//password = firstPassword;
 			try {
-				userDao.setPassword(new ClientPO(userName, password, TransHelper.idToInt(userID)));
+				
+				userDao.setPassword(new ClientPO(passwordVO.getUserName(), passwordVO.getPassword(), TransHelper.idToInt(passwordVO.getUserID())));
 				firstPassword = null;
+				this.password= passwordVO.getPassword();
 			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 			return ResultMessage.SUCCESS;
-		}
-
-		return ResultMessage.PASSWORDNOTSAME;
+		//}
+		//return ResultMessage.PASSWORDNOTSAME;
 
 	}
 
