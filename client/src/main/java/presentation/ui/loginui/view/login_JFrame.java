@@ -160,6 +160,7 @@ public class login_JFrame extends JFrame {
 //					System.out.println(jp.isVisible());
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
+					JFrame frame=new SaveSuccess_JFrame();
 //					jp.setVisible(true);
 //					System.out.println(new Date());
 					type = null;
@@ -179,7 +180,7 @@ public class login_JFrame extends JFrame {
 //								loginDistributionController.getUserID(name.getText()));
 //					
 						changeJFrame();
-	
+	                    frame.dispose();
 						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){

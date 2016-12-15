@@ -45,8 +45,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 	private Color color = new Color(148, 221, 184);
-    private Border border=new LineBorder(new Color(218, 218, 218), 1, false);
-	
+	private Border border = new LineBorder(new Color(218, 218, 218), 1, false);
+
 	private String hotelID;
 
 	private String hotelname;
@@ -62,15 +62,14 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private String roomFacility;// 客房设施
 	private String enterprise;
 
-	private String imagePath="image//hotel.jpg";
-	private ImageIcon hotelimage=ImageTool.getScaledImage(new ImageIcon(imagePath),160);
+	private String imagePath = "image//hotel.jpg";
+	private ImageIcon hotelimage = ImageTool.getScaledImage(new ImageIcon(imagePath), 160);
 
-	
 	private City city2;
 	private TradingArea tradingArea;
 
 	private JLabel hotelnamejl;
-	private JLabel hotelimagejl=new JLabel("酒店图片：");
+	private JLabel hotelimagejl = new JLabel("酒店图片：");
 	private JLabel starjl = new JLabel("星级：");
 	private JLabel locationjl = new JLabel("酒店地址：");
 	private JLabel cityjl = new JLabel("城市：");
@@ -86,7 +85,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 	private JTextField starjtf;
 	private JTextField locationjtf;
-	//private JTextField areajtf;
+	// private JTextField areajtf;
 	private JLabel areajtf;
 	private JLabel cityjtf;
 	private JTextField teljtf;
@@ -95,20 +94,18 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private JTextArea roomFacilityjtf;
 	private JTextArea servicejtf;
 	private JTextArea introductionjtf;
-    private MyButton hotelimagejb;
-    private JLabel hotelImageShow;
-    
-    private JComboBox citycomboBox = new JComboBox();
+	private MyButton hotelimagejb;
+	private JLabel hotelImageShow;
+
+	private JComboBox citycomboBox = new JComboBox();
 	private JComboBox tradingareacomboBox = new JComboBox();
-    
-    
-	JLabel telError=new JLabel("电话不能为空");
-	JLabel telError2=new JLabel("电话为11位");
-	JLabel starError=new JLabel("星级不能为空");
-	JLabel locaError=new JLabel("地址不能为空");
-	JLabel starError2=new JLabel("星级为1～5之间的整数");
-	
-	
+
+	JLabel telError = new JLabel("电话不能为空");
+	JLabel telError2 = new JLabel("电话为11位");
+	JLabel starError = new JLabel("星级不能为空");
+	JLabel locaError = new JLabel("地址不能为空");
+	JLabel starError2 = new JLabel("星级为1～5之间的整数");
+
 	private HotelDistributionController hotelDistributionController = HotelDistributionController.getInstance();
 
 	public ModifyHotelBasicInfo_JPanel(String hotelID) {
@@ -116,56 +113,61 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 		try {
 			HotelBasicInfoVO hotelBasicInfoVO = hotelDistributionController.getHotelBasicInfo(hotelID);
-		
-			this.hotelname =hotelBasicInfoVO.getHotelName();
-			
-			ImageIcon icon=hotelBasicInfoVO.getHotelImage();
-			if(icon!=null){
-				icon=ImageTool.getScaledImage(icon, 160);
-				this.hotelimage=icon;
+
+			this.hotelname = hotelBasicInfoVO.getHotelName();
+
+			ImageIcon icon = hotelBasicInfoVO.getHotelImage();
+			if (icon != null) {
+				icon = ImageTool.getScaledImage(icon, 160);
+				this.hotelimage = icon;
 			}
-			
-			this.city2=hotelBasicInfoVO.getCity();
-			if(city2!=null){
-			this.city=city2.toChinese();
-			
-			this.tradingArea=hotelBasicInfoVO.getTradingArea();
-			this.area = tradingArea.getChinese();
-			
-			this.location =hotelBasicInfoVO.getAddress();
-			this.tel = hotelBasicInfoVO.getTelephone();
-			
-			this.star=hotelBasicInfoVO.getStar();
-			this.enterprise=hotelBasicInfoVO.getEnterprises();
-			// 通用设施
-	    	this.commonFacility=hotelBasicInfoVO.getCommonFacility();
-	    		// 活动设施
-	    	this.activityFacility=hotelBasicInfoVO.getActivityFacility();
-	    		// 服务项目
-	    	this.service=hotelBasicInfoVO.getService();
-	    		// 客房设施
-	    	this.roomFacility=hotelBasicInfoVO.getRoomFacility();
-			
-	    	this.introduction = hotelBasicInfoVO.getIntroduce();}
+
+			this.city2 = hotelBasicInfoVO.getCity();
+			if (city2 != null) {
+				this.city = city2.toChinese();
+
+				this.tradingArea = hotelBasicInfoVO.getTradingArea();
+				this.area = tradingArea.getChinese();
+
+				this.location = hotelBasicInfoVO.getAddress();
+				this.tel = hotelBasicInfoVO.getTelephone();
+
+				this.star = hotelBasicInfoVO.getStar();
+				this.enterprise = hotelBasicInfoVO.getEnterprises();
+				// 通用设施
+				this.commonFacility = hotelBasicInfoVO.getCommonFacility();
+				// 活动设施
+				this.activityFacility = hotelBasicInfoVO.getActivityFacility();
+				// 服务项目
+				this.service = hotelBasicInfoVO.getService();
+				// 客房设施
+				this.roomFacility = hotelBasicInfoVO.getRoomFacility();
+
+				this.introduction = hotelBasicInfoVO.getIntroduce();
+			}
 		} catch (NotFoundHotelException e) {
 			e.printStackTrace();
 		}
 
-		hotelnamejl = new JLabel("酒店名称："+hotelname);
+		hotelnamejl = new JLabel("酒店名称：" + hotelname);
 		starjtf = new JTextField(star + "");
 		locationjtf = new JTextField(location);
-		cityjtf=new JLabel(city);
+		cityjtf = new JLabel(city);
 		areajtf = new JLabel(area);
 		teljtf = new JTextField(tel);
 		servicejtf = new JTextArea(service);
 		introductionjtf = new JTextArea(introduction);
-        commonFacilityjtf=new JTextArea(commonFacility);
-        activityFacilityjtf=new JTextArea(activityFacility);
-        roomFacilityjtf=new JTextArea(roomFacility);
-		enterprisesjl=new JLabel("合作企业："+enterprise);
-        hotelImageShow=new JLabel(hotelimage);
-		hotelimagejb=new MyButton();
-        
+		commonFacilityjtf = new JTextArea(commonFacility);
+		activityFacilityjtf = new JTextArea(activityFacility);
+		roomFacilityjtf = new JTextArea(roomFacility);
+		if (enterprise == null) {
+			enterprisesjl = new JLabel("合作企业：无");
+		} else {
+			enterprisesjl = new JLabel("合作企业：" + enterprise);
+		}
+		hotelImageShow = new JLabel(hotelimage);
+		hotelimagejb = new MyButton();
+
 		this.setSize(800, 600);
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -176,13 +178,10 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 	void addComp() {
 
-
-		
-		
 		hotelnamejl.setFont(font);
 		hotelnamejl.setBounds(80, 0, 200, 30);
 		this.add(hotelnamejl);
-		
+
 		hotelimagejl.setFont(font);
 		hotelimagejl.setBounds(80, 50, 100, 30);
 		this.add(hotelimagejl);
@@ -190,29 +189,31 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelImageShow.setFont(font);
 		hotelImageShow.setBounds(163, 60, 160, 160);
 		this.add(hotelImageShow);
-		
+
 		hotelimagejb.setText("选取酒店图片");
 		hotelimagejb.setBounds(420, 190, 150, 30);
 		this.add(hotelimagejb);
-		
-		//实现选择图片文件
+
+		// 实现选择图片文件
 		hotelimagejb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String path=FileChooseHelper.fileChoose();
-				if(path!=null){
-					imagePath=path;
-					ImageIcon imageIcon=new ImageIcon(imagePath);
-					imageIcon=ImageTool.getScaledImage(imageIcon, 160);
-					hotelimage=imageIcon;
+				String path = FileChooseHelper.fileChoose();
+				if (path != null) {
+					imagePath = path;
+					ImageIcon imageIcon = new ImageIcon(imagePath);
+					imageIcon = ImageTool.getScaledImage(imageIcon, 160);
+					hotelimage = imageIcon;
 					hotelImageShow.setIcon(imageIcon);
 					ModifyHotelBasicInfo_JPanel.this.hotelImageShow.updateUI();
-				//	Hotelworker_JFrame hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname, hotelname);
-				//    hotelworker_JFrame.changeImage(imageIcon);
+					// Hotelworker_JFrame
+					// hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname,
+					// hotelname);
+					// hotelworker_JFrame.changeImage(imageIcon);
 				}
 
 			}
 		});
-		
+
 		teljl.setFont(font);
 		teljl.setBounds(80, 250, 100, 30);
 		this.add(teljl);
@@ -220,7 +221,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		teljtf.setFont(font);
 		teljtf.setBounds(160, 250, 160, 30);
 		this.add(teljtf);
-		
+
 		starjl.setFont(font);
 		starjl.setBounds(420, 250, 100, 30);
 		this.add(starjl);
@@ -228,7 +229,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		starjtf.setFont(font);
 		starjtf.setBounds(500, 250, 100, 30);
 		this.add(starjtf);
-		
+
 		cityjl.setFont(font);
 		cityjl.setBounds(80, 300, 100, 30);
 		this.add(cityjl);
@@ -238,23 +239,21 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		citycomboBox.setBounds(160, 300, 160, 30);
 		this.add(citycomboBox);
 
-
-		for(TradingArea e:TradingArea.values()){
+		for (TradingArea e : TradingArea.values()) {
 			tradingareacomboBox.addItem(e.getChinese());
 		}
-		
-		if(tradingArea!=null){
+
+		if (tradingArea != null) {
 			tradingareacomboBox.setSelectedItem(area);
 		}
-		
+
 		tradingareacomboBox.setBounds(500, 300, 100, 30);
 		this.add(tradingareacomboBox);
-		
-		
+
 		cityjtf.setFont(font);
 		cityjtf.setBounds(160, 300, 100, 30);
 		this.add(cityjtf);
-		
+
 		areajl.setFont(font);
 		areajl.setBounds(420, 300, 100, 30);
 		this.add(areajl);
@@ -263,7 +262,6 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		areajtf.setBounds(500, 300, 100, 30);
 		this.add(areajtf);
 
-		
 		locationjl.setFont(font);
 		locationjl.setBounds(80, 350, 100, 30);
 		this.add(locationjl);
@@ -272,17 +270,15 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		locationjtf.setBounds(160, 350, 440, 30);
 		this.add(locationjtf);
 
-		
-
 		enterprisesjl.setFont(font);
 		enterprisesjl.setBounds(80, 400, 600, 30);
 		this.add(enterprisesjl);
-		
+
 		attentionjl.setFont(new Font("宋体", Font.BOLD, 14));
 		attentionjl.setForeground(new Color(148, 221, 184));
 		attentionjl.setBounds(160, 420, 400, 30);
 		this.add(attentionjl);
-		
+
 		introductionjl.setFont(font);
 		introductionjl.setBounds(80, 470, 100, 30);
 		this.add(introductionjl);
@@ -300,17 +296,17 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		commonFacilityjtf.setBounds(160, 600, 440, 80);
 		commonFacilityjtf.setBorder(border);
 		this.add(commonFacilityjtf);
-		
+
 		activityFacilityjl.setFont(font);
 		activityFacilityjl.setBounds(80, 730, 100, 30);
 		this.add(activityFacilityjl);
 
 		activityFacilityjtf.setFont(font);
 		activityFacilityjtf.setBounds(160, 730, 440, 80);
-		
+
 		activityFacilityjtf.setBorder(border);
 		this.add(activityFacilityjtf);
-		
+
 		servicejl.setFont(font);
 		servicejl.setBounds(80, 860, 100, 30);
 		this.add(servicejl);
@@ -319,7 +315,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		servicejtf.setBounds(160, 860, 440, 80);
 		servicejtf.setBorder(border);
 		this.add(servicejtf);
-		
+
 		roomFacilityjl.setFont(font);
 		roomFacilityjl.setBounds(80, 990, 100, 30);
 		this.add(roomFacilityjl);
@@ -329,42 +325,41 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		roomFacilityjtf.setBorder(border);
 		this.add(roomFacilityjtf);
 
-
 		telError.setForeground(Color.RED);
 		telError.setFont(font);
-		telError.setBounds(160,280,150,20);
+		telError.setBounds(160, 280, 150, 20);
 		ModifyHotelBasicInfo_JPanel.this.add(telError);
 		telError.setVisible(false);
-		
+
 		telError2.setForeground(Color.RED);
 		telError2.setFont(font);
-		telError2.setBounds(160,280,150,20);
+		telError2.setBounds(160, 280, 150, 20);
 		ModifyHotelBasicInfo_JPanel.this.add(telError2);
 		telError2.setVisible(false);
-		
+
 		starError.setForeground(Color.RED);
 		starError.setFont(font);
-		starError.setBounds(500,280,150,20);
+		starError.setBounds(500, 280, 150, 20);
 		ModifyHotelBasicInfo_JPanel.this.add(starError);
 		starError.setVisible(false);
-		
+
 		starError2.setForeground(Color.RED);
 		starError2.setFont(font);
-		starError2.setBounds(500,280,150,20);
+		starError2.setBounds(500, 280, 150, 20);
 		ModifyHotelBasicInfo_JPanel.this.add(starError2);
 		starError2.setVisible(false);
-		
+
 		locaError.setForeground(Color.RED);
 		locaError.setFont(font);
-		locaError.setBounds(160,380,150,20);
+		locaError.setBounds(160, 380, 150, 20);
 		ModifyHotelBasicInfo_JPanel.this.add(locaError);
 		locaError.setVisible(false);
-		
+
 		/**
 		 * 实现编辑值时提示错误消息消失
 		 */
-		Document telDoc=teljtf.getDocument();
-		telDoc.addDocumentListener(new DocumentListener(){
+		Document telDoc = teljtf.getDocument();
+		telDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -383,11 +378,11 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 				telError.setVisible(false);
 				telError2.setVisible(false);
 			}
-			
+
 		});
 
-		Document starDoc=starjtf.getDocument();
-		starDoc.addDocumentListener(new DocumentListener(){
+		Document starDoc = starjtf.getDocument();
+		starDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
@@ -406,111 +401,101 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 				starError.setVisible(false);
 				starError2.setVisible(false);
 			}
-			
+
 		});
-		
-		Document locaDoc=locationjtf.getDocument();
-		locaDoc.addDocumentListener(new DocumentListener(){
+
+		Document locaDoc = locationjtf.getDocument();
+		locaDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				locaError.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				locaError.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				locaError.setVisible(false);
-				
+
 			}
-			
+
 		});
 	}
 	/**
 	 * 上层面板获得内容
+	 * 
 	 * @return
 	 */
-/*	public JTextField getTel(){
-		return this.teljtf;
-	}
-	
-	public JTextField getStar(){
-		return this.starjtf;
-	}
-	
-	public JTextField getArea(){
-		return this.areajtf;
-	}
-	
-	public JTextField getLoca(){
-		return this.locationjtf;
-	}
-	
-	public JTextField getCity(){
-		return this.cityjtf;
-	}
-	*/
+	/*
+	 * public JTextField getTel(){ return this.teljtf; }
+	 * 
+	 * public JTextField getStar(){ return this.starjtf; }
+	 * 
+	 * public JTextField getArea(){ return this.areajtf; }
+	 * 
+	 * public JTextField getLoca(){ return this.locationjtf; }
+	 * 
+	 * public JTextField getCity(){ return this.cityjtf; }
+	 */
 
 	/**
 	 * 保存当前酒店信息
 	 */
-	public ResultMessage saveInfo(){
-		if(teljtf.getText()==""){
+	public ResultMessage saveInfo() {
+		if (teljtf.getText() == "") {
 			telError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
-		if(teljtf.getText().length()!=11){
+		if (teljtf.getText().length() != 11) {
 			telError2.setVisible(true);
 			return ResultMessage.FAIL;
 		}
-		if(starjtf.getText()==""){
+		if (starjtf.getText() == "") {
 			starError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
-		if(Integer.parseInt(starjtf.getText())>5||Integer.parseInt(starjtf.getText())<=0){
+		if (Integer.parseInt(starjtf.getText()) > 5 || Integer.parseInt(starjtf.getText()) <= 0) {
 			starError2.setVisible(true);
 			return ResultMessage.FAIL;
 		}
-		
-		if(locationjtf.getText()==""){
+
+		if (locationjtf.getText() == "") {
 			locaError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
-		HotelBasicInfoVO basic=new HotelBasicInfoVO(hotelID,hotelname,hotelimage,
-				locationjtf.getText(),City.values()[citycomboBox.getSelectedIndex()],
-				TradingArea.values()[tradingareacomboBox.getSelectedIndex()],teljtf.getText(),
-				Integer.parseInt(starjtf.getText()),introductionjtf.getText(),commonFacilityjtf.getText(),
-				activityFacilityjtf.getText(),servicejtf.getText(),roomFacilityjtf.getText()
-				,enterprise);
-		if(hotelDistributionController.confirmModifyInfo(basic)==ResultMessage.SUCCESS){
+		HotelBasicInfoVO basic = new HotelBasicInfoVO(hotelID, hotelname, hotelimage, locationjtf.getText(),
+				City.values()[citycomboBox.getSelectedIndex()],
+				TradingArea.values()[tradingareacomboBox.getSelectedIndex()], teljtf.getText(),
+				Integer.parseInt(starjtf.getText()), introductionjtf.getText(), commonFacilityjtf.getText(),
+				activityFacilityjtf.getText(), servicejtf.getText(), roomFacilityjtf.getText(), enterprise);
+		if (hotelDistributionController.confirmModifyInfo(basic) == ResultMessage.SUCCESS) {
 			return ResultMessage.SUCCESS;
-		}
-		else{
+		} else {
 			return ResultMessage.FAIL;
 		}
 	}
-	
+
 	/**
 	 * 恢复信息到未编辑之前
 	 */
-	public void recoverInfo(){
-		hotelnamejl.setText("酒店名称："+hotelname);
-		starjtf .setText(star + "");
-		locationjtf .setText(location);
+	public void recoverInfo() {
+		hotelnamejl.setText("酒店名称：" + hotelname);
+		starjtf.setText(star + "");
+		locationjtf.setText(location);
 		cityjtf.setText(city);
-		areajtf .setText(area);
-		teljtf .setText(tel);
+		areajtf.setText(area);
+		teljtf.setText(tel);
 		servicejtf.setText(service);
-		introductionjtf .setText(introduction);
-        commonFacilityjtf.setText(commonFacility);
-        activityFacilityjtf.setText(activityFacility);
-        roomFacilityjtf.setText(roomFacility);
-		enterprisesjl.setText("合作企业："+enterprise);
+		introductionjtf.setText(introduction);
+		commonFacilityjtf.setText(commonFacility);
+		activityFacilityjtf.setText(activityFacility);
+		roomFacilityjtf.setText(roomFacility);
+		enterprisesjl.setText("合作企业：" + enterprise);
 	}
 }
