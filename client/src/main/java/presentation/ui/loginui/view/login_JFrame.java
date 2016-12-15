@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -65,6 +67,7 @@ public class login_JFrame extends JFrame {
 
 	private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 
+	private Timer timer;
 	public login_JFrame() {
 		controller = new LoginViewController();
 
@@ -90,11 +93,20 @@ public class login_JFrame extends JFrame {
 	 * @return
 	 * @throws 未定
 	 */
+	class myTask extends TimerTask{
+
+		@Override
+		public void run() {
+			jp.setVisible(true);	
+			repaint();
+		}
+		
+	}
 	public void addComp() {
 		
 		loginimagejl.setBounds(0,0,400,300);
 		jp.add(loginimagejl);
-		loginimagejl.setVisible(false);
+		//loginimagejl.setVisible(false);
 		
 		
 		jp.setLayout(null);
@@ -143,7 +155,10 @@ public class login_JFrame extends JFrame {
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
-							new String(password.getPassword()).trim());
+							new String(password.getPassword()).trim());	
+//					jp.setVisible(true);
+					timer = new Timer();
+					timer.schedule(new myTask(), 0, 50000);;
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -155,7 +170,7 @@ public class login_JFrame extends JFrame {
 						type = UserType.WebMarketMan;
 					}
 					if(type!=null){
-						loginimagejl.setVisible(true);
+					
 //					
 //						controller.jumpToUserMainFrame(type,name.getText(),
 //								loginDistributionController.getUserID(name.getText()));
@@ -188,7 +203,10 @@ public class login_JFrame extends JFrame {
 	public void changeJFrame(){
 		controller.jumpToUserMainFrame(type,name.getText(),
 				loginDistributionController.getUserID(name.getText()));
-	
+		System.out.println("end");
+		timer.cancel();
+		jp.setVisible(false);
+		repaint();
 	}
 
 	/**
