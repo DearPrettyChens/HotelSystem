@@ -158,7 +158,7 @@ public class login_JFrame extends JFrame {
 							new String(password.getPassword()).trim());	
 //					jp.setVisible(true);
 					timer = new Timer();
-					timer.schedule(new myTask(), 0, 50000);;
+					timer.schedule(new myTask(), 0, 100);;
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -178,7 +178,7 @@ public class login_JFrame extends JFrame {
 						
 						changeJFrame();
 	
-						dispose();
+					//	dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){
 							loginFailBesidePassword.setText("密码错误！");
@@ -206,7 +206,8 @@ public class login_JFrame extends JFrame {
 		System.out.println("end");
 		timer.cancel();
 		jp.setVisible(false);
-		repaint();
+		dispose();
+//		repaint();
 	}
 
 	/**
