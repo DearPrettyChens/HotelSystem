@@ -10,6 +10,27 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import presentation.ui.availableroomui.view.RoomInfo_JPanel;
+import presentation.ui.checkinui.view.CheckInPanel;
+import presentation.ui.checkinui.view.CheckOutPanel;
+import presentation.ui.checkinui.view.OfflineCheckIn_JPanel;
+import presentation.ui.creditui.view.ClientCreditInfos_JPanel;
+import presentation.ui.creditui.view.DepositPanel;
+import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
+import presentation.ui.hotelui.view.MaintainHotelBasicInfoPanel;
+import presentation.ui.hotelui.view.client.MyFootView;
+import presentation.ui.hotelui.view.client.ReserveHotelView;
+import presentation.ui.orderui.view.OrderPanelInWebMarketMan;
+import presentation.ui.orderui.view.OrderPanelViewInHotelWorker;
+import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
+import presentation.ui.personnelui.view.client.ManageCustomerPanel;
+import presentation.ui.personnelui.view.hotelworker.ManageHotelWorkerPanel;
+import presentation.ui.personnelui.view.webmarketman.ManageWebMarketManPanel;
+import presentation.ui.userui.view.Changemessage_JPanel;
+import presentation.ui.userui.view.Changepassword_JPanel;
+import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
+import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
+import util.LeftChoosePanel;
 import util.UserType;
 
 /**
@@ -52,10 +73,77 @@ public class Hotelworker_JLabel  extends JLabel{
 				Hotelworker_JLabel.this.setForeground(Color.BLACK);
             	Hotelworker_JLabel. this.setFont(new Font("宋体",Font.BOLD, 18));
 				String info =Hotelworker_JLabel.this.name;
-            	JPanel panel = leftChooseMap.get(info);
+ //           	JPanel panel = leftChooseMap.get(info);
+				LeftChoosePanel panel = leftChooseMap.get(info);
+				JPanel jpanel=new JPanel();
+				switch(panel){
+				case Changemessage_JPanel:
+					jpanel=new Changemessage_JPanel(userID);
+					break;
+				case Changepassword_JPanel:
+					jpanel=new Changepassword_JPanel(UserType.Customer,userID,userName);
+					break;
+				case CheckInPanel:
+					jpanel=CheckInPanel.getInstance(leftChooseMap.hotelID);
+					break;
+				case CheckOutPanel:
+					jpanel=CheckOutPanel.getInstance(leftChooseMap.hotelID);
+					break;
+				case ChooseOrderTypetoClient_JPanel:
+					jpanel=ChooseOrderTypetoClient_JPanel.getInstance(userID, leftChooseMap.hotelID);
+					break;
+				case ClientCreditInfos_JPanel:
+					jpanel=new ClientCreditInfos_JPanel(userID);
+					break;
+				case Clientlevelrule_JPanel:
+					jpanel=new Clientlevelrule_JPanel();
+					break;
+				case DepositPanel:
+					jpanel=DepositPanel.getInstance();
+					break;
+				case HotelStrategyPanel:
+					jpanel=HotelStrategyPanel.getInstance(leftChooseMap.hotelID);
+					break;
+				case MaintainHotelBasicInfoPanel:
+					jpanel=new MaintainHotelBasicInfoPanel(leftChooseMap.hotelID);
+					break;
+				case Makewebstr_JPanel:
+					jpanel= new Makewebstr_JPanel();
+					break;
+				case ManageCustomerPanel:
+					jpanel=ManageCustomerPanel.getInstance();
+					break;
+				case ManageHotelWorkerPanel:
+					jpanel=ManageHotelWorkerPanel.getInstance();
+					break;
+				case ManageWebMarketManPanel:
+					jpanel= ManageWebMarketManPanel.getInstance();
+					break;
+				case MyFootView:
+					jpanel=MyFootView.getInstance(userID);
+					break;
+				case OfflineCheckIn_JPanel:
+					jpanel=new OfflineCheckIn_JPanel(leftChooseMap.hotelID);
+					break;
+				case OrderPanelInWebMarketMan:
+					jpanel=OrderPanelInWebMarketMan.getInstance();
+					break;
+				case OrderPanelViewInHotelWorker:
+					jpanel=OrderPanelViewInHotelWorker.getInstance(leftChooseMap.hotelID);
+					break;
+				case ReserveHotelView:
+					jpanel=ReserveHotelView.getInstance(userID,userName);
+					break;
+				case RoomInfo_JPanel:
+					jpanel=new RoomInfo_JPanel(leftChooseMap.hotelID);
+					break;
+				default:
+					break;
+				
+				}
 				rightContainerPanel.removeAll();
 				rightContainerPanel.repaint();
-				rightContainerPanel.add(panel);
+				rightContainerPanel.add(jpanel);
 				
 				for (int i = 0; i < alllabels.size(); i++) {
 					if (i != Hotelworker_JLabel.this.tab) {
