@@ -156,12 +156,12 @@ public class login_JFrame extends JFrame {
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
 					timer = new Timer();
-					timer.schedule(new myTask(), 0, 1000);
-					System.out.println(jp.isVisible());
+					timer.schedule(new myTask(), 0, 5000);
+//					System.out.println(jp.isVisible());
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
 //					jp.setVisible(true);
-					System.out.println(new Date());
+//					System.out.println(new Date());
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -178,7 +178,6 @@ public class login_JFrame extends JFrame {
 //						controller.jumpToUserMainFrame(type,name.getText(),
 //								loginDistributionController.getUserID(name.getText()));
 //					
-						
 						changeJFrame();
 	
 						dispose();
@@ -204,15 +203,16 @@ public class login_JFrame extends JFrame {
 	}
 	
 	public void changeJFrame(){
-		System.out.println(new Date());
+//		System.out.println(new Date());
 		controller.jumpToUserMainFrame(type,name.getText(),
 				loginDistributionController.getUserID(name.getText()));
-		System.out.println(new Date());
-		System.out.println("end");
+//		System.out.println(new Date());
+//		System.out.println("end");
 		timer.cancel();
-		System.out.println(new Date());
-		jp.setVisible(false);
-		System.out.println(new Date());
+//		System.out.println(new Date());
+		this.remove(jp);
+//		jp.setVisible(false);
+//		System.out.println(new Date());
 	//	this.dispose();
 	//	this.repaint();
 	}
