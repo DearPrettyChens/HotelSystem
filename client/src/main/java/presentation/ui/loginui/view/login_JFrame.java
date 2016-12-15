@@ -93,8 +93,8 @@ public class login_JFrame extends JFrame {
 	public void addComp() {
 		
 		loginimagejl.setBounds(0,0,400,300);
-		//this.add(loginimagejl);
-		//loginimagejl.setVisible(false);
+		jp.add(loginimagejl);
+		loginimagejl.setVisible(false);
 		
 		
 		jp.setLayout(null);
@@ -155,7 +155,7 @@ public class login_JFrame extends JFrame {
 						type = UserType.WebMarketMan;
 					}
 					if(type!=null){
-						jp.setVisible(true);
+						loginimagejl.setVisible(true);
 //					
 //						controller.jumpToUserMainFrame(type,name.getText(),
 //								loginDistributionController.getUserID(name.getText()));

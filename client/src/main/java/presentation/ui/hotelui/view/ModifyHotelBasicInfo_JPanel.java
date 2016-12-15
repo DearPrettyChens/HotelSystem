@@ -232,13 +232,17 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		this.add(cityjl);
 
 		citycomboBox.addItem("南京");
-		citycomboBox.setSelectedItem(city);
+		citycomboBox.setSelectedItem("南京");
 		citycomboBox.setBounds(160, 300, 160, 30);
 		this.add(citycomboBox);
 
 
 		for(TradingArea e:TradingArea.values()){
 			tradingareacomboBox.addItem(e.getChinese());
+		}
+		
+		if(tradingArea!=null){
+			tradingareacomboBox.setSelectedItem(area);
 		}
 		
 		tradingareacomboBox.setBounds(500, 300, 100, 30);
