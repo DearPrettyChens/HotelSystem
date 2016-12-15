@@ -246,8 +246,8 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 				throw new NullOrderIDException();
 			}
 			//增加一条评价信息
-			hotelDao.addRemarkInfo(new RemarkPO(vo.getHotelId(),null,
-					"0",vo.getRemarkGrade(),null));
+			hotelDao.addRemarkInfo(new RemarkPO(vo.getHotelId(),vo.getOrderId(),
+					vo.getCustomerID(),vo.getRemarkGrade(),vo.getRemarkInfo()));
 			//增加酒店的评价过的订单总数是在数据层进行处理吗？
 		} catch (RemoteException e) {
 			e.printStackTrace();

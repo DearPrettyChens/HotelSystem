@@ -16,6 +16,7 @@ import init.RMIHelper;
 import po.CheckTimePO;
 import po.OrderInfoPO;
 import po.OrderStatePO;
+import po.RemarkPO;
 import util.OrderState;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -295,6 +296,12 @@ public class SingleOrder {
 		//增加订单状态
 		this.addOrderState(OrderState.HASREMARKED, vo.getOrderId());
 		//调用HotelInfoOrderService里面的addRemarkInfo方法
+		try {
+			orderDao.setOrderRemark(new RemarkPO(vo.getHotelId(),vo.getOrderId(),
+						vo.getCustomerID(),vo.getRemarkGrade(),vo.getRemarkInfo()));
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
 		return hotelInfoOrderService.addRemarkInfo(vo);
 		
 	}
