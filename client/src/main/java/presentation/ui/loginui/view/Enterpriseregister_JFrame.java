@@ -522,7 +522,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 				} else if (nameValid && telephoneValid && passwordValid) {
 					// vo头像get方法未定
 					PersonDetailVO vo = new PersonDetailVO(null, name_TextField.getText(), password_TextField.getText(),
-							null, tel_TextField.getText(), 0, null, enterprisename_TextField.getText(), CustomerType.ENTERPRISE,
+							imageIcon, tel_TextField.getText(), 0, null, enterprisename_TextField.getText(), CustomerType.ENTERPRISE,
 							null, UserType.Customer);
 					ResultMessage resultMessage = personnelDistributionController.addPerson(vo);
 					if (resultMessage == ResultMessage.SUCCESS) {
