@@ -88,7 +88,7 @@ public class Credit {
 			throw new NullCustomerIDException();
 		}
 		int changeCredit=creditVO.getCreditChange();
-		int nowCredit=changeCredit-creditVO.getCredit();
+		int nowCredit=creditVO.getCredit()-changeCredit;
 		//传给数据层的是变化后的credit值
 		CreditPO po=new CreditPO(creditVO.getName(),TransHelper.idToInt(creditVO.getID()),nowCredit,-changeCredit,
 				creditVO.getReason(),creditVO.getTime());

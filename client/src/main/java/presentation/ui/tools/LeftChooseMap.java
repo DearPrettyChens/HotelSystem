@@ -47,7 +47,6 @@ public class LeftChooseMap {
 		this.userName=userName;
 		this.userID=userID;
 		this.hotelID=userID;
-		System.out.println(userID);
 		map=new HashMap<String, JPanel>();
 		switch(userType){
 		case Customer:

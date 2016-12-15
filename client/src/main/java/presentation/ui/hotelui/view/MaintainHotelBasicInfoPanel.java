@@ -77,7 +77,6 @@ public class MaintainHotelBasicInfoPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(modifyHotelBasicInfo_JPanel.saveInfo()==ResultMessage.SUCCESS){
-					//TODO
 					//保存成功
 					new SaveSuccess_JFrame();
 				}

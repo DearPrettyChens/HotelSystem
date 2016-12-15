@@ -103,8 +103,10 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
     
     
 	JLabel telError=new JLabel("电话不能为空");
+	JLabel telError2=new JLabel("电话为11位");
 	JLabel starError=new JLabel("星级不能为空");
 	JLabel locaError=new JLabel("地址不能为空");
+	JLabel starError2=new JLabel("星级为1～5之间的整数");
 	
 	
 	private HotelDistributionController hotelDistributionController = HotelDistributionController.getInstance();
@@ -334,11 +336,23 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		ModifyHotelBasicInfo_JPanel.this.add(telError);
 		telError.setVisible(false);
 		
+		telError2.setForeground(Color.RED);
+		telError2.setFont(font);
+		telError2.setBounds(160,280,150,20);
+		ModifyHotelBasicInfo_JPanel.this.add(telError2);
+		telError2.setVisible(false);
+		
 		starError.setForeground(Color.RED);
 		starError.setFont(font);
 		starError.setBounds(500,280,150,20);
 		ModifyHotelBasicInfo_JPanel.this.add(starError);
 		starError.setVisible(false);
+		
+		starError2.setForeground(Color.RED);
+		starError2.setFont(font);
+		starError2.setBounds(500,280,150,20);
+		ModifyHotelBasicInfo_JPanel.this.add(starError2);
+		starError2.setVisible(false);
 		
 		locaError.setForeground(Color.RED);
 		locaError.setFont(font);
@@ -355,19 +369,19 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				telError.setVisible(false);
-				
+				telError2.setVisible(false);
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				telError.setVisible(false);
-				
+				telError2.setVisible(false);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				telError.setVisible(false);
-				
+				telError2.setVisible(false);
 			}
 			
 		});
@@ -378,19 +392,19 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				starError.setVisible(false);
-				
+				starError2.setVisible(false);
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				starError.setVisible(false);
-				
+				starError2.setVisible(false);
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				starError.setVisible(false);
-				
+				starError2.setVisible(false);
 			}
 			
 		});
@@ -451,8 +465,16 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			telError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
+		if(teljtf.getText().length()!=11){
+			telError2.setVisible(true);
+			return ResultMessage.FAIL;
+		}
 		if(starjtf.getText()==""){
 			starError.setVisible(true);
+			return ResultMessage.FAIL;
+		}
+		if(Integer.parseInt(starjtf.getText())>5||Integer.parseInt(starjtf.getText())<=0){
+			starError2.setVisible(true);
 			return ResultMessage.FAIL;
 		}
 		
