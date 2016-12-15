@@ -87,7 +87,7 @@ public class HotelBasicInfoPO implements Serializable {
 	@Version
 	@Column(name = "version")
 	private int version;
-	
+
 	public void setEnterprises(String enterprises) {
 		this.enterprises = enterprises;
 	}
@@ -237,12 +237,14 @@ public class HotelBasicInfoPO implements Serializable {
 
 	public City getCity() {
 		City ret = null;
-		switch (city) {
-		case "NANJING":
-			ret = City.NANJING;
-			break;
-		default:
-			break;
+		if (city != null) {
+			switch (city) {
+			case "NANJING":
+				ret = City.NANJING;
+				break;
+			default:
+				break;
+			}
 		}
 		return ret;
 	}
@@ -254,14 +256,16 @@ public class HotelBasicInfoPO implements Serializable {
 
 	public TradingArea getTradingArea() {
 		TradingArea ret = null;
-		switch (tradingArea) {
-		case "XINJIEKOU":
-			ret = TradingArea.XINJIEKOU;
-			break;
-		case "HUNANLU":
-			ret = TradingArea.HUNANLU;
-		default:
-			break;
+		if (tradingArea != null) {
+			switch (tradingArea) {
+			case "XINJIEKOU":
+				ret = TradingArea.XINJIEKOU;
+				break;
+			case "HUNANLU":
+				ret = TradingArea.HUNANLU;
+			default:
+				break;
+			}
 		}
 		return ret;
 	}

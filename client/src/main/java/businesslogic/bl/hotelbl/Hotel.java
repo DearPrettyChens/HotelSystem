@@ -16,6 +16,7 @@ import businesslogic.bl.orderbl.HotelInfoOrderService;
 import businesslogic.bl.orderbl.Order;
 import businesslogic.bl.orderbl.OrderList;
 import businesslogic.bl.orderbl.SingleOrder;
+import businesslogic.bl.userbl.User;
 import dao.hoteldao.HotelDao;
 import exception.NotFoundHotelException;
 import exception.NullHotelIDException;
@@ -89,7 +90,15 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 			HotelBasicInfoPO po=hotelDao.getHotelBasicInfo(hotelID);
 			//抛出异常
 			if(po==null){
-				throw new NotFoundHotelException("无该酒店信息");
+				User user =User.getInstance();
+				String hotelname=user.getBasicInfo().getUserName();
+				if(po==null){
+					HotelBasicInfoVO hotelBasicInfoVO=new HotelBasicInfoVO();
+					hotelBasicInfoVO.setHotelName(hotelname);
+					hotelDao.addHotelBasicInfo(hotelBasicInfoVO.votopo());
+					return hotelBasicInfoVO;
+				}
+				//throw new NotFoundHotelException("无该酒店信息");
 			}
 			return new HotelBasicInfoVO(po);
 		} catch (RemoteException e) {

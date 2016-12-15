@@ -18,6 +18,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
+import businesslogic.bl.userbl.User;
 import exception.NotFoundHotelException;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
@@ -105,6 +106,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 		try {
 			HotelBasicInfoVO hotelBasicInfoVO = hotelDistributionController.getHotelBasicInfo(hotelID);
+		
 			this.hotelname =hotelBasicInfoVO.getHotelName();
 			
 			ImageIcon icon=hotelBasicInfoVO.getHotelImage();
@@ -114,6 +116,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			}
 			
 			this.city2=hotelBasicInfoVO.getCity();
+			if(city2!=null){
 			this.city=city2.toChinese();
 			
 			this.tradingArea=hotelBasicInfoVO.getTradingArea();
@@ -133,7 +136,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	    		// 客房设施
 	    	this.roomFacility=hotelBasicInfoVO.getRoomFacility();
 			
-	    	this.introduction = hotelBasicInfoVO.getIntroduce();
+	    	this.introduction = hotelBasicInfoVO.getIntroduce();}
 		} catch (NotFoundHotelException e) {
 			e.printStackTrace();
 		}
