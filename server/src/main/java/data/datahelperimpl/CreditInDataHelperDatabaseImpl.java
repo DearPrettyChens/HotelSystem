@@ -55,7 +55,8 @@ public class CreditInDataHelperDatabaseImpl implements CreditDataHelper {
 	public CreditInfoPO getCreditInfo(String customerID) {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
-		Query query = session.createQuery("from CreditPO where user_id = " + customerID);
+		System.out.println(customerID);
+		Query query = session.createQuery("from CreditPO where user_id = " + Integer.parseInt(customerID));
 		List<CreditPO> list = query.list();
 		List<CreditPO> copyList = new ArrayList<CreditPO>();
 		if (list.size() == 0) {

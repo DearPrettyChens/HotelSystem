@@ -120,9 +120,12 @@ public class Personnel {
 			if (personDetailPO.getUserType() == UserType.Customer) {
 				Credit credit = new Credit(personID);
 				CreditInfoVO creditInfoVO = credit.getUserCreditInfoList();
-				ArrayList<CreditVO> creditVOs = creditInfoVO.getCreditinfo();
-				CreditVO creditVO = creditVOs.get(creditVOs.size() - 1);
-				int creditNumber = creditInfoVO.getCredit();
+				int creditNumber=0;
+				if(creditInfoVO!=null){
+					ArrayList<CreditVO> creditVOs = creditInfoVO.getCreditinfo();
+					CreditVO creditVO = creditVOs.get(creditVOs.size() - 1);
+				 	creditNumber = creditInfoVO.getCredit();
+				}
 				personDetailVO = new PersonDetailVO(personDetailPO);
 				personDetailVO.setCredit(creditNumber);
 			}else{
