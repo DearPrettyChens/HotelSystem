@@ -23,6 +23,7 @@ import businesslogic.bl.userbl.User;
 import exception.NotFoundHotelException;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
+import presentation.ui.loginui.view.Hotelworker_JFrame;
 import presentation.ui.loginui.view.Individualregister_JFrame;
 import presentation.ui.tools.FileChooseHelper;
 import presentation.ui.tools.ImageTool;
@@ -201,6 +202,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 					imageIcon=ImageTool.getScaledImage(imageIcon, 160);
 					hotelImageShow.setIcon(imageIcon);
 					ModifyHotelBasicInfo_JPanel.this.hotelImageShow.updateUI();
+					Hotelworker_JFrame hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname, hotelname);
+				    hotelworker_JFrame.changeImage(imageIcon);
 				}
 
 			}
