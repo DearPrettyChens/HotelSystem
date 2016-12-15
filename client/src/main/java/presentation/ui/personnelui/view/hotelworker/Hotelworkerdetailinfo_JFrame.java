@@ -40,7 +40,9 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 	private String password;
 	private String hotelname;
 	private ImageIcon image;
-
+	
+	private static boolean canSave=true;
+	
 	private JLabel typejl = new JLabel("职务：   ");
 	private JLabel idjl = new JLabel("I   D:   ");
 	private JLabel namejl = new JLabel("姓名：   ");
@@ -191,9 +193,11 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -209,9 +213,11 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -227,9 +233,11 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -266,9 +274,11 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -285,9 +295,11 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -303,9 +315,11 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -333,7 +347,7 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 				if(teljtx.getText().equals("")){
 					teljtx.setVisible(false);
 				}
-				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
+				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")&&canSave){
 					tel=teljtx.getText();
 					password=passwordjtx.getText();
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, image, tel, 0, null, null, null,

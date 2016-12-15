@@ -34,7 +34,7 @@ import vo.personnelvo.PersonDetailVO;
  */
 public class Clientdetailinfo_JFrame extends JFrame {
 	private Font font = new Font("宋体", Font.BOLD, 16);
-	private static boolean canSave=false;
+	private static boolean canSave=true;
 
 	private String id;
 	private String name;

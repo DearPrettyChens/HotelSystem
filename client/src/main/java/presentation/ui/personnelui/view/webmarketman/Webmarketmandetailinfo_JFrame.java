@@ -25,8 +25,6 @@ import vo.personnelvo.PersonDetailVO;
 /**
  * 网站营销人员详细信息面板
  * 
- * 还未写保存成功之类的，还未实现时时更新检查
- * 
  * @author cy
  * @version 1.0
  * 
@@ -55,7 +53,9 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 
 	private MyButton editjb = new MyButton();
 	private MyButton confirmjb = new MyButton();
-
+	
+	private static boolean canSave=true;
+	
 	private ManageWebMarketManPanel manageWebMarketManPanel=ManageWebMarketManPanel.getInstance();
 	
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
@@ -178,9 +178,11 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -196,9 +198,11 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -214,9 +218,11 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkTel(s)==ResultMessage.FAIL){
 						telErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkTel(s)==ResultMessage.SUCCESS){
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -253,9 +259,11 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -272,9 +280,11 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -290,9 +300,11 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 					String s = doc.getText(0, doc.getLength());
 					if(personnelDistributionController.checkPassword(s)==ResultMessage.PASSWORDFORMATERROR){
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					}
 					else if(personnelDistributionController.checkPassword(s)==ResultMessage.SUCCESS){
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -320,7 +332,7 @@ public class Webmarketmandetailinfo_JFrame extends JFrame {
 				if(teljtx.getText().equals("")){
 					teljtx.setVisible(false);
 				}
-				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")){
+				if(!passwordjtx.getText().equals("")&&!teljtx.getText().equals("")&&canSave){
 					password=passwordjtx.getText();
 					tel=teljtx.getText();
 					PersonDetailVO personDetailVO = new PersonDetailVO(id, name, password, null, tel, 0, null, null, null,
