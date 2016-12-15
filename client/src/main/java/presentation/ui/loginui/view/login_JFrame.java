@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -154,11 +155,13 @@ public class login_JFrame extends JFrame {
 				}else if(password.getPassword().length==0){
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
+					timer = new Timer();
+					timer.schedule(new myTask(), 0, 1000);
+					System.out.println(jp.isVisible());
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
 //					jp.setVisible(true);
-					timer = new Timer();
-					timer.schedule(new myTask(), 0, 100);;
+					System.out.println(new Date());
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -178,7 +181,7 @@ public class login_JFrame extends JFrame {
 						
 						changeJFrame();
 	
-					//	dispose();
+						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){
 							loginFailBesidePassword.setText("密码错误！");
@@ -201,13 +204,17 @@ public class login_JFrame extends JFrame {
 	}
 	
 	public void changeJFrame(){
+		System.out.println(new Date());
 		controller.jumpToUserMainFrame(type,name.getText(),
 				loginDistributionController.getUserID(name.getText()));
+		System.out.println(new Date());
 		System.out.println("end");
 		timer.cancel();
+		System.out.println(new Date());
 		jp.setVisible(false);
-		dispose();
-//		repaint();
+		System.out.println(new Date());
+	//	this.dispose();
+	//	this.repaint();
 	}
 
 	/**
