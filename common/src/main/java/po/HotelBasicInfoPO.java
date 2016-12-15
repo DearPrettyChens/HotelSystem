@@ -253,16 +253,8 @@ public class HotelBasicInfoPO implements Serializable {
 	}
 
 	public TradingArea getTradingArea() {
-		TradingArea ret = null;
-		switch (tradingArea) {
-		case "XINJIEKOU":
-			ret = TradingArea.XINJIEKOU;
-			break;
-		case "HUNANLU":
-			ret = TradingArea.HUNANLU;
-		default:
-			break;
-		}
+		TradingArea ret = TradingArea.valueOf(tradingArea);
+		System.out.println(tradingArea+" "+name);
 		return ret;
 	}
 
