@@ -106,6 +106,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	JLabel starError=new JLabel("星级不能为空");
 	JLabel locaError=new JLabel("地址不能为空");
 	
+	
 	private HotelDistributionController hotelDistributionController = HotelDistributionController.getInstance();
 
 	public ModifyHotelBasicInfo_JPanel(String hotelID) {
@@ -200,10 +201,11 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 					imagePath=path;
 					ImageIcon imageIcon=new ImageIcon(imagePath);
 					imageIcon=ImageTool.getScaledImage(imageIcon, 160);
+					hotelimage=imageIcon;
 					hotelImageShow.setIcon(imageIcon);
 					ModifyHotelBasicInfo_JPanel.this.hotelImageShow.updateUI();
-					Hotelworker_JFrame hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname, hotelname);
-				    hotelworker_JFrame.changeImage(imageIcon);
+				//	Hotelworker_JFrame hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname, hotelname);
+				//    hotelworker_JFrame.changeImage(imageIcon);
 				}
 
 			}
@@ -438,7 +440,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	*/
 
 	/**
-	 * 保存当前酒店信息(city那边中英文怎么转换？)
+	 * 保存当前酒店信息
 	 */
 	public ResultMessage saveInfo(){
 		if(teljtf.getText()==""){

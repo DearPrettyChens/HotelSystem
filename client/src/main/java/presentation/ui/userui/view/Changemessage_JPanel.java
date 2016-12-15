@@ -80,6 +80,7 @@ public class Changemessage_JPanel extends JPanel {
 	private UserDistributeController userDistributeController = UserDistributeController.getInstance();
 
 	private PersonDetailVO personDetailVO;
+	
 	public Changemessage_JPanel(String userID) {
 		this.userID=userID;
 		personDetailVO = userDistributeController.getDetailInfo(userID);
@@ -141,12 +142,12 @@ public class Changemessage_JPanel extends JPanel {
 					imagePath=path;
 					ImageIcon imageIcon=new ImageIcon(imagePath);
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
-					image.setIcon(imageIcon);
-					Changemessage_JPanel.this.image.updateUI();
 					personDetailVO.setImage(imageIcon);
 					if(userDistributeController.confirmUserInfo(personDetailVO)!=ResultMessage.SUCCESS){
 						new SaveFail_JFrame();
 					}else{
+						image.setIcon(imageIcon);
+						Changemessage_JPanel.this.image.updateUI();
 						Client_JFrame client_JFrame=Client_JFrame.getInstance(userName, userID);
 						client_JFrame.changeImage(imageIcon);
 					}
@@ -326,9 +327,10 @@ public class Changemessage_JPanel extends JPanel {
 			 telErrorJl2.setVisible(true);
 		 }
 		 if(!text.equals("")&&text.length()==11){
-			 PersonDetailVO detail=new PersonDetailVO(userID,userName,userPassword,userImage,
-					text,userCredit,new Date(TransHelper.stringToDate(userBirth)),userEnterprise,customerType,null,UserType.Customer);
-			 if(userDistributeController.confirmUserInfo(detail)==ResultMessage.SUCCESS){
+//			 PersonDetailVO detail=new PersonDetailVO(userID,userName,userPassword,userImage,
+//					text,userCredit,new Date(TransHelper.stringToDate(userBirth)),userEnterprise,customerType,null,UserType.Customer);
+			 personDetailVO.setTelephone(text);
+			 if(userDistributeController.confirmUserInfo(personDetailVO)==ResultMessage.SUCCESS){
 				 new SaveSuccess_JFrame();
 				 showTelLabel();
 			 }
