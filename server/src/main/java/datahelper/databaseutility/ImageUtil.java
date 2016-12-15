@@ -19,7 +19,7 @@ public final class ImageUtil {
 	private static String saveSource;
 	private static SimpleDateFormat simpleDateFormat;
 	static {
-		saveSource = "/Users/chengyunfei/Desktop/image/";
+		saveSource = "./UserImage/image/";
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}
 

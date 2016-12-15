@@ -24,7 +24,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	@Override
 	public GradeRulePO getGradeRule() throws RemoteException {
-		File gradeRuleFile = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
+		File gradeRuleFile = new File("./webstrategy/graderule.txt");
 		GradeRulePO gradeRulePO = null;
 		if (!gradeRuleFile.exists()) {
 			return gradeRulePO;
@@ -64,7 +64,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getSpecialTimeStrategy() {
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialtime.txt");
+		File file = new File("./webstrategy/specialtime.txt");
 		WebStrPO po = null;
 		if (!file.exists()) {
 			return po;
@@ -107,7 +107,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getSpecialAreaStrategy() {
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialarea.txt");
+		File file = new File("./webstrategy/specialarea.txt");
 		WebStrPO po = null;
 		if (!file.exists()) {
 			return po;
@@ -140,7 +140,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getVIPAreaStrategy() {
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/vip.txt");
+		File file = new File("./webstrategy/vip.txt");
 		WebStrPO po = null;
 		if (!file.exists()) {
 			return po;
@@ -177,7 +177,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		// 写入数据
 		//同步锁 防止同时修改
 		synchronized (WebStrategyDataHelperTXTImpl.class) {
-			File file = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
+			File file = new File("./webstrategy/graderule.txt");
 			try {
 				FileWriter fw = new FileWriter(file.getAbsoluteFile());
 				BufferedWriter writer = new BufferedWriter(fw);
@@ -227,7 +227,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setVIP(WebStrPO po) {
 		//防止同时修改
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/vip.txt");
+		File file = new File("./webstrategy/vip.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
@@ -252,7 +252,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setSpecialTime(WebStrPO po) {
 		//防止同时修改冲突
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialtime.txt");
+		File file = new File("./webstrategy/specialtime.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
@@ -272,7 +272,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setSpecialArea(WebStrPO po) {
 		//防止同时修改冲突
-		File file = new File("/Users/chengyunfei/Desktop/webstrategy/specialarea.txt");
+		File file = new File("./webstrategy/specialarea.txt");
 		try {
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter writer = new BufferedWriter(fw);
