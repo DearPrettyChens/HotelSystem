@@ -96,7 +96,7 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				//
 				hotelSearchInfoVO.setCity(City.NANJING);
-				hotelSearchInfoVO.setTradingArea(TradingArea.XINJIEKOU);
+				hotelSearchInfoVO.setTradingArea(TradingArea.values()[tradingareacomboBox.getSelectedIndex()]);
 				//
 				//上面用注释围起来的仅仅是为了方便显示后面的东西，需要删掉这三行，然后完成监听。
 				
