@@ -74,9 +74,11 @@ public class SingleOrderListInfotoClient extends JPanel {
 		this.state = orderListVO.getState();
 		this.orderstate = state.toChinese();
 		this.operation = state.getOperation();
+		if(image!=null){
+			image = ImageTool.getScaledImage(image, 100);
+			imagejl.setIcon(image);
+		}
 
-		image = ImageTool.getScaledImage(image, 100);
-		imagejl.setIcon(image);
 		hotelnamejl.setText(hotelname);
 		ordernumberjl.setText(ordernumber);
 		ordertimejl.setText(ordertime);
