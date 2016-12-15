@@ -3,12 +3,15 @@ package businesslogic.bl.orderbl;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import businesslogic.bl.hotelbl.Hotel;
 import dao.orderdao.OrderDao;
+import exception.NotFoundHotelException;
 import exception.NullHotelIDException;
 import init.RMIHelper;
 import po.OrderListPO;
 import presentation.ui.loginui.view.newclient_JFrame;
 import util.OrderState;
+import vo.hotelvo.HotelBasicInfoVO;
 import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
 
@@ -21,11 +24,13 @@ import vo.ordervo.TypeInfoVO;
 public class OrderList {
 	// private ArrayList<SingleOrder> singleOrders;
 	private OrderDao orderDao;
+	private Hotel hotel;
 	private static OrderState[] orderStates = OrderState.values();
 
 	public OrderList() {
 		RMIHelper.init();
 		orderDao = RMIHelper.getOrderDao();
+		hotel=new Hotel();
 		// orderDao=new OrderDao_Stub();
 	}
 
@@ -52,6 +57,14 @@ public class OrderList {
 			ArrayList<OrderListVO> ordersVO = new ArrayList<OrderListVO>();
 			for (int i = 0; i < orders.size(); i++) {
 				ordersVO.add(new OrderListVO(orders.get(i)));
+			}
+			for(int i=0;i<ordersVO.size();i++){
+				try {
+					HotelBasicInfoVO basic=hotel.getHotelBasicInfo(ordersVO.get(i).getHotelID());
+					ordersVO.get(i).setHotelIcon(basic.getHotelImage());
+				} catch (NotFoundHotelException e) {
+					e.printStackTrace();
+				}
 			}
 			return ordersVO;
 		} catch (RemoteException e) {
@@ -80,6 +93,7 @@ public class OrderList {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
+
 		return null;
 	}
 

@@ -55,7 +55,6 @@ public class OrderListVO {
 		this.customerID=po.getCustomerID();
 		this.reserveTime=po.getReserveTime();
 		this.state=po.getState();
-		//this.hotelIcon=po.getHotelIcon();
 	}
 	//显示给酒店看的订单列表信息，需求规格上没有写
 	public OrderListVO(String orderNumber,String customerID,String customerName, Date reserveTime,OrderState state){

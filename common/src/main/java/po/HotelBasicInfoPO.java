@@ -255,6 +255,7 @@ public class HotelBasicInfoPO implements Serializable {
 	}
 
 	public TradingArea getTradingArea() {
+<<<<<<< HEAD
 		TradingArea ret = null;
 		if (tradingArea != null) {
 			switch (tradingArea) {
@@ -267,6 +268,10 @@ public class HotelBasicInfoPO implements Serializable {
 				break;
 			}
 		}
+=======
+		TradingArea ret = TradingArea.valueOf(tradingArea);
+		System.out.println(tradingArea+" "+name);
+>>>>>>> origin/master
 		return ret;
 	}
 
