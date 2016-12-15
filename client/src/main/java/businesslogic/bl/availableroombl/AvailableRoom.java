@@ -46,8 +46,10 @@ public class AvailableRoom{
 		try {
 			//调用数据层
 			ArrayList<AvailableRoomInfoPO> pos=availableRoomDao.getAvailableRoomInfo(hotelID);
-			for(int i=0;i<pos.size();i++){
-				infos.add(new AvailableRoomInfoVO(pos.get(i)));
+			if(pos!=null){
+				for(int i=0;i<pos.size();i++){
+					infos.add(new AvailableRoomInfoVO(pos.get(i)));
+				}
 			}
 			return infos;
 		} catch (RemoteException e) {
