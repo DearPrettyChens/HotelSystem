@@ -17,6 +17,7 @@ import javax.swing.text.Document;
 
 import org.hibernate.mapping.PersistentClassVisitor;
 
+import po.PersonDetailPO;
 import presentation.ui.loginui.view.Client_JFrame;
 import presentation.ui.tools.FileChooseHelper;
 import presentation.ui.tools.ImageTool;
@@ -78,9 +79,10 @@ public class Changemessage_JPanel extends JPanel {
 	private JLabel confirm = new JLabel();
 	private UserDistributeController userDistributeController = UserDistributeController.getInstance();
 
+	private PersonDetailVO personDetailVO;
 	public Changemessage_JPanel(String userID) {
 		this.userID=userID;
-		PersonDetailVO personDetailVO = userDistributeController.getDetailInfo(userID);
+		personDetailVO = userDistributeController.getDetailInfo(userID);
 		userName = personDetailVO.getName();
 		userTel = personDetailVO.getTelephone();
 		
@@ -141,10 +143,13 @@ public class Changemessage_JPanel extends JPanel {
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
 					image.setIcon(imageIcon);
 					Changemessage_JPanel.this.image.updateUI();
-					//记得加监听
-					Client_JFrame client_JFrame=Client_JFrame.getInstance(userName, userID);
-					client_JFrame.changeImage(imageIcon);
-					
+					personDetailVO.setImage(imageIcon);
+					if(userDistributeController.confirmUserInfo(personDetailVO)!=ResultMessage.SUCCESS){
+						new SaveFail_JFrame();
+					}else{
+						Client_JFrame client_JFrame=Client_JFrame.getInstance(userName, userID);
+						client_JFrame.changeImage(imageIcon);
+					}
 				}
 
        		 	 }
