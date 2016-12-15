@@ -25,6 +25,10 @@ public class HeadPanel extends JPanel {
 		image = UserImage.getUserImage(imageicon,userType);
 		repaint();
 	}
+	public void setImage(ImageIcon imageIcon,UserType userType) {
+		image = UserImage.getUserImage(imageIcon,userType);
+		repaint();
+	}
 	
 	protected void paintComponent(Graphics g) {
 

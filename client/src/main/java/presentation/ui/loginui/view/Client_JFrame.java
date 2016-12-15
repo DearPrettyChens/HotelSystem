@@ -120,8 +120,16 @@ public class Client_JFrame extends JFrame {
 	private LoginDistributionController controller=LoginDistributionController.getInstance();
 	private ChooseArea_JPanel panel=new ChooseArea_JPanel();
 	
+	private static Client_JFrame client_JFrame;
+	
+	public static Client_JFrame getInstance(String userName,String userID) {
+		if(client_JFrame==null){
+			client_JFrame=new Client_JFrame(userName, userID);
+		}
+		return client_JFrame;
+	}
    
-   	public Client_JFrame(String userName,String userID) {
+   	private Client_JFrame(String userName,String userID) {
   
    		this.customerName=userName;
    		this.customerID=userID;
@@ -230,6 +238,12 @@ public class Client_JFrame extends JFrame {
 		headPanel=new HeadPanel(imageIcon, UserType.Customer);
 		headPanel.setBounds(15, 20, 65, 65);
 		getContentPane().add(headPanel);
+	}
+	
+	public void  changeImage(ImageIcon icon){
+		
+		headPanel.setImage(icon, UserType.Customer);
+		headPanel.updateUI();
 	}
 	/**
 	 * 设置背景图片

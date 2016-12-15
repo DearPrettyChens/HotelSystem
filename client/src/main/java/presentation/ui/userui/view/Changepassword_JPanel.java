@@ -5,6 +5,7 @@ import presentation.ui.tools.*;
 import presentation.ui.userui.distributecontroller.UserSafetyDistributeController;
 import util.ResultMessage;
 import util.UserType;
+import vo.uservo.PasswordVO;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -21,6 +22,7 @@ import javax.swing.text.Document;
 public class Changepassword_JPanel  extends JPanel{
 	private UserType userType;
 	private String userID;
+	private String userName;
 	private UserSafetyDistributeController distributeController=UserSafetyDistributeController.getInstance();
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
@@ -52,10 +54,10 @@ public class Changepassword_JPanel  extends JPanel{
     
     private Font font=new Font("宋体",Font.BOLD, 16);
     
-    
-	public Changepassword_JPanel(UserType type,String userID){
+	public Changepassword_JPanel(UserType type,String userID,String name){
 		this.userType=type;
 		this.userID=userID;
+		this.userName=name;
 		this.setBackground(Color.white);
 		this.setLayout(null);
 		
@@ -109,6 +111,13 @@ public class Changepassword_JPanel  extends JPanel{
 		Changepassword_JPanel.this.add(passwordErrorJl4);
 		passwordErrorJl4.setVisible(false);
     	
+		JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
+		passwordErrorJl.setForeground(Color.RED);
+		passwordErrorJl.setFont(font);
+		passwordErrorJl.setBounds(530,250,200,20);
+		Changepassword_JPanel.this.add(passwordErrorJl);
+		passwordErrorJl.setVisible(false);
+		
     	button1.setText("下一步，输入新密码");
     	button1.setBounds(300,400,200,50);
     	button1.addActionListener(new ActionListener(){
@@ -117,6 +126,7 @@ public class Changepassword_JPanel  extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				//判断与原密码是否相同
 				if(distributeController.checkOldPassword(oldpasswordfield.getText())==ResultMessage.SUCCESS){
+					passwordErrorJl.setVisible(false);
 					Changepassword_JPanel.this.remove(button1);
 					Changepassword_JPanel.this.add(button2);
 					Changepassword_JPanel.this.remove(oldpasswordfield);
@@ -138,12 +148,7 @@ public class Changepassword_JPanel  extends JPanel{
     	});
     	this.add(button1);
     	
-		JLabel passwordErrorJl=new JLabel("4-10位的数字或字母");
-		passwordErrorJl.setForeground(Color.RED);
-		passwordErrorJl.setFont(font);
-		passwordErrorJl.setBounds(530,250,200,20);
-		Changepassword_JPanel.this.add(passwordErrorJl);
-		passwordErrorJl.setVisible(false);
+
 		
 		JLabel passwordErrorJl2=new JLabel("不能为空");
 		passwordErrorJl2.setForeground(Color.RED);
@@ -232,18 +237,24 @@ public class Changepassword_JPanel  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//判断两遍新密码是否相同
-				if(newpasswordfield.getText().equals(newpasswordfield2.getText())){
-
-				Changepassword_JPanel.this.circle2.setIcon(icon2);
-				Changepassword_JPanel.this.circle3.setIcon(icon1);
-				Changepassword_JPanel.this.remove(newpasswordfield);
-				Changepassword_JPanel.this.remove(newpasswordfield2);
-				Changepassword_JPanel.this.remove(newpasswordJl);
-				Changepassword_JPanel.this.remove(button2);
-				Changepassword_JPanel.this.add(makechangeJl);
-				Changepassword_JPanel.this.add(button3);
-				Changepassword_JPanel.this.remove(newpasswordjl2);
-				Changepassword_JPanel .this.repaint();
+				if(newpasswordfield.getText().equals(newpasswordfield2.getText())
+						&&(!passwordErrorJl.isVisible())&&(!passwordErrorJl2.isVisible())
+						&&(!passwordErrorJl3.isVisible()&&(!passwordErrorJl4.isVisible()))){
+					PasswordVO vo = new PasswordVO(userID, newpasswordfield2.getText(), userName);
+					if(distributeController.confirmPassword(vo)==ResultMessage.SUCCESS){	
+						Changepassword_JPanel.this.circle2.setIcon(icon2);
+						Changepassword_JPanel.this.circle3.setIcon(icon1);
+						Changepassword_JPanel.this.remove(newpasswordfield);
+						Changepassword_JPanel.this.remove(newpasswordfield2);
+						Changepassword_JPanel.this.remove(newpasswordJl);
+						Changepassword_JPanel.this.remove(button2);	
+						Changepassword_JPanel.this.add(makechangeJl);
+						Changepassword_JPanel.this.add(button3);
+						Changepassword_JPanel.this.remove(newpasswordjl2);
+						Changepassword_JPanel .this.repaint();
+					}else{
+						new SaveFail_JFrame();
+					}
 				}
 				else {
 					//密码不一致

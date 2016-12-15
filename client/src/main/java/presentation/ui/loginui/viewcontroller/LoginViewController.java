@@ -21,7 +21,7 @@ public class LoginViewController implements LoginViewControllerService{
 	public void jumpToUserMainFrame(UserType userType,String userName,String userID) {
 		switch(userType){
 		case Customer:
-			frame=new Client_JFrame(userName,userID);
+			frame=Client_JFrame.getInstance(userName,userID);
 			break;
 		case HotelWorker:
 			frame=new Hotelworker_JFrame(userName,userID);

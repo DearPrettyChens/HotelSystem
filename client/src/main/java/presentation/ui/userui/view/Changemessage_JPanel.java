@@ -17,6 +17,7 @@ import javax.swing.text.Document;
 
 import org.hibernate.mapping.PersistentClassVisitor;
 
+import presentation.ui.loginui.view.Client_JFrame;
 import presentation.ui.tools.FileChooseHelper;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
@@ -78,6 +79,7 @@ public class Changemessage_JPanel extends JPanel {
 	private UserDistributeController userDistributeController = UserDistributeController.getInstance();
 
 	public Changemessage_JPanel(String userID) {
+		this.userID=userID;
 		PersonDetailVO personDetailVO = userDistributeController.getDetailInfo(userID);
 		userName = personDetailVO.getName();
 		userTel = personDetailVO.getTelephone();
@@ -139,6 +141,10 @@ public class Changemessage_JPanel extends JPanel {
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
 					image.setIcon(imageIcon);
 					Changemessage_JPanel.this.image.updateUI();
+					//记得加监听
+					Client_JFrame client_JFrame=Client_JFrame.getInstance(userName, userID);
+					client_JFrame.changeImage(imageIcon);
+					
 				}
 
        		 	 }
@@ -316,7 +322,7 @@ public class Changemessage_JPanel extends JPanel {
 		 }
 		 if(!text.equals("")&&text.length()==11){
 			 PersonDetailVO detail=new PersonDetailVO(userID,userName,userPassword,userImage,
-					 userTel,userCredit,new Date(TransHelper.stringToDate(userBirth)),userEnterprise,customerType,null,UserType.Customer);
+					text,userCredit,new Date(TransHelper.stringToDate(userBirth)),userEnterprise,customerType,null,UserType.Customer);
 			 if(userDistributeController.confirmUserInfo(detail)==ResultMessage.SUCCESS){
 				 new SaveSuccess_JFrame();
 				 showTelLabel();

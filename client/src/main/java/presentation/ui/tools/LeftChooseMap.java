@@ -47,13 +47,14 @@ public class LeftChooseMap {
 		this.userName=userName;
 		this.userID=userID;
 		this.hotelID=userID;
+		System.out.println(userID);
 		map=new HashMap<String, JPanel>();
 		switch(userType){
 		case Customer:
 //			顾客的左边栏
 			map.put("预订酒店", ReserveHotelView.getInstance(userID,userName));
 			map.put("我的信息", new Changemessage_JPanel(userID));
-			map.put("我的密码", new Changepassword_JPanel(UserType.Customer,userID));
+			map.put("我的密码", new Changepassword_JPanel(UserType.Customer,userID,userName));
 			map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
 			map.put("我的足迹", MyFootView.getInstance(userID));
 			map.put("我的信用", new ClientCreditInfos_JPanel(userID));
@@ -73,7 +74,7 @@ public class LeftChooseMap {
 			map.put("营销人员", ManageWebMarketManPanel.getInstance());
 			map.put("顾客会员", ManageCustomerPanel.getInstance());
 			map.put("酒店人员", ManageHotelWorkerPanel.getInstance());
-			map.put("修改密码", new Changepassword_JPanel(UserType.Manager,userID));
+			map.put("修改密码", new Changepassword_JPanel(UserType.Manager,userID,userName));
 			break;
 		case WebMarketMan:
 			//网站营销人员的左边栏
