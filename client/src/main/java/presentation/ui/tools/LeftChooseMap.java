@@ -1,6 +1,7 @@
 package presentation.ui.tools;
 
 import java.util.HashMap;
+import util.LeftChoosePanel;
 
 import javax.swing.JPanel;
 
@@ -37,9 +38,9 @@ import util.WebStrategyType;
  */
 public class LeftChooseMap {
 	private static LeftChooseMap leftChooseMap;
-	private HashMap<String, JPanel> map;
-	private JPanel jPanel;
-	private String hotelID="";
+	private HashMap<String, LeftChoosePanel> map;
+	private LeftChoosePanel jPanel;
+	public String hotelID="";
 	private String userID="";
 	private String userName="";
 	
@@ -47,9 +48,45 @@ public class LeftChooseMap {
 		this.userName=userName;
 		this.userID=userID;
 		this.hotelID=userID;
-		map=new HashMap<String, JPanel>();
+		map=new HashMap<String, LeftChoosePanel>();
 		switch(userType){
 		case Customer:
+//			顾客的左边栏
+			map.put("预订酒店",LeftChoosePanel.ReserveHotelView);
+			map.put("我的信息", LeftChoosePanel.Changemessage_JPanel);
+			map.put("我的密码", LeftChoosePanel.Changepassword_JPanel);
+			map.put("我的订单", LeftChoosePanel.ChooseOrderTypetoClient_JPanel);
+			map.put("我的足迹", LeftChoosePanel.MyFootView);
+			map.put("我的信用", LeftChoosePanel.ClientCreditInfos_JPanel);
+			break;
+		case HotelWorker:
+//			酒店工作人员的左边栏
+			map.put("● 维护酒店信息",LeftChoosePanel.MaintainHotelBasicInfoPanel );
+			map.put("● 录入客房信息", LeftChoosePanel.RoomInfo_JPanel);
+			map.put("● 浏览订单列表",LeftChoosePanel. OrderPanelViewInHotelWorker);
+			map.put("● 制定酒店策略", LeftChoosePanel.HotelStrategyPanel);
+			map.put("● 线上入住办理",LeftChoosePanel. CheckInPanel);
+			map.put("● 线上退房办理", LeftChoosePanel.CheckOutPanel);
+			map.put("● 线下入住退房", LeftChoosePanel.OfflineCheckIn_JPanel);
+			break;
+		case Manager:
+			//网站管理人员的左边栏
+			map.put("营销人员",  LeftChoosePanel.ManageWebMarketManPanel);
+			map.put("顾客会员",  LeftChoosePanel.ManageCustomerPanel);
+			map.put("酒店人员",  LeftChoosePanel.ManageHotelWorkerPanel);
+			map.put("修改密码", LeftChoosePanel.Changepassword_JPanel);
+			break;
+		case WebMarketMan:
+			//网站营销人员的左边栏
+			map.put("管理订单", LeftChoosePanel. OrderPanelInWebMarketMan);
+			map.put("信用充值",  LeftChoosePanel.DepositPanel);
+			map.put("会员等级", LeftChoosePanel.Clientlevelrule_JPanel);
+			map.put("营销策略",  LeftChoosePanel.Makewebstr_JPanel);
+			break;
+		default:
+			break;
+		}
+/*		case Customer:
 //			顾客的左边栏
 			map.put("预订酒店", ReserveHotelView.getInstance(userID,userName));
 			map.put("我的信息", new Changemessage_JPanel(userID));
@@ -86,7 +123,7 @@ public class LeftChooseMap {
 			break;
 		
 		}
-		
+	*/	
 		
 		
 		
@@ -107,7 +144,7 @@ public class LeftChooseMap {
 	 * @param info
 	 * @return
 	 */
-	public JPanel get(String info){
+	public LeftChoosePanel get(String info){
 		jPanel=map.get(info);
 		return jPanel;
 	}
