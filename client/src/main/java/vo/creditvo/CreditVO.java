@@ -28,7 +28,7 @@ public class CreditVO  implements Serializable{
     public CreditVO(CreditPO po){
     	this.name=po.getName();
     	this.ID=TransHelper.idToString(po.getID(),6);
-    	//this.credit=po.getCredit();
+    	this.credit=po.getCredit();
     	this.CreditChange=po.getCreditChange();
     	this.reason=po.getReason();
     	this.time=po.getTime();

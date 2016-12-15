@@ -374,7 +374,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		citycomboBox.addItem("南京");
 		citycomboBox.setSelectedItem(city);
-		citycomboBox.setBounds(180, 60, 80, 30);
+		citycomboBox.setBounds(150, 60, 50, 30);
 		Searchjp1.add(citycomboBox);
 
 
@@ -382,7 +382,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			tradingareacomboBox.addItem(e.toString());
 		}
 		tradingareacomboBox.setSelectedItem(tradingarea);
-		tradingareacomboBox.setBounds(400, 60, 100, 30);
+		tradingareacomboBox.setBounds(300, 60, 50, 30);
 		Searchjp1.add(tradingareacomboBox);
 
 		checkintimejl.setFont(font);
