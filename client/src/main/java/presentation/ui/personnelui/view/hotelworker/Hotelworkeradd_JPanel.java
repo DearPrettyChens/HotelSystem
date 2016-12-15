@@ -42,6 +42,7 @@ public class Hotelworkeradd_JPanel extends JPanel {
 	private String password;
 	private String hotelname;
 
+	private static boolean canSave=false;
 	// private JLabel typejl=new JLabel("职务： ");
 	// private JLabel idjl=new JLabel("I D: ");
 	private JLabel namejl = new JLabel("姓名：   ");
@@ -163,11 +164,14 @@ public class Hotelworkeradd_JPanel extends JPanel {
 					String s = doc.getText(0, doc.getLength());
 					if (personnelDistributionController.checkUserName(s) == ResultMessage.USEREXISTED) {
 						nameErrorJl1.setVisible(true);
+						canSave=false;
 					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.USERFORMATERROR) {
 						nameErrorJl2.setVisible(true);
+						canSave=false;
 					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.SUCCESS) {
 						nameErrorJl1.setVisible(false);
 						nameErrorJl2.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -176,12 +180,48 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
+				nameErrorJl4.setVisible(false);
+				Document doc = e.getDocument();
+				try {
 
+					String s = doc.getText(0, doc.getLength());
+					if (personnelDistributionController.checkUserName(s) == ResultMessage.USEREXISTED) {
+						nameErrorJl1.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.USERFORMATERROR) {
+						nameErrorJl2.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.SUCCESS) {
+						nameErrorJl1.setVisible(false);
+						nameErrorJl2.setVisible(false);
+						canSave=true;
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
+				nameErrorJl4.setVisible(false);
+				Document doc = e.getDocument();
+				try {
 
+					String s = doc.getText(0, doc.getLength());
+					if (personnelDistributionController.checkUserName(s) == ResultMessage.USEREXISTED) {
+						nameErrorJl1.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.USERFORMATERROR) {
+						nameErrorJl2.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkUserName(s) == ResultMessage.SUCCESS) {
+						nameErrorJl1.setVisible(false);
+						nameErrorJl2.setVisible(false);
+						canSave=true;
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		});
@@ -214,8 +254,10 @@ public class Hotelworkeradd_JPanel extends JPanel {
 					String s = doc.getText(0, doc.getLength());
 					if (personnelDistributionController.checkTel(s) == ResultMessage.FAIL) {
 						telErrorJl.setVisible(true);
+						canSave=false;
 					} else if (personnelDistributionController.checkTel(s) == ResultMessage.SUCCESS) {
 						telErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -224,12 +266,40 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
 
+					String s = doc.getText(0, doc.getLength());
+					if (personnelDistributionController.checkTel(s) == ResultMessage.FAIL) {
+						telErrorJl.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkTel(s) == ResultMessage.SUCCESS) {
+						telErrorJl.setVisible(false);
+						canSave=true;
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
+				telErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
 
+					String s = doc.getText(0, doc.getLength());
+					if (personnelDistributionController.checkTel(s) == ResultMessage.FAIL) {
+						telErrorJl.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkTel(s) == ResultMessage.SUCCESS) {
+						telErrorJl.setVisible(false);
+						canSave=true;
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		});
@@ -262,8 +332,10 @@ public class Hotelworkeradd_JPanel extends JPanel {
 					String s = doc.getText(0, doc.getLength());
 					if (personnelDistributionController.checkPassword(s) == ResultMessage.PASSWORDFORMATERROR) {
 						passwordErrorJl.setVisible(true);
+						canSave=false;
 					} else if (personnelDistributionController.checkPassword(s) == ResultMessage.SUCCESS) {
 						passwordErrorJl.setVisible(false);
+						canSave=true;
 					}
 				} catch (BadLocationException e1) {
 					e1.printStackTrace();
@@ -273,12 +345,40 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
+				passwordErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
 
+					String s = doc.getText(0, doc.getLength());
+					if (personnelDistributionController.checkPassword(s) == ResultMessage.PASSWORDFORMATERROR) {
+						passwordErrorJl.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkPassword(s) == ResultMessage.SUCCESS) {
+						passwordErrorJl.setVisible(false);
+						canSave=true;
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
+				passwordErrorJl2.setVisible(false);
+				Document doc = e.getDocument();
+				try {
 
+					String s = doc.getText(0, doc.getLength());
+					if (personnelDistributionController.checkPassword(s) == ResultMessage.PASSWORDFORMATERROR) {
+						passwordErrorJl.setVisible(true);
+						canSave=false;
+					} else if (personnelDistributionController.checkPassword(s) == ResultMessage.SUCCESS) {
+						passwordErrorJl.setVisible(false);
+						canSave=true;
+					}
+				} catch (BadLocationException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		});
@@ -350,7 +450,7 @@ public class Hotelworkeradd_JPanel extends JPanel {
 					hotelErrorJl.setVisible(true);
 				}
 				if (!namejtx.getText().equals("") && !passwordjtx.getText().equals("") && !teljtx.getText().equals("")
-						&& !hotelnamejtx.getText().equals("")) {
+						&& !hotelnamejtx.getText().equals("")&&canSave) {
 					PersonDetailVO detail = new PersonDetailVO(null, namejtx.getText(), passwordjtx.getText(), null,
 							teljtx.getText(), 0, null, null, null, hotelnamejtx.getText(), UserType.HotelWorker);
 
