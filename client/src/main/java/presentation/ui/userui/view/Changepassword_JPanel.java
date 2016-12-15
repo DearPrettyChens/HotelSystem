@@ -232,7 +232,7 @@ public class Changepassword_JPanel  extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//判断两遍新密码是否相同
-				if(newpasswordfield.getText().equals(newpasswordfield.getText())){
+				if(newpasswordfield.getText().equals(newpasswordfield2.getText())){
 
 				Changepassword_JPanel.this.circle2.setIcon(icon2);
 				Changepassword_JPanel.this.circle3.setIcon(icon1);

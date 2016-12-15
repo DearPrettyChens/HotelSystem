@@ -360,7 +360,7 @@ public class Hotelworkeradd_JPanel extends JPanel {
 //							|| passwordErrorJl.isVisible() || passwordErrorJl2.isVisible()) {
 //						tag = true;
 //					}
-
+					
 					if ((personnelDistributionController.addPerson(detail) == ResultMessage.SUCCESS)) {
 						// 保存成功
 						// TODO

@@ -102,7 +102,7 @@ public class Personnel {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return ResultMessage.FAIL;
+		return resultMessage;
 	}
 
 	/**

@@ -360,7 +360,7 @@ public class WebMarketManAdd_JPanel extends JPanel {
 //						tag = true;
 //					}
 
-					if (personnelDistributionController.addPerson(detail) == ResultMessage.SUCCESS) {
+					if ((personnelDistributionController.addPerson(detail) == ResultMessage.SUCCESS) ){
 						// 保存成功
 						// TODO
 						new SaveSuccess_JFrame();
