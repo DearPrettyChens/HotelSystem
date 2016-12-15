@@ -2,6 +2,7 @@ package businesslogic.bl.orderbl;
 
 import java.util.Date;
 
+import businesslogic.bl.hotelbl.Hotel;
 import businesslogic.blservice.orderblservice.ExecuteOrderService;
 import util.ResultMessage;
 import vo.ordervo.RemarkVO;
@@ -16,7 +17,7 @@ public class ExecuteOrderController implements ExecuteOrderService {
     private static ExecuteOrderController controller=null;
     //调用singleOrder里面的方法
 	private ExecuteOrderController() {
-		singleOrder=new SingleOrder();
+		singleOrder=new SingleOrder(new Hotel());
 	}
 	public static ExecuteOrderController getInstance(){
 		if(controller==null){
