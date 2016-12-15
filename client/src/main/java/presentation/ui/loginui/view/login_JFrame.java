@@ -50,8 +50,12 @@ public class login_JFrame extends JFrame {
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
 	private login_JButton jb = new login_JButton();// 登录按钮
 	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
-
-	private JLabel loginimagejl=new JLabel("image/loginback.gif");
+     
+	
+	private JPanel jp=new JPanel();
+	
+	
+	private JLabel loginimagejl=new JLabel(new ImageIcon("image/loginback.gif"));
 	
 	private JLabel loginFailBesideName = new JLabel();//登录名旁边的提示信息
 	private JLabel loginFailBesidePassword = new JLabel();//密码旁边的提示信息
@@ -87,7 +91,20 @@ public class login_JFrame extends JFrame {
 	 * @throws 未定
 	 */
 	public void addComp() {
+		
+		loginimagejl.setBounds(0,0,400,300);
+		//this.add(loginimagejl);
+		//loginimagejl.setVisible(false);
+		
+		
+		jp.setLayout(null);
+		jp.setBackground(Color.WHITE);
+		jp.setBounds(300,360,400,400);
 
+		jp.add(loginimagejl);
+		this.add(jp);
+		jp.setVisible(false);
+		
 		close_jbutton.setBounds(970, 10, 20, 20);
 		this.add(close_jbutton);
 		narrow_jbutton.setBounds(930, 10, 20, 20);
@@ -109,9 +126,6 @@ public class login_JFrame extends JFrame {
 		
 		
 		
-		loginimagejl.setBounds(400,400,200,100);
-		this.add(loginimagejl);
-		loginimagejl.setVisible(false);
 		
 		jb.setBounds(400, 550, 200, 40);
 		jb.addActionListener(new ActionListener() {
@@ -141,20 +155,14 @@ public class login_JFrame extends JFrame {
 						type = UserType.WebMarketMan;
 					}
 					if(type!=null){
-						
-						loginimagejl.setVisible(true);
-						
-						name.setVisible(false);
-						password.setVisible(false);
-						jb.setEnabled(true); 
-						jl.setVisible(false);
-						System.out.println("login");
-						login_JFrame.this.repaint();
+						jp.setVisible(true);
 //					
 //						controller.jumpToUserMainFrame(type,name.getText(),
 //								loginDistributionController.getUserID(name.getText()));
 //					
+						
 						changeJFrame();
+	
 						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){
