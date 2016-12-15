@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -61,7 +62,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private String enterprise;
 
 	private String imagePath="image//hotel.jpg";
-	private ImageIcon hotelimage=new ImageIcon(imagePath);
+	private ImageIcon hotelimage=ImageTool.getScaledImage(new ImageIcon(imagePath),160);
+
 	
 	private City city2;
 	private TradingArea tradingArea;
@@ -94,7 +96,11 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private JTextArea introductionjtf;
     private MyButton hotelimagejb;
     private JLabel hotelImageShow;
-
+    
+    private JComboBox citycomboBox = new JComboBox();
+	private JComboBox tradingareacomboBox = new JComboBox();
+    
+    
 	JLabel telError=new JLabel("电话不能为空");
 	JLabel starError=new JLabel("星级不能为空");
 	JLabel locaError=new JLabel("地址不能为空");
@@ -220,6 +226,20 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		cityjl.setBounds(80, 300, 100, 30);
 		this.add(cityjl);
 
+		citycomboBox.addItem("南京");
+		citycomboBox.setSelectedItem(city);
+		citycomboBox.setBounds(160, 300, 200, 30);
+		this.add(citycomboBox);
+
+
+		for(TradingArea e:TradingArea.values()){
+			tradingareacomboBox.addItem(e.getChinese());
+		}
+		
+		tradingareacomboBox.setBounds(500, 300, 100, 30);
+		this.add(tradingareacomboBox);
+		
+		
 		cityjtf.setFont(font);
 		cityjtf.setBounds(160, 300, 100, 30);
 		this.add(cityjtf);

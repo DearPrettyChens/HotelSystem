@@ -46,6 +46,7 @@ public class AvailableRoom{
 		try {
 			//调用数据层
 			ArrayList<AvailableRoomInfoPO> pos=availableRoomDao.getAvailableRoomInfo(hotelID);
+			if(pos==null) return null;
 			for(int i=0;i<pos.size();i++){
 				infos.add(new AvailableRoomInfoVO(pos.get(i)));
 			}

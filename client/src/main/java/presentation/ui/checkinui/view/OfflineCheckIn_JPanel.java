@@ -81,7 +81,7 @@ public class OfflineCheckIn_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int i=0;i<singleinfo.size();i++){
+				for (int i = 0; i < singleinfo.size(); i++) {
 					singleinfo.get(i).recoverRoom();
 				}
 			}
@@ -90,25 +90,26 @@ public class OfflineCheckIn_JPanel extends JPanel {
 		confirmjb.setText("确认");
 		confirmjb.setBounds(600, 500, 80, 30);
 		this.add(confirmjb);
-		confirmjb.addActionListener(new ActionListener(){
+		confirmjb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ResultMessage result=ResultMessage.SUCCESS;
-				for(int i=0;i<singleinfo.size();i++){
-					result=singleinfo.get(i).saveRoom();
-					if(result==ResultMessage.FAIL){
-						//保存失败
+				ResultMessage result = ResultMessage.SUCCESS;
+				for (int i = 0; i < singleinfo.size(); i++) {
+					result = singleinfo.get(i).saveRoom();
+					if (result == ResultMessage.FAIL) {
+						// 保存失败
 						new SaveFail_JFrame();
 						break;
 					}
-				}	
-				//保存成功
+				}
+				// 保存成功
 				new SaveSuccess_JFrame();
 			}
-			
+
 		});
 	}
+
 	/**
 	 * 增加滚动条面板
 	 */
@@ -120,20 +121,23 @@ public class OfflineCheckIn_JPanel extends JPanel {
 		initAvailableRoomList();
 		this.add(scrollPane);
 	}
-	
+
 	/**
 	 * 初始化可用客房列表，以及初始化单条客房信息panel
 	 */
 	public void initAvailableRoomList() {
 		singleinfo = new ArrayList<SingleAvailableRoomInfo_JPanel>();
 
-		ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = checkinDistributionController.getAvailableRoomInfo(hotelID);
-
-		for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
-			SingleAvailableRoomInfo_JPanel singleAvailableRoomInfo_JPanel = new SingleAvailableRoomInfo_JPanel(availableRoomInfoVO);
-			singleinfo.add(singleAvailableRoomInfo_JPanel);
+		ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = checkinDistributionController
+				.getAvailableRoomInfo(hotelID);
+		if (availableRoomInfoVOs != null) {
+			for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
+				SingleAvailableRoomInfo_JPanel singleAvailableRoomInfo_JPanel = new SingleAvailableRoomInfo_JPanel(
+						availableRoomInfoVO);
+				singleinfo.add(singleAvailableRoomInfo_JPanel);
+			}
+			addToPanel();
 		}
-		addToPanel();
 	}
 
 	/**
@@ -156,8 +160,5 @@ public class OfflineCheckIn_JPanel extends JPanel {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		// this.add(scrollPane);
 	}
-
-
-
 
 }

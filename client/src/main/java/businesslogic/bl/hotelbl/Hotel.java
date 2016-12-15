@@ -94,6 +94,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 				String hotelname=user.getBasicInfo().getUserName();
 				if(po==null){
 					HotelBasicInfoVO hotelBasicInfoVO=new HotelBasicInfoVO();
+					hotelBasicInfoVO.setHotelID(hotelID);
 					hotelBasicInfoVO.setHotelName(hotelname);
 					hotelDao.addHotelBasicInfo(hotelBasicInfoVO.votopo());
 					return hotelBasicInfoVO;

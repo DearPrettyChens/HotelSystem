@@ -104,29 +104,29 @@ public class RoomInfo_JPanel extends JPanel {
 		/**
 		 * 确认保存
 		 */
-		confirmjb.addActionListener(new ActionListener(){
+		confirmjb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ResultMessage result=ResultMessage.SUCCESS;
-				for(int i=0;i<singleinfo.size();i++){
-					result=singleinfo.get(i).saveRoom();
-					if(result==ResultMessage.FAIL){
+				ResultMessage result = ResultMessage.SUCCESS;
+				for (int i = 0; i < singleinfo.size(); i++) {
+					result = singleinfo.get(i).saveRoom();
+					if (result == ResultMessage.FAIL) {
 						new SaveFail_JFrame();
 						break;
 					}
-					
+
 				}
-				if(result==ResultMessage.SUCCESS){
+				if (result == ResultMessage.SUCCESS) {
 					// 保存成功
 					new SaveSuccess_JFrame();
 				}
-				/*else if(result==ResultMessage.FAIL){
-					//保存失败
-					new SaveFail_JFrame();
-				}*/
+				/*
+				 * else if(result==ResultMessage.FAIL){ //保存失败 new
+				 * SaveFail_JFrame(); }
+				 */
 			}
-			
+
 		});
 	}
 
@@ -150,12 +150,13 @@ public class RoomInfo_JPanel extends JPanel {
 
 		ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = availableroomDistributionController
 				.getAvailableRoomInfo(hotelID);
-
-		for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
-			SingleRoomInfo_JPanel singleRoomInfo_JPanel = new SingleRoomInfo_JPanel(availableRoomInfoVO);
-			singleinfo.add(singleRoomInfo_JPanel);
+		if (availableRoomInfoVOs != null) {
+			for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
+				SingleRoomInfo_JPanel singleRoomInfo_JPanel = new SingleRoomInfo_JPanel(availableRoomInfoVO);
+				singleinfo.add(singleRoomInfo_JPanel);
+			}
+			addToPanel();
 		}
-		addToPanel();
 	}
 
 	/**
