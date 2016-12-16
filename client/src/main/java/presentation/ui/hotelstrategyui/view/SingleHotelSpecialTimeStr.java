@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import presentation.ui.tools.CalendarPanel;
 import util.TransHelper;
 import vo.hotelstrategyvo.HotelStrVO;
 import vo.webstrategyvo.WebStrVO;
@@ -29,6 +30,11 @@ public class SingleHotelSpecialTimeStr  extends JPanel{
 	private JTextField begintimejtf=new JTextField(); 
 	private JTextField endtimejtf=new JTextField();
 	private JTextField countjtf=new JTextField();
+	
+	
+	private CalendarPanel p1 = new CalendarPanel(begintimejtf, "yyyy-MM-dd");
+	private CalendarPanel p2 = new CalendarPanel(endtimejtf, "yyyy-MM-dd");
+
 	
 	private Date beginTimeinDate;
 	private Date endTimeinDate;
@@ -74,6 +80,17 @@ public class SingleHotelSpecialTimeStr  extends JPanel{
 	    * @throws 未定
 	    */
 	    public void addComp(){
+	    	
+	    	
+	    	p1.initCalendarPanel();
+			
+			this.add(p1);
+	    	
+			
+			p2.initCalendarPanel();
+			
+			this.add(p2);
+			
 	    	begintimejl.setBounds(300,40,200,30);
 	    	begintimejl.setFont(font);
 	    	this.add(begintimejl);

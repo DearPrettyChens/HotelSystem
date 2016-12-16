@@ -39,7 +39,6 @@ import vo.searchhotelvo.HotelSearchInfoVO;
 /**
  * 顾客的搜索栏
  * 
- * 未实现复选框的监听。复选框的监听是实时的，只要选中一个，就会刷新酒店列表，每次传的hotelsearchinfovo是所有选中的复选框。
  * 
  * @author cy
  * @version 1.0
@@ -82,8 +81,8 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private MyTextfield fromtimejtf = new MyTextfield("请选择日期");
 	private MyTextfield totimejtf = new MyTextfield("请选择日期");
 
-	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy/MM/dd");
-	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy/MM/dd");
+	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy-MM-dd");
+	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy-MM-dd");
 
 	private JLabel bedtypejl = new JLabel("床型：");
 	private JLabel pricejl = new JLabel("价格：");
@@ -109,7 +108,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox fourbed = new JCheckBox("四床");
 	private JCheckBox manybed = new JCheckBox("家庭床");
 
-	private boolean chooseAllBeds = false;
+	private boolean chooseAllBeds = true;
 	private Map<String, BedType> bedMap = new HashMap<String,BedType>(){
 		{
 			put("不限", null);
@@ -139,7 +138,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox price5 = new JCheckBox("￥800以上");
 	//800以上怎么表示
 	
-	private boolean chooseAllPrice = false;
+	private boolean chooseAllPrice = true;
     private Map<String, Integer> priceMap = new HashMap<String, Integer>(){
     	{
     		put("不限", -1);
@@ -165,6 +164,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
     		add(400);
     		add(600);
     		add(800);
+    		add(Integer.MAX_VALUE);
     	}
     };
     private ArrayList<Integer> lowPrice = new ArrayList<Integer>();
@@ -177,7 +177,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox star4 = new JCheckBox("4星");
 	private JCheckBox star5 = new JCheckBox("5星");
 	
-	private boolean chooseAllStar = false;
+	private boolean chooseAllStar = true;
 	private Map<String, Integer> starMap = new HashMap<String,Integer>(){
 		{
 			put("不限", -1);
@@ -206,7 +206,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox score4 = new JCheckBox("3~4");
 	private JCheckBox score5 = new JCheckBox("4~5");
 
-	private boolean chooseAllScore = false;
+	private boolean chooseAllScore = true;
 	private Map<String, Double> scoreMap = new HashMap<String ,Double>(){
 		{
 			put("不限",  -1.0);
@@ -244,7 +244,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox state3 = new JCheckBox("异常");
 	private JCheckBox state4 = new JCheckBox("撤销");
 
-	private boolean chooseAllState = false;
+	private boolean chooseAllState = true;
 	private Map<String, OrderState> stateMap = new HashMap<String,OrderState>(){
 		{
 			put("不限", null);
@@ -381,9 +381,18 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		for(TradingArea e:TradingArea.values()){
 			tradingareacomboBox.addItem(e.toString());
 		}
+		
 		tradingareacomboBox.setSelectedItem(tradingarea);
 		tradingareacomboBox.setBounds(300, 60, 50, 30);
 		Searchjp1.add(tradingareacomboBox);
+		
+		tradingareacomboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vo.setTradingArea(TradingArea.values()[tradingareacomboBox.getSelectedIndex()]);
+				updateHotelListPanel();
+			}
+		});
 
 		checkintimejl.setFont(font);
 		checkintimejl.setBounds(360, 60, 150, 30);
@@ -412,9 +421,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllBeds=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllBeds=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -456,9 +467,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllPrice=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllPrice=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -537,9 +550,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllStar=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllStar=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -585,9 +600,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllScore=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllScore=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -633,9 +650,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllState=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllState=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -919,12 +938,16 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 				lowPrice.add(low);
 				if(low!=800){
 					highPrice.add(low+200);
+				}else{
+					highPrice.add(Integer.MAX_VALUE);
 				}
 			}
 			if(e.getStateChange()==ItemEvent.DESELECTED){
 				lowPrice.remove(new Integer(low));
 				if(low!=800){
 					highPrice.remove(new Integer(low+200));
+				}else{
+					highPrice.remove(new Integer(Integer.MAX_VALUE));
 				}
 			}
 			updateHotelListPanel();
@@ -1003,7 +1026,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			vo.setLowRemarkNumbers(lowScoreNumbers);
 		}
 		if(chooseAllState){
-			vo.setOrderStates(allOrderStates);
+			vo.setOrderStates(null);
 		}else{
 			vo.setOrderStates(orderStates);
 		}

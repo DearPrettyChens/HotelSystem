@@ -29,7 +29,8 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 		session.beginTransaction();
 		// 按照酒店id获取po
 		Query query = session
-				.createQuery("from AvailableRoomInfoPO where ( hotel_id = " + hotelID + " ) and ( date = " + 0 + " )");
+				.createQuery("from AvailableRoomInfoPO where ( hotel_id = " + Integer.parseInt(hotelID) 
+				+ " ) and ( date = " + 0 + " )");
 		List<AvailableRoomInfoPO> list = query.list();
 		session.close();
 		if (list.size() == 0) {
@@ -184,7 +185,7 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		// 找到床型与酒店id相同的记录
-		Query query = session.createQuery("from AvailableRoomInfoPO where ( hotel_id = " + hotelID
+		Query query = session.createQuery("from AvailableRoomInfoPO where ( hotel_id = " + Integer.parseInt(hotelID)
 				+ " ) and ( bed_type = '" + bedType.getString() + "')");
 		List<AvailableRoomInfoPO> list = query.list();
 		session.close();
@@ -201,7 +202,7 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		// 先找到酒店id和床型相同的记录
-		Query query = session.createQuery("from AvailableRoomNumberPO where ( hotel_id = " + hotelID
+		Query query = session.createQuery("from AvailableRoomNumberPO where ( hotel_id = " + Integer.parseInt(hotelID)
 				+ " ) and ( bed_type = '" + type.getString() + "')");
 		List<AvailableRoomNumberPO> list = query.list();
 		session.close();

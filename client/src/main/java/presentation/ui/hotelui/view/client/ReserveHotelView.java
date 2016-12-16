@@ -31,6 +31,10 @@ public class ReserveHotelView extends JPanel {
 			}
 			return reserveHotelView;
 		}
+	    
+	    public static void destory(){
+	    	reserveHotelView=null;
+	    }
 	
 	private ReserveHotelView(String userID,String userName) {
 		this.userID=userID;
