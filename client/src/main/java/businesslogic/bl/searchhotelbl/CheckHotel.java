@@ -71,22 +71,28 @@ public class CheckHotel {
 		boolean check = true;
 	try {
 			check = checkArea(hotelDetailInfoVO.getCity(), hotelDetailInfoVO.getArea());
+//			System.out.println(check);
 		} catch (NullCityandTradingArea e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		check = checkHotelName(hotelListVO.getHotelName());
-		check = checkTime();
-		check = checkBedType();
-		check = checkStars(hotelListVO.getStar());
+		check = check&&checkHotelName(hotelListVO.getHotelName())&&checkTime()
+				&&checkBedType()&&checkStars(hotelListVO.getStar());
+//		System.out.println(checkHotelName(hotelListVO.getHotelName()));
+//		System.out.println(checkTime());
+//		System.out.println(checkBedType());
+//		System.out.println(checkStars(hotelListVO.getStar()));
 		try {
-			check = checkPrice(hotelListVO.getLowestPrice());
-			check = checkRemark(hotelListVO.getRemark());
+			check = check&&checkPrice(hotelListVO.getLowestPrice())
+					&&checkRemark(hotelListVO.getRemark());
+//			System.out.println(checkPrice(hotelListVO.getLowestPrice()));
+//			System.out.println(checkRemark(hotelListVO.getRemark()));
 		} catch (SizeNotEqualException e) {
 			e.printStackTrace();
 		}
 		
-		check = checkOrder(hotelListVO.getOrderStates());
+		check = check&&checkOrder(hotelListVO.getOrderStates());
+//		System.out.println(checkOrder(hotelListVO.getOrderStates()));
 
 		return check;
 	}
@@ -197,7 +203,7 @@ public class CheckHotel {
 	private ArrayList<BedType> getBedTypes() {
 		ArrayList<BedType> bedTypes = new ArrayList<BedType>();
 		ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = hotelDetailInfoVO.getAvailableRoomInfoVO();
-		
+//		System.out.println(availableRoomInfoVOs==null);
 		if(availableRoomInfoVOs==null) return null;
 		for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
 			BedType bedType = availableRoomInfoVO.getBedType();
@@ -261,12 +267,13 @@ public class CheckHotel {
 			return true;
 		}
 		ArrayList<BedType> bedTypes = getBedTypes();
-		for (BedType bedType : bedTypes) {
-			if (searchBeds.contains(bedType)) {
-				return true;
+		if(bedTypes!=null){
+			for (BedType bedType : bedTypes) {
+				if (searchBeds.contains(bedType)) {
+					return true;
+				}
 			}
 		}
-
 		return false;
 
 	}
@@ -290,6 +297,9 @@ public class CheckHotel {
 
 		}
 		int size = lowPrices.size();
+		System.out.println(lowPrices.get(0));
+		System.out.println(highPrices.get(size-1));
+		System.out.println(bestPrice);
 		for (int i = 0; i < size; i++) {
 			double lowPrice = lowPrices.get(i);
 			double highPrice = highPrices.get(i);
@@ -359,7 +369,6 @@ public class CheckHotel {
 			return true;
 		}
 		for (OrderState orderState : searchOrder) {
-
 			if (orderStates.contains(orderState)) {
 				return true;
 			}

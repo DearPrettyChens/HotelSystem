@@ -52,10 +52,10 @@ public class SearchHotel {
 			} else {
 				hotelListPOs = searchHotelDao.getSortedHotelList(hotelSortType);
 			}
+			hotelListVOs=new ArrayList<HotelListVO>();
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
-				hotelListVOs=new ArrayList<HotelListVO>();
-				System.out.println(hotelListVOs.size());
+//				System.out.println(hotelListVOs.size());
 				hotelListVOs.add(hotelListVO);
 			}
 			addStrToVO(hotelSearchInfoVO.getCustomerID());
@@ -100,7 +100,7 @@ public class SearchHotel {
 //			MockOrderList orderList=new MockOrderList();
 			OrderList orderList=new OrderList();
 			//遍历顾客的订单，获得顾客在该酒店的订单状态
-			System.out.println(customerID);
+//			System.out.println(customerID);
 			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
 			for(OrderListVO orderListVO:orderListVOs){
 				String orderHotelID=orderListVO.getHotelID();

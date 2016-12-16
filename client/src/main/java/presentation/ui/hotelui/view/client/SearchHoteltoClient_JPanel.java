@@ -165,6 +165,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
     		add(400);
     		add(600);
     		add(800);
+    		add(Integer.MAX_VALUE);
     	}
     };
     private ArrayList<Integer> lowPrice = new ArrayList<Integer>();
@@ -919,12 +920,16 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 				lowPrice.add(low);
 				if(low!=800){
 					highPrice.add(low+200);
+				}else{
+					highPrice.add(Integer.MAX_VALUE);
 				}
 			}
 			if(e.getStateChange()==ItemEvent.DESELECTED){
 				lowPrice.remove(new Integer(low));
 				if(low!=800){
 					highPrice.remove(new Integer(low+200));
+				}else{
+					highPrice.remove(new Integer(Integer.MAX_VALUE));
 				}
 			}
 			updateHotelListPanel();
@@ -1003,7 +1008,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			vo.setLowRemarkNumbers(lowScoreNumbers);
 		}
 		if(chooseAllState){
-			vo.setOrderStates(allOrderStates);
+			vo.setOrderStates(null);
 		}else{
 			vo.setOrderStates(orderStates);
 		}

@@ -54,7 +54,9 @@ public class SearchHotelPane_JPanel extends JPanel {
 		this.add(scrollPane);
 	}
 	public void setHotelListPanePanel(HotelListPane_JPanel panel){
+		remove(hotelListPane_JPanel);
 		this.hotelListPane_JPanel = panel;
-		this.hotelListPane_JPanel.repaint();
+		add(hotelListPane_JPanel);
+		this.repaint();
 	}
 }
