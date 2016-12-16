@@ -36,7 +36,6 @@ public class HotelListPane_JPanel extends JPanel {
 	}
 
 	public void addComp(HotelSearchInfoVO hotelSearchInfoVO) {
-
 		ArrayList<HotelListVO> hotelListVOs = searchhotelDistributionController.getSortedHotelList(hotelSearchInfoVO);
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			HotelListInfo_JPanel hotelListInfo_JPanel = new HotelListInfo_JPanel(hotelListVO,viewTag);

@@ -51,6 +51,8 @@ public class SearchHotel {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
 				hotelListPOs = searchHotelDao.getSortedHotelList(hotelSortType);
+//				System.out.println(hotelSortType);
+//				System.out.println(hotelListPOs.get(0).getName());
 			}
 			hotelListVOs=new ArrayList<HotelListVO>();
 			for (HotelListPO hotelListPO : hotelListPOs) {
