@@ -94,11 +94,8 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//
 				hotelSearchInfoVO.setCity(City.NANJING);
 				hotelSearchInfoVO.setTradingArea(TradingArea.values()[tradingareacomboBox.getSelectedIndex()]);
-				//
-				//上面用注释围起来的仅仅是为了方便显示后面的东西，需要删掉这三行，然后完成监听。
 				
 				reserveHotelViewController.generateNewHotelListView(hotelSearchInfoVO);
 			}
