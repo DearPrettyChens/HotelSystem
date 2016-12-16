@@ -170,8 +170,8 @@ public class Order {
 			throw new NullHotelIDException();
 		}
 		//调用HotelInfoOrderService里面的方法getHotelDetailInfo
-		System.out.println(hotelInfoOrderService);
-		System.out.println(hotelInfoOrderService.getHotelDetailInfo(hotelID, null));
+		//System.out.println(hotelInfoOrderService);
+		//System.out.println(hotelInfoOrderService.getHotelDetailInfo(hotelID, null));
 		return hotelInfoOrderService.getHotelDetailInfo(hotelID, null);
 		
 	}

@@ -121,10 +121,13 @@ public class Basic_JPanel extends JPanel {
 					jpanel=new Clientlevelrule_JPanel();
 					break;
 				case DepositPanel:
+					DepositPanel.destory();
 					jpanel=DepositPanel.getInstance();
 					break;
 				case HotelStrategyPanel:
-					jpanel=HotelStrategyPanel.getInstance(leftChooseMap.hotelID);
+					HotelStrategyPanel hotelStrategyPanel=HotelStrategyPanel.getInstance(leftChooseMap.hotelID);
+					hotelStrategyPanel.changeToChooseHotelStrPanel();
+					jpanel=hotelStrategyPanel;
 					break;
 				case MaintainHotelBasicInfoPanel:
 					jpanel=new MaintainHotelBasicInfoPanel(leftChooseMap.hotelID);
@@ -142,6 +145,7 @@ public class Basic_JPanel extends JPanel {
 					jpanel= ManageWebMarketManPanel.getInstance();
 					break;
 				case MyFootView:
+					MyFootView.destory();
 					jpanel=MyFootView.getInstance(userID);
 					break;
 				case OfflineCheckIn_JPanel:
@@ -154,6 +158,7 @@ public class Basic_JPanel extends JPanel {
 					jpanel=OrderPanelViewInHotelWorker.getInstance(leftChooseMap.hotelID);
 					break;
 				case ReserveHotelView:
+					ReserveHotelView.destory();
 					jpanel=ReserveHotelView.getInstance(userID,userName);
 					break;
 				case RoomInfo_JPanel:
