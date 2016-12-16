@@ -228,6 +228,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 		//解决循环依赖
 		singleOrder=new SingleOrder(this);
 		OrderInfoVO vo=singleOrder.getOrderInfo(orderID);
+		if(vo==null) return null;
 		return new HotelOrderInfoVO(vo.getOrderID(),vo.getCustomerName(),vo.getPrice(),
 				vo.getLiveinPersonName(),vo.getLiveinPersonTelephone(),vo.getExpectedCheckInTime()
 				,vo.getExpectedCheckOutTime(),vo.getRoomType(),vo.getBedType(),vo.getAmount(),vo.getNumberOfPeople()

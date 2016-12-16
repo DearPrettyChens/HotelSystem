@@ -70,22 +70,18 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 
 	public OrderInfoToCheckIn_JPanel(String orderID,String hotelID) {
 		this.hotelID=hotelID;
-		if(hotelDistributionController.getHotelOrderInfo(orderID)==null){
-			JPanel panel=new JPanel();
-			panel.setBounds(0, 180, 800, 400);
-			OrderInfoToCheckIn_JPanel.this.add(panel);
-			JLabel orderError=new JLabel("无该订单信息!");
-			orderError.setForeground(Color.BLACK);
-			orderError.setFont(font);
-			orderError.setBounds(250,50,200,50);
-			panel.add(orderError);
-			orderError.setVisible(true);
-		}
+		
 		hotelOrderInfoVO = hotelDistributionController.getHotelOrderInfo(orderID);
-		if (hotelOrderInfoVO == null) {
-			this.setVisible(false);
+		if(hotelOrderInfoVO==null){
+		
+			JLabel orderError=new JLabel("无该订单信息!");
+			orderError.setForeground(Color.red);
+			orderError.setFont(font);
+			orderError.setBounds(300,0,200,50);
+			this.add(orderError);
+			orderError.setVisible(true);
+			
 		} else {
-			this.setVisible(true);
 			this.ordernumber = hotelOrderInfoVO.getOrderId();
 			this.clientname = hotelOrderInfoVO.getCustomerName();
 			this.clienttel = hotelOrderInfoVO.getLodgerTel();
@@ -106,12 +102,12 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 			}
 
 			this.price = hotelOrderInfoVO.getPrice();
+			addComp();
 		}
 
 		this.setBounds(0, 180, 800, 400);
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		addComp();
 
 	}
 
