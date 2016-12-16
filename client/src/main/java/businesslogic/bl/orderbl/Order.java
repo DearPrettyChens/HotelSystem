@@ -147,9 +147,6 @@ public class Order {
 	 *
 	 */
 	public ResultMessage confirmAddOrder(OrderInfoVO orderInfoVO)throws NullOrderIDException,NullCustomerIDException{
-		if(orderInfoVO.getOrderID()==null){
-			throw new NullOrderIDException();
-		}
 		if(orderInfoVO.getCustomerID()==null){
 			throw new NullCustomerIDException();
 		}

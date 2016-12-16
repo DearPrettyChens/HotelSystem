@@ -75,9 +75,6 @@ public class SingleOrder {
 	 * @throws NullOrderIDException,NullCustomerIDException
 	 */
 	public ResultMessage addOrder(OrderInfoVO orderInfoVO)throws NullOrderIDException,NullCustomerIDException{
-		if(orderInfoVO.getOrderID()==null){
-			throw new NullOrderIDException();
-		}
 		if(orderInfoVO.getCustomerID()==null){
 			throw new NullCustomerIDException();
 		}
@@ -88,7 +85,7 @@ public class SingleOrder {
 			//设置最晚入住时间为当天的18点
 			orderInfoVO.setLateCheckInTime(new Date(orderInfoVO.getExpectedCheckInTime().getYear(),
 					orderInfoVO.getExpectedCheckInTime().getMonth(),
-					orderInfoVO.getExpectedCheckInTime().getDay(),18,0,0));
+					orderInfoVO.getExpectedCheckInTime().getDate(),18,0,0));
 			String orderID="";
 			SimpleDateFormat   simpleDateFormat   =   new   SimpleDateFormat("yyyyMMdd");  
 			orderID=simpleDateFormat.format(orderTime);

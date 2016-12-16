@@ -134,7 +134,7 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	// 顾客下订单时的订单信息
-	public OrderInfoPO(String orderID, String hotelID, String hotelname, String customerID, String customerName,
+	public OrderInfoPO(String orderID, String hotelID, String hotelname, String hotelTel,String customerID, String customerName,
 			String liveinPersonName, String liveinPersonTelephone, Date orderTime, Date expectedCheckInTime,
 			Date expectedCheckOutTime,Date lateCheckInTime, String roomType, BedType bedType, int amount, int numberOfPeople,
 			Children hasChild, double price, OrderState state) {
@@ -156,6 +156,7 @@ public class OrderInfoPO implements Serializable {
 		this.setPrice(price);
 		this.setState(state);
 		this.setReserveTime(orderTime);
+		this.hotelTelephone=hotelTel;
 	}
 
 	// 顾客在撤销订单前及入住之前查看订单时显示的订单信息

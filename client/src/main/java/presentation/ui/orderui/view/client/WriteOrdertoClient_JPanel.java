@@ -18,6 +18,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 import exception.NotFoundHotelException;
+import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyTextfield;
@@ -31,6 +32,7 @@ import util.Telephone;
 import util.TransHelper;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.availableroomvo.AvailableRoomNumberVO;
+import vo.hotelvo.HotelBasicInfoVO;
 import vo.hotelvo.HotelDetailInfoVO;
 import vo.ordervo.OrderInfoVO;
 
@@ -99,6 +101,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 
 	private ButtonGroup group = new ButtonGroup();
 	private OrderDistributionController orderDistributionController = OrderDistributionController.getInstance();
+	private HotelDistributionController hotelDistributionController=HotelDistributionController.getInstance();
 
 	private String hotelID;
 	private String userID;
@@ -483,14 +486,24 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 			if(haschildjb.isSelected()){
 				hasChild=Children.EXIST;
 			}
-			//入住人数默认为1
-			OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, namejtf.getText(), 
-				teljtf.getText(), new Date(), new Date(TransHelper.stringToDate(fromtimejtf.getText())),
-						new Date(TransHelper.stringToDate(totimejtf.getText())), null,
-						roomtypes.get(roomtypecomboBox.getSelectedIndex()), bedtypes.get(bedtypecomboBox.getSelectedIndex()), 
-						Integer.parseInt(numberjtf.getText()), 1, hasChild, 0,OrderState.NOTEXECUTED);
-			return vo;
+			HotelBasicInfoVO hotelBasic;
+			try {
+				hotelBasic = hotelDistributionController.getHotelBasicInfo(hotelID);
+				String hotelTel=hotelBasic.getTelephone();
+				//入住人数默认为1
+				OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, hotelTel,namejtf.getText(), 
+					teljtf.getText(), new Date(), new Date(TransHelper.stringToDate(fromtimejtf.getText())),
+							new Date(TransHelper.stringToDate(totimejtf.getText())), null,
+							roomtypes.get(roomtypecomboBox.getSelectedIndex()), bedtypes.get(bedtypecomboBox.getSelectedIndex()), 
+							Integer.parseInt(numberjtf.getText()), 1, hasChild, 0,OrderState.NOTEXECUTED);
+				return vo;
+			} catch (NotFoundHotelException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
+		return null;
 	}
 
 }
