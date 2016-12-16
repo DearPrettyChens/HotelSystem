@@ -364,17 +364,17 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		cityjl.setText("城市：");
 		cityjl.setFont(font);
-		cityjl.setBounds(100, 60, 80, 30);
+		cityjl.setBounds(100, 60, 100, 30);
 		Searchjp1.add(cityjl);
 
 		tradingareajl.setText("商圈：");
 		tradingareajl.setFont(font);
-		tradingareajl.setBounds(300, 60, 100, 30);
+		tradingareajl.setBounds(230, 60, 100, 30);
 		Searchjp1.add(tradingareajl);
 
 		citycomboBox.addItem("南京");
 		citycomboBox.setSelectedItem(city);
-		citycomboBox.setBounds(150, 60, 50, 30);
+		citycomboBox.setBounds(140, 60, 80, 30);
 		Searchjp1.add(citycomboBox);
 
 
@@ -383,7 +383,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		}
 		
 		tradingareacomboBox.setSelectedItem(tradingarea);
-		tradingareacomboBox.setBounds(300, 60, 50, 30);
+		tradingareacomboBox.setBounds(270, 60, 80, 30);
 		Searchjp1.add(tradingareacomboBox);
 		
 		tradingareacomboBox.addActionListener(new ActionListener() {
@@ -402,10 +402,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		checkouttimejl.setBounds(510, 60, 100, 30);
 		Searchjp1.add(checkouttimejl);
 
-		tradingareajl.setText("商圈：" + tradingarea);
-		tradingareajl.setFont(font);
-		tradingareajl.setBounds(200, 60, 150, 30);
-		Searchjp1.add(tradingareajl);
+		
 
 		bedtypejl.setFont(font);
 		bedtypejl.setBounds(100, 90, 100, 30);
@@ -433,33 +430,33 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		BedItemListenner bedItemListenner = new BedItemListenner();
 		
 		onebed.setFont(font);
-		onebed.setBounds(250, 90, 80, 30);
+		onebed.setBounds(250, 90, 70, 30);
 		Searchjp1.add(onebed);
 		onebed.addItemListener(bedItemListenner);
 
 		twobed.setFont(font);
-		twobed.setBounds(350, 90, 80, 30);
+		twobed.setBounds(350, 90, 70, 30);
 		twobed.addItemListener(bedItemListenner);
 		Searchjp1.add(twobed);
 
 		threebed.setFont(font);
-		threebed.setBounds(450, 90, 80, 30);
+		threebed.setBounds(450, 90, 70, 30);
 		threebed.addItemListener(bedItemListenner);
 		Searchjp1.add(threebed);
 
 		fourbed.setFont(font);
-		fourbed.setBounds(550, 90, 80, 30);
+		fourbed.setBounds(550, 90, 70, 30);
 		fourbed.addItemListener(bedItemListenner);
 		Searchjp1.add(fourbed);
 
 		manybed.setFont(font);
-		manybed.setBounds(650, 90, 80, 30);
+		manybed.setBounds(650, 90, 100, 30);
 		manybed.addItemListener(bedItemListenner);
 		Searchjp1.add(manybed);
 
 		allprice.setFont(font);
 		allprice.setSelected(true);
-		allprice.setBounds(150, 120, 280, 30);
+		allprice.setBounds(150, 120, 100, 30);
 		Searchjp1.add(allprice);
 		allprice.addItemListener(new ItemListener() {
 			
@@ -479,27 +476,27 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		PriceItemListenner priceItemListenner = new PriceItemListenner();
 		
 		price1.setFont(font);
-		price1.setBounds(350, 120, 280, 30);
+		price1.setBounds(350, 120, 150, 30);
 		Searchjp1.add(price1);
 		price1.addItemListener(priceItemListenner);
 
 		price2.setFont(font);
-		price2.setBounds(550, 120, 280, 30);
+		price2.setBounds(550, 120, 150, 30);
 		Searchjp1.add(price2);
 		price2.addItemListener(priceItemListenner);
 
 		price3.setFont(font);
-		price3.setBounds(150, 150, 280, 30);
+		price3.setBounds(150, 150, 150, 30);
 		Searchjp1.add(price3);
 		price3.addItemListener(priceItemListenner);
 
 		price4.setFont(font);
-		price4.setBounds(350, 150, 280, 30);
+		price4.setBounds(350, 150,150, 30);
 		Searchjp1.add(price4);
 		price4.addItemListener(priceItemListenner);
 
 		price5.setFont(font);
-		price5.setBounds(550, 150, 280, 30);
+		price5.setBounds(550, 150,150, 30);
 		Searchjp1.add(price5);
 		price5.addItemListener(priceItemListenner);
 
@@ -542,7 +539,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		allstar.setFont(font);
 		allstar.setSelected(true);
-		allstar.setBounds(150, 0, 280, 30);
+		allstar.setBounds(150, 0, 70, 30);
 		Searchjp2.add(allstar);
 		allstar.addItemListener(new ItemListener() {
 			
@@ -562,27 +559,27 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		StarItemListenner starItemListenner = new StarItemListenner();
 		
 		star1.setFont(font);
-		star1.setBounds(250, 0, 280, 30);
+		star1.setBounds(250, 0, 70, 30);
 		Searchjp2.add(star1);
 		star1.addItemListener(starItemListenner);
 
 		star2.setFont(font);
-		star2.setBounds(350, 0, 280, 30);
+		star2.setBounds(350, 0, 70, 30);
 		Searchjp2.add(star2);
 		star2.addItemListener(starItemListenner);
 		
 		star3.setFont(font);
-		star3.setBounds(450, 0, 280, 30);
+		star3.setBounds(450, 0, 70, 30);
 		Searchjp2.add(star3);
 		star3.addItemListener(starItemListenner);
 		
 		star4.setFont(font);
-		star4.setBounds(550, 0, 280, 30);
+		star4.setBounds(550, 0, 70, 30);
 		Searchjp2.add(star4);
 		star4.addItemListener(starItemListenner);
 
 		star5.setFont(font);
-		star5.setBounds(650, 0, 280, 30);
+		star5.setBounds(650, 0, 70, 30);
 		Searchjp2.add(star5);
 		star5.addItemListener(starItemListenner);
 
@@ -592,7 +589,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		allscore.setFont(font);
 		allscore.setSelected(true);
-		allscore.setBounds(150, 30, 280, 30);
+		allscore.setBounds(150, 30, 70, 30);
 		Searchjp2.add(allscore);
 		allscore.addItemListener(new ItemListener() {
 			
@@ -612,27 +609,27 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		ScoreItemListenner scoreItemListenner = new ScoreItemListenner();
 		
 		score1.setFont(font);
-		score1.setBounds(250, 30, 280, 30);
+		score1.setBounds(250, 30, 70, 30);
 		Searchjp2.add(score1);
 		score1.addItemListener(scoreItemListenner);
 		
 		score2.setFont(font);
-		score2.setBounds(350, 30, 280, 30);
+		score2.setBounds(350, 30, 70, 30);
 		Searchjp2.add(score2);
 		score2.addItemListener(scoreItemListenner);
 
 		score3.setFont(font);
-		score3.setBounds(450, 30, 280, 30);
+		score3.setBounds(450, 30, 70, 30);
 		Searchjp2.add(score3);
 		score3.addItemListener(scoreItemListenner);
 
 		score4.setFont(font);
-		score4.setBounds(550, 30, 280, 30);
+		score4.setBounds(550, 30, 70, 30);
 		Searchjp2.add(score4);
 		score4.addItemListener(scoreItemListenner);
 
 		score5.setFont(font);
-		score5.setBounds(650, 30, 280, 30);
+		score5.setBounds(650, 30, 70, 30);
 		Searchjp2.add(score5);
 		score5.addItemListener(scoreItemListenner);
 
@@ -642,7 +639,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		allstate.setFont(font);
 		allstate.setSelected(true);
-		allstate.setBounds(150, 60, 280, 30);
+		allstate.setBounds(150, 60, 70, 30);
 		Searchjp2.add(allstate);
 		allstate.addItemListener(new ItemListener() {
 			
@@ -662,22 +659,22 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		OrderStateItemListenner orderStateItemListenner = new OrderStateItemListenner();
 		
 		state1.setFont(font);
-		state1.setBounds(250, 60, 280, 30);
+		state1.setBounds(250, 60,70, 30);
 		Searchjp2.add(state1);
 		state1.addItemListener(orderStateItemListenner);
 
 		state2.setFont(font);
-		state2.setBounds(350, 60, 280, 30);
+		state2.setBounds(350, 60, 70, 30);
 		Searchjp2.add(state2);
 		state2.addItemListener(orderStateItemListenner);
 
 		state3.setFont(font);
-		state3.setBounds(450, 60, 280, 30);
+		state3.setBounds(450, 60, 70, 30);
 		Searchjp2.add(state3);
 		state3.addItemListener(orderStateItemListenner);
 
 		state4.setFont(font);
-		state4.setBounds(550, 60, 280, 30);
+		state4.setBounds(550, 60, 70, 30);
 		Searchjp2.add(state4);
 		state4.addItemListener(orderStateItemListenner);
 
