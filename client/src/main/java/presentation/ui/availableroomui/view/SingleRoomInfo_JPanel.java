@@ -3,6 +3,7 @@ package presentation.ui.availableroomui.view;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -31,6 +32,8 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	
 	private BedType bedType2;
 	
+	private JComboBox  bedtypecomboBox = new JComboBox();
+	
 	private Font font=new Font("宋体",Font.BOLD, 16);
 	
 	private JLabel bedtypejl=new JLabel("床型：");
@@ -38,7 +41,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JLabel numberjl=new JLabel("数量：");
 	private JLabel pricejl=new JLabel("价格：");
 	
-	private JTextField bedtypejtf=new JTextField();
+	//private JTextField bedtypejtf=new JTextField();
 	private JTextField roomtypejtf=new JTextField();
 	private JTextField numberjtf=new JTextField();
 	private JTextField pricejtf=new JTextField();
@@ -58,7 +61,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.currentNum=availableRoomInfoVO.getCurrentNumber();
 		
 		
-		bedtypejtf.setText(bedtype);
+		//bedtypejtf.setText(bedtype);
 		roomtypejtf.setText(roomtype);
 		numberjtf.setText(number+"");
 		pricejtf.setText(price+"");
@@ -94,9 +97,20 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		bedtypejl.setBounds(20,10,80,30);
 		this.add(bedtypejl);
 		
-		bedtypejtf.setFont(font);
-		bedtypejtf.setBounds(70,10,100,30);
-		this.add(bedtypejtf);
+		//bedtypejtf.setFont(font);
+		//bedtypejtf.setBounds(70,10,100,30);
+		//this.add(bedtypejtf);
+		
+		
+		 bedtypecomboBox.setBounds(70,10,100,30);
+		for(BedType e:BedType.values()){
+			 bedtypecomboBox.addItem(e.toString());
+		}
+		
+		 bedtypecomboBox.setBounds(70, 10, 100, 30);
+		this.add( bedtypecomboBox);
+		
+		
 		
 		roomtypejl.setFont(font);
 		roomtypejl.setBounds(190,10,80,30);
@@ -139,13 +153,13 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	 * @return
 	 */
 	public ResultMessage saveRoom(){
-		if(roomtypejtf.getText().equals("")||bedtypejtf.getText().equals("")||pricejtf.getText().equals("")
+		if(roomtypejtf.getText().equals("")||pricejtf.getText().equals("")
 				||numberjtf.getText().equals("")){
 			saveError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
 		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
-				BedType.toBedType(bedtypejtf.getText()),Double.parseDouble(pricejtf.getText()),
+				BedType.toBedType( bedtypecomboBox.getActionCommand()),Double.parseDouble(pricejtf.getText()),
 						lowestPrice,Integer.parseInt(numberjtf.getText()));
 		return controller.confirmAvailableRoomInfo(hotelID, room);
 	}
