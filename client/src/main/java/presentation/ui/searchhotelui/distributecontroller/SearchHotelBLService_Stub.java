@@ -35,4 +35,10 @@ public class SearchHotelBLService_Stub implements SearchHotelBLService{
 		return hotelListVOs;
 	}
 
+	@Override
+	public ArrayList<HotelListVO> getCustomerHotelList(String customerID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
