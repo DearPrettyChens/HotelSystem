@@ -57,9 +57,9 @@ public class SearchHotel {
 			hotelListVOs=new ArrayList<HotelListVO>();
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
-//				System.out.println(hotelListVOs.size());
 				hotelListVOs.add(hotelListVO);
 			}
+//			System.out.println("hotellistvos:"+hotelListVOs.size());
 			addStrToVO(hotelSearchInfoVO.getCustomerID());
 			addOrderToVO(hotelSearchInfoVO.getCustomerID());
 		} catch (RemoteException e) {
@@ -103,10 +103,12 @@ public class SearchHotel {
 			OrderList orderList=new OrderList();
 			//遍历顾客的订单，获得顾客在该酒店的订单状态
 //			System.out.println(customerID);
-			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer, null, customerID));
+			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer,
+					null, customerID));
 			for(OrderListVO orderListVO:orderListVOs){
+//				System.out.println(orderListVO.getHotelID()+"  "+hotelID);
 				String orderHotelID=orderListVO.getHotelID();
-				if(orderHotelID.equals(hotelID)){
+				if(Integer.parseInt(orderHotelID)==Integer.parseInt(hotelID)){
 					orderStates.add(orderListVO.getState());
 				}
 			}
@@ -126,6 +128,27 @@ public class SearchHotel {
 //		if()
 		CheckHotel checkHotel=new CheckHotel(hotelListVOs,hotelSearchInfoVO);
 		return checkHotel.check();
+	}
+	
+	/**
+	 * 得到所有顾客预定过的酒店列表信息
+	 * 
+	 * @param null
+	 * @return ArrayList<HotelListVO>
+	 * @throws 未定
+	 */
+	public ArrayList<HotelListVO> getCustomerHotelList(String customerID) {
+//		
+		ArrayList<HotelListVO> list = new ArrayList<HotelListVO>();
+		System.out.println("size:"+hotelListVOs.size());
+		for(HotelListVO vo:hotelListVOs){
+			System.out.println(vo.getHotelName()+vo.getOrderStates().size());
+		   if(vo.getOrderStates().size()!=0){
+			   list.add(vo);
+//			   System.out.println("name"+vo.getHotelName());
+		   }
+		}
+		return list;
 	}
 
 }

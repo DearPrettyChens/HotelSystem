@@ -105,6 +105,9 @@ public class AvailableRoom{
 		try {
 			ArrayList<AvailableRoomInfoPO> roomInfo=availableRoomDao.getAvailableRoomInfo(hotelID);
 			//new出该酒店的所有singleavailableroom对象
+			
+			if(roomInfo==null) return ResultMessage.SUCCESS;
+			
 			for(int i=0;i<roomInfo.size();i++){
 				singleAvailableRoomInfoList.add(new SingleAvailableRoomInfo(TransHelper.idToString(roomInfo.get(i).
 						getHotelNumber(),6),roomInfo.get(i).getRoomType(),roomInfo.get(i).getBedType(),

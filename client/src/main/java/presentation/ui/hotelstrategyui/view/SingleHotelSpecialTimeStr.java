@@ -51,12 +51,18 @@ public class SingleHotelSpecialTimeStr  extends JPanel{
 		return this.countjtf;
 	}
 	SingleHotelSpecialTimeStr(HotelStrVO hotelStrVO){
+		if(hotelStrVO!=null){
 		Date[] dates=hotelStrVO.getDate();
 		beginTimeinDate=dates[0];
 		endTimeinDate=dates[1];
+		this.count=hotelStrVO.getDiscount();
+		}else{
+			beginTimeinDate=new Date();
+			endTimeinDate=new Date();
+		}
 		this.begintime=TransHelper.dateToString(beginTimeinDate);
 		this.endtime=TransHelper.dateToString(endTimeinDate);
-		this.count=hotelStrVO.getDiscount();
+		
 		this.setLayout(null);
 		this.setBackground(Color.white);
 	    this.setBounds(0,200, 800, 300);

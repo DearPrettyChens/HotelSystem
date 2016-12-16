@@ -121,7 +121,7 @@ public class Basic_JPanel extends JPanel {
 					jpanel=new Clientlevelrule_JPanel();
 					break;
 				case DepositPanel:
-					//DepositPanel.destory();
+					DepositPanel.destory();
 					jpanel=DepositPanel.getInstance();
 					break;
 				case HotelStrategyPanel:
@@ -145,7 +145,7 @@ public class Basic_JPanel extends JPanel {
 					jpanel= ManageWebMarketManPanel.getInstance();
 					break;
 				case MyFootView:
-					//MyFootView.destory();
+					MyFootView.destory();
 					jpanel=MyFootView.getInstance(userID);
 					break;
 				case OfflineCheckIn_JPanel:

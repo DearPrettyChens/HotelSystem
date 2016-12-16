@@ -1,16 +1,20 @@
 package businesslogic.bl.hotelstrategybl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.checkinbl.mock.MockAvailableRoom;
+import businesslogic.bl.hotelbl.Hotel;
 import dao.hotelstrategydao.HotelStrategyDao;
+import exception.NotFoundHotelException;
 import init.RMIHelper;
 import po.HotelStrPO;
 import util.HotelStrategyType;
 import util.ResultMessage;
 import vo.hotelstrategyvo.HotelBestStrVO;
 import vo.hotelstrategyvo.HotelStrVO;
+import vo.hotelvo.HotelBasicInfoVO;
 import vo.ordervo.OrderProvidedVO;
 
 /**
@@ -27,9 +31,9 @@ public class HotelStrategy {
 
 	private HotelStrategy() {
 
-//		 hotelStrategyDao = RMIHelper.getHotelStrategyDao();
-//		hotelStrategyDao = new HotelStrategyDao_Stub();
-//		hotelStrategyMap = HotelStrategyMap.getInstance();
+		// hotelStrategyDao = RMIHelper.getHotelStrategyDao();
+		// hotelStrategyDao = new HotelStrategyDao_Stub();
+		// hotelStrategyMap = HotelStrategyMap.getInstance();
 
 		RMIHelper.init();
 		hotelStrategyDao = RMIHelper.getHotelStrategyDao();
@@ -68,7 +72,7 @@ public class HotelStrategy {
 
 			// 委托给每个策略去计算折扣值
 			hotelStrategyInterface = hotelStrategyMap.get(type);
-			
+
 			double tempDiscount = hotelStrategyInterface.getDiscount(info, hotelID);
 
 			// 选取折扣最大的，即折扣值最小的。
@@ -77,13 +81,13 @@ public class HotelStrategy {
 				hotelStrategyType = type;
 			}
 		}
-		
-		if(discount==1){//该酒店没有任何酒店策略，没有折扣
-			hotelStrategyType=HotelStrategyType.NULLTYPE;
+
+		if (discount == 1) {// 该酒店没有任何酒店策略，没有折扣
+			hotelStrategyType = HotelStrategyType.NULLTYPE;
 		}
-		
+
 		if (hotelStrategyType == HotelStrategyType.NULLTYPE) {
-			discount = 1;//该酒店没有任何酒店策略，没有折扣
+			discount = 1;// 该酒店没有任何酒店策略，没有折扣
 		}
 		return new HotelBestStrVO(hotelID, hotelStrategyType, discount);
 
@@ -113,13 +117,33 @@ public class HotelStrategy {
 		try {
 			ResultMessage resultMessage = hotelStrategyDao.setHotelStrategy(hotelStrPO);
 			if (resultMessage == ResultMessage.SUCCESS) {
-                double discount=getHotelLowestDiscount(hotelStrVO.getHotelID());       
-				
+				double discount = getHotelLowestDiscount(hotelStrVO.getHotelID());
+
+				if (hotelStrVO.getType() == HotelStrategyType.ENTERPRISE) {
+					ArrayList<String> enterprises=hotelStrVO.getEnterprise();
+					String tempEnterprises="";
+					for(String enterprise:enterprises){
+						tempEnterprises=tempEnterprises +enterprise+" ";
+					}
+					HotelBasicInfoVO hotelBasicInfoVO;
+					String hotelID = hotelStrVO.getHotelID();
+					try {
+						Hotel hotel=new Hotel();
+						hotelBasicInfoVO = hotel.getHotelBasicInfo(hotelID);
+					    hotelBasicInfoVO.setEnterprises(tempEnterprises);
+					    hotel.confirmModifyInfo(hotelBasicInfoVO);
+					} catch (NotFoundHotelException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				}
 				// 给酒店的可用客房设置最低价格
 				AvailableRoom availableRoom = new AvailableRoom();
 				availableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
-//				MockAvailableRoom mockAvailableRoom=new MockAvailableRoom();
-//				mockAvailableRoom.setBestPrice(hotelStrVO.getHotelID(), discount);
+				// MockAvailableRoom mockAvailableRoom=new MockAvailableRoom();
+				// mockAvailableRoom.setBestPrice(hotelStrVO.getHotelID(),
+				// discount);
 			}
 			return resultMessage;
 		} catch (RemoteException e) {
@@ -128,26 +152,27 @@ public class HotelStrategy {
 		return ResultMessage.FAIL;
 	}
 
-    /**
-     * 
-     * 获得酒店所有策略的最低折扣
-     * @param hotelID
-     * @return
-     */
-    private double getHotelLowestDiscount(String hotelID){
-        hotelStrategyMap=new HotelStrategyMap();
+	/**
+	 * 
+	 * 获得酒店所有策略的最低折扣
+	 * 
+	 * @param hotelID
+	 * @return
+	 */
+	private double getHotelLowestDiscount(String hotelID) {
+		hotelStrategyMap = new HotelStrategyMap();
 		double discount = 1;// 折扣值在0-1之间,没有折扣就是1
-        while (hotelStrategyMap.hasNext()){
-        	hotelStrategyMap.next();
-        	hotelStrategyInterface = hotelStrategyMap.getHotelStrategy();
+		while (hotelStrategyMap.hasNext()) {
+			hotelStrategyMap.next();
+			hotelStrategyInterface = hotelStrategyMap.getHotelStrategy();
 			double tempDiscount = hotelStrategyInterface.getDiscount(hotelID);
 			// 选取折扣最大的，即折扣值最小的。
 			if (tempDiscount < discount) {
 				discount = tempDiscount;
 			}
 		}
-    
-    	return discount;
-    }
+
+		return discount;
+	}
 
 }

@@ -21,6 +21,7 @@ import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistrib
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.SaveFail_JFrame;
+import presentation.ui.tools.newclient_JLabel;
 import presentation.ui.webstrategyui.view.Singlewebclientlevelstr_Jpanel;
 import util.HotelStrategyType;
 import util.ResultMessage;
@@ -32,7 +33,7 @@ import vo.webstrategyvo.WebStrVO;
  * 
  * 企业优惠策略
  * 
- *  未加确认按钮监听
+ * 未加确认按钮监听
  * 
  * @author cy
  * @version 1.0
@@ -43,7 +44,7 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 	private JLabel titlejl = new JLabel("合作企业顾客折扣策略");
 
 	private Font font = new Font("宋体", Font.BOLD, 18);
-	private ArrayList<String> enterprise;
+	private ArrayList<String> enterprise = new ArrayList<String>();
 	private double discount;
 
 	private MyButton canclejb = new MyButton();
@@ -64,14 +65,17 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 	ArrayList<SingleHotelEnterpriseStr_JPanel> singleinfos = new ArrayList<SingleHotelEnterpriseStr_JPanel>();
 
 	public HotelEnterpriseStr_JPanel(String hotelID) {
-		this.hotelID=hotelID;
+		this.hotelID = hotelID;
 		HotelStrVO hotelStrVO = hotelStrategyDistributionControll.getHotelStrategy(hotelID,
 				HotelStrategyType.ENTERPRISE);
-		enterprise = hotelStrVO.getEnterprise();
-		discount = hotelStrVO.getDiscount();
+
+		if (hotelStrVO != null) {
+			enterprise = hotelStrVO.getEnterprise();
+			discount = hotelStrVO.getDiscount();
+		}
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		 this.setBounds(0, 0, 800, 600);
+		this.setBounds(0, 0, 800, 600);
 		addComps();
 
 	}
@@ -115,7 +119,7 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 				SingleHotelEnterpriseStr_JPanel newinfo = new SingleHotelEnterpriseStr_JPanel();
 				singleinfos.add(newinfo);
 				addToPanel();
-				
+
 			}
 
 		});
@@ -125,67 +129,67 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 		titlejl.setBounds(280, 60, 300, 30);
 		this.add(titlejl);
 
-		JLabel saveError=new JLabel("请输入0～1之间的数字");
+		JLabel saveError = new JLabel("请输入0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
 		saveError.setBounds(280, 440, 200, 25);
 		HotelEnterpriseStr_JPanel.this.add(saveError);
 		saveError.setVisible(false);
-		
-		confirmjb.addActionListener(new ActionListener(){
+
+		confirmjb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(Double.parseDouble(countjtf.getText())<=1.0&&Double.parseDouble(countjtf.getText())>0){
-
-					for(int i=0;i<singleinfos.size();i++){
-						enterprise.add(singleinfos.get(i).getEnterpriseName().getText());
+				if (Double.parseDouble(countjtf.getText()) <= 1.0 && Double.parseDouble(countjtf.getText()) > 0) {
+                    enterprise.clear();
+					for (int i = 0; i < singleinfos.size(); i++) {
+						String string=singleinfos.get(i).getEnterpriseName().getText();
+						if (string!=null&& string!= "") {
+							enterprise.add(singleinfos.get(i).getEnterpriseName().getText());
+						}
 					}
-					HotelStrVO str=new HotelStrVO(hotelID,Double.parseDouble(countjtf.getText()),
-							enterprise);
-					if(hotelStrategyDistributionControll.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+					HotelStrVO str = new HotelStrVO(hotelID, Double.parseDouble(countjtf.getText()), enterprise);
+					
+					if (hotelStrategyDistributionControll.confirmHotelStrategy(str) == ResultMessage.SUCCESS) {
 						hotelStrategyViewControllerImpl.backToselectStrategy();
-					}
-					else{
-						//保存失败
+					} else {
+						// 保存失败
 						new SaveFail_JFrame();
 					}
-				}
-				else{
+				} else {
 					saveError.setVisible(true);
 				}
 			}
-			
+
 		});
-		
+
 		/**
 		 * 实现编辑折扣值时提示错误消息消失
 		 */
-		Document countDoc=countjtf.getDocument();
-		countDoc.addDocumentListener(new DocumentListener(){
+		Document countDoc = countjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				saveError.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				saveError.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				saveError.setVisible(false);
-				
+
 			}
-			
+
 		});
 	}
 
-	
 	/**
 	 * 增加滚动条面板
 	 */
@@ -203,13 +207,14 @@ public class HotelEnterpriseStr_JPanel extends JPanel {
 	 */
 	public void initStrategyList() {
 		singleinfos = new ArrayList<SingleHotelEnterpriseStr_JPanel>();
-
-		for (String singleEnterprise : enterprise) {
-			SingleHotelEnterpriseStr_JPanel singleHotelEnterpriseStr_JPanel = new SingleHotelEnterpriseStr_JPanel(
-					singleEnterprise);
-			singleinfos.add(singleHotelEnterpriseStr_JPanel);
+		if (enterprise != null) {
+			for (String singleEnterprise : enterprise) {
+				SingleHotelEnterpriseStr_JPanel singleHotelEnterpriseStr_JPanel = new SingleHotelEnterpriseStr_JPanel(
+						singleEnterprise);
+				singleinfos.add(singleHotelEnterpriseStr_JPanel);
+			}
+			addToPanel();
 		}
-		addToPanel();
 	}
 
 	/**

@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+import org.junit.experimental.theories.Theories;
+
 import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 
@@ -15,7 +17,7 @@ import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControlle
  */
 
 public class HotelStrategyPanel extends JPanel {
-	private String hotelID;
+	private static String hotelID;
 	private ChooseHotelStr_JPanel chooseHotelStr_JPanel;
 	private HotelBirthStr_JPanel hotelBirthStr_JPanel;
 	private HotelEnterpriseStr_JPanel hotelEnterpriseStr_JPanel;
@@ -25,13 +27,16 @@ public class HotelStrategyPanel extends JPanel {
 	
 	private static HotelStrategyPanel hotelStrategyPanel;
 	
-	public static HotelStrategyPanel getInstance(String hotelID) {
-         if(hotelStrategyPanel==null){
-        	 hotelStrategyPanel=new HotelStrategyPanel(hotelID);
-         }return hotelStrategyPanel;
+	public static HotelStrategyPanel getInstance(String hoteliD) {
+		hotelID=hoteliD;
+		if(hotelStrategyPanel==null){
+        	 hotelStrategyPanel=new HotelStrategyPanel(hoteliD);
+         }
+		return hotelStrategyPanel;
 	}
 	
 	private HotelStrategyPanel(String hotelID) {
+		this.hotelID=hotelID;
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, 800, 600);
