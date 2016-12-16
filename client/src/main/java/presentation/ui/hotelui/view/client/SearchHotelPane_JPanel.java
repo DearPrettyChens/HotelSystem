@@ -53,10 +53,12 @@ public class SearchHotelPane_JPanel extends JPanel {
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.add(scrollPane);
 	}
-	public void setHotelListPanePanel(HotelListPane_JPanel panel){
-		remove(hotelListPane_JPanel);
-		this.hotelListPane_JPanel = panel;
-		add(hotelListPane_JPanel);
-		this.repaint();
+	public void setHotelListPanePanel(HotelListPane_JPanel listpanel){
+		panel.remove(hotelListPane_JPanel);
+		hotelListPane_JPanel = listpanel;
+		hotelListPane_JPanel.setBounds(0, 300, 800, hotelListPane_JPanel.getHeight());
+		panel.add(hotelListPane_JPanel);
+		panel.setPreferredSize(new Dimension(780, 300+hotelListPane_JPanel.getHeight()));
+		panel.repaint();
 	}
 }

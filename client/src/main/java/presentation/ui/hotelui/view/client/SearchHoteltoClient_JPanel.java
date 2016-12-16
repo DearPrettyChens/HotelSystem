@@ -109,7 +109,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox fourbed = new JCheckBox("四床");
 	private JCheckBox manybed = new JCheckBox("家庭床");
 
-	private boolean chooseAllBeds = false;
+	private boolean chooseAllBeds = true;
 	private Map<String, BedType> bedMap = new HashMap<String,BedType>(){
 		{
 			put("不限", null);
@@ -139,7 +139,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox price5 = new JCheckBox("￥800以上");
 	//800以上怎么表示
 	
-	private boolean chooseAllPrice = false;
+	private boolean chooseAllPrice = true;
     private Map<String, Integer> priceMap = new HashMap<String, Integer>(){
     	{
     		put("不限", -1);
@@ -178,7 +178,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox star4 = new JCheckBox("4星");
 	private JCheckBox star5 = new JCheckBox("5星");
 	
-	private boolean chooseAllStar = false;
+	private boolean chooseAllStar = true;
 	private Map<String, Integer> starMap = new HashMap<String,Integer>(){
 		{
 			put("不限", -1);
@@ -207,7 +207,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox score4 = new JCheckBox("3~4");
 	private JCheckBox score5 = new JCheckBox("4~5");
 
-	private boolean chooseAllScore = false;
+	private boolean chooseAllScore = true;
 	private Map<String, Double> scoreMap = new HashMap<String ,Double>(){
 		{
 			put("不限",  -1.0);
@@ -245,7 +245,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JCheckBox state3 = new JCheckBox("异常");
 	private JCheckBox state4 = new JCheckBox("撤销");
 
-	private boolean chooseAllState = false;
+	private boolean chooseAllState = true;
 	private Map<String, OrderState> stateMap = new HashMap<String,OrderState>(){
 		{
 			put("不限", null);
