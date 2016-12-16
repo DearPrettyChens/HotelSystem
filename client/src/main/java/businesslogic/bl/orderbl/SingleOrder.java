@@ -60,7 +60,11 @@ public class SingleOrder {
 			throw new NullOrderIDException();
 		}
 		try {
-			return new OrderInfoVO(orderDao.getOrderInfo(orderID));
+			OrderInfoPO po=orderDao.getOrderInfo(orderID);
+			if(po!=null){
+				return new OrderInfoVO(po);
+			}
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -39,7 +39,6 @@ import vo.searchhotelvo.HotelSearchInfoVO;
 /**
  * 顾客的搜索栏
  * 
- * 未实现复选框的监听。复选框的监听是实时的，只要选中一个，就会刷新酒店列表，每次传的hotelsearchinfovo是所有选中的复选框。
  * 
  * @author cy
  * @version 1.0
@@ -82,8 +81,8 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private MyTextfield fromtimejtf = new MyTextfield("请选择日期");
 	private MyTextfield totimejtf = new MyTextfield("请选择日期");
 
-	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy/MM/dd");
-	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy/MM/dd");
+	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy-MM-dd");
+	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy-MM-dd");
 
 	private JLabel bedtypejl = new JLabel("床型：");
 	private JLabel pricejl = new JLabel("价格：");
@@ -382,9 +381,18 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		for(TradingArea e:TradingArea.values()){
 			tradingareacomboBox.addItem(e.toString());
 		}
+		
 		tradingareacomboBox.setSelectedItem(tradingarea);
 		tradingareacomboBox.setBounds(300, 60, 50, 30);
 		Searchjp1.add(tradingareacomboBox);
+		
+		tradingareacomboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				vo.setTradingArea(TradingArea.values()[tradingareacomboBox.getSelectedIndex()]);
+				updateHotelListPanel();
+			}
+		});
 
 		checkintimejl.setFont(font);
 		checkintimejl.setBounds(360, 60, 150, 30);
@@ -413,9 +421,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllBeds=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllBeds=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -457,9 +467,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllPrice=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllPrice=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -538,9 +550,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllStar=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllStar=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -586,9 +600,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllScore=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllScore=false;
+					updateHotelListPanel();
 				}
 			}
 		});
@@ -634,9 +650,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()==ItemEvent.SELECTED){
 					chooseAllState=true;
+					updateHotelListPanel();
 				}
 				if(e.getStateChange()==ItemEvent.DESELECTED){
 					chooseAllState=false;
+					updateHotelListPanel();
 				}
 			}
 		});

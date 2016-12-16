@@ -70,7 +70,7 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 
 		HotelStrVO hotelStrVO = hotelStrategyDistributionController.getHotelStrategy(hotelID,
 				HotelStrategyType.SPECIALTIME);
-
+       
 		singleHotelSpecialTimeStr = new SingleHotelSpecialTimeStr(hotelStrVO);
 		singleHotelSpecialTimeStr.setBounds(0, 120, 800, 300);
 		this.add(singleHotelSpecialTimeStr);

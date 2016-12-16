@@ -55,7 +55,9 @@ public class HotelBasicInfoVO {
 		
 	}
      public HotelBasicInfoVO(HotelBasicInfoPO po){
-    	// 酒店名
+    	
+    	 this.hotelID=TransHelper.idToString(po.getHotelID(),6);
+    	 // 酒店名
     	this.hotelName=po.getName();
     		//酒店照片
     	this.hotelImage=po.getHotelImage();
@@ -99,6 +101,7 @@ public class HotelBasicInfoVO {
 		this.setStar(star);
 		this.setIntroduce(introduce);
 		this.setCommonFacility(commonFacility);
+		this.setActivityFacility(activityFacility);
 		this.setService(service);
 		this.setRoomFacility(roomFacility);
 		this.setEnterprises(enterprises);
@@ -216,7 +219,7 @@ public class HotelBasicInfoVO {
 	public HotelBasicInfoPO votopo(){
 		return new HotelBasicInfoPO(TransHelper.idToInt(this.hotelID), this.hotelName, this.hotelImage, 
 				this.address, this.telephone,this.star,this.score, this.lowestPrice, this.introduce, this.commonFacility,
-				this.activityFacility, this.service, this.roomFacility,this.remarks,this.city,this.tradingArea);
+				this.activityFacility, this.service, this.roomFacility,this.remarks,this.city,this.tradingArea,this.enterprises);
 	
 	}
 	public double getLowestPrice() {

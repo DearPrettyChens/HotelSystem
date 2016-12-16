@@ -84,9 +84,14 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 						}
 					}
 					break;
-				case "已评价":
+				case "已执行":
 					for(int i=0;i<orderListVOs.size();i++){
 						if(orderListVOs.get(i).getState()==OrderState.HASREMARKED){
+							orders.add(orderListVOs.get(i));
+						}
+					}
+					for(int i=0;i<orderListVOs.size();i++){
+						if(orderListVOs.get(i).getState()==OrderState.NOTREMARKED){
 							orders.add(orderListVOs.get(i));
 						}
 					}
@@ -98,14 +103,7 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 						}
 					}
 					break;
-				case "未评价":
-					for(int i=0;i<orderListVOs.size();i++){
-						if(orderListVOs.get(i).getState()==OrderState.NOTREMARKED){
-							orders.add(orderListVOs.get(i));
-						}
-					}
-					break;
-				case "订单异常":
+				case "异常订单":
 					for(int i=0;i<orderListVOs.size();i++){
 						if(orderListVOs.get(i).getState()==OrderState.UNUSUAL){
 							orders.add(orderListVOs.get(i));

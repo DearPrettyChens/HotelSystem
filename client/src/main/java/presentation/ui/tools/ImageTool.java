@@ -37,8 +37,7 @@ public class ImageTool {
 		        // Create the buffered image
 		         GraphicsDevice gs = ge.getDefaultScreenDevice();
 		         GraphicsConfiguration gc = gs.getDefaultConfiguration();
-		         bimage = gc.createCompatibleImage(
-		         image.getWidth(null), image.getHeight(null), transparency);
+		         bimage = gc.createCompatibleImage(image.getWidth(null), image.getHeight(null), transparency);
 		     } catch (HeadlessException e) {
 		        // The system does not have a screen
 		     }
