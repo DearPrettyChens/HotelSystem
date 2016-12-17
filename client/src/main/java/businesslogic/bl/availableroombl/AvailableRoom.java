@@ -69,7 +69,11 @@ public class AvailableRoom{
 		}
 		//调用数据层
 		try {
-			return availableRoomDao.modifyAvailableRoomInfo(availableRoomInfoVO.toPO());
+			ResultMessage resultMessage=availableRoomDao.addAvailableRoomInfo(availableRoomInfoVO.toPO());
+			
+			return resultMessage;
+			
+			
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

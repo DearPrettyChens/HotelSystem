@@ -54,6 +54,8 @@ public class RoomInfo_JPanel extends JPanel {
 	public RoomInfo_JPanel(String hotelID) {
 		this.hotelID = hotelID;
 
+		
+		
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, 800, 600);
@@ -75,7 +77,7 @@ public class RoomInfo_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SingleRoomInfo_JPanel newsingleinfo = new SingleRoomInfo_JPanel();
+				SingleRoomInfo_JPanel newsingleinfo = new SingleRoomInfo_JPanel(hotelID);
 				singleinfo.add(newsingleinfo);
 				addToPanel();
 
