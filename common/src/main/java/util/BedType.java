@@ -19,6 +19,9 @@ public enum BedType {
 		case FOURBEDS:
 			str = "FOURBEDS";
 			break;
+		case FAMILYBED:
+			str = "FAMILYBED";
+			break;
 		}
 		return str;
 	}
@@ -38,6 +41,9 @@ public enum BedType {
 		case FOURBEDS:
 			str = "四人间";
 			break;
+		case FAMILYBED:
+			str = "家庭间";
+			break;
 		}
 		return str;
 	}
@@ -55,6 +61,9 @@ public enum BedType {
 			bedType=BedType.THREEBEDS;
 			break;
 		case "四人间":
+			bedType=BedType.FOURBEDS;
+			break;
+		case "家庭间":
 			bedType=BedType.FAMILYBED;
 			break;
 		}

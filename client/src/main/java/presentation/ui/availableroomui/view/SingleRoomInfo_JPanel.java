@@ -79,8 +79,8 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		
 	}
 
-	public SingleRoomInfo_JPanel(){
-		
+	public SingleRoomInfo_JPanel(String hotelID){
+		this.hotelID=hotelID;
 		this.setBackground(Color.white);
 		this.setLayout(null);
 		this.setSize(800,50);
@@ -104,7 +104,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		
 		 bedtypecomboBox.setBounds(70,10,100,30);
 		for(BedType e:BedType.values()){
-			 bedtypecomboBox.addItem(e.toString());
+			 bedtypecomboBox.addItem(e.toChinese());
 		}
 		
 		 bedtypecomboBox.setBounds(70, 10, 100, 30);
@@ -158,9 +158,13 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 			saveError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
+		if(lowestPrice==0){
+			lowestPrice=Double.parseDouble(pricejtf.getText());
+		}
 		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
-				BedType.toBedType( bedtypecomboBox.getActionCommand()),Double.parseDouble(pricejtf.getText()),
+				BedType.toBedType( (String) bedtypecomboBox.getSelectedItem()),Double.parseDouble(pricejtf.getText()),
 						lowestPrice,Integer.parseInt(numberjtf.getText()));
+		
 		return controller.confirmAvailableRoomInfo(hotelID, room);
 	}
 	
