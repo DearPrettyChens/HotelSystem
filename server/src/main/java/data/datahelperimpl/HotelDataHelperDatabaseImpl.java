@@ -32,7 +32,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		}
 		HotelBasicInfoPO getPO = list.get(0);
 		HotelBasicInfoPO retPO = getPO.copy();
-		retPO.setHotelImagePath(retPO.getHotelImagePath());
+		retPO.setHotelImagePath(getPO.getHotelImagePath());
 		if (retPO.getHotelImagePath() != null) {
 			//根据po内的图片路径设置酒店图片image
 			retPO.setHotelImage(ImageUtil.getImage(retPO.getHotelImagePath()));

@@ -51,7 +51,7 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 		// this.singleinfo; 向逻辑层要
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		 this.setBounds(0, 0, 800, 600);
+		this.setBounds(0, 0, 800, 600);
 
 		addComp(hotelID);
 	}
@@ -70,13 +70,13 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 
 		HotelStrVO hotelStrVO = hotelStrategyDistributionController.getHotelStrategy(hotelID,
 				HotelStrategyType.SPECIALTIME);
-       
+
 		singleHotelSpecialTimeStr = new SingleHotelSpecialTimeStr(hotelStrVO);
-		singleHotelSpecialTimeStr.setBounds(0, 120, 800, 300);
+		singleHotelSpecialTimeStr.setBounds(0, 120, 800, 350);
 		this.add(singleHotelSpecialTimeStr);
 
 		canclejb.setText("取消");
-		canclejb.setBounds(420, 420, 80, 30);
+		canclejb.setBounds(420, 470, 80, 30);
 		this.add(canclejb);
 		canclejb.addActionListener(new ActionListener() {
 
@@ -87,80 +87,99 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 			}
 		});
 
-		
-		JLabel saveError=new JLabel("折扣值为0～1之间的数字");
+		JLabel saveError = new JLabel("折扣值为0～1之间的数字");
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(510,420,220,25);
-		HotelSpecialTimeStr_JPanel.this.add(saveError);
+		saveError.setBounds(300, 240, 220, 25);
+		singleHotelSpecialTimeStr.add(saveError);
 		saveError.setVisible(false);
-		
-		JLabel saveError2=new JLabel("日期格式为yyyy-mm-dd");
+
+		JLabel saveError2 = new JLabel("活动开始日期应早于结束日期");
 		saveError2.setForeground(Color.RED);
 		saveError2.setFont(font);
-		saveError2.setBounds(510,420,220,25);
-		HotelSpecialTimeStr_JPanel.this.add(saveError2);
+		saveError2.setBounds(300, 80, 300, 25);
+		singleHotelSpecialTimeStr.add(saveError2);
 		saveError2.setVisible(false);
-		
+
 		confirmjb.setText("确认");
-		confirmjb.setBounds(300, 420, 80, 30);
+		confirmjb.setBounds(300, 470, 80, 30);
 		this.add(confirmjb);
 		confirmjb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())<=1.0&&
-						Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText())>0&&
-						singleHotelSpecialTimeStr.getBeginJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")
-						&&singleHotelSpecialTimeStr.getEndJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
-					Date[] dates=new Date[2];
-					dates[0]=new Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getBeginJtf().getText()));
-					dates[1]=new Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getEndJtf().getText()));
-					HotelStrVO str=new HotelStrVO(hotelID,Double.parseDouble(singleHotelSpecialTimeStr.
-							getCountJtf().getText()),dates);
-					if(hotelStrategyDistributionController.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+
+				
+				long begindate = TransHelper
+						.stringToDate(singleHotelSpecialTimeStr.getBeginCalendarPanel().getReturnDateStr());
+				if(singleHotelSpecialTimeStr.getBeginCalendarPanel().getReturnDateStr()==null){
+					begindate=TransHelper.stringToDate(singleHotelSpecialTimeStr.begintime);
+				}
+				long enddate = TransHelper
+						.stringToDate(singleHotelSpecialTimeStr.getEndCalendarPanel().getReturnDateStr());
+				if(singleHotelSpecialTimeStr.getEndCalendarPanel().getReturnDateStr()==null){
+					enddate=TransHelper.stringToDate(singleHotelSpecialTimeStr.endtime);
+				}
+				
+				if(begindate<=enddate){
+					saveError2.setVisible(false);
+				}
+				if (begindate > enddate) {
+					saveError2.setVisible(true);
+				} else if (Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText()) <= 1.0
+						&& Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText()) > 0
+						&& singleHotelSpecialTimeStr.getBeginJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")
+						&& singleHotelSpecialTimeStr.getEndJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")) {
+					Date[] dates = new Date[2];
+					// dates[0]=new
+					// Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getBeginJtf().getText()));
+					// dates[1]=new
+					// Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getEndJtf().getText()));
+					
+					dates[0] = new Date(begindate);
+					dates[1] = new Date(enddate);
+
+					HotelStrVO str = new HotelStrVO(hotelID,
+							Double.parseDouble(singleHotelSpecialTimeStr.getCountJtf().getText()), dates);
+					if (hotelStrategyDistributionController.confirmHotelStrategy(str) == ResultMessage.SUCCESS) {
 						hotelStrategyViewControllerImpl.backToselectStrategy();
-					}
-					else{
-						//保存失败
+					} else {
+						// 保存失败
 						new SaveFail_JFrame();
 					}
 				}
-				else if(!singleHotelSpecialTimeStr.getBeginJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")
-						||!singleHotelSpecialTimeStr.getEndJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
-					saveError2.setVisible(true);
-				}
-				else{
+
+				else {
 					saveError.setVisible(true);
 				}
 			}
 
 		});
-		
+
 		/**
 		 * 实现编辑折扣值时提示错误消息消失
 		 */
-		Document countDoc=singleHotelSpecialTimeStr.getCountJtf().getDocument();
-		countDoc.addDocumentListener(new DocumentListener(){
+		Document countDoc = singleHotelSpecialTimeStr.getCountJtf().getDocument();
+		countDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				saveError.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				saveError.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				saveError.setVisible(false);
-				
+
 			}
-			
+
 		});
 	}
 

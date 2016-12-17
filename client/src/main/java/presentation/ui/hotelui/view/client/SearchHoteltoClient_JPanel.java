@@ -362,9 +362,13 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			}
 		});
 
-		cityjl.setText("城市：");
+		cityjl.setText("城市： 南京");
 		cityjl.setFont(font);
+<<<<<<< HEAD
 		cityjl.setBounds(100, 60, 100, 30);
+=======
+		cityjl.setBounds(100, 60, 150, 30);
+>>>>>>> origin/master
 		Searchjp1.add(cityjl);
 
 		tradingareajl.setText("商圈：");
@@ -374,8 +378,13 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		citycomboBox.addItem("南京");
 		citycomboBox.setSelectedItem(city);
+<<<<<<< HEAD
 		citycomboBox.setBounds(140, 60, 80, 30);
 		Searchjp1.add(citycomboBox);
+=======
+		citycomboBox.setBounds(150, 60, 50, 30);
+		//Searchjp1.add(citycomboBox);
+>>>>>>> origin/master
 
 
 		for(TradingArea e:TradingArea.values()){
@@ -383,7 +392,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		}
 		
 		tradingareacomboBox.setSelectedItem(tradingarea);
+<<<<<<< HEAD
 		tradingareacomboBox.setBounds(270, 60, 80, 30);
+=======
+		tradingareacomboBox.setBounds(235, 60, 115, 30);
+>>>>>>> origin/master
 		Searchjp1.add(tradingareacomboBox);
 		
 		tradingareacomboBox.addActionListener(new ActionListener() {
@@ -1043,6 +1056,9 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		}
 		if((!searchjtf.getText().equals("请输入酒店名称"))&&(!searchjtf.getText().equals(""))){
 			vo.setHotelName(searchjtf.getText());
+		}
+		else if(searchjtf.getText().equals("")){
+			vo.setHotelName(null);
 		}
 		
 		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
