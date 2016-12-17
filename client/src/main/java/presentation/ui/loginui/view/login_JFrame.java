@@ -58,7 +58,11 @@ public class login_JFrame extends JFrame {
 	private JPanel jp=new JPanel();
 	
 	
-	private JLabel loginimagejl=new JLabel(new ImageIcon("image/loginback.gif"));
+	
+	
+	
+	
+	
 	
 	private JLabel loginFailBesideName = new JLabel();//登录名旁边的提示信息
 	private JLabel loginFailBesidePassword = new JLabel();//密码旁边的提示信息
@@ -105,18 +109,13 @@ public class login_JFrame extends JFrame {
 	}
 	public void addComp() {
 		
-		loginimagejl.setBounds(0,0,400,300);
-		jp.add(loginimagejl);
-		//loginimagejl.setVisible(false);
 		
 		
 		jp.setLayout(null);
 		jp.setBackground(Color.WHITE);
 		jp.setBounds(300,360,400,400);
 
-		jp.add(loginimagejl);
-		this.add(jp);
-		jp.setVisible(false);
+	
 		
 		close_jbutton.setBounds(970, 10, 20, 20);
 		this.add(close_jbutton);
@@ -155,14 +154,22 @@ public class login_JFrame extends JFrame {
 				}else if(password.getPassword().length==0){
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
+					
+					//new Logingif_JFrame ();
+					
 					timer = new Timer();
 					timer.schedule(new myTask(), 0, 5000);
 //					System.out.println(jp.isVisible());
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
+					
 					JFrame frame=new SaveSuccess_JFrame();
 //					jp.setVisible(true);
 //					System.out.println(new Date());
+					
+					
+					
+					
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -178,8 +185,9 @@ public class login_JFrame extends JFrame {
 //					
 //						controller.jumpToUserMainFrame(type,name.getText(),
 //								loginDistributionController.getUserID(name.getText()));
-//					
+//					  
 						changeJFrame();
+						
 	                    frame.dispose();
 						dispose();
 					}else{
