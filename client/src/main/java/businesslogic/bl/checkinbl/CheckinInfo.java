@@ -80,6 +80,7 @@ public class CheckinInfo {
 		}
 		//写入数据库住房信息
 		try {
+			System.out.println("checkininfo:"+name);
 			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
 					roomNumber,new Date(),checkoutTime,TransHelper.idToInt(hotelNumber),orderNumber));
 		} catch (RemoteException e) {
@@ -98,7 +99,9 @@ public class CheckinInfo {
 			throw new NullOrderIDException();
 		}
 		try {
-			return new CheckinInfoVO(checkinDao.getCheckinInfo(orderID));
+			CheckinInfoPO po=checkinDao.getCheckinInfo(orderID);
+			if(po==null) return null;
+			return new CheckinInfoVO(po);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -116,8 +119,9 @@ public class CheckinInfo {
 			ResultMessage result=checkinDao.modifyCheckinInfo(new CheckinInfoPO(
 					vo.getCostumername(),vo.getID(),vo.getTel(),vo.getRoomType(),
 					vo.getBedtype(),vo.getRoomnumber(),vo.getCheckintime(),
-					new Date(),TransHelper.idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
+					vo.getCheckouttime(),TransHelper.idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
 			if(result==ResultMessage.FAIL){
+				System.out.println("数据库");
 				return ResultMessage.FAIL;
 			}
 		} catch (RemoteException e1) {
@@ -127,6 +131,7 @@ public class CheckinInfo {
 		
 		//更新房间数量信息
 		availableRoom=new AvailableRoom();
+		String hotelNumber=vo.getHotelnumber();
 		ArrayList<AvailableRoomInfoVO> preRoomInfo=availableRoom.getAvailableRoomInfo(hotelNumber);
 		//修改的是当天对应床型客房的数量
 		int preRoomNumber=0;
@@ -138,6 +143,7 @@ public class CheckinInfo {
 		//该房间数自动加1
 		ResultMessage message=availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(preRoomNumber+1,bedType,new Date(),hotelNumber));
 		if(message==ResultMessage.FAIL){
+			System.out.println("加一");
 			return ResultMessage.FAIL;
 		}
 		if(this.orderNumber!=null){
@@ -145,6 +151,7 @@ public class CheckinInfo {
 			singleOrder=new SingleOrder();
 			ResultMessage result=singleOrder.setCheckoutTime(new Date(), vo.getOrdernumber());
 			if(result==ResultMessage.FAIL){
+				System.out.println("最后");
 				return ResultMessage.FAIL;
 			}
 		}

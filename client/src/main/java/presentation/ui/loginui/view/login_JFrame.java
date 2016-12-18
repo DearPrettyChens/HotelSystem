@@ -53,16 +53,13 @@ public class login_JFrame extends JFrame {
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
 	private login_JButton jb = new login_JButton();// 登录按钮
 	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
-     
+	Logingif_JFrame frame=new Logingif_JFrame();
+	
+	
+	
 	
 	private JPanel jp=new JPanel();
-	
-	
-	
-	
-	
-	
-	
+
 	
 	private JLabel loginFailBesideName = new JLabel();//登录名旁边的提示信息
 	private JLabel loginFailBesidePassword = new JLabel();//密码旁边的提示信息
@@ -72,8 +69,34 @@ public class login_JFrame extends JFrame {
 
 	private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 
-	private Timer timer;
+	//private Timer timer;
 	public login_JFrame() {
+		
+		
+		
+		controller = new LoginViewController();
+
+		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
+				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
+		this.setSize(1000, 700);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setUndecorated(true);
+
+		this.setLayout(null);
+
+		setBak(); // 调用背景方法
+		addComp();// 调用添加组件方法
+
+		this.setVisible(true);
+
+	}
+	
+	
+public login_JFrame(Logingif_JFrame f) {
+		
+		this.frame=f;
+		
+		
 		controller = new LoginViewController();
 
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
@@ -98,15 +121,15 @@ public class login_JFrame extends JFrame {
 	 * @return
 	 * @throws 未定
 	 */
-	class myTask extends TimerTask{
-
-		@Override
-		public void run() {
-			jp.setVisible(true);	
-			repaint();
-		}
-		
-	}
+//	class myTask extends TimerTask{
+//
+//		@Override
+//		public void run() {
+//			jp.setVisible(true);	
+//			repaint();
+//		}
+//		
+//	}
 	public void addComp() {
 		
 		
@@ -157,19 +180,24 @@ public class login_JFrame extends JFrame {
 					
 					//new Logingif_JFrame ();
 					
-					timer = new Timer();
-					timer.schedule(new myTask(), 0, 5000);
+					//timer = new Timer();
+					//timer.schedule(new myTask(), 0, 5000);
 //					System.out.println(jp.isVisible());
+					
+					
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
 					
-					JFrame frame=new SaveSuccess_JFrame();
+					
 //					jp.setVisible(true);
 //					System.out.println(new Date());
 					
 					
+					//frame.setVisible(true);
 					
-					
+//					 MyThread thread =new  MyThread ();
+//					 thread.run();
+//					
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -182,13 +210,11 @@ public class login_JFrame extends JFrame {
 					}
 					if(type!=null){
 					
-//					
-//						controller.jumpToUserMainFrame(type,name.getText(),
-//								loginDistributionController.getUserID(name.getText()));
-//					  
-						changeJFrame();
+					
+						controller.jumpToUserMainFrame(type,name.getText(),
+								loginDistributionController.getUserID(name.getText()));
+					  
 						
-	                    frame.dispose();
 						dispose();
 					}else{
 						if(loginMessage == ResultMessage.PASSWORDERROR){
@@ -211,20 +237,7 @@ public class login_JFrame extends JFrame {
 
 	}
 	
-	public void changeJFrame(){
-//		System.out.println(new Date());
-		controller.jumpToUserMainFrame(type,name.getText(),
-				loginDistributionController.getUserID(name.getText()));
-//		System.out.println(new Date());
-//		System.out.println("end");
-		timer.cancel();
-//		System.out.println(new Date());
-		this.remove(jp);
-//		jp.setVisible(false);
-//		System.out.println(new Date());
-	//	this.dispose();
-	//	this.repaint();
-	}
+
 
 	/**
 	 * 设置背景图片
@@ -247,5 +260,31 @@ public class login_JFrame extends JFrame {
 		login_JFrame s = new login_JFrame();
 
 	}
+	
+	
+//	class MyThread extends Thread{
+//	    @Override
+//	    public void run() {
+//	       
+//	    	frame.setVisible(true);
+//	    	
+//	    	try {
+//				Thread.currentThread().sleep(10000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//	    	
+//	    	
+//	    	frame.dispose();
+//	}
+//	}
+
 
 }
+
+
+
+
+
+

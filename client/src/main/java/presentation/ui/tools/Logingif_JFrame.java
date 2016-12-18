@@ -37,7 +37,7 @@ public class Logingif_JFrame   extends JFrame{
 		addComp();// 调用添加组件方法
 		setBak(); // 调用背景方法
 
-		this.setVisible(true);
+		this.setVisible(false);
 
 		
 		
@@ -70,11 +70,6 @@ public class Logingif_JFrame   extends JFrame{
 	}
 	
 	
-	
-	public static void main(String[] args){
-		new Logingif_JFrame();
-		
-	}
 	
 
 }

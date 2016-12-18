@@ -100,6 +100,7 @@ public class OfflineCheckIn_JPanel extends JPanel {
 					if (result == ResultMessage.FAIL) {
 						// 保存失败
 						new SaveFail_JFrame();
+						System.out.println("nono");
 						break;
 					}
 				}
@@ -138,6 +139,7 @@ public class OfflineCheckIn_JPanel extends JPanel {
 						availableRoomInfoVO);
 				singleinfo.add(singleAvailableRoomInfo_JPanel);
 			}
+			System.out.print(singleinfo.size());
 			addToPanel();
 		}
 	}

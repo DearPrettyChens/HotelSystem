@@ -31,7 +31,7 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 	
 	private JLabel searchimagejl = new JLabel(new ImageIcon("image//search1.png"));
 
-	private OrderInfoToCheckIn_JPanel orderInfoToCheckIn_JPanel;
+	private OrderInfoToCheckIn_JPanel orderInfoToCheckOut_JPanel;
 	
 	private String hotelID;
 	
@@ -64,8 +64,8 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				String orderID=ordernumberjtf.getText();
 				if((orderID!=null)&&(orderID.length()==18)){
-						orderInfoToCheckIn_JPanel=new OrderInfoToCheckIn_JPanel(orderID,hotelID);
-						SearchOrderToCheckOut_JPanel.this.add(orderInfoToCheckIn_JPanel);
+						orderInfoToCheckOut_JPanel=new OrderInfoToCheckIn_JPanel(orderID,hotelID);
+						SearchOrderToCheckOut_JPanel.this.add(orderInfoToCheckOut_JPanel);
 						SearchOrderToCheckOut_JPanel.this.updateUI();
 				}
 			    

@@ -22,6 +22,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		//新增po
 		CheckinInfoPO savepo = po.copy();
 		try {
+			System.out.println("database"+savepo.getName());
 			session.save(savepo);
 			transaction.commit();
 		} catch (StaleObjectStateException e) {
@@ -54,21 +55,27 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		//从数据库取出po
+		
+		System.out.println("----------------------"+po.getOrdernumber());
+		
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + po.getOrdernumber() + "'");
 		List<CheckinInfoPO> list = query.list();
 		if (list.size() == 0) {
 			session.close();
+			System.out.println("???????????????????????????");
 			return ResultMessage.FAIL;
 		}
 		list.get(0).setCheckouttime(po.getCheckouttime());
 		try {
 			session.update(list.get(0));
 			transaction.commit();
+			System.out.println("!!!!!!!!!!!!!!!!!!!!!");
 		} catch (StaleObjectStateException e) {
 			e.printStackTrace();
 			if (transaction != null) {
 				transaction.rollback();
 			}
+			System.out.println("============================");
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
 		} finally {
 			// session.getTransaction().commit();
