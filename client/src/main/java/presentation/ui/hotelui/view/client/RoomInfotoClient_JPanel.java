@@ -120,17 +120,18 @@ public class RoomInfotoClient_JPanel extends JPanel {
 	}
 
 	public void addSingle(){
-		for(AvailableRoomInfoVO availableRoomInfoVO:availableRoomInfoVOs){
-			SingleRoomInfotoClient_JPanel singleRoomInfotoClient_JPanel=new SingleRoomInfotoClient_JPanel(availableRoomInfoVO,tag);
-		    singleinfos.add(singleRoomInfotoClient_JPanel);
-		}
+		if(availableRoomInfoVOs!=null){
+			for(AvailableRoomInfoVO availableRoomInfoVO:availableRoomInfoVOs){
+				SingleRoomInfotoClient_JPanel singleRoomInfotoClient_JPanel=new SingleRoomInfotoClient_JPanel(availableRoomInfoVO,tag);
+				singleinfos.add(singleRoomInfotoClient_JPanel);
+			}
 		
-		for(int i=0;i<singleinfos.size();i++){
-			SingleRoomInfotoClient_JPanel singleRoomInfotoClient_JPanel = singleinfos.get(i);
-			singleRoomInfotoClient_JPanel.setBounds(0, 100 + 60 * i, 800, 60);
-			this.add(singleRoomInfotoClient_JPanel);
+			for(int i=0;i<singleinfos.size();i++){
+				SingleRoomInfotoClient_JPanel singleRoomInfotoClient_JPanel = singleinfos.get(i);
+				singleRoomInfotoClient_JPanel.setBounds(0, 100 + 60 * i, 800, 60);
+				this.add(singleRoomInfotoClient_JPanel);
+			}
+			this.setSize(780, 100 + 60 * singleinfos.size());
 		}
-		this.setSize(780, 100 + 60 * singleinfos.size());
-		
 	}
 }

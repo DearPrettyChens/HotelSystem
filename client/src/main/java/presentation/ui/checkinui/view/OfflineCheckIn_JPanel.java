@@ -104,7 +104,9 @@ public class OfflineCheckIn_JPanel extends JPanel {
 					}
 				}
 				// 保存成功
-				new SaveSuccess_JFrame();
+				if (result == ResultMessage.SUCCESS) {
+					new SaveSuccess_JFrame();
+				}
 			}
 
 		});

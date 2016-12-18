@@ -4,6 +4,7 @@ import javax.swing.JPanel;
 
 import presentation.ui.checkinui.view.CheckInPanel;
 import vo.hotelvo.HotelOrderInfoVO;
+import vo.ordervo.OrderInfoVO;
 /**
  * 线上入住界面跳转的控制器
  * @author CLL
@@ -23,8 +24,8 @@ public class OnlineCheckinViewController{
 		this.view=panel;
 	}
 	
-	public void jumpToHotelCheckInfoView(HotelOrderInfoVO hotelOrderInfoVO,String hotelID) {
-		view.changeToCheckInInfoPanel(hotelOrderInfoVO,hotelID);
+	public void jumpToHotelCheckInfoView(OrderInfoVO orderInfoVO,String hotelID) {
+		view.changeToCheckInInfoPanel(orderInfoVO,hotelID);
 	}
 
 	

@@ -86,8 +86,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	private JTextField starjtf;
 	private JTextField locationjtf;
 	// private JTextField areajtf;
-	private JLabel areajtf;
-	private JLabel cityjtf;
+//	private JLabel areajtf;
+//	private JLabel cityjtf;
 	private JTextField teljtf;
 	private JTextArea commonFacilityjtf;
 	private JTextArea activityFacilityjtf;
@@ -152,8 +152,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelnamejl = new JLabel("酒店名称：" + hotelname);
 		starjtf = new JTextField(star + "");
 		locationjtf = new JTextField(location);
-		cityjtf = new JLabel(city);
-		areajtf = new JLabel(area);
+//		cityjtf = new JLabel(city);
+//		areajtf = new JLabel(area);
 		teljtf = new JTextField(tel);
 		servicejtf = new JTextArea(service);
 		introductionjtf = new JTextArea(introduction);
@@ -179,7 +179,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	void addComp() {
 
 		hotelnamejl.setFont(font);
-		hotelnamejl.setBounds(80, 0, 200, 30);
+		hotelnamejl.setBounds(80, 0, 500, 30);
 		this.add(hotelnamejl);
 
 		hotelimagejl.setFont(font);
@@ -200,7 +200,9 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 				String path = FileChooseHelper.fileChoose();
 				if (path != null) {
 					imagePath = path;
+
 					ImageIcon imageIcon = new ImageIcon(imagePath);
+					
 					imageIcon = ImageTool.getScaledImage(imageIcon, 160);
 					hotelimage = imageIcon;
 					hotelImageShow.setIcon(imageIcon);
@@ -245,22 +247,24 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 		if (tradingArea != null) {
 			tradingareacomboBox.setSelectedItem(area);
+		}else{
+			tradingareacomboBox.setSelectedItem("新街口");
 		}
 
 		tradingareacomboBox.setBounds(500, 300, 100, 30);
 		this.add(tradingareacomboBox);
 
-		cityjtf.setFont(font);
-		cityjtf.setBounds(160, 300, 100, 30);
-		this.add(cityjtf);
+//		cityjtf.setFont(font);
+//		cityjtf.setBounds(160, 300, 100, 30);
+//		this.add(cityjtf);
 
 		areajl.setFont(font);
 		areajl.setBounds(420, 300, 100, 30);
 		this.add(areajl);
 
-		areajtf.setFont(font);
-		areajtf.setBounds(500, 300, 100, 30);
-		this.add(areajtf);
+//		areajtf.setFont(font);
+//		areajtf.setBounds(500, 300, 100, 30);
+//		this.add(areajtf);
 
 		locationjl.setFont(font);
 		locationjl.setBounds(80, 350, 100, 30);
@@ -469,12 +473,16 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 			locaError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
+		
 		HotelBasicInfoVO basic = new HotelBasicInfoVO(hotelID, hotelname, hotelimage, locationjtf.getText(),
 				City.values()[citycomboBox.getSelectedIndex()],
 				TradingArea.values()[tradingareacomboBox.getSelectedIndex()], teljtf.getText(),
 				Integer.parseInt(starjtf.getText()), introductionjtf.getText(), commonFacilityjtf.getText(),
 				activityFacilityjtf.getText(), servicejtf.getText(), roomFacilityjtf.getText(), enterprise);
+		
 		if (hotelDistributionController.confirmModifyInfo(basic) == ResultMessage.SUCCESS) {
+			 Hotelworker_JFrame hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname,hotelname);
+			 hotelworker_JFrame.changeImage(hotelimage);
 			return ResultMessage.SUCCESS;
 		} else {
 			return ResultMessage.FAIL;
@@ -488,8 +496,8 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelnamejl.setText("酒店名称：" + hotelname);
 		starjtf.setText(star + "");
 		locationjtf.setText(location);
-		cityjtf.setText(city);
-		areajtf.setText(area);
+//		cityjtf.setText(city);
+//		areajtf.setText(area);
 		teljtf.setText(tel);
 		servicejtf.setText(service);
 		introductionjtf.setText(introduction);

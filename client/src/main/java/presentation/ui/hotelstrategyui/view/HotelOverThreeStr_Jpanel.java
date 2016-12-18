@@ -55,18 +55,20 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 			.getInstance(null);
 
 	public HotelOverThreeStr_Jpanel(String hotelID) {
+		this.hotelID = hotelID;
 		HotelStrVO hotelStrVO = hotelStrategyDistributionController.getHotelStrategy(hotelID, HotelStrategyType.AMOUNT);
-		this.hotelID=hotelID;
-		this.roomnumber = hotelStrVO.getAmount();
-		this.count = hotelStrVO.getDiscount();
+		if (hotelStrVO != null) {
+			this.hotelID = hotelID;
+			this.roomnumber = hotelStrVO.getAmount();
+			this.count = hotelStrVO.getDiscount();
 
-		roomnumberjtf.setText("" + roomnumber);
+			roomnumberjtf.setText("" + roomnumber);
 
-		countjtf.setText("" + count);
-
+			countjtf.setText("" + count);
+		}
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		 this.setBounds(0, 0, 800, 600);
+		this.setBounds(0, 0, 800, 600);
 
 		addComp();
 
@@ -127,98 +129,98 @@ public class HotelOverThreeStr_Jpanel extends JPanel {
 		confirmjb.setBounds(280, 450, 80, 30);
 		this.add(confirmjb);
 
-		JLabel saveError1=new JLabel("房间数为正");
+		JLabel saveError1 = new JLabel("房间数为正");
 		saveError1.setForeground(Color.RED);
 		saveError1.setFont(font);
-		saveError1.setBounds(400,360, 150, 30);
+		saveError1.setBounds(400, 250, 150, 30);
 		HotelOverThreeStr_Jpanel.this.add(saveError1);
 		saveError1.setVisible(false);
-		
-		JLabel saveError2=new JLabel("折扣值为0～1之间的数字");
+
+		JLabel saveError2 = new JLabel("折扣值为0～1之间的数字");
 		saveError2.setForeground(Color.RED);
 		saveError2.setFont(font);
-		saveError2.setBounds(400,400,200,30);
+		saveError2.setBounds(400, 350, 200, 30);
 		HotelOverThreeStr_Jpanel.this.add(saveError2);
 		saveError2.setVisible(false);
-		
-		confirmjb.addActionListener(new ActionListener(){
+
+		confirmjb.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				double discount=count;
-				if(roomnumberjtf.getText()!=""){
-					roomnumber=Integer.parseInt(roomnumberjtf.getText());
+				double discount = count;
+				if (roomnumberjtf.getText() != "") {
+					roomnumber = Integer.parseInt(roomnumberjtf.getText());
 				}
-				if(countjtf.getText()!=""){
-					discount=Double.parseDouble(countjtf.getText());
+				if (countjtf.getText() != "") {
+					discount = Double.parseDouble(countjtf.getText());
 				}
-				if(roomnumber<=0){
-					
+				if (roomnumber <= 0) {
+
 					saveError1.setVisible(true);
 				}
-				if(discount>1.0&&discount<=0){
+				if (discount > 1.0 || discount <= 0) {
 					saveError2.setVisible(true);
 				}
-				if(roomnumber>0&&discount<=1.0
-						&&discount>0){
-					HotelStrVO str=new HotelStrVO(hotelID,roomnumber,
-							discount);
-					if(hotelStrategyDistributionController.confirmHotelStrategy(str)==ResultMessage.SUCCESS){
+				if (roomnumber > 0 && discount <= 1.0 && discount > 0) {
+					HotelStrVO str = new HotelStrVO(hotelID, roomnumber, discount);
+
+					if (hotelStrategyDistributionController.confirmHotelStrategy(str) == ResultMessage.SUCCESS) {
 						hotelStrategyViewControllerImpl.backToselectStrategy();
 					}
-					else{
-						//保存失败
+
+					else {
+						// 保存失败
 						new SaveFail_JFrame();
 					}
 				}
 
 			}
-			
+
 		});
-		Document roomNumDoc=roomnumberjtf.getDocument();
-		roomNumDoc.addDocumentListener(new DocumentListener(){
+		Document roomNumDoc = roomnumberjtf.getDocument();
+		roomNumDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				saveError1.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				saveError1.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				saveError1.setVisible(false);
-				
+
 			}
-			
+
 		});
-		
-		Document countDoc=countjtf.getDocument();
-		countDoc.addDocumentListener(new DocumentListener(){
+
+		Document countDoc = countjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener() {
 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				saveError2.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
 				saveError2.setVisible(false);
-				
+
 			}
 
 			@Override
 			public void changedUpdate(DocumentEvent e) {
 				saveError2.setVisible(false);
-				
+
 			}
-			
+
 		});
 	}
 }

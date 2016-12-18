@@ -79,7 +79,7 @@ public class Checkin{
 	 */
 	public ResultMessage confirmCheckoutInfo(CheckinInfoVO vo){
 		//调用checkinInfo
-		return new CheckinInfo().confirmCheckoutInfo(vo);
+		return new CheckinInfo(vo).confirmCheckoutInfo(vo);
 	}
 	/**
 	 * 判断输入客房数量是否超过该类型客房总数

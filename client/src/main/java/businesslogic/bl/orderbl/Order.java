@@ -131,7 +131,7 @@ public class Order {
 			
 			return new StrategyVO(webStrVO,hotelStrVO,price);
 		} catch (NotFoundHotelException e) {
-			System.out.println(e.getMsgDes());
+			//System.out.println(e.getMsgDes());
 			e.printStackTrace();
 		}
 		return null;
@@ -147,9 +147,6 @@ public class Order {
 	 *
 	 */
 	public ResultMessage confirmAddOrder(OrderInfoVO orderInfoVO)throws NullOrderIDException,NullCustomerIDException{
-		if(orderInfoVO.getOrderID()==null){
-			throw new NullOrderIDException();
-		}
 		if(orderInfoVO.getCustomerID()==null){
 			throw new NullCustomerIDException();
 		}
@@ -170,8 +167,8 @@ public class Order {
 			throw new NullHotelIDException();
 		}
 		//调用HotelInfoOrderService里面的方法getHotelDetailInfo
-		System.out.println(hotelInfoOrderService);
-		System.out.println(hotelInfoOrderService.getHotelDetailInfo(hotelID, null));
+		//System.out.println(hotelInfoOrderService);
+		//System.out.println(hotelInfoOrderService.getHotelDetailInfo(hotelID, null));
 		return hotelInfoOrderService.getHotelDetailInfo(hotelID, null);
 		
 	}

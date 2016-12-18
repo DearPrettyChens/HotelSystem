@@ -8,6 +8,7 @@ import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
 import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
 import presentation.ui.creditui.view.Clientdeposite_JPanel;
 import vo.hotelvo.HotelOrderInfoVO;
+import vo.ordervo.OrderInfoVO;
 
 /**
  * 线上入住的总界面
@@ -49,11 +50,12 @@ public class CheckInPanel extends JPanel {
 	/**
 	 * 跳到住房信息界面
 	 */
-	public void changeToCheckInInfoPanel(HotelOrderInfoVO hotelOrderInfoVO,String hotelID) {
+	public void changeToCheckInInfoPanel(OrderInfoVO orderInfoVO,String hotelID) {
 		this.removeAll();
-		checkInInfo_JPanel=new CheckInInfo_JPanel(hotelOrderInfoVO,hotelID);
+		//checkInInfo_JPanel=new CheckInInfo_JPanel();
+		checkInInfo_JPanel=new CheckInInfo_JPanel(orderInfoVO,hotelID);
         this.add(checkInInfo_JPanel) ;
-		this.updateUI();
+		this.repaint();
 	}
 	
 }

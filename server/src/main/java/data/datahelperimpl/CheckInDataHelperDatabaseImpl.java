@@ -22,6 +22,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		//新增po
 		CheckinInfoPO savepo = po.copy();
 		try {
+			System.out.println("database"+savepo.getName());
 			session.save(savepo);
 			transaction.commit();
 		} catch (StaleObjectStateException e) {
@@ -54,6 +55,7 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		//从数据库取出po
+		
 		Query query = session.createQuery("from CheckinInfoPO where order_id = '" + po.getOrdernumber() + "'");
 		List<CheckinInfoPO> list = query.list();
 		if (list.size() == 0) {

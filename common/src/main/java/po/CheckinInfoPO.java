@@ -12,7 +12,7 @@ import javax.persistence.Version;
 import util.BedType;
 
 @Entity
-@Table(name = "t_checkininfo")
+@Table(name = "checkin")
 public class CheckinInfoPO implements Serializable {
 	/**
 	 * 记录酒店入住信息: 1）用户真实姓名 2）身份证号（数字） 3）联系方式（11位手机号） 4）房间号（数字） 5）房间类型

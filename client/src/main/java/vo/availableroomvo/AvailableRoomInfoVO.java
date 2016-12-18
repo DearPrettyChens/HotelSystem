@@ -26,18 +26,25 @@ public class AvailableRoomInfoVO implements Serializable {
 	private int originalNumber;//各房型总数量
 	private int currentNumber;//当前数量
 	
+    private boolean tag;//标志是否是新增加
+	
+	
 	public AvailableRoomInfoVO(){
 		
 	}
 	
     public AvailableRoomInfoVO(String  hotelNumber,String roomType,BedType bedType,
-    		double originalPrice,double lowestPrice,int originalNumber){
+    		double originalPrice,double lowestPrice,int originalNumber,boolean tag){
 		this.hotelNumber=hotelNumber;
 		this.roomType=roomType;
 		this.bedType=bedType;
 		this.originalPrice=originalPrice;
 		this.lowestPrice=lowestPrice;
 		this.originalNumber=originalNumber;
+		this.tag=tag;
+		if(tag){
+			this.currentNumber=originalNumber;
+		}
 	}
  
 	public String getHotelNumber() {
@@ -116,6 +123,14 @@ public class AvailableRoomInfoVO implements Serializable {
 	public AvailableRoomInfoPO toPO(){
 		return new AvailableRoomInfoPO(TransHelper.idToInt(this.hotelNumber),this.roomType,
 				this.bedType,this.originalPrice,this.lowestPrice,this.originalNumber,this.currentNumber);
+	}
+
+	public boolean isTag() {
+		return tag;
+	}
+
+	public void setTag(boolean tag) {
+		this.tag = tag;
 	}
 
 

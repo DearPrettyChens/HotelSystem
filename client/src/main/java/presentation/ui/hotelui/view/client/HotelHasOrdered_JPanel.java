@@ -197,8 +197,16 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 		this.add(scrollPane);
 	}
 
+	ArrayList<OrderState> states = new ArrayList<OrderState>(){{
+		add(OrderState.HASCANCELED);
+		add(OrderState.HASREMARKED);
+		add(OrderState.NOTEXECUTED);
+		add(OrderState.UNUSUAL);
+		add(OrderState.NOTREMARKED);
+	}};
+	
     public void changeHotelList(OrderState orderState) {
-    	scrollPane.remove(hotelListPane_JPanel);
+//    	scrollPane.remove(hotelListPane_JPanel);
 		HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
 		if(orderState==OrderState.EXECUTED){
 			ArrayList<OrderState>orderStates=new ArrayList<OrderState>();
@@ -206,12 +214,17 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 			orderStates.add(OrderState.NOTREMARKED);
 			hotelSearchInfoVO.setOrderStates(orderStates);
 			hotelSearchInfoVO.setCustomerID(userID);
-		}else{
+		}else if(orderState!=null){
 			hotelSearchInfoVO=new HotelSearchInfoVO(orderState, userID);
+		}else{
+			hotelSearchInfoVO.setOrderStates(states);
+			hotelSearchInfoVO.setCustomerID(userID);
 		}
-		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO,viewTag);
-		hotelListPane_JPanel.setPreferredSize(new Dimension(780, hotelListPane_JPanel.getHeight() ));
-		scrollPane.setViewportView(hotelListPane_JPanel);
+//		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO,viewTag);
+//		hotelListPane_JPanel.setPreferredSize(new Dimension(780, hotelListPane_JPanel.getHeight() ));
+//		scrollPane.setViewportView(hotelListPane_JPanel);
+//		scrollPane.repaint();
+		hotelListPane_JPanel.changeHotelList(hotelSearchInfoVO);
 	}
 	
 }

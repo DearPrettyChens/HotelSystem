@@ -26,6 +26,10 @@ public class DepositPanel extends JPanel {
 		return depositPanel;
 	}
 	
+	public static void destory(){
+		depositPanel=null;
+	}
+	
 	private DepositPanel() {
 		this.setLayout(null);
 		this.setBackground(Color.white);

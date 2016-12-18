@@ -31,6 +31,10 @@ public class ReserveHotelView extends JPanel {
 			}
 			return reserveHotelView;
 		}
+	    
+	    public static void destory(){
+	    	reserveHotelView=null;
+	    }
 	
 	private ReserveHotelView(String userID,String userName) {
 		this.userID=userID;
@@ -58,7 +62,7 @@ public class ReserveHotelView extends JPanel {
 	
 	public void generateNewOrder(String hotelID){
 		this.removeAll();
-		makeOrdertoClient_JPanel=new MakeOrdertoClient_JPanel(hotelID, userID,customerName, ViewTag.HOTELRESERVERSION);
+		makeOrdertoClient_JPanel=new MakeOrdertoClient_JPanel(hotelID,userID,customerName, ViewTag.HOTELRESERVERSION);
 	    this.add(makeOrdertoClient_JPanel);
 	    this.updateUI();
 	}

@@ -26,10 +26,18 @@ public class MyFootView extends JPanel {
 	
     public static MyFootView getInstance(String userID) {
 		if(myFootView==null){
+			//System.out.println("new");
 			myFootView=new MyFootView(userID);
 		}
 		return myFootView;
 	}
+    /**
+     * 丢弃当前界面
+     */
+    public static void destory(){
+    	myFootView=null;
+    }
+    
 	
 	private MyFootView(String userID) {
 		this.userID=userID;

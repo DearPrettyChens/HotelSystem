@@ -78,7 +78,6 @@ public class SingleOrderListInfotoClient extends JPanel {
 			image = ImageTool.getScaledImage(image, 100);
 			imagejl.setIcon(image);
 		}
-
 		hotelnamejl.setText(hotelname);
 		ordernumberjl.setText(ordernumber);
 		ordertimejl.setText(ordertime);

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import businesslogic.bl.checkinbl.CheckinController;
+import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckoutViewController;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
@@ -18,8 +19,10 @@ import presentation.ui.tools.MyButton;
 import presentation.ui.tools.newclient_JLabel;
 import util.OrderState;
 import util.TransHelper;
+import vo.checkinvo.CheckinInfoVO;
 import vo.hotelvo.HotelOrderInfoVO;
 import vo.hotelvo.HotelOrderVO;
+import vo.ordervo.OrderInfoVO;
 
 /**
  * 
@@ -53,7 +56,8 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 	private OrderState orderState2;
 	private Date plannedcheckintimeInDate;
 	private Date acturalcheckintimeInDate;
-
+    private Date acturalcheckouttimeInDate;
+	
 	private JLabel ordernumberjl = new JLabel("订单号：");
 	private JLabel clientnamejl = new JLabel("顾客：");
 	private JLabel clientteljl = new JLabel("联系方式：");
@@ -63,41 +67,43 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 	private JLabel acturalcheckintimejl = new JLabel("实际入住时间：");
 	private JLabel pricejl = new JLabel("应付金额：");
 
-	private HotelDistributionController hotelDistributionController = HotelDistributionController.getInstance();
-	private OnlineCheckinViewController onlineCheckinViewController = OnlineCheckinViewController.getInstance(null);
-	private OnlineCheckoutViewController onlineCheckoutViewController=OnlineCheckoutViewController.getInstance(null);
-	private HotelOrderInfoVO hotelOrderInfoVO;
-
+	private CheckinDistributionController checkinDistributionController = CheckinDistributionController.getInstance();
+	private OnlineCheckinViewController onlineCheckinViewController ;
+	private OnlineCheckoutViewController onlineCheckoutViewController;
+	private OrderInfoVO orderInfoVO;
+    public JLabel orderError=new JLabel("无该订单信息!");
 	public OrderInfoToCheckIn_JPanel(String orderID,String hotelID) {
 		this.hotelID=hotelID;
-		if(hotelDistributionController.getHotelOrderInfo(orderID)==null){
-			JPanel panel=new JPanel();
-			panel.setBounds(0, 180, 800, 400);
-			OrderInfoToCheckIn_JPanel.this.add(panel);
-			JLabel orderError=new JLabel("无该订单信息!");
-			orderError.setForeground(Color.BLACK);
+		
+	 onlineCheckinViewController = OnlineCheckinViewController.getInstance(CheckInPanel.getInstance(hotelID));
+	 onlineCheckoutViewController=OnlineCheckoutViewController.getInstance( CheckOutPanel.getInstance(hotelID));
+		
+		
+		orderInfoVO = checkinDistributionController.getOrderInfo(orderID);
+		if(orderInfoVO==null){
+		
+			
+			orderError.setForeground(Color.red);
 			orderError.setFont(font);
-			orderError.setBounds(250,50,200,50);
-			panel.add(orderError);
+			orderError.setBounds(300,0,200,50);
+			this.add(orderError);
 			orderError.setVisible(true);
-		}
-		hotelOrderInfoVO = hotelDistributionController.getHotelOrderInfo(orderID);
-		if (hotelOrderInfoVO == null) {
-			this.setVisible(false);
+			
 		} else {
-			this.setVisible(true);
-			this.ordernumber = hotelOrderInfoVO.getOrderId();
-			this.clientname = hotelOrderInfoVO.getCustomerName();
-			this.clienttel = hotelOrderInfoVO.getLodgerTel();
-			this.roomtype = hotelOrderInfoVO.getRoomType();
+			this.ordernumber = orderInfoVO.getOrderID();
+			this.clientname = orderInfoVO.getCustomerName();
+			this.clienttel = orderInfoVO.getLiveinPersonTelephone();
+			this.roomtype = orderInfoVO.getRoomType();
 
-			this.orderState2 = hotelOrderInfoVO.getOrderState();
+			this.orderState2 = orderInfoVO.getState();
 			this.orderstate = orderState2.toChinese();
 
-			this.plannedcheckintimeInDate = hotelOrderInfoVO.getExpectedCheckInTime();
+			this.plannedcheckintimeInDate = orderInfoVO.getExpectedCheckInTime();
 			this.plannedcheckintime = TransHelper.timeToString(plannedcheckintimeInDate);
 
-			this.acturalcheckintimeInDate = hotelOrderInfoVO.getActualCheckInTime();
+			this.acturalcheckintimeInDate = orderInfoVO.getActualCheckInTime();
+			
+			
 			//这里的判断是因为入住和住房是共用的这个panel，但是根据是否有实际入住时间来判断是哪种，入住的时候还没有实际入住时间，退房的时候就有了
 			if (acturalcheckintimeInDate != null) {
 				acturalcheckintime = TransHelper.timeToString(acturalcheckintimeInDate);
@@ -105,13 +111,13 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 				acturalcheckintime = null;
 			}
 
-			this.price = hotelOrderInfoVO.getPrice();
+			this.price = orderInfoVO.getPrice();
+			addComp();
 		}
 
 		this.setBounds(0, 180, 800, 400);
 		this.setLayout(null);
 		this.setBackground(Color.white);
-		addComp();
 
 	}
 
@@ -125,7 +131,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 		plannedcheckintimejl = new JLabel("预计入住时间：" + plannedcheckintime);
 		acturalcheckintimejl=new JLabel("实际入住时间： "+acturalcheckintime);
 		pricejl = new JLabel("应付金额：" + price);
-
+		
 		ordernumberjl.setBounds(100, 20, 400, 50);
 		ordernumberjl.setFont(font);
 		this.add(ordernumberjl);
@@ -178,11 +184,19 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				//这里的判断是因为入住和住房是共用的这个panel，但是根据是否有实际入住时间来判断是哪种，入住的时候还没有实际入住时间，退房的时候就有了
-				if(acturalcheckintimeInDate!=null){
-					OrderInfoToCheckIn_JPanel.this.onlineCheckoutViewController.jumpToHotelCheckInfoView();
-				}else{
+				
+				if((acturalcheckintimeInDate==null)&&(acturalcheckouttimeInDate==null)){
+					
 					OrderInfoToCheckIn_JPanel.this.onlineCheckinViewController
-						.jumpToHotelCheckInfoView(OrderInfoToCheckIn_JPanel.this.hotelOrderInfoVO,hotelID);
+					
+					.jumpToHotelCheckInfoView(OrderInfoToCheckIn_JPanel.this.orderInfoVO,hotelID);
+				}else{
+					if((acturalcheckintimeInDate!=null)&&(acturalcheckouttimeInDate==null)){
+					CheckinInfoVO checkinInfoVO=checkinDistributionController.getCheckinInfo(ordernumber);
+					
+       OrderInfoToCheckIn_JPanel.this.onlineCheckoutViewController.jumpToHotelCheckInfoView(checkinInfoVO, hotelID);
+					
+					}
 				}
 				
 				

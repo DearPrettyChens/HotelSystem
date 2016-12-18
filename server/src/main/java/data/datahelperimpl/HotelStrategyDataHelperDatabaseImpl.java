@@ -21,7 +21,7 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		Query query = session.createQuery(
-				"from HotelStrPO where ( hotel_id = " + hotelID + ") and ( type = '" + type.getString() + "')");
+				"from HotelStrPO where ( hotel_id = " + Integer.parseInt(hotelID) + ") and ( type = '" + type.getString() + "')");
 		List<HotelStrPO> list = query.list();
 		if (list.size() == 0) {
 			session.close();

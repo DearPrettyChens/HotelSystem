@@ -24,7 +24,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		//按照id取出po
-		Query query = session.createQuery("from HotelBasicInfoPO where id = " + hotelID);
+		Query query = session.createQuery("from HotelBasicInfoPO where id = " + Integer.parseInt(hotelID));
 		List<HotelBasicInfoPO> list = query.list();
 		session.close();
 		if (list.size() == 0) {
@@ -32,7 +32,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		}
 		HotelBasicInfoPO getPO = list.get(0);
 		HotelBasicInfoPO retPO = getPO.copy();
-		retPO.setHotelImagePath(retPO.getHotelImagePath());
+		retPO.setHotelImagePath(getPO.getHotelImagePath());
 		if (retPO.getHotelImagePath() != null) {
 			//根据po内的图片路径设置酒店图片image
 			retPO.setHotelImage(ImageUtil.getImage(retPO.getHotelImagePath()));
@@ -44,7 +44,7 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 	public ResultMessage addRemarkInfo(RemarkPO po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
-		Query query = session.createQuery("from HotelBasicInfoPO where id = " + po.getHotelID());
+		Query query = session.createQuery("from HotelBasicInfoPO where id = " + Integer.parseInt(po.getHotelID()));
 		List<HotelBasicInfoPO> list = query.list();
 		if (list.size() == 0) {
 			session.close();

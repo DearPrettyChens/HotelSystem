@@ -16,11 +16,11 @@ public class AvailableRoomInfoService_Stub implements AvailableRoomInfoService{
 
 	@Override
 	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
-		AvailableRoomInfoVO vo1=new AvailableRoomInfoVO("000001","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo2=new AvailableRoomInfoVO("000002","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo3=new AvailableRoomInfoVO("000003","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo4=new AvailableRoomInfoVO("000004","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo5=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
+		AvailableRoomInfoVO vo1=new AvailableRoomInfoVO("000001","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo2=new AvailableRoomInfoVO("000002","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo3=new AvailableRoomInfoVO("000003","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo4=new AvailableRoomInfoVO("000004","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo5=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
 		
 		ArrayList<AvailableRoomInfoVO> list=new ArrayList<AvailableRoomInfoVO>();
 		list.add(vo1);

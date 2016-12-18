@@ -69,6 +69,7 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 	private OrderInfoVO orderInfoVO;
 	private String hotelID;
 	private String userID;
+	private String hotelTel;
 	private String customerName;
 	private ViewTag tag;
 
@@ -78,7 +79,7 @@ public class MakeOrdertoClient_JPanel extends JPanel {
     private OrderDistributionController orderDistributionController = OrderDistributionController.getInstance();
     
 	public MakeOrdertoClient_JPanel(String hotelID, String userID,String customerName,ViewTag tag) {
-
+		this.hotelTel=hotelTel;
 		this.tag=tag;
 		this.userID = userID;
 		this.hotelID = hotelID;

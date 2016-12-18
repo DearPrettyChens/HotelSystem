@@ -4,6 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.net.NetworkInterface;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JLabel;
@@ -21,6 +27,8 @@ import util.BedType;
 import util.ResultMessage;
 import util.TransHelper;
 import vo.checkinvo.CheckinInfoVO;
+import vo.hotelvo.HotelOrderInfoVO;
+import vo.ordervo.OrderInfoVO;
 
 /**
  * 
@@ -31,6 +39,7 @@ import vo.checkinvo.CheckinInfoVO;
  * 
  */
 public class CheckOutInfo_JPanel extends JPanel {
+	Date d ;
 	
 	private Font font1=new Font("宋体",Font.BOLD, 20);
 	private Font font2=new Font("宋体",Font.BOLD, 18);
@@ -43,12 +52,15 @@ public class CheckOutInfo_JPanel extends JPanel {
 	private String roomtype="";
 	private String realcheckintime="";
 	private String realcheckouttime="";
-	private BedType bedType;
 	
-	private Date checkintimeInDate;
-	private Date checkouttimeInDate;
-	private String hotelID;
-	private String orderID;
+	private String bedType="";
+	private BedType bedType2=BedType.BIGBED;
+	
+	private Date checkintimeInDate=new Date(1);
+	
+	private Date checkouttimeInDate=new Date(1);
+	private String hotelID="";
+	private String orderID="";
 	
 	
 	private JLabel titlejl=new JLabel("酒店住房记录");
@@ -71,15 +83,43 @@ public class CheckOutInfo_JPanel extends JPanel {
 	private JLabel realcheckintimejl=new JLabel();
 	private JLabel realcheckouttimejl=new JLabel();
 	
-    private JTextField realcheckouttimejtf=new JTextField(realcheckouttime);
+    private JTextField realcheckouttimejtf=new JTextField();
 	
     private CheckinDistributionController distributionController=CheckinDistributionController.getInstance();
 	
     private OnlineCheckoutViewController onlineCheckoutViewController=OnlineCheckoutViewController.getInstance(null);
     
+    public CheckOutInfo_JPanel(CheckinInfoVO checkinInfoVO,String hotelID) {
+      
+    	if (checkinInfoVO!=null){
+        	
+        	this.name=checkinInfoVO.getCostumername();
+    		this.idnumber=checkinInfoVO.getID();
+    		this.tel=checkinInfoVO.getTel();
+    		this.roomnumber=checkinInfoVO.getRoomnumber();
+    		this.roomtype=checkinInfoVO.getRoomType();
+    		this.checkintimeInDate=checkinInfoVO.getCheckintime();
+    		this.realcheckintime=TransHelper.timeToString(checkintimeInDate);
+    		this.hotelID=checkinInfoVO.getHotelnumber();
+    		this.bedType2=checkinInfoVO.getBedtype();
+       		this.bedType=bedType2.toChinese();
+   		    this.orderID=checkinInfoVO.getOrdernumber();
+   		
+        }
+
+   		this.setLayout(null);
+   		this.setBackground(Color.white);
+   		addComp();
+   		this.setBounds(0, 0, 800, 600);
+
+   	}
+    
 	public CheckOutInfo_JPanel(String orderID){
 		
+		this.orderID=orderID;
 		CheckinInfoVO checkinInfoVO=distributionController.getCheckinInfo(orderID);
+		
+		if(checkinInfoVO!=null){
 		
 		this.name=checkinInfoVO.getCostumername();
 		this.idnumber=checkinInfoVO.getID();
@@ -89,8 +129,9 @@ public class CheckOutInfo_JPanel extends JPanel {
 		this.checkintimeInDate=checkinInfoVO.getCheckintime();
 		this.realcheckintime=TransHelper.timeToString(checkintimeInDate);
 		this.hotelID=checkinInfoVO.getHotelnumber();
-		this.orderID=checkinInfoVO.getOrdernumber();
-		this.bedType=checkinInfoVO.getBedtype();
+		this.bedType2=checkinInfoVO.getBedtype();
+   		this.bedType=bedType2.toChinese();
+		}
 		
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -170,6 +211,30 @@ public class CheckOutInfo_JPanel extends JPanel {
 		
 		realcheckouttimejtf.setFont(font3);
 		realcheckouttimejtf.setBounds(160,400,180,30);
+		realcheckouttimejtf.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void focusGained(FocusEvent e) {
+				// TODO Auto-generated method stub
+				
+				
+					
+					  d = new Date();  
+				        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+				        String dateNowStr = sdf.format(d); 
+				        realcheckouttimejtf.setText(dateNowStr);
+				        CheckOutInfo_JPanel.this.repaint();
+				
+				
+				
+			}
+		});
 		this.add(realcheckouttimejtf);
 		
 		
@@ -195,7 +260,7 @@ public class CheckOutInfo_JPanel extends JPanel {
 		CheckOutInfo_JPanel.this.add(timeError);
 		timeError.setVisible(false);
 		
-		JLabel timeError2=new JLabel("日期格式为yyyy-mm-dd");
+		JLabel timeError2=new JLabel("日期格式为yyyy-mm-dd HH:mm:ss");
 		timeError2.setForeground(Color.RED);
 		timeError2.setFont(font3);
 		timeError2.setBounds(340,400, 100, 25);
@@ -210,15 +275,14 @@ public class CheckOutInfo_JPanel extends JPanel {
 				if(realcheckouttimejtf.getText().equals("")){
 					timeError.setVisible(true);
 				}
-				
-				if(!realcheckouttimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
+				else if(!realcheckouttimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2} \\d{1,2}:\\d{1,2}:\\d{1,2}")){
 					timeError2.setVisible(true);
 				}
 
-				if(!realcheckouttimejtf.getText().equals("")&&realcheckouttimejtf.getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")){
+				else if(!realcheckouttimejtf.getText().equals("")){
 					CheckinInfoVO info=new CheckinInfoVO(name,idnumber,tel,
-							roomnumber,roomtype,bedType,new Date(TransHelper.stringToDate(realcheckintime)),
-							new Date(TransHelper.stringToDate(realcheckouttimejtf.getText())),hotelID,orderID);
+							roomnumber,roomtype,bedType2,checkintimeInDate,new Date(TransHelper.stringToTime(realcheckouttimejtf.getText()))
+							,hotelID,orderID);
 					if(checkinDistributionController.confirmCheckoutInfo(info)==ResultMessage.SUCCESS){
 						onlineCheckoutViewController.jumpToMainFrame();
 					}

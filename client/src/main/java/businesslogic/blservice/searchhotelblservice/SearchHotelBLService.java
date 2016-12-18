@@ -21,4 +21,12 @@ public interface SearchHotelBLService {
 	 */
 	public ArrayList<HotelListVO> getSortedHotelList(HotelSearchInfoVO hotelSearchInfoVO);
 	
+	/**
+	 * 得到所有顾客预定过的酒店列表信息
+	 * 
+	 * @param null
+	 * @return ArrayList<HotelListVO>
+	 * @throws 未定
+	 */
+	public ArrayList<HotelListVO> getCustomerHotelList(String customerID);
 }

@@ -140,7 +140,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 	   namejl.setText(name);
 	   namejl.setForeground(darkgreen);
 	   namejl.setFont(new Font("宋体",Font.BOLD, 20));
-	   namejl.setBounds(200,15,200,30);
+	   namejl.setBounds(200,15,400,30);
 	   this.add(namejl);
 	   
 	   starjp.setLayout(null);
