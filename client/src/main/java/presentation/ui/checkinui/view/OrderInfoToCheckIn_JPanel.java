@@ -71,7 +71,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 	private OnlineCheckinViewController onlineCheckinViewController ;
 	private OnlineCheckoutViewController onlineCheckoutViewController;
 	private OrderInfoVO orderInfoVO;
-
+    public JLabel orderError=new JLabel("无该订单信息!");
 	public OrderInfoToCheckIn_JPanel(String orderID,String hotelID) {
 		this.hotelID=hotelID;
 		
@@ -82,7 +82,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 		orderInfoVO = checkinDistributionController.getOrderInfo(orderID);
 		if(orderInfoVO==null){
 		
-			JLabel orderError=new JLabel("无该订单信息!");
+			
 			orderError.setForeground(Color.red);
 			orderError.setFont(font);
 			orderError.setBounds(300,0,200,50);

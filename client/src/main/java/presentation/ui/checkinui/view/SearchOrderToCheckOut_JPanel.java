@@ -8,6 +8,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.tools.MyTextfield;
 /**
@@ -34,6 +37,8 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 	private OrderInfoToCheckIn_JPanel orderInfoToCheckOut_JPanel;
 	
 	private String hotelID;
+	
+	private JLabel orderError=new JLabel("请输入18位的订单号");
 	
 	public SearchOrderToCheckOut_JPanel(String hotelID) {
 		this.hotelID=hotelID;
@@ -71,7 +76,47 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 			    
 			}
 		});
+        
+        orderError.setForeground(Color.RED);
+		orderError.setFont(font);
+		orderError.setBounds(225,150,200,30);
+		this.add(orderError);
+		orderError.setVisible(false);
+		
+		 
+		/**
+		 * 实现编辑时提示错误消息消失
+		 */
+		Document countDoc=ordernumberjtf.getDocument();
+		countDoc.addDocumentListener(new DocumentListener(){
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				orderError.setVisible(false);
+				
+				if(orderInfoToCheckOut_JPanel!=null)
+				orderInfoToCheckOut_JPanel.orderError.setVisible(false);
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				orderError.setVisible(false);
+				if(orderInfoToCheckOut_JPanel!=null)
+				orderInfoToCheckOut_JPanel.orderError.setVisible(false);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				orderError.setVisible(false);
+				if(orderInfoToCheckOut_JPanel!=null)
+				orderInfoToCheckOut_JPanel.orderError.setVisible(false);
+			}
+			
+		});
+		
+		
 	}
+	
 
 }
 
