@@ -1,0 +1,5 @@
+1.将User.getUserInfo改成User.getUserID:如果是顾客或是营销人员返回的是编号，如果是酒店工作人员返回的是酒店编号。因为在我们传递很多参数的时候都是用到的是编号，不需要将其他信息传过去。
+2.把SearchHotel中间的需接口进行了修改
+3.Hotel.setBestPrice这个作为接口，让Availableroom去实现
+4.Hotel.addRemark这个作为接口
+5.TypeInfoVO：1.酒店ID 2.顾客ID 3.订单状态

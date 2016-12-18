@@ -1,0 +1,16 @@
+1.将所有的种类改成枚举类，而不是String类
+   比如HotelSortType,浏览酒店列表时的种类（按价格，星级等等）
+   比如HotelStrategyType
+   比如WebStrategyType
+2.将商圈（String类）改成枚举类TradingArea
+3.将所有时间（包括生日）改成Date类
+4.在VO和PO类中有一个空的构造方法
+5.将注释格式进行统一（参照菲菲OrderInfoPO的注释，详情可见她的分支，有不同的就进行改正）
+6.将床型（String类）改成枚举类BedType
+7.所有创建的类都请加好注释（包括common包里的类）
+
+
+有一个我不确定的地方就是Order里面有个public ArrayList<OrderListPO> getOrderList(String keyword)
+keyword总觉得怪怪的
+
+double credit

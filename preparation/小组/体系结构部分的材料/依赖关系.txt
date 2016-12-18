@@ -1,0 +1,15 @@
+user：webstrategy，personnel
+webstrategy
+hotelstrategy:user,availableroom
+Personnel
+searchHotel:order,user
+checkin:order,availableroom,user
+availableroom:user（中间有hotel的接口）
+credit:user
+hotel:order,HotelStrategybl,availableroom,user
+order:不要account,searchHotel,checkin，hotel（中间有hotel的接口）
+
+
+order的接口中间有
+Hotel.addRemark
+Hotel.getHotelDetailInfo

@@ -1,0 +1,5 @@
+1.关于登陆界面的跳转到哪个用户的问题：用enummap来解决，可以尝试存界面对象，避免使用if else。
+  在逻辑层处理的时候也是类似的。
+  http://blog.csdn.net/sup_heaven/article/details/35295851
+
+2.判断格式的时候，尽量使用正则表达式
