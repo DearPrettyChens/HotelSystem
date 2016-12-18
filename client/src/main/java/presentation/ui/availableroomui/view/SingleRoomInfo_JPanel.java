@@ -261,7 +261,6 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
 				BedType.toBedType( (String) bedtypecomboBox.getSelectedItem()),Double.parseDouble(pricejtf.getText()),
 						lowestPrice,Integer.parseInt(numberjtf.getText()),tag);
-		System.out.println(Integer.parseInt(numberjtf.getText())+"===========");
 		ResultMessage resultMessage=controller.confirmAvailableRoomInfo(hotelID, room);
 		if(resultMessage==ResultMessage.SUCCESS){
 			tag=false;

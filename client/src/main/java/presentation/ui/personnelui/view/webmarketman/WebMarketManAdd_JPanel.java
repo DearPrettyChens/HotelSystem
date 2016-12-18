@@ -380,7 +380,6 @@ public class WebMarketManAdd_JPanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(namejtx.getText());
 				if (namejtx.getText().equals("")) {
 					nameErrorJl1.setVisible(false);
 					nameErrorJl2.setVisible(false);

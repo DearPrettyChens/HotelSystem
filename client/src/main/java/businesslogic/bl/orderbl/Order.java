@@ -131,7 +131,7 @@ public class Order {
 			
 			return new StrategyVO(webStrVO,hotelStrVO,price);
 		} catch (NotFoundHotelException e) {
-			System.out.println(e.getMsgDes());
+			//System.out.println(e.getMsgDes());
 			e.printStackTrace();
 		}
 		return null;

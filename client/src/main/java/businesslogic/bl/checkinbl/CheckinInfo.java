@@ -80,7 +80,7 @@ public class CheckinInfo {
 		}
 		//写入数据库住房信息
 		try {
-			System.out.println("checkininfo:"+name);
+			//System.out.println("checkininfo:"+name);
 			return checkinDao.addCheckinInfo(new CheckinInfoPO(name,ID,tel,roomType,bedType,
 					roomNumber,new Date(),checkoutTime,TransHelper.idToInt(hotelNumber),orderNumber));
 		} catch (RemoteException e) {
@@ -121,7 +121,6 @@ public class CheckinInfo {
 					vo.getBedtype(),vo.getRoomnumber(),vo.getCheckintime(),
 					vo.getCheckouttime(),TransHelper.idToInt(vo.getHotelnumber()),vo.getOrdernumber()));
 			if(result==ResultMessage.FAIL){
-				System.out.println("数据库");
 				return ResultMessage.FAIL;
 			}
 		} catch (RemoteException e1) {
@@ -143,7 +142,6 @@ public class CheckinInfo {
 		//该房间数自动加1
 		ResultMessage message=availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(preRoomNumber+1,bedType,new Date(),hotelNumber));
 		if(message==ResultMessage.FAIL){
-			System.out.println("加一");
 			return ResultMessage.FAIL;
 		}
 		if(this.orderNumber!=null){
@@ -151,7 +149,6 @@ public class CheckinInfo {
 			singleOrder=new SingleOrder();
 			ResultMessage result=singleOrder.setCheckoutTime(new Date(), vo.getOrdernumber());
 			if(result==ResultMessage.FAIL){
-				System.out.println("最后");
 				return ResultMessage.FAIL;
 			}
 		}

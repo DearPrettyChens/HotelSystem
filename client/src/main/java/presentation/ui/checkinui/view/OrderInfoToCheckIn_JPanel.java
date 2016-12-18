@@ -103,7 +103,6 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 
 			this.acturalcheckintimeInDate = orderInfoVO.getActualCheckInTime();
 			
-			System.out.println(acturalcheckintimeInDate);
 			
 			//这里的判断是因为入住和住房是共用的这个panel，但是根据是否有实际入住时间来判断是哪种，入住的时候还没有实际入住时间，退房的时候就有了
 			if (acturalcheckintimeInDate != null) {
@@ -187,8 +186,6 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 				//这里的判断是因为入住和住房是共用的这个panel，但是根据是否有实际入住时间来判断是哪种，入住的时候还没有实际入住时间，退房的时候就有了
 				
 				if((acturalcheckintimeInDate==null)&&(acturalcheckouttimeInDate==null)){
-					System.out.println("checkin");
-					
 					
 					OrderInfoToCheckIn_JPanel.this.onlineCheckinViewController
 					
@@ -196,7 +193,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 				}else{
 					if((acturalcheckintimeInDate!=null)&&(acturalcheckouttimeInDate==null)){
 					CheckinInfoVO checkinInfoVO=checkinDistributionController.getCheckinInfo(ordernumber);
-					System.out.println("checkout");
+					
        OrderInfoToCheckIn_JPanel.this.onlineCheckoutViewController.jumpToHotelCheckInfoView(checkinInfoVO, hotelID);
 					
 					}

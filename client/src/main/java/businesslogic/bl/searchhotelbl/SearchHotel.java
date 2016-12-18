@@ -140,9 +140,9 @@ public class SearchHotel {
 	public ArrayList<HotelListVO> getCustomerHotelList(String customerID) {
 //		
 		ArrayList<HotelListVO> list = new ArrayList<HotelListVO>();
-		System.out.println("size:"+hotelListVOs.size());
+//		System.out.println("size:"+hotelListVOs.size());
 		for(HotelListVO vo:hotelListVOs){
-			System.out.println(vo.getHotelName()+vo.getOrderStates().size());
+//			System.out.println(vo.getHotelName()+vo.getOrderStates().size());
 		   if(vo.getOrderStates().size()!=0){
 			   list.add(vo);
 //			   System.out.println("name"+vo.getHotelName());
