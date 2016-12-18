@@ -159,7 +159,7 @@ public class HotelStrategy {
 	 * @param hotelID
 	 * @return
 	 */
-	private double getHotelLowestDiscount(String hotelID) {
+	public double getHotelLowestDiscount(String hotelID) {
 		hotelStrategyMap = new HotelStrategyMap();
 		double discount = 1;// 折扣值在0-1之间,没有折扣就是1
 		while (hotelStrategyMap.hasNext()) {

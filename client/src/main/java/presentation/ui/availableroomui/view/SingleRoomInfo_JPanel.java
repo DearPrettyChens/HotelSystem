@@ -7,9 +7,14 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.availableroomui.distributecontroller.AvailableroomDistributionController;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
+import presentation.ui.hotelui.view.ModifyHotelBasicInfo_JPanel;
+import presentation.ui.tools.newclient_JLabel;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
@@ -29,12 +34,15 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private double price;
 	private double lowestPrice;
 	private int currentNum;
+	private boolean tag=true;
 	
 	private BedType bedType2;
 	
 	private JComboBox  bedtypecomboBox = new JComboBox();
 	
 	private Font font=new Font("宋体",Font.BOLD, 16);
+	private Font errorfont=new Font("宋体",Font.BOLD, 10);
+	
 	
 	private JLabel bedtypejl=new JLabel("床型：");
 	private JLabel roomtypejl=new JLabel("房型：");
@@ -47,7 +55,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JTextField pricejtf=new JTextField();
 	
 	JLabel saveError=new JLabel("不能为空");
-	
+	JLabel numError=new JLabel("请输数字");
 	private AvailableroomDistributionController controller=AvailableroomDistributionController.getInstance();
 	
 	public SingleRoomInfo_JPanel(AvailableRoomInfoVO availableRoomInfoVO){
@@ -59,7 +67,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.hotelID=availableRoomInfoVO.getHotelNumber();
 		this.lowestPrice=availableRoomInfoVO.getLowestPrice();
 		this.currentNum=availableRoomInfoVO.getCurrentNumber();
-		
+		this.tag=availableRoomInfoVO.isTag();
 		
 		//bedtypejtf.setText(bedtype);
 		roomtypejtf.setText(roomtype);
@@ -103,14 +111,16 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		
 		
 		 bedtypecomboBox.setBounds(70,10,100,30);
+		 
 		for(BedType e:BedType.values()){
 			 bedtypecomboBox.addItem(e.toChinese());
 		}
 		
 		 bedtypecomboBox.setBounds(70, 10, 100, 30);
 		this.add( bedtypecomboBox);
-		
-		
+		if(bedType2!=null){
+		bedtypecomboBox.setSelectedItem(bedtype);
+		}
 		
 		roomtypejl.setFont(font);
 		roomtypejl.setBounds(190,10,80,30);
@@ -142,10 +152,85 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		
 
 		saveError.setForeground(Color.RED);
-		saveError.setFont(font);
-		saveError.setBounds(730,10,40,10);
+		saveError.setFont(errorfont);
+		saveError.setBounds(660,20,100,10);
 		SingleRoomInfo_JPanel.this.add(saveError);
 		saveError.setVisible(false);
+		
+		numError.setForeground(Color.RED);
+		numError.setFont(errorfont);
+		numError.setBounds(660, 20, 100, 10);
+		this.add(numError);
+		numError.setVisible(false);
+		
+		Document roomDoc = roomtypejtf.getDocument();
+		roomDoc.addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+
+			}
+
+		});
+		
+		Document priceDoc = pricejtf.getDocument();
+		priceDoc.addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+		});
+		
+		Document numDoc = numberjtf.getDocument();
+		numDoc.addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+		});
 		
 	}
 	/**
@@ -160,12 +245,28 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		}
 		if(lowestPrice==0){
 			lowestPrice=Double.parseDouble(pricejtf.getText());
+			
 		}
+		
+		if(!numberjtf.getText().matches("[0-9]*")){
+			numError.setVisible(true);
+			return ResultMessage.FAIL;
+		}
+		
+		if(!pricejtf.getText().matches("[0-9]*\\.?[0]?")){
+			numError.setVisible(true);
+			return ResultMessage.FAIL;
+		}
+		
 		AvailableRoomInfoVO room=new AvailableRoomInfoVO(hotelID,roomtypejtf.getText(),
 				BedType.toBedType( (String) bedtypecomboBox.getSelectedItem()),Double.parseDouble(pricejtf.getText()),
-						lowestPrice,Integer.parseInt(numberjtf.getText()));
-		
-		return controller.confirmAvailableRoomInfo(hotelID, room);
+						lowestPrice,Integer.parseInt(numberjtf.getText()),tag);
+		System.out.println(Integer.parseInt(numberjtf.getText())+"===========");
+		ResultMessage resultMessage=controller.confirmAvailableRoomInfo(hotelID, room);
+		if(resultMessage==ResultMessage.SUCCESS){
+			tag=false;
+		}
+		return resultMessage;
 	}
 	
 }

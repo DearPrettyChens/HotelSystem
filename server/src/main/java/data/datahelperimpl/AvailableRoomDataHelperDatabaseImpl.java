@@ -115,6 +115,8 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 			numberChange = po.getOriginalNumbers() - each.getOriginalNumbers();
 			each.setOriginalNumbers(po.getOriginalNumbers());
 			each.setCurrentNumber(each.getCurrentNumber() + numberChange);
+            each.setLowestPrice(po.getLowestPrice());
+			
 			// 判断房间数量是否比当前可用客房数量还要少 防止出现负数（不合理的修改）
 			if (each.getCurrentNumber() < 0) {
 				session.close();
@@ -231,10 +233,11 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 	@Override
 	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-		Transaction transaction = session.beginTransaction();
+//		Transaction transaction = session.beginTransaction();
 		Query query;
 		List<AvailableRoomInfoPO> updateList;
 		for (AvailableRoomInfoPO each : po) {
+			Transaction transaction = session.beginTransaction();
 			// 找到酒店id和床型相同的记录 再全部修改
 			query = session.createQuery("from AvailableRoomInfoPO where (hotel_id = " + each.getHotelNumber()
 					+ ") and ( bed_type = '" + each.getBedType().getString() + "')");
@@ -253,11 +256,9 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 					transaction.rollback();
 				}
 				return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
-			} finally {
-//				transaction.commit();
-				session.close();
-			}
+			} 
 		}
+		session.close();
 		return ResultMessage.SUCCESS;
 	}
 

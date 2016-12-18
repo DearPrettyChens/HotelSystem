@@ -68,7 +68,7 @@ public class CheckinBLService_Stub implements CheckinBLService{
 	@Override
 	public ArrayList<AvailableRoomInfoVO> getAvailableRoomInfo(String hotelID) {
 		// TODO Auto-generated method stub
-		AvailableRoomInfoVO vo=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
+		AvailableRoomInfoVO vo=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,false);
 		ArrayList<AvailableRoomInfoVO> list=new ArrayList<AvailableRoomInfoVO>();
 		list.add(vo);
 		return list;

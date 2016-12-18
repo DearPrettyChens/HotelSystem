@@ -7,6 +7,9 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.text.Document;
 
 import presentation.ui.availableroomui.view.SingleRoomInfo_JPanel;
 import presentation.ui.checkinui.distributecontroller.CheckinDistributionController;
@@ -34,11 +37,16 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 
+	private Font errorfont=new Font("宋体",Font.BOLD, 10);
+	
 	private JLabel bedtypejl = new JLabel("床型：");
 	private JLabel roomtypejl = new JLabel("房型：");
 	private JLabel numberjl = new JLabel("数量：");
 
 	JLabel saveError=new JLabel("不能为空");
+
+	JLabel numError=new JLabel("请输入正数");
+	
 	
 	private JTextField numberjtf = new JTextField();
 	private CheckinDistributionController controller=CheckinDistributionController.getInstance();
@@ -51,7 +59,8 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 		this.hotelID=availableRoomInfoVO.getHotelNumber();
 		 this.roomtype=availableRoomInfoVO.getRoomType();
 		this.number = availableRoomInfoVO.getCurrentNumber();
-
+        numError.setText("请输入0～"+number+"之间的数");
+		
 		bedtypejl.setText("床型："+bedtype);
 
 		roomtypejl.setText("房型："+roomtype);
@@ -96,10 +105,39 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 		
 		saveError.setForeground(Color.RED);
 		saveError.setFont(font);
-		saveError.setBounds(730,10,40,10);
-		SingleAvailableRoomInfo_JPanel.this.add(saveError);
+		saveError.setBounds(600,15,100,20);
+		this.add(saveError);
 		saveError.setVisible(false);
+		
+		numError.setForeground(Color.RED);
+		numError.setFont(errorfont);
+		numError.setBounds(600, 15, 200, 20);
+		this.add(numError);
+		numError.setVisible(false);
 
+		Document numDoc = numberjtf.getDocument();
+		numDoc.addDocumentListener(new DocumentListener() {
+
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				saveError.setVisible(false);
+				numError.setVisible(false);
+			}
+
+		});
+		
 	}
 	
 	public void recoverRoom(){
@@ -108,7 +146,10 @@ public class SingleAvailableRoomInfo_JPanel extends JPanel {
 	
 	public ResultMessage saveRoom(){
 		if(numberjtf.getText().equals("")){
-			//saveError.setVisible(true);
+			saveError.setVisible(true);
+			return ResultMessage.FAIL;
+		}else if(!numberjtf.getText().matches("[0-9]*")){
+			numError.setVisible(true);
 			return ResultMessage.FAIL;
 		}
 		else{

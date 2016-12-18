@@ -30,12 +30,12 @@ public class LookHotelService_Stub implements LookHotelService{
 		list.add(new HotelStrVO("000005",  0.5));
 		list.add(new HotelStrVO("000005", 4, 0.5));
 		list.add(new HotelStrVO("000005",0.8,enterprises));
-		AvailableRoomInfoVO vo1=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo2=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo3=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo4=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo5=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
-		AvailableRoomInfoVO vo6=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10);
+		AvailableRoomInfoVO vo1=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo2=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo3=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo4=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo5=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
+		AvailableRoomInfoVO vo6=new AvailableRoomInfoVO("000005","商务房",BedType.BIGBED,680,500,10,true);
 		
 		ArrayList<AvailableRoomInfoVO> roomlist=new ArrayList<AvailableRoomInfoVO>();
 		roomlist.add(vo1);
