@@ -2,10 +2,11 @@ package presentation.ui.loginui.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-<<<<<<< HEAD
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,8 +14,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-=======
->>>>>>> origin/master
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;

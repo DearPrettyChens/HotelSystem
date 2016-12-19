@@ -202,7 +202,7 @@ public class HotelGeneralInfotoClient_JPanel extends JPanel {
 		namejl.setText(name);
 		namejl.setForeground(darkgreen);
 		namejl.setFont(new Font("宋体", Font.BOLD, 23));
-		namejl.setBounds(50, 20, 200, 35);
+		namejl.setBounds(50, 20, 400, 35);
 		container.add(namejl);
 
 		starjp.setLayout(null);

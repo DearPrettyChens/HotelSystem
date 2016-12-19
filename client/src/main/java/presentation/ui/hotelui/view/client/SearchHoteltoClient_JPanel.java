@@ -671,12 +671,12 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		OrderStateItemListenner orderStateItemListenner = new OrderStateItemListenner();
 		
 		state1.setFont(font);
-		state1.setBounds(250, 60,70, 30);
+		state1.setBounds(250, 60,100, 30);
 		Searchjp2.add(state1);
 		state1.addItemListener(orderStateItemListenner);
 
 		state2.setFont(font);
-		state2.setBounds(350, 60, 70, 30);
+		state2.setBounds(350, 60, 100, 30);
 		Searchjp2.add(state2);
 		state2.addItemListener(orderStateItemListenner);
 
@@ -1061,15 +1061,15 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		}
 		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
 		searchHotelPane_JPanel.setHotelListPanePanel(pane_JPanel);
-		//searchHotelPane_JPanel.hotelListPane_JPanel.changeHotelList(vo);;
+//		searchHotelPane_JPanel.hotelListPane_JPanel.change(vo);;
 
 	}
 	public void sortHotel(HotelSortType type){
 		vo.setHotelSortType(type);
 		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
 		searchHotelPane_JPanel.setHotelListPanePanel(pane_JPanel);
-		//vo.setHotelSortType(type);
-		//searchHotelPane_JPanel.hotelListPane_JPanel.changeHotelList(vo);;
+//		vo.setHotelSortType(type);
+//		searchHotelPane_JPanel.hotelListPane_JPanel.change(vo);;
 	}
 }
 
