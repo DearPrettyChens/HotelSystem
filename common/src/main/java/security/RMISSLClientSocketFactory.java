@@ -49,8 +49,8 @@ public class RMISSLClientSocketFactory implements RMIClientSocketFactory, Serial
 			KeyStore keyStore = KeyStore.getInstance("JKS");// 使用JKS的keyStore
 			KeyStore trustKeyStore = KeyStore.getInstance("JKS");
 
-			URL tclient = RMIconfig.class.getResource("keys/tclient.keystore"); // 客户端信任的证书
-			URL kclient = RMIconfig.class.getResource("keys/kclient.keystore");// 客户端的秘钥地址
+			URL tclient = RMISSLClientSocketFactory.class.getResource("keys/tclient.keystore"); // 客户端信任的证书
+			URL kclient = RMISSLClientSocketFactory.class.getResource("keys/kclient.keystore");// 客户端的秘钥地址
 			keyStore.load(kclient.openStream(), password);// 加载客户端的密钥
 			trustKeyStore.load(tclient.openStream(), password);// 加载客户端信任的证书
 

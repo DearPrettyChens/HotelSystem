@@ -37,8 +37,8 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory {
 			KeyStore keyStore = KeyStore.getInstance("JKS");//使用JKS的keyStore  
 			KeyStore trustKeyStore = KeyStore.getInstance("JKS");
 
-			URL tserver = RMIconfig.class.getResource("keys/tserver.keystore");//服务器端信任的证书 地址
-			URL kserver = RMIconfig.class.getResource("keys/kserver.keystore");//服务器端的秘钥地址
+			URL tserver = RMISSLServerSocketFactory.class.getResource("keys/tserver.keystore");//服务器端信任的证书 地址
+			URL kserver = RMISSLServerSocketFactory.class.getResource("keys/kserver.keystore");//服务器端的秘钥地址
 			keyStore.load(kserver.openStream(), password);//加载服务器的秘钥
 			trustKeyStore.load(tserver.openStream(), password);//加载服务器信任的证书
 //
