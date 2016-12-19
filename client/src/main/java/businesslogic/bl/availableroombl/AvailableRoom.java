@@ -195,7 +195,7 @@ public class AvailableRoom {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		System.out.println("不存在该房间类型");
+		//System.out.println("不存在该房间类型");
 		return 0;
 	}
 

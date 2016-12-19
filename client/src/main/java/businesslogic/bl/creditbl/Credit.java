@@ -121,7 +121,6 @@ public class Credit {
 			CreditPO newPO=new CreditPO(creditInfoList.get(0).getName(),creditInfoList.get(creditInfoList.size()-1)
 					.getID(),nowCredit,(int)money*DEPOSIT_RATIO,"线下充值",new Date());
 			//CreditPO newPO=new CreditPO(customerName,null,money*100,"线下充值",new Date());
-			System.out.println(creditInfoList.get(0).getName());
 			creditDao.setCredit(newPO);
 		} catch (RemoteException e) {
 			e.printStackTrace();

@@ -1,0 +1,15 @@
+1.telephone和password类应该放在common包里面，因为别人也要用。
+2.关于合作企业，直接放在hotel的表里面，在合作企业策略里面直接修改折扣值就好，所有企业一个折扣值，这样更简便。存的时候直接一个String,每次增了改了都是从界面把所有合作企业一起往下传。
+3.在酒店里面记录评论（从订单那里拿）。
+4.在hotel和order中不进行check，直接让controller调用telephone去check
+5.文档中hotelcontroller需接口和hotel的供接口不对应
+6.怎么解决VO和PO的直接传递？单独写给voToPO以及POTOVO的trans类？
+7.AvailableRoom里面的Interface接口哪儿去了？？？？？
+8.为什么orderController的需接口里面有大量不需要的东西？
+9.hotel需要实现availableroom和order里面的接口,图需要改动
+10.为什么在hotelcontroller的需接口里面会有获得策略的方法？（酒店的VO里面还要strategy的参数）
+11.在顾客在酒店详细信息里面的订单列表点看详细订单信息的时候，是调用order模块？
+12.order部分的singleorder是复制粘贴的数据层的接口？？既然已经委托给singleorder去计算价格返回优惠信息，为什么需接口中间没有webStrategy和hotelStrategy？
+
+cll:
+1.singleAvailableRoom里面的房间数量在哪？

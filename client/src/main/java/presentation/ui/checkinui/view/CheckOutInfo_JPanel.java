@@ -226,13 +226,10 @@ public class CheckOutInfo_JPanel extends JPanel {
 				
 					
 					  d = new Date();  
-				        System.out.println("退房"+d);  
 				        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
 				        String dateNowStr = sdf.format(d); 
 				        realcheckouttimejtf.setText(dateNowStr);
 				        CheckOutInfo_JPanel.this.repaint();
-				        
-				        System.out.println("退房格式化后的日期：" + dateNowStr);  
 				
 				
 				
@@ -283,7 +280,6 @@ public class CheckOutInfo_JPanel extends JPanel {
 				}
 
 				else if(!realcheckouttimejtf.getText().equals("")){
-					System.out.println(orderID+"===============");
 					CheckinInfoVO info=new CheckinInfoVO(name,idnumber,tel,
 							roomnumber,roomtype,bedType2,checkintimeInDate,new Date(TransHelper.stringToTime(realcheckouttimejtf.getText()))
 							,hotelID,orderID);

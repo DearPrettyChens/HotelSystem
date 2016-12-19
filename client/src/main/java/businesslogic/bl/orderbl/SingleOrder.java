@@ -223,7 +223,7 @@ public class SingleOrder {
 			orderDao.setCheckintime(checkTime);
 			//获取相关订单信息
 			if(orderDao==null){
-				System.out.println("ERROR");
+				//System.out.println("ERROR");
 			}
 			OrderInfoPO orderInfo=orderDao.getOrderInfo(orderID);
 			//调credit.getCreditInfoList获得顾客信用信息

@@ -1,0 +1,2 @@
+1.orderprovidedvo
+2.体系结构文档order模块的需接口，新增调用User.getDetailInfo获得顾客信息

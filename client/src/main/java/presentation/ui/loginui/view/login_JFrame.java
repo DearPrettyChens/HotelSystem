@@ -1,14 +1,11 @@
 package presentation.ui.loginui.view;
 
 import java.awt.Color;
-import java.awt.Container;
-
-import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -16,20 +13,23 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+=======
+>>>>>>> origin/master
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.event.MouseInputListener;
-
-import com.jhlabs.image.TextureFilter;
 
 import presentation.ui.loginui.distributecontroller.LoginDistributionController;
 import presentation.ui.loginui.viewcontroller.LoginViewController;
 import presentation.ui.loginui.viewcontroller.LoginViewControllerService;
-import presentation.ui.tools.*;
+import presentation.ui.tools.Logingif_JFrame;
+import presentation.ui.tools.close_JButton;
+import presentation.ui.tools.name_JTextField;
+import presentation.ui.tools.narrow_JButton;
+import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.password_JPasswordFeild;
 import util.ResultMessage;
 import util.UserType;
 
@@ -59,7 +59,7 @@ public class login_JFrame extends JFrame {
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
 	private login_JButton jb = new login_JButton();// 登录按钮
 	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
-	Logingif_JFrame frame=new Logingif_JFrame();
+	//Logingif_JFrame frame=new Logingif_JFrame();
 	
 	
 	
@@ -101,7 +101,7 @@ public class login_JFrame extends JFrame {
 	
 public login_JFrame(Logingif_JFrame f) {
 		
-		this.frame=f;
+		//this.frame=f;
 		
 		
 		controller = new LoginViewController();

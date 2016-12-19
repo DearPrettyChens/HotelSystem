@@ -297,9 +297,9 @@ public class CheckHotel {
 
 		}
 		int size = lowPrices.size();
-		System.out.println(lowPrices.get(0));
-		System.out.println(highPrices.get(size-1));
-		System.out.println(bestPrice);
+//		System.out.println(lowPrices.get(0));
+//		System.out.println(highPrices.get(size-1));
+//		System.out.println(bestPrice);
 		for (int i = 0; i < size; i++) {
 			double lowPrice = lowPrices.get(i);
 			double highPrice = highPrices.get(i);
