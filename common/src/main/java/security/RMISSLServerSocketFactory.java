@@ -37,10 +37,10 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory {
 			KeyStore keyStore = KeyStore.getInstance("JKS");//使用JKS的keyStore  
 			KeyStore trustKeyStore = KeyStore.getInstance("JKS");
 
-//			URL tserver = RMIconfig.class.getResource("../config/keys/tserver.keystore");//服务器端信任的证书 地址
-//			URL kserver = RMIconfig.class.getResource("../config/keys/kserver.keystore");//服务器端的秘钥地址
-//			keyStore.load(kserver.openStream(), password);//加载服务器的秘钥
-//			trustKeyStore.load(tserver.openStream(), password);//加载服务器信任的证书
+			URL tserver = RMIconfig.class.getResource("keys/tserver.keystore");//服务器端信任的证书 地址
+			URL kserver = RMIconfig.class.getResource("keys/kserver.keystore");//服务器端的秘钥地址
+			keyStore.load(kserver.openStream(), password);//加载服务器的秘钥
+			trustKeyStore.load(tserver.openStream(), password);//加载服务器信任的证书
 //
 //			InputStream tis=RMIconfig.class.getResourceAsStream("../config/keys/tserver.keystore");   
 //			InputStream kis=RMIconfig.class.getResourceAsStream("../config/keys/kserver.keystore");   
@@ -52,10 +52,10 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory {
 //			keyStore.load(kserver.openStream(), password);//加载服务器的秘钥
 //			trustKeyStore.load(tserver.openStream(), password);//加载服务器信任的证书
 			
-			InputStream tis=new FileInputStream("config/keys/tserver.keystore");   
-			InputStream kis=new FileInputStream("config/keys/kserver.keystore");   
-			 keyStore.load(kis, password);//加载服务器的秘钥
-			trustKeyStore.load(tis, password);;//加载服务器信任的证书
+//			InputStream tis=new FileInputStream("config/keys/tserver.keystore");   
+//			InputStream kis=new FileInputStream("config/keys/kserver.keystore");   
+//			 keyStore.load(kis, password);//加载服务器的秘钥
+//			trustKeyStore.load(tis, password);;//加载服务器信任的证书
  
 			
 			kmf.init(keyStore, password);//用服务器的秘钥来初始化秘钥工厂
