@@ -17,7 +17,7 @@ import javax.swing.JFrame;
  * 
  */
 public class NarrowButton extends JButton {
-	private ImageIcon icon=new ImageIcon("image//narrow.jpg");
+	private ImageIcon icon=new ImageIcon(NarrowButton.class.getResource("narrow.jpg"));
 	
 	 private JFrame jf;
 	 

@@ -19,7 +19,7 @@ import javax.swing.JFrame;
  * 
  */
 public class CloseButton extends JButton {
-	private ImageIcon icon = new ImageIcon("image//close.png");
+	private ImageIcon icon = new ImageIcon(CloseButton.class.getResource("close.png"));
 
 	public CloseButton() {
 		this.setIcon(icon);
