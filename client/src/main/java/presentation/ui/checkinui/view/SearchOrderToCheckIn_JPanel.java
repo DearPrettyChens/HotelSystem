@@ -36,7 +36,7 @@ public class SearchOrderToCheckIn_JPanel extends JPanel {
 
 	private JLabel titlejl = new JLabel("线上入住办理");
 
-	private JLabel searchimagejl = new JLabel(new ImageIcon("image//search1.png"));
+	private JLabel searchimagejl = new JLabel(new ImageIcon(SearchOrderToCheckIn_JPanel.class.getResource("search1.png")));
 
 	private OrderInfoToCheckIn_JPanel orderInfoToCheckIn_JPanel;
 

@@ -56,7 +56,7 @@ public class Searchperson_JPanel extends JPanel {
 		this.add(searchjtf);
 
 		searchjb.setBounds(650, 25, 100, 40);
-		ImageIcon icon5 = new ImageIcon("image//search1.png");
+		ImageIcon icon5 = new ImageIcon(Searchperson_JPanel.class.getResource("search1.png"));
 		searchjb.setIcon(icon5);
 
 		searchjb.setBorderPainted(false);

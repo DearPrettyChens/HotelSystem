@@ -140,7 +140,7 @@ public class Searchoradd_JPanel extends JPanel {
 		addjl.setBounds(550, 10, 100, 30);
 		this.add(addjl);
 
-		ImageIcon icon = new ImageIcon("image//searchoradd.png");
+		ImageIcon icon = new ImageIcon(Searchoradd_JPanel.class.getResource("searchoradd.png"));
 		backjl.setIcon(icon);
 		backjl.setBounds(0, 0, 800, 50);
 		this.add(backjl);

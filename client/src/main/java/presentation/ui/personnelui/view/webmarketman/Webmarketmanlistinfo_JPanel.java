@@ -101,7 +101,7 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
 		moreinfojb.setBounds(470, 30, 110, 30);
 		this.add(moreinfojb);
 
-		ImageIcon iconback = new ImageIcon("image//listback.png");
+		ImageIcon iconback = new ImageIcon(Webmarketmanlistinfo_JPanel.class.getResource("listback.png"));
 		backjl.setIcon(iconback);
 		backjl.setBounds(0, 0, 600, 90);
 		this.add(backjl);

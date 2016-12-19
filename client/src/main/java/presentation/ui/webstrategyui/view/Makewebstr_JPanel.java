@@ -27,9 +27,9 @@ public class Makewebstr_JPanel extends JPanel {
 	private JLabel clientlevelstrjl = new JLabel("会员等级折扣策略");
 	private JLabel specialtimestrjl = new JLabel("特殊时期折扣策略");
 
-	private JLabel hengline = new JLabel(new ImageIcon("image//hengline.png"));
-	private JLabel shuline1 = new JLabel(new ImageIcon("image//shuline.png"));
-	private JLabel shuline2 = new JLabel(new ImageIcon("image//shuline.png"));
+	private JLabel hengline = new JLabel(new ImageIcon(Makewebstr_JPanel.class.getResource("hengline.png")));
+	private JLabel shuline1 = new JLabel(new ImageIcon(Makewebstr_JPanel.class.getResource("shuline.png")));
+	private JLabel shuline2 = new JLabel(new ImageIcon(Makewebstr_JPanel.class.getResource("shuline.png")));
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 	private Color lightcolor = new Color(149, 222, 184);

@@ -95,7 +95,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	private JLabel keyjl = new JLabel("关键词");
 	private MyTextfield searchjtf = new MyTextfield("请输入酒店名称");
-	private JButton searchjb = new JButton(new ImageIcon("image/search.png"));
+	private JButton searchjb = new JButton(new ImageIcon(SearchHoteltoClient_JPanel.class.getResource("image/search.png")));
 
 	private JPanel Searchjp2 = new JPanel();
 
@@ -272,8 +272,8 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 	private JLabel starsortjl = new JLabel("星级");
 	private JLabel scoresortjl = new JLabel("评分");
 
-	private ImageIcon upicon = new ImageIcon("image/top.png");
-	private ImageIcon downicon = new ImageIcon("image/down.png");
+	private ImageIcon upicon = new ImageIcon(SearchHoteltoClient_JPanel.class.getResource("image/top.png"));
+	private ImageIcon downicon = new ImageIcon(SearchHoteltoClient_JPanel.class.getResource("image/down.png"));
 
 	private JButton popularSortUpjb = new JButton(upicon);
 	private JButton popularSortDownjb = new JButton(downicon);

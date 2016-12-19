@@ -70,8 +70,8 @@ public class Changemessage_JPanel extends JPanel {
 	private JLabel credit = new JLabel("");
 	private JLabel level = new JLabel("");
 
-	String imagePath="image//logo.png";
-	ImageIcon userImage=ImageTool.getScaledImage(new ImageIcon(imagePath),150);
+	String imagePath;
+	ImageIcon userImage=ImageTool.getScaledImage(new ImageIcon(Changemessage_JPanel.class.getResource("logo.png")),150);
 	private JLabel image = new JLabel(userImage);
 
 	private JLabel editing = new JLabel();
@@ -214,7 +214,7 @@ public class Changemessage_JPanel extends JPanel {
 
 		this.add(userteljl);
 
-		ImageIcon icon = new ImageIcon("image//blackEdit.png");
+		ImageIcon icon = new ImageIcon(Changemessage_JPanel.class.getResource("blackEdit.png"));
 		editing.setIcon(icon);
 		editing.setBounds(650, 110, 30, 30);
 		this.add(editing);
@@ -360,7 +360,7 @@ public class Changemessage_JPanel extends JPanel {
 		userteljl.setBounds(500, 100, 200, 50);
 		this.add(userteljl);
 
-		ImageIcon icon = new ImageIcon("image//blackEdit.png");
+		ImageIcon icon = new ImageIcon(Changemessage_JPanel.class.getResource("blackEdit.png"));
 		editing.setIcon(icon);
 		editing.setBounds(650, 110, 30, 30);
 		this.add(editing);
@@ -381,7 +381,7 @@ public class Changemessage_JPanel extends JPanel {
 		tel.setBounds(500, 110, 120, 30);
 		this.add(tel);
 
-		ImageIcon icon2 = new ImageIcon("image//confirm.png");
+		ImageIcon icon2 = new ImageIcon(Changemessage_JPanel.class.getResource("confirm.png"));
 		confirm.setIcon(icon2);
 		confirm.setBounds(650, 110, 30, 30);
 		this.add(confirm);

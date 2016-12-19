@@ -32,7 +32,7 @@ public class SingleHotelRemarktoClient_JPanel  extends JPanel{
 	
 	
 	
-	private JLabel bg=new JLabel(new ImageIcon("image/listback.png"));
+	private JLabel bg=new JLabel(new ImageIcon(SingleHotelRemarktoClient_JPanel.class.getResource("image/listback.png")));
 	
 	public SingleHotelRemarktoClient_JPanel (String remark){
 		

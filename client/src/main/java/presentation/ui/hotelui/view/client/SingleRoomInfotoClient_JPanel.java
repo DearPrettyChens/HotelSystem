@@ -42,7 +42,7 @@ public class SingleRoomInfotoClient_JPanel extends JPanel{
 	
 	
 	
-	private JLabel bgjl=new JLabel(new ImageIcon("image/longxuxian.png"));
+	private JLabel bgjl=new JLabel(new ImageIcon(SingleRoomInfotoClient_JPanel.class.getResource("image/longxuxian.png")));
 	
 	
 	private MyButton searchjb=new MyButton();

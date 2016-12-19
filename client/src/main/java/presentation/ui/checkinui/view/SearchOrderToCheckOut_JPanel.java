@@ -32,7 +32,7 @@ public class SearchOrderToCheckOut_JPanel extends JPanel {
 
 	private JLabel titlejl = new JLabel("线上退房办理");
 	
-	private JLabel searchimagejl = new JLabel(new ImageIcon("image//search1.png"));
+	private JLabel searchimagejl = new JLabel(new ImageIcon(SearchOrderToCheckOut_JPanel.class.getResource("search1.png")));
 
 	private OrderInfoToCheckIn_JPanel orderInfoToCheckOut_JPanel;
 	

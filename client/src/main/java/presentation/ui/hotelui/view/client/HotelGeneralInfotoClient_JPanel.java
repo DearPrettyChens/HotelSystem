@@ -75,8 +75,8 @@ public class HotelGeneralInfotoClient_JPanel extends JPanel {
 
 	private JPanel strjp = new JPanel();
 
-	private ImageIcon realstar = new ImageIcon("image/realstar.png");
-	private ImageIcon emptystar = new ImageIcon("image/emptystar.png");
+	private ImageIcon realstar = new ImageIcon(HotelGeneralInfotoClient_JPanel.class.getResource("image/realstar.png"));
+	private ImageIcon emptystar = new ImageIcon(HotelGeneralInfotoClient_JPanel.class.getResource("image/emptystar.png"));
 
 	private JLabel starjl1 = new JLabel();
 	private JLabel starjl2 = new JLabel();

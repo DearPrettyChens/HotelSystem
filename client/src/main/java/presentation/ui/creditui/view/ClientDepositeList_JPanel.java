@@ -102,7 +102,7 @@ public class ClientDepositeList_JPanel extends Personlistinfo_JPanel{
 		creditjb.setBounds(470, 30, 110, 30);
 		this.add(creditjb);
 
-		ImageIcon iconback = new ImageIcon("image//listback.png");
+		ImageIcon iconback = new ImageIcon(ClientDepositeList_JPanel.class.getResource("listback.png"));
 		backjl.setIcon(iconback);
 		backjl.setBounds(0, 0, 600, 90);
 		this.add(backjl);

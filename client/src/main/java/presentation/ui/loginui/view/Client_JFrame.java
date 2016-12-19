@@ -29,7 +29,6 @@ import businesslogic.bl.orderbl.Order;
 import po.HotelListPO;
 import presentation.ui.checkinui.view.CheckInInfo_JPanel;
 import presentation.ui.searchhotelui.view.ChooseArea_JPanel;
-import presentation.ui.searchhotelui.view.Searchhotel_JPanel;
 import presentation.ui.tools.Arrow_JButton;
 import presentation.ui.tools.Basic_JPanel;
 import presentation.ui.tools.HeadPanel;

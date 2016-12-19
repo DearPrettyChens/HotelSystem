@@ -44,8 +44,8 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 	private HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
 	private String userID;
 	private MyButton confirmjb=new MyButton();
-	private JLabel bgjl=new JLabel(new ImageIcon("image/bgbg.png"));
-	private JLabel logojl=new JLabel(ImageTool.getScaledImage(new ImageIcon("image/logo.png"), 120));
+	private JLabel bgjl=new JLabel(new ImageIcon(ChooseCityandEnterprise_JPanel.class.getResource("image/bgbg.png")));
+	private JLabel logojl=new JLabel(ImageTool.getScaledImage(new ImageIcon(ChooseCityandEnterprise_JPanel.class.getResource("image/logo.png")), 120));
 	
 	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
 	

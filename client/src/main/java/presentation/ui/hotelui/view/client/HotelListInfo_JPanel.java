@@ -70,8 +70,8 @@ public class HotelListInfo_JPanel  extends JPanel{
 	private MyButton orderjb=new MyButton();
 	
 	
-	private ImageIcon realstar=new ImageIcon("image/realstar.png");
-	private ImageIcon emptystar=new ImageIcon("image/emptystar.png");
+	private ImageIcon realstar=new ImageIcon(HotelListInfo_JPanel.class.getResource("image/realstar.png"));
+	private ImageIcon emptystar=new ImageIcon(HotelListInfo_JPanel.class.getResource("image/emptystar.png"));
 	
 	private JLabel starjl1=new JLabel();
 	private JLabel starjl2=new JLabel();

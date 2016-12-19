@@ -42,8 +42,8 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 	private JLabel cancledjl = new JLabel("已撤销订单", JLabel.CENTER);
 	private JLabel unusualjl = new JLabel("异常订单", JLabel.CENTER);
 
-	private ImageIcon shuline = new ImageIcon("image//shuline.png");
-	private ImageIcon hengling = new ImageIcon("image//hengline.png");
+	private ImageIcon shuline = new ImageIcon(HotelHasOrdered_JPanel.class.getResource("image/shuline.png"));
+	private ImageIcon hengling = new ImageIcon(HotelHasOrdered_JPanel.class.getResource("image/hengline.png"));
 	private JLabel shuline1 = new JLabel(shuline);
 	private JLabel shuline2 = new JLabel(shuline);
 	private JLabel shuline3 = new JLabel(shuline);

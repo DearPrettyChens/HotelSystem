@@ -33,9 +33,9 @@ public class Changepassword_JPanel  extends JPanel{
 	private JLabel oldpasswordJl=new JLabel("旧密码");
 	private JLabel newpasswordJl=new JLabel("新密码");
 	private JLabel makechangeJl=new JLabel("修改密码成功！");
-    private ImageIcon icon1=new ImageIcon("image//yuan1.png");
-    private ImageIcon icon2=new ImageIcon("image//yuan2.png");
-    private ImageIcon icon3=new ImageIcon("image//xuxian2.png");
+    private ImageIcon icon1=new ImageIcon(Changepassword_JPanel.class.getResource("yuan1.png"));
+    private ImageIcon icon2=new ImageIcon(Changepassword_JPanel.class.getResource("yuan2.png"));
+    private ImageIcon icon3=new ImageIcon(Changepassword_JPanel.class.getResource("xuxian2.png"));
     
     private  MyButton button1=new MyButton();
     private  MyButton button2=new MyButton();

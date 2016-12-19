@@ -100,7 +100,7 @@ public class SingleCreditinfo_JPanel extends JPanel {
 		changeinfo.setBounds(170, 73, 100, 30);
 		this.add(changeinfo);
 
-		ImageIcon icon = new ImageIcon("image//rec.png");
+		ImageIcon icon = new ImageIcon(SingleCreditinfo_JPanel.class.getResource("rec.png"));
 		background.setIcon(icon);
 		background.setBounds(0, 0, 400, 300);
 		this.add(background);
