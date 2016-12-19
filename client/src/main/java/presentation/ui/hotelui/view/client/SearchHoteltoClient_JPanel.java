@@ -79,8 +79,8 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	private JLabel checkouttimejl = new JLabel("退房：");
 
-	private MyTextfield fromtimejtf = new MyTextfield("请选择日期");
-	private MyTextfield totimejtf = new MyTextfield("请选择日期");
+	private MyTextfield fromtimejtf = new MyTextfield(TransHelper.dateToString(new Date()));
+	private MyTextfield totimejtf = new MyTextfield(TransHelper.dateToString(new Date()));
 
 	private CalendarPanel p1 = new CalendarPanel(fromtimejtf, "yyyy-MM-dd");
 	private CalendarPanel p2 = new CalendarPanel(totimejtf, "yyyy-MM-dd");
@@ -321,14 +321,14 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	public void addCompSearchjjp1() {
 
-		fromtimejtf.setBounds(450, 65, 100, 25);
+		fromtimejtf.setBounds(450, 65, 120, 25);
 		Searchjp1.add(fromtimejtf);
 		p1.initCalendarPanel();
 		JLabel l1 = new JLabel("日历面板");
 		p1.add(l1);
 		this.add(p1);
 
-		totimejtf.setBounds(600, 65, 100, 25);
+		totimejtf.setBounds(620, 65, 120, 25);
 		Searchjp1.add(totimejtf);
 		p2.initCalendarPanel();
 		JLabel l2 = new JLabel("日历面板");
@@ -411,7 +411,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		Searchjp1.add(checkintimejl);
 
 		checkouttimejl.setFont(font);
-		checkouttimejl.setBounds(560, 60, 100, 30);
+		checkouttimejl.setBounds(580, 60, 100, 30);
 		Searchjp1.add(checkouttimejl);
 
 		
