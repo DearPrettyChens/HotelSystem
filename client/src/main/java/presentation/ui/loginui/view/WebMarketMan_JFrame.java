@@ -2,7 +2,11 @@ package presentation.ui.loginui.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -35,6 +39,13 @@ import util.UserType;
  * 
  */
 public class WebMarketMan_JFrame extends JFrame {
+	
+	
+	
+	private boolean isDragged = false;
+	private Point tmp;
+	private Point loc;
+
 	// 关于网站营销人员基本信息
 	private String webMarketManID;
 	private String webMarketManName;
@@ -90,7 +101,7 @@ public class WebMarketMan_JFrame extends JFrame {
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
 		addHeadImage();// 添加头像
-
+		 this.setDragable();
 		this.setVisible(true);
 
 	}
@@ -172,5 +183,28 @@ public class WebMarketMan_JFrame extends JFrame {
 		new WebMarketMan_JFrame("俐俐","000820");
 
 	}
+	public void setDragable() {
+		this.addMouseListener(new MouseAdapter() {
 
+			public void mouseReleased(MouseEvent e) {
+				isDragged = false;
+			}
+
+			public void mousePressed(MouseEvent e) {
+				tmp = new Point(e.getX(), e.getY());
+				isDragged = true;
+			}
+
+		});
+
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				if (isDragged) {
+					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+					setLocation(loc);
+				}
+			}
+		});
+	}
 }

@@ -2,11 +2,14 @@ package presentation.ui.loginui.view;
 
 import java.awt.Component;
 import java.awt.Container;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -26,6 +29,10 @@ import presentation.ui.tools.narrow_JButton;
  * 
  */
 public class newclient_JFrame  extends JFrame{
+	private boolean isDragged = false;
+	private Point tmp;
+	private Point loc;
+
 	
 	private close_JButton close_jbutton=new close_JButton();
 	private narrow_JButton narrow_jbutton=new narrow_JButton(this);
@@ -64,7 +71,7 @@ public class newclient_JFrame  extends JFrame{
           addComp();//调用添加组件方法
           
 	     
-	     
+	     this.setDragable();
           
 	      this.setVisible(true);
 	      
@@ -165,8 +172,30 @@ public class newclient_JFrame  extends JFrame{
      } 
 
    
-	
-	
+   public void setDragable() {
+		this.addMouseListener(new MouseAdapter() {
+
+			public void mouseReleased(MouseEvent e) {
+				isDragged = false;
+			}
+
+			public void mousePressed(MouseEvent e) {
+				tmp = new Point(e.getX(), e.getY());
+				isDragged = true;
+			}
+
+		});
+
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				if (isDragged) {
+					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+					setLocation(loc);
+				}
+			}
+		});
+	}
 //	
 //	public static void main(String[] args){
 //		
@@ -175,5 +204,5 @@ public class newclient_JFrame  extends JFrame{
 //	
 //	}
 	
-
+   
 }

@@ -2,7 +2,11 @@ package presentation.ui.loginui.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -10,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import exception.NotFoundHotelException;
 import presentation.ui.availableroomui.view.RoomInfo_JPanel;
 import presentation.ui.checkinui.view.CheckOutInfo_JPanel;
 import presentation.ui.checkinui.view.CheckOutPanel;
@@ -21,7 +26,9 @@ import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelOverThreeStr_Jpanel;
 import presentation.ui.hotelstrategyui.view.HotelSpecialTimeStr_JPanel;
 import presentation.ui.hotelstrategyui.view.HotelStrategyPanel;
+import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
 import presentation.ui.hotelui.view.MaintainHotelBasicInfoPanel;
+import presentation.ui.loginui.distributecontroller.LoginDistributionController;
 import presentation.ui.orderui.view.LookOrderPanelInHotelWorker_JPanel;
 import presentation.ui.orderui.view.OrderDetailInfoToHotelWorker_JPanel;
 import presentation.ui.tools.Arrow_JButton;
@@ -34,6 +41,7 @@ import presentation.ui.tools.RightContainerPanel;
 import presentation.ui.tools.close_JButton;
 import presentation.ui.tools.narrow_JButton;
 import util.UserType;
+import vo.hotelvo.HotelBasicInfoVO;
 
 /**
  * 酒店工作人员左上角的所有面板
@@ -45,6 +53,11 @@ import util.UserType;
  * 
  */
 public class Hotelworker_JFrame extends JFrame {
+	
+	private boolean isDragged = false;
+	private Point tmp;
+	private Point loc;
+
 	// 关于顾客基本信息
 	private String hotelWorkerID = "";
 	private String hotelName = "南京金鹰国际酒店";
@@ -91,7 +104,8 @@ public class Hotelworker_JFrame extends JFrame {
 	private HeadPanel headPanel;
 
 	private String hotelID="";
-	
+
+	private HotelDistributionController hotelDistributionController=HotelDistributionController.getInstance();
 	private MaintainHotelBasicInfoPanel maintainHotelBasicInfoPanel;
 	 
 	
@@ -107,6 +121,14 @@ public class Hotelworker_JFrame extends JFrame {
 		this.hotelName=userName;
 		this.hotelID=userID;
 		this.hotelWorkerID=userID;
+        HotelBasicInfoVO hotelBasicInfoVO;
+		try {
+			hotelBasicInfoVO = hotelDistributionController.getHotelBasicInfo(userID);
+        this.imageIcon=hotelBasicInfoVO.getHotelImage();
+		} catch (NotFoundHotelException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.namejl1= new JLabel(hotelName);
 		this.myhotel_Jlabel1 = new Hotelworker_JLabel("● 维护酒店信息",0,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
 		this.myhotel_Jlabel2 = new Hotelworker_JLabel("● 录入客房信息",1,allLabels,rightContainerPanel,hotelName,hotelWorkerID,UserType.HotelWorker);
@@ -137,7 +159,7 @@ public class Hotelworker_JFrame extends JFrame {
 		addComp();// 调用添加组件方法
 
 		addHeadImage();// 添加头像
-
+		this.setDragable();
 		this.setVisible(true);
 
 	}
@@ -273,12 +295,31 @@ public class Hotelworker_JFrame extends JFrame {
 
 	}
 
-	
-	
-	public static void main(String[] args) {
+	public void setDragable() {
+		this.addMouseListener(new MouseAdapter() {
 
-		new Hotelworker_JFrame("菲菲","000001");
+			public void mouseReleased(MouseEvent e) {
+				isDragged = false;
+			}
 
+			public void mousePressed(MouseEvent e) {
+				tmp = new Point(e.getX(), e.getY());
+				isDragged = true;
+			}
+
+		});
+
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				if (isDragged) {
+					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+					setLocation(loc);
+				}
+			}
+		});
 	}
+	
+	
 
 }

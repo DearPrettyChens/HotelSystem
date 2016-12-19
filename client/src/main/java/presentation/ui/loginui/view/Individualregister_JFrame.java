@@ -3,9 +3,13 @@ package presentation.ui.loginui.view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.Date;
 
 import javax.naming.spi.DirStateFactory.Result;
@@ -55,6 +59,12 @@ import vo.personnelvo.PersonDetailVO;
  *
  */
 public class Individualregister_JFrame extends JFrame {
+	
+	
+	private boolean isDragged = false;
+	private Point tmp;
+	private Point loc;
+
 
 	private Font font = new Font("宋体", Font.BOLD, 20);
 	private Color color = new Color(69, 140, 116);
@@ -119,6 +129,7 @@ public class Individualregister_JFrame extends JFrame {
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
 	    addScrollPane();
+	    this.setDragable();
 		this.setVisible(true);
 
 	}
@@ -573,7 +584,28 @@ public class Individualregister_JFrame extends JFrame {
 	
 	
 	 }
-	
-	
+	 public void setDragable() {
+			this.addMouseListener(new MouseAdapter() {
 
+				public void mouseReleased(MouseEvent e) {
+					isDragged = false;
+				}
+
+				public void mousePressed(MouseEvent e) {
+					tmp = new Point(e.getX(), e.getY());
+					isDragged = true;
+				}
+
+			});
+
+			this.addMouseMotionListener(new MouseMotionAdapter() {
+
+				public void mouseDragged(MouseEvent e) {
+					if (isDragged) {
+						loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+						setLocation(loc);
+					}
+				}
+			});
+		}
 }

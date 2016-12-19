@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -46,6 +47,11 @@ import util.UserType;
  *
  */
 public class login_JFrame extends JFrame {
+	
+	private boolean isDragged = false;
+	private Point tmp;
+	private Point loc;
+
 
 	private name_JTextField name = new name_JTextField();// 登录时姓名填写区域
 	private password_JPasswordFeild password = new password_JPasswordFeild();// 密码区域
@@ -81,12 +87,13 @@ public class login_JFrame extends JFrame {
 		this.setSize(1000, 700);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setUndecorated(true);
-
-		this.setLayout(null);
+		getContentPane().setLayout(null);
+		
 
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
-
+		 this.setDragable();
+	
 		this.setVisible(true);
 
 	}
@@ -105,10 +112,13 @@ public login_JFrame(Logingif_JFrame f) {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setUndecorated(true);
 
-		this.setLayout(null);
+		getContentPane().setLayout(null);
 
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
+		
+		 this.setDragable();
+		 
 
 		this.setVisible(true);
 
@@ -279,8 +289,31 @@ public login_JFrame(Logingif_JFrame f) {
 //	    	frame.dispose();
 //	}
 //	}
+	public void setDragable() {
+		this.addMouseListener(new MouseAdapter() {
 
+			public void mouseReleased(MouseEvent e) {
+				isDragged = false;
+			}
 
+			public void mousePressed(MouseEvent e) {
+				tmp = new Point(e.getX(), e.getY());
+				isDragged = true;
+			}
+
+		});
+
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				if (isDragged) {
+					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+					setLocation(loc);
+				}
+			}
+		});
+	}
+	
 }
 
 

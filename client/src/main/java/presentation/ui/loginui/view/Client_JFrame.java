@@ -5,11 +5,14 @@ import java.awt.Color;
 
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.geom.Area;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
@@ -81,6 +84,12 @@ import vo.searchhotelvo.HotelSearchInfoVO;
  * 
  */
 public class Client_JFrame extends JFrame {
+	
+	private boolean isDragged = false;
+	
+	private Point tmp;
+	private Point loc;
+	
     //关于顾客基本信息
 	private String customerID;
 	private String customerName;
@@ -160,7 +169,7 @@ public class Client_JFrame extends JFrame {
 		setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
         addHeadImage();//添加头像
-
+        this.setDragable();
         
 		this.setVisible(true);
 	}
@@ -257,13 +266,32 @@ public class Client_JFrame extends JFrame {
 
 	}
 
-	public static void main(String[] args) {
-
-		new Client_JFrame("陈小豆","000001");
 	
-        
-		
-		
+	public void setDragable() {
+		this.addMouseListener(new MouseAdapter() {
+
+			public void mouseReleased(MouseEvent e) {
+				isDragged = false;
+			}
+
+			public void mousePressed(MouseEvent e) {
+				tmp = new Point(e.getX(), e.getY());
+				isDragged = true;
+			}
+
+		});
+
+		this.addMouseMotionListener(new MouseMotionAdapter() {
+
+			public void mouseDragged(MouseEvent e) {
+				if (isDragged) {
+					loc = new Point(getLocation().x + e.getX() - tmp.x, getLocation().y + e.getY() - tmp.y);
+					setLocation(loc);
+				}
+			}
+		});
 	}
+	
+	
 
 }
