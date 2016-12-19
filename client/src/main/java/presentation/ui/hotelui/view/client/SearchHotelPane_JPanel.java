@@ -22,11 +22,20 @@ import vo.searchhotelvo.HotelSearchInfoVO;
  */
 public class SearchHotelPane_JPanel extends JPanel {
 	private SearchHoteltoClient_JPanel searchHoteltoClient_JPanel;
-    private HotelListPane_JPanel hotelListPane_JPanel ;
+    public HotelListPane_JPanel hotelListPane_JPanel ;
 	private JScrollPane scrollPane=new JScrollPane();
 	private JPanel panel=new JPanel();
     private ViewTag tag;
 	
+//    private static SearchHotelPane_JPanel searchHotelPane_JPanel;
+//    
+//    public static SearchHotelPane_JPanel getInstance(HotelSearchInfoVO hotelSearchInfoVO,ViewTag tag) {
+//		if(searchHotelPane_JPanel==null){
+//			searchHotelPane_JPanel=new SearchHotelPane_JPanel(hotelSearchInfoVO, tag);
+//		}
+//		return searchHotelPane_JPanel;
+//	}
+    
 	public SearchHotelPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO,ViewTag tag) {
 		this.tag=tag;
 		this.setLayout(null);
@@ -48,7 +57,6 @@ public class SearchHotelPane_JPanel extends JPanel {
 		panel.add(searchHoteltoClient_JPanel);
 		panel.add(hotelListPane_JPanel);
 		panel.setPreferredSize(new Dimension(780, 300+hotelListPane_JPanel.getHeight()));
-
 		scrollPane.setViewportView(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		this.add(scrollPane);

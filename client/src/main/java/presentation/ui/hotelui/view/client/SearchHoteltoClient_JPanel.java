@@ -51,6 +51,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	private HotelSearchInfoVO vo = new HotelSearchInfoVO();
 	
+	
 	private City city2;
 	private TradingArea tradingArea2;
 	private String city = "";
@@ -320,14 +321,14 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 	public void addCompSearchjjp1() {
 
-		fromtimejtf.setBounds(400, 65, 100, 25);
+		fromtimejtf.setBounds(450, 65, 100, 25);
 		Searchjp1.add(fromtimejtf);
 		p1.initCalendarPanel();
 		JLabel l1 = new JLabel("日历面板");
 		p1.add(l1);
 		this.add(p1);
 
-		totimejtf.setBounds(550, 65, 100, 25);
+		totimejtf.setBounds(600, 65, 100, 25);
 		Searchjp1.add(totimejtf);
 		p2.initCalendarPanel();
 		JLabel l2 = new JLabel("日历面板");
@@ -362,7 +363,7 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 			}
 		});
 
-		cityjl.setText("城市： 南京");
+		cityjl.setText("城市：");
 		cityjl.setFont(font);
 
 		cityjl.setBounds(100, 60, 100, 30);
@@ -372,13 +373,13 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 		tradingareajl.setText("商圈：");
 		tradingareajl.setFont(font);
-		tradingareajl.setBounds(230, 60, 100, 30);
+		tradingareajl.setBounds(250, 60, 100, 30);
 		Searchjp1.add(tradingareajl);
 
 		citycomboBox.addItem("南京");
 		citycomboBox.setSelectedItem(city);
 
-		citycomboBox.setBounds(140, 60, 80, 30);
+		citycomboBox.setBounds(140, 60, 100, 30);
 		Searchjp1.add(citycomboBox);
 
 		//citycomboBox.setBounds(150, 60, 50, 30);
@@ -386,12 +387,12 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 
 
 		for(TradingArea e:TradingArea.values()){
-			tradingareacomboBox.addItem(e.toString());
+			tradingareacomboBox.addItem(e.getChinese());
 		}
 		
 		tradingareacomboBox.setSelectedItem(tradingarea);
 
-		tradingareacomboBox.setBounds(270, 60, 80, 30);
+		tradingareacomboBox.setBounds(290, 60, 	100, 30);
 
 		//tradingareacomboBox.setBounds(235, 60, 115, 30);
 
@@ -406,11 +407,11 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		});
 
 		checkintimejl.setFont(font);
-		checkintimejl.setBounds(360, 60, 150, 30);
+		checkintimejl.setBounds(400, 60, 150, 30);
 		Searchjp1.add(checkintimejl);
 
 		checkouttimejl.setFont(font);
-		checkouttimejl.setBounds(510, 60, 100, 30);
+		checkouttimejl.setBounds(560, 60, 100, 30);
 		Searchjp1.add(checkouttimejl);
 
 		
@@ -1058,15 +1059,17 @@ public class SearchHoteltoClient_JPanel extends JPanel {
 		else if(searchjtf.getText().equals("")){
 			vo.setHotelName(null);
 		}
-		
 		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
 		searchHotelPane_JPanel.setHotelListPanePanel(pane_JPanel);
+		//searchHotelPane_JPanel.hotelListPane_JPanel.changeHotelList(vo);;
 
 	}
 	public void sortHotel(HotelSortType type){
 		vo.setHotelSortType(type);
 		HotelListPane_JPanel pane_JPanel = new HotelListPane_JPanel(vo, ViewTag.HOTELRESERVERSION);
 		searchHotelPane_JPanel.setHotelListPanePanel(pane_JPanel);
+		//vo.setHotelSortType(type);
+		//searchHotelPane_JPanel.hotelListPane_JPanel.changeHotelList(vo);;
 	}
 }
 

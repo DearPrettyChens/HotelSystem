@@ -170,6 +170,9 @@ public class HotelStrategy {
 			if (tempDiscount < discount) {
 				discount = tempDiscount;
 			}
+			if(tempDiscount==0){
+				discount=1;
+			}
 		}
 
 		return discount;

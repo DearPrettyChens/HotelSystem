@@ -80,7 +80,7 @@ public class ChooseCityandEnterprise_JPanel  extends JPanel {
 		
 		
 		for(TradingArea e:TradingArea.values()){
-			tradingareacomboBox.addItem(e.toString());
+			tradingareacomboBox.addItem(e.getChinese());
 		}
 //		
 //		tradingareacomboBox.addItem("新街口");

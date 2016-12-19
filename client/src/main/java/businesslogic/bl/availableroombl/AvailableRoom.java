@@ -75,6 +75,7 @@ public class AvailableRoom {
 	 */
 	public ResultMessage confirmAvailableRoomInfo(String hotelID, AvailableRoomInfoVO availableRoomInfoVO)
 			throws NullHotelIDException {
+		ResultMessage resultMessage=ResultMessage.FAIL;
 		if (hotelID == null) {
 			throw new NullHotelIDException();
 		}
@@ -88,15 +89,18 @@ public class AvailableRoom {
 			boolean tag = availableRoomInfoVO.isTag();
 			
 			if (tag == true) {
-				return availableRoomDao.addAvailableRoomInfo(availableRoomInfoVO.toPO());
+				resultMessage=availableRoomDao.addAvailableRoomInfo(availableRoomInfoVO.toPO());
 			} else {
-				return availableRoomDao.modifyAvailableRoomInfo(availableRoomInfoVO.toPO());
+				resultMessage=availableRoomDao.modifyAvailableRoomInfo(availableRoomInfoVO.toPO());
+			}
+			if(resultMessage==ResultMessage.SUCCESS){
+				resultMessage=setBestPrice(hotelID, discount);
 			}
 
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return ResultMessage.FAIL;
+		return resultMessage;
 	}
 
 	/**

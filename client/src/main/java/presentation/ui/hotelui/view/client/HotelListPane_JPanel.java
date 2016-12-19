@@ -44,6 +44,8 @@ public class HotelListPane_JPanel extends JPanel {
 	}
 
 	public void addComp(HotelSearchInfoVO hotelSearchInfoVO) {
+		
+		System.out.println("hotellistpane");
 		hotelListVOs = 
 				searchhotelDistributionController.getSortedHotelList(hotelSearchInfoVO);
 				//CustomerHotelList(hotelSearchInfoVO.getCustomerID());
