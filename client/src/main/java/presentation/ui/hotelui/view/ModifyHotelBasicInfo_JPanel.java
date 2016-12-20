@@ -64,7 +64,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	
 	private String imagePath;
 
-	private ImageIcon hotelimage = ImageTool.getScaledImage(new ImageIcon(ModifyHotelBasicInfo_JPanel.class.getResource("image/hotel.jpg")), 160);
+	private ImageIcon hotelimage = ImageTool.getScaledImage(new ImageIcon(ModifyHotelBasicInfo_JPanel.class.getResource("hotel.jpg")), 160);
 
 	private City city2;
 	private TradingArea tradingArea;
