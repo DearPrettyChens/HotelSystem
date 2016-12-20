@@ -56,7 +56,7 @@ public class Webmannger_JFrame extends JFrame {
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
 	private Home_JButton home_JButton = new Home_JButton();
 	private Arrow_JButton arrow_JButton = new Arrow_JButton(this);
-	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
+	private JLabel line = new JLabel(new ImageIcon(Webmannger_JFrame.class.getResource("image/line.png")));
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
@@ -77,10 +77,10 @@ public class Webmannger_JFrame extends JFrame {
 		this.managerName=userName;
 		this.userID=userID;
 		this.namejl=new JLabel(managerName);
-		this.jp1= new Basic_JPanel("营销人员", "image//user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
-		this.jp2= new Basic_JPanel("顾客会员", "image//user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
-		this.jp3= new Basic_JPanel("酒店人员", "image//shop.png", 2, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
-		this.jp4=new Basic_JPanel("修改密码", "image//password.png", 3, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp1= new Basic_JPanel("营销人员", "image/user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp2= new Basic_JPanel("顾客会员", "image/user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp3= new Basic_JPanel("酒店人员", "image/shop.png", 2, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp4=new Basic_JPanel("修改密码", "image/password.png", 3, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);

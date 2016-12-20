@@ -259,17 +259,17 @@ public login_JFrame(Logingif_JFrame f) {
 	public void setBak() {
 
 		((JPanel) this.getContentPane()).setOpaque(false);
-		ImageIcon img = new ImageIcon("image//bg2.png");
+		ImageIcon img = new ImageIcon(login_JFrame.class.getResource("image/bg2.png"));
 		JLabel background = new JLabel(img);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 
 	}
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		login_JFrame s = new login_JFrame();
 
-	}
+	}*/
 	
 	
 //	class MyThread extends Thread{

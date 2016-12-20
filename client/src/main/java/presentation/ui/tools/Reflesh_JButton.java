@@ -18,7 +18,7 @@ import javax.swing.JFrame;
  * 
  */
 public class Reflesh_JButton extends JButton{
-	 private ImageIcon icon=new ImageIcon("image//reflesh.png");
+	 private ImageIcon icon=new ImageIcon(Reflesh_JButton.class.getResource("image/reflesh.png"));
 	 //private JFrame jf;
 	 
 	 public Reflesh_JButton(){

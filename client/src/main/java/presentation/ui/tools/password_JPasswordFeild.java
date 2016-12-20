@@ -31,7 +31,7 @@ public class password_JPasswordFeild extends JPasswordField {
 
     public password_JPasswordFeild() {
 //        获取当前路径下的图片
-        icon = new ImageIcon(getClass().getResource("password.png"));
+        icon = new ImageIcon(getClass().getResource("image/password.png"));
         Insets insets = new Insets(0, 20, 0, 0);
         //设置文本输入距左边20
         this.setMargin(insets);

@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  */
 public class Logingif_JFrame   extends JFrame{
 	
-	private JLabel gif=new JLabel(new ImageIcon("image/loginback.gif"));
+	private JLabel gif=new JLabel(new ImageIcon(Logingif_JFrame.class.getResource("image/loginback.gif")));
 	
 	//private close_JButton close_jbutton = new close_JButton();// 关闭窗口按钮
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
@@ -61,7 +61,7 @@ public class Logingif_JFrame   extends JFrame{
 	public void setBak() {
 
 		((JPanel) this.getContentPane()).setOpaque(false);
-		ImageIcon img = new ImageIcon("image//bg2.png");
+		ImageIcon img = new ImageIcon(Logingif_JFrame.class.getResource("image/bg2.png"));
 		JLabel background = new JLabel(img);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());

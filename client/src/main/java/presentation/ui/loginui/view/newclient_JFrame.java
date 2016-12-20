@@ -96,20 +96,20 @@ public class newclient_JFrame  extends JFrame{
    	 this.add(narrow_jbutton);
    	 
    	 
-   	 ImageIcon icon1=new ImageIcon("image//clientlogo.png");
+   	 ImageIcon icon1=new ImageIcon(newclient_JFrame.class.getResource("image/clientlogo.png"));
    	 individual_logo.setBounds(250,300,150,150);
    	 individual_logo.setIcon(icon1);
    	 this.add(individual_logo);
    	 
    	 
    	 
-   	 ImageIcon icon2=new ImageIcon("image//enterpriselogo.png");
+   	 ImageIcon icon2=new ImageIcon(newclient_JFrame.class.getResource("image/enterpriselogo.png"));
    	 enterprise_logo.setBounds(600,300,150,150);
    	 enterprise_logo.setIcon(icon2);
    	 this.add(enterprise_logo);
    	 
    	 
-   	 ImageIcon icon3=new ImageIcon("image//ninthday.png");
+   	 ImageIcon icon3=new ImageIcon(newclient_JFrame.class.getResource("image/ninthday.png"));
    	 ninthday_logo.setBounds(300,50,400,150);
    	 ninthday_logo.setIcon(icon3);
   	 this.add(ninthday_logo);
@@ -165,7 +165,7 @@ public class newclient_JFrame  extends JFrame{
 	
 	
      ((JPanel)this.getContentPane()).setOpaque(false); 
-      ImageIcon img = new ImageIcon("image//bg.png"); 
+      ImageIcon img = new ImageIcon(newclient_JFrame.class.getResource("image/bg.png")); 
       JLabel background = new JLabel(img);this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
       background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight()); 
 

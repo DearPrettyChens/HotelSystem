@@ -22,22 +22,22 @@ public class UserImage {
 	 * @return
 	 */
 	public static Image getUserImage(ImageIcon imageicon,UserType userType) {
-		
+		Image image;
 		switch (userType) {
 		case Customer:
 			if(imageicon==null){
-				return getImageFromPath("image//customer.png");		
+				return new ImageIcon(UserImage.class.getResource("image/customer.png")).getImage();		
 			}
 			return getImageFromImageIcon(imageicon);
 		case HotelWorker:
 			if(imageicon==null){
-				return getImageFromPath("image//hotel.jpg");
+				return new ImageIcon(UserImage.class.getResource("image/hotel.jpg")).getImage();
 			}			
 			return getImageFromImageIcon(imageicon);
 		case WebMarketMan:
-			return getImageFromPath("image//logo.png");
+			return new ImageIcon(UserImage.class.getResource("image/logo.png")).getImage();
 		case Manager:
-			return getImageFromPath("image//logo.png");
+			return new ImageIcon(UserImage.class.getResource("image/logo.png")).getImage();
 		}
 		return null;
 	}

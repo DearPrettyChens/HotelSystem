@@ -67,12 +67,12 @@ public class Basic_JPanel extends JPanel {
 		jl1.setFont(new Font("宋体", Font.BOLD, 16));
 		jl1.setForeground(Color.white);
 
-		ImageIcon icon = new ImageIcon(image);
+		ImageIcon icon = new ImageIcon(Basic_JPanel.class.getResource(image));
 		JLabel jl2 = new JLabel(icon);
 		jl2.setBounds(30, 24, 30, 34);
 		this.add(jl2);
 
-		ImageIcon icon1 = new ImageIcon("image//triangle.png");
+		ImageIcon icon1 = new ImageIcon(Basic_JPanel.class.getResource("image/triangle.png"));
 		jl4.setIcon(icon1);
 		jl4.setBounds(185, 16, 20, 50);
 		this.add(jl4);

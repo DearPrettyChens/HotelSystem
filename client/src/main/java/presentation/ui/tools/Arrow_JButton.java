@@ -21,7 +21,7 @@ import presentation.ui.loginui.view.login_JFrame;
  * 
  */
 public class Arrow_JButton extends JButton{
-	 private ImageIcon icon=new ImageIcon("image//out.png");
+	 private ImageIcon icon=new ImageIcon(Arrow_JButton.class.getResource("image/out.png"));
 	 //private JFrame jf;
 	 private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
      private JFrame jf;

@@ -59,7 +59,7 @@ public class WebMarketMan_JFrame extends JFrame {
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
 	private Home_JButton home_JButton = new Home_JButton();
 	private Arrow_JButton arrow_JButton = new Arrow_JButton(this);
-	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
+	private JLabel line = new JLabel(new ImageIcon(WebMarketMan_JFrame.class.getResource("image/line.png")));
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
@@ -82,10 +82,10 @@ public class WebMarketMan_JFrame extends JFrame {
 		this.webMarketManName=userName;
 		this.webMarketManID=userID;
 		this.namejl=new JLabel(webMarketManName);
-		this.jp1 = new Basic_JPanel("管理订单", "image//search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
-		this.jp2 = new Basic_JPanel("信用充值", "image//touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
-		this.jp3= new Basic_JPanel("会员等级", "image//zizhi-2.png", 2, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
-		this.jp4= new Basic_JPanel("营销策略", "image//bulb.png", 3, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp1 = new Basic_JPanel("管理订单", "image/search.png", 0, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp2 = new Basic_JPanel("信用充值", "image/touzichanpin.png", 1, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp3= new Basic_JPanel("会员等级", "image/zizhi-2.png", 2, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
+		this.jp4= new Basic_JPanel("营销策略", "image/bulb.png", 3, allpanel, rightContainerPanel,this.webMarketManName,this.webMarketManID,UserType.WebMarketMan);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);

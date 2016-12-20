@@ -10,8 +10,8 @@ public class Clientbasic_JButton  extends JButton{
 	private ImageIcon icon1;
 	private ImageIcon icon2;
 	public Clientbasic_JButton(String s1,String s2){
-		icon1=new ImageIcon(s1);
-		icon2=new ImageIcon(s2);
+		icon1=new ImageIcon(Clientbasic_JButton.class.getResource(s1));
+		icon2=new ImageIcon(Clientbasic_JButton.class.getResource(s2));
 		
 		
 		this.setSize(200,200);

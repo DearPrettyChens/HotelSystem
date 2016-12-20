@@ -100,7 +100,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 	private boolean passwordValid = false;
 	private boolean telephoneValid = false;
 
-	private String imagePath = "image//logo.png";
+	private String imagePath = "image/logo.png";
 	private ImageIcon imageIcon=null;
 	
 	private JScrollPane scrollPane=new JScrollPane();
@@ -145,7 +145,7 @@ public class Enterpriseregister_JFrame extends JFrame {
         
 //		realimage_JLabel.setBounds(400, 500, 100, 100);
         realimage_JLabel.setBounds(100, 450, 150, 150);
-		ImageIcon icon2 = new ImageIcon("image//clientimage.png");
+		ImageIcon icon2 = new ImageIcon(Enterpriseregister_JFrame.class.getResource("image/clientimage.png"));
 		icon2 = ImageTool.getScaledImage(icon2, 150);
 		realimage_JLabel.setIcon(icon2);
 		// this.add(realimage_JLabel);
@@ -208,7 +208,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 //		this.add(enterprisename_JLabel);
 		panel.add(enterprisename_JLabel);
 
-		ImageIcon icon3 = new ImageIcon("image//ninthday.png");
+		ImageIcon icon3 = new ImageIcon(Enterpriseregister_JFrame.class.getResource("image/ninthday.png"));
 		ninthday_logo.setBounds(300, 10, 400, 150);
 		ninthday_logo.setIcon(icon3);
 		this.add(ninthday_logo);
@@ -568,7 +568,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 				String path=FileChooseHelper.fileChoose();
 				if(path!=null){
 					imagePath=path;
-					imageIcon=new ImageIcon(imagePath);
+					imageIcon=new ImageIcon(Enterpriseregister_JFrame.class.getResource(imagePath));
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
 					realimage_JLabel.setIcon(imageIcon);
 					Enterpriseregister_JFrame.this.realimage_JLabel.updateUI();
@@ -588,19 +588,19 @@ public class Enterpriseregister_JFrame extends JFrame {
 	public void setBak() {
 
 		((JPanel) this.getContentPane()).setOpaque(false);
-		ImageIcon img = new ImageIcon("image//bg3.png");
+		ImageIcon img = new ImageIcon(Enterpriseregister_JFrame.class.getResource("image/bg3.png"));
 		JLabel background = new JLabel(img);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());
 
 	}
 
-	 public static void main(String[] args){
+/*	 public static void main(String[] args){
 	
 	 new Enterpriseregister_JFrame();
 	
 	
-	 }
+	 }*/
 
 	 
 	 public void setDragable() {

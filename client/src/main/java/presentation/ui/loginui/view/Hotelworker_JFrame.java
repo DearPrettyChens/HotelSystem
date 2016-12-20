@@ -70,7 +70,7 @@ public class Hotelworker_JFrame extends JFrame {
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
 	private Home_JButton home_JButton = new Home_JButton();
 	private Arrow_JButton arrow_JButton = new Arrow_JButton(this);
-	private JLabel line = new JLabel(new ImageIcon("image//line.png"));
+	private JLabel line = new JLabel(new ImageIcon(Hotelworker_JFrame.class.getResource("image/line.png")));
 
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
@@ -211,7 +211,7 @@ public class Hotelworker_JFrame extends JFrame {
 		myhotel_Jlabel.setBounds(60, 20, 100, 30);
 		sidepanel.add(myhotel_Jlabel);
 
-		ImageIcon icon1 = new ImageIcon("image//user.png");
+		ImageIcon icon1 = new ImageIcon(Hotelworker_JFrame.class.getResource("image/user.png"));
 		myhotelimg_Jlabel.setIcon(icon1);
 		myhotelimg_Jlabel.setBounds(15, 20, 30, 30);
 		sidepanel.add(myhotelimg_Jlabel);
@@ -221,7 +221,7 @@ public class Hotelworker_JFrame extends JFrame {
 		myorder_Jlabel.setBounds(60, 120, 100, 30);
 		sidepanel.add(myorder_Jlabel);
 
-		ImageIcon icon2 = new ImageIcon("image//star.png");
+		ImageIcon icon2 = new ImageIcon(Hotelworker_JFrame.class.getResource("image/star.png"));
 		myorderimg_Jlabel.setIcon(icon2);
 		myorderimg_Jlabel.setBounds(15, 120, 30, 30);
 		sidepanel.add(myorderimg_Jlabel);
@@ -231,7 +231,7 @@ public class Hotelworker_JFrame extends JFrame {
 		mystr_Jlabel.setBounds(60, 220, 100, 30);
 		sidepanel.add(mystr_Jlabel);
 
-		ImageIcon icon3 = new ImageIcon("image//note.png");
+		ImageIcon icon3 = new ImageIcon(Hotelworker_JFrame.class.getResource("image/note.png"));
 		mystrimg_Jlabel.setIcon(icon3);
 		mystrimg_Jlabel.setBounds(15, 220, 30, 30);
 		sidepanel.add(mystrimg_Jlabel);
@@ -241,7 +241,7 @@ public class Hotelworker_JFrame extends JFrame {
 		checkin_Jlabel.setBounds(60, 320, 100, 30);
 		sidepanel.add(checkin_Jlabel);
 
-		ImageIcon icon4 = new ImageIcon("image//shop.png");
+		ImageIcon icon4 = new ImageIcon(Hotelworker_JFrame.class.getResource("image/shop.png"));
 		checkinimg_Jlabel.setIcon(icon4);
 		checkinimg_Jlabel.setBounds(15, 320, 30, 30);
 		sidepanel.add(checkinimg_Jlabel);

@@ -108,7 +108,7 @@ public class Orderlistinfo_JPanel extends Personlistinfo_JPanel {
 				, 80, 20);
 		this.add(canclejb);
 
-		ImageIcon iconback = new ImageIcon("image//listback.png");
+		ImageIcon iconback = new ImageIcon(Orderlistinfo_JPanel.class.getResource("image/listback.png"));
 		backjl.setIcon(iconback);
 		backjl.setBounds(0, 0, 600, 90);
 		this.add(backjl);

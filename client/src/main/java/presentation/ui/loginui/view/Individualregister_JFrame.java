@@ -173,7 +173,7 @@ public class Individualregister_JFrame extends JFrame {
 		panel.add(registerInfoBesideBirth);
 
 		realimage_JLabel.setBounds(100, 450, 150, 150);
-		ImageIcon icon2 = new ImageIcon(imagePath);
+		ImageIcon icon2 = new ImageIcon(Individualregister_JFrame.class.getResource(imagePath));
 		icon2 = ImageTool.getScaledImage(icon2, 150);
 		realimage_JLabel.setIcon(icon2);
 		panel.add(realimage_JLabel);
@@ -219,7 +219,7 @@ public class Individualregister_JFrame extends JFrame {
 		image_JLabel.setFont(font);
 		panel.add(image_JLabel);
 
-		ImageIcon icon3 = new ImageIcon("image//ninthday.png");
+		ImageIcon icon3 = new ImageIcon(Individualregister_JFrame.class.getResource("image/ninthday.png"));
 		ninthday_logo.setBounds(300, 10, 400, 150);
 		ninthday_logo.setIcon(icon3);
 		this.add(ninthday_logo);
@@ -551,7 +551,7 @@ public class Individualregister_JFrame extends JFrame {
 				String path=FileChooseHelper.fileChoose();
 				if(path!=null){
 					imagePath=path;
-					imageIcon=new ImageIcon(imagePath);
+					imageIcon=new ImageIcon(Individualregister_JFrame.class.getResource(imagePath));
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
 					realimage_JLabel.setIcon(imageIcon);
 					Individualregister_JFrame.this.realimage_JLabel.updateUI();
@@ -571,7 +571,7 @@ public class Individualregister_JFrame extends JFrame {
 	public void setBak() {
 
 		((JPanel) this.getContentPane()).setOpaque(false);
-		ImageIcon img = new ImageIcon("image//bg3.png");
+		ImageIcon img = new ImageIcon(Individualregister_JFrame.class.getResource("image/bg3.png"));
 		JLabel background = new JLabel(img);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());

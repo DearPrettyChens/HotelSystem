@@ -206,7 +206,7 @@ public class Orderdetailinfo_JPanel  extends JPanel{
     	this.add(bedtypejl);
     	
     	
-    	ImageIcon icon=new ImageIcon ("image//orderdetailinfo.png");
+    	ImageIcon icon=new ImageIcon (Orderdetailinfo_JPanel.class.getResource("image/orderdetailinfo.png"));
     	title.setIcon(icon);
         title.setBounds(0,0,800,100);
         this.add(title);

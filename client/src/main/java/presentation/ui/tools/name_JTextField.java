@@ -32,7 +32,7 @@ public class name_JTextField extends JTextField implements FocusListener {
 	  
 	    public name_JTextField() {  
        // 获取当前路径下的图片  
-	        icon = new ImageIcon(getClass().getResource("name.png")); 
+	        icon = new ImageIcon(getClass().getResource("image/name.png")); 
 	        
 	        Insets insets = new Insets(50, 20, 20, 0);  
 	        //设置文本输入距左边20  
