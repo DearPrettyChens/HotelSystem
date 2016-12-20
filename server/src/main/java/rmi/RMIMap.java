@@ -32,17 +32,17 @@ import dao.webstrategydao.WebStrategyDao;
 
 /**
  * 
- * 用于建立对应的dao表，方便遍历，方便修改
- * 运用组合实现Map的功能
+ * 用于建立对应的dao表，方便遍历，方便修改 运用组合实现Map的功能
+ * 
  * @author CSY
  *
  */
 public class RMIMap {
 	private Map<String, Object> map;
 	private static RMIMap rmiMap;
-	private Iterator<Map.Entry<String,Object>> entries;
-	private Map.Entry<String, Object> entry;	
-	
+	private Iterator<Map.Entry<String, Object>> entries;
+	private Map.Entry<String, Object> entry;
+
 	private AvailableRoomDao availableRoomDao;
 	private CheckinDao checkinDao;
 	private CreditDao creditDao;
@@ -54,12 +54,12 @@ public class RMIMap {
 	private UserDao userDao;
 	private WebStrategyDao webStrategyDao;
 	private LogDao logDao;
-	
+
 	private static UnicastRemoteObject dao;
 
 	private RMIMap() {
 		try {
-			map=new ConcurrentHashMap<String, Object>();
+			map = new ConcurrentHashMap<String, Object>();
 			init();
 			entries = map.entrySet().iterator();
 		} catch (RemoteException e) {
@@ -91,7 +91,7 @@ public class RMIMap {
 	}
 
 	private void createDAO() throws RemoteException {
-		availableRoomDao =AvailableRoomDaoImpl.getInstance();
+		availableRoomDao = AvailableRoomDaoImpl.getInstance();
 		checkinDao = CheckinDaoImpl.getInstance();
 		creditDao = CreditDaoImpl.getInstance();
 		hotelDao = HotelDaoImpl.getInstance();
@@ -104,28 +104,27 @@ public class RMIMap {
 		logDao = LogDaoImpl.getInstance();
 	}
 
-
-	
-	public boolean hasNext(){
-		boolean hasNext= entries.hasNext();
-		if(!hasNext){
-			entries=map.entrySet().iterator();
+	public boolean hasNext() {
+		boolean hasNext = entries.hasNext();
+		if (!hasNext) {
+			entries = map.entrySet().iterator();
 		}
 		return hasNext;
 	}
+
 	public void next() {
-		entry=entries.next();
+		entry = entries.next();
 	}
-	
+
 	public String getDaoName() {
-	    String name=entry.getKey();
+		String name = entry.getKey();
 		return name;
 	}
-	
+
 	public UnicastRemoteObject getDao() {
-//		UnicastRemoteObject 
-		dao=(UnicastRemoteObject) entry.getValue();
+		// UnicastRemoteObject
+		dao = (UnicastRemoteObject) entry.getValue();
 		return dao;
 	}
-	
+
 }

@@ -89,7 +89,9 @@
    <build>
     <plugins>
        <plugin>
+
                 <groupId>org.apache.maven.plugins</groupId>
+
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>2.4.1</version>
                 <configuration>
@@ -100,7 +102,8 @@
                     <!-- MainClass in mainfest make a executable jar -->
                     <archive>
                       <manifest>
-                        <mainClass>init.MainServer</mainClass>
+                  
+                        <mainClass>init.ServerMain</mainClass>
                       </manifest>
                     </archive>
  
@@ -115,6 +118,7 @@
                     </goals>
                   </execution>
                 </executions>
-            </plugin>	</plugins>
+            </plugin>	
+	</plugins>
 </build>
 </project>
