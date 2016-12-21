@@ -19,10 +19,10 @@ import util.ImageType;
 
 public final class ImageUtil {
 	private static String saveSource;
-	private static URL address;
+//	private static URL address;
 	private static SimpleDateFormat simpleDateFormat;
 	static {
-		saveSource = "./UserImage/image/";
+		saveSource = "/Users/chengyunfei/Documents/image/";
 //		address=ImageUtil.class.getResource("UserImage/image/");
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}
@@ -42,11 +42,11 @@ public final class ImageUtil {
 		}
 		long name = new Date().getTime();
 		String filePath = imageType.getString() + getDateString() + name + ".png";
-		address = ImageUtil.class.getResource(saveSource+filePath);
+//		address = ImageUtil.class.getResource(saveSource+filePath);
 //		File newFile = new File(saveSource + filePath);
 		File newFile;
 		try {
-			newFile = new File(address.toURI());
+			newFile = new File(saveSource+filePath);
 			if (!newFile.exists()) {
 				newFile.mkdirs();
 			}
@@ -62,9 +62,9 @@ public final class ImageUtil {
 //			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (URISyntaxException e1) {
+//		} catch (URISyntaxException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+//			e1.printStackTrace();
 		}
 		return filePath;
 	}
@@ -74,14 +74,14 @@ public final class ImageUtil {
 		if (path == null) {
 			return null;
 		}
-		address = ImageUtil.class.getResource(saveSource + path);
+//		address = ImageUtil.class.getResource(saveSource + path);
 	
 //		File newFile = new File(saveSource + path);
 //		if (!newFile.exists()) {
 //			return null;
 //		}
 		try {
-			image = ImageIO.read(address.openStream());
+			image = ImageIO.read(new File(saveSource+path));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

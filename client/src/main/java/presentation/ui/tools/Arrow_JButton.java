@@ -37,7 +37,7 @@ public class Arrow_JButton extends JButton{
 	            	
 	            	loginDistributionController.logout();
 	            	jf.dispose();
-	            	new login_JFrame().setVisible(true);
+//	            	new login_JFrame().setVisible(true);
 	            	
 	            	
 	            	

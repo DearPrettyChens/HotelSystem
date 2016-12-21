@@ -27,7 +27,7 @@ import vo.ordervo.OrderInfoVO;
  */
 public class ReturnHalforAll_JFrame  extends JFrame{ 
 	
-	private close_JButton close_jbutton = new close_JButton();
+//	private close_JButton close_jbutton = new close_JButton();
 	private JPanel upjp=new JPanel();
 	private Font font=new Font("宋体", Font.BOLD, 16);
 	private Color color=new Color(148, 221, 184);
@@ -70,8 +70,8 @@ public class ReturnHalforAll_JFrame  extends JFrame{
 		this.add(upjp);
 		
 		
-		close_jbutton.setBounds(350, 10, 24, 24);
-		upjp.add(close_jbutton);
+//		close_jbutton.setBounds(350, 10, 24, 24);
+//		upjp.add(close_jbutton);
 		
 		
 		halfjl.setFont(font);

@@ -35,9 +35,13 @@ public class UserImage {
 			}			
 			return getImageFromImageIcon(imageicon);
 		case WebMarketMan:
-			return new ImageIcon(UserImage.class.getResource("image/logo.png")).getImage();
+			ImageIcon icon=new ImageIcon(UserImage.class.getResource("image/logo.png"));
+			icon=ImageTool.getScaledImage(icon, 50);
+			return icon.getImage();
 		case Manager:
-			return new ImageIcon(UserImage.class.getResource("image/logo.png")).getImage();
+			ImageIcon icon1=new ImageIcon(UserImage.class.getResource("image/logo.png"));
+			icon=ImageTool.getScaledImage(icon1, 50);
+			return icon.getImage();
 		}
 		return null;
 	}

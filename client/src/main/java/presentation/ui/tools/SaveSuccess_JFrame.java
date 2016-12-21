@@ -67,7 +67,7 @@ public class SaveSuccess_JFrame  extends JFrame{
 		
 		
 		halfjl.setFont(font);
-		halfjl.setForeground(Color.RED);
+		halfjl.setForeground(Color.BLACK);
 		halfjl.setBounds(160,100,200,50);
 		this.add(halfjl);
 		
