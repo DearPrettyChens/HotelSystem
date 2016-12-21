@@ -97,7 +97,7 @@ public class DetailOrderInfotoClient_JPanel extends JPanel {
 
 	private JScrollPane scrollPane = new JScrollPane();
 	private JPanel panel = new JPanel();
-	private ImageIcon image1 = new ImageIcon("image/longxuxian.png");
+	private ImageIcon image1 = new ImageIcon(DetailOrderInfotoClient_JPanel.class.getResource("image/longxuxian.png"));
 	private JLabel bg1 = new JLabel(image1);
 	private JLabel bg2 = new JLabel(image1);
 	private JLabel bg3 = new JLabel(image1);

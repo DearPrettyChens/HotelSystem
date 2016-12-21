@@ -42,9 +42,9 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 														// ，大小为800*300，放在0*200位置下面
 	private WriteOrdertoClient_JPanel writeorderjp;// 填写订单的面板，同上
 
-	private ImageIcon icon1 = new ImageIcon("image//yuan1.png");
-	private ImageIcon icon2 = new ImageIcon("image//yuan2.png");
-	private ImageIcon icon3 = new ImageIcon("image//xuxian2.png");
+	private ImageIcon icon1 = new ImageIcon(MakeOrdertoClient_JPanel.class.getResource("image/yuan1.png"));
+	private ImageIcon icon2 = new ImageIcon(MakeOrdertoClient_JPanel.class.getResource("image/yuan2.png"));
+	private ImageIcon icon3 = new ImageIcon(MakeOrdertoClient_JPanel.class.getResource("image/xuxian2.png"));
 
 	private JLabel successjl = new JLabel("预订成功！");
 

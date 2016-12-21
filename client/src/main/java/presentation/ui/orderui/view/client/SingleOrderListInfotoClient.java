@@ -42,8 +42,8 @@ public class SingleOrderListInfotoClient extends JPanel {
 	private Date date;
 	private OrderState state;
 
-	private ImageIcon image1 = new ImageIcon("image/longxuxian.png");
-	private ImageIcon image2 = new ImageIcon("image/shuxuxian.png");
+	private ImageIcon image1 = new ImageIcon(SingleOrderListInfotoClient.class.getResource("image/longxuxian.png"));
+	private ImageIcon image2 = new ImageIcon(SingleOrderListInfotoClient.class.getResource("image/shuxuxian.png"));
 
 	private JLabel imagejl = new JLabel();
 	private JLabel hotelnamejl = new JLabel();

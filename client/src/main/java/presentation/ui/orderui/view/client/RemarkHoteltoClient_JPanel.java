@@ -59,8 +59,8 @@ public class RemarkHoteltoClient_JPanel extends JPanel {
 	private MyButton confirmjb = new MyButton();
 	private JLabel backjl = new JLabel("< 返回订单列表页面");
 
-	private ImageIcon image1 = new ImageIcon("image/longxuxian.png");
-	private ImageIcon image2 = new ImageIcon("image/shuxuxian.png");
+	private ImageIcon image1 = new ImageIcon(RemarkHoteltoClient_JPanel.class.getResource("image/longxuxian.png"));
+	private ImageIcon image2 = new ImageIcon(RemarkHoteltoClient_JPanel.class.getResource("image/shuxuxian.png"));
 	private JLabel bg = new JLabel(image1);
 	private JLabel bg1 = new JLabel(image2);
 
