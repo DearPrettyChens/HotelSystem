@@ -32,7 +32,7 @@ public class HotelListPane_JPanel extends JPanel {
 	private ArrayList<HotelListVO> hotelListVOs;
 	// private ArrayList<HotelListVO> showList;
 
-	private ArrayList<HotelListVO> hotelAllListVOs;
+	//private ArrayList<HotelListVO> hotelAllListVOs;
 
 	public HotelListPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO, ViewTag viewTag) {
 		this.viewTag = viewTag;
@@ -55,7 +55,7 @@ public class HotelListPane_JPanel extends JPanel {
 		HotelSearchInfoVO vo=new HotelSearchInfoVO();
 	//	vo.setOrderStates(hotelSearchInfoVO.getOrderStates());
 		vo.setCustomerID(hotelSearchInfoVO.getCustomerID());
-		hotelAllListVOs=searchhotelDistributionController.getSortedHotelList(vo);
+		//hotelAllListVOs=searchhotelDistributionController.getSortedHotelList(vo);
 		// CustomerHotelList(hotelSearchInfoVO.getCustomerID());
 		// System.out.println("hotellistpanepanel:"+hotelListVOs.size());
 		// showList = new ArrayList<HotelListInfo_JPanel>();

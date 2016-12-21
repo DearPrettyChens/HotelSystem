@@ -76,7 +76,7 @@ public class GenerateOrderService_Stub implements GenerateOrderService{
 		roomlist.add(vo2);
 		HotelDetailInfoVO detailvo=new HotelDetailInfoVO("绿地洲际大酒店","南京市鼓楼区",null, TradingArea.XINJIEKOU,"12345678999"
 				,5,"好","设施齐全",City.NANJING,"设施齐全","设施齐全","设施齐全","华为",list,roomlist,
-				null,0,null,500);
+				null,0,null,500,"000001");
 		return detailvo;
 	}
 

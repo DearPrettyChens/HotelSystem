@@ -220,6 +220,7 @@ public class AvailableRoom {
 			AvailableRoomNumberPO roomInfo = availableRoomDao.getAvailableRoomNumber(
 					availableRoomNumberVO.getHotelNumber(), availableRoomNumberVO.getDate(),
 					availableRoomNumberVO.getBedType());
+			if(roomInfo==null) return ResultMessage.FAIL;
 			// availableRoomNumberVO中传的是需要的房间数量，与数据层返回的可用房间数量进行比较
 			if (roomInfo.getNumber() >= availableRoomNumberVO.getNumber()) {
 				return ResultMessage.SUCCESS;

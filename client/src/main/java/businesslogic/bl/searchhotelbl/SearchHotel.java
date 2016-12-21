@@ -31,7 +31,7 @@ import vo.searchhotelvo.HotelSearchInfoVO;
 public class SearchHotel {
 
 	private ArrayList<HotelListVO> hotelListVOs;//维护VO信息是为了进行筛选
-	private ArrayList<HotelListVO> changehotelListVOs;
+	//private ArrayList<HotelListVO> changehotelListVOs;
 	private ArrayList<HotelListPO> hotelListPOs;
 	private HotelSearchInfoVO hotelSearchInfoVO;
 	private SearchHotelDao searchHotelDao;
@@ -66,6 +66,10 @@ public class SearchHotel {
 			hotelListVOs=new ArrayList<HotelListVO>();
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
+				
+				System.out.println(hotelListPO.getId()+"search po");
+				System.out.println(hotelListVO.getHotelID()+"search vo");
+				
 				hotelListVOs.add(hotelListVO);
 			}
 //			System.out.println("hotellistvos:"+hotelListVOs.size());
@@ -135,7 +139,7 @@ public class SearchHotel {
 	 */
 	public ArrayList<HotelListVO> getHotelList() {
 //		if()
-		changehotelListVOs=hotelListVOs;
+	//	changehotelListVOs=hotelListVOs;
 		CheckHotel checkHotel=new CheckHotel(hotelListVOs,hotelSearchInfoVO);
 		return checkHotel.check();
 	}

@@ -22,7 +22,7 @@ public final class ImageUtil {
 //	private static URL address;
 	private static SimpleDateFormat simpleDateFormat;
 	static {
-		saveSource = "/Users/chengyunfei/Documents/image/";
+		saveSource = "/Users/green-cherry/学习/image/";
 //		address=ImageUtil.class.getResource("UserImage/image/");
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}

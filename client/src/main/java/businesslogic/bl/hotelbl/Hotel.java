@@ -156,7 +156,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 					basic.getAddress(),basic.getHotelImage(),basic.getTradingArea(),
 					basic.getTelephone(),basic.getStar(),basic.getIntroduce(),basic.getCommonFacility(),basic.getCity()
 					,basic.getActivityFacility(),basic.getService(),basic.getRoomFacility(),basic.getEnterprises(),
-					hotelStrs,roomInfo,orders,basic.getScore(),remarkDetails,basic.getLowestPrice());
+					hotelStrs,roomInfo,orders,basic.getScore(),remarkDetails,basic.getLowestPrice(),hotelID);
 			return detail;
 		} catch (RemoteException e) {
 			e.printStackTrace();

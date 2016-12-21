@@ -63,7 +63,7 @@ public class HotelDetailInfoVO {
 	//酒店细节信息 都可以看到
 	public HotelDetailInfoVO(String hotelName, String address, ImageIcon hotelImage,TradingArea area,String telephone, int star, String introduce,
 			String commonFacility,City city, String activityFacility, String service, String roomFacility, String enterprises,
-			ArrayList<HotelStrVO> hotelStrVO, ArrayList<AvailableRoomInfoVO> availableRoomInfoVO, ArrayList<HotelOrderVO> orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo,double lowestPrice) {
+			ArrayList<HotelStrVO> hotelStrVO, ArrayList<AvailableRoomInfoVO> availableRoomInfoVO, ArrayList<HotelOrderVO> orderRecordVO,double remarkNumber,ArrayList<String> remarkDetailInfo,double lowestPrice,String hotelID) {
 		this.setHotelName(hotelName);
 		this.setAddress(address);
 		this.setHotelImage(hotelImage);
@@ -83,6 +83,7 @@ public class HotelDetailInfoVO {
 	    this.area=area;
 	    this.city=city;
 	    this.lowestPrice=lowestPrice;
+	    this.hotelID=hotelID;
 	}
 	public String getHotelID() {
 		return hotelID;

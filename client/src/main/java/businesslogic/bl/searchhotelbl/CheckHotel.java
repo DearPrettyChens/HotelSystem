@@ -47,11 +47,15 @@ public class CheckHotel {
       ArrayList<HotelListVO> tempHotelListVOs=new ArrayList<HotelListVO>();
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
+			
+			System.out.println(hotelID+"check");
+			
 			String customerID = hotelSearchInfoVO.getCustomerID();
 			try {
 			    Hotel hotel=new Hotel();
 //				MockHotel hotel = new MockHotel();
 				hotelDetailInfoVO = hotel.getHotelDetailInfo(hotelID, customerID);
+				System.out.println("hoteldetial"+hotelDetailInfoVO.getHotelID());
 			} catch (NotFoundHotelException e) {
 				e.printStackTrace();
 			}
@@ -144,6 +148,9 @@ public class CheckHotel {
 		Date checkinTime = hotelSearchInfoVO.getCheckinTime();
 		Date checkoutTime = hotelSearchInfoVO.getCheckoutTime();
 		String hotelID = hotelDetailInfoVO.getHotelID();
+		
+		System.out.println("checktime:"+hotelID);
+		
 		boolean check = true;// 判断当天是否有空房
 
 		// 如果输入的床型为空就将床型设为该酒店所拥有的床型
@@ -247,10 +254,11 @@ public class CheckHotel {
 	 */
 	private boolean checkAvailableRoom(AvailableRoomNumberVO availableRoomNumberVO) {
 		AvailableRoom availableRoom = new AvailableRoom();
+     
 		ResultMessage resultMessage = availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
 		if (resultMessage == ResultMessage.SUCCESS) {
 			return true;
-		}
+		} 
 		return false;
 	}
 
