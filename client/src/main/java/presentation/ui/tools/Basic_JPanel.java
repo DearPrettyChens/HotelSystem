@@ -110,7 +110,7 @@ public class Basic_JPanel extends JPanel {
 					jpanel=CheckOutPanel.getInstance(leftChooseMap.hotelID);
 					break;
 				case ChooseOrderTypetoClient_JPanel:
-					ChooseOrderTypetoClient_JPanel c=ChooseOrderTypetoClient_JPanel.getInstance(userID, leftChooseMap.hotelID);
+					ChooseOrderTypetoClient_JPanel c=new ChooseOrderTypetoClient_JPanel(userID,null);
 					c.changeToOrderListPanel(null);
 					jpanel=c;
 					break;

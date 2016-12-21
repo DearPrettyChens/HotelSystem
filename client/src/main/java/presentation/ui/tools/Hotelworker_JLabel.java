@@ -90,7 +90,7 @@ public class Hotelworker_JLabel  extends JLabel{
 					jpanel=CheckOutPanel.getInstance(leftChooseMap.hotelID);
 					break;
 				case ChooseOrderTypetoClient_JPanel:
-					jpanel=ChooseOrderTypetoClient_JPanel.getInstance(userID, leftChooseMap.hotelID);
+					jpanel=new ChooseOrderTypetoClient_JPanel(userID, leftChooseMap.hotelID);
 					break;
 				case ClientCreditInfos_JPanel:
 					jpanel=new ClientCreditInfos_JPanel(userID);
