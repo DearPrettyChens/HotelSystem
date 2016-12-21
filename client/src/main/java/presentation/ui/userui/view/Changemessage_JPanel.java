@@ -140,7 +140,7 @@ public class Changemessage_JPanel extends JPanel {
         		String path=FileChooseHelper.fileChoose();
 				if(path!=null){
 					imagePath=path;
-					ImageIcon imageIcon=new ImageIcon(imagePath);
+					ImageIcon imageIcon=new ImageIcon(Changemessage_JPanel.class.getResource(imagePath));
 					imageIcon=ImageTool.getScaledImage(imageIcon, 150);
 					personDetailVO.setImage(imageIcon);
 					if(userDistributeController.confirmUserInfo(personDetailVO)!=ResultMessage.SUCCESS){
