@@ -80,7 +80,7 @@ public class Webmannger_JFrame extends JFrame {
 		this.jp1= new Basic_JPanel("营销人员", "image/user.png", 0, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.jp2= new Basic_JPanel("顾客会员", "image/user2.png", 1, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.jp3= new Basic_JPanel("酒店人员", "image/shop.png", 2, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
-		this.jp4=new Basic_JPanel("修改密码", "image/changepassword.png", 3, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
+		this.jp4=new Basic_JPanel("修改密码", "image/key.png", 3, allpanel, allPersonPanel,this.managerName,this.userID,UserType.Manager);
 		this.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() - 1000) / 2,
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() - 700) / 2); // 定位框架位置
 		this.setSize(1000, 700);
