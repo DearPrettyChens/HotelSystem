@@ -27,7 +27,7 @@ public class SearchHotelController implements SearchHotelBLService{
 
 	@Override
 	public ArrayList<HotelListVO> getSortedHotelList(HotelSearchInfoVO hotelSearchInfoVO) {
-		SearchHotel searchHotel=SearchHotel.getInstance(hotelSearchInfoVO);	
+		SearchHotel searchHotel=new SearchHotel(hotelSearchInfoVO);	
 		return searchHotel.getHotelList();
 	}
 
@@ -36,7 +36,7 @@ public class SearchHotelController implements SearchHotelBLService{
 		// TODO Auto-generated method stub
 		HotelSearchInfoVO vo = new HotelSearchInfoVO();
 		vo.setCustomerID(customerID);
-		SearchHotel searchHotel=SearchHotel.getInstance(vo);	
+		SearchHotel searchHotel=new SearchHotel(vo);	
 		return searchHotel.getCustomerHotelList(customerID);
 	}
  

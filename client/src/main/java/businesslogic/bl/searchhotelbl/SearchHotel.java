@@ -35,21 +35,21 @@ public class SearchHotel {
 	private ArrayList<HotelListPO> hotelListPOs;
 	private HotelSearchInfoVO hotelSearchInfoVO;
 	private SearchHotelDao searchHotelDao;
-    private static SearchHotel searchHotel;
-	
-    public static SearchHotel getInstance(HotelSearchInfoVO hotelSearchInfoVO) {
-		if((searchHotel==null)||(hotelSearchInfoVO.getHotelSortType()!=null)){
-			searchHotel=new SearchHotel(hotelSearchInfoVO);
-		}
-		return searchHotel;
-	}
-    
+//    private static SearchHotel searchHotel;
+//	
+//    public static SearchHotel getInstance(HotelSearchInfoVO hotelSearchInfoVO) {
+//		if((searchHotel==null)||(hotelSearchInfoVO.getHotelSortType()!=null)){
+//			searchHotel=new SearchHotel(hotelSearchInfoVO);
+//		}
+//		return searchHotel;
+//	}
+//    
 	/**
 	 * 
 	 * 在这个类初始化的时候就根据排序类型去数据库去酒店列表信息
 	 * @param hotelSearchInfoVO
 	 */
-	private SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
+	public SearchHotel(HotelSearchInfoVO hotelSearchInfoVO) {
 		this.hotelSearchInfoVO=hotelSearchInfoVO;
 		HotelSortType hotelSortType = hotelSearchInfoVO.getHotelSortType();
 		try {
