@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,13 +25,15 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	@Override
 	public GradeRulePO getGradeRule() throws RemoteException {
-		File gradeRuleFile = new File("./webstrategy/graderule.txt");
+//		File gradeRuleFile = new File("./webstrategy/graderule.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
+//		File gradeRuleFile=new File(address);
 		GradeRulePO gradeRulePO = null;
-		if (!gradeRuleFile.exists()) {
-			return gradeRulePO;
-		}
+//		if (!gradeRuleFile.exists()) {
+//			return gradeRulePO;
+//		}
 		try {
-			InputStreamReader reader = new InputStreamReader(new FileInputStream(gradeRuleFile), "UTF-8");
+			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
 			BufferedReader br = new BufferedReader(reader);
 			String line = br.readLine();
 			int credit = Integer.parseInt(line);
@@ -64,16 +67,17 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getSpecialTimeStrategy() {
-		File file = new File("./webstrategy/specialtime.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
+//		File file = new File("./webstrategy/specialtime.txt");
 		WebStrPO po = null;
-		if (!file.exists()) {
-			return po;
-		}
+//		if (!file.exists()) {
+//			return po;
+//		}
 		// ArrayList<WebStrPO> dateList = new ArrayList<WebStrPO>();
 
 		Date[] dates = new Date[2];
 		try {
-			InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
 			BufferedReader br = new BufferedReader(reader);
 
 			String str = br.readLine();
@@ -107,14 +111,15 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getSpecialAreaStrategy() {
-		File file = new File("./webstrategy/specialarea.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialarea.txt");
+//		File file = new File("./webstrategy/specialarea.txt");
 		WebStrPO po = null;
-		if (!file.exists()) {
-			return po;
-		}
+//		if (!file.exists()) {
+//			return po;
+//		}
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		try {
-			InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
 			BufferedReader br = new BufferedReader(reader);
 
 			String str = br.readLine();
@@ -140,14 +145,15 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getVIPAreaStrategy() {
-		File file = new File("./webstrategy/vip.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
+//		File file = new File("./webstrategy/vip.txt");
 		WebStrPO po = null;
-		if (!file.exists()) {
-			return po;
-		}
+//		if (!file.exists()) {
+//			return po;
+//		}
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		try {
-			InputStreamReader reader = new InputStreamReader(new FileInputStream(file), "UTF-8");
+			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
 			BufferedReader br = new BufferedReader(reader);
 
 			String str = br.readLine();
@@ -177,9 +183,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		// 写入数据
 		//同步锁 防止同时修改
 		synchronized (WebStrategyDataHelperTXTImpl.class) {
-			File file = new File("./webstrategy/graderule.txt");
+			URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
+//			File file = new File("./webstrategy/graderule.txt");
 			try {
-				FileWriter fw = new FileWriter(file.getAbsoluteFile());
+				FileWriter fw = new FileWriter(address.getFile());
 				BufferedWriter writer = new BufferedWriter(fw);
 				String string = po.getCredit() + "";
 				writer.write(string);
@@ -227,9 +234,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setVIP(WebStrPO po) {
 		//防止同时修改
-		File file = new File("./webstrategy/vip.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
+//		File file = new File("./webstrategy/vip.txt");
 		try {
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			FileWriter fw = new FileWriter(address.getFile());
 			BufferedWriter writer = new BufferedWriter(fw);
 			// 对map进行遍历
 			Iterator<Map.Entry<Integer, Double>> iterator = po.getVIPOrTradingAreaStrategy().entrySet().iterator();
@@ -252,9 +260,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setSpecialTime(WebStrPO po) {
 		//防止同时修改冲突
-		File file = new File("./webstrategy/specialtime.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
+//		File file = new File("./webstrategy/specialtime.txt");
 		try {
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			FileWriter fw = new FileWriter(address.getFile());
 			BufferedWriter writer = new BufferedWriter(fw);
 			Date[] dates = po.getDate();
 			String str = simpleDateFormat.format(dates[0]) + " " + simpleDateFormat.format(dates[1]) + " "
@@ -272,9 +281,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setSpecialArea(WebStrPO po) {
 		//防止同时修改冲突
-		File file = new File("./webstrategy/specialarea.txt");
+		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialarea.txt");
+//		File file = new File("./webstrategy/specialarea.txt");
 		try {
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			FileWriter fw = new FileWriter(address.getFile());
 			BufferedWriter writer = new BufferedWriter(fw);
 			// 对map进行遍历
 			Iterator<Map.Entry<Integer, Double>> iterator = po.getVIPOrTradingAreaStrategy().entrySet().iterator();

@@ -7,6 +7,8 @@ import java.awt.image.BufferedImage;
 import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -17,9 +19,11 @@ import util.ImageType;
 
 public final class ImageUtil {
 	private static String saveSource;
+	private static URL address;
 	private static SimpleDateFormat simpleDateFormat;
 	static {
 		saveSource = "./UserImage/image/";
+//		address=ImageUtil.class.getResource("UserImage/image/");
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}
 
@@ -38,11 +42,14 @@ public final class ImageUtil {
 		}
 		long name = new Date().getTime();
 		String filePath = imageType.getString() + getDateString() + name + ".png";
-		File newFile = new File(saveSource + filePath);
-		if (!newFile.exists()) {
-			newFile.mkdirs();
-		}
+		address = ImageUtil.class.getResource(saveSource+filePath);
+//		File newFile = new File(saveSource + filePath);
+		File newFile;
 		try {
+			newFile = new File(address.toURI());
+			if (!newFile.exists()) {
+				newFile.mkdirs();
+			}
 			
 			BufferedImage bi = ImageTool.toBufferedImage(image.getImage());
 //			Graphics2D g2d = bi.createGraphics();
@@ -55,6 +62,9 @@ public final class ImageUtil {
 //			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (URISyntaxException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 		return filePath;
 	}
@@ -64,12 +74,14 @@ public final class ImageUtil {
 		if (path == null) {
 			return null;
 		}
-		File newFile = new File(saveSource + path);
-		if (!newFile.exists()) {
-			return null;
-		}
+		address = ImageUtil.class.getResource(saveSource + path);
+	
+//		File newFile = new File(saveSource + path);
+//		if (!newFile.exists()) {
+//			return null;
+//		}
 		try {
-			image = ImageIO.read(newFile);
+			image = ImageIO.read(address.openStream());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
