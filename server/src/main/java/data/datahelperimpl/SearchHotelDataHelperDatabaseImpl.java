@@ -21,14 +21,12 @@ public class SearchHotelDataHelperDatabaseImpl implements SearchHotelDataHelper 
 	String highToLow = "desc";
 	String lowToHigh = "asc";
 
-	@SuppressWarnings("unused")
 	@Override
 	public ArrayList<HotelListPO> getHotelList() {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		String sql = "from HotelListPO";
 		Query query = session.createQuery(sql);
-		@SuppressWarnings("unchecked")
 		List<HotelListPO> list = query.list();
 		ArrayList<HotelListPO> result = new ArrayList<HotelListPO>();
 		session.close();

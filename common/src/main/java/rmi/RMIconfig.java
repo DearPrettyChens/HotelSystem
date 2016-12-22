@@ -15,22 +15,16 @@ import java.net.URL;
  */
 public class RMIconfig {
 	private static int port;
-	private static String url; // = "rmi://127.0.0.1:" + port + "/";
+	private static String url; 
     private static String ip;
-//    private static String url; // = "rmi://127.0.0.1:" + port + "/";
+    
 	static {
         setUrl("rmi://127.0.0.1:8890/");
 		try {
 			//运用相对路径解决读取文件问题
-
-			//URL address=RMIconfig.class.getResource("../config/rmi/RMIConfig.txt");
 			URL address=RMIconfig.class.getResource("RMIConfig.txt");
 			
 			BufferedReader reader = new BufferedReader(new InputStreamReader( address.openStream()));
-//			 InputStream is=RMIconfig.class.getResourceAsStream("../config/rmi/RMIConfig.txt");   
-//			 BufferedReader reader=new BufferedReader(new InputStreamReader(is));  
-		          
-	//		BufferedReader reader=new BufferedReader(new FileReader(new File("config/rmi/RMIConfig.txt")));
 			
 			ip = reader.readLine();
 			port = Integer.parseInt(reader.readLine());

@@ -66,8 +66,9 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 				transaction.rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -78,10 +79,6 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		Session session = HibernateUtil.getSession();
 		session.beginTransaction();
 		HotelBasicInfoPO savePO = po.copy();
-//				new HotelBasicInfoPO(po.getHotelID(), po.getName(), po.getHotelImage(),
-//				po.getAddress(), po.getTelephone(), po.getStar(), po.getScore(), po.getLowestPrice(), po.getIntroduce(),
-//				po.getCommonFacility(), po.getActivityFacility(), po.getService(), po.getRoomFacility(),
-//				po.getRemarks(), po.getCity(), po.getTradingArea());
 		if (po.getHotelImage() != null) {
 			//存储图片 保存路径到数据库
 			savePO.setHotelImagePath(ImageUtil.SaveImage(po.getHotelImage(), ImageType.hotelImage));
@@ -138,8 +135,9 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 				transaction.rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;
@@ -166,8 +164,9 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 				transaction.rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

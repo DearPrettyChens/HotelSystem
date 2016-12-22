@@ -32,7 +32,6 @@ public class HotelStrategyDataServiceImpl_Driver {
 	}
 
 	public static void main(String[] args) throws RemoteException {
-//		new HotelStrategyDataServiceImpl_Driver().drive(HotelStrategyDaoImpl.getInstance());
 		new HotelStrategyDataServiceImpl_Driver().runClientCode(HotelStrategyDaoImpl.getInstance());
 	}
 }

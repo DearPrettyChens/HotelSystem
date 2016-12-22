@@ -30,16 +30,13 @@ public class CreditDaoImpl extends UnicastRemoteObject implements CreditDao {
 		try {
 			creditDao = new CreditDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static CreditDao getInstance() throws RemoteException {
-
 		return creditDao;
 	}
 

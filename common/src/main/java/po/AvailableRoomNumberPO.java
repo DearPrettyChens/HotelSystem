@@ -20,8 +20,6 @@ import util.BedType;
 @Table(name = "t_availableroom")
 public class AvailableRoomNumberPO implements Serializable {
 	/**
-	 * 
-	 * 
 	 * 实现对某一天房间类型的修改
 	 * 
 	 * @author Cy
@@ -42,11 +40,12 @@ public class AvailableRoomNumberPO implements Serializable {
 	@Version
 	@Column(name = "version")
 	private int version;
+
 	public AvailableRoomNumberPO() {
 
 	}
 
-	public AvailableRoomNumberPO(int number, BedType bedType, Date date, int hotelNumber)  {
+	public AvailableRoomNumberPO(int number, BedType bedType, Date date, int hotelNumber) {
 		this.setNumber(number);
 		this.setBedType(bedType);
 		this.setDate(date);
@@ -97,9 +96,6 @@ public class AvailableRoomNumberPO implements Serializable {
 		Date date = new Date();
 		calendar.setTime(date);
 		calendar.add(Calendar.DAY_OF_YEAR, dateFromNow);
-		// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		// String string = sdf.format(date);
-		// date=sdf.parse(string);
 		return calendar.getTime();
 	}
 
@@ -109,7 +105,7 @@ public class AvailableRoomNumberPO implements Serializable {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			String string1 = sdf.format(today);
 			String string2 = sdf.format(date);
-			long a=0, b=0;
+			long a = 0, b = 0;
 			try {
 				a = sdf.parse(string1).getTime();
 				b = sdf.parse(string2).getTime();

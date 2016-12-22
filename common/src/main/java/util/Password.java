@@ -43,10 +43,4 @@ public class Password {
 		this.password = password;
 	}
 	
-//	public static void main(String[] args) {
-//		System.out.println(new Password("123").checkValid());
-//		System.out.println(new Password("12355").checkValid());
-//		System.out.println(new Password("zz").checkValid());
-//		System.out.println(new Password("zYkljk13").checkValid());
-//	}
 }

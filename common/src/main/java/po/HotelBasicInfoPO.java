@@ -96,10 +96,6 @@ public class HotelBasicInfoPO implements Serializable {
 
 	}
 
-	// public HotelBasicInfoPO( String hotelName) {
-	// this.setName(hotelName);
-	// }
-
 	// 酒店基本信息，所有人的
 	public HotelBasicInfoPO(int hotelID, String name, ImageIcon hotelImage, String address, String telephone, int star,
 			double score, double lowestPrice, String introduce, String commonFacility, String activityFacility,

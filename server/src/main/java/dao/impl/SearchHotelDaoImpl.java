@@ -31,10 +31,8 @@ public class SearchHotelDaoImpl extends UnicastRemoteObject implements SearchHot
 		try {
 			searchHotelDao = new SearchHotelDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

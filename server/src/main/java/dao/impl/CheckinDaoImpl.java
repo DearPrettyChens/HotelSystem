@@ -31,16 +31,13 @@ public class CheckinDaoImpl extends UnicastRemoteObject implements CheckinDao {
 		try {
 			checkinDao = new CheckinDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static CheckinDao getInstance() {
-
 		return checkinDao;
 	}
 

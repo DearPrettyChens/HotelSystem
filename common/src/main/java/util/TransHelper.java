@@ -17,7 +17,7 @@ public class TransHelper {
 	 */
 	public static int idToInt(String id){
 		if(id==null){
-			return 0;//这里之后最好是用exception
+			return 0;  //这里之后最好是用exception
 		}
 		while(id.charAt(0)=='0'){
 			id=id.substring(1);
@@ -133,13 +133,4 @@ public class TransHelper {
 	} 
 	
 	
-//	public static void main(String[]args ) {
-////		System.out.println(TransHelper.idToInt("000101"));
-////		System.out.println(TransHelper.idToString(208, 6));
-////		stringToArea("XINJIEKOU");
-//		String date="2016-12-5 23:23:23";
-//		System.out.println(stringToTime(date));
-//		Date date2=new Date();
-//		System.out.println(timeToString(date2));
-//	}
 }

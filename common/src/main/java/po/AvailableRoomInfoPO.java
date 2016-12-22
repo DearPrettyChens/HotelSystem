@@ -42,7 +42,7 @@ public class AvailableRoomInfoPO implements Serializable {
 	@Column(name = "date")
 	private int dateFromNow;
 	@Version
-	@Column(name= "version")
+	@Column(name = "version")
 	private int version;
 
 	public AvailableRoomInfoPO() {

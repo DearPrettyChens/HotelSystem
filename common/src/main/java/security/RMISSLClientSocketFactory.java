@@ -54,21 +54,6 @@ public class RMISSLClientSocketFactory implements RMIClientSocketFactory, Serial
 			keyStore.load(kclient.openStream(), password);// 加载客户端的密钥
 			trustKeyStore.load(tclient.openStream(), password);// 加载客户端信任的证书
 
-//			InputStream tis=RMIconfig.class.getResourceAsStream("config/keys/tclient.keystore");   
-//			InputStream kis=RMIconfig.class.getResourceAsStream("config/keys/kclient.keystore");   
-//			 keyStore.load(kis, password);// 加载客户端的密钥
-//			trustKeyStore.load(tis, password);// 加载客户端信任的证书
-
-//			URL tclient = new URL("../config/keys/tclient.keystore"); // 客户端信任的证书
-//			URL kclient = new URL("../config/keys/kclient.keystore");// 客户端的秘钥地址
-//			keyStore.load(kclient.openStream(), password);// 加载客户端的密钥
-//			trustKeyStore.load(tclient.openStream(), password);// 加载客户端信任的证书
-			
-//			InputStream tis=new FileInputStream("config/keys/tclient.keystore");   
-//			InputStream kis=new FileInputStream("config/keys/kclient.keystore");   
-//			 keyStore.load(kis, password);// 加载客户端的密钥
-//			trustKeyStore.load(tis, password);// 加载客户端信任的证书
-			
 			kmf.init(keyStore, password);// 用客户端的秘钥来初始化秘钥工厂
 			tmf.init(trustKeyStore);// 用客户端信任的证书来初始化
 			ctx.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);// 初始化context

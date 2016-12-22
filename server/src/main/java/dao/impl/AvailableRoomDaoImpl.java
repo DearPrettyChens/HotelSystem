@@ -33,10 +33,8 @@ public class AvailableRoomDaoImpl extends UnicastRemoteObject implements Availab
 		try {
 			availableRoomDao = new AvailableRoomDaoImpl();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

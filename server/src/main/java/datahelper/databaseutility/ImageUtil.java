@@ -19,11 +19,9 @@ import util.ImageType;
 
 public final class ImageUtil {
 	private static String saveSource;
-//	private static URL address;
 	private static SimpleDateFormat simpleDateFormat;
 	static {
 		saveSource = "/Users/chengyunfei/Documents/image/";
-//		address=ImageUtil.class.getResource("UserImage/image/");
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}
 
@@ -42,8 +40,6 @@ public final class ImageUtil {
 		}
 		long name = new Date().getTime();
 		String filePath = imageType.getString() + getDateString() + name + ".png";
-//		address = ImageUtil.class.getResource(saveSource+filePath);
-//		File newFile = new File(saveSource + filePath);
 		File newFile;
 		try {
 			newFile = new File(saveSource+filePath);
@@ -52,19 +48,10 @@ public final class ImageUtil {
 			}
 			
 			BufferedImage bi = ImageTool.toBufferedImage(image.getImage());
-//			Graphics2D g2d = bi.createGraphics();
-//			g2d.drawImage;
 			ImageIO.write(bi,"png",new File(saveSource + filePath));
-//			g2d.dispose();
 			
-			
-//			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
-//			ImageIO.write((RenderedImage) image.getImage(), "png", new File(saveSource + filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
-//		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
-//			e1.printStackTrace();
 		}
 		return filePath;
 	}
@@ -74,12 +61,6 @@ public final class ImageUtil {
 		if (path == null) {
 			return null;
 		}
-//		address = ImageUtil.class.getResource(saveSource + path);
-	
-//		File newFile = new File(saveSource + path);
-//		if (!newFile.exists()) {
-//			return null;
-//		}
 		try {
 			image = ImageIO.read(new File(saveSource+path));
 		} catch (IOException e) {

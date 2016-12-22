@@ -57,7 +57,6 @@ public class LogDaoImpl extends UnicastRemoteObject implements LogDao {
 
 	@Override
 	public ResultMessage logOut(String userName) throws RemoteException {
-		// String userName = po.getUserName();
 		return panel.deleteList(userName);
 	}
 }

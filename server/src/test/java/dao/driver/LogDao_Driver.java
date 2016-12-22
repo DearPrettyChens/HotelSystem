@@ -14,13 +14,6 @@ public class LogDao_Driver {
 	public void drive() {
 		ClientPO po = new ClientPO("name", "pas", 123, UserType.Customer);
 		ServerFrame frame = new ServerFrame();
-//		RMIHelper.connect();
-//		try {
-//			frame.getLogDao().logIn(po);
-//		} catch (RemoteException | UnknownHostException | ServerNotActiveException e) {
-//			System.out.println("fail");
-//			e.printStackTrace();
-//		}
 	}
 
 	public static void main(String[] args) {

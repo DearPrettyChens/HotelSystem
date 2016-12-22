@@ -88,6 +88,8 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 				session.getTransaction().rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -134,6 +136,8 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 				session.getTransaction().rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -176,6 +180,8 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 				session.getTransaction().rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
 			session.close();
 		}
@@ -233,7 +239,6 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 	@Override
 	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po) throws RemoteException {
 		Session session = HibernateUtil.getSession();
-//		Transaction transaction = session.beginTransaction();
 		Query query;
 		List<AvailableRoomInfoPO> updateList;
 		for (AvailableRoomInfoPO each : po) {
@@ -256,7 +261,10 @@ public class AvailableRoomDataHelperDatabaseImpl implements AvailableRoomDataHel
 					transaction.rollback();
 				}
 				return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
-			} 
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			
 		}
 		session.close();
 		return ResultMessage.SUCCESS;

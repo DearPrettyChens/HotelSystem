@@ -32,23 +32,17 @@ public class HotelStrPO implements Serializable {
 	// 策略类型
 	@Column(name = "type")
 	private String typeInSQL;
-	// @Transient
-	// private HotelStrategyType type;
 	// 折扣值
 	@Column(name = "discount")
 	private double discount;
 	// 合作企业
 	@Column(name = "enterprise")
 	private String enterpriseInSQL;
-	// @Transient
-	// private ArrayList<String> enterprise;
 	// 优惠日期
 	@Column(name = "begin_date")
 	private java.sql.Date beginDate;
 	@Column(name = "end_date")
 	private java.sql.Date endDate;
-	// @Transient
-	// private java.sql.Date[] dateStamps;
 	@Version
 	@Column(name = "version")
 	private int version;

@@ -25,13 +25,6 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 		Session session = HibernateUtil.getSession();
 		Transaction transaction = session.beginTransaction();
 		PersonDetailPO savePO = personDetailPO.copy();
-		// new PersonDetailPO(personDetailPO.getId(), personDetailPO.getName(),
-		// personDetailPO.getImage(), personDetailPO.getTelephone(),
-		// personDetailPO.getCredit(),
-		// personDetailPO.getBirthday(), personDetailPO.getEnterpriseName(),
-		// personDetailPO.getVIPType(),
-		// personDetailPO.getPassword(), personDetailPO.getHotelName(),
-		// personDetailPO.getUserType());
 		if (savePO.getImage() != null) {
 			// 图片保存到服务器端，存储路径到数据库
 			savePO.setUserImagePosition(ImageUtil.SaveImage(savePO.getImage(), ImageType.userImage));
@@ -175,8 +168,9 @@ public class PersonnelDataHelperDatabaseImpl implements PersonnelDataHelper {
 				transaction.rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

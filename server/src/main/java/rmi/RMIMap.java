@@ -63,7 +63,6 @@ public class RMIMap {
 			init();
 			entries = map.entrySet().iterator();
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

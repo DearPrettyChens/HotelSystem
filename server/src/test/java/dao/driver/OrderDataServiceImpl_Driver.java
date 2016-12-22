@@ -25,16 +25,13 @@ public class OrderDataServiceImpl_Driver {
 				OrderState.NOTREMARKED);
 		System.out.println(dao.addOrder(po));
 
-		// OrderInfoPO getPO = null;
 		po = dao.getOrderInfo(po.getOrderID());
 		System.out.println(po.getOrderID() + " " + po.getCustomerID() + " " + po.getCustomerName() + " "
 				+ po.getHotelTelephone() + " " + po.getLiveinPersonName() + " " + po.getRoomType() + " "
 				+ po.getBedType() + "" + po.getState());
-		// Date checkin = Calendar.getInstance();
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2016, 12, 25, 19, 30);
-		// po.setActualCheckInTime(calendar.getTime());
 		CheckTimePO checkTimePO = new CheckTimePO(po.getOrderID(), calendar.getTime(), "in");
 		System.out.println(dao.setCheckintime(checkTimePO));
 		System.out.println(dao.setCheckouttime(checkTimePO));
@@ -74,25 +71,11 @@ public class OrderDataServiceImpl_Driver {
 	}
 
 	public void runclienttest(OrderDao dao) throws RemoteException {
-		// dao.addOrder(
-		// new OrderInfoPO("20161119000002000001", "000002", "000001", "chen",
-		// "chen", "12345678999", new Date(),
-		// new Date(), new Date(), "", BedType.BIGBED, 1, 1, Children.EXIST,
-		// 680, null));
-		// dao.addOrder(new OrderInfoPO("2", "20161120000002000001", "ccc",
-		// "ann", "12345678910", "AAAAA", "5",
-		// "12345678910", "big", BedType.BIGBED, 2, new Date(), 4,
-		// Children.EXIST, false, new Date(), new Date(),
-		// new Date(), new Date(), new Date(), 200, OrderState.NOTEXECUTED,
-		// null));
-		// System.out.println(dao.getOrderInfo("20161120000002000001").getExpectedCheckInTime());
-		// System.out.println(dao.getOrderInfo("20161120000002000001").getActualCheckInTime());
 		System.out.println(dao.getOrderList("0005").size());
 		System.out.println(dao.getOrderInfo("20161120000002000001").getHasChild());
 	}
 
 	public static void main(String[] args) throws RemoteException {
-		// new OrderDataServiceImpl_Driver().drive(OrderDaoImpl.getInstance());
 		new OrderDataServiceImpl_Driver().runclienttest(OrderDaoImpl.getInstance());
 	}
 }

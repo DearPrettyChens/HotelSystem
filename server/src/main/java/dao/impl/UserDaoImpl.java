@@ -34,10 +34,8 @@ public class UserDaoImpl extends UnicastRemoteObject implements UserDao {
 		try {
 			userDao = new UserDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

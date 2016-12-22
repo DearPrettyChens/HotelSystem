@@ -18,8 +18,6 @@ public class TypeInfoPO implements Serializable{
 	private OrderState orderState;
 	// 酒店id
 	private String customerID;
-	// 酒店编号
-	// private String hotelID;
 
 	public TypeInfoPO() {
 
@@ -29,7 +27,6 @@ public class TypeInfoPO implements Serializable{
 		this.setUserType(userType);
 		this.setOrderState(orderState);
 		this.setCustomerID(customerID);
-		// this.setHotelID(hotelID);
 	}
 
 	public UserType getUserType() {

@@ -10,7 +10,7 @@ import util.ResultMessage;
 import util.UserType;
 
 /**
- * PersonnelDao提供借口，用来进行对账户数据的一系列操作，包括注册、添加、获取、设置网站用户的信息
+ * PersonnelDao提供接口，用来进行对账户数据的一系列操作，包括注册、添加、获取、设置网站用户的信息
  * @author CYF
  * @version 1.0
  *
@@ -37,7 +37,7 @@ public interface PersonnelDao extends Remote {
 
 	/**
 	 * 获得人员列表信息
-	 * @param 无
+	 * @param usertype UserType型 userName String型 userID int型
 	 * @return ArrayList<PersonListPO> 用来获取酒店工作人员列表信息
 	 * @throws 未定
 	 * usertype限定当前搜索的是哪种人，可根据用户编号查询，也可根据用户名查询。当根据用户名查询时，只要用户名中包含有传递进来的userName的关键词，就进行返回

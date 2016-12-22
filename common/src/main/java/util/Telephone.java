@@ -37,10 +37,4 @@ public class Telephone {
 		this.telephone = telephone;
 	}
 
-//	public static void main(String[] args) {
-//		System.out.println(new Telephone("123").checkValid());
-//		System.out.println(new Telephone("12310200022").checkValid());
-//		System.out.println(new Telephone("zzzzzzzzzzz").checkValid());
-//		System.out.println(new Telephone("111111111111").checkValid());
-//	}
 }

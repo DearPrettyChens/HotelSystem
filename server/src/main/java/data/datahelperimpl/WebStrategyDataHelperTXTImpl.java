@@ -25,13 +25,8 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	@Override
 	public GradeRulePO getGradeRule() throws RemoteException {
-//		File gradeRuleFile = new File("./webstrategy/graderule.txt");
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
-//		File gradeRuleFile=new File(address);
 		GradeRulePO gradeRulePO = null;
-//		if (!gradeRuleFile.exists()) {
-//			return gradeRulePO;
-//		}
 		try {
 			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
 			BufferedReader br = new BufferedReader(reader);
@@ -68,12 +63,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public WebStrPO getSpecialTimeStrategy() {
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
-//		File file = new File("./webstrategy/specialtime.txt");
 		WebStrPO po = null;
-//		if (!file.exists()) {
-//			return po;
-//		}
-		// ArrayList<WebStrPO> dateList = new ArrayList<WebStrPO>();
 
 		Date[] dates = new Date[2];
 		try {
@@ -82,10 +72,8 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 			String str = br.readLine();
 
-			// while (str != null) {
 			String[] data = str.split(" ");
 			if (data.length != 3) {
-				// break;
 				return null;
 			}
 			//存储两个时间
@@ -95,13 +83,9 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 			dates[1] = date2;
 			double discount = Double.parseDouble(data[2]);
 			po = new WebStrPO(dates, discount);
-			// dateList.add(po);
-			// str = br.readLine();
-			// }
 
 			br.close();
 
-			// return dateList.get(0);
 			return po;
 
 		} catch (Exception e) {
@@ -112,11 +96,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public WebStrPO getSpecialAreaStrategy() {
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialarea.txt");
-//		File file = new File("./webstrategy/specialarea.txt");
 		WebStrPO po = null;
-//		if (!file.exists()) {
-//			return po;
-//		}
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		try {
 			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
@@ -146,11 +126,7 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public WebStrPO getVIPAreaStrategy() {
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
-//		File file = new File("./webstrategy/vip.txt");
 		WebStrPO po = null;
-//		if (!file.exists()) {
-//			return po;
-//		}
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		try {
 			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
@@ -184,7 +160,6 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		//同步锁 防止同时修改
 		synchronized (WebStrategyDataHelperTXTImpl.class) {
 			URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
-//			File file = new File("./webstrategy/graderule.txt");
 			try {
 				FileWriter fw = new FileWriter(address.getFile());
 				BufferedWriter writer = new BufferedWriter(fw);
@@ -198,19 +173,6 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 			}
 			return ResultMessage.SUCCESS;
 		}
-//		File file = new File("/Users/chengyunfei/Desktop/webstrategy/graderule.txt");
-//		try {
-//			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-//			BufferedWriter writer = new BufferedWriter(fw);
-//			String string = po.getCredit() + "";
-//			writer.write(string);
-//			writer.flush();
-//			writer.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return ResultMessage.FAIL;
-//		}
-//		return ResultMessage.SUCCESS;
 	}
 
 	@Override
@@ -235,7 +197,6 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	public static synchronized ResultMessage setVIP(WebStrPO po) {
 		//防止同时修改
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
-//		File file = new File("./webstrategy/vip.txt");
 		try {
 			FileWriter fw = new FileWriter(address.getFile());
 			BufferedWriter writer = new BufferedWriter(fw);
@@ -261,7 +222,6 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	public static synchronized ResultMessage setSpecialTime(WebStrPO po) {
 		//防止同时修改冲突
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
-//		File file = new File("./webstrategy/specialtime.txt");
 		try {
 			FileWriter fw = new FileWriter(address.getFile());
 			BufferedWriter writer = new BufferedWriter(fw);
@@ -282,7 +242,6 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	public static synchronized ResultMessage setSpecialArea(WebStrPO po) {
 		//防止同时修改冲突
 		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialarea.txt");
-//		File file = new File("./webstrategy/specialarea.txt");
 		try {
 			FileWriter fw = new FileWriter(address.getFile());
 			BufferedWriter writer = new BufferedWriter(fw);

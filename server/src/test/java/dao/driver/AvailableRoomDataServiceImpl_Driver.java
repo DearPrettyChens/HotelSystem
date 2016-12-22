@@ -40,36 +40,28 @@ public class AvailableRoomDataServiceImpl_Driver {
 		getPO = dao.getAvailableRoomNumber("1", new Date(), BedType.BIGBED);
 		System.out.println(getPO.getHotelNumber() + " " + getPO.getBedType() + " " + getPO.getNumber());
 
-		//setAvailableRoomNumber是不是只有在入住退房的时候改？
 		AvailableRoomNumberPO changePO = new AvailableRoomNumberPO(10, BedType.BIGBED, new Date(), 1);
 		System.out.println(dao.setAvailableRoomNumber(changePO));
 		getPO = dao.getAvailableRoomNumber("1", new Date(), BedType.BIGBED);
 		System.out.println(getPO.getHotelNumber() + " " + getPO.getBedType() + " " + getPO.getNumber());
-		
+
 	}
+
 	public void test(AvailableRoomDao dao) throws RemoteException {
-//		assertEquals(
-		System.out.println(		dao.setAvailableRoomNumber(new AvailableRoomNumberPO(8,BedType.BIGBED,
-				new Date(),5)));
-//				,ResultMessage.SUCCESS);
-		ArrayList<AvailableRoomInfoPO> roomInfo=dao.getAvailableRoomInfo("000005");
-		for(int i=0;i<roomInfo.size();i++){
-			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
-				System.out.println(
-//						assertEquals(
-						roomInfo.get(i).getCurrentNumber());
-//						,8);
+		System.out.println(dao.setAvailableRoomNumber(new AvailableRoomNumberPO(8, BedType.BIGBED, new Date(), 5)));
+		ArrayList<AvailableRoomInfoPO> roomInfo = dao.getAvailableRoomInfo("000005");
+		for (int i = 0; i < roomInfo.size(); i++) {
+			if (roomInfo.get(i).getBedType() == BedType.BIGBED) {
+				System.out.println(roomInfo.get(i).getCurrentNumber());
 			}
 		}
 	}
-	public void runClientCode(AvailableRoomDao dao) throws RemoteException{
-//		System.out.println(dao.getAvailableRoomInfo("00005").size());//("000005", "000001")
-		System.out.println(dao.setAvailableRoomNumber(new AvailableRoomNumberPO(8,BedType.BIGBED,
-				new Date(),5)));
+
+	public void runClientCode(AvailableRoomDao dao) throws RemoteException {
+		System.out.println(dao.setAvailableRoomNumber(new AvailableRoomNumberPO(8, BedType.BIGBED, new Date(), 5)));
 	}
+
 	public static void main(String[] args) throws RemoteException, ParseException {
-//		new AvailableRoomDataServiceImpl_Driver().test(AvailableRoomDaoImpl.getInstance());
-//		.drive(AvailableRoomDaoImpl.getInstance());
 		new AvailableRoomDataServiceImpl_Driver().runClientCode(AvailableRoomDaoImpl.getInstance());
 	}
 }

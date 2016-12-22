@@ -31,10 +31,8 @@ public class WebStrategyDaoImpl extends UnicastRemoteObject implements WebStrate
 		try {
 			webStrategyDao = new WebStrategyDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

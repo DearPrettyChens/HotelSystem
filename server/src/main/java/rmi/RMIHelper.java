@@ -31,7 +31,6 @@ public class RMIHelper {
 	private static String hostAddress;
 	private static boolean isStart = false;
 
-	// private String
 	public static void connect() {
 
 		try {
@@ -42,10 +41,8 @@ public class RMIHelper {
 			isStart = true;
 			System.out.println("start");
 		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -61,13 +58,10 @@ public class RMIHelper {
 				// 不使用Naming，直接使用registry来绑定，此处不用指定url
 				registry.bind(rmiMap.getDaoName(), rmiMap.getDao());
 			} catch (AccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (AlreadyBoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

@@ -13,8 +13,6 @@ import util.WebStrategyType;
  * @version 1.0
  */
 public class WebStrPO implements Serializable {
-	// 商圈折扣映射
-	// private Map<TradingArea, Double> tradingAreaStrategy;
 	// vip折扣映射
 	private Map<Integer, Double> VIPOrTradingAreaStrategy;
 	// 日期

@@ -50,6 +50,8 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 					transaction.rollback();
 				}
 				return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+			}catch (Exception e) {
+				e.printStackTrace();
 			} finally {
 				session.close();
 			}
@@ -69,6 +71,8 @@ public class HotelStrategyDataHelperDatabaseImpl implements HotelStrategyDataHel
 					transaction.rollback();
 				}
 				return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+			}catch (Exception e) {
+				e.printStackTrace();
 			} finally {
 				session.close();
 			}

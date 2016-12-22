@@ -19,7 +19,6 @@ public class LogInfo extends JLabel {
 		this.userType = new JLabel(userType,JLabel.CENTER);
 		this.ipAddress = new JLabel(ipAddress,JLabel.CENTER);
 
-//		this.setForeground(Color.gray);
 		this.setSize(600, 25);
 		this.setLayout(null);
 		initComponent();

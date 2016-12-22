@@ -32,16 +32,13 @@ public class HotelDaoImpl extends UnicastRemoteObject implements HotelDao {
 		try {
 			hotelDao = new HotelDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static HotelDao getInstance() throws RemoteException {
-
 		return hotelDao;
 	}
 

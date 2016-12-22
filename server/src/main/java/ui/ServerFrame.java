@@ -71,15 +71,6 @@ public class ServerFrame extends JFrame {
 		this.setVisible(true);
 	}
 
-	// public void addList(LogInfo newInfo) {
-	// list.add(newInfo);
-	// this.repaintUserPanel();
-	// }
-	//
-	// public void repaintUserPanel() {
-	// userPanel.repaint();
-	// }
-
 	public void initAbovePanel() {
 		closeJBT = new CloseButton();
 		narrowJBT = new NarrowButton(this);

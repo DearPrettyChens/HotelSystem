@@ -72,8 +72,9 @@ public class CheckInDataHelperDatabaseImpl implements CheckInDataHelper {
 				transaction.rollback();
 			}
 			return ResultMessage.CONFLICTIONINSQLNEEDCOMMIViewTagAIN;
+		}catch (Exception e) {
+			e.printStackTrace();
 		} finally {
-			// session.getTransaction().commit();
 			session.close();
 		}
 		return ResultMessage.SUCCESS;

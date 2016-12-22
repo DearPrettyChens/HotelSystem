@@ -59,11 +59,6 @@ public class ClientPO implements Serializable {
 			return this;
 		}
 
-//		public Builder type(UserType type) {
-//			this.po.type = type;
-//			return this;
-//		}
-
 		public ClientPO build() {
 			return this.po;
 		}

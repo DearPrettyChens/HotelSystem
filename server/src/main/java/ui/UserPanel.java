@@ -22,9 +22,6 @@ public class UserPanel extends JPanel {
 	private ServerFrame frame;
 	private static int position = 0;
 
-	// private JLabel passwordLable;
-	// private JLabel userTypeLable;
-	// private JLabel
 	public UserPanel(ServerFrame frame) {
 		super();
 		this.setLayout(null);
@@ -97,7 +94,6 @@ public class UserPanel extends JPanel {
 				this.remove(each);
 				position -= 26;
 				if (each.getUserName().getText().equals(userName)) {
-					// list.remove(each);
 					toRemove = each;
 					message = ResultMessage.SUCCESS;
 				}

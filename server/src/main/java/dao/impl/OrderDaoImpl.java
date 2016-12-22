@@ -36,10 +36,8 @@ public class OrderDaoImpl extends UnicastRemoteObject implements OrderDao {
 		try {
 			orderDao = new OrderDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

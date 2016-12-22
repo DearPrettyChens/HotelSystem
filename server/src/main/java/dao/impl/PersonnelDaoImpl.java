@@ -33,10 +33,8 @@ public class PersonnelDaoImpl extends UnicastRemoteObject implements PersonnelDa
 		try {
 			personnelDao = new PersonnelDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

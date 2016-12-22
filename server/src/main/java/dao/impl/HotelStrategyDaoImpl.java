@@ -34,10 +34,8 @@ public class HotelStrategyDaoImpl extends UnicastRemoteObject implements HotelSt
 		try {
 			hotelStrategyDao = new HotelStrategyDaoImpl();
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

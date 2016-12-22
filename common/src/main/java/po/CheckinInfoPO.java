@@ -181,29 +181,4 @@ public class CheckinInfoPO implements Serializable {
 				hotelnumber, ordernumber);
 	}
 
-	// public String getBedtypeInSQL() {
-	// return bedtypeInSQL;
-	// }
-	//
-	// public void setBedtypeInSQL(String bedtypeInSQL) {
-	// this.bedtypeInSQL = bedtypeInSQL;
-	// switch (bedtypeInSQL) {
-	// case "BIGBED":
-	// bedtype = BedType.BIGBED;
-	// break;
-	// case "TWOBEDS":
-	// bedtype = BedType.TWOBEDS;
-	// break;
-	// case "THREEBEDS":
-	// bedtype = BedType.THREEBEDS;
-	// break;
-	// case "FOURBEDS":
-	// bedtype = BedType.FOURBEDS;
-	// break;
-	// case "FAMILYBED":
-	// bedtype = BedType.FAMILYBED;
-	// break;
-	// }
-	// }
-
 }
