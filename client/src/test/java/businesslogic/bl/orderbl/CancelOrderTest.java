@@ -6,7 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import util.OrderState;
-
+/**
+ * 撤销订单的测试类
+ * @author CLL
+ *
+ */
 public class CancelOrderTest {
 	SingleOrder order;
 	@Before
