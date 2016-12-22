@@ -16,8 +16,6 @@ import javax.swing.JPanel;
 public class Logingif_JFrame   extends JFrame{
 	
 	private JLabel gif=new JLabel(new ImageIcon(Logingif_JFrame.class.getResource("image/loginback.gif")));
-	
-	//private close_JButton close_jbutton = new close_JButton();// 关闭窗口按钮
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
 	
 	public  Logingif_JFrame (){
@@ -33,7 +31,6 @@ public class Logingif_JFrame   extends JFrame{
         
 		this.setLayout(null);
 
-		//setBak(); // 调用背景方法
 		addComp();// 调用添加组件方法
 		setBak(); // 调用背景方法
 
@@ -45,10 +42,7 @@ public class Logingif_JFrame   extends JFrame{
 	}
 	
 	public void addComp() {
-		
-		
-		//close_jbutton.setBounds(970, 10, 20, 20);
-		//this.add(close_jbutton);
+
 		narrow_jbutton.setBounds(930, 10, 20, 20);
 		this.add(narrow_jbutton);
 		

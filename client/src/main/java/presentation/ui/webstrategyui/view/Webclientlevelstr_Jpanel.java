@@ -48,7 +48,6 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 	private Map<Integer, Double> vipStrategy;
 
 	public Webclientlevelstr_Jpanel() {
-		// this.singleinfo;到逻辑层取
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setSize(800, 500);
@@ -74,7 +73,6 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				Singlewebclientlevelstr_Jpanel newsingleinfo = new Singlewebclientlevelstr_Jpanel(0, 0);
 				singleinfo.add(newsingleinfo);
 				addToPanel();
@@ -167,7 +165,6 @@ public class Webclientlevelstr_Jpanel extends JPanel {
 		panel.updateUI();
 		scrollPane.setViewportView(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// this.add(scrollPane);
 	}
 
 }

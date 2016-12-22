@@ -21,7 +21,6 @@ import presentation.ui.loginui.distributecontroller.LoginDistributionController;
  */
 public class close_JButton extends JButton{
 	 private ImageIcon icon=new ImageIcon(close_JButton.class.getResource("image/close.png"));
-	 //private JFrame jf;
 	 private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 	 public close_JButton(){
 		

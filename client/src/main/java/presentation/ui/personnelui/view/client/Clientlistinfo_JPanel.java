@@ -37,7 +37,7 @@ public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 	private JLabel teljl = new JLabel();
 	private JLabel typejl = new JLabel();
 	private JLabel passwordjl = new JLabel();
-	JLabel backjl = new JLabel();
+	private JLabel backjl = new JLabel();
 
 	private ImageIcon image;
 
@@ -61,8 +61,6 @@ public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.type = personListVO.getUserType();
 
 		this.setBackground(Color.white);
-
-		// setBak();
 		addComp();
 		setListener();
 
@@ -116,8 +114,7 @@ public class Clientlistinfo_JPanel extends Personlistinfo_JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-
+				
 				personnelControllerImpl.showCustomerDetailInfo(id);
 
 			}

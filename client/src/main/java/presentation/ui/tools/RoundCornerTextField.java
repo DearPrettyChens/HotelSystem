@@ -42,16 +42,5 @@ public class RoundCornerTextField extends JTextField{
         g2.setColor(new Color(0, 0, 0, 0));
         g2.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, arcW, arcH);
     }
-     
-//    public static void main(String[] args) {
-//        JFrame f = new JFrame() ;
-//        JPanel p = new JPanel() ;
-//        RoundCornerTextField r = new RoundCornerTextField() ;
-//        r.setSize(200, 200);
-//        r.setPreferredSize(new Dimension(200, 25));
-//        p.add(r) ;
-//        f.add(p) ;
-//        f.setSize(300, 300);
-//        f.setVisible(true);
-//    }
+
 }

@@ -79,7 +79,6 @@ public class Basic_JPanel extends JPanel {
 		jl4.setVisible(false);
 
 		jl1.setBounds(80, 6, 120, 69);
-		// jl1.setOpaque(true);
 
 		this.setBackground(new Color(148, 221, 184));
 
@@ -90,7 +89,6 @@ public class Basic_JPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				// TODO Auto-generated method stub
 				Basic_JPanel.this.setBackground(new Color(133, 196, 163));
 				Basic_JPanel.this.jl4.setVisible(true);
 				String info = Basic_JPanel.this.labelName;
@@ -158,7 +156,6 @@ public class Basic_JPanel extends JPanel {
 					jpanel=OrderPanelViewInHotelWorker.getInstance(leftChooseMap.hotelID);
 					break;
 				case ReserveHotelView:
-					//ReserveHotelView.destory();
 					jpanel=ReserveHotelView.getInstance(userID,userName);
 					break;
 				case RoomInfo_JPanel:
@@ -187,19 +184,16 @@ public class Basic_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 				jl1.setForeground(new Color(225, 255, 255));
 				jl1.setFont(new Font("宋体", Font.BOLD, 18));
@@ -207,7 +201,6 @@ public class Basic_JPanel extends JPanel {
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				jl1.setForeground(Color.WHITE);
 				jl1.setFont(new Font("宋体", Font.BOLD, 16));
 			}
@@ -220,7 +213,6 @@ public class Basic_JPanel extends JPanel {
 	 * 用于初始化左边栏第一项
 	 */
 	public void init() {
-		// TODO Auto-generated method stub
 		Basic_JPanel.this.setBackground(new Color(133, 196, 163));
 		Basic_JPanel.this.jl4.setVisible(true);
 

@@ -31,7 +31,7 @@ public class name_JTextField extends JTextField implements FocusListener {
 	    private ImageIcon icon;  
 	  
 	    public name_JTextField() {  
-       // 获取当前路径下的图片  
+	    	// 获取当前路径下的图片  
 	        icon = new ImageIcon(getClass().getResource("image/name.png")); 
 	        
 	        Insets insets = new Insets(50, 20, 20, 0);  
@@ -43,27 +43,8 @@ public class name_JTextField extends JTextField implements FocusListener {
 	        Border empty = new EmptyBorder(0, 50, 0, 0);
 	        CompoundBorder border = new CompoundBorder(this.getBorder(), empty);
 	        this.setBorder(border);
-	       
-	        
-	        
-	       //this.setBorder(new MyLineBorder(new Color(192, 192, 192), 1 , true));
+	  
 	    }  
-	      
-	    
-//	    @Override
-//	    protected void paintBorder(Graphics g)
-//	   {
-//	    int h = getHeight();// 从JComponent类获取高宽
-//	    int w = getWidth();
-//
-//	    Graphics2D g2d = (Graphics2D)g.create();
-//	    Shape shape = g2d.getClip();
-//	    g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//	   g2d.setClip(shape);
-//	    g2d.drawRoundRect(0, 0, w - 1, h - 1, h, h);
-//	   g2d.dispose();
-//	   super.paintBorder(g2d);
-//	   }
 
 
 	    @Override  
@@ -79,13 +60,11 @@ public class name_JTextField extends JTextField implements FocusListener {
 
 		@Override
 		public void focusGained(FocusEvent e) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void focusLost(FocusEvent e) {
-			// TODO Auto-generated method stub
 			
 		}  
 		

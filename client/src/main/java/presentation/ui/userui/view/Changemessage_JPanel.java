@@ -327,8 +327,6 @@ public class Changemessage_JPanel extends JPanel {
 			 telErrorJl2.setVisible(true);
 		 }
 		 if(!text.equals("")&&text.length()==11){
-//			 PersonDetailVO detail=new PersonDetailVO(userID,userName,userPassword,userImage,
-//					text,userCredit,new Date(TransHelper.stringToDate(userBirth)),userEnterprise,customerType,null,UserType.Customer);
 			 personDetailVO.setTelephone(text);
 			 if(userDistributeController.confirmUserInfo(personDetailVO)==ResultMessage.SUCCESS){
 				 new SaveSuccess_JFrame();

@@ -58,7 +58,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	private JLabel birthdayjl = new JLabel("生日:   ");
 
 	private Color backgroundcolor = new Color(180, 237, 204);
-	//private Color backgroundcolor = new Color(148, 221, 184);
 	
 	private JLabel idjtx = new JLabel();
 	private JLabel namejtx = new JLabel();
@@ -89,7 +88,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.birthday = TransHelper.dateToString(birthdayByDate);
 		this.enterpriseName = personDetailVO.getEnterpriseName();
 		this.customerType = personDetailVO.getVIPType();
-
 		this.image = personDetailVO.getImage();
 
 		switch (customerType) {
@@ -111,8 +109,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 	
 		this.setLayout(null);
 		this.setBounds(600, 200, 350, 480);
-		//this.getContentPane().setBackground(backgroundcolor);
-		//this.setUndecorated(true);
 		addComp();
 
 	}
@@ -131,7 +127,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(typejl);
 		typejtx.setBounds(100, 20, 200, 30);
 		typejtx.setFont(font);
-		//typejtx.setEditable(false);
 		this.add(typejtx);
 
 		idjl.setBounds(50, 70, 200, 30);
@@ -146,7 +141,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(namejl);
 		namejtx.setBounds(100, 120, 200, 30);
 		namejtx.setFont(font);
-		//namejtx.setEditable(false);
 		this.add(namejtx);
 
 		teljl.setBounds(50, 170, 200, 30);
@@ -170,7 +164,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 		this.add(creditjl);
 		creditjtx.setBounds(100, 270, 200, 30);
 		creditjtx.setFont(font);
-		//creditjtx.setEditable(false);
 		this.add(creditjtx);
 
 		switch (customerType) {
@@ -180,7 +173,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 			this.add(enterpriseNamejl);
 			enterpriseNamejtx.setBounds(100, 320, 200, 30);
 			enterpriseNamejtx.setFont(font);
-			//enterpriseNamejtx.setEditable(false);
 			this.add(enterpriseNamejtx);
 			break;
 		case INDIVIDUAL:
@@ -189,7 +181,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 			this.add(birthdayjl);
 			birthdayjtx.setBounds(100, 320, 200, 30);
 			birthdayjtx.setFont(font);
-			//birthdayjtx.setEditable(false);
 			this.add(birthdayjtx);
 			break;
 		}
@@ -415,8 +406,6 @@ public class Clientdetailinfo_JFrame extends JFrame {
 
 		});
 
-		//TODO
-		//能不能实现点任意一个地方，使保存失败不显示
 	}
 
 }

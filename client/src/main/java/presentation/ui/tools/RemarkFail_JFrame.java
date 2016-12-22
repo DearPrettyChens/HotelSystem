@@ -52,7 +52,6 @@ public class RemarkFail_JFrame extends JFrame{
 		
 		
 		close_jbutton.setBounds(350, 10, 24, 24);
-		//upjp.add(close_jbutton);
 		
 		
 		halfjl.setFont(font);
@@ -68,10 +67,7 @@ public class RemarkFail_JFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				RemarkFail_JFrame.this.dispose();
-				
-				
 			}
 			
 		});

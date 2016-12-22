@@ -9,15 +9,13 @@ import javax.swing.JPanel;
 /**
  * 是为了设置大小
  * @author cy
+ * 
  */
 public class Personlistinfo_JPanel extends JPanel {
 
 	public Personlistinfo_JPanel() {
-
 		this.setSize(700, 200);
 		this.setLayout(null);
-		// this.setBackground(new Color(204,204,204));
-
 	}
 
 }

@@ -24,18 +24,7 @@ public class UserViewControllerImpl implements UserViewControllerService{
 
 	@Override
 	public void jumpToDetailInfoView() {
-		// TODO Auto-generated method stub
-		switch(userType){
-		case Customer:
-			//TODO
-			break;
-		case HotelWorker:
-			//未完成酒店工作人员维护个人信息面板
-			break;
-		default:
-			break;
-		
-		}
+
 	}
 
 

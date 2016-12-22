@@ -103,7 +103,6 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 		searchResultPanel = new JPanel();
 		searchResultPanel.setLayout(null);
 		searchResultPanel.repaint();
-		// scrollPane.repaint();
 		searchResultPanel.setBackground(Color.WHITE);
 		webmarketmanlistinfo_JPanels = new ArrayList<Webmarketmanlistinfo_JPanel>();
 		for (PersonListVO personListVO : personListVOs) {
@@ -118,7 +117,6 @@ public class ManageWebMarketManPanel extends JPanel implements SearchInterface, 
 		searchResultPanel.setPreferredSize(new Dimension(800, 120 + 120 * webmarketmanlistinfo_JPanels.size()));
 		scrollPane.setViewportView(searchResultPanel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);}
-		// this.add(scrollPane);
 	}
 
 	@Override

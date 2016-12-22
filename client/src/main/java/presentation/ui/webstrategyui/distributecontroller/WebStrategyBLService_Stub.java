@@ -19,28 +19,24 @@ public class WebStrategyBLService_Stub implements WebStrategyBLService{
 
 	@Override
 	public WebBestStrVO getWebBestStrategy(WebProvidedVO webProvidedVO) {
-		// TODO Auto-generated method stub
 		WebBestStrVO vo=new WebBestStrVO(WebStrategyType.SPECIALAREA,0.6);
 		return vo;
 	}
 
 	@Override
 	public GradeRuleVO getGradeRule() {
-		// TODO Auto-generated method stub
 		GradeRuleVO vo=new GradeRuleVO(200);
 		return vo;
 	}
 
 	@Override
 	public WebStrVO getWebStrategy(WebStrategyType type) {
-		// TODO Auto-generated method stub
 		Calendar calendar1=Calendar.getInstance();
 		calendar1.set(2016, 5, 20);
 		Calendar calendar2=Calendar.getInstance();
 		calendar2.set(2016, 12, 4);
 		
 		Date[] date=new Date[]{calendar1.getTime(),calendar2.getTime()};
-//		System.out.println(date[0]);
 		Map<Integer, Double> area=new HashMap<Integer, Double>();
 		area.put(TradingArea.XINJIEKOU.ordinal(), 0.5);
 		area.put(TradingArea.HUNANLU.ordinal(), 0.8);
@@ -64,13 +60,11 @@ public class WebStrategyBLService_Stub implements WebStrategyBLService{
 
 	@Override
 	public ResultMessage confirmGradeRule(GradeRuleVO gradeRuleVO) {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage confirmWebStrategy(WebStrVO webStrVO) {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 

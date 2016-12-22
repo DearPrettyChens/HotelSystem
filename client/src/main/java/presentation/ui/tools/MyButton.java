@@ -51,9 +51,6 @@
  
              @Override
           public void mouseExited(MouseEvent e) {
-            	 //MyButton.this.setForeground(c);
-				
-                 //setForeground(BUTTON_COLOR2);
             	 setForeground(c);
                 hover = false;
                  repaint();
@@ -99,7 +96,6 @@
           g2d.fillRect(0, 0, w, h);
           g2d.setClip(clip);
           g2d.setPaint(p1);
-         // g2d.drawRoundRect(0, 0, w - 1, h - 1, 20, 20);
           g2d.setPaint(p2);
           g2d.drawRoundRect(1, 1, w - 3, h - 3, 18, 18);
           g2d.dispose();

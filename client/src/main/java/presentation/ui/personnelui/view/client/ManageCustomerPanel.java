@@ -70,12 +70,13 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
 	public void initCustomerList() {
 		ArrayList<PersonListVO> personListVOs=personnelDistributionController.getPersonList(UserType.Customer, null);
 	 
-		changeScrollPane(personListVOs);}
+		changeScrollPane(personListVOs);
+	}
 	 
 	
     
 	public void changeScrollPane(ArrayList<PersonListVO>personListVOs) {
-		  if(personListVOs==null){
+		if(personListVOs==null){
 			  scrollPane.setLayout(null);
 			  JLabel jLabel=new JLabel("该顾客不存在！",JLabel.CENTER);
 			  jLabel.setBounds(300,0,200,30);
@@ -83,27 +84,26 @@ public class ManageCustomerPanel extends JPanel implements SearchInterface{
 			  jLabel.setForeground(Color.red);
 			  
 			  scrollPane.setViewportView(jLabel);
-		  }else{
-		searchResultPanel=new JPanel();
-		searchResultPanel.setLayout(null);
-		searchResultPanel.repaint();
-//		scrollPane.repaint();
-		searchResultPanel.setBackground(Color.WHITE);
-		 clientlistinfo_JPanels=new ArrayList<Clientlistinfo_JPanel>();
-		for(PersonListVO personListVO:personListVOs){
-	    	Clientlistinfo_JPanel clientlistinfo_JPanel=new Clientlistinfo_JPanel(personListVO);
-	    	clientlistinfo_JPanels.add(clientlistinfo_JPanel);
-	    }
-	    for(int i=0;i<clientlistinfo_JPanels.size();i++){
-	    	Clientlistinfo_JPanel clientlistinfo_JPanel=clientlistinfo_JPanels.get(i);
-	    	clientlistinfo_JPanel.setBounds(100, 10+120*i, 800, 100);
-	    	searchResultPanel.add(clientlistinfo_JPanel);
-	    }
-	    searchResultPanel.setPreferredSize(new Dimension(800, 120+120*clientlistinfo_JPanels.size()));
-	    scrollPane.setViewportView(searchResultPanel);
-	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//	    this.add(scrollPane);
-	}
+		}
+		else{
+			searchResultPanel=new JPanel();
+			searchResultPanel.setLayout(null);
+			searchResultPanel.repaint();
+			searchResultPanel.setBackground(Color.WHITE);
+			clientlistinfo_JPanels=new ArrayList<Clientlistinfo_JPanel>();
+			for(PersonListVO personListVO:personListVOs){
+				Clientlistinfo_JPanel clientlistinfo_JPanel=new Clientlistinfo_JPanel(personListVO);
+				clientlistinfo_JPanels.add(clientlistinfo_JPanel);
+			}
+			for(int i=0;i<clientlistinfo_JPanels.size();i++){
+				Clientlistinfo_JPanel clientlistinfo_JPanel=clientlistinfo_JPanels.get(i);
+				clientlistinfo_JPanel.setBounds(100, 10+120*i, 800, 100);
+				searchResultPanel.add(clientlistinfo_JPanel);
+			}
+			searchResultPanel.setPreferredSize(new Dimension(800, 120+120*clientlistinfo_JPanels.size()));
+			scrollPane.setViewportView(searchResultPanel);
+			scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		}
 
 	}
 	

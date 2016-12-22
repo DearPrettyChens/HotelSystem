@@ -32,7 +32,6 @@ public class Singlewebareastr_Jpanel extends JLabel {
 	private JTextField countjtf = new JTextField();
 
 	Singlewebareastr_Jpanel(int area, double cout) {
-		// this.place=place;
 		if (area == -1) {
 			place = "请选择商圈";
 		} else {

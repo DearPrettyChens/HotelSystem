@@ -15,7 +15,6 @@ public class SearchHotelBLService_Stub implements SearchHotelBLService{
 
 	@Override
 	public ArrayList<HotelListVO> getSortedHotelList(HotelSearchInfoVO hotelSearchInfoVO) {
-		// TODO Auto-generated method stub
 		ArrayList<HotelListVO> hotelListVOs= new ArrayList<HotelListVO>();
 		ArrayList<OrderState> orderStates=new ArrayList<OrderState>();
 		orderStates.add(OrderState.UNUSUAL);
@@ -37,7 +36,6 @@ public class SearchHotelBLService_Stub implements SearchHotelBLService{
 
 	@Override
 	public ArrayList<HotelListVO> getCustomerHotelList(String customerID) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

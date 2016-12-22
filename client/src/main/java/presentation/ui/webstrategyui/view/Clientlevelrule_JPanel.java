@@ -33,11 +33,7 @@ public class Clientlevelrule_JPanel extends JPanel {
 	private int credit;
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
-	// private JLabel title=new JLabel(new
-	// ImageIcon("image//clientruletitle.png"));
-	// private JLabel numberjl=new JLabel("等级数量：");
 	private JLabel creditjl = new JLabel("到达下一等级所需信用值：");
-	// private MyTextfield numberjtf;
 	private MyTextfield creditjtf;
 
 	private MyButton confirm = new MyButton();
@@ -52,7 +48,6 @@ public class Clientlevelrule_JPanel extends JPanel {
 		webstrategyDistributionController = WebstrategyDistributionController.getInstance();
 		credit = webstrategyDistributionController.getGradeRule().getValue();
 
-		// numberjtf=new MyTextfield(""+number);
 		creditjtf = new MyTextfield("" + credit);
 
 		this.setLayout(null);
@@ -71,22 +66,9 @@ public class Clientlevelrule_JPanel extends JPanel {
 	 */
 	public void addComp() {
 
-		// title.setBounds(0,0,800,100);
-		// this.add(title);
-
-		// numberjl.setFont(font);
-		// numberjl.setBounds(310,150,200,50);
-		// this.add(numberjl);
-
-		// numberjtf.setBounds(400,150,200,50);
-		// this.add(numberjtf);
-
 		creditjl.setFont(font);
-//		creditjl.setBounds(200, 250, 200, 50);
 		creditjl.setBounds(200, 200, 200, 50);
 		this.add(creditjl);
-
-//		creditjtf.setBounds(400, 250, 200, 50);
 		creditjtf.setBounds(400, 200, 200, 50);
 		this.add(creditjtf);
 

@@ -50,7 +50,6 @@ public class newclient_JLabel extends JLabel {
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
 					newclient_JLabel.this.setForeground(c);
 				}
 			});

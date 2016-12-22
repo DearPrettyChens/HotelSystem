@@ -58,7 +58,6 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
 
 		this.setBackground(Color.white);
 
-		// setBak();
 		addComp();
 		setListener();
 
@@ -114,7 +113,6 @@ public class Webmarketmanlistinfo_JPanel extends Personlistinfo_JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 
 				personnelControllerImpl.showWebMarketManDetailInfo(id);
 
