@@ -61,7 +61,7 @@ public class WebVIPStrategy implements WebStrategyInterface {
 		}
 		
 		if(info!=null){
-			credit=Integer.parseInt(info);//如果不是int型怎么办，此处考虑exception
+			credit=Integer.parseInt(info);
 		}
 		
 		//获得用户等级

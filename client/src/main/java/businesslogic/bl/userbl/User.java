@@ -77,7 +77,7 @@ public class User {
 			if (!password.equals(clientPO.getPassword())) {
 				return ResultMessage.PASSWORDERROR;
 			}
-			
+
 			if (logDao.logIn(clientPO) == ResultMessage.USERHASLOGGEDIN) {
 				return ResultMessage.USERHASLOGGEDIN;
 			}
@@ -86,8 +86,6 @@ public class User {
 			this.userID = TransHelper.idToString(clientPO.getUserID(), 6);
 			this.password = password;
 			this.userType = clientPO.getType();
-
-//			logDao.logIn(clientPO);
 
 			return personMap.get(userType);// 返回是哪种人登录成功了。
 
@@ -134,20 +132,16 @@ public class User {
 	 */
 	public ResultMessage confirmPassword(PasswordVO passwordVO) {
 
-		// 判断两次输入的密码一致
-		//if ((firstPassword != null) && (passwordVO.getPassword().equals(firstPassword))) {
-			//password = firstPassword;
-			try {
-				
-				userDao.setPassword(new ClientPO(passwordVO.getUserName(), passwordVO.getPassword(), TransHelper.idToInt(passwordVO.getUserID())));
-				firstPassword = null;
-				this.password= passwordVO.getPassword();
-			} catch (RemoteException e) {
-				e.printStackTrace();
-			}
-			return ResultMessage.SUCCESS;
-		//}
-		//return ResultMessage.PASSWORDNOTSAME;
+		try {
+
+			userDao.setPassword(new ClientPO(passwordVO.getUserName(), passwordVO.getPassword(),
+					TransHelper.idToInt(passwordVO.getUserID())));
+			firstPassword = null;
+			this.password = passwordVO.getPassword();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return ResultMessage.SUCCESS;
 
 	}
 
@@ -159,7 +153,7 @@ public class User {
 	 */
 	public BasicInfoVO getBasicInfo() {
 		if (userType == UserType.Customer) {
-			
+
 			return Customer.getInstance().getBasicInfo(userID);
 		}
 		return new BasicInfoVO(userName, userID, userType);
@@ -183,7 +177,6 @@ public class User {
 	 */
 	public ResultMessage logout() {
 		ResultMessage resultMessage = ResultMessage.FAIL;
-//		System.out.println(userName);
 		try {
 			resultMessage = logDao.logOut(userName);
 		} catch (RemoteException e) {

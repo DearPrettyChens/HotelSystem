@@ -75,26 +75,26 @@ public class AvailableRoom {
 	 */
 	public ResultMessage confirmAvailableRoomInfo(String hotelID, AvailableRoomInfoVO availableRoomInfoVO)
 			throws NullHotelIDException {
-		ResultMessage resultMessage=ResultMessage.FAIL;
+		ResultMessage resultMessage = ResultMessage.FAIL;
 		if (hotelID == null) {
 			throw new NullHotelIDException();
 		}
 		// 调用数据层
 		try {
-			
-			HotelStrategy hotelStrategy=HotelStrategy.getInstance();
-			double discount=hotelStrategy.getHotelLowestDiscount(hotelID);
-			double price=availableRoomInfoVO.getOriginalPrice();
-			availableRoomInfoVO.setLowestPrice(price*discount);
+
+			HotelStrategy hotelStrategy = HotelStrategy.getInstance();
+			double discount = hotelStrategy.getHotelLowestDiscount(hotelID);
+			double price = availableRoomInfoVO.getOriginalPrice();
+			availableRoomInfoVO.setLowestPrice(price * discount);
 			boolean tag = availableRoomInfoVO.isTag();
-			
+
 			if (tag == true) {
-				resultMessage=availableRoomDao.addAvailableRoomInfo(availableRoomInfoVO.toPO());
+				resultMessage = availableRoomDao.addAvailableRoomInfo(availableRoomInfoVO.toPO());
 			} else {
-				resultMessage=availableRoomDao.modifyAvailableRoomInfo(availableRoomInfoVO.toPO());
+				resultMessage = availableRoomDao.modifyAvailableRoomInfo(availableRoomInfoVO.toPO());
 			}
-			if(resultMessage==ResultMessage.SUCCESS){
-				resultMessage=setBestPrice(hotelID, discount);
+			if (resultMessage == ResultMessage.SUCCESS) {
+				resultMessage = setBestPrice(hotelID, discount);
 			}
 
 		} catch (RemoteException e) {
@@ -199,7 +199,7 @@ public class AvailableRoom {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		//System.out.println("不存在该房间类型");
+
 		return 0;
 	}
 
@@ -220,24 +220,15 @@ public class AvailableRoom {
 			AvailableRoomNumberPO roomInfo = availableRoomDao.getAvailableRoomNumber(
 					availableRoomNumberVO.getHotelNumber(), availableRoomNumberVO.getDate(),
 					availableRoomNumberVO.getBedType());
-			if(roomInfo==null) return ResultMessage.FAIL;
+			if (roomInfo == null)
+				return ResultMessage.FAIL;
 			// availableRoomNumberVO中传的是需要的房间数量，与数据层返回的可用房间数量进行比较
 			if (roomInfo.getNumber() >= availableRoomNumberVO.getNumber()) {
 				return ResultMessage.SUCCESS;
 			} else {
 				return ResultMessage.NOTENOUGHAVAILABLEROOM;
 			}
-			/*
-			 * ArrayList<AvailableRoomInfoPO>
-			 * roomInfo=availableRoomDao.getAvailableRoomInfo(
-			 * availableRoomNumberVO.getHotelNumber()); //当前可用房间数的列表 int
-			 * roomNumber=0; for(int i=0;i<roomInfo.size();i++){
-			 * if(roomInfo.get(i).getBedType()==availableRoomNumberVO.getBedType
-			 * ()){ roomNumber=roomInfo.get(i).getCurrentNumber(); } }
-			 * if(roomNumber>=availableRoomNumberVO.getNumber()){ return
-			 * ResultMessage.SUCCESS; } else{ return
-			 * ResultMessage.NOTENOUGHAVAILABLEROOM; }
-			 */
+
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

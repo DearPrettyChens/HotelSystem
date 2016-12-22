@@ -78,13 +78,6 @@ public class Personnel {
 		return ResultMessage.SUCCESS;
 	}
 
-	// public static void main(String[] args) {
-	// System.out.println(new Personnel().checkUserName("1"));
-	// System.out.println(new Personnel().checkUserName("小豆豆豆"));
-	// System.out.println(new Personnel().checkUserName("0000000000000000"));
-	// System.out.println(new Personnel().checkUserName("踩踩踩踩踩ddd"));
-	// }
-
 	/**
 	 * 增加用户
 	 * 

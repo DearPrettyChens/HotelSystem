@@ -47,24 +47,6 @@ import vo.ordervo.RemarkVO;
  * @version 1.0
  */
 public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
-/*	private String hotelName;// 酒店名称
-	private String hotelID;//酒店编号
-	private String address;// 酒店地址
-	private City city;//城市
-	private TradingArea tradingArea;//商圈
-	private ImageIcon hotelImage;//酒店图片
-	private String telephone;// 联系方式
-	private int star;// 星级
-	private String introduce;// 酒店简介
-	private String commonFacility;// 通用设施
-	private String activityFacility;// 活动设施
-	private String service;// 服务项目
-	private String roomFacility;// 客房设施	
-	private String enterprises;// 合作企业
-	private double bestPrice;//最低价格
-	private int remarkOrderNumber;//评价过的订单总数
-	private double remarkNumber;//评分
-	private ArrayList<String> remarkDetailInfo;//评论*/
 	private HotelDao hotelDao;//数据层的应用
 	private AvailableRoom availableRoom;//酒店可用客房信息
 	private HotelStrategy hotelStrategy;//酒店策略信息
@@ -75,7 +57,6 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 	public Hotel() {
 		RMIHelper.init();
 		hotelDao=RMIHelper.getHotelDao();
-//		System.out.println(hotelDao);
 		//hotelDao=new HotelDao_Stub();
 	}
 	
@@ -99,7 +80,6 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 					hotelDao.addHotelBasicInfo(hotelBasicInfoVO.votopo());
 					return hotelBasicInfoVO;
 				}
-				//throw new NotFoundHotelException("无该酒店信息");
 			}
 			return new HotelBasicInfoVO(po);
 		} catch (RemoteException e) {

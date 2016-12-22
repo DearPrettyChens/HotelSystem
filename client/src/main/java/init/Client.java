@@ -12,13 +12,11 @@ import util.BedType;
 
 public class Client {
 	public static void main(String[] args) {
-	     
-		
-	   
-	   JFrame frame=new login_JFrame();
-	   
-	   RMIHelper.init();
-	  
+
+		JFrame frame = new login_JFrame();
+
+		RMIHelper.init();
+
 	}
 
 }

@@ -55,7 +55,6 @@ public class CheckinController implements CheckinBLService{
 		else{
 			return ResultMessage.IDFORMATERROR;
 		}
-		//return checkin.checkIDLength(ID);
 	}
 
 	@Override

@@ -10,7 +10,7 @@ import util.TransHelper;
 import vo.ordervo.OrderProvidedVO;
 
 /**
- * 
+ * 迭代器模式
  * 用于取最佳策略时的遍历，可修改性好
  * 每种策略种类对应相关的界面提供的策略信息
  * 运用组合，然后模仿iterator来写hasNext,next

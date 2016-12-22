@@ -53,12 +53,7 @@ public class WebSpecialAreaStrategy implements WebStrategyInterface {
 		if(info==null){
 			return 1;//即没有折扣
 		}
-//		String regex= "[0-9]+";//正则表达式匹配1个以上的数字
-//		if(!info.matches(regex)){
-//			throw new NotIntException("传入的商圈信息不是数值类型");
-//		}
-		
-		int tradingArea=TransHelper.stringToArea(info);//如果不是int型怎么办，此处考虑exception
+		int tradingArea=TransHelper.stringToArea(info);
 		return strategy.get(tradingArea);
 	}
 

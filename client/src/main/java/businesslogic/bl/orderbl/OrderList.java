@@ -22,7 +22,6 @@ import vo.ordervo.TypeInfoVO;
  * @version 1.0
  */
 public class OrderList {
-	// private ArrayList<SingleOrder> singleOrders;
 	private OrderDao orderDao;
 	private Hotel hotel;
 	private static OrderState[] orderStates = OrderState.values();

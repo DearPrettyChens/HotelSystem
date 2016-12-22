@@ -44,27 +44,26 @@ public class CheckHotel {
 	 * @return ArrayList<HotelListVO>
 	 */
 	public ArrayList<HotelListVO> check() {
-      ArrayList<HotelListVO> tempHotelListVOs=new ArrayList<HotelListVO>();
+		ArrayList<HotelListVO> tempHotelListVOs = new ArrayList<HotelListVO>();
 		for (HotelListVO hotelListVO : hotelListVOs) {
 			String hotelID = hotelListVO.getHotelID();
-			
-			System.out.println(hotelID+"check");
-			
+
+			System.out.println(hotelID + "check");
+
 			String customerID = hotelSearchInfoVO.getCustomerID();
 			try {
-			    Hotel hotel=new Hotel();
-//				MockHotel hotel = new MockHotel();
+				Hotel hotel = new Hotel();
+				// MockHotel hotel = new MockHotel();
 				hotelDetailInfoVO = hotel.getHotelDetailInfo(hotelID, customerID);
-				System.out.println("hoteldetial"+hotelDetailInfoVO.getHotelID());
+				System.out.println("hoteldetial" + hotelDetailInfoVO.getHotelID());
 			} catch (NotFoundHotelException e) {
 				e.printStackTrace();
 			}
 			if (checkAll(hotelListVO) == true) {
-//				hotelListVOs.remove(hotelListVO);
 				tempHotelListVOs.add(hotelListVO);
 			}
 		}
-        hotelListVOs=tempHotelListVOs;
+		hotelListVOs = tempHotelListVOs;
 		return hotelListVOs;
 	}
 
@@ -73,30 +72,21 @@ public class CheckHotel {
 	 */
 	private boolean checkAll(HotelListVO hotelListVO) {
 		boolean check = true;
-	try {
+		try {
 			check = checkArea(hotelDetailInfoVO.getCity(), hotelDetailInfoVO.getArea());
-//			System.out.println(check);
 		} catch (NullCityandTradingArea e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		check = check&&checkHotelName(hotelListVO.getHotelName())&&checkTime()
-				&&checkBedType()&&checkStars(hotelListVO.getStar());
-//		System.out.println(checkHotelName(hotelListVO.getHotelName()));
-//		System.out.println(checkTime());
-//		System.out.println(checkBedType());
-//		System.out.println(checkStars(hotelListVO.getStar()));
+		check = check && checkHotelName(hotelListVO.getHotelName()) && checkTime() && checkBedType()
+				&& checkStars(hotelListVO.getStar());
 		try {
-			check = check&&checkPrice(hotelListVO.getLowestPrice())
-					&&checkRemark(hotelListVO.getRemark());
-//			System.out.println(checkPrice(hotelListVO.getLowestPrice()));
-//			System.out.println(checkRemark(hotelListVO.getRemark()));
+			check = check && checkPrice(hotelListVO.getLowestPrice()) && checkRemark(hotelListVO.getRemark());
 		} catch (SizeNotEqualException e) {
 			e.printStackTrace();
 		}
-		
-		check = check&&checkOrder(hotelListVO.getOrderStates());
-//		System.out.println(checkOrder(hotelListVO.getOrderStates()));
+
+		check = check && checkOrder(hotelListVO.getOrderStates());
 
 		return check;
 	}
@@ -130,10 +120,6 @@ public class CheckHotel {
 		City searchCity = hotelSearchInfoVO.getCity();
 		TradingArea searchTradingArea = hotelSearchInfoVO.getTradingArea();
 
-//		if ((searchCity == null) || (searchTradingArea == null)) {
-//			// 抛出异常
-//			throw new NullCityandTradingArea("城市和商圈未选择");
-//		}
 		if ((city == searchCity) && (tradingArea == searchTradingArea)) {
 			return true;
 		}
@@ -148,15 +134,15 @@ public class CheckHotel {
 		Date checkinTime = hotelSearchInfoVO.getCheckinTime();
 		Date checkoutTime = hotelSearchInfoVO.getCheckoutTime();
 		String hotelID = hotelDetailInfoVO.getHotelID();
-		
-		System.out.println("checktime:"+hotelID);
-		
+
+		System.out.println("checktime:" + hotelID);
+
 		boolean check = true;// 判断当天是否有空房
 
 		// 如果输入的床型为空就将床型设为该酒店所拥有的床型
 		if (bedTypes == null) {
 			bedTypes = getBedTypes();
-			if(bedTypes==null){//如果该酒店没有床型，那么该酒店不能住人
+			if (bedTypes == null) {// 如果该酒店没有床型，那么该酒店不能住人
 				return false;
 			}
 		}
@@ -210,8 +196,8 @@ public class CheckHotel {
 	private ArrayList<BedType> getBedTypes() {
 		ArrayList<BedType> bedTypes = new ArrayList<BedType>();
 		ArrayList<AvailableRoomInfoVO> availableRoomInfoVOs = hotelDetailInfoVO.getAvailableRoomInfoVO();
-//		System.out.println(availableRoomInfoVOs==null);
-		if(availableRoomInfoVOs==null) return null;
+		if (availableRoomInfoVOs == null)
+			return null;
 		for (AvailableRoomInfoVO availableRoomInfoVO : availableRoomInfoVOs) {
 			BedType bedType = availableRoomInfoVO.getBedType();
 			bedTypes.add(bedType);
@@ -254,11 +240,11 @@ public class CheckHotel {
 	 */
 	private boolean checkAvailableRoom(AvailableRoomNumberVO availableRoomNumberVO) {
 		AvailableRoom availableRoom = new AvailableRoom();
-     
+
 		ResultMessage resultMessage = availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
 		if (resultMessage == ResultMessage.SUCCESS) {
 			return true;
-		} 
+		}
 		return false;
 	}
 
@@ -275,7 +261,7 @@ public class CheckHotel {
 			return true;
 		}
 		ArrayList<BedType> bedTypes = getBedTypes();
-		if(bedTypes!=null){
+		if (bedTypes != null) {
 			for (BedType bedType : bedTypes) {
 				if (searchBeds.contains(bedType)) {
 					return true;
@@ -305,9 +291,6 @@ public class CheckHotel {
 
 		}
 		int size = lowPrices.size();
-//		System.out.println(lowPrices.get(0));
-//		System.out.println(highPrices.get(size-1));
-//		System.out.println(bestPrice);
 		for (int i = 0; i < size; i++) {
 			double lowPrice = lowPrices.get(i);
 			double highPrice = highPrices.get(i);
