@@ -58,8 +58,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 
 	Font font = new Font("宋体", Font.BOLD, 20);
 	private Color color = new Color(69, 140, 116);
-	// private Color color=Color.BLACK;
-
+	
 	private close_JButton close_jbutton = new close_JButton();
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
 
@@ -143,13 +142,12 @@ public class Enterpriseregister_JFrame extends JFrame {
 		panel.setPreferredSize(new Dimension(680, 680));
         panel.setBackground(Color.WHITE);
         
-//		realimage_JLabel.setBounds(400, 500, 100, 100);
+
         realimage_JLabel.setBounds(100, 450, 150, 150);
 		ImageIcon icon2 = new ImageIcon(Enterpriseregister_JFrame.class.getResource("image/clientimage.png"));
 		icon2 = ImageTool.getScaledImage(icon2, 150);
 		realimage_JLabel.setIcon(icon2);
-		// this.add(realimage_JLabel);
-//		this.getContentPane().add(realimage_JLabel);
+		
 		panel.add(realimage_JLabel);
 		
 		close_jbutton.setBounds(970, 10, 20, 20);
@@ -162,50 +160,44 @@ public class Enterpriseregister_JFrame extends JFrame {
 		enterprisetab_JLabel.setBounds(400, 180, 200, 70);
 		this.add(enterprisetab_JLabel);
 
-//		name_JLabel.setBounds(300, 250, 100, 50);
+
 		name_JLabel.setBounds(0, 20, 100, 50);
 		name_JLabel.setForeground(color);
 		name_JLabel.setFont(font);
-//		this.add(name_JLabel);
+
 		panel.add(name_JLabel);
 
-//		password_JLabel.setBounds(300, 300, 100, 50);
+
 		password_JLabel.setBounds(0, 100, 100, 50);
 		password_JLabel.setForeground(color);
 		password_JLabel.setFont(font);
-//		this.add(password_JLabel);
+
 		panel.add(password_JLabel);
 
-//		confirmpassword_JLabel.setBounds(300, 350, 100, 50);
+
 		confirmpassword_JLabel.setBounds(0, 180, 100, 50);
 		confirmpassword_JLabel.setForeground(color);
 		confirmpassword_JLabel.setFont(font);
-//		this.add(confirmpassword_JLabel);
+
 		panel.add(confirmpassword_JLabel);
 
-//		tel_JLabel.setBounds(300, 400, 100, 50);
+
 		tel_JLabel.setBounds(0, 260, 100, 50);
 		tel_JLabel.setForeground(color);
 		tel_JLabel.setFont(font);
-//		this.add(tel_JLabel);
+
 		panel.add(tel_JLabel);
 
-		// birthday_JLabel.setBounds(300,450,100,50);
-		// birthday_JLabel.setForeground(color);
-		// birthday_JLabel.setFont(font);
-		// this.add(birthday_JLabel);
-
-//		image_JLabel.setBounds(300, 500, 100, 50);
 		image_JLabel.setBounds(0, 420, 100, 50);
 		image_JLabel.setForeground(color);
 		image_JLabel.setFont(font);
-//		this.add(image_JLabel);
+
 		panel.add(image_JLabel);
 
 		enterprisename_JLabel.setBounds(0, 340, 100, 50);
 		enterprisename_JLabel.setForeground(color);
 		enterprisename_JLabel.setFont(font);
-//		this.add(enterprisename_JLabel);
+
 		panel.add(enterprisename_JLabel);
 
 		ImageIcon icon3 = new ImageIcon(Enterpriseregister_JFrame.class.getResource("image/ninthday.png"));
@@ -213,16 +205,16 @@ public class Enterpriseregister_JFrame extends JFrame {
 		ninthday_logo.setIcon(icon3);
 		this.add(ninthday_logo);
 
-//		name_TextField.setBounds(400, 250, 300, 50);
+
 		name_TextField.setBounds(100, 20, 300, 50);
-//		this.add(name_TextField);
+
 		panel.add(name_TextField);
 
-//		registerInfoBesideName.setBounds(720, 250, 200, 50);
+
 		registerInfoBesideName.setBounds(420, 20, 200, 50);
 		registerInfoBesideName.setForeground(Color.RED);
 		registerInfoBesideName.setFont(font);
-//		this.add(registerInfoBesideName);
+
 		panel.add(registerInfoBesideName);
 
 		Document nameDoc = name_TextField.getDocument();
@@ -310,16 +302,16 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 
-//		password_TextField.setBounds(400, 300, 300, 50);
+
 		password_TextField.setBounds(100, 100, 300, 50);
-//		this.add(password_TextField);
+
 		panel.add(password_TextField);
 		
-//		registerInfoBesidePassword.setBounds(720, 300, 200, 50);
+
 		registerInfoBesidePassword.setBounds(420, 100, 200, 50);
 		registerInfoBesidePassword.setForeground(Color.RED);
 		registerInfoBesidePassword.setFont(font);
-//		this.add(registerInfoBesidePassword);
+
 		panel.add(registerInfoBesidePassword);
 
 		Document passwordDoc = password_TextField.getDocument();
@@ -401,28 +393,28 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 
-//		confirmpassword_TextField.setBounds(400, 350, 300, 50);
+
 		confirmpassword_TextField.setBounds(100, 180, 300, 50);
-//		this.add(confirmpassword_TextField);
+
 		panel.add(confirmpassword_TextField);
 
-//		registerInfoBesideSecondPassword.setBounds(720, 350, 200, 50);
+
 		registerInfoBesideSecondPassword.setBounds(420, 180, 200, 50);
 		registerInfoBesideSecondPassword.setForeground(Color.RED);
 		registerInfoBesideSecondPassword.setFont(font);
-//		this.add(registerInfoBesideSecondPassword);
+
 		panel.add(registerInfoBesideSecondPassword);
 
-//		tel_TextField.setBounds(400, 400, 300, 50);
+
 		tel_TextField.setBounds(100, 260, 300, 50);
-//		this.add(tel_TextField);
+
 		panel.add(tel_TextField);
 		
-//		registerInfoBesideTel.setBounds(720, 400, 200, 50);
+
 		registerInfoBesideTel.setBounds(420, 260, 200, 50);
 		registerInfoBesideTel.setForeground(Color.RED);
 		registerInfoBesideTel.setFont(font);
-//		this.add(registerInfoBesideTel);
+
 		panel.add(registerInfoBesideTel);
 
 		Document telDoc = tel_TextField.getDocument();
@@ -501,16 +493,16 @@ public class Enterpriseregister_JFrame extends JFrame {
 			}
 		});
 
-//		enterprisename_TextField.setBounds(400, 450, 300, 50);
+
 		enterprisename_TextField.setBounds(100, 340, 300, 50);
-//		this.add(enterprisename_TextField);
+
 		panel.add(enterprisename_TextField);
 
-//		registerInfoBesideEnterpriseName.setBounds(720, 450, 200, 50);
+
 		registerInfoBesideEnterpriseName.setBounds(420, 340, 300, 50);
 		registerInfoBesideEnterpriseName.setForeground(Color.RED);
 		registerInfoBesideEnterpriseName.setFont(font);
-//		this.add(registerInfoBesideEnterpriseName);
+
 		panel.add(registerInfoBesideEnterpriseName);
 
 		confirm_button.setText("确定");
@@ -557,9 +549,9 @@ public class Enterpriseregister_JFrame extends JFrame {
 		this.add(cancle_button);
 		
 		image_button.setText("选取头像");
-//		image_button.setBounds(550, 570, 120, 30);
+
 		image_button.setBounds(280, 570, 120, 30);
-//		this.add(image_button);
+
 		panel.add(image_button);
 
 		//实现选择图片文件
@@ -595,12 +587,7 @@ public class Enterpriseregister_JFrame extends JFrame {
 
 	}
 
-/*	 public static void main(String[] args){
-	
-	 new Enterpriseregister_JFrame();
-	
-	
-	 }*/
+
 
 	 
 	 public void setDragable() {

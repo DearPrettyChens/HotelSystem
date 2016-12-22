@@ -49,7 +49,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 	private JLabel numberjl=new JLabel("数量：");
 	private JLabel pricejl=new JLabel("价格：");
 	
-	//private JTextField bedtypejtf=new JTextField();
+	
 	private JTextField roomtypejtf=new JTextField();
 	private JTextField numberjtf=new JTextField();
 	private JTextField pricejtf=new JTextField();
@@ -69,7 +69,7 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		this.currentNum=availableRoomInfoVO.getCurrentNumber();
 		this.tag=availableRoomInfoVO.isTag();
 		
-		//bedtypejtf.setText(bedtype);
+		
 		roomtypejtf.setText(roomtype);
 		numberjtf.setText(number+"");
 		pricejtf.setText(price+"");
@@ -105,9 +105,6 @@ public class SingleRoomInfo_JPanel  extends JPanel{
 		bedtypejl.setBounds(20,10,80,30);
 		this.add(bedtypejl);
 		
-		//bedtypejtf.setFont(font);
-		//bedtypejtf.setBounds(70,10,100,30);
-		//this.add(bedtypejtf);
 		
 		
 		 bedtypecomboBox.setBounds(70,10,100,30);

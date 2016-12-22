@@ -158,7 +158,7 @@ private Font font=new Font("宋体",Font.BOLD, 14);
 			s = s + tempvo.getType().getChinese() + tempvo.getAmount() + "折;";
 
 		}
-//		hotelStrVOjl.setText(s);
+
 		hotelStrVOjl.setFont(font);
 		hotelStrVOjl.setBounds(120, 270, 120, 80);
 		try {

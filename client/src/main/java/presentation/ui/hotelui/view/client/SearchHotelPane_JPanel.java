@@ -27,14 +27,7 @@ public class SearchHotelPane_JPanel extends JPanel {
 	private JPanel panel=new JPanel();
     private ViewTag tag;
 	
-//    private static SearchHotelPane_JPanel searchHotelPane_JPanel;
-//    
-//    public static SearchHotelPane_JPanel getInstance(HotelSearchInfoVO hotelSearchInfoVO,ViewTag tag) {
-//		if(searchHotelPane_JPanel==null){
-//			searchHotelPane_JPanel=new SearchHotelPane_JPanel(hotelSearchInfoVO, tag);
-//		}
-//		return searchHotelPane_JPanel;
-//	}
+
     
 	public SearchHotelPane_JPanel(HotelSearchInfoVO hotelSearchInfoVO,ViewTag tag) {
 		this.tag=tag;

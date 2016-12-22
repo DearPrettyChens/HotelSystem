@@ -24,14 +24,13 @@ public class SingleHotelEnterpriseStr_JPanel extends JPanel {
 	private JLabel enterprisenamejl = new JLabel("合作企业:");
 	private JTextField enterprisenamejtf = new JTextField();
 
-	// private JLabel countjl=new JLabel("折扣值:");
-	// private JTextField countjtf=new JTextField();
+	
 
 	public SingleHotelEnterpriseStr_JPanel(String enterprisename) {
 		this.enterprisename = enterprisename;
-		// this.count=count;
+		
 		enterprisenamejtf.setText(enterprisename);
-		// countjtf.setText(count+"");
+		
 
 		this.setLayout(null);
 		this.setBackground(Color.white);
@@ -59,14 +58,7 @@ public class SingleHotelEnterpriseStr_JPanel extends JPanel {
 		enterprisenamejtf.setBounds(150, 10, 200, 30);
 		this.add(enterprisenamejtf);
 
-		// countjl.setFont(font);
-		// countjl.setBounds(400,10,100,30);
-		// this.add(countjl);
-		//
-		//
-		// countjtf.setFont(font);
-		// countjtf.setBounds(500,10,100,30);
-		// this.add(countjtf);
+		
 
 	}
 

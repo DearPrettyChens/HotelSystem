@@ -160,7 +160,7 @@ public class OfflineCheckIn_JPanel extends JPanel {
 		panel.updateUI();
 		scrollPane.setViewportView(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// this.add(scrollPane);
+		
 	}
 
 }

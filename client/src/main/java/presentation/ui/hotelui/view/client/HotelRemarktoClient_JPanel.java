@@ -67,7 +67,7 @@ public class HotelRemarktoClient_JPanel  extends JPanel{
     	remarkNumberjl.setText(number+"条");
     	remarkNumberjl.setBounds(170,60,50,30);
     	remarkNumberjl.setFont(font);
-//    	remarkNumberjl.setForeground(color);
+
     	this.add(remarkNumberjl);
 		
 		for(String s:remarkDetailInfos){

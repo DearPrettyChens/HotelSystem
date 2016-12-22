@@ -61,7 +61,7 @@ public class Hotelworker_JFrame extends JFrame {
 	// 关于顾客基本信息
 	private String hotelWorkerID = "";
 	private String hotelName = "南京金鹰国际酒店";
-	// private String hotelWorkerName="工作员：菲菲";
+	
 	private ImageIcon imageIcon = null;
 
 	// 关于界面
@@ -75,8 +75,7 @@ public class Hotelworker_JFrame extends JFrame {
 	ArrayList<Basic_JPanel> allpanel = new ArrayList<Basic_JPanel>();
 
 	private JLabel namejl1;
-	// private JLabel namejl2=new JLabel(hotelWorkerName);
-
+	
 	private JLabel myhotel_Jlabel = new JLabel("我的酒店");
 	private JLabel myorder_Jlabel = new JLabel("我的订单");
 	private JLabel mystr_Jlabel = new JLabel("我的策略");
@@ -191,11 +190,7 @@ public class Hotelworker_JFrame extends JFrame {
 		namejl1.setForeground(Color.white);
 		abovepanel.add(namejl1);
 
-		// namejl2.setBounds(90,52,200,30);
-		// namejl2.setFont(new Font("宋体",Font.BOLD, 16));
-		// namejl2.setForeground(Color.white);
-		// abovepanel.add(namejl2);
-
+		
 		abovepanel.setBackground(backgroundcolor);
 		abovepanel.setBounds(0, 0, 1000, 100);
 		abovepanel.setLayout(null);

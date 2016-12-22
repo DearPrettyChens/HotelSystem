@@ -55,8 +55,7 @@ public class OrderPanelInWebMarketMan extends JPanel {
 	public void changeToReturnCreditPanel(String orderID) {
 		this.removeAll();
 		returnHalforAll_JFrame = new ReturnHalforAll_JFrame(orderID);
-//		this.add(returnHalforAll_JFrame);
-//		this.updateUI();
+
 	}
 	
 	public void closeReturnCreditFrame(){

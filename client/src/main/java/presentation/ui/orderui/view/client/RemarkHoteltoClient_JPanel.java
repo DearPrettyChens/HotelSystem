@@ -210,16 +210,6 @@ public class RemarkHoteltoClient_JPanel extends JPanel {
 
 			@Override
 			public void removeUpdate(DocumentEvent e) {
-				/*scoreError2.setVisible(false);
-				Document doc=e.getDocument();
-				try {
-					String s = doc.getText(0, doc.getLength());
-					if(Double.parseDouble(s)<0||Double.parseDouble(s)>5.0){
-						scoreError.setVisible(true);
-					}
-				} catch (BadLocationException e1) {
-					e1.printStackTrace();
-				}*/
 				
 			}
 

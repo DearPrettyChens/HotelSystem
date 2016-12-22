@@ -124,8 +124,7 @@ public class OrderListPanel_JPanel extends JPanel {
 			orderListVOs = orderDistributionController.getOrderList(typeInfoVO);
 		}
 		ArrayList<OrderListVO> orders=new ArrayList<OrderListVO>();
-		//System.out.println(orderListVOs.get(0).getHotelID());
-		//System.out.println(hotelID);
+		
 		if(hotelID!=null){
 			for (OrderListVO orderListVO : orderListVOs) {
 				if(TransHelper.idToInt(orderListVO.getHotelID())==TransHelper.idToInt(hotelID)){

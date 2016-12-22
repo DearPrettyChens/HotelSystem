@@ -68,7 +68,7 @@ public class Individualregister_JFrame extends JFrame {
 
 	private Font font = new Font("宋体", Font.BOLD, 20);
 	private Color color = new Color(69, 140, 116);
-	// private Color color=Color.BLACK;
+	
 
 	private close_JButton close_jbutton = new close_JButton();
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
@@ -104,7 +104,7 @@ public class Individualregister_JFrame extends JFrame {
 	private boolean nameValid = false;
 	private boolean passwordValid = false;
 	private boolean telephoneValid = false;
-	// boolean birthdayValide = false;
+	
 
 	private ImageIcon imageIcon=null;
 	private CalendarPanel p = new CalendarPanel(birthday_TextField, "yyyy-MM-dd");
@@ -160,12 +160,12 @@ public class Individualregister_JFrame extends JFrame {
 		birthday_TextField.setBounds(100, 340, 300, 50);
 
 		panel.add(birthday_TextField);
-		// this.add(jp);
+		
 		p.initCalendarPanel();
 		JLabel l = new JLabel("日历面板");
 		p.add(l);
 		panel.add(p);
-		// this.getContentPane().add(txt1);
+		
 
 		registerInfoBesideBirth.setBounds(420, 340, 300, 50);
 		registerInfoBesideBirth.setForeground(Color.RED);
@@ -177,8 +177,7 @@ public class Individualregister_JFrame extends JFrame {
 		icon2 = ImageTool.getScaledImage(icon2, 150);
 		realimage_JLabel.setIcon(icon2);
 		panel.add(realimage_JLabel);
-		// this.getContentPane().add(realimage_JLabel);
-
+		
 		close_jbutton.setBounds(970, 10, 20, 20);
 		this.add(close_jbutton);
 		narrow_jbutton.setBounds(930, 10, 20, 20);
@@ -494,9 +493,7 @@ public class Individualregister_JFrame extends JFrame {
 			}
 		});
 
-		// JPanel jp=new JPanel();
-		// jp.setBounds(400, 450, 300, 50);
-		// jp.setLayout(null);
+		
 
 		confirm_button.setText("确定");
 		confirm_button.setBounds(400, 630, 100, 30);

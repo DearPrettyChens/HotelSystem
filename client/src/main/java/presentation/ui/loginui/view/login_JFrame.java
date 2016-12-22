@@ -59,7 +59,7 @@ public class login_JFrame extends JFrame {
 	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
 	private login_JButton jb = new login_JButton();// 登录按钮
 	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
-	//Logingif_JFrame frame=new Logingif_JFrame();
+	
 	
 	
 	
@@ -75,7 +75,7 @@ public class login_JFrame extends JFrame {
 
 	private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 
-	//private Timer timer;
+	
 	public login_JFrame() {
 		
 		
@@ -101,7 +101,7 @@ public class login_JFrame extends JFrame {
 	
 public login_JFrame(Logingif_JFrame f) {
 		
-		//this.frame=f;
+		
 		
 		
 		controller = new LoginViewController();
@@ -131,15 +131,7 @@ public login_JFrame(Logingif_JFrame f) {
 	 * @return
 	 * @throws 未定
 	 */
-//	class myTask extends TimerTask{
-//
-//		@Override
-//		public void run() {
-//			jp.setVisible(true);	
-//			repaint();
-//		}
-//		
-//	}
+
 	public void addComp() {
 		
 		
@@ -188,26 +180,13 @@ public login_JFrame(Logingif_JFrame f) {
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
 					
-					//new Logingif_JFrame ();
-					
-					//timer = new Timer();
-					//timer.schedule(new myTask(), 0, 5000);
-//					System.out.println(jp.isVisible());
 					
 					
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
 					
 					
-//					jp.setVisible(true);
-//					System.out.println(new Date());
-					
-					
-					//frame.setVisible(true);
-					
-//					 MyThread thread =new  MyThread ();
-//					 thread.run();
-//					
+
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -234,7 +213,7 @@ public login_JFrame(Logingif_JFrame f) {
 						}else if(loginMessage == ResultMessage.USERNOTEXIST){
 							loginFailBesideName.setText("用户不存在！");
 						}else{
-							//应该没有别的情况了吧？
+							
 						}
 					}
 				}
@@ -266,29 +245,7 @@ public login_JFrame(Logingif_JFrame f) {
 
 	}
 
-/*	public static void main(String[] args) {
-		login_JFrame s = new login_JFrame();
 
-	}*/
-	
-	
-//	class MyThread extends Thread{
-//	    @Override
-//	    public void run() {
-//	       
-//	    	frame.setVisible(true);
-//	    	
-//	    	try {
-//				Thread.currentThread().sleep(10000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//	    	
-//	    	
-//	    	frame.dispose();
-//	}
-//	}
 	public void setDragable() {
 		this.addMouseListener(new MouseAdapter() {
 

@@ -48,7 +48,7 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 			.getInstance(null);
 
 	public HotelSpecialTimeStr_JPanel(String hotelID) {
-		// this.singleinfo; 向逻辑层要
+		
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setBounds(0, 0, 800, 600);
@@ -131,10 +131,6 @@ public class HotelSpecialTimeStr_JPanel extends JPanel {
 						&& singleHotelSpecialTimeStr.getBeginJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")
 						&& singleHotelSpecialTimeStr.getEndJtf().getText().matches("^\\d{4}-\\d{1,2}-\\d{1,2}")) {
 					Date[] dates = new Date[2];
-					// dates[0]=new
-					// Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getBeginJtf().getText()));
-					// dates[1]=new
-					// Date(TransHelper.stringToDate(singleHotelSpecialTimeStr.getEndJtf().getText()));
 					
 					dates[0] = new Date(begindate);
 					dates[1] = new Date(enddate);

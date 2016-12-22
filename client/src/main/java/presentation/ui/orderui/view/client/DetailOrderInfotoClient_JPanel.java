@@ -130,7 +130,7 @@ public class DetailOrderInfotoClient_JPanel extends JPanel {
 		this.checkouttime = TransHelper.dateToString(expectedCheckoutTimeInDate);
 
 		this.hotelname = orderInfoVO.getHotelName();
-		// this.hotelloc=orderInfoVO.get;
+		
 		this.hoteltel = orderInfoVO.getHotelTelephone();
 
 		this.bedType2 = orderInfoVO.getBedType();
@@ -268,22 +268,22 @@ public class DetailOrderInfotoClient_JPanel extends JPanel {
 		pricejl.setBounds(220, 650, 300, 30);
 		panel.add(pricejl);
 
-		// peoplemessagejl.setText("订单号"+ordernumber);
+		
 		peoplemessagejl.setFont(font);
 		peoplemessagejl.setBounds(80, 50, 200, 30);
 		panel.add(peoplemessagejl);
 
-		// roommessagejl.setText("订单号"+ordernumber);
+		
 		roommessagejl.setFont(font);
 		roommessagejl.setBounds(80, 275, 150, 30);
 		panel.add(roommessagejl);
 
-		// ordernumberjl.setText("订单号"+ordernumber);
+		
 		checkinmessagejl.setFont(font);
 		checkinmessagejl.setBounds(80, 490, 200, 30);
 		panel.add(checkinmessagejl);
 
-		// ordernumberjl.setText("订单号"+ordernumber);
+		
 		othermessagejl.setFont(font);
 		othermessagejl.setBounds(80, 635, 200, 30);
 		panel.add(othermessagejl);

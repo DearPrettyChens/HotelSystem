@@ -206,7 +206,7 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 	}};
 	
     public void changeHotelList(OrderState orderState) {
-//    	scrollPane.remove(hotelListPane_JPanel);
+
 		HotelSearchInfoVO hotelSearchInfoVO=new HotelSearchInfoVO();
 		if(orderState==OrderState.EXECUTED){
 			ArrayList<OrderState>orderStates=new ArrayList<OrderState>();
@@ -220,10 +220,7 @@ public class HotelHasOrdered_JPanel  extends JPanel{
 			hotelSearchInfoVO.setOrderStates(states);
 			hotelSearchInfoVO.setCustomerID(userID);
 		}
-//		hotelListPane_JPanel=new HotelListPane_JPanel(hotelSearchInfoVO,viewTag);
-//		hotelListPane_JPanel.setPreferredSize(new Dimension(780, hotelListPane_JPanel.getHeight() ));
-//		scrollPane.setViewportView(hotelListPane_JPanel);
-//		scrollPane.repaint();
+
 		hotelListPane_JPanel.changeHotelList(hotelSearchInfoVO);
 	}
 	

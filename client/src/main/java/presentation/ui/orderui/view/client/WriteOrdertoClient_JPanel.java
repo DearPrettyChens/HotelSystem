@@ -154,24 +154,23 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		fromtimejtf.setBounds(290, 50, 100, 25);
 
 		this.add(fromtimejtf);
-		// this.add(jp);
+		
 		p1.initCalendarPanel();
 		JLabel l1 = new JLabel("日历面板");
 		p1.add(l1);
 		this.add(p1);
-		// this.getContentPane().add(txt1);
+		
 
 		totimejtf.setBounds(430, 50, 100, 25);
 
 		this.add(totimejtf);
 		
-		// this.add(jp);
+		
 		p2.initCalendarPanel();
 		JLabel l2 = new JLabel("日历面板");
 		p2.add(l2);
 		this.add(p2);
-		// this.getContentPane().add(txt1);
-
+		
 		infoBesideTime.setBounds(550,50,150,25);
 		infoBesideTime.setFont(font);
 		infoBesideTime.setForeground(Color.RED);
@@ -481,7 +480,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		if(!infoValid){
 			return null;
 		}else{
-			//username从哪拿到？
+			
 			Children hasChild = Children.NOTEXIST;
 			if(haschildjb.isSelected()){
 				hasChild=Children.EXIST;
@@ -490,7 +489,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 			try {
 				hotelBasic = hotelDistributionController.getHotelBasicInfo(hotelID);
 				String hotelTel=hotelBasic.getTelephone();
-				//入住人数默认为1
+				
 				OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, hotelTel,namejtf.getText(), 
 					teljtf.getText(), new Date(), new Date(TransHelper.stringToDate(fromtimejtf.getText())),
 							new Date(TransHelper.stringToDate(totimejtf.getText())), null,

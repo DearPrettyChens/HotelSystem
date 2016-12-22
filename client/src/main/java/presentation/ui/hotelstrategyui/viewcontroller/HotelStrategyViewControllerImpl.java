@@ -48,30 +48,6 @@ public class HotelStrategyViewControllerImpl {
 		
 		}
 	}
-//
-//	@Override
-//	public void addStrategySuccess(HotelStrategyType type) {
-//		switch(type){
-//		case AMOUNT:
-//			view.removeAll();
-//			view.add(new HotelOverThreeStr_Jpanel());
-//			break;
-//		case BIRTH:
-//			view.removeAll();
-//			view.add(new HotelBirthStr_JPanel());
-//			break;
-//		case ENTERPRISE:
-//			view.removeAll();
-//			view.add(new HotelEnterpriseStr_JPanel());
-//			break;
-//		case SPECIALTIME:
-//			view.removeAll();
-//			view.add(new HotelSpecialTimeStr_JPanel());
-//			break;
-//		default:
-//			break;
-//		}
-//	}
 
 
 	public void jumpToMainFrame() {

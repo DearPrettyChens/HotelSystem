@@ -139,7 +139,7 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 		searchResultPanel=new JPanel();
 		searchResultPanel.setLayout(null);
 		searchResultPanel.repaint();
-//		scrollPane.repaint();
+
 		searchResultPanel.setBackground(Color.WHITE);
 		 orderListInfoToHotelWorker_JPanels=new ArrayList<OrderListInfoToHotelWorker_JPanel>();
 		for(HotelOrderVO orderListVO:orderListVOs){
@@ -154,7 +154,7 @@ public class LookOrderPanelInHotelWorker_JPanel extends JPanel {
 	    searchResultPanel.setPreferredSize(new Dimension(800, 120+120*orderListInfoToHotelWorker_JPanels.size()));
 	    scrollPane.setViewportView(searchResultPanel);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//	    this.add(scrollPane);
+
 	}
 
 }

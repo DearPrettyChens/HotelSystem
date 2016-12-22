@@ -145,7 +145,7 @@ public class newclient_JFrame  extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			registerViewController.jumpToLoginView();
-//			dispose();
+
 		}
 	});
   	 this.add(returnButton);
@@ -196,13 +196,7 @@ public class newclient_JFrame  extends JFrame{
 			}
 		});
 	}
-//	
-//	public static void main(String[] args){
-//		
-//		new newclient_JFrame();
-//		
-//	
-//	}
+
 	
    
 }

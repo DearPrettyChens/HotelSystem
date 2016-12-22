@@ -59,9 +59,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 	private JLabel pricejl2=new JLabel("起");
 	private JPanel pricejp=new JPanel();
 	
-//	private JLabel birthjl=new JLabel("生日");
-//	private JLabel threeroomjl=new JLabel("三间");
-	
+
 	private JLabel birthcountjl=new JLabel();
 	private JLabel threeroomcountjl=new JLabel();
 	
@@ -92,8 +90,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 	private String location="";
 	private String tel="";
 	private double score=5.0;
-//	private int threeroomcount=0;
-//	private int birthcount=0;
+
 	private ArrayList<OrderState> orderstate;
 	private ViewTag viewTag;
 	private ReserveHotelViewController reserveHotelViewController=ReserveHotelViewController.getInstance(null);
@@ -103,13 +100,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 		this.viewTag=viewTag;
 		this.hotelID=hotelListVO.getHotelID();
 		this.name=hotelListVO.getHotelName();
-//		
-//		if(hotelListVO.getHotelImage()==null){
-//			System.out.println("hotelID");
-//			System.out.println("image");
-//		}
-		
-//		this.image=new ImageIcon("image//hotel.jpg");
+
 		this.image=hotelListVO.getHotelImage();
 		this.star=hotelListVO.getStar();
 		this.location=hotelListVO.getHotelAddress();
@@ -276,60 +267,7 @@ public class HotelListInfo_JPanel  extends JPanel{
 		}
 	});
        
-//       strjp.setLayout(null);
-//       strjp.setBackground(Color.white);
-//       strjp.setBounds(550,10,90,80);
-//       this.add(strjp);
-       
-//       yellowjp1.setBackground(yellow);
-//       yellowjp1.setLayout(null);
-//       yellowjp1.setBounds(0,0,90,35);
-//       yellowjp1.setLayout(null);
-//       strjp.add(yellowjp1);
-//       
-//       whitejp1.setBackground(Color.white);
-//       whitejp1.setBounds(45,2,43,31);
-//       whitejp1.setLayout(null);
-//       yellowjp1.add(whitejp1);
-       
-//       birthjl.setFont(font);
-//       birthjl.setForeground(Color.white);
-//       birthjl.setBounds(10,0,50,30);
-//       yellowjp1.add(birthjl);
-//       
-//       birthjl.setFont(font);
-//       birthjl.setForeground(Color.white);
-//       birthjl.setBounds(10,0,50,30);
-//       yellowjp1.add(birthjl);
-//       
-//       birthcountjl.setFont(font);
-//       birthcountjl.setText(birthcount+"折");
-//       birthcountjl.setBounds(10,0,50,30);
-//       whitejp1.add(birthcountjl);
-       
-//       yellowjp2.setBackground(yellow);
-//       yellowjp2.setLayout(null);
-//       yellowjp2.setBounds(0,45,90,35);
-//       yellowjp2.setLayout(null);
-//       strjp.add(yellowjp2);
-//       
-       
-       
-//       
-//       whitejp2.setBackground(Color.white);
-//       whitejp2.setBounds(45,2,43,31);
-//       whitejp2.setLayout(null);
-//       yellowjp2.add(whitejp2);
-//       
-//       threeroomcountjl.setFont(font);
-//       threeroomcountjl.setText(threeroomcount+"折");
-//       threeroomcountjl.setBounds(10,0,50,30);
-//       whitejp2.add(threeroomcountjl);
-//       
-//       threeroomjl.setFont(font);
-//       threeroomjl.setForeground(Color.white);
-//       threeroomjl.setBounds(10,0,50,30);
-//       yellowjp2.add(threeroomjl);
+
        
    }
    

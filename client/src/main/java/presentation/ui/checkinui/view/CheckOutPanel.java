@@ -57,11 +57,5 @@ public class CheckOutPanel extends JPanel{
 		this.updateUI();
 	}
 	
-//	public void changeToCheckInInfoPanel(HotelOrderInfoVO hotelOrderInfoVO,String hotelID) {
-//		this.removeAll();
-//		//checkInInfo_JPanel=new CheckInInfo_JPanel();
-//		checkInInfo_JPanel=new CheckInInfo_JPanel(hotelOrderInfoVO,hotelID);
-//        this.add(checkInInfo_JPanel) ;
-//		this.repaint();
-//	}
+
 }

@@ -108,6 +108,6 @@ public class LoginDistributionController {
 	 */
 	public ResultMessage logout(){
 		return userSafetyService.logout();
-//		return null;
+
 	}
 }

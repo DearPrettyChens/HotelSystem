@@ -80,14 +80,14 @@ public class LookOrderPanelInWeb_JPanel extends JPanel {
 		searchResultPanel=new JPanel();
 		searchResultPanel.setLayout(null);
 		searchResultPanel.repaint();
-//		scrollPane.repaint();
+
 		searchResultPanel.setBackground(Color.WHITE);
 		orderlistinfo_JPanels=new ArrayList<Orderlistinfo_JPanel>();
 		for(OrderListVO orderListVO:orderListVOs){
 	    	Orderlistinfo_JPanel orderlistinfo_JPanel=new Orderlistinfo_JPanel(orderListVO);
 	    	orderlistinfo_JPanels.add(orderlistinfo_JPanel);
 	    }
-//		System.out.println(orderlistinfo_JPanels.size());
+
 	    for(int i=0;i<orderlistinfo_JPanels.size();i++){
 	    	Orderlistinfo_JPanel orderlistinfo_JPanel=orderlistinfo_JPanels.get(i);
 	    	orderlistinfo_JPanel.setBounds(100, 10+120*i, 800, 100);
@@ -96,7 +96,7 @@ public class LookOrderPanelInWeb_JPanel extends JPanel {
 	    searchResultPanel.setPreferredSize(new Dimension(800, 120+120*orderlistinfo_JPanels.size()));
 	    scrollPane.setViewportView(searchResultPanel);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-//	    this.add(scrollPane);
+
 	    scrollPane.repaint();
 	}
 

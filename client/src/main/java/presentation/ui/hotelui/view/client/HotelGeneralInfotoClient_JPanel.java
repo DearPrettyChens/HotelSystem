@@ -243,7 +243,7 @@ public class HotelGeneralInfotoClient_JPanel extends JPanel {
 
 		linejp.setBackground(lightgreen);
 		linejp.setBounds(50, 95, 700, 2);
-		// this.add(linejp);
+		
 
 		pricejp.setLayout(null);
 		pricejp.setBackground(Color.white);
