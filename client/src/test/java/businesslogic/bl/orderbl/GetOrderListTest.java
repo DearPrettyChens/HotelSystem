@@ -19,8 +19,17 @@ public class GetOrderListTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 		assertEquals(orderList.getOrderList("000005").get(0).getCustomerName(),"chen");
 	}
 
+	@Test
+	public void test2() {
+		assertEquals(orderList.getOrderList("000002").get(0).getCustomerName(),"chen");
+	}
+	
+	@Test
+	public void test3() {
+		assertEquals(orderList.getOrderList("000001").get(0).getCustomerName(),"chen");
+	}
 }

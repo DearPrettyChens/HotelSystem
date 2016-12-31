@@ -21,8 +21,17 @@ public class RemarkOrderTest {
 	}
 
 	@Test
-	public void test() {
-		assertEquals(order.addRemarkInfo(new RemarkVO()),ResultMessage.SUCCESS);
+	public void test1() {
+		assertEquals(order.addRemarkInfo(new RemarkVO("201612010001000001","000001",5,"好")),ResultMessage.SUCCESS);
 	}
 
+	@Test
+	public void test2() {
+		assertEquals(order.addRemarkInfo(new RemarkVO("201612010002000001","000002",4,"好")),ResultMessage.SUCCESS);
+	}
+	
+	@Test
+	public void test3() {
+		assertEquals(order.addRemarkInfo(new RemarkVO("201612010003000001","000003",3,"好")),ResultMessage.SUCCESS);
+	}
 }

@@ -25,7 +25,7 @@ public class SetAvailableRoomNumberTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(8,BedType.BIGBED,
 				new Date(),"000005")),ResultMessage.SUCCESS);
 		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000005");
@@ -35,5 +35,28 @@ public class SetAvailableRoomNumberTest {
 			}
 		}
 	}
+	
+	@Test
+	public void test2() {
+		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(3,BedType.FAMILYBED,
+				new Date(),"000004")),ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000004");
+		for(int i=0;i<roomInfo.size();i++){
+			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
+				assertEquals(roomInfo.get(i).getCurrentNumber(),8);
+			}
+		}
+	}
 
+	@Test
+	public void test3() {
+		assertEquals(availableRoom.setAvailableRoomNumber(new AvailableRoomNumberVO(10,BedType.TWOBEDS,
+				new Date(),"000003")),ResultMessage.SUCCESS);
+		ArrayList<AvailableRoomInfoVO> roomInfo=availableRoom.getAvailableRoomInfo("000003");
+		for(int i=0;i<roomInfo.size();i++){
+			if(roomInfo.get(i).getBedType()==BedType.BIGBED){
+				assertEquals(roomInfo.get(i).getCurrentNumber(),8);
+			}
+		}
+	}
 }

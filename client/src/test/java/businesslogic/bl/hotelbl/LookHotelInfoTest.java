@@ -21,9 +21,21 @@ public class LookHotelInfoTest {
 	}
 
 	@Test
-	public void test() throws NotFoundHotelException {
+	public void test1() throws NotFoundHotelException {
+		Hotel hotel=new Hotel();
+		assertEquals(City.NANJING,hotel.getHotelDetailInfo("000003", "000002").getCity());
+	}
+
+	@Test
+	public void test2() throws NotFoundHotelException {
 		Hotel hotel=new Hotel();
 		assertEquals(City.NANJING,hotel.getHotelDetailInfo("000005", "000001").getCity());
+	}
+
+	@Test
+	public void test3() throws NotFoundHotelException {
+		Hotel hotel=new Hotel();
+		assertEquals(City.NANJING,hotel.getHotelDetailInfo("000006", "000001").getCity());
 	}
 
 }

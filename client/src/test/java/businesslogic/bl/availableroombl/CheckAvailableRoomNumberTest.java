@@ -23,13 +23,21 @@ public class CheckAvailableRoomNumberTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 		assertEquals(availableRoom.checkAvailableRoomNumber(new AvailableRoomNumberVO(8,BedType.BIGBED,
-				new Date(),"000005")),ResultMessage.SUCCESS);
-		assertEquals(availableRoom.checkAvailableRoomNumber(new AvailableRoomNumberVO(18,BedType.FAMILYBED,
-				new Date(),"000005")),ResultMessage.SUCCESS);
-		assertEquals(availableRoom.checkAvailableRoomNumber(new AvailableRoomNumberVO(28,BedType.TWOBEDS,
 				new Date(),"000005")),ResultMessage.SUCCESS);
 	}
 
+	@Test
+	public void test2() {
+		assertEquals(availableRoom.checkAvailableRoomNumber(new AvailableRoomNumberVO(28,BedType.TWOBEDS,
+				new Date(),"000005")),ResultMessage.SUCCESS);
+	}
+	
+	@Test
+	public void test() {
+
+		assertEquals(availableRoom.checkAvailableRoomNumber(new AvailableRoomNumberVO(18,BedType.FAMILYBED,
+				new Date(),"000005")),ResultMessage.SUCCESS);
+	}
 }

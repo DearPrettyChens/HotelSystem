@@ -19,9 +19,20 @@ public class CancelOrderTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 		order.cancelOrderConfirm("20161119000002000001");
 		assertEquals(order.getOrderInfo("20161119000002000001").getState(),OrderState.HASCANCELED);
 	}
 
+	@Test
+	public void test2() {
+		order.cancelOrderConfirm("20161119000002000002");
+		assertEquals(order.getOrderInfo("20161119000002000002").getState(),OrderState.HASCANCELED);
+	}
+	
+	@Test
+	public void test3() {
+		order.cancelOrderConfirm("20161119000002000003");
+		assertEquals(order.getOrderInfo("20161119000002000003").getState(),OrderState.HASCANCELED);
+	}
 }

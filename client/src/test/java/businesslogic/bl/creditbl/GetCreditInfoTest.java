@@ -19,9 +19,20 @@ public class GetCreditInfoTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
 		int preCredit=credit.getUserCreditInfoList().getCredit();
 		assertEquals(preCredit,100);
 	}
 
+	@Test
+	public void test2() {
+		int preCredit=credit.getUserCreditInfoList().getCredit();
+		assertEquals(preCredit,10);
+	}
+	
+	@Test
+	public void test3() {
+		int preCredit=credit.getUserCreditInfoList().getCredit();
+		assertEquals(preCredit,1000);
+	}
 }
