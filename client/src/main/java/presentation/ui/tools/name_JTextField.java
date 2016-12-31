@@ -30,13 +30,8 @@ public class Name_JTextField extends JTextField implements FocusListener {
 	
 	    private ImageIcon icon;  
 	  
-<<<<<<< HEAD
 	    public Name_JTextField() {  
        // 获取当前路径下的图片  
-=======
-	    public name_JTextField() {  
-	    	// 获取当前路径下的图片  
->>>>>>> origin/master
 	        icon = new ImageIcon(getClass().getResource("image/name.png")); 
 	        
 	        Insets insets = new Insets(50, 20, 20, 0);  

@@ -56,21 +56,10 @@ public class Login_JFrame extends JFrame {
 	private Name_JTextField name = new Name_JTextField();// 登录时姓名填写区域
 	private Password_JPasswordFeild password = new Password_JPasswordFeild();// 密码区域
 	private close_JButton close_jbutton = new close_JButton();// 关闭窗口按钮
-<<<<<<< HEAD
 	private Narrow_JButton narrow_jbutton = new Narrow_JButton(this);// 最小化窗口按钮
 	private Login_JButton jb = new Login_JButton();// 登录按钮
 	private NewClient_JLabel jl = new NewClient_JLabel();// 是否没有账户标签
-	//Logingif_JFrame frame=new Logingif_JFrame();
-=======
-	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
-	private login_JButton jb = new login_JButton();// 登录按钮
-	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
-	
->>>>>>> origin/master
-	
-	
-	
-	
+
 	private JPanel jp=new JPanel();
 
 	
@@ -82,15 +71,8 @@ public class Login_JFrame extends JFrame {
 
 	private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 
-<<<<<<< HEAD
-	//private Timer timer;
-	public Login_JFrame() {
-=======
 	
-	public login_JFrame() {
->>>>>>> origin/master
-		
-		
+	public Login_JFrame() {
 		
 		controller = new LoginViewController();
 

@@ -30,7 +30,6 @@ public class OrderList {
 		RMIHelper.init();
 		orderDao = RMIHelper.getOrderDao();
 		hotel=new Hotel();
-		// orderDao=new OrderDao_Stub();
 	}
 
 	/**
