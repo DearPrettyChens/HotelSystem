@@ -17,7 +17,7 @@ import presentation.ui.personnelui.view.client.Clientlistinfo_JPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.SaveSuccess_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import presentation.ui.webstrategyui.distributecontroller.WebstrategyDistributionController;
 import util.ResultMessage;
 import util.UserType;

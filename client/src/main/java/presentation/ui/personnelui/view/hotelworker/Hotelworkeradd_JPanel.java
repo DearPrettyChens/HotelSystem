@@ -19,7 +19,7 @@ import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.SaveSuccess_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.ResultMessage;
 import util.UserType;
 import vo.personnelvo.PersonDetailVO;

@@ -21,7 +21,7 @@ import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
 import presentation.ui.orderui.view.client.ChooseOrderTypetoClient_JPanel;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.City;
 import util.TradingArea;
 import util.ViewTag;

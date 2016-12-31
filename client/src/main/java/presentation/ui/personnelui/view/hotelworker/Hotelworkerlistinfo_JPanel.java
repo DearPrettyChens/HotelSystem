@@ -17,7 +17,7 @@ import presentation.ui.personnelui.viewcontroller.PersonnelControllerImpl;
 import presentation.ui.tools.HeadPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.UserImage;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 /**

@@ -28,7 +28,7 @@ import presentation.ui.loginui.view.Individualregister_JFrame;
 import presentation.ui.tools.FileChooseHelper;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.City;
 import util.ResultMessage;
 import util.TradingArea;

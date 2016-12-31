@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 
 import dao.availableroomdao.AvailableRoomDao;
 import po.AvailableRoomInfoPO;
-import presentation.ui.loginui.view.login_JFrame;
+import presentation.ui.loginui.view.Login_JFrame;
 import presentation.ui.tools.Logingif_JFrame;
 import util.BedType;
 
@@ -15,7 +15,7 @@ public class Client {
 	     
 		
 	   
-	   JFrame frame=new login_JFrame();
+	   JFrame frame=new Login_JFrame();
 	   
 	   RMIHelper.init();
 	  

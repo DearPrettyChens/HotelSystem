@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import presentation.ui.loginui.distributecontroller.LoginDistributionController;
-import presentation.ui.loginui.view.login_JFrame;
+import presentation.ui.loginui.view.Login_JFrame;
 
 /**
  * 右上角箭头按钮

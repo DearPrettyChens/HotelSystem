@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.text.html.HTML.Tag;
 
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.ViewTag;
 import vo.searchhotelvo.HotelSearchInfoVO;
 

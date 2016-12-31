@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 
 /**
  * 顾客看到的所有的该酒店的评论信息

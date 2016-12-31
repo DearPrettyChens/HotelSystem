@@ -21,7 +21,7 @@ import presentation.ui.hotelstrategyui.distributecontroller.HotelStrategyDistrib
 import presentation.ui.hotelstrategyui.viewcontroller.HotelStrategyViewControllerImpl;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.SaveFail_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import presentation.ui.webstrategyui.view.Singlewebclientlevelstr_Jpanel;
 import util.HotelStrategyType;
 import util.ResultMessage;

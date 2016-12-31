@@ -24,7 +24,7 @@ import presentation.ui.tools.Home_JButton;
 import presentation.ui.tools.Reflesh_JButton;
 import presentation.ui.tools.RightContainerPanel;
 import presentation.ui.tools.close_JButton;
-import presentation.ui.tools.narrow_JButton;
+import presentation.ui.tools.Narrow_JButton;
 import presentation.ui.creditui.view.ClientDepositeSearch_JPanel;
 import presentation.ui.webstrategyui.view.Clientlevelrule_JPanel;
 import presentation.ui.webstrategyui.view.Makewebstr_JPanel;
@@ -55,7 +55,7 @@ public class WebMarketMan_JFrame extends JFrame {
 	private RightContainerPanel rightContainerPanel = new RightContainerPanel();//右边界面的容器
 
 	private close_JButton close_jbutton = new close_JButton();
-	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
+	private Narrow_JButton narrow_jbutton = new Narrow_JButton(this);
 	private Reflesh_JButton reflesh_JButton = new Reflesh_JButton();
 	private Home_JButton home_JButton = new Home_JButton();
 	private Arrow_JButton arrow_JButton = new Arrow_JButton(this);

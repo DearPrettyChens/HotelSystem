@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.orderui.viewcontroller.CustomerOrderViewController;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.BedType;
 import util.Children;
 import util.OrderState;

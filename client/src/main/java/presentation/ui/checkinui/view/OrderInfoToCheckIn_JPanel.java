@@ -16,7 +16,7 @@ import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
 import presentation.ui.checkinui.viewcontroller.OnlineCheckoutViewController;
 import presentation.ui.hotelui.distributecontroller.HotelDistributionController;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.OrderState;
 import util.TransHelper;
 import vo.checkinvo.CheckinInfoVO;

@@ -3,7 +3,7 @@ package businesslogic.bl.orderbl;
 import java.util.Date;
 
 import po.OrderInfoPO;
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 import util.BedType;
 import util.Children;
 import util.OrderState;

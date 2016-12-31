@@ -23,7 +23,7 @@ import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.SaveFail_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.BedType;
 import util.Children;
 import util.OrderState;

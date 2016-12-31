@@ -7,7 +7,7 @@ import presentation.ui.loginui.view.Client_JFrame;
 import presentation.ui.loginui.view.Hotelworker_JFrame;
 import presentation.ui.loginui.view.WebMarketMan_JFrame;
 import presentation.ui.loginui.view.Webmannger_JFrame;
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 import util.UserType;
 /**
  * 登录界面跳转的控制器
@@ -45,7 +45,7 @@ public class LoginViewController implements LoginViewControllerService{
 
 	@Override
 	public void jumpToRegisterView() {
-		frame=new newclient_JFrame();
+		frame=new NewClient_JFrame();
 	}
 
 }

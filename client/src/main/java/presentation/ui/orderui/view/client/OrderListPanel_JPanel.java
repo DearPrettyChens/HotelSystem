@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import com.jhlabs.composite.AddComposite;
 
 import presentation.ui.orderui.distributecontroller.OrderDistributionController;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import presentation.ui.webstrategyui.view.Singlewebclientlevelstr_Jpanel;
 import util.OrderState;
 import util.UserType;

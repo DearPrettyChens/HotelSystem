@@ -23,7 +23,7 @@ import presentation.ui.checkinui.viewcontroller.OnlineCheckinViewController;
 import presentation.ui.hotelstrategyui.view.HotelEnterpriseStr_JPanel;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.SaveFail_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.BedType;
 import util.ResultMessage;
 import util.TransHelper;

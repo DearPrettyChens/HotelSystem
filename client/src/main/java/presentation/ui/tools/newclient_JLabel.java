@@ -17,13 +17,13 @@ import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
  * @version 1.0
  * 
  */
-public class newclient_JLabel extends JLabel {
+public class NewClient_JLabel extends JLabel {
 	Color c=new Color(69,140,116);
 	
 	RegisterViewControllerService controller;
 			
 	
-	public newclient_JLabel(){
+	public NewClient_JLabel(){
 		
 		this.setFont(new Font("宋体",Font.BOLD, 16));
 		this.setText("还没有账户？");
@@ -46,12 +46,12 @@ public class newclient_JLabel extends JLabel {
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
-					newclient_JLabel.this.setForeground(new Color(148, 221, 184));
+					NewClient_JLabel.this.setForeground(new Color(148, 221, 184));
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
-					newclient_JLabel.this.setForeground(c);
+					NewClient_JLabel.this.setForeground(c);
 				}
 			});
 			

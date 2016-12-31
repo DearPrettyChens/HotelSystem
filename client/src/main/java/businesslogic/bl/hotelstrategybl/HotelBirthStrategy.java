@@ -7,7 +7,7 @@ import businesslogic.bl.userbl.Customer;
 import dao.hotelstrategydao.HotelStrategyDao;
 import init.RMIHelper;
 import po.HotelStrPO;
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 import util.HotelStrategyType;
 import util.TransHelper;
 import vo.hotelstrategyvo.HotelStrVO;

@@ -39,8 +39,8 @@ import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.SaveSuccess_JFrame;
 import presentation.ui.tools.close_JButton;
-import presentation.ui.tools.name_JTextField;
-import presentation.ui.tools.narrow_JButton;
+import presentation.ui.tools.Name_JTextField;
+import presentation.ui.tools.Narrow_JButton;
 import util.CustomerType;
 import util.ResultMessage;
 import util.TransHelper;
@@ -71,7 +71,7 @@ public class Individualregister_JFrame extends JFrame {
 	// private Color color=Color.BLACK;
 
 	private close_JButton close_jbutton = new close_JButton();
-	private narrow_JButton narrow_jbutton = new narrow_JButton(this);
+	private Narrow_JButton narrow_jbutton = new Narrow_JButton(this);
 
 	private JLabel ninthday_logo = new JLabel();
 

@@ -19,11 +19,11 @@ import presentation.ui.tools.MyButton;
  * @version 1.0
  * 
  */
-public class login_JButton extends MyButton{
+public class Login_JButton extends MyButton{
 	Color c=new Color(69,140,116);
 //	login_JFrame frame;
 //	LoginViewControllerService controller;
-	public login_JButton(){
+	public Login_JButton(){
 		
 		this.setFont(new Font("宋体",Font.BOLD, 16));
 		this.setText("登录");
@@ -53,7 +53,7 @@ public class login_JButton extends MyButton{
 				@Override
 				public void mouseExited(MouseEvent e) {
 					// TODO Auto-generated method stub
-					login_JButton.this.setForeground(c);
+					Login_JButton.this.setForeground(c);
 				}
 			});
 	}

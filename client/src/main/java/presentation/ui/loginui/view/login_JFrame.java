@@ -26,10 +26,10 @@ import presentation.ui.loginui.viewcontroller.LoginViewController;
 import presentation.ui.loginui.viewcontroller.LoginViewControllerService;
 import presentation.ui.tools.Logingif_JFrame;
 import presentation.ui.tools.close_JButton;
-import presentation.ui.tools.name_JTextField;
-import presentation.ui.tools.narrow_JButton;
-import presentation.ui.tools.newclient_JLabel;
-import presentation.ui.tools.password_JPasswordFeild;
+import presentation.ui.tools.Name_JTextField;
+import presentation.ui.tools.Narrow_JButton;
+import presentation.ui.tools.NewClient_JLabel;
+import presentation.ui.tools.Password_JPasswordFeild;
 import util.ResultMessage;
 import util.UserType;
 
@@ -46,19 +46,19 @@ import util.UserType;
  * @author CYF
  *
  */
-public class login_JFrame extends JFrame {
+public class Login_JFrame extends JFrame {
 	
 	private boolean isDragged = false;
 	private Point tmp;
 	private Point loc;
 
 
-	private name_JTextField name = new name_JTextField();// 登录时姓名填写区域
-	private password_JPasswordFeild password = new password_JPasswordFeild();// 密码区域
+	private Name_JTextField name = new Name_JTextField();// 登录时姓名填写区域
+	private Password_JPasswordFeild password = new Password_JPasswordFeild();// 密码区域
 	private close_JButton close_jbutton = new close_JButton();// 关闭窗口按钮
-	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
-	private login_JButton jb = new login_JButton();// 登录按钮
-	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
+	private Narrow_JButton narrow_jbutton = new Narrow_JButton(this);// 最小化窗口按钮
+	private Login_JButton jb = new Login_JButton();// 登录按钮
+	private NewClient_JLabel jl = new NewClient_JLabel();// 是否没有账户标签
 	//Logingif_JFrame frame=new Logingif_JFrame();
 	
 	
@@ -76,7 +76,7 @@ public class login_JFrame extends JFrame {
 	private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 
 	//private Timer timer;
-	public login_JFrame() {
+	public Login_JFrame() {
 		
 		
 		
@@ -99,7 +99,7 @@ public class login_JFrame extends JFrame {
 	}
 	
 	
-public login_JFrame(Logingif_JFrame f) {
+public Login_JFrame(Logingif_JFrame f) {
 		
 		//this.frame=f;
 		
@@ -259,7 +259,7 @@ public login_JFrame(Logingif_JFrame f) {
 	public void setBak() {
 
 		((JPanel) this.getContentPane()).setOpaque(false);
-		ImageIcon img = new ImageIcon(login_JFrame.class.getResource("image/bg2.png"));
+		ImageIcon img = new ImageIcon(Login_JFrame.class.getResource("image/bg2.png"));
 		JLabel background = new JLabel(img);
 		this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
 		background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight());

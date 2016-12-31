@@ -18,7 +18,7 @@ public class Logingif_JFrame   extends JFrame{
 	private JLabel gif=new JLabel(new ImageIcon(Logingif_JFrame.class.getResource("image/loginback.gif")));
 	
 	//private close_JButton close_jbutton = new close_JButton();// 关闭窗口按钮
-	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
+	private Narrow_JButton narrow_jbutton = new Narrow_JButton(this);// 最小化窗口按钮
 	
 	public  Logingif_JFrame (){
 		

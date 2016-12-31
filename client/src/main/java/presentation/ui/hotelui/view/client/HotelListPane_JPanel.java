@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import businesslogic.bl.searchhotelbl.CheckHotel;
 import presentation.ui.searchhotelui.distributecontroller.SearchhotelDistributionController;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.HotelSortType;
 import util.OrderState;
 import util.ViewTag;

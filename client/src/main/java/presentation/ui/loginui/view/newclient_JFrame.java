@@ -21,21 +21,21 @@ import presentation.ui.loginui.viewcontroller.RegisterViewController;
 import presentation.ui.loginui.viewcontroller.RegisterViewControllerService;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.close_JButton;
-import presentation.ui.tools.narrow_JButton;
+import presentation.ui.tools.Narrow_JButton;
 /**
  * 选择企业会员还是普通会员的主面板
  * @author cy
  * @version 1.0
  * 
  */
-public class newclient_JFrame  extends JFrame{
+public class NewClient_JFrame  extends JFrame{
 	private boolean isDragged = false;
 	private Point tmp;
 	private Point loc;
 
 	
 	private close_JButton close_jbutton=new close_JButton();
-	private narrow_JButton narrow_jbutton=new narrow_JButton(this);
+	private Narrow_JButton narrow_jbutton=new Narrow_JButton(this);
 	private JLabel individual_logo=new JLabel();
 	private JLabel enterprise_logo=new JLabel();
 	private JLabel ninthday_logo=new JLabel();
@@ -53,7 +53,7 @@ public class newclient_JFrame  extends JFrame{
 	
 	
 	
-	public newclient_JFrame(){
+	public NewClient_JFrame(){
 
 		this.setLocation
         ( 
@@ -96,20 +96,20 @@ public class newclient_JFrame  extends JFrame{
    	 this.add(narrow_jbutton);
    	 
    	 
-   	 ImageIcon icon1=new ImageIcon(newclient_JFrame.class.getResource("image/clientlogo.png"));
+   	 ImageIcon icon1=new ImageIcon(NewClient_JFrame.class.getResource("image/clientlogo.png"));
    	 individual_logo.setBounds(250,300,150,150);
    	 individual_logo.setIcon(icon1);
    	 this.add(individual_logo);
    	 
    	 
    	 
-   	 ImageIcon icon2=new ImageIcon(newclient_JFrame.class.getResource("image/enterpriselogo.png"));
+   	 ImageIcon icon2=new ImageIcon(NewClient_JFrame.class.getResource("image/enterpriselogo.png"));
    	 enterprise_logo.setBounds(600,300,150,150);
    	 enterprise_logo.setIcon(icon2);
    	 this.add(enterprise_logo);
    	 
    	 
-   	 ImageIcon icon3=new ImageIcon(newclient_JFrame.class.getResource("image/ninthday.png"));
+   	 ImageIcon icon3=new ImageIcon(NewClient_JFrame.class.getResource("image/ninthday.png"));
    	 ninthday_logo.setBounds(300,50,400,150);
    	 ninthday_logo.setIcon(icon3);
   	 this.add(ninthday_logo);
@@ -165,7 +165,7 @@ public class newclient_JFrame  extends JFrame{
 	
 	
      ((JPanel)this.getContentPane()).setOpaque(false); 
-      ImageIcon img = new ImageIcon(newclient_JFrame.class.getResource("image/bg.png")); 
+      ImageIcon img = new ImageIcon(NewClient_JFrame.class.getResource("image/bg.png")); 
       JLabel background = new JLabel(img);this.getLayeredPane().add(background, new Integer(Integer.MIN_VALUE));
       background.setBounds(0, 0, img.getIconWidth(), img.getIconHeight()); 
 

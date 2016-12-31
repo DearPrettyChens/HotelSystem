@@ -16,12 +16,12 @@ import javax.swing.JFrame;
  * @version 1.0
  * 
  */
-public class narrow_JButton extends JButton {
-	private ImageIcon icon=new ImageIcon(narrow_JButton.class.getResource("image/narrow.jpg"));
+public class Narrow_JButton extends JButton {
+	private ImageIcon icon=new ImageIcon(Narrow_JButton.class.getResource("image/narrow.jpg"));
 	
 	 private JFrame jf;
 	 
-	 public narrow_JButton(JFrame jf){
+	 public Narrow_JButton(JFrame jf){
 		
 		 this.jf=jf;
 		 this.setIcon(icon);

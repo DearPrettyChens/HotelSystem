@@ -14,7 +14,7 @@ import javax.swing.text.Document;
 import presentation.ui.availableroomui.distributecontroller.AvailableroomDistributionController;
 import presentation.ui.hotelstrategyui.view.HotelBirthStr_JPanel;
 import presentation.ui.hotelui.view.ModifyHotelBasicInfo_JPanel;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.BedType;
 import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;

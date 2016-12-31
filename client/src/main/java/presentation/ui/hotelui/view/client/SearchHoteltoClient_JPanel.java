@@ -24,7 +24,7 @@ import javax.swing.JPanel;
 import com.sun.prism.impl.BaseMesh.FaceMembers;
 
 import businesslogic.bl.orderbl.Order;
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 import presentation.ui.tools.CalendarPanel;
 import presentation.ui.tools.MyTextfield;
 import util.BedType;

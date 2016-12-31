@@ -25,7 +25,7 @@ import presentation.ui.tools.MyButton;
 import presentation.ui.tools.MyTextfield;
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.SaveSuccess_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import presentation.ui.userui.distributecontroller.UserDistributeController;
 import util.CustomerType;
 import util.ResultMessage;

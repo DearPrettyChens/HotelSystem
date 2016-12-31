@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 import presentation.ui.loginui.view.Enterpriseregister_JFrame;
 import presentation.ui.loginui.view.Individualregister_JFrame;
-import presentation.ui.loginui.view.login_JFrame;
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.Login_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 
 public class RegisterViewController implements RegisterViewControllerService{
 	private JFrame view;
@@ -50,7 +50,7 @@ public class RegisterViewController implements RegisterViewControllerService{
 	
 	@Override
 	public void jumpToRegisterChooseFrame() {
-		view=new newclient_JFrame();
+		view=new NewClient_JFrame();
 	}
 
 }

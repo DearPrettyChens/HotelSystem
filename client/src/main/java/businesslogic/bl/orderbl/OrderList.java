@@ -9,7 +9,7 @@ import exception.NotFoundHotelException;
 import exception.NullHotelIDException;
 import init.RMIHelper;
 import po.OrderListPO;
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 import util.OrderState;
 import vo.hotelvo.HotelBasicInfoVO;
 import vo.ordervo.OrderListVO;

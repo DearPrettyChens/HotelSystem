@@ -25,12 +25,12 @@ import javax.swing.border.EmptyBorder;
  * @version 1.0
  * 
  */
-public class name_JTextField extends JTextField implements FocusListener {
+public class Name_JTextField extends JTextField implements FocusListener {
 
 	
 	    private ImageIcon icon;  
 	  
-	    public name_JTextField() {  
+	    public Name_JTextField() {  
        // 获取当前路径下的图片  
 	        icon = new ImageIcon(getClass().getResource("image/name.png")); 
 	        

@@ -14,7 +14,7 @@ import presentation.ui.hotelui.viewcontroller.HotelWorkerViewController;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.SaveSuccess_JFrame;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.ResultMessage;
 
 /**

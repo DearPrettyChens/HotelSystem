@@ -14,7 +14,7 @@ import presentation.ui.personnelui.view.ManagePanel;
 import presentation.ui.personnelui.view.SearchInterface;
 import presentation.ui.personnelui.view.Searchoradd_JPanel;
 import presentation.ui.personnelui.view.Searchperson_JPanel;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.UserType;
 import vo.personnelvo.PersonListVO;
 

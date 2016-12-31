@@ -26,10 +26,10 @@ import javax.swing.JTextField;
  * @version 1.0
  * 
  */
-public class password_JPasswordFeild extends JPasswordField {
+public class Password_JPasswordFeild extends JPasswordField {
     private ImageIcon icon;
 
-    public password_JPasswordFeild() {
+    public Password_JPasswordFeild() {
 //        获取当前路径下的图片
         icon = new ImageIcon(getClass().getResource("image/password.png"));
         Insets insets = new Insets(0, 20, 0, 0);

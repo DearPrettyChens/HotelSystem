@@ -9,7 +9,7 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-import presentation.ui.loginui.view.newclient_JFrame;
+import presentation.ui.loginui.view.NewClient_JFrame;
 import presentation.ui.tools.MyButton;
 import presentation.ui.tools.SaveFail_JFrame;
 import presentation.ui.tools.SaveSuccess_JFrame;

@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import presentation.ui.orderui.viewcontroller.CustomerOrderViewController;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.JLabelTool;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.OrderState;
 import util.TransHelper;
 import vo.ordervo.OrderListVO;

@@ -15,7 +15,7 @@ import presentation.ui.hotelui.viewcontroller.ReserveHotelViewController;
 import presentation.ui.searchhotelui.distributecontroller.SearchhotelDistributionController;
 import presentation.ui.tools.ImageTool;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.City;
 import util.TradingArea;
 import vo.searchhotelvo.HotelSearchInfoVO;

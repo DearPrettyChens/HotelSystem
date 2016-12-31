@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 
 import presentation.ui.tools.JLabelTool;
 import presentation.ui.tools.MyButton;
-import presentation.ui.tools.newclient_JLabel;
+import presentation.ui.tools.NewClient_JLabel;
 import util.City;
 import util.TradingArea;
 import vo.availableroomvo.AvailableRoomInfoVO;
