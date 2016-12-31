@@ -22,7 +22,7 @@ public final class ImageUtil {
 	private static SimpleDateFormat simpleDateFormat;
 	static {
 //		saveSource = "/Users/chengyunfei/Documents/image/";
-		saveSource = "/Users/mac/Documents/UserImage/image/";
+		saveSource = "/Users/green-cherry/学习/image/";
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}
 

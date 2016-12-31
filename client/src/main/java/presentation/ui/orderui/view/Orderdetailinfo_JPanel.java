@@ -160,7 +160,7 @@ public class Orderdetailinfo_JPanel  extends JPanel{
     	this.add(latestcheckintimejl);
     	
     	realcheckintimejl.setFont(font);
-
+    	realcheckintimejl.setBounds(100,420,250,50);
     	this.add(realcheckintimejl);
     	
     	checkouttimejl.setFont(font);

@@ -208,7 +208,7 @@ public class SingleOrder {
 			hourGap = latestCheckTime.getTime() / (60 * 60 * 1000) - cancelTime.getTime() / (60 * 60 * 1000);
 			if (hourGap < 6) {
 				credit.cutCredit(new CreditVO(orderInfo.getCustomerName(), customerID, preCredit,
-						(int) orderInfo.getPrice() / 2, "撤销时间与最晚执行时间距离不足6小时", cancelTime));
+						(int) orderInfo.getPrice() / 2, "距最晚入住不足6小时撤销", cancelTime));
 			}
 			// 增加订单状态
 			return this.addOrderState(OrderState.HASCANCELED, orderID);

@@ -350,9 +350,9 @@ public class OrderInfoPO implements Serializable {
 	}
 
 	public Date getExpectedCheckOutTime() {
-		if (expectedCheckInTimeStamp == null)
+		if (expectedCheckOutTimeStamp == null)
 			return null;
-		return new Date(expectedCheckInTimeStamp.getTime());
+		return new Date(expectedCheckOutTimeStamp.getTime());
 	}
 
 	public void setExpectedCheckOutTime(Date expectedCheckOutTime) {

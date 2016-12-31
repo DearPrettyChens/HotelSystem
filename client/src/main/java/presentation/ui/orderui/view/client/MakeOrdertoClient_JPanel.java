@@ -170,6 +170,8 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				orderDistributionController.confirmAddOrder(orderInfoVO);
+				
+				
 				MakeOrdertoClient_JPanel.this.circle2.setIcon(icon2);
 				MakeOrdertoClient_JPanel.this.circle3.setIcon(icon1);
 				MakeOrdertoClient_JPanel.this.remove(confirmcountjp);

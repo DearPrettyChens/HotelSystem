@@ -489,7 +489,6 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 			try {
 				hotelBasic = hotelDistributionController.getHotelBasicInfo(hotelID);
 				String hotelTel=hotelBasic.getTelephone();
-				
 				OrderInfoVO vo = new OrderInfoVO(null, hotelID, hotelname, userID,null, hotelTel,namejtf.getText(), 
 					teljtf.getText(), new Date(), new Date(TransHelper.stringToDate(fromtimejtf.getText())),
 							new Date(TransHelper.stringToDate(totimejtf.getText())), null,
