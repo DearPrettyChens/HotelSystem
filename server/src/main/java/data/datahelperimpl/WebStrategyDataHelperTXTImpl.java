@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -25,11 +26,12 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	@Override
 	public GradeRulePO getGradeRule() throws RemoteException {
-		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
+//		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
+		String path="/Users/green-cherry/学习/webstrategy/graderule.txt";
 		GradeRulePO gradeRulePO = null;
 		try {
-			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
-			BufferedReader br = new BufferedReader(reader);
+//			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
+			BufferedReader br = new BufferedReader(new FileReader(path));
 			String line = br.readLine();
 			int credit = Integer.parseInt(line);
 			gradeRulePO = new GradeRulePO(credit);
@@ -62,13 +64,14 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getSpecialTimeStrategy() {
-		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
+//		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
 		WebStrPO po = null;
 
 		Date[] dates = new Date[2];
 		try {
-			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
-			BufferedReader br = new BufferedReader(reader);
+			String path="/Users/green-cherry/学习/webstrategy/specialtime.txt";
+//			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
+			BufferedReader br = new BufferedReader(new FileReader(path));
 
 			String str = br.readLine();
 
@@ -99,8 +102,9 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		WebStrPO po = null;
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		try {
-			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
-			BufferedReader br = new BufferedReader(reader);
+			String path="/Users/green-cherry/学习/webstrategy/specialarea.txt";
+//			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
+			BufferedReader br = new BufferedReader(new FileReader(path));
 
 			String str = br.readLine();
 
@@ -125,12 +129,13 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 	}
 
 	public WebStrPO getVIPAreaStrategy() {
-		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
+//		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
 		WebStrPO po = null;
 		Map<Integer, Double> map = new HashMap<Integer, Double>();
 		try {
-			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
-			BufferedReader br = new BufferedReader(reader);
+			String path="/Users/green-cherry/学习/webstrategy/vip.txt";
+//			InputStreamReader reader = new InputStreamReader(address.openStream(), "UTF-8");
+			BufferedReader br = new BufferedReader(new FileReader(path));
 
 			String str = br.readLine();
 
@@ -159,9 +164,11 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 		// 写入数据
 		//同步锁 防止同时修改
 		synchronized (WebStrategyDataHelperTXTImpl.class) {
-			URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/graderule.txt");
+			String path="/Users/green-cherry/学习/webstrategy/graderule.txt";
 			try {
-				FileWriter fw = new FileWriter(address.getFile());
+//				String path=java.net.URLDecoder.decode(address.toString(),"UTF-8"); 
+				FileWriter fw = new FileWriter(path);
+//				FileWriter fw = new FileWriter(address.getFile());
 				BufferedWriter writer = new BufferedWriter(fw);
 				String string = po.getCredit() + "";
 				writer.write(string);
@@ -196,9 +203,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setVIP(WebStrPO po) {
 		//防止同时修改
-		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
+//		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/vip.txt");
+		String path="/Users/green-cherry/学习/webstrategy/vip.txt";
 		try {
-			FileWriter fw = new FileWriter(address.getFile());
+			FileWriter fw = new FileWriter(path);
 			BufferedWriter writer = new BufferedWriter(fw);
 			// 对map进行遍历
 			Iterator<Map.Entry<Integer, Double>> iterator = po.getVIPOrTradingAreaStrategy().entrySet().iterator();
@@ -221,9 +229,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setSpecialTime(WebStrPO po) {
 		//防止同时修改冲突
-		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
+//		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialtime.txt");
+		String path="/Users/green-cherry/学习/webstrategy/specialtime.txt";
 		try {
-			FileWriter fw = new FileWriter(address.getFile());
+			FileWriter fw = new FileWriter(path);
 			BufferedWriter writer = new BufferedWriter(fw);
 			Date[] dates = po.getDate();
 			String str = simpleDateFormat.format(dates[0]) + " " + simpleDateFormat.format(dates[1]) + " "
@@ -241,9 +250,10 @@ public class WebStrategyDataHelperTXTImpl implements WebStrategyDataHelper {
 
 	public static synchronized ResultMessage setSpecialArea(WebStrPO po) {
 		//防止同时修改冲突
-		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialarea.txt");
+//		URL address = WebStrategyDataHelperTXTImpl.class.getResource("webstrategy/specialarea.txt");
+		String path="/Users/green-cherry/学习/webstrategy/specialarea.txt";
 		try {
-			FileWriter fw = new FileWriter(address.getFile());
+			FileWriter fw = new FileWriter(path);
 			BufferedWriter writer = new BufferedWriter(fw);
 			// 对map进行遍历
 			Iterator<Map.Entry<Integer, Double>> iterator = po.getVIPOrTradingAreaStrategy().entrySet().iterator();
