@@ -16,7 +16,7 @@ public class AvailableRoomViewControllerImpl {
 	}
 	
 	public void addRoomInfoSuccess() {
-//		view=new RoomInfo_JPanel();
+
 	}
 
 	

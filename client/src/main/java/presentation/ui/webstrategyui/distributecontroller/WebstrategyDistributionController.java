@@ -13,7 +13,7 @@ import vo.webstrategyvo.WebStrVO;
 import vo.webstrategyvo.WebProvidedVO;
 
 /**
- * 
+ * 网站营销策略调用逻辑层的控制器类
  * @author CLL
  *
  */

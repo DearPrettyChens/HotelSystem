@@ -41,7 +41,6 @@ public class Webspecialtimestr_JPanel extends JPanel {
 	private WebStrVO webStrVO;
 
 	public Webspecialtimestr_JPanel() {
-		// this.singleinfo; 向逻辑层要
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setSize(800, 500);
@@ -88,7 +87,6 @@ public class Webspecialtimestr_JPanel extends JPanel {
 							singlewebspecialtimestr_JPanel.getCount(), WebStrategyType.SPECIALTIME);
 					// 根据message跳出提示框
 					ResultMessage message = webstrategyDistributionController.confirmWebStrategy(vo);
-//					System.out.println(message);
 					if (message == ResultMessage.SUCCESS) {
 						//更新vo 保证下次再进入该界面时为最新的策略
 						webStrVO = vo;

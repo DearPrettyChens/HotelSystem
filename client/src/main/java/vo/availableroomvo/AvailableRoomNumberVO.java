@@ -20,7 +20,6 @@ public class AvailableRoomNumberVO  implements Serializable{
 	private BedType bedType;//床型
 	private Date date;//日期
 	private String hotelNumber;//酒店编号
-	//private String hotelName;//酒店名字
 	
 	
 	
@@ -33,7 +32,6 @@ public class AvailableRoomNumberVO  implements Serializable{
 		this.bedType=bedType;
 		this.date=date;
 		this.hotelNumber=hotelNumber;
-		//this.hotelName=hotelName;
 	}
     /**
      * po to vo
@@ -44,7 +42,7 @@ public class AvailableRoomNumberVO  implements Serializable{
     	this.bedType=availableRoomNumberPO.getBedType();
     	this.date=availableRoomNumberPO.getDate();
     	this.hotelNumber=TransHelper.idToString(availableRoomNumberPO.getHotelNumber(),6);
-    	//this.hotelName=availableRoomNumberPO.getHotelName();
+   
     }
     /**
      * vo to po
@@ -78,14 +76,6 @@ public class AvailableRoomNumberVO  implements Serializable{
 	public void setHotelNumber(String hotelNumber) {
 		this.hotelNumber = hotelNumber;
 	}
-
-	/*public String getHotelName() {
-		return hotelName;
-	}
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}*/
-	
 	 
 	
 }

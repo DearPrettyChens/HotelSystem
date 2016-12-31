@@ -19,7 +19,6 @@ import javax.swing.JFrame;
  */
 public class Reflesh_JButton extends JButton{
 	 private ImageIcon icon=new ImageIcon(Reflesh_JButton.class.getResource("image/reflesh.png"));
-	 //private JFrame jf;
 	 
 	 public Reflesh_JButton(){
 		
@@ -28,8 +27,7 @@ public class Reflesh_JButton extends JButton{
 		 this.setBorderPainted(false);
 		 this.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            //未写
-	            	
+
 	            }
 	        });
 		 
@@ -39,30 +37,23 @@ public class Reflesh_JButton extends JButton{
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
 									
-					
-					
 				}
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
-				//newclient_JLabel.this.setForeground( new Color(112,255,0));
 					
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-				//	newclient_JLabel.this.setForeground(c);
+
 				}
 			});
 	 }

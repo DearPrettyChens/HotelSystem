@@ -13,9 +13,7 @@ public class DateChooser extends JPanel {
     /** 
      *  
      */  
-    private static final long serialVersionUID = 1L;  
-    //private static Point startp = null;  
-    //private Point endp = null;  
+    private static final long serialVersionUID = 1L;   
   
     public static void main(String[] args) {  
   

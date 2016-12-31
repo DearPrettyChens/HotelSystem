@@ -37,10 +37,7 @@ public class OrderDistributionController {
 		executeOrderService=ExecuteOrderController.getInstance();
 		generateOrderService=GenerateOrderController.getInstance();
 		lookOrderService=LookOrderController.getInstance();
-//	    cancleOrderService=new CancleOrderService_Stub();
-//	    executeOrderService=new ExecuteOrderService_Stub();
-//	    generateOrderService=new GenerateOrderService_Stub();
-//	    lookOrderService=new LookOrderService_Stub();
+
 
 	}
 	public static OrderDistributionController getInstance(){

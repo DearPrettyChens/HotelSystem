@@ -299,7 +299,6 @@ public class Changepassword_JPanel  extends JPanel{
 			}
     		
     	});
-    	//this.add(button2);
     	
     	
     	oldpasswordJl.setFont(font);
@@ -308,12 +307,10 @@ public class Changepassword_JPanel  extends JPanel{
     	
     	newpasswordJl.setFont(font);
     	newpasswordJl.setBounds(230,250,200,50);
-    	//this.add(oldpasswordJl);
     	
     	oldpasswordfield.setBounds(300,300,200,50);
     	this.add(oldpasswordfield);
     	newpasswordfield.setBounds(330,250,200,50);
-    	//this.add(oldpasswordfield);
     	newpasswordfield2.setBounds(330,325, 200,50);
 	
     	

@@ -21,9 +21,14 @@ import presentation.ui.tools.MyButton;
  */
 public class Login_JButton extends MyButton{
 	Color c=new Color(69,140,116);
+<<<<<<< HEAD
 //	login_JFrame frame;
 //	LoginViewControllerService controller;
 	public Login_JButton(){
+=======
+
+	public login_JButton(){
+>>>>>>> origin/master
 		
 		this.setFont(new Font("宋体",Font.BOLD, 16));
 		this.setText("登录");
@@ -47,7 +52,6 @@ public class Login_JButton extends MyButton{
 				@Override
 				public void mouseEntered(MouseEvent e) {
 					
-					//login_JButton.this.setForeground( new Color(112,255,0));
 					
 				}
 				@Override

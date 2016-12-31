@@ -86,9 +86,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 
 	private JTextField starjtf;
 	private JTextField locationjtf;
-	// private JTextField areajtf;
-//	private JLabel areajtf;
-//	private JLabel cityjtf;
+	
 	private JTextField teljtf;
 	private JTextArea commonFacilityjtf;
 	private JTextArea activityFacilityjtf;
@@ -153,8 +151,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelnamejl = new JLabel("酒店名称：" + hotelname);
 		starjtf = new JTextField(star + "");
 		locationjtf = new JTextField(location);
-//		cityjtf = new JLabel(city);
-//		areajtf = new JLabel(area);
+
 		teljtf = new JTextField(tel);
 		servicejtf = new JTextArea(service);
 		introductionjtf = new JTextArea(introduction);
@@ -208,10 +205,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 					hotelimage = imageIcon;
 					hotelImageShow.setIcon(imageIcon);
 					ModifyHotelBasicInfo_JPanel.this.hotelImageShow.updateUI();
-					// Hotelworker_JFrame
-					// hotelworker_JFrame=Hotelworker_JFrame.getInstance(hotelname,
-					// hotelname);
-					// hotelworker_JFrame.changeImage(imageIcon);
+					
 				}
 
 			}
@@ -255,17 +249,12 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		tradingareacomboBox.setBounds(500, 300, 100, 30);
 		this.add(tradingareacomboBox);
 
-//		cityjtf.setFont(font);
-//		cityjtf.setBounds(160, 300, 100, 30);
-//		this.add(cityjtf);
 
 		areajl.setFont(font);
 		areajl.setBounds(420, 300, 100, 30);
 		this.add(areajl);
 
-//		areajtf.setFont(font);
-//		areajtf.setBounds(500, 300, 100, 30);
-//		this.add(areajtf);
+
 
 		locationjl.setFont(font);
 		locationjl.setBounds(80, 350, 100, 30);
@@ -437,18 +426,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 	 * 
 	 * @return
 	 */
-	/*
-	 * public JTextField getTel(){ return this.teljtf; }
-	 * 
-	 * public JTextField getStar(){ return this.starjtf; }
-	 * 
-	 * public JTextField getArea(){ return this.areajtf; }
-	 * 
-	 * public JTextField getLoca(){ return this.locationjtf; }
-	 * 
-	 * public JTextField getCity(){ return this.cityjtf; }
-	 */
-
+	
 	/**
 	 * 保存当前酒店信息
 	 */
@@ -497,8 +475,7 @@ public class ModifyHotelBasicInfo_JPanel extends JPanel {
 		hotelnamejl.setText("酒店名称：" + hotelname);
 		starjtf.setText(star + "");
 		locationjtf.setText(location);
-//		cityjtf.setText(city);
-//		areajtf.setText(area);
+
 		teljtf.setText(tel);
 		servicejtf.setText(service);
 		introductionjtf.setText(introduction);

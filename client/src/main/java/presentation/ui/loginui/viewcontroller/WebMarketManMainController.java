@@ -23,15 +23,11 @@ public class WebMarketManMainController {
 	public WebMarketManMainController(JFrame frame){
 		this.frame=frame;
 	}
-/*	public void jumpToOrderListView(){
-		frame.remove(view);
-		view=new Searchorder_JPanel(UserType.WebMarketMan);
-		frame.add(view);
-	}*/
+
 	
 	public void jumpToCreditDepositView(){
 		frame.remove(view);
-//		view=new Clientdeposite_JPanel();
+
 		frame.add(view);
 	}
 	

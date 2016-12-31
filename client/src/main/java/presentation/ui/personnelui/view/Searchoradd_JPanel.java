@@ -36,8 +36,6 @@ public class Searchoradd_JPanel extends JPanel {
 	private PersonnelControllerImpl personnelControllerImpl = new PersonnelControllerImpl(null);
 
 	public Searchoradd_JPanel(ManagePanel managePanel) {
-		// this.userType=type;
-		// this.setBackground(Color.white);
 		this.setLayout(null);
 		this.setBackground(Color.white);
 
@@ -51,7 +49,6 @@ public class Searchoradd_JPanel extends JPanel {
 	 * 
 	 * @param
 	 * @return
-	 * @throws 未定
 	 */
 	public void addComp() {
 		searchjl.setFont(font);
@@ -60,7 +57,6 @@ public class Searchoradd_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 				addjl.setForeground(Color.gray);
 				searchjl.setForeground(color);
@@ -72,25 +68,21 @@ public class Searchoradd_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				// searchjl.setFont(new Font("宋体",Font.BOLD, 16));
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				searchjl.setFont(new Font("宋体", Font.BOLD, 18));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				searchjl.setFont(new Font("宋体", Font.BOLD, 16));
 			}
 
@@ -104,7 +96,6 @@ public class Searchoradd_JPanel extends JPanel {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
 				addjl.setForeground(color);
 				searchjl.setForeground(Color.gray);
 
@@ -114,25 +105,21 @@ public class Searchoradd_JPanel extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				// TODO Auto-generated method stub
 
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				// addjl.setFont(new Font("宋体",Font.BOLD, 16));
+
 			}
 
 			@Override
 			public void mouseEntered(MouseEvent e) {
-				// TODO Auto-generated method stub
 				addjl.setFont(new Font("宋体", Font.BOLD, 18));
 			}
 
 			@Override
 			public void mouseExited(MouseEvent e) {
-				// TODO Auto-generated method stub
 				addjl.setFont(new Font("宋体", Font.BOLD, 16));
 			}
 

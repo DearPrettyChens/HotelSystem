@@ -168,14 +168,7 @@ public class OrderInfoToCheckIn_JPanel extends JPanel {
 		pricejl.setFont(font);
 		this.add(pricejl);
 
-		// comboBox.addItem("全部订单");
-		// comboBox.addItem("已执行");
-		// comboBox.addItem("未执行");
-		// comboBox.addItem("异常订单");
-		// comboBox.addItem("已撤销");
-
-		// comboBox.setBounds(500,180,200,50);
-		// this.add(comboBox);
+		
 
 		confirmjb.setText("填写住房信息");
 		confirmjb.setBounds(360, 320, 200, 30);

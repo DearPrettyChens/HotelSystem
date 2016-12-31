@@ -31,19 +31,9 @@ import vo.searchhotelvo.HotelSearchInfoVO;
 public class SearchHotel {
 
 	private ArrayList<HotelListVO> hotelListVOs;//维护VO信息是为了进行筛选
-	private ArrayList<HotelListVO> changehotelListVOs;
 	private ArrayList<HotelListPO> hotelListPOs;
 	private HotelSearchInfoVO hotelSearchInfoVO;
 	private SearchHotelDao searchHotelDao;
-//    private static SearchHotel searchHotel;
-//	
-//    public static SearchHotel getInstance(HotelSearchInfoVO hotelSearchInfoVO) {
-//		if((searchHotel==null)||(hotelSearchInfoVO.getHotelSortType()!=null)){
-//			searchHotel=new SearchHotel(hotelSearchInfoVO);
-//		}
-//		return searchHotel;
-//	}
-//    
 	/**
 	 * 
 	 * 在这个类初始化的时候就根据排序类型去数据库去酒店列表信息
@@ -60,15 +50,16 @@ public class SearchHotel {
 				hotelListPOs = searchHotelDao.getHotelList();
 			} else {
 				hotelListPOs = searchHotelDao.getSortedHotelList(hotelSortType);
-//				System.out.println(hotelSortType);
-//				System.out.println(hotelListPOs.get(0).getName());
 			}
 			hotelListVOs=new ArrayList<HotelListVO>();
 			for (HotelListPO hotelListPO : hotelListPOs) {
 				HotelListVO hotelListVO = new HotelListVO(hotelListPO);
+				
+				System.out.println(hotelListPO.getId()+"search po");
+				System.out.println(hotelListVO.getHotelID()+"search vo");
+				
 				hotelListVOs.add(hotelListVO);
 			}
-//			System.out.println("hotellistvos:"+hotelListVOs.size());
 			addStrToVO(hotelSearchInfoVO.getCustomerID());
 			addOrderToVO(hotelSearchInfoVO.getCustomerID());
 		} catch (RemoteException e) {
@@ -90,7 +81,6 @@ public class SearchHotel {
 			try {
 				hotelStrVOs = hotel.getHotelDetailInfo(hotelID, customerID).getHotelStrVO();
 			} catch (NotFoundHotelException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			hotelListVO.setHotelStrVO(hotelStrVOs);
@@ -111,11 +101,9 @@ public class SearchHotel {
 //			MockOrderList orderList=new MockOrderList();
 			OrderList orderList=new OrderList();
 			//遍历顾客的订单，获得顾客在该酒店的订单状态
-//			System.out.println(customerID);
 			ArrayList<OrderListVO> orderListVOs=orderList.getOrderList(new TypeInfoVO(UserType.Customer,
 					null, customerID));
 			for(OrderListVO orderListVO:orderListVOs){
-//				System.out.println(orderListVO.getHotelID()+"  "+hotelID);
 				String orderHotelID=orderListVO.getHotelID();
 				if(Integer.parseInt(orderHotelID)==Integer.parseInt(hotelID)){
 					orderStates.add(orderListVO.getState());
@@ -134,8 +122,6 @@ public class SearchHotel {
 	 * @throws 未定
 	 */
 	public ArrayList<HotelListVO> getHotelList() {
-//		if()
-		changehotelListVOs=hotelListVOs;
 		CheckHotel checkHotel=new CheckHotel(hotelListVOs,hotelSearchInfoVO);
 		return checkHotel.check();
 	}
@@ -147,15 +133,11 @@ public class SearchHotel {
 	 * @return ArrayList<HotelListVO>
 	 * @throws 未定
 	 */
-	public ArrayList<HotelListVO> getCustomerHotelList(String customerID) {
-//		
+	public ArrayList<HotelListVO> getCustomerHotelList(String customerID) {		
 		ArrayList<HotelListVO> list = new ArrayList<HotelListVO>();
-//		System.out.println("size:"+hotelListVOs.size());
 		for(HotelListVO vo:hotelListVOs){
-//			System.out.println(vo.getHotelName()+vo.getOrderStates().size());
 		   if(vo.getOrderStates().size()!=0){
 			   list.add(vo);
-//			   System.out.println("name"+vo.getHotelName());
 		   }
 		}
 		return list;

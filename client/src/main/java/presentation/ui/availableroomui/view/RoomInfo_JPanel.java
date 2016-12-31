@@ -123,10 +123,7 @@ public class RoomInfo_JPanel extends JPanel {
 					// 保存成功
 					new SaveSuccess_JFrame();
 				}
-				/*
-				 * else if(result==ResultMessage.FAIL){ //保存失败 new
-				 * SaveFail_JFrame(); }
-				 */
+				
 			}
 
 		});
@@ -179,7 +176,7 @@ public class RoomInfo_JPanel extends JPanel {
 		panel.updateUI();
 		scrollPane.setViewportView(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// this.add(scrollPane);
+		
 	}
 
 }

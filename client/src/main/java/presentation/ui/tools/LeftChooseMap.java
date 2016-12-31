@@ -86,49 +86,6 @@ public class LeftChooseMap {
 		default:
 			break;
 		}
-/*		case Customer:
-//			顾客的左边栏
-			map.put("预订酒店", ReserveHotelView.getInstance(userID,userName));
-			map.put("我的信息", new Changemessage_JPanel(userID));
-			map.put("我的密码", new Changepassword_JPanel(UserType.Customer,userID,userName));
-			map.put("我的订单", ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID));
-			map.put("我的足迹", MyFootView.getInstance(userID));
-			map.put("我的信用", new ClientCreditInfos_JPanel(userID));
-			break;
-		case HotelWorker:
-//			酒店工作人员的左边栏
-			map.put("● 维护酒店信息", new MaintainHotelBasicInfoPanel(hotelID));
-			map.put("● 录入客房信息", new RoomInfo_JPanel(hotelID));
-			map.put("● 浏览订单列表", OrderPanelViewInHotelWorker.getInstance(hotelID));
-			map.put("● 制定酒店策略", HotelStrategyPanel.getInstance(hotelID));
-			map.put("● 线上入住办理", CheckInPanel.getInstance(hotelID));
-			map.put("● 线上退房办理", CheckOutPanel.getInstance(hotelID));
-			map.put("● 线下入住退房", new OfflineCheckIn_JPanel(hotelID));
-			break;
-		case Manager:
-			//网站管理人员的左边栏
-			map.put("营销人员", ManageWebMarketManPanel.getInstance());
-			map.put("顾客会员", ManageCustomerPanel.getInstance());
-			map.put("酒店人员", ManageHotelWorkerPanel.getInstance());
-			map.put("修改密码", new Changepassword_JPanel(UserType.Manager,userID,userName));
-			break;
-		case WebMarketMan:
-			//网站营销人员的左边栏
-			map.put("管理订单", OrderPanelInWebMarketMan.getInstance());
-			map.put("信用充值", DepositPanel.getInstance());
-			map.put("会员等级", new Clientlevelrule_JPanel());
-			map.put("营销策略", new Makewebstr_JPanel());
-			break;
-		default:
-			break;
-		
-		}
-	*/	
-		
-		
-		
-
-		
 
 	}
 

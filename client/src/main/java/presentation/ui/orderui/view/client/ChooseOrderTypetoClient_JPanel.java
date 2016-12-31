@@ -63,15 +63,11 @@ public class ChooseOrderTypetoClient_JPanel extends JPanel {
 	
     private  static ChooseOrderTypetoClient_JPanel chooseOrderTypetoClient_JPanel;
     
-    public static ChooseOrderTypetoClient_JPanel getInstance(String userID,String hotelID) {
-		if(chooseOrderTypetoClient_JPanel==null){
-			chooseOrderTypetoClient_JPanel=new ChooseOrderTypetoClient_JPanel(userID, hotelID);
-		}
-		return chooseOrderTypetoClient_JPanel;
-	}
+  
     
-    private ChooseOrderTypetoClient_JPanel(String userID,String hotelID) {
+    public ChooseOrderTypetoClient_JPanel(String userID,String hotelID) {
 		this.userID = userID;
+		this.hotelID=hotelID;
 		this.setSize(800, 600);
 		this.setLayout(null);
 		this.setBackground(Color.white);

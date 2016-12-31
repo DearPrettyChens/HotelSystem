@@ -6,7 +6,7 @@ import java.util.Map;
 
 import util.HotelStrategyType;
 /**
- * 
+ * 运用映射表
  * 用于创建对象时避免switch,case的情况
  * @author CSY
  *

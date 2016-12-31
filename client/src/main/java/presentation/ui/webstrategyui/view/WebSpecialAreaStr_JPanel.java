@@ -43,7 +43,6 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 	private Map<Integer, Double> areaStrategy;
 
 	public WebSpecialAreaStr_JPanel() {
-		// this.singleinfo=;到逻辑层取
 		this.setLayout(null);
 		this.setBackground(Color.white);
 		this.setSize(800, 500);
@@ -95,7 +94,6 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 					WebStrVO vo = new WebStrVO(newAreaStrategy, -1, WebStrategyType.SPECIALAREA);
 					//根据返回的resultmessage跳出提示界面。
 					ResultMessage resultMessage = webstrategyDistributionController.confirmWebStrategy(vo);
-//					System.out.println(resultMessage);
 					if(resultMessage == ResultMessage.SUCCESS){
 						//更新 保证下次界面显示是最新的策略。
 						areaStrategy = newAreaStrategy ;
@@ -163,7 +161,6 @@ public class WebSpecialAreaStr_JPanel extends JPanel {
 		panel.updateUI();
 		scrollPane.setViewportView(panel);
 		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// this.add(scrollPane);
 	}
 
 }

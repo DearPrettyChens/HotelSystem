@@ -22,7 +22,6 @@ import presentation.ui.loginui.view.Login_JFrame;
  */
 public class Arrow_JButton extends JButton{
 	 private ImageIcon icon=new ImageIcon(Arrow_JButton.class.getResource("image/out.png"));
-	 //private JFrame jf;
 	 private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
      private JFrame jf;
      
@@ -33,15 +32,10 @@ public class Arrow_JButton extends JButton{
 		 this.setBorderPainted(false);
 		 this.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	            //未写
 	            	
 	            	loginDistributionController.logout();
 	            	jf.dispose();
-//	            	new login_JFrame().setVisible(true);
-	            	
-	            	
-	            	
-	            	
+
 	            }
 	        });
 		 
@@ -51,30 +45,23 @@ public class Arrow_JButton extends JButton{
 				
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				@Override
 				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-									
-					
 					
 				}
 				@Override
 				public void mouseReleased(MouseEvent e) {
-					// TODO Auto-generated method stub
 					
 				}
 				@Override
 				public void mouseEntered(MouseEvent e) {
-//				newclient_JLabel.this.setForeground( new Color(112,255,0));
 					
 				}
 				@Override
 				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
-				//	newclient_JLabel.this.setForeground(c);
+					
 				}
 			});
 	 }

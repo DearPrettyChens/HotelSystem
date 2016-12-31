@@ -31,7 +31,7 @@ public class MockHotel {
 	 *
 	 */
 	public HotelDetailInfoVO getHotelDetailInfo(String hotelID,String customerID) throws NotFoundHotelException {
-		return new HotelDetailInfoVO("锦江之星大酒店", null, null, TradingArea.XINJIEKOU, "12121212121", 5, null, null, City.NANJING,null, null, null, null,null, null, null, 5.0, null, 100);
+		return new HotelDetailInfoVO("锦江之星大酒店", null, null, TradingArea.XINJIEKOU, "12121212121", 5, null, null, City.NANJING,null, null, null, null,null, null, null, 5.0, null, 100,"123456");
 	}
 
 

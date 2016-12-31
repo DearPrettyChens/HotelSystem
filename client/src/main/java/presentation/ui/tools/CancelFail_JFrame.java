@@ -56,7 +56,6 @@ public class CancelFail_JFrame extends JFrame{
 		
 		
 		close_jbutton.setBounds(350, 10, 24, 24);
-		//upjp.add(close_jbutton);
 		
 		
 		halfjl.setFont(font);
@@ -72,10 +71,7 @@ public class CancelFail_JFrame extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				CancelFail_JFrame.this.dispose();
-				
-				
 			}
 			
 		});

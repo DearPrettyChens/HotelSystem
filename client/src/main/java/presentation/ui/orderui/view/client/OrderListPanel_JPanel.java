@@ -15,6 +15,7 @@ import presentation.ui.orderui.distributecontroller.OrderDistributionController;
 import presentation.ui.tools.NewClient_JLabel;
 import presentation.ui.webstrategyui.view.Singlewebclientlevelstr_Jpanel;
 import util.OrderState;
+import util.TransHelper;
 import util.UserType;
 import vo.ordervo.OrderListVO;
 import vo.ordervo.TypeInfoVO;
@@ -122,20 +123,27 @@ public class OrderListPanel_JPanel extends JPanel {
 			TypeInfoVO typeInfoVO = new TypeInfoVO(UserType.Customer, orderState, userID);
 			orderListVOs = orderDistributionController.getOrderList(typeInfoVO);
 		}
-
+		ArrayList<OrderListVO> orders=new ArrayList<OrderListVO>();
+		
 		if(hotelID!=null){
 			for (OrderListVO orderListVO : orderListVOs) {
-				if(!orderListVO.getHotelID().equals(hotelID)){
-					orderListVOs.remove(orderListVO);
+				if(TransHelper.idToInt(orderListVO.getHotelID())==TransHelper.idToInt(hotelID)){
+					orders.add(orderListVO);
 				}
 			}
 		}
-		
-		for (OrderListVO orderListVO : orderListVOs) {
-			SingleOrderListInfotoClient singleOrderListInfotoClient = new SingleOrderListInfotoClient(orderListVO);
-			singleinfo.add(singleOrderListInfotoClient);
+		if(hotelID!=null){
+			for (OrderListVO orderListVO : orders) {
+				SingleOrderListInfotoClient singleOrderListInfotoClient = new SingleOrderListInfotoClient(orderListVO);
+				singleinfo.add(singleOrderListInfotoClient);
+			}
 		}
-
+		else{
+			for (OrderListVO orderListVO : orderListVOs) {
+				SingleOrderListInfotoClient singleOrderListInfotoClient = new SingleOrderListInfotoClient(orderListVO);
+				singleinfo.add(singleOrderListInfotoClient);
+			}
+		}
 		for (int i = 0; i < singleinfo.size(); i++) {
 			SingleOrderListInfotoClient singleOrderListInfotoClient = singleinfo.get(i);
 			singleOrderListInfotoClient.setBounds(0, 200 * i, 800, 220);

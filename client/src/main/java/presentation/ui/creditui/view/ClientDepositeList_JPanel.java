@@ -60,7 +60,7 @@ public class ClientDepositeList_JPanel extends Personlistinfo_JPanel{
 
 		this.setBackground(Color.white);
 
-		// setBak();
+		
 		addComp();
 		setListener();
 

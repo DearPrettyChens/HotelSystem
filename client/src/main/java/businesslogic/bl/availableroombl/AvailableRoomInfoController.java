@@ -7,6 +7,12 @@ import util.ResultMessage;
 import vo.availableroomvo.AvailableRoomInfoVO;
 import vo.availableroomvo.AvailableRoomNumberVO;
 
+/**
+ * AvailableRoomInfo的控制类
+ * 
+ * @author CLL
+ * @version 1.0
+ */
 public class AvailableRoomInfoController implements AvailableRoomInfoService{
 	//持有AvailableRoom引用
 	private AvailableRoom availableRoom;
@@ -40,7 +46,7 @@ public class AvailableRoomInfoController implements AvailableRoomInfoService{
 	}
 	@Override
 	public ResultMessage checkAvailableRoomNumber(String hotelID, AvailableRoomNumberVO availableRoomNumberVO) {
-		//委托给availableRoom,availableRoomNumberVO中有hotelid貌似不用再传了？
+		//委托给availableRoom,availableRoomNumberVO
 		return availableRoom.checkAvailableRoomNumber(availableRoomNumberVO);
 	}
 

@@ -36,7 +36,7 @@ public class OrderDetailInfoToHotelWorker_JPanel extends JPanel {
 	private String ordernumber = "";
 	private String clientname = "";
 	private String tel = "";
-//	private String bedtype = "";
+
 	private String roomType="";
 	private String ordertime = "";
 	private String orderstate = "";
@@ -44,22 +44,22 @@ public class OrderDetailInfoToHotelWorker_JPanel extends JPanel {
 	private String checkouttime = "";
 	private double price = 0;
 	private String checkintime = "";
-//	private String isremarked = "";
+
 	private String hasChild="";
 
-//	private BedType bedType2;
+
 	private OrderState orderState2;
 	private Date orderTimeInDate;
 	private Date latestcheckintimeInDate;
 	private Date checkouttimeInDate;
 	private Date checkintimeInDate;
-//	private boolean remark;
+
     private Children children;
 	
 	private JLabel ordernumberjl;
 	private JLabel clientnamejl;
 	private JLabel teljl;
-//	private JLabel bedtypejl;
+
 	private JLabel roomTypejl;
 	private JLabel ordertimejl;
 	private JLabel orderstatejl;
@@ -67,7 +67,7 @@ public class OrderDetailInfoToHotelWorker_JPanel extends JPanel {
 	private JLabel checkouttimejl;
 	private JLabel pricejl;
 	private JLabel checkintimejl;
-//	private JLabel isremarkedjl;
+
 	private JLabel hasChildjl;
 
 	private MyButton backjb = new MyButton();
@@ -84,8 +84,6 @@ public class OrderDetailInfoToHotelWorker_JPanel extends JPanel {
 		this.clientname = orderInfoVO.getCustomerName();
 		this.tel = orderInfoVO.getLodgerTel();
 
-//		this.bedType2 = orderInfoVO.getBedType();
-//		this.bedtype = bedType2.toChinese();
 
 		this.roomType=orderInfoVO.getRoomType();
 		

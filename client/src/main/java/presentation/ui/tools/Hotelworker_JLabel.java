@@ -52,7 +52,6 @@ public class Hotelworker_JLabel  extends JLabel{
 		 name=s;
 		 this.tab=tab;
 		 this.alllabels=alllabels;
-//		 Hotelworker_JLabel.this.setForeground(new Color(255, 255, 255));
 		 Hotelworker_JLabel.this.setForeground(Color.GRAY);
 		 Hotelworker_JLabel. this.setFont(new Font("宋体",Font.BOLD, 16));
 		 this.addMouseListener(new MouseListener() {
@@ -73,7 +72,6 @@ public class Hotelworker_JLabel  extends JLabel{
 				Hotelworker_JLabel.this.setForeground(Color.BLACK);
             	Hotelworker_JLabel. this.setFont(new Font("宋体",Font.BOLD, 18));
 				String info =Hotelworker_JLabel.this.name;
- //           	JPanel panel = leftChooseMap.get(info);
 				LeftChoosePanel panel = leftChooseMap.get(info);
 				JPanel jpanel=new JPanel();
 				switch(panel){
@@ -90,7 +88,7 @@ public class Hotelworker_JLabel  extends JLabel{
 					jpanel=CheckOutPanel.getInstance(leftChooseMap.hotelID);
 					break;
 				case ChooseOrderTypetoClient_JPanel:
-					jpanel=ChooseOrderTypetoClient_JPanel.getInstance(userID, leftChooseMap.hotelID);
+					jpanel=new ChooseOrderTypetoClient_JPanel(userID, leftChooseMap.hotelID);
 					break;
 				case ClientCreditInfos_JPanel:
 					jpanel=new ClientCreditInfos_JPanel(userID);
@@ -159,18 +157,12 @@ public class Hotelworker_JLabel  extends JLabel{
 			}
 	            @Override
 	             public void mouseEntered(MouseEvent e) {
-//	            	Hotelworker_JLabel.this.setForeground(Color.GRAY);
-//	            	Hotelworker_JLabel.this.setForeground(new Color(255, 255, 255));
-//	            	 Hotelworker_JLabel.this.setForeground(Color.BLACK);
-//	            	Hotelworker_JLabel. this.setFont(new Font("宋体",Font.BOLD, 18));
 	            	
 	             }
 	 
 	             @Override
 	          public void mouseExited(MouseEvent e) {
-//	            	 Hotelworker_JLabel.this.setForeground(Color.GRAY);
-////	            	 Hotelworker_JLabel.this.setForeground(new Color(255, 255, 255));
-//	            	 Hotelworker_JLabel. this.setFont(new Font("宋体",Font.BOLD, 16));
+
 	             }
 	         });
 	    }

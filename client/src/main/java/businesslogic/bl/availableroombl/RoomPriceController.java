@@ -3,7 +3,12 @@ package businesslogic.bl.availableroombl;
 import businesslogic.blservice.availableroomblservice.RoomPriceService;
 import util.BedType;
 import util.ResultMessage;
-
+/**
+ * RoomPrice的控制类
+ * 
+ * @author CLL
+ * @version 1.0
+ */
 public class RoomPriceController implements RoomPriceService{
 	//持有AvailableRoom引用
 	private AvailableRoom availableRoom;

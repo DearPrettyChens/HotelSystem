@@ -81,7 +81,7 @@ public class ClientDepositeSearch_JPanel extends JPanel implements SearchInterfa
 		searchResultPanel=new JPanel();
 		searchResultPanel.setLayout(null);
 		searchResultPanel.repaint();
-//		scrollPane.repaint();
+
 		searchResultPanel.setBackground(Color.WHITE);
 		clientDepositeList_JPanels=new ArrayList<ClientDepositeList_JPanel>();
 		if(personListVOs==null){
@@ -102,7 +102,7 @@ public class ClientDepositeSearch_JPanel extends JPanel implements SearchInterfa
 	    scrollPane.setViewportView(searchResultPanel);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	    }
-//	    this.add(scrollPane);
+
 	}
 
 }

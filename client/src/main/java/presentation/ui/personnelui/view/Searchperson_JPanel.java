@@ -26,7 +26,6 @@ import vo.personnelvo.PersonListVO;
  */
 public class Searchperson_JPanel extends JPanel {
 	private JButton searchjb = new JButton();
-	// private MyButton searchjb=new MyButton();
 	private MyTextfield searchjtf = new MyTextfield("用户名/编号");
 	private UserType userType;
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
@@ -34,7 +33,6 @@ public class Searchperson_JPanel extends JPanel {
 	private SearchInterface personPanel;
 
 	public Searchperson_JPanel(UserType userType, SearchInterface personPanel) {
-		// this.setBackground(new Color(148,221,184));
 		this.setBackground(Color.WHITE);
 		this.setSize(600, 50);
 		this.setLayout(null);
@@ -61,8 +59,6 @@ public class Searchperson_JPanel extends JPanel {
 
 		searchjb.setBorderPainted(false);
 		searchjb.setOpaque(false);
-		// searchjb.setForeground(new Color(148,221,184));
-		// searchjb.setBackground(new Color(148,221,184));
 
 		searchjb.addActionListener(new ActionListener() {
 

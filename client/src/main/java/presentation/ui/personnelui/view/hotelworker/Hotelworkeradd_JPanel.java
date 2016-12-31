@@ -35,35 +35,30 @@ public class Hotelworkeradd_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 
-	// private String id;
 	private String name;
 	private String tel;
-	// private String type;
 	private String password;
 	private String hotelname;
 
 	private static boolean canSave=false;
-	// private JLabel typejl=new JLabel("职务： ");
-	// private JLabel idjl=new JLabel("I D: ");
+	
 	private JLabel namejl = new JLabel("姓名：   ");
 	private JLabel hotelnamejl = new JLabel("酒店：   ");
 	private JLabel teljl = new JLabel("电话：   ");
 	private JLabel passwordjl = new JLabel("密码：   ");
-
-	// private JTextField idjtx=new JTextField("");
+	
 	private MyTextfield namejtx = new MyTextfield("请输入姓名");
 	private MyTextfield hotelnamejtx = new MyTextfield("请输入所属酒店名称");
 	private MyTextfield teljtx = new MyTextfield("请输入联系方式");
-	// private JTextField typejtx=new JTextField();
 	private MyTextfield passwordjtx = new MyTextfield("请输入密码");
 
 	private MyButton canclejb = new MyButton();
 	private MyButton confirmjb = new MyButton();
+	
 	private PersonnelDistributionController personnelDistributionController = PersonnelDistributionController
 			.getInstance();
 
 	public Hotelworkeradd_JPanel() {
-		// this.id=id;
 		this.setBackground(Color.white);
 
 		this.setLayout(null);
@@ -81,15 +76,6 @@ public class Hotelworkeradd_JPanel extends JPanel {
 	 * @throws 未定
 	 */
 	public void addComp() {
-		//
-		// idjl.setFont(font);
-		// idjl.setBounds(300,110,100,50);
-		// idjtx.setText(id);
-		// idjtx.setEditable(false);
-		// this.add(idjl);
-		// idjtx.setFont(font);
-		// idjtx.setBounds(350,110,200,50);
-		// this.add(idjtx);
 
 		namejl.setFont(font);
 		namejl.setBounds(280, 80, 100, 50);
@@ -418,12 +404,6 @@ public class Hotelworkeradd_JPanel extends JPanel {
 		Hotelworkeradd_JPanel.this.add(saveError);
 		saveError.setVisible(false);
 
-		// JLabel saveSuccess=new JLabel("保存成功");
-		// saveSuccess.setForeground(Color.RED);
-		// saveSuccess.setFont(font);
-		// saveSuccess.setBounds(540,430,150,50);
-		// Hotelworkeradd_JPanel.this.add(saveSuccess);
-		// saveSuccess.setVisible(false);
 		/**
 		 * 点击确认按钮，添加人员
 		 */
@@ -453,22 +433,12 @@ public class Hotelworkeradd_JPanel extends JPanel {
 						&& !hotelnamejtx.getText().equals("")&&canSave) {
 					PersonDetailVO detail = new PersonDetailVO(null, namejtx.getText(), passwordjtx.getText(), null,
 							teljtx.getText(), 0, null, null, null, hotelnamejtx.getText(), UserType.HotelWorker);
-
-//					boolean tag = false;
-//					if (nameErrorJl1.isVisible() || nameErrorJl2.isVisible() || nameErrorJl3.isVisible()
-//							|| nameErrorJl4.isVisible() || telErrorJl.isVisible() || telErrorJl2.isVisible()
-//							|| passwordErrorJl.isVisible() || passwordErrorJl2.isVisible()) {
-//						tag = true;
-//					}
 					
 					if ((personnelDistributionController.addPerson(detail) == ResultMessage.SUCCESS)) {
 						// 保存成功
-						// TODO
 						new SaveSuccess_JFrame();
 						saveError.setVisible(false);
-						// saveSuccess.setVisible(true);
 					} else {
-						// saveSuccess.setVisible(false);
 						saveError.setVisible(true);
 					}
 				}
@@ -482,7 +452,6 @@ public class Hotelworkeradd_JPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				// Hotelworkeradd_JPanel.this.repaint();
 				nameErrorJl1.setVisible(false);
 				nameErrorJl2.setVisible(false);
 				nameErrorJl3.setVisible(false);

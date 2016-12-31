@@ -52,7 +52,7 @@ public class CheckInPanel extends JPanel {
 	 */
 	public void changeToCheckInInfoPanel(OrderInfoVO orderInfoVO,String hotelID) {
 		this.removeAll();
-		//checkInInfo_JPanel=new CheckInInfo_JPanel();
+		
 		checkInInfo_JPanel=new CheckInInfo_JPanel(orderInfoVO,hotelID);
         this.add(checkInInfo_JPanel) ;
 		this.repaint();

@@ -55,7 +55,7 @@ public class LookHotelService_Stub implements LookHotelService{
 		remarkInfos.add("2016嘉人中国风超级盛典在京举行。唐嫣罗晋公开恋情后首次合体亮相红毯，罗晋搂着唐嫣腰，大赞女友很美，唐嫣身穿红裙光彩照人，表示两人童年照很萌。");
 		HotelDetailInfoVO detailvo=new HotelDetailInfoVO("绿地洲际大酒店","南京市鼓楼区",new ImageIcon("image//hotel.jpg"), TradingArea.XINJIEKOU,"12345678999"
 				,5,"好","设施齐全",City.NANJING,"设施齐全","设施齐全","设施齐全","华为",list,roomlist,
-				null,5,remarkInfos,500);
+				null,5,remarkInfos,500,"000001");
 		return detailvo;
 	}
 

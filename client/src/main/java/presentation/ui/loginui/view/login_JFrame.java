@@ -56,10 +56,17 @@ public class Login_JFrame extends JFrame {
 	private Name_JTextField name = new Name_JTextField();// 登录时姓名填写区域
 	private Password_JPasswordFeild password = new Password_JPasswordFeild();// 密码区域
 	private close_JButton close_jbutton = new close_JButton();// 关闭窗口按钮
+<<<<<<< HEAD
 	private Narrow_JButton narrow_jbutton = new Narrow_JButton(this);// 最小化窗口按钮
 	private Login_JButton jb = new Login_JButton();// 登录按钮
 	private NewClient_JLabel jl = new NewClient_JLabel();// 是否没有账户标签
 	//Logingif_JFrame frame=new Logingif_JFrame();
+=======
+	private narrow_JButton narrow_jbutton = new narrow_JButton(this);// 最小化窗口按钮
+	private login_JButton jb = new login_JButton();// 登录按钮
+	private newclient_JLabel jl = new newclient_JLabel();// 是否没有账户标签
+	
+>>>>>>> origin/master
 	
 	
 	
@@ -75,8 +82,13 @@ public class Login_JFrame extends JFrame {
 
 	private LoginDistributionController loginDistributionController = LoginDistributionController.getInstance();
 
+<<<<<<< HEAD
 	//private Timer timer;
 	public Login_JFrame() {
+=======
+	
+	public login_JFrame() {
+>>>>>>> origin/master
 		
 		
 		
@@ -101,7 +113,7 @@ public class Login_JFrame extends JFrame {
 	
 public Login_JFrame(Logingif_JFrame f) {
 		
-		//this.frame=f;
+		
 		
 		
 		controller = new LoginViewController();
@@ -131,15 +143,7 @@ public Login_JFrame(Logingif_JFrame f) {
 	 * @return
 	 * @throws 未定
 	 */
-//	class myTask extends TimerTask{
-//
-//		@Override
-//		public void run() {
-//			jp.setVisible(true);	
-//			repaint();
-//		}
-//		
-//	}
+
 	public void addComp() {
 		
 		
@@ -188,26 +192,13 @@ public Login_JFrame(Logingif_JFrame f) {
 					loginFailBesidePassword.setText("密码未输入！");
 				}else{
 					
-					//new Logingif_JFrame ();
-					
-					//timer = new Timer();
-					//timer.schedule(new myTask(), 0, 5000);
-//					System.out.println(jp.isVisible());
 					
 					
 					ResultMessage loginMessage = loginDistributionController.login(name.getText(),
 							new String(password.getPassword()).trim());	
 					
 					
-//					jp.setVisible(true);
-//					System.out.println(new Date());
-					
-					
-					//frame.setVisible(true);
-					
-//					 MyThread thread =new  MyThread ();
-//					 thread.run();
-//					
+
 					type = null;
 					if(loginMessage==ResultMessage.Customer){
 						type = UserType.Customer;
@@ -234,7 +225,7 @@ public Login_JFrame(Logingif_JFrame f) {
 						}else if(loginMessage == ResultMessage.USERNOTEXIST){
 							loginFailBesideName.setText("用户不存在！");
 						}else{
-							//应该没有别的情况了吧？
+							
 						}
 					}
 				}
@@ -266,29 +257,7 @@ public Login_JFrame(Logingif_JFrame f) {
 
 	}
 
-/*	public static void main(String[] args) {
-		login_JFrame s = new login_JFrame();
 
-	}*/
-	
-	
-//	class MyThread extends Thread{
-//	    @Override
-//	    public void run() {
-//	       
-//	    	frame.setVisible(true);
-//	    	
-//	    	try {
-//				Thread.currentThread().sleep(10000);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//	    	
-//	    	
-//	    	frame.dispose();
-//	}
-//	}
 	public void setDragable() {
 		this.addMouseListener(new MouseAdapter() {
 

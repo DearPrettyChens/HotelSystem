@@ -4,7 +4,11 @@ import businesslogic.bl.userbl.UserMaintainInfoController;
 import businesslogic.blservice.userblservice.UserMaintainInfoService;
 import util.ResultMessage;
 import vo.personnelvo.PersonDetailVO;
-
+/**
+ * user调用逻辑层的控制器类
+ * @author CLL
+ *
+ */
 public class UserDistributeController {
 	private static UserDistributeController controller=null;
 	private UserMaintainInfoService userMaintainInfoService;

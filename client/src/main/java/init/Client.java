@@ -12,6 +12,7 @@ import util.BedType;
 
 public class Client {
 	public static void main(String[] args) {
+<<<<<<< HEAD
 	     
 		
 	   
@@ -19,6 +20,13 @@ public class Client {
 	   
 	   RMIHelper.init();
 	  
+=======
+
+		JFrame frame = new login_JFrame();
+
+		RMIHelper.init();
+
+>>>>>>> origin/master
 	}
 
 }

@@ -21,7 +21,12 @@ public final class ImageUtil {
 	private static String saveSource;
 	private static SimpleDateFormat simpleDateFormat;
 	static {
+<<<<<<< HEAD
 		saveSource = "/Users/chengyunfei/Documents/image/";
+=======
+		saveSource = "/Users/mac/Documents/UserImage/image/";
+//		address=ImageUtil.class.getResource("UserImage/image/");
+>>>>>>> origin/master
 		simpleDateFormat = new SimpleDateFormat("YYYYMMDD");
 	}
 

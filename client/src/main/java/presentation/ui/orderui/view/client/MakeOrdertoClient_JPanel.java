@@ -130,8 +130,7 @@ public class MakeOrdertoClient_JPanel extends JPanel {
 		successjl.setFont(font);
 		successjl.setForeground(Color.red);
 		successjl.setBounds(350, 300, 200, 50);
-		// this.add(makechangeJl);
-
+		
 		button1.setText("下一步，确认优惠信息");
 		button1.setBounds(280, 520, 240, 40);
 		button1.addActionListener(new ActionListener() {

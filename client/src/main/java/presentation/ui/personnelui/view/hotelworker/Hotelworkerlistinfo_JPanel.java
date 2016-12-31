@@ -63,7 +63,6 @@ public class Hotelworkerlistinfo_JPanel extends Personlistinfo_JPanel {
 		this.hotelname = personListVO.getHotelName();
 		this.setBackground(Color.white);
 
-		// setBak();
 		addComp();
 		setListener();
 

@@ -33,10 +33,8 @@ public class Makewebstr_JPanel extends JPanel {
 
 	private Font font = new Font("宋体", Font.BOLD, 16);
 	private Color lightcolor = new Color(149, 222, 184);
-	// private Color dackcolor=new Color(146,182,163);
 	private Color dackcolor = new Color(0, 0, 0);
 
-	//为什么传入参数是空？
 	private WebStrategyViewControllerImpl webStrategyViewControllerImpl = new WebStrategyViewControllerImpl(null);
 
 	public Makewebstr_JPanel() {

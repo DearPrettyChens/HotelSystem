@@ -106,7 +106,6 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(typejl);
 		typejtx.setBounds(100, 20, 200, 30);
 		typejtx.setFont(font);
-		//typejtx.setEditable(false);
 		this.add(typejtx);
 
 		idjl.setBounds(50, 70, 200, 30);
@@ -114,7 +113,6 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(idjl);
 		idjtx.setBounds(100, 70, 200, 30);
 		idjtx.setFont(font);
-		//idjtx.setEditable(false);
 		this.add(idjtx);
 
 		namejl.setBounds(50, 120, 200, 30);
@@ -122,7 +120,6 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(namejl);
 		namejtx.setBounds(100, 120, 200, 30);
 		namejtx.setFont(font);
-		//namejtx.setEditable(false);
 		this.add(namejtx);
 
 		teljl.setBounds(50, 170, 200, 30);
@@ -146,7 +143,6 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 		this.add(hotelnamejl);
 		hotelnamejtx.setBounds(100, 270, 200, 30);
 		hotelnamejtx.setFont(font);
-		//hotelnamejtx.setEditable(false);
 		this.add(hotelnamejtx);
 
 		editjb.setBounds(50, 330, 250, 30);
@@ -364,8 +360,6 @@ public class Hotelworkerdetailinfo_JFrame extends JFrame {
 
 		});
 
-		//TODO
-		//能不能实现点任意一个地方，使保存失败不显示
 	}
 
 }

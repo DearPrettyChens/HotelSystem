@@ -243,7 +243,7 @@ public class HotelGeneralInfotoClient_JPanel extends JPanel {
 
 		linejp.setBackground(lightgreen);
 		linejp.setBounds(50, 95, 700, 2);
-		// this.add(linejp);
+		
 
 		pricejp.setLayout(null);
 		pricejp.setBackground(Color.white);
@@ -539,7 +539,7 @@ public class HotelGeneralInfotoClient_JPanel extends JPanel {
 	
 	public void changeToHotelOrder(){
 		panel.removeAll();
-		chooseOrderTypetoClient_JPanel=ChooseOrderTypetoClient_JPanel.getInstance(userID, hotelID);
+		chooseOrderTypetoClient_JPanel=new ChooseOrderTypetoClient_JPanel(userID, hotelID);
 		panel.add(chooseOrderTypetoClient_JPanel);
 		panel.setBounds(0, 205, 800, chooseOrderTypetoClient_JPanel.getHeight());
 		container.setPreferredSize(new Dimension(780, 205+panel.getHeight()));
