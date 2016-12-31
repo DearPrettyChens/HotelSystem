@@ -105,12 +105,12 @@ private Font font=new Font("宋体",Font.BOLD, 14);
        
 	public void addComp() {
 
-		cityjl.setText("城      市：" + city);
+		cityjl.setText("城      市：" + city.toChinese());
 		cityjl.setFont(font);
 		cityjl.setBounds(50, 0, 600, 30);
 		this.add(cityjl);
 
-		areajl.setText("商      圈：" + city);
+		areajl.setText("商      圈：" + area.getChinese());
 		areajl.setFont(font);
 		areajl.setBounds(50, 30, 600, 30);
 		this.add(areajl);
@@ -130,7 +130,7 @@ private Font font=new Font("宋体",Font.BOLD, 14);
 		activityFacilityjl.setBounds(50, 150, 600, 30);
 		this.add(activityFacilityjl);
 
-		servicejl.setText("服务设施：" + city);
+		servicejl.setText("服务设施：" + service);
 		servicejl.setFont(font);
 		servicejl.setBounds(50, 180, 600, 30);
 		this.add(servicejl);
