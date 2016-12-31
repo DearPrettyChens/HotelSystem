@@ -33,6 +33,8 @@ public class ProvidedInfoMap {
 		String credit=webProvidedVO.getCredit();
 		TradingArea area=webProvidedVO.getArea();
 		Date time=webProvidedVO.getTime();
+		
+		//根据界面提供的策略信息（信用值，商圈，时间）进行初始化
 		if(credit!=null){
 			map.put(WebStrategyType.VIP, credit);
 		}

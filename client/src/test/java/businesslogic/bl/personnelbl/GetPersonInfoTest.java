@@ -20,22 +20,35 @@ import vo.personnelvo.PersonListVO;
 public class GetPersonInfoTest {
 	Personnel personnel=Personnel.getInstance();
 	PersonList personList = PersonList.getInstance();
-	PersonDetailVO personDetailVO1;//用于检测获取的列表信息
-	PersonDetailVO personDetailVO2;//用于检测获取的详细信息
-	@Before
-	public void setUp() throws Exception {
-		personDetailVO1=new PersonDetailVO(null, "小俐俐",   "xiaolili", null, "12345678901",0 , null, null, null, "锦江之星大酒店", UserType.HotelWorker);
-		personDetailVO2=new PersonDetailVO(null, "小菲菲", "feifei", null, "12345678901",100 , new Date(1997, 4, 14), null, CustomerType.INDIVIDUAL, null, UserType.Customer);
-	}
+
 
 	@Test
-	public void test() {
-		assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO1));
-		assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO2));
-		PersonListVO vo1=personList.getPersonList(UserType.HotelWorker, "小俐俐").get(0);
-		PersonDetailVO vo2= personnel.getPersonDetail("000022");
-		assertEquals("锦江之星大酒店", vo1.getHotelName());
-		assertEquals("小菲菲",vo2.getName());
+	public void test1() {
+		PersonDetailVO personDetailVO1=new PersonDetailVO(null, "小俐俐",   "xiaolili", null, "12345678901",0 , null, null, null, "锦江之星大酒店", UserType.HotelWorker);
+	   	assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO1));
+		
 	}
-
+	@Test
+	public void test2() {
+		PersonDetailVO personDetailVO2=new PersonDetailVO(null, "小菲菲", "feifei", null, "12345678901",0 , new Date(1997, 4, 14), null, CustomerType.INDIVIDUAL, null, UserType.Customer);
+			assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO2));
+	}
+	@Test
+	public void test3() {
+		PersonDetailVO personDetailVO3=new PersonDetailVO(null, "南京大学", "nju", null, "02588888888",100 , null, "南京大学", CustomerType.ENTERPRISE, null, UserType.Customer);
+		assertEquals(ResultMessage.SUCCESS,personnel.addPerson(personDetailVO3));
+	}
+	@Test
+	public void test4() {
+		PersonListVO personListVO=personList.getPersonList(UserType.HotelWorker, "小俐俐").get(0);
+		PersonDetailVO personDetailVO= personnel.getPersonDetail("000014");
+		assertEquals("锦江之星大酒店", personListVO.getHotelName());
+		assertEquals("小俐俐",personDetailVO.getName());
+	}
+	@Test
+	public void test5() {
+		PersonListVO personListVO=personList.getPersonList(UserType.HotelWorker, "小菲菲").get(0);
+		PersonDetailVO personDetailVO= personnel.getPersonDetail("000025");
+		assertEquals("小菲菲",personDetailVO.getName());
+	}
 }

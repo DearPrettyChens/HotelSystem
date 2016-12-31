@@ -22,12 +22,32 @@ public class GetBestStrategyTest {
 	@Before
 	public void setUp() throws Exception {
 		hotelStrategy=HotelStrategy.getInstance();
-		orderProvidedVO=new OrderProvidedVO("000002", 5, null, new Date(1997, 12, 2), "000005");
-	}
+		}
 
 	@Test
-	public void test() {
+	public void test1() {
+		orderProvidedVO=new OrderProvidedVO("000002", 5, null, new Date(1997, 12, 2), "000001");
 		assertEquals(0.5,hotelStrategy.getBestHotelStrategy(orderProvidedVO).getDiscount(),0.01);
+	}
+	@Test
+	public void test2() {
+		orderProvidedVO=new OrderProvidedVO("000012", 5, null, new Date(), "000001");
+		assertEquals(0.6,hotelStrategy.getBestHotelStrategy(orderProvidedVO).getDiscount(),0.01);
+	}
+	@Test
+	public void test3() {
+		orderProvidedVO=new OrderProvidedVO("000025", 0, null, null,null);
+		assertEquals(1,hotelStrategy.getBestHotelStrategy(orderProvidedVO).getDiscount(),0.01);
+	}
+	@Test
+	public void test4() {
+		orderProvidedVO=new OrderProvidedVO("000032", 5, null,null, "000002");
+		assertEquals(1,hotelStrategy.getBestHotelStrategy(orderProvidedVO).getDiscount(),0.01);
+	}
+	@Test
+	public void test5() {
+		orderProvidedVO=new OrderProvidedVO("000011", 5, "nju", null, "000002");
+		assertEquals(0.3,hotelStrategy.getBestHotelStrategy(orderProvidedVO).getDiscount(),0.01);
 	}
 
 }

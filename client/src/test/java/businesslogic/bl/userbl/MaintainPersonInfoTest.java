@@ -3,11 +3,7 @@ import static org.junit.Assert.*;
 
 import java.util.Date;
 
-/**
- * 维护个人信息的测试类
- * @author csy
- * @version 1.0
- */
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,6 +13,12 @@ import util.Telephone;
 import util.UserType;
 import vo.personnelvo.PersonDetailVO;
 import vo.uservo.BasicInfoVO;
+
+/**
+ * 维护个人信息的测试类
+ * @author csy
+ * @version 1.0
+ */
 public class MaintainPersonInfoTest {
     PersonDetailVO personDetailVO;
     Customer customer=Customer.getInstance();
@@ -26,12 +28,24 @@ public class MaintainPersonInfoTest {
 	}
 
 	@Test
-	public void test() {
+	public void test1() {
         BasicInfoVO basicInfoVO=customer.getBasicInfo("000022");
         assertEquals("小菲菲", basicInfoVO.getUserName());
-		assertEquals(ResultMessage.FAIL,customer.checkTel(new Telephone("123456")));
-		assertEquals(ResultMessage.SUCCESS,customer.modifyDetailInfo(personDetailVO));
-//		assertEquals(1, customer.getGrade("000022"));		
 	}
-
+	@Test
+	public void test2() {
+        BasicInfoVO basicInfoVO=customer.getBasicInfo("000022");
+		assertEquals(ResultMessage.FAIL,customer.checkTel(new Telephone("123456")));
+	}
+	@Test
+	public void test3() {
+        BasicInfoVO basicInfoVO=customer.getBasicInfo("000022");
+		assertEquals(ResultMessage.SUCCESS,customer.modifyDetailInfo(personDetailVO));
+	}
+	@Test
+	public void test4() {
+        BasicInfoVO basicInfoVO=customer.getBasicInfo("000022");
+		assertEquals(1, customer.getGrade("000022"));		
+	}
+	
 }

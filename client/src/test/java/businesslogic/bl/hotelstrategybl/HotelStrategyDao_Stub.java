@@ -37,15 +37,13 @@ public class HotelStrategyDao_Stub implements HotelStrategyDao{
 			return new HotelStrPO(1, 0, HotelStrategyType.BIRTH, 0.5, null, null);
 		case AMOUNT:
 			return new HotelStrPO(1, 4, 0.5) ;
-//		case ENTERPRISE:
-//			//这个要和hotel模块关联才能测试
+
 		} 
 		return null;
 	}
 
 	@Override
 	public ResultMessage setHotelStrategy(HotelStrPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
