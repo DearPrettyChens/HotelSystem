@@ -1,6 +1,7 @@
 package data.datahelperimpl;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -26,12 +27,17 @@ public class HotelDataHelperDatabaseImpl implements HotelDataHelper {
 		//按照id取出po
 		Query query = session.createQuery("from HotelBasicInfoPO where id = " + Integer.parseInt(hotelID));
 		List<HotelBasicInfoPO> list = query.list();
+		query = session.createQuery("from RemarkPO where hotel_id = " + Integer.parseInt(hotelID));
+		List<RemarkPO> remarkPOs = query.list();
+		ArrayList<RemarkPO> pos = new ArrayList<RemarkPO>();
+		pos.addAll(remarkPOs);
 		session.close();
 		if (list.size() == 0) {
 			return null;
 		}
 		HotelBasicInfoPO getPO = list.get(0);
 		HotelBasicInfoPO retPO = getPO.copy();
+		retPO.setRemarks(pos);
 		retPO.setHotelImagePath(getPO.getHotelImagePath());
 		if (retPO.getHotelImagePath() != null) {
 			//根据po内的图片路径设置酒店图片image
