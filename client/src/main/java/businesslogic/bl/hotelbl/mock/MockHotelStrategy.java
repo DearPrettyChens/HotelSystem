@@ -8,7 +8,7 @@ import vo.hotelstrategyvo.HotelStrVO;
  * @author Csy
  * @version 1.0
  */
-/*public class MockHotelStrategy extends HotelStrategy{
+public class MockHotelStrategy {
 	 /**
      * 获取酒店某类型的策略 委托给hotelStrategyInterface
      * @param hotelID String型
@@ -16,7 +16,7 @@ import vo.hotelstrategyvo.HotelStrVO;
      * @return HotelStrVO
      * 需接口：SearchHotelDao. getSortedHotelList
      */
-/*	public HotelStrVO getHotelStrategy(String hotelID, HotelStrategyInterface hotelStrategyInterface) {
+	public HotelStrVO getHotelStrategy(String hotelID, HotelStrategyInterface hotelStrategyInterface) {
 		return new HotelStrVO("0001",22, 0.75);
 	}
-}*/
+}

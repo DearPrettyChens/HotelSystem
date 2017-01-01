@@ -10,11 +10,8 @@ import vo.creditvo.CreditVO;
  * @version 1.0
  * 
  */
-/*public class MockCredit extends CreditChangeController {
-	public MockCredit(String customerID) {
-		super(customerID);
-		// TODO Auto-generated constructor stub
-	}
+public class MockCredit{
+
 
 
 	public int mockcredit=0;
@@ -31,9 +28,9 @@ import vo.creditvo.CreditVO;
 		mockcredit--;
 		
 		return null;
-	}*/
+	}
 
 	
 	
 
-//}
+}

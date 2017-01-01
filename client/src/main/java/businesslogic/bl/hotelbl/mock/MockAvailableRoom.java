@@ -9,15 +9,15 @@ import vo.availableroomvo.AvailableRoomInfoVO;
  * @author Csy
  * @version 1.0
  */
-public class MockAvailableRoom extends AvailableRoom{
+public class MockAvailableRoom{
 	/**
 	 * 获取酒店的可用房间信息
 	 * @param hotelID
 	 * @return AvailableRoomInfoVO
 	 */
-/*	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
+	public AvailableRoomInfoVO getAvailableRoomInfo(String hotelID) {
 		// TODO
-		return new AvailableRoomInfoVO("0001", "汉庭", new String[]{"豪华"},new BedType[] {BedType.BIGBED}, new double[]{33},new double[]{22}, new int[]{5});
+		return new AvailableRoomInfoVO("0001", "汉庭",BedType.BIGBED, 33,33,1,true);
 		
-	}*/
+	}
 }
