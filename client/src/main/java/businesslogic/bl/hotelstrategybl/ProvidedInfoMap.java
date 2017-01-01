@@ -18,7 +18,7 @@ import vo.ordervo.OrderProvidedVO;
  *
  * 
  */
-public class ProvidedInfoMap {
+public class ProvidedInfoMap{
 	private Map<HotelStrategyType, String> map;	private Iterator<Map.Entry<HotelStrategyType, String>> entries ;
 	private Map.Entry<HotelStrategyType, String> entry;
 	
