@@ -193,7 +193,7 @@ public class AvailableRoom {
 			ArrayList<AvailableRoomInfoPO> roomInfo = availableRoomDao.getAvailableRoomInfo(hotelID);
 			for (int i = 0; i < roomInfo.size(); i++) {
 				if (bedType == roomInfo.get(i).getBedType()) {
-					return roomInfo.get(i).getLowestPrice();
+					return roomInfo.get(i).getOriginalPrice();
 				}
 			}
 		} catch (RemoteException e) {

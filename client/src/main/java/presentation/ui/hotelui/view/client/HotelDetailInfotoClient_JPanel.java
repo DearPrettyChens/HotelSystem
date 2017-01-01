@@ -155,12 +155,12 @@ private Font font=new Font("宋体",Font.BOLD, 14);
 		for (int i = 0; i < size; i++) {
 			HotelStrVO tempvo = hotelStrVO.get(i);
 
-			s = s + tempvo.getType().getChinese() + tempvo.getAmount() + "折;";
+			s = s + tempvo.getType().getChinese() + tempvo.getDiscount() + "折;";
 
 		}
 
 		hotelStrVOjl.setFont(font);
-		hotelStrVOjl.setBounds(120, 270, 120, 80);
+		hotelStrVOjl.setBounds(120, 270, 130, 80);
 		try {
 			JLabelTool.JlabelSetText(hotelStrVOjl, s);
 		} catch (InterruptedException e) {

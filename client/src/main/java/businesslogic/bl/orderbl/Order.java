@@ -1,5 +1,6 @@
 package businesslogic.bl.orderbl;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
@@ -123,17 +124,25 @@ public class Order {
 		try {
 			hotelDetail = hotelInfoOrderService.getHotelDetailInfo(hotelID, customerID);
 			TradingArea area = hotelDetail.getArea();
+			//获取网站营销策略
 			webStrategy = WebStrategy.getInstance();
 			WebProvidedVO webProvidedVO = new WebProvidedVO(String.valueOf(credit), area, new Date());
 			WebBestStrVO webStrVO = webStrategy.getWebBestStrategy(webProvidedVO);
+			double webDiscount=webStrVO.getDiscount();
+			
+			//获取酒店营销策略
 			hotelStrategy = HotelStrategy.getInstance();
 			OrderProvidedVO orderProvidedVO = new OrderProvidedVO(customerID, orderInfoVO.getAmount(),
 					detail.getEnterpriseName(), new Date(), hotelID);
 			HotelBestStrVO hotelStrVO = hotelStrategy.getBestHotelStrategy(orderProvidedVO);
+			double hotelDiscount=hotelStrVO.getDiscount();
 			// 调用Availableroom.getRoomPrice 获得酒店房间价格
 			availableRoom = new AvailableRoom();
 			double price = availableRoom.getRoomPrice(hotelID, orderInfoVO.getBedType());
-
+            price=price*webDiscount*hotelDiscount;
+            DecimalFormat dFormat=new DecimalFormat(".#");
+            String string=dFormat.format(price);
+            price=Double.parseDouble(string);
 			return new StrategyVO(webStrVO, hotelStrVO, price);
 		} catch (NotFoundHotelException e) {
 			e.printStackTrace();

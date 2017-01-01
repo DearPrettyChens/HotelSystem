@@ -61,7 +61,7 @@ public class SingleRoomInfotoClient_JPanel extends JPanel{
 		this.hotelID=availableRoomInfoVO.getHotelNumber();
 		this.roomtype=availableRoomInfoVO.getRoomType();
 		this.bedtype=availableRoomInfoVO.getBedType().toChinese();
-		this.price=availableRoomInfoVO.getLowestPrice();
+		this.price=availableRoomInfoVO.getOriginalPrice();
 		
 		this.setLayout(null);
 		this.setBackground(Color.white);
