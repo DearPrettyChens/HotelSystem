@@ -122,10 +122,14 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 			if(basic==null){
 				throw new NotFoundHotelException();
 			}
+
 			//获得酒店评价信息
-			ArrayList<RemarkPO> remarks=basic.getRemarks();
-			
+			singleOrder=new SingleOrder();
 			ArrayList<String> remarkDetails=new ArrayList<String>();
+			for(int i=0;i<orders.size();i++){
+				//remarkDetails.add(singleOrder.getOrderInfo(orders.get(i).getOrderID()).get)
+			}
+			ArrayList<RemarkPO> remarks=basic.getRemarks();
 			if(remarks!=null){
 				for(int i=0;i<remarks.size();i++){
 					remarkDetails.add(remarks.get(i).getRemark());
@@ -229,7 +233,6 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 			//增加一条评价信息
 			hotelDao.addRemarkInfo(new RemarkPO(vo.getHotelId(),vo.getOrderId(),
 					vo.getCustomerID(),vo.getRemarkGrade(),vo.getRemarkInfo()));
-			//增加酒店的评价过的订单总数是在数据层进行处理吗？
 		} catch (RemoteException e) {
 			e.printStackTrace();
 			return ResultMessage.FAIL;

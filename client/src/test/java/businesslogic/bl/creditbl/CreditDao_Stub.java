@@ -19,14 +19,12 @@ public class CreditDao_Stub implements CreditDao{
 	int credit=100;
 	@Override
 	public ResultMessage setCredit(CreditPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		credit=(int) po.getCredit();
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public CreditInfoPO getCreditInfo(String customerID) throws RemoteException {
-		// TODO Auto-generated method stub
 		List<CreditPO> pos=new ArrayList<CreditPO>();
 		pos.add(new CreditPO("chen",000001,credit,0,null,new Date()));
 		CreditInfoPO po=new CreditInfoPO(pos);

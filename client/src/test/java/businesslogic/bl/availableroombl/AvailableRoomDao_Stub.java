@@ -19,7 +19,6 @@ public class AvailableRoomDao_Stub implements AvailableRoomDao{
 	double price=100;
 	@Override
 	public ArrayList<AvailableRoomInfoPO> getAvailableRoomInfo(String hotelID) throws RemoteException {
-		// TODO Auto-generated method stub
 		AvailableRoomInfoPO po=new AvailableRoomInfoPO(000002,"商务间",BedType.BIGBED,100,price,10,8);
 		ArrayList<AvailableRoomInfoPO> roomInfo=new ArrayList<AvailableRoomInfoPO>();
 		roomInfo.add(po);
@@ -29,38 +28,32 @@ public class AvailableRoomDao_Stub implements AvailableRoomDao{
 	@Override
 	public AvailableRoomNumberPO getAvailableRoomNumber(String hotelID, Date date, BedType type)
 			throws RemoteException {
-		// TODO Auto-generated method stub
 		AvailableRoomNumberPO po=new AvailableRoomNumberPO(8,type,date,TransHelper.idToInt(hotelID));
 		return po;
 	}
 
 	@Override
 	public ResultMessage addAvailableRoomInfo(AvailableRoomInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage modifyAvailableRoomInfo(AvailableRoomInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage setAvailableRoomNumber(AvailableRoomNumberPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public double getRoomPrice(String hotelID, BedType bedType) throws RemoteException {
-		// TODO Auto-generated method stub
 		return 80;
 	}
 
 	@Override
 	public ResultMessage setBestPrice(ArrayList<AvailableRoomInfoPO> po) throws RemoteException {
-		// TODO Auto-generated method stub
 		price=po.get(0).getLowestPrice();
 		return ResultMessage.SUCCESS;
 	}

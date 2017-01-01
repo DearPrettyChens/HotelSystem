@@ -24,7 +24,6 @@ public class OrderDao_Stub implements OrderDao{
 	static OrderState state=OrderState.NOTEXECUTED;
 	@Override
 	public OrderInfoPO getOrderInfo(String orderID) throws RemoteException {
-		// TODO Auto-generated method stub
 		OrderInfoPO po=new OrderInfoPO("000001", orderID, "chen", "chen", "12345678999", 
 				"南京绿地洲际酒店", "000002", "12345678999", "商务间", BedType.BIGBED, 1,
 				new Date(), 1, Children.EXIST, false, new Date(), new Date(), new Date(), new Date(), new Date(), 685, state, null);
@@ -33,7 +32,6 @@ public class OrderDao_Stub implements OrderDao{
 
 	@Override
 	public ArrayList<OrderListPO> getOrderList(TypeInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<OrderListPO> pos=new ArrayList<OrderListPO>();
 		OrderListPO po1=new OrderListPO("201611030001000001","000001","chen",new Date(),OrderState.NOTEXECUTED);
 		pos.add(po1);
@@ -42,7 +40,6 @@ public class OrderDao_Stub implements OrderDao{
 
 	@Override
 	public ArrayList<OrderListPO> getOrderList(String hotelID) throws RemoteException {
-		// TODO Auto-generated method stub
 		ArrayList<OrderListPO> pos=new ArrayList<OrderListPO>();
 		OrderListPO po1=new OrderListPO("201611030001000001","000001","chen",new Date(),OrderState.NOTEXECUTED);
 		pos.add(po1);
@@ -51,32 +48,27 @@ public class OrderDao_Stub implements OrderDao{
 
 	@Override
 	public ResultMessage addOrderState(OrderStatePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		state=po.getState();
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage setOrderRemark(RemarkPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage setCheckintime(CheckTimePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage setCheckouttime(CheckTimePO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
 	@Override
 	public ResultMessage addOrder(OrderInfoPO po) throws RemoteException {
-		// TODO Auto-generated method stub
 		return ResultMessage.SUCCESS;
 	}
 
