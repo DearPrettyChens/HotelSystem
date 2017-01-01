@@ -448,7 +448,7 @@ public class WriteOrdertoClient_JPanel extends JPanel {
 		if(orderDistributionController.checkUserCredit(userID)==ResultMessage.LACKOFCREDIT){
 			//信用不足无法生成订单
 			SaveFail_JFrame fail_JFrame = new SaveFail_JFrame();
-			fail_JFrame.setLableText("您的信用值不足，无法下订单噢～");
+			fail_JFrame.setLableText("您的信用值不足，无法下单噢～");
 			return null;
 		}
 		boolean infoValid = true;

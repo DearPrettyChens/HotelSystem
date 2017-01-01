@@ -69,13 +69,13 @@ public class SaveFail_JFrame  extends JFrame{
 		
 		halfjl.setFont(font);
 		halfjl.setForeground(Color.RED);
-		halfjl.setBounds(100,100,200,50);
+		halfjl.setBounds(100,100,300,50);
 		this.add(halfjl);
 		
 		
 		
 		confirmjb.setText("好的吧");
-		confirmjb.setBounds(150,150,100,30);
+		confirmjb.setBounds(150,200,100,30);
 		confirmjb.addActionListener(new ActionListener(){
 
 			@Override
@@ -90,8 +90,6 @@ public class SaveFail_JFrame  extends JFrame{
 	
 	public void setLableText(String info){
 		this.halfjl.setText(info);
-		halfjl.setHorizontalAlignment(Label.CENTER);
-		halfjl.setVerticalAlignment(Label.CENTER);
 		halfjl.setBounds(70, 100, 300, 50);
 	}
 
