@@ -124,11 +124,7 @@ public class Hotel implements HotelInfoAvailService,HotelInfoOrderService{
 			}
 
 			//获得酒店评价信息
-			singleOrder=new SingleOrder();
 			ArrayList<String> remarkDetails=new ArrayList<String>();
-			for(int i=0;i<orders.size();i++){
-				//remarkDetails.add(singleOrder.getOrderInfo(orders.get(i).getOrderID()).get)
-			}
 			ArrayList<RemarkPO> remarks=basic.getRemarks();
 			if(remarks!=null){
 				for(int i=0;i<remarks.size();i++){
