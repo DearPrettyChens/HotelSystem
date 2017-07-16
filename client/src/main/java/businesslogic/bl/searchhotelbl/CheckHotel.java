@@ -3,6 +3,7 @@ package businesslogic.bl.searchhotelbl;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import businesslogic.bl.availableroombl.AvailableRoom;
 import businesslogic.bl.hotelbl.Hotel;
@@ -279,8 +280,8 @@ public class CheckHotel {
 	 * @return
 	 */
 	private boolean checkPrice(double bestPrice) throws SizeNotEqualException {
-		ArrayList<Integer> lowPrices = hotelSearchInfoVO.getLowPrice();
-		ArrayList<Integer> highPrices = hotelSearchInfoVO.getHighPrice();
+		List<Integer> lowPrices = hotelSearchInfoVO.getLowPrice();
+		List<Integer> highPrices = hotelSearchInfoVO.getHighPrice();
 		if (lowPrices == null || highPrices == null) {
 			return true;
 		}
